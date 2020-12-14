@@ -1,5 +1,5 @@
 {
-	"name": "frialigant2k4e",
+	"name": "t2k4e",
 	"title": "Twilight 2000 4E",
 	"description": "A system for Twilight 2000 4th edition by Free League Publishing.",
 	"author": "Stefouch",
@@ -8,7 +8,7 @@
 	"minimumCoreVersion": "0.7.8",
 	"compatibleCoreVersion": "0.7.8",
 	"esmodules": [
-		"t2k4e.js"
+		"module/t2k4e.js"
 	],
 	"styles": [
 		"styles/t2k4e.css"
@@ -24,5 +24,10 @@
 	"gridDistance": 10,
 	"gridUnits": "m",
 	"primaryTokenAttribute": "hp",
-	"initiative": "1d10"
+	"secondaryTokenAttribute": "stress",
+	"initiative": "1d10",
+	"url": "",
+	"manifest": "",
+	"download": "",
+	"license": "LICENSE"
 }

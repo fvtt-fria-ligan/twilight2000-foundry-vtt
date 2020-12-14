@@ -1,5 +1,5 @@
 {
-  "name": "frialigant2k4e",
+  "name": "t2k4e",
   "version": "0.0.1",
   "description": "A Foundry VTT system for Twilight 2000 4E (Free League Publishing)",
   "private": true,
@@ -26,6 +26,7 @@
   "author": "Stefouch",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^7.15.0",
     "gulp": "^4.0.2",
     "gulp-less": "^4.0.1",
     "less": "^3.13.0"

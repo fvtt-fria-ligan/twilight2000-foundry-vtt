@@ -218,7 +218,17 @@
 				"commander": 0
 			},
 			"components": {
-
+				"fuel": 1,
+				"engine": 1,
+				"suspension": 1,
+				"ammo": 0,
+				"cargo": 1,
+				"radio": 0,
+				"trackWheel": 1,
+				"weapon": 0,
+				"fcs": 0,
+				"antenna": 0,
+				"externalStores": 0
 			},
 			"price": 0
 		},
@@ -282,7 +292,6 @@
 				"legs": false,
 				"limbs": false
 			}
-
 		}
 	}
 }
