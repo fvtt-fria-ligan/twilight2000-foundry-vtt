@@ -1,0 +1,40 @@
+{
+	"t2k4e": {
+		"attributes": {
+			"str": "Strength",
+			"agl": "Agility",
+			"int": "Intelligence",
+			"emp": "Empathy"
+		},
+		"skills": {
+			"none": "–",
+			"heavyWeapons": "Heavy Weapons",
+			"closeCombat": "Close Combat",
+			"stamina": "Stamina",
+			"driving": "Driving",
+			"mobility": "Mobility",
+			"rangedCombat": "Ranged Combat",
+			"recon": "Recon",
+			"survival": "Survival",
+			"tech": "Tech",
+			"command": "Command",
+			"persuasion": "persuasion",
+			"medicalAid": "Medical Aid"
+		},
+		"ranges": {
+			"close": "In close combat",
+			"short": "Short",
+			"medium": "Medium",
+			"long": "Long",
+			"extreme": "Extreme"
+		},
+		"branches": {
+			"civilian": "civilian",
+			"military": "military"
+		},
+		"speedTypes": {
+			"tracks": "tracks",
+			"wheels": "wheels"
+		}
+	}
+}

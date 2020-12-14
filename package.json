@@ -1,0 +1,33 @@
+{
+  "name": "frialigant2k4e",
+  "version": "0.0.1",
+  "description": "A Foundry VTT system for Twilight 2000 4E (Free League Publishing)",
+  "private": true,
+  "main": "t2k4e.js",
+  "scripts": {
+    "build": "gulp",
+    "watch": "gulp",
+    "gulp": "gulp",
+    "compile": "gulp css"
+  },
+  "keywords": [
+    "Foundry",
+    "VTT",
+    "System",
+    "T2K",
+    "T2K4E",
+    "Twilight 2000",
+    "Free League",
+    "Fria Ligan",
+    "RPG",
+    "TTRPG",
+    "Roleplaying Game"
+  ],
+  "author": "Stefouch",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-less": "^4.0.1",
+    "less": "^3.13.0"
+  }
+}
