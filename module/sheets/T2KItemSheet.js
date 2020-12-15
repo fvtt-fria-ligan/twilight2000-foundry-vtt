@@ -7,6 +7,7 @@ export default class T2KItemSheet extends ItemSheet {
 		return `systems/t2k4e/templates/sheets/${this.item.data.type}-sheet.hbs`;
 	}
 
+	/** @override */
 	getData() {
 		const data = super.getData();
 		data.config = CONFIG.T2K4E;

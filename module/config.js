@@ -1,3 +1,7 @@
+/**
+ * The T2K4E Configuration file.
+ * @constant
+ */
 export const T2K4E = {};
 
 T2K4E.attributes = {

@@ -1,6 +1,6 @@
 {
 	"name": "t2k4e",
-	"title": "Twilight 2000 4E",
+	"title": "Twilight 2000 4E (alpha)",
 	"description": "A system for Twilight 2000 4th edition by Free League Publishing.",
 	"author": "Stefouch",
 	"authors": ["Stefouch"],
@@ -26,7 +26,7 @@
 	"primaryTokenAttribute": "hp",
 	"secondaryTokenAttribute": "stress",
 	"initiative": "1d10",
-	"url": "",
+	"url": "https://github.com/Stefouch/t2k4e",
 	"manifest": "",
 	"download": "",
 	"license": "LICENSE"

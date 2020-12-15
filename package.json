@@ -30,5 +30,14 @@
     "gulp": "^4.0.2",
     "gulp-less": "^4.0.1",
     "less": "^3.13.0"
-  }
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stefouch/t2k4e.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Stefouch/t2k4e/issues"
+  },
+  "homepage": "https://github.com/Stefouch/t2k4e#readme"
 }

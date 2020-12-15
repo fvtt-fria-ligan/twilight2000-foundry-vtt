@@ -8,22 +8,20 @@
 		],
 		"templates": {
 			"actorBio": {
-				"nationality": "",
-				"branch": "",
-				"militaryRank": "",
-				"buddy": "",
-				"appearance": "",
-				"moralCode": "",
-				"bigDream": ""
+				"bio": {
+					"nationality": "",
+					"branch": "",
+					"militaryRank": "",
+					"buddy": "",
+					"appearance": "",
+					"moralCode": "",
+					"bigDream": ""
+				}
 			},
 			"actorDescription": {
 				"description": ""
 			},
-			"actorExperience": {
-				"experience": 0,
-				"maxExperience": 0
-			},
-			"actorAttributes": {
+			"actorAttributesAndSkills": {
 				"attributes": {
 					"str": {
 						"rating": "D",
@@ -49,9 +47,7 @@
 						"min": 6,
 						"max": 12
 					}
-				}
-			},
-			"actorSkills": {
+				},
 				"skills": {
 					"heavyWeapons": {
 						"rating": "F",
@@ -153,6 +149,18 @@
 				"crits": "",
 				"diseases": ""
 			},
+			"actorActions": {
+				"actions": {
+					"fast": {
+						"value": 1,
+						"max": 1
+					},
+					"slow": {
+						"value": 1,
+						"max": 1
+					}
+				}
+			},
 			"actorConditions": {
 				"conditions": {
 					"starving": false,
@@ -178,23 +186,30 @@
 			"templates": [
 				"actorBio",
 				"actorDescription",
-				"actorExperience",
-				"actorAttributes",
-				"actorSkills",
+				"actorAttributesAndSkills",
 				"actorCombat",
-				"actorConditions"
-			]
+				"actorConditions",
+				"actorActions"
+			],
+			"xp": {
+				"value": 0,
+				"total": 0
+			}
 		},
 		"npc": {
-			"templates": ["actorDescription", "actorAttributes", "actorSkills"],
-			"damage": 0,
-			"hp": 0
+			"templates": ["actorDescription", "actorAttributesAndSkills", "actorActions"],
+			"damage": {
+				"value": 0,
+				"min": 0
+			}
 		},
 		"vehicle": {
 			"templates": ["actorDescription"],
 			"type": "",
-			"reliability": "A",
-			"maxReliability": "A",
+			"reliability": {
+				"value": "A",
+				"max": "A"
+			},
 			"speed": {
 				"combat": [0, 0],
 				"travel": [0, 0],
@@ -252,8 +267,10 @@
 				"description": ""
 			},
 			"itemReliability": {
-				"reliability": "A",
-				"maxReliability": "A"
+				"reliability": {
+					"value": "A",
+					"max": "A"
+				}
 			},
 			"itemOffensive": {
 				"attackWith": "",
