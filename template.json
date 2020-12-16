@@ -24,102 +24,54 @@
 			"actorAttributesAndSkills": {
 				"attributes": {
 					"str": {
-						"rating": "D",
-						"value": 6,
-						"min": 6,
-						"max": 12
+						"value": "D"
 					},
 					"agl": {
-						"rating": "D",
-						"value": 6,
-						"min": 6,
-						"max": 12
+						"value": "D"
 					},
 					"int": {
-						"rating": "D",
-						"value": 6,
-						"min": 6,
-						"max": 12
+						"value": "D"
 					},
 					"emp": {
-						"rating": "D",
-						"value": 6,
-						"min": 6,
-						"max": 12
+						"value": "D"
 					}
 				},
 				"skills": {
 					"heavyWeapons": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"closeCombat": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"stamina": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"driving": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"mobility": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"rangedCombat": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"recon": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"survival": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"tech": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"command": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"persuasion": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					},
 					"medicalAid": {
-						"rating": "F",
-						"value": 0,
-						"min": 0,
-						"max": 12
+						"value": "F"
 					}
 				}
 			},
@@ -135,16 +87,10 @@
 					"max": 12
 				},
 				"cuf": {
-					"rating": "F",
-					"value": 0,
-					"min": 0,
-					"max": 12
+					"value": "F"
 				},
 				"morale": {
-					"rating": "F",
-					"value": 0,
-					"min": 0,
-					"max": 12
+					"value": "F"
 				},
 				"crits": "",
 				"diseases": ""
@@ -253,10 +199,11 @@
 	},
 	"Item": {
 		"types": [
-			"gear",
 			"weapon",
+			"armor",
 			"grenade",
-			"armor"
+			"gear",
+			"specialty"
 		],
 		"templates": {
 			"itemBase": {
@@ -279,10 +226,10 @@
 				"blast": 0,
 				"range": 0,
 				"armorModifier": 0
+			},
+			"itemModifiers": {
+				"medicalAid": 0
 			}
-		},
-		"gear": {
-			"templates": ["itemBase"]
 		},
 		"weapon": {
 			"templates": ["itemBase", "itemOffensive", "itemReliability"],
@@ -295,10 +242,6 @@
 			"disposable": false,
 			"mounted": false
 		},
-		"grenade": {
-			"templates": ["itemBase", "itemOffensive"],
-			"disposable": true
-		},
 		"armor": {
 			"templates": ["itemBase"],
 			"rating": 0,
@@ -309,6 +252,17 @@
 				"legs": false,
 				"limbs": false
 			}
+		},
+		"grenade": {
+			"templates": ["itemBase", "itemOffensive"],
+			"disposable": true
+		},
+		"gear": {
+			"templates": ["itemBase", "itemModifiers"]
+		},
+		"specialty": {
+			"templates": ["itemModifiers"],
+			"description": ""
 		}
 	}
 }

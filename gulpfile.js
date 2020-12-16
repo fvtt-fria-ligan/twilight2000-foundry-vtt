@@ -1,30 +1,44 @@
 const gulp = require('gulp');
 const less = require('gulp-less');
 
-const SYSTEM_LESS = 'less/**/*.less';
+/* ----------------------------------------- */
+/*  Handle Errors function
+/* ----------------------------------------- */
 
-// Small error handler helper function
 function handleError(err) {
 	console.log(err.toString());
 	this.emit('end');
 }
 
-function compileLess() {
+/* ----------------------------------------- */
+/*  Compile LESS
+/* ----------------------------------------- */
+
+const T2K4E_LESS = ['less/**/*.less'];
+
+function compileLESS() {
 	const options = {};
 	return gulp
-		.src(SYSTEM_LESS)
+		.src(T2K4E_LESS)
 		.pipe(less(options).on('error', handleError))
-		.pipe(gulp.dest('./styles'));
+		.pipe(gulp.dest('./styles'))
 }
+const css = gulp.series(compileLESS);
 
-const css = gulp.series(compileLess);
+/* ----------------------------------------- */
+/*  Watch Updates
+/* ----------------------------------------- */
 
 function watchUpdates() {
-	gulp.watch(SYSTEM_LESS, css)
+	gulp.watch(T2K4E_LESS, css);
 }
 
+/* ----------------------------------------- */
+/*  Export Tasks
+/* ----------------------------------------- */
+
 exports.default = gulp.series(
-	compileLess,
+	gulp.parallel(css),
 	watchUpdates
 );
 exports.css = css;

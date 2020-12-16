@@ -16,34 +16,38 @@
 import { T2K4E } from './config.js';
 
 // Imports Entities.
+import ItemT2K from './item/item.js'
 
 // Imports Applications.
-import T2KItemSheet from './sheets/T2KItemSheet.js';
+import ItemSheetT2K from './item/itemSheet.js';
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
 
 Hooks.once('init', function() {
-	console.log('t2k4e | Initializing Twilight 2000 4E System');
+	console.log(`t2k4e | Initializing the Twilight 2000 4E Game System\n${T2K4E.ASCII2}`);
 
 	// Creates a namespace within the game global.
 	// Places our classes in their own namespace for later reference.
 	game.t2k4e = {
 		applications: {
-			T2KItemSheet
+			ItemSheetT2K
 		},
 		config: T2K4E,
-		entities: {}
+		entities: {
+			ItemT2K
+		}
 	};
 
 	// Records configuration values.
 	CONFIG.T2K4E = T2K4E;
+	CONFIG.Item.entityClass = ItemT2K;
 
 	// Patches Core functions.
 	CONFIG.Combat.initiative = {
 		formula: '1d10 + @attributes.agl.value / 10',
-		decimal: 1
+		decimals: 1
 	}
 
 	// Registers sheet application classes. 
@@ -51,9 +55,12 @@ Hooks.once('init', function() {
 	// Actors.unregisterSheet('core', ActorSheet);
 	// Actors.registerSheet('t2k4e', T2KActorSheet, { makeDefault: true });
 	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('t2k4e', T2KItemSheet, { makeDefault: true });
+	Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
 
-	// If you need to add Handlebars helpers, here are a few useful examples:
+	/* -------------------------------------------- */
+	/*  Handlebars Custom Helpers
+	/* -------------------------------------------- */
+
 	Handlebars.registerHelper('concat', () => {
 		let outStr = '';
 		for (const arg in arguments) {
