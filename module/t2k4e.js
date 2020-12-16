@@ -26,7 +26,7 @@ import ItemSheetT2K from './item/itemSheet.js';
 /* -------------------------------------------- */
 
 Hooks.once('init', function() {
-	console.log(`t2k4e | Initializing the Twilight 2000 4E Game System\n${T2K4E.ASCII2}`);
+	console.log(`t2k4e | Initializing the Twilight 2000 4E Game System\n${T2K4E.ASCII}`);
 
 	// Creates a namespace within the game global.
 	// Places our classes in their own namespace for later reference.
@@ -61,21 +61,34 @@ Hooks.once('init', function() {
 	/*  Handlebars Custom Helpers
 	/* -------------------------------------------- */
 
-	Handlebars.registerHelper('concat', () => {
-		let outStr = '';
+	Handlebars.registerHelper('concat', function() {
+		let str = '';
 		for (const arg in arguments) {
 			if (typeof arguments[arg] !== 'object') {
-				outStr += arguments[arg];
+				str += arguments[arg];
 			}
 		}
-		return outStr;
+		return str;
 	});
 	
-	Handlebars.registerHelper('toLowerCase', str => str.toLowerCase());
+	Handlebars.registerHelper('toLowerCase', function(str) {
+		return str.toLowerCase();
+	});
 
-	Handlebars.registerHelper('times', (n, content) => {
-		let outStr = '';
-		for (; n > 0; n--) outStr += content.fn(n);
-		return outStr;
-	})
+	Handlebars.registerHelper('times', function(n, content) {
+		let str = '';
+		for (; n > 0; n--) str += content.fn(n);
+		return str;
+	});
+
+	Handlebars.registerPartial(
+		'dieRatingSelector',
+		`<select name="{{name}}">
+			{{#select selected}}
+			{{#each config.dieRatings}}
+			<option value="{{.}}">{{.}}</option>
+			{{/each}}
+			{{/select}}
+		</select>`
+	);
 });

@@ -77,14 +77,10 @@
 			},
 			"actorCombat": {
 				"damage": {
-					"value": 0,
-					"min": 0,
-					"max": 12
+					"value": 0
 				},
 				"stress": {
-					"value": 0,
-					"min": 0,
-					"max": 12
+					"value": 0
 				},
 				"cuf": {
 					"value": "F"
@@ -116,14 +112,10 @@
 				},
 				"rads": {
 					"temporary": {
-						"value": 0,
-						"min": 0,
-						"max": 10
+						"value": 0
 					},
 					"permanent": {
-						"value": 0,
-						"min": 0,
-						"max": 10
+						"value": 0
 					}
 				}
 			}
@@ -145,8 +137,7 @@
 		"npc": {
 			"templates": ["actorDescription", "actorAttributesAndSkills", "actorActions"],
 			"damage": {
-				"value": 0,
-				"min": 0
+				"value": 0
 			}
 		},
 		"vehicle": {
@@ -162,11 +153,22 @@
 				"type": ""
 			},
 			"armor": {
-				"front": 0,
-				"side": 0,
-				"rear": 0
+				"front": {
+					"value": 0,
+					"max": 0
+				},
+				"side": {
+					"value": 0,
+					"max": 0
+				},
+				"rear": {
+					"value": 0,
+					"max": 0
+				}
 			},
 			"fuel": {
+				"value": 0,
+				"max": 0,
 				"type": "",
 				"cap": 0,
 				"cons": 0
@@ -223,7 +225,7 @@
 				"attackWith": "",
 				"damage": 0,
 				"crit": 0,
-				"blast": 0,
+				"blast": "",
 				"range": 0,
 				"armorModifier": 0
 			},
@@ -233,7 +235,6 @@
 		},
 		"weapon": {
 			"templates": ["itemBase", "itemOffensive", "itemReliability"],
-			"attackWith": "",
 			"weaponType": "",
 			"ammo": "",
 			"rof": 0,
@@ -244,8 +245,10 @@
 		},
 		"armor": {
 			"templates": ["itemBase"],
-			"rating": 0,
-			"maxRating": 0,
+			"rating": {
+				"value": 0,
+				"max": 0
+			},
 			"location": {
 				"head": false,
 				"torso": true,

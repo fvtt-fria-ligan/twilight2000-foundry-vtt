@@ -1,8 +1,10 @@
+import { getDieRangeFromRating } from '../dice.js';
+
 /**
  * Twilight 2000 Item.
  * @extends {Item} Extends the basic Item.
  */
-export class ItemT2K extends Item {
+export default class ItemT2K extends Item {
 	/**
 	 * Augments the basic Item data model with additional dynamic data.
 	 * @override
@@ -13,5 +15,7 @@ export class ItemT2K extends Item {
 		const itemData = this.data;
 		const actorData = this.actor ? this.actor.data : {};
 		const data = itemData.data;
+
+		data.reliability.range = getDieRangeFromRating(data.reliability.value);
 	}
 }

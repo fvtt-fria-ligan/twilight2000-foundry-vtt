@@ -35,6 +35,14 @@
 		"speedTypes": {
 			"tracks": "tracks",
 			"wheels": "wheels"
+		},
+		"itemSheet": {
+			"name": "Name",
+			"featuresTab": "Features",
+			"descriptionTab": "Description"
+		},
+		"itemTypes": {
+			"weapon": "Weapon"
 		}
 	}
 }

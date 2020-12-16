@@ -1,7 +1,36 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
+
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'T2K4E.itemSheet.name'}}"/></h1>
+        <div class="item-subtitle">
+            <h4>{{itemType}}</h4>
+        </div>
     </header>
-    <p>Hello World!</p>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs" data-group="primary">
+        <a class="item" data-tab="features">{{localize "T2K4E.itemSheet.featuresTab"}}</a>
+        <a class="item" data-tab="description">{{localize "T2K4E.itemSheet.descriptionTab"}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Features Tab --}}
+        <div class="tab features" data-group="primary" data-tab="features">
+            <div class="flex-group-center">
+                {{> dieRatingSelector name="data.reliability.value" selected=data.reliability.value}}
+                D{{data.reliability.range}}
+            </div>
+        </div>
+
+        {{!-- Description Tab --}}
+        <div class="tab description" data-group="primary" data-tab="description">
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
+
+    </section>
+
 </form>

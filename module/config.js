@@ -4,15 +4,8 @@
  */
 export const T2K4E = {};
 
-T2K4E.ASCII = `______________________________
-_____ ____  _  ___  _   _____ 
-|_   _|___ \| |/ / || | | ____|
-  | |   __) | ' /| || |_|  _|  
-  | |  / __/| . \|__   _| |___ 
-  |_| |_____|_|\_\  |_| |_____|
-______________________________`;
-
-T2K4E.ASCII2 = `_________________________________________
+T2K4E.ASCII = `_________________________________________
+                                         
 ████████╗██████╗ ██╗  ██╗██╗  ██╗███████╗
 ╚══██╔══╝╚════██╗██║ ██╔╝██║  ██║██╔════╝
    ██║    █████╔╝█████╔╝ ███████║█████╗  
@@ -60,9 +53,9 @@ T2K4E.skillsMap = {
 	medicalAid: 'emp'
 }
 
-T2K4E.diceRanges = [0, 6, 8, 10, 12];
-T2K4E.diceRatings = ['F', 'D', 'C', 'B', 'A'];
-T2K4E.diceRangesMap = new Map([T2K4E.diceRatings, T2K4E.diceRanges]);
+T2K4E.dieRanges = [12, 10, 8, 6, 0];
+T2K4E.dieRatings = ['A', 'B', 'C', 'D', 'F'];
+T2K4E.dieRangesMap = new Map(T2K4E.dieRatings.map((x, i) => [x, T2K4E.dieRanges[i]]));
 
 T2K4E.ranges = [
 	'T2K4E.ranges.close',

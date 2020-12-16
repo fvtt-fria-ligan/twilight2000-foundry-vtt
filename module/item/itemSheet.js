@@ -21,6 +21,8 @@ export default class ItemSheetT2K extends ItemSheet {
 	/** @override */
 	getData() {
 		const data = super.getData();
+		data.config = CONFIG.T2K4E;
+		data.itemType = game.i18n.localize(`T2K4E.itemTypes.${data.item.type}`);
 		return data;
 	}
 
