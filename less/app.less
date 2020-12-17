@@ -1,0 +1,188 @@
+@navHeight: 30px;
+@headerHeight: 100px;
+@detailsHeight: 40px;
+
+/* ------------------------------------------- */
+/*  All T2K4E Apps                             */
+/* ------------------------------------------- */
+
+.t2k4e {
+	.window-content {
+		// background: @sheetBackground;
+		font-size: 13px;
+		color: @colorDark;
+	}
+
+	/* ------------------------------------------- */
+	/*  Element Styles                             */
+	/* ------------------------------------------- */
+
+	input[type="text"],
+	input[type="number"],
+	select {
+		height: calc(100% - 2px);
+		border: 1px solid @colorTan;
+		background: rgba(0, 0, 0, 0.05);
+		color: @colorDark;
+	}
+
+	input[type="text"],
+	input[type="number"] {
+		&:hover,
+		&:focus {
+			border: 1px solid #111;
+			box-shadow: 0 0 8px #f00;
+		}
+	}
+
+	input:disabled,
+	select:disabled,
+	textarea:disabled {
+		color: @colorBrown;
+		&:hover,
+		&:focus {
+			box-shadow: none !important;
+			border: 1px solid transparent !important;
+			outline: none !important;
+		}
+	}
+
+	button {
+		background: rgba(0, 0, 0, 0.10);
+		border: @borderGroove;
+	}
+}
+
+/* ------------------------------------------- */
+/*  Entity Sheets Specifically                 */
+/* ------------------------------------------- */
+
+.t2k4e.sheet {
+	.window-content {
+		overflow-y: hidden;
+		padding: 5px;
+		// background: @sheetBackground;
+		font-size: 13px;
+		color: @colorDark;
+
+		form {
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.tab {
+			height: 100%;
+			overflow-y: auto;
+			align-content: flex-start;
+		}
+	}
+
+	/* ------------------------------------------- */
+	/*  Element Styles                             */
+	/* ------------------------------------------- */
+
+	input[type="text"],
+	input[type="number"] {
+		background: none;
+		border: 1px solid transparent;
+		&:hover,
+		&:focus {
+			border: 1px solid #111;
+		}
+	}
+
+	select {
+		// flex: 1;
+		font-size: 12px;
+		height: 22px;
+		background: transparent;
+	}
+
+	// Rollable Titles
+	.editable .rollable:hover {
+		cursor: pointer;
+	}
+
+	.editable h4.rollable:hover,
+	.editable .rollable:hover > h4 {
+		color: #000;
+		text-shadow: 0 0 10px red;
+	}
+	
+	// Separator
+	span.sep {
+		flex: none;
+		margin: 0 1px;
+		display: inline;
+		position: relative;
+		color: @colorBrown;
+		font-weight: normal;
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Header                               */
+	/* ------------------------------------------- */
+
+	.sheet-header {
+		flex: 0 0 @headerHeight;
+		border-bottom: @borderGroove;
+
+		.header-details {
+			.nunito()
+		}
+
+		h1 {
+			// flex: 1;
+			border-bottom: none;
+			height: 60px;
+			margin: 0;
+			padding: 5px;
+		}
+
+		input {
+			display: block;
+			height: 50px;
+			font-size: 32px;
+			margin: 0;
+		}
+
+		img.profile {
+			flex: 0 0 @headerHeight;
+			max-width: @headerHeight;
+			height: @headerHeight;
+			object-fit: contain;
+			border: none;
+			border-right: @borderGroove;
+		}
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Navigation                           */
+	/* ------------------------------------------- */
+
+	.sheet-navigation {
+		flex: 0 0 @navHeight;
+		margin-bottom: 5px;
+		.nunito();
+
+		.item {
+			height: 30px;
+			line-height: 32px;
+			margin: 0 24px;
+			border-bottom: 3px solid @colorBeige;
+
+			&.active {
+				// border-bottom: 3px solid @colorCrimson;
+			}
+		}
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Body                                 */
+	/* ------------------------------------------- */
+
+	.sheet-body {
+		flex: 1;
+		overflow: hidden;
+	}
+}

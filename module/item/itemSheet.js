@@ -7,10 +7,10 @@ export default class ItemSheetT2K extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			classes: ['t2k', 'sheet', 'item'],
-			width: 650,
-			height: 650,
-			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'description'}]
+			classes: ['t2k4e', 'sheet', 'item'],
+			width: 450,
+			height: 500,
+			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'features'}]
 		})
 	}
 

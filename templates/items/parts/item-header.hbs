@@ -1,12 +1,16 @@
-<header class="sheet-header flexcol flex-center">
-    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+<header class="sheet-header flexrow">
+    <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
 
-    <div class="flexrow flex-center">
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'T2KLANG.itemSheet.name'}}"/></h1>
-
-        <div class="item-subtitle">
-            <h4>{{itemType}}</h4>
+    <div class="header-details flexrow">
+        <h1>
+            <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'T2KLANG.itemSheet.name'}}"/>
+        </h1>
+    </div>
+    <div class="flexcol">
+        <h4>{{itemType}}</h4>
+        <div>
+            <span>{{localize "T2KLANG.itemSheet.quantity"}}:</span>
+            <input type="text" name="data.qty" value="{{data.qty}}" data-dtype="Number" />
         </div>
     </div>
-
 </header>

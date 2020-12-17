@@ -1,10 +1,10 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}} flexcol" autocomplete="off">
 
     {{!-- Item Sheet Header --}}
     {{> "systems/t2k4e/templates/items/parts/item-header.hbs"}}
 
     {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs flexrow flex-center" data-group="primary">
+    <nav class="sheet-tabs sheet-navigation flexrow flex-center" data-group="primary">
         <a class="item" data-tab="features">{{localize "T2KLANG.itemSheet.featuresTab"}}</a>
         <a class="item" data-tab="description">{{localize "T2KLANG.itemSheet.descriptionTab"}}</a>
     </nav>
@@ -14,43 +14,63 @@
 
         {{!-- Features Tab --}}
         <div class="tab tab-features" data-group="primary" data-tab="features">
-            <div class="grid grid-6col">
-                <label>{{localize "T2KLANG.itemSheet.weaponType"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.ammo"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.reliability"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.rof"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.damage"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.crit"}}</label>
-                <input type="text" name="data.weaponType" value="{{data.weaponType}}" />
-                <input type="text" name="data.ammo" value="{{data.ammo}}" />
-                <div class="flexrow flex-center">
-                    {{> scoreSelector name="data.reliability.score" selected=data.reliability.score}}
-                    <span style="margin-left: 5px; margin-right: 5px;">/</span>
-                    {{> scoreSelector name="data.reliability.max" selected=data.reliability.max}}
+            <div class="grid grid-4col">
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.weaponType"}}</label>
+                    <input type="text" name="data.weaponType" value="{{data.weaponType}}" />
                 </div>
-                <input type="text" name="data.rof" value="{{data.rof}}" data-dtype="Number" />
-                <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number" />
-                <input type="text" name="data.crit" value="{{data.crit}}" data-dtype="Number" />
-
-                <label>{{localize "T2KLANG.itemSheet.blast"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.range"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.mag"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.armor"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.weight"}}</label>
-                <label>{{localize "T2KLANG.itemSheet.price"}}</label>
-                {{> scoreSelector name="data.blast" selected=data.blast}}
-                <input type="text" name="data.range" value="{{data.range}}" data-dtype="Number" />
-                <input type="text" name="data.magazineSize" value="{{data.magazineSize}}" data-dtype="Number" />
-                <input type="text" name="data.armorModifier" value="{{numberFormat data.armorModifier sign=true}}" data-dtype="Number" />
-                <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number" />
-                <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number" />
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.ammo"}}</label>
+                    <input type="text" name="data.ammo" value="{{data.ammo}}" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.reliability"}}</label>
+                    <div class="flexrow flex-center">
+                        {{> scoreSelector name="data.reliability.score" selected=data.reliability.score}}
+                        <span style="margin: 0 5px;">/</span>
+                        {{> scoreSelector name="data.reliability.max" selected=data.reliability.max}}
+                    </div>
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.rof"}}</label>
+                    <input type="text" name="data.rof" value="{{data.rof}}" data-dtype="Number" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.damage"}}</label>
+                    <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.crit"}}</label>
+                    <input type="text" name="data.crit" value="{{data.crit}}" data-dtype="Number" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.blast"}}</label>
+                    {{> scoreSelector name="data.blast" selected=data.blast}}
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.range"}}</label>
+                    <input type="text" name="data.range" value="{{data.range}}" data-dtype="Number" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.mag"}}</label>
+                    <input type="text" name="data.magazineSize" value="{{data.magazineSize}}" data-dtype="Number" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.armor"}}</label>
+                    <input type="text" name="data.armorModifier" value="{{numberFormat data.armorModifier sign=true}}" data-dtype="Number" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.weight"}}</label>
+                    <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.itemSheet.price"}}</label>
+                    <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number" />
+                </div>
             </div>
 
             {{!-- Other Parameters --}}
             <div class="flexcol">
-                            <div class="item-quantity">
-                <input type="text" name="data.qty" value="{{data.qty}}" data-dtype="Number" />
-            </div>
                 <div class="flewrow">
                     {{localize "T2KLANG.itemSheet.attackWith"}}
                     <select name="data.attackWith">

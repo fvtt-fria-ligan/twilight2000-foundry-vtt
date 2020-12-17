@@ -41,7 +41,7 @@
 			"name": "Name",
 			"featuresTab": "Features",
 			"descriptionTab": "Description",
-			"attackWith": "Skill used:",
+			"attackWith": "Skill used",
 			"quantity": "Quantity",
 			"weaponType": "Type",
 			"ammo": "Ammo",
