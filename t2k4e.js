@@ -13,13 +13,14 @@
  */
 
 // Imports Modules.
-import { T2K4E } from './config.js';
+import { T2K4E } from './module/config.js';
+import { preloadHandlebarsTemplates } from './module/templates.js';
 
 // Imports Entities.
-import ItemT2K from './item/item.js'
+import ItemT2K from './module/item/item.js'
 
 // Imports Applications.
-import ItemSheetT2K from './item/itemSheet.js';
+import ItemSheetT2K from './module/item/itemSheet.js';
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -57,8 +58,10 @@ Hooks.once('init', function() {
 	Items.unregisterSheet('core', ItemSheet);
 	Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
 
+	preloadHandlebarsTemplates();
+
 	/* -------------------------------------------- */
-	/*  Handlebars Custom Helpers
+	/*  HandlebarsJS Custom Helpers                 */
 	/* -------------------------------------------- */
 
 	Handlebars.registerHelper('concat', function() {
@@ -81,11 +84,17 @@ Hooks.once('init', function() {
 		return str;
 	});
 
+	/**
+	 * Templates for a die Score selector.
+	 * Parameters:
+	 * * `name` - The name of the affected variable.
+	 * * `selected` - The current selected value.
+	 */
 	Handlebars.registerPartial(
-		'dieRatingSelector',
-		`<select name="{{name}}">
+		'scoreSelector',
+		`<select name="{{name}}" class="score-selector">
 			{{#select selected}}
-			{{#each config.dieRatings}}
+			{{#each config.dieScores}}
 			<option value="{{.}}">{{.}}</option>
 			{{/each}}
 			{{/select}}

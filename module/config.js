@@ -15,26 +15,26 @@ T2K4E.ASCII = `_________________________________________
 _________________________________________`;
 
 T2K4E.attributes = {
-	str: 'T2K4E.attributes.str',
-	agl: 'T2K4E.attributes.agl',
-	int: 'T2K4E.attributes.int',
-	emp: 'T2K4E.attributes.emp',
+	str: 'T2KLANG.attributes.str',
+	agl: 'T2KLANG.attributes.agl',
+	int: 'T2KLANG.attributes.int',
+	emp: 'T2KLANG.attributes.emp',
 }
 
 T2K4E.skills = {
-	none: 'T2K4E.skills.none',
-	heavyWeapons: 'T2K4E.skills.heavyWeapons',
-	closeCombat: 'T2K4E.skills.closeCombat',
-	stamina: 'T2K4E.skills.stamina',
-	driving: 'T2K4E.skills.driving',
-	mobility: 'T2K4E.skills.mobility',
-	rangedCombat: 'T2K4E.skills.rangedCombat',
-	recon: 'T2K4E.skills.recon',
-	survival: 'T2K4E.skills.survival',
-	tech: 'T2K4E.skills.tech',
-	command: 'T2K4E.skills.command',
-	persuasion: 'T2K4E.skills.persuasion',
-	medicalAid: 'T2K4E.skills.medicalAid'
+	none: 'T2KLANG.skills.none',
+	heavyWeapons: 'T2KLANG.skills.heavyWeapons',
+	closeCombat: 'T2KLANG.skills.closeCombat',
+	stamina: 'T2KLANG.skills.stamina',
+	driving: 'T2KLANG.skills.driving',
+	mobility: 'T2KLANG.skills.mobility',
+	rangedCombat: 'T2KLANG.skills.rangedCombat',
+	recon: 'T2KLANG.skills.recon',
+	survival: 'T2KLANG.skills.survival',
+	tech: 'T2KLANG.skills.tech',
+	command: 'T2KLANG.skills.command',
+	persuasion: 'T2KLANG.skills.persuasion',
+	medicalAid: 'T2KLANG.skills.medicalAid'
 }
 
 T2K4E.skillsMap = {
@@ -53,24 +53,24 @@ T2K4E.skillsMap = {
 	medicalAid: 'emp'
 }
 
-T2K4E.dieRanges = [12, 10, 8, 6, 0];
-T2K4E.dieRatings = ['A', 'B', 'C', 'D', 'F'];
-T2K4E.dieRangesMap = new Map(T2K4E.dieRatings.map((x, i) => [x, T2K4E.dieRanges[i]]));
+T2K4E.dieSizes = [-1, 12, 10, 8, 6, 0];
+T2K4E.dieScores = ['–', 'A', 'B', 'C', 'D', 'F'];
+T2K4E.dieSizesMap = new Map(T2K4E.dieScores.map((x, i) => [x, T2K4E.dieSizes[i]]));
 
 T2K4E.ranges = [
-	'T2K4E.ranges.close',
-	'T2K4E.ranges.short',
-	'T2K4E.ranges.medium',
-	'T2K4E.ranges.long',
-	'T2K4E.ranges.extreme',
+	'T2KLANG.ranges.close',
+	'T2KLANG.ranges.short',
+	'T2KLANG.ranges.medium',
+	'T2KLANG.ranges.long',
+	'T2KLANG.ranges.extreme',
 ]
 
 T2K4E.branches = {
-	civilian: 'T2K4E.branches.civilian',
-	military: 'T2K4E.branches.military',
+	civilian: 'T2KLANG.branches.civilian',
+	military: 'T2KLANG.branches.military',
 }
 
 T2K4E.speedTypes = {
-	T: 'T2K4E.speedTypes.tracks',
-	W: 'T2K4E.speedTypes.wheels',
+	T: 'T2KLANG.speedTypes.tracks',
+	W: 'T2KLANG.speedTypes.wheels',
 }

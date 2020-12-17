@@ -24,54 +24,54 @@
 			"actorAttributesAndSkills": {
 				"attributes": {
 					"str": {
-						"value": "D"
+						"score": "D"
 					},
 					"agl": {
-						"value": "D"
+						"score": "D"
 					},
 					"int": {
-						"value": "D"
+						"score": "D"
 					},
 					"emp": {
-						"value": "D"
+						"score": "D"
 					}
 				},
 				"skills": {
 					"heavyWeapons": {
-						"value": "F"
+						"score": "F"
 					},
 					"closeCombat": {
-						"value": "F"
+						"score": "F"
 					},
 					"stamina": {
-						"value": "F"
+						"score": "F"
 					},
 					"driving": {
-						"value": "F"
+						"score": "F"
 					},
 					"mobility": {
-						"value": "F"
+						"score": "F"
 					},
 					"rangedCombat": {
-						"value": "F"
+						"score": "F"
 					},
 					"recon": {
-						"value": "F"
+						"score": "F"
 					},
 					"survival": {
-						"value": "F"
+						"score": "F"
 					},
 					"tech": {
-						"value": "F"
+						"score": "F"
 					},
 					"command": {
-						"value": "F"
+						"score": "F"
 					},
 					"persuasion": {
-						"value": "F"
+						"score": "F"
 					},
 					"medicalAid": {
-						"value": "F"
+						"score": "F"
 					}
 				}
 			},
@@ -144,7 +144,7 @@
 			"templates": ["actorDescription"],
 			"type": "",
 			"reliability": {
-				"value": "A",
+				"score": "A",
 				"max": "A"
 			},
 			"speed": {
@@ -209,6 +209,7 @@
 		],
 		"templates": {
 			"itemBase": {
+				"qty": 1,
 				"type": "",
 				"grip": 1,
 				"weight": 0,
@@ -217,15 +218,15 @@
 			},
 			"itemReliability": {
 				"reliability": {
-					"value": "A",
+					"score": "A",
 					"max": "A"
 				}
 			},
 			"itemOffensive": {
-				"attackWith": "",
+				"attackWith": "rangedCombat",
 				"damage": 0,
 				"crit": 0,
-				"blast": "",
+				"blast": "–",
 				"range": 0,
 				"armorModifier": 0
 			},

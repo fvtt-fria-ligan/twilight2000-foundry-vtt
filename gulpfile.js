@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const less = require('gulp-less');
+const cleanCSS = require('gulp-clean-css');
 
 /* ----------------------------------------- */
 /*  Handle Errors function
@@ -17,11 +18,14 @@ function handleError(err) {
 const T2K4E_LESS = ['less/**/*.less'];
 
 function compileLESS() {
-	const options = {};
 	return gulp
-		.src(T2K4E_LESS)
-		.pipe(less(options).on('error', handleError))
-		.pipe(gulp.dest('./styles'))
+		.src('./less/t2k4e.less')
+		.pipe(less().on('error', handleError))
+		.pipe(cleanCSS({ debug: true }, details => {
+			console.log(`${details.name}: ${details.stats.originalSize}`);
+			console.log(`${details.name}: ${details.stats.minifiedSize}`);
+		}))
+		.pipe(gulp.dest('./'))
 }
 const css = gulp.series(compileLESS);
 

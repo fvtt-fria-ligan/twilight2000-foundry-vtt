@@ -7,13 +7,14 @@ export default class ItemSheetT2K extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			classes: ['t2k4e', 'sheet', 'item'],
-			width: 520,
-			height: 480,
-			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'features'}]
+			classes: ['t2k', 'sheet', 'item'],
+			width: 650,
+			height: 650,
+			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'description'}]
 		})
 	}
 
+	/** @override */
 	get template() {
 		return `systems/t2k4e/templates/items/${this.item.data.type}-sheet.hbs`;
 	}
@@ -22,7 +23,7 @@ export default class ItemSheetT2K extends ItemSheet {
 	getData() {
 		const data = super.getData();
 		data.config = CONFIG.T2K4E;
-		data.itemType = game.i18n.localize(`T2K4E.itemTypes.${data.item.type}`);
+		data.itemType = game.i18n.localize(`T2KLANG.itemTypes.${data.item.type}`);
 		return data;
 	}
 
@@ -30,13 +31,13 @@ export default class ItemSheetT2K extends ItemSheet {
 	 * Handles remembering the sheet's position.
 	 * @override
 	 */
-	setPosition(options = {}) {
-		const position = super.setPosition(options);
-		const sheetBody = this.element.find('.sheet-body');
-		const bodyHeight = position.height - 192;
-		sheetBody.css('height', bodyHeight);
-		return position;
-	}
+	// setPosition(options = {}) {
+	// 	const position = super.setPosition(options);
+	// 	const sheetBody = this.element.find('.sheet-body');
+	// 	const bodyHeight = position.height - 192;
+	// 	sheetBody.css('height', bodyHeight);
+	// 	return position;
+	// }
 
 	/** @override */
 	activateListeners(html) {

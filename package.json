@@ -28,6 +28,7 @@
   "devDependencies": {
     "eslint": "^7.15.0",
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
     "gulp-less": "^4.0.1",
     "less": "^3.13.0"
   },

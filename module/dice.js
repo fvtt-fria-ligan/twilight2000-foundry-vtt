@@ -2,15 +2,15 @@ import { T2K4E } from './config.js';
 
 /**
  * Gets the range of a die from its rating.
- * @param {string} rating A, B, C, D or F
+ * @param {string} score A, B, C, D or F
  */
-export function getDieRangeFromRating(rating) {
-	if (typeof rating !== 'string') throw new TypeError(`Die Rating Not a String: ${rating}`);
-	if (rating.length !== 1) throw new SyntaxError(`Die Rating Incorrect: ${rating}`);
+export function getDieSize(score) {
+	if (typeof score !== 'string') throw new TypeError(`Die Score Not a String: "${score}"`);
+	if (score.length !== 1) throw new SyntaxError(`Die Score Incorrect: "${score}"`);
 
-	const range = T2K4E.dieRangesMap.get(rating);
+	const range = T2K4E.dieSizesMap.get(score);
 
-	if (range == undefined) throw new RangeError(`Die Rating Not Found: ${rating}`);
+	if (range == undefined) throw new RangeError(`Die Size Not Found! Score: "${score}"`);
 
 	return range;
 }

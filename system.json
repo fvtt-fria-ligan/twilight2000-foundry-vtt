@@ -8,10 +8,10 @@
 	"minimumCoreVersion": "0.7.8",
 	"compatibleCoreVersion": "0.7.8",
 	"esmodules": [
-		"module/t2k4e.js"
+		"t2k4e.js"
 	],
 	"styles": [
-		"styles/t2k4e.css"
+		"t2k4e.css"
 	],
 	"packs": [],
 	"languages": [

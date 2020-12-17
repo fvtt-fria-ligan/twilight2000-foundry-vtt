@@ -1,11 +1,12 @@
 {
-	"T2K4E": {
+	"T2KLANG": {
 		"attributes": {
 			"str": "Strength",
 			"agl": "Agility",
 			"int": "Intelligence",
 			"emp": "Empathy"
 		},
+		"skill": "Skill",
 		"skills": {
 			"none": "–",
 			"heavyWeapons": "Heavy Weapons",
@@ -18,7 +19,7 @@
 			"survival": "Survival",
 			"tech": "Tech",
 			"command": "Command",
-			"persuasion": "persuasion",
+			"persuasion": "Persuasion",
 			"medicalAid": "Medical Aid"
 		},
 		"ranges": {
@@ -39,7 +40,21 @@
 		"itemSheet": {
 			"name": "Name",
 			"featuresTab": "Features",
-			"descriptionTab": "Description"
+			"descriptionTab": "Description",
+			"attackWith": "Skill used:",
+			"quantity": "Quantity",
+			"weaponType": "Type",
+			"ammo": "Ammo",
+			"reliability": "Rel",
+			"rof": "RoF",
+			"damage": "Damage",
+			"crit": "Crit",
+			"blast": "Blast",
+			"range": "Range",
+			"mag": "Mag",
+			"armor": "Armor",
+			"weight": "Weight",
+			"price": "Price"
 		},
 		"itemTypes": {
 			"weapon": "Weapon"
