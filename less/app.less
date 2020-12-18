@@ -8,14 +8,19 @@
 
 .t2k4e {
 	.window-content {
-		// background: @sheetBackground;
+		background: @sheetBackground;
 		font-size: 13px;
 		color: @colorDark;
+		.font-mukta-normal();
 	}
 
 	/* ------------------------------------------- */
 	/*  Element Styles                             */
 	/* ------------------------------------------- */
+
+	a:hover {
+		text-shadow: @hoverShadow;
+	}
 
 	input[type="text"],
 	input[type="number"],
@@ -31,7 +36,7 @@
 		&:hover,
 		&:focus {
 			border: 1px solid #111;
-			box-shadow: 0 0 8px #f00;
+			box-shadow: 0 0 8px @colorBrown;
 		}
 	}
 
@@ -50,6 +55,9 @@
 	button {
 		background: rgba(0, 0, 0, 0.10);
 		border: @borderGroove;
+		&:hover {
+			box-shadow: @hoverShadow;
+		}
 	}
 }
 
@@ -77,6 +85,10 @@
 		}
 	}
 
+	.editor {
+		height: 100%;
+	}
+
 	/* ------------------------------------------- */
 	/*  Element Styles                             */
 	/* ------------------------------------------- */
@@ -87,7 +99,8 @@
 		border: 1px solid transparent;
 		&:hover,
 		&:focus {
-			border: 1px solid #111;
+			border: 1px solid @colorBrown;
+			background: #fff;
 		}
 	}
 
@@ -96,6 +109,10 @@
 		font-size: 12px;
 		height: 22px;
 		background: transparent;
+		&:hover,
+		&:focus {
+			box-shadow: @hoverShadow;
+		}
 	}
 
 	// Rollable Titles
@@ -106,7 +123,7 @@
 	.editable h4.rollable:hover,
 	.editable .rollable:hover > h4 {
 		color: #000;
-		text-shadow: 0 0 10px red;
+		text-shadow: @hoverShadow;
 	}
 	
 	// Separator
@@ -125,10 +142,9 @@
 
 	.sheet-header {
 		flex: 0 0 @headerHeight;
-		border-bottom: @borderGroove;
 
 		.header-details {
-			.nunito()
+			.font-nunito-title();
 		}
 
 		h1 {
@@ -137,9 +153,10 @@
 			height: 60px;
 			margin: 0;
 			padding: 5px;
+			color: @colorKhaki;
 		}
 
-		input {
+		input[name="name"] {
 			display: block;
 			height: 50px;
 			font-size: 32px;
@@ -152,7 +169,10 @@
 			height: @headerHeight;
 			object-fit: contain;
 			border: none;
-			border-right: @borderGroove;
+			cursor: pointer;
+			&:hover {
+				box-shadow: @hoverShadow;
+			}
 		}
 	}
 
@@ -160,22 +180,41 @@
 	/*  Sheet Navigation                           */
 	/* ------------------------------------------- */
 
-	.sheet-navigation {
-		flex: 0 0 @navHeight;
-		margin-bottom: 5px;
-		.nunito();
+	// nav.sheet-tabs {
+	// 	border-top: @borderGroove;
+	// 	border-bottom: @borderGroove;
+	// }
 
-		.item {
-			height: 30px;
-			line-height: 32px;
-			margin: 0 24px;
-			border-bottom: 3px solid @colorBeige;
-
-			&.active {
-				// border-bottom: 3px solid @colorCrimson;
-			}
-		}
+	.sheet-tabs {
+		.font-bluehighway-bold();
 	}
+
+	// .sheet-navigation {
+	// 	flex: 0 0 @navHeight;
+	// 	margin-bottom: 5px;
+	// 	.font-bluehighway-bold();
+
+	// 	.item {
+	// 		height: 30px;
+	// 		line-height: 32px;
+	// 		margin: 0 24px;
+	// 		color: @colorBrown;
+	// 		// border-bottom: 3px solid @colorBeige;
+
+	// 		&:hover {
+	// 			text-shadow: @hoverShadow;
+	// 		}
+
+	// 		&.active {
+	// 			color: #fff;
+	// 			background: @colorKhaki;
+	// 			border: @borderGroove;
+	// 			border-radius: 50% 50% 0 0;
+	// 			text-shadow: 0 0 10px #fff;
+	// 			// border-bottom: 3px solid @colorCrimson;
+	// 		}
+	// 	}
+	// }
 
 	/* ------------------------------------------- */
 	/*  Sheet Body                                 */

@@ -5,12 +5,12 @@
         <h1>
             <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'T2KLANG.itemSheet.name'}}"/>
         </h1>
-    </div>
-    <div class="flexcol">
-        <h4>{{itemType}}</h4>
-        <div>
-            <span>{{localize "T2KLANG.itemSheet.quantity"}}:</span>
-            <input type="text" name="data.qty" value="{{data.qty}}" data-dtype="Number" />
+        <div class="item-subtitle flexcol flex-top">
+            <h4 class="item-type">{{itemType}}</h4>
+            <div class="item-qty flexrow flex-right">
+                <input type="text" name="data.qty" value="{{data.qty}}" data-dtype="Number" />
+                &times;
+            </div>
         </div>
     </div>
 </header>

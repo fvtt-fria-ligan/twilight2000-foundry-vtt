@@ -14,7 +14,7 @@
 
         {{!-- Features Tab --}}
         <div class="tab tab-features" data-group="primary" data-tab="features">
-            <div class="grid grid-4col">
+            <div class="grid grid-4col weapon-features">
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.itemSheet.weaponType"}}</label>
                     <input type="text" name="data.weaponType" value="{{data.weaponType}}" />
@@ -27,7 +27,7 @@
                     <label>{{localize "T2KLANG.itemSheet.reliability"}}</label>
                     <div class="flexrow flex-center">
                         {{> scoreSelector name="data.reliability.score" selected=data.reliability.score}}
-                        <span style="margin: 0 5px;">/</span>
+                        <span class="sep">/</span>
                         {{> scoreSelector name="data.reliability.max" selected=data.reliability.max}}
                     </div>
                 </div>
@@ -70,9 +70,9 @@
             </div>
 
             {{!-- Other Parameters --}}
-            <div class="flexcol">
-                <div class="flewrow">
-                    {{localize "T2KLANG.itemSheet.attackWith"}}
+            <div class="features-other flexcol">
+                <div class="form-group">
+                    <label>{{localize "T2KLANG.itemSheet.attackWith"}}</label>
                     <select name="data.attackWith">
                         {{#select data.attackWith}}
                         {{#each config.skills as |name type|}}
@@ -81,7 +81,24 @@
                         {{/select}}
                     </select>
                 </div>
-                <input type="checkbox" value="{{data.disposable}}" {{checked data.disposable}} />
+                <div class="form-group-stacked item-properties">
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.twoHanded" {{checked data.twoHanded}} />
+                        {{localize "T2KLANG.itemSheet.twoHanded"}}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.mounted" {{checked data.mounted}} />
+                        {{localize "T2KLANG.itemSheet.mounted"}}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.ammoBelt" {{checked data.ammoBelt}} />
+                        {{localize "T2KLANG.itemSheet.ammoBelt"}}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.disposable" {{checked data.disposable}} />
+                        {{localize "T2KLANG.itemSheet.disposable"}}
+                    </label>
+                </div>
             </div>
 
 

@@ -1,8 +1,89 @@
-.t2k.sheet {
+.t2k4e.sheet.item {
 	min-height: 400px;
 	min-width: 400px;
 
-	.sheet-header {
+	// .window-content {
+	// 	// background: @colorLightKhaki;
+	// }
 
+	.sheet-header {
+		margin-bottom: 10px;
+
+		img.profile {
+			border: 2px solid #000;
+			border-radius: 4px;
+		}
+
+		h1 > input {
+			font-size: 32px;
+			color: @colorBrown;
+		}
+
+		.item-subtitle {
+			flex: 0 0 100px;
+			height: 60px;
+			padding: 5px;
+			text-align: right;
+			color: @colorTan;
+			.font-daisywheel();
+
+			h4.item-type {
+				font-size: 24px;
+				line-height: 26px;
+				margin: 0;
+			}
+
+			.item-qty {
+				font-size: 16px;
+
+				input {
+					// max-width: 20px;
+				}
+			}
+		}
+	}
+
+	// .sheet-navigation {
+	// 	// background: @colorLightKhaki;
+	// 	border-top: none;
+	// }
+
+	.sheet-body {
+		color: @colorBrown;
+		background: @colorLightKhaki;
+
+		.weapon-features {
+			&.grid {
+				gap: 0;
+			}
+
+			label {
+				width: 100%;
+				background: @colorLightBrown;
+				border-bottom: 1px solid @colorBrown;
+				.font-mukta-bold()
+			}
+			
+			select {
+				border: 1px solid transparent;
+				&:hover,
+				&:focus {
+					background: #fff;
+					border: 1px solid @colorBrown;
+				}
+			}
+		}
+
+		.features-other {
+			margin-top: 5px;
+			padding-top: 10px;
+			border-top: @borderGroove;
+		}
+
+		.item-properties {
+			label.checkbox {
+				flex: 0 0 98px;
+			}
+		}
 	}
 }

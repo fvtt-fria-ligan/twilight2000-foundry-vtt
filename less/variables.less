@@ -2,39 +2,96 @@
 /*  Fonts                                      */
 /* ------------------------------------------- */
 
+// Font for Headlings
 @font-face {
 	font-family: 'Nunito Sans';
 	font-style: normal;
 	font-weight: 800;
-	src: url('fonts/NunitoSans-ExtraBold.woff') format('woff2');
+	src:
+		local('Nunito Sans Extra Bold'),
+		local('NunitoSans Extra Bold'),
+		local('NunitoSans ExtraBold'),
+		local('NunitoSans-ExtraBold'),
+		url('fonts/NunitoSans-ExtraBold.woff') format('woff2');
 }
 
+// Font for Table Titles (not table header)
+@font-face {
+	font-family: 'Blue Highway';
+	font-style: normal;
+	font-weight: bold;
+	src:
+		local('Blue Highway Bold'),
+		local('BlueHighway Bold'),
+		local('BlueHighway-Bold'),
+		url('fonts/BlueHighway-Bold.woff') format('woff2');
+}
+
+// Font for Generic Text
 @font-face {
 	font-family: 'Mukta';
 	font-style: normal;
 	font-weight: 500;
-	src: url('fonts/Mukta-Medium.woff') format('woff2');
+	src:
+		local('Mukta Medium'),
+		local('Mukta-Medium'),
+		url('fonts/Mukta-Medium.woff') format('woff2');
 }
 
+// Font for Table Headers
 @font-face {
 	font-family: 'Mukta';
 	font-style: normal;
 	font-weight: 700;
-	src: url('fonts/Mukta-Bold.woff') format('woff2');
+	src:
+		local('Mukta Bold'),
+		local('Mukta-Bold'),
+		url('fonts/Mukta-Bold.woff') format('woff2');
 }
 
+// Font for the Character Sheet
 @font-face {
 	font-family: 'DaisyWheel';
 	font-style: normal;
 	font-weight: 400;
-	src: url('fonts/daisywheel.otf') format('opentype');
+	src:
+		local('Daisy Wheel'),
+		local('DaisyWheel'),
+		local('Daisywhl'),
+		url('fonts/daisywheel.otf') format('opentype');
 }
 
-.nunito {
-	font-family: "Nunito Sans";
+.font-nunito-title {
+	font-family: 'Nunito Sans';
 	font-weight: 800;
 	font-size: 20px;
-	text-transform: capitalize;
+	text-transform: uppercase;
+}
+
+.font-bluehighway-bold {
+	font-family: 'Blue Highway';
+	font-weight: bold;
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+
+.font-mukta-normal {
+	font-family: 'Mukta';
+	font-weight: 500;
+	font-size: 1em;
+}
+
+.font-mukta-bold {
+	font-family: 'Mukta';
+	font-weight: 700;
+	font-size: .9em;
+	text-transform: uppercase;
+}
+
+.font-daisywheel {
+	font-family: 'DaisyWheel';
+	font-weight: 400;
+	font-size: 1em;
 }
 
 /* ------------------------------------------- */
@@ -42,7 +99,12 @@
 /* ------------------------------------------- */
 
 @colorDark: #000;
-@colorBeige: #E6E7D8;
-@colorBrown: #604F43;
-@colorTan: #7A7971;
-@borderGroove: 2px groove #9D9B7E;
+@colorBeige: #eceee9;
+@colorLightBrown: #bfb6b0;
+@colorBrown: #604f43;
+@colorTan: #7f7f7f;
+@colorLightKhaki: #e5e5d6;
+@colorKhaki: #9d9b7e;
+@hoverShadow: 0 0 10px @colorBrown;
+@borderGroove: 2px groove @colorKhaki;
+@sheetBackground: @colorBeige;

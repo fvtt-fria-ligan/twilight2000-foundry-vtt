@@ -211,7 +211,6 @@
 			"itemBase": {
 				"qty": 1,
 				"type": "",
-				"grip": 1,
 				"weight": 0,
 				"price": 0,
 				"description": ""
@@ -240,6 +239,7 @@
 			"ammo": "",
 			"rof": 0,
 			"magazineSize": 0,
+			"twoHanded": false,
 			"ammoBelt": false,
 			"disposable": false,
 			"mounted": false

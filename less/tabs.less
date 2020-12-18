@@ -1,0 +1,239 @@
+// /* https://css-tricks.com/tabs-with-round-out-borders/ */
+
+.t2k4e.sheet {
+	nav.sheet-tabs {
+		margin: 0;
+		border: 1px dashed red;
+
+		a {
+			width: 100%;
+			padding: 0 20px;
+			border-top: 1px solid @colorKhaki;
+			border-left: 1px solid @colorKhaki;
+			border-right: 1px solid @colorKhaki;
+			border-top-left-radius: 15px;
+			border-top-right-radius: 15px;
+			background: transparent;
+
+			&:before,
+			&:after {
+				width: 10px;
+				height: 10px;
+				background: #f00;
+				position: relative;
+				bottom: 0;
+				z-index: 10;
+			}
+
+			// Triangles
+			&:before {
+				clip-path: polygon(100% 0%,0% 100%,100% 100%);
+				left: -10px;
+			}
+			&:after {
+				clip-path: polygon(0% 0%,0% 100%,100% 100%);
+				right: -10px;
+			}
+		}
+
+		a:last-child:after,
+		a:first-child:before,
+		a.active:before,
+		/* Only the first, last, and active tabs need pseudo elements at all. */
+		a.active:after {
+			content: '';
+		}
+
+		// a {
+		// 	/* Makes them block level and only as they need. */
+		// 	// float: left;
+		// 	// padding: 10px 40px;
+		// 	// text-decoration: none;
+
+		// 	/* Default colors. */
+		// 	// color: @colorDark;
+		// 	background: @colorBeige;
+
+		// 	/* Only the top corners. */
+		// 	border-top-left-radius: 15px;
+		// 	border-top-right-radius: 15px;
+
+		// 	// Squares
+		// 	&:before,
+		// 	&:after {
+		// 		background: @colorLightKhaki;
+		// 		width: 10px;
+		// 		height: 10px;
+		// 	}
+		// 	&:before { left: -10px; }
+		// 	&:after { left: -10px; }
+
+		// 	// Circles
+		// 	.li:after,
+		// 	.li:before {
+		// 		width: 20px;
+		// 		height: 20px;
+
+		// 		/* Circles are circular. */
+		// 		border-radius: 10px;
+		// 		background: #222;
+
+		// 		/* Circles over squares. */
+		// 		z-index: 2;
+		// 	}
+
+		// 	.li:before { left: -20px; }
+		// 	.li:after { right: -20px; }
+
+		// 	&:first-child.active .li:before,
+		// 	&:last-child.active .li:after {
+		// 		/* First and last tabs have different outside color needs. */
+		// 		background: #222;
+		// 	}
+		// }
+
+		// .active {
+		// 	/* Highest active tab is on top. */
+		// 	z-index: 3;
+		// 	&:before,
+		// 	&:after {
+		// 		background: @colorBeige;
+
+		// 		/* Squares below circles. */
+		// 		z-index: 1;
+		// 	}
+
+		// 	a {
+		// 		/* Colors when tab is active. */
+		// 		color: @colorKhaki;
+		// 		background: @colorLightKhaki;
+		// 	}
+
+		// 	.li:after,
+		// 	.li:before {
+		// 		background: @colorLightKhaki;
+		// 	}
+		// }
+
+		// a:before,
+		// a:after,
+		// a .li:before,
+		// a .li:after {
+		// 	/* All pseudo elements are absolute positioned and on bottom. */
+		// 	position: absolute;
+		// 	bottom: 0;
+		// }
+
+		// a:last-child:after,
+		// a:last-child .li:after,
+		// a:first-child:before,
+		// a:first-child .li:before,
+		// .active:after,
+		// .active:before,
+		// .active .li:after,
+		// .active .li:before {
+		// 	/* Only the first, last, and active tabs need pseudo elements at all. */
+		// 	content: '';
+		// }
+	}
+}
+
+// .t2k4e.sheet {
+// 	.sheet-tabs .li { 
+// 		/* Makes a horizontal row */
+// 		float: left; 
+		
+// 		/* So the psueudo elements can be
+// 		abs. positioned inside */
+// 		position: relative; 
+// 	}
+// 	.sheet-tabs .li { 
+// 		/* Make them block level
+// 		and only as wide as they need */
+// 		float: left; 
+// 		// padding: 10px 40px; 
+// 		text-decoration: none;
+		
+// 		/* Default colors */ 
+// 		color: black;
+// 		background: #ddc385; 
+		
+// 		/* Only round the top corners */
+// 		-webkit-border-top-left-radius: 15px;
+// 		-webkit-border-top-right-radius: 15px;
+// 		-moz-border-radius-topleft: 15px;
+// 		-moz-border-radius-topright: 15px;
+// 		border-top-left-radius: 15px;
+// 		border-top-right-radius: 15px; 
+// 	}
+// 	.sheet-tabs .active {
+// 		/* Highest, active tab is on top */
+// 		z-index: 3;
+// 	}
+// 	.sheet-tabs .active .li { 
+// 		/* Colors when tab is active */
+// 		background: white; 
+// 		color: black; 
+// 	}
+// 	.sheet-tabs a:before, .sheet-tabs a:after, 
+// 	.sheet-tabs a .li:before, .sheet-tabs a .li:after {
+// 		/* All pseudo elements are 
+// 		abs. positioned and on bottom */
+// 		position: absolute;
+// 		bottom: 0;
+// 	}
+// 	/* Only the first, last, and active
+// 		tabs need pseudo elements at all */
+// 	.sheet-tabs a:last-child:after,   .sheet-tabs a:last-child .li:after,
+// 	.sheet-tabs a:first-child:before, .sheet-tabs a:first-child .li:before,
+// 	.sheet-tabs .active:after,   .sheet-tabs .active:before, 
+// 	.sheet-tabs .active .li:after, .sheet-tabs .active .li:before {
+// 		content: "";
+// 	}
+// 	.sheet-tabs .active:before, .sheet-tabs .active:after {
+// 		background: white; 
+		
+// 		/* Squares below circles */
+// 		z-index: 1;
+// 	}
+// 	/* Squares */
+// 	.sheet-tabs a:before, .sheet-tabs a:after {
+// 		background: #ddc385;
+// 		width: 10px;
+// 		height: 10px;
+// 	}
+// 	.sheet-tabs a:before {
+// 		left: -10px;      
+// 	}
+// 	.sheet-tabs a:after { 
+// 		right: -10px;
+// 	}
+// 	/* Circles */
+// 	.sheet-tabs a .li:after, .sheet-tabs a .li:before {
+// 		width: 20px; 
+// 		height: 20px;
+// 		/* Circles are circular */
+// 		-webkit-border-radius: 10px;
+// 		-moz-border-radius:    10px;
+// 		border-radius:         10px;
+// 		background: #222;
+		
+// 		/* Circles over squares */
+// 		z-index: 2;
+// 	}
+// 	.sheet-tabs .active .li:after, .sheet-tabs .active .li:before {
+// 		background: #ddc385;
+// 	}
+// 	/* First and last tabs have different
+// 		outside color needs */
+// 	.sheet-tabs a:first-child.active .li:before,
+// 	.sheet-tabs a:last-child.active .li:after {
+// 		background: #222;
+// 	}
+// 	.sheet-tabs a .li:before {
+// 		left: -20px;
+// 	}
+// 	.sheet-tabs a .li:after {
+// 		right: -20px;
+// 	}
+// }

@@ -41,7 +41,7 @@
 			"name": "Name",
 			"featuresTab": "Features",
 			"descriptionTab": "Description",
-			"attackWith": "Skill used",
+			"attackWith": "Skill Used",
 			"quantity": "Quantity",
 			"weaponType": "Type",
 			"ammo": "Ammo",
@@ -54,7 +54,11 @@
 			"mag": "Mag",
 			"armor": "Armor",
 			"weight": "Weight",
-			"price": "Price"
+			"price": "Price",
+			"twoHanded": "Two-Handed",
+			"mounted": "Mounted",
+			"disposable": "Disposable",
+			"ammoBelt": "Ammo Belt"
 		},
 		"itemTypes": {
 			"weapon": "Weapon"
