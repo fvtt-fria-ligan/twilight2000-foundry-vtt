@@ -2,47 +2,157 @@
 
 .t2k4e.sheet {
 	nav.sheet-tabs {
+		// flex: 0 0 @navHeight;
+		// display: inline-block;
 		margin: 0;
-		border: 1px dashed red;
+		// padding: 0 10px;
+		// border: 1px dashed red;
+		border: none;
+		// float: left;
+		position: relative;
+		z-index: 1;
+		white-space: nowrap;
 
-		a {
-			width: 100%;
-			padding: 0 20px;
-			border-top: 1px solid @colorKhaki;
-			border-left: 1px solid @colorKhaki;
-			border-right: 1px solid @colorKhaki;
-			border-top-left-radius: 15px;
-			border-top-right-radius: 15px;
-			background: transparent;
+		a.item {
+			display: inline-block;
+			position: relative;
 
-			&:before,
-			&:after {
-				width: 10px;
-				height: 10px;
-				background: #f00;
-				position: relative;
-				bottom: 0;
-				z-index: 10;
-			}
+			padding: 1.5em 1.5em 1em;
+			color: inherit;
+			text-decoration: none;
+			margin: 0 -7px;
 
-			// Triangles
 			&:before {
-				clip-path: polygon(100% 0%,0% 100%,100% 100%);
-				left: -10px;
+				border: .1em solid #aaa;
+				
+				content: ''; /* To generate the box */
+				position: absolute;
+				top: 0; right: 0; bottom: .5em; left: 0;
+				z-index: -1;
+				border-bottom: none;
+				border-radius: 10px 10px 0 0;
+				background: #ddd;
+				box-shadow: 0 2px hsla(0,0%,100%,.5) inset;
+				transform: perspective(5px) rotateX(2deg);
+				transform-origin: bottom;
 			}
-			&:after {
-				clip-path: polygon(0% 0%,0% 100%,100% 100%);
-				right: -10px;
+
+			&.active {
+				z-index: 2;
+				&:before {
+					margin-bottom: -1px;
+					border-top-width: 1px;
+
+					background: #eee;
+				}
 			}
 		}
 
-		a:last-child:after,
-		a:first-child:before,
-		a.active:before,
-		/* Only the first, last, and active tabs need pseudo elements at all. */
-		a.active:after {
-			content: '';
-		}
+		// a.item {
+		// 	display: inline-block;
+		// 	position: relative;
+		// 	// height: 24px;
+		// 	width: 100%;
+		// 	margin: 0 10px;
+		// 	// padding: 0 11px;
+		// 	background: transparent;
+		// 	border-top: @borderGroove;
+		// 	// border-radius: 7px 7px 0 0;
+		// 	// top: 10px;
+		// 	// left: 1px;
+		// 	// z-index: 2;
+
+		// 	// &:before,
+		// 	&:after {
+		// 		position: absolute;
+		// 		top: 0;
+		// 		width: 10px;
+		// 		height: 100%;
+		// 		background: inherit;
+		// 		content: ' ';
+		// 	}
+
+		// 	&:before {
+		// 		// border-radius: 12px 0 0 0;
+		// 		// transform: skew(-24deg);
+
+		// 		/* Play with this one to give the border ~2px extrusion. */
+		// 		// left: -13px;
+		// 	}
+
+		// 	&:after {
+		// 		// border-radius: 0 12px 0 0;
+		// 		transform: skewX(24deg);
+		// 		border-right: @borderGroove;
+		// 		z-index: 1; /* Overlap next element. */
+
+		// 		/* Play with this one to give the border ~2px extrusion. */
+		// 		// right: 13px;
+		// 		right: -5px;
+		// 	}
+
+		// 	&.active {
+		// 		background: @colorLightKhaki;
+
+		// 		&:before,
+		// 		&:after {
+		// 			z-index: 1;
+		// 		}
+		// 	}
+		// }
+
+		// a.item {
+		// 	position: sticky;
+		// 	width: calc(100% - 10px);
+		// 	padding: 0 40px;
+
+		
+
+		// 	// // display: block;
+		// 	// // width: 100%;
+		// 	// // height: 30px;
+		// 	// // padding: 0 20px;
+		// 	border-top: 1px solid @colorKhaki;
+		// 	// border-left: 1px solid @colorKhaki;
+		// 	// border-right: 1px solid @colorKhaki;
+		// 	// // border-top-left-radius: 15px;
+		// 	// // border-top-right-radius: 15px;
+		// 	background: transparent;
+
+		// 	&:before,
+		// 	&:after {
+		// 		width: 10px;
+		// 		height: 100%;
+		// 		background: #f00;
+		// 		position: absolute;
+		// 		bottom: 0;
+		// 		z-index: 3;
+		// 	}
+
+		// 	// Triangles
+		// 	&:before {
+		// 		border-left: 2px solid blue;
+		// 		clip-path: polygon(100% 0%,0% 100%,100% 100%);
+		// 		left: -10px;
+		// 	}
+		// 	&:after {
+		// 		border-right: 2px solid blue;
+		// 		clip-path: polygon(0% 0%,0% 100%,100% 100%);
+		// 		right: -10px;
+		// 	}
+
+		// 	&.active {
+		// 		background: @colorLightKhaki;
+		// 	}
+		// }
+
+		// a.item:last-child:after,
+		// a.item:first-child:before,
+		// a.item.active:before,
+		// a.item.active:after {
+		// 	/* Only the first, last, and active tabs need pseudo elements at all. */
+		// 	content: ' ';
+		// }
 
 		// a {
 		// 	/* Makes them block level and only as they need. */
