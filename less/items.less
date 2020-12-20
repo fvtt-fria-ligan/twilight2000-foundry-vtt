@@ -10,7 +10,7 @@
 		margin-bottom: 10px;
 
 		img.profile {
-			border: 2px solid #000;
+			border: 2px solid @colorBrown;
 			border-radius: 4px;
 		}
 
@@ -36,21 +36,20 @@
 			.item-qty {
 				font-size: 16px;
 
-				input {
-					// max-width: 20px;
-				}
+				// input {
+				// 	// max-width: 20px;
+				// }
 			}
 		}
 	}
 
-	// .sheet-navigation {
-	// 	// background: @colorLightKhaki;
-	// 	border-top: none;
-	// }
-
 	.sheet-body {
 		color: @colorBrown;
 		background: @colorLightKhaki;
+		border: 1px groove @colorKhaki;
+		border-radius: 10px 10px 10px 10px;
+		padding: 10px;
+		// box-shadow: 0 2px hsla(0,0%,100%,.5) inset;
 
 		.weapon-features {
 			&.grid {

@@ -230,22 +230,46 @@
 				"armorModifier": 0
 			},
 			"itemModifiers": {
-				"medicalAid": 0
+				"modifiers": {
+					"attributes": {
+						"str": 0,
+						"agl": 0,
+						"int": 0,
+						"emp": 0
+					},
+					"skills": {
+						"heavyWeapons": 0,
+						"closeCombat": 0,
+						"stamina": 0,
+						"driving": 0,
+						"mobility": 0,
+						"rangedCombat": 0,
+						"recon": 0,
+						"survival": 0,
+						"tech": 0,
+						"command": 0,
+						"persuasion": 0,
+						"medicalAid": 0
+					}
+				}
 			}
 		},
 		"weapon": {
-			"templates": ["itemBase", "itemOffensive", "itemReliability"],
+			"templates": ["itemBase", "itemOffensive", "itemModifiers", "itemReliability"],
 			"weaponType": "",
 			"ammo": "",
 			"rof": 0,
-			"magazineSize": 0,
+			"mag": {
+				"value": 0,
+				"max": 0
+			},
 			"twoHanded": false,
 			"ammoBelt": false,
-			"disposable": false,
-			"mounted": false
+			"mounted": false,
+			"disposable": false
 		},
 		"armor": {
-			"templates": ["itemBase"],
+			"templates": ["itemBase", "itemModifiers"],
 			"rating": {
 				"value": 0,
 				"max": 0

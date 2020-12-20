@@ -14,7 +14,8 @@ export const preloadHandlebarsTemplates = async function() {
 
 	// Item Sheet Partial
 	"systems/t2k4e/templates/items/parts/item-header.hbs",
+	"systems/t2k4e/templates/items/parts/item-modifiers.hbs",
 	"systems/t2k4e/templates/items/parts/item-description.hbs"
-	
+
 	]);
 }

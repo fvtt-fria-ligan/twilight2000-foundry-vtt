@@ -1,5 +1,6 @@
 {
 	"T2KLANG": {
+		"attribute": "Attribute",
 		"attributes": {
 			"str": "Strength",
 			"agl": "Agility",
@@ -40,6 +41,7 @@
 		"itemSheet": {
 			"name": "Name",
 			"featuresTab": "Features",
+			"modifiersTab": "Modifiers",
 			"descriptionTab": "Description",
 			"attackWith": "Skill Used",
 			"quantity": "Quantity",

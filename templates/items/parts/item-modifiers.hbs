@@ -1,0 +1,11 @@
+<div class="tab tab-modifiers" data-group="primary" data-tab="modifiers">
+    <div class="flexcol">
+        <h2>{{localize "T2KLANG.attribute"}}</h2>
+        {{#each config.attributes as |value key|}}
+        <div class="form-group">
+            <label>{{localize value}}</label>
+            <input type="text" name="data.modifiers.attributes.{{key}}" value="{{numberFormat (lookup data.modifiers.attributes.[key]) sign=true}}" data-dtype="Number" />
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -4,8 +4,9 @@
     {{> "systems/t2k4e/templates/items/parts/item-header.hbs"}}
 
     {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs sheet-navigation flexrow flex-center" data-group="primary">
+    <nav class="sheet-tabs flexrow flex-center" data-group="primary">
         <a class="item" data-tab="features">{{localize "T2KLANG.itemSheet.featuresTab"}}</a>
+        <a class="item" data-tab="modifiers">{{localize "T2KLANG.itemSheet.modifiersTab"}}</a>
         <a class="item" data-tab="description">{{localize "T2KLANG.itemSheet.descriptionTab"}}</a>
     </nav>
 
@@ -53,7 +54,11 @@
                 </div>
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.itemSheet.mag"}}</label>
-                    <input type="text" name="data.magazineSize" value="{{data.magazineSize}}" data-dtype="Number" />
+                    <div class="flexrow flex-center">
+                        <input type="text" name="data.mag.value" value="{{data.mag.value}}" data-dtype="Number" />
+                        <span class="sep">/</span>
+                        <input type="text" name="data.mag.max" value="{{data.mag.max}}" data-dtype="Number" />
+                    </div>
                 </div>
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.itemSheet.armor"}}</label>
@@ -71,6 +76,8 @@
 
             {{!-- Other Parameters --}}
             <div class="features-other flexcol">
+
+                {{!-- Used Skill --}}
                 <div class="form-group">
                     <label>{{localize "T2KLANG.itemSheet.attackWith"}}</label>
                     <select name="data.attackWith">
@@ -81,6 +88,8 @@
                         {{/select}}
                     </select>
                 </div>
+
+                {{!-- Properties --}}
                 <div class="form-group-stacked item-properties">
                     <label class="checkbox">
                         <input type="checkbox" name="data.twoHanded" {{checked data.twoHanded}} />
@@ -99,10 +108,13 @@
                         {{localize "T2KLANG.itemSheet.disposable"}}
                     </label>
                 </div>
+
             </div>
 
-
         </div>
+
+        {{!-- Modifiers Tab --}}
+        {{> "systems/t2k4e/templates/items/parts/item-modifiers.hbs"}}
 
         {{!-- Description Tab --}}
         {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
