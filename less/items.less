@@ -7,7 +7,7 @@
 	// }
 
 	.sheet-header {
-		margin-bottom: 10px;
+		// margin-bottom: 10px;
 
 		img.profile {
 			border: 2px solid @colorBrown;
@@ -15,7 +15,7 @@
 		}
 
 		h1 > input {
-			font-size: 32px;
+			font-size: 22px;
 			color: @colorBrown;
 		}
 
@@ -44,14 +44,14 @@
 	}
 
 	.sheet-body {
-		color: @colorBrown;
+		color: @colorDark;
 		background: @colorLightKhaki;
 		border: 1px groove @colorKhaki;
 		border-radius: 10px 10px 10px 10px;
 		padding: 10px;
 		// box-shadow: 0 2px hsla(0,0%,100%,.5) inset;
 
-		.weapon-features {
+		.item-features {
 			&.grid {
 				gap: 0;
 			}
@@ -60,10 +60,16 @@
 				width: 100%;
 				background: @colorLightBrown;
 				border-bottom: 1px solid @colorBrown;
-				.font-mukta-bold()
+				.font-mukta-bold();
+				color: @colorBrown;
+			}
+
+			input {
+				color: @colorBrown;
 			}
 			
 			select {
+				min-height: 22px;
 				border: 1px solid transparent;
 				&:hover,
 				&:focus {
@@ -82,6 +88,47 @@
 		.item-properties {
 			label.checkbox {
 				flex: 0 0 98px;
+			}
+		}
+
+		.tab {
+			&.tab-modifiers {
+				h4 {
+					text-transform: uppercase;
+					border-bottom: @borderGroove;
+					.font-nunito-title();
+					font-size: 1em;
+				}
+
+				.modifiers-list {
+					margin-bottom: 10px;
+				}
+
+				.form-group {
+					margin: 0 0 1px 0;
+					padding: 0 4px;
+					color: @colorTan;
+					border: 1px solid transparent;
+					border-radius: 4px 20px 20px 4px;
+
+					input {
+						flex: 0 0 40px;
+						text-align: right;
+						color: @colorTan;
+					}
+
+					&.modified {
+						font-weight: bold;
+						color: @colorBrown;
+						background: darken(@colorLightKhaki, 10%);
+						border-color: @colorBrown;
+
+						input {
+							color: @colorBrown;
+							font-weight: bold;
+						}
+					}
+				}
 			}
 		}
 	}

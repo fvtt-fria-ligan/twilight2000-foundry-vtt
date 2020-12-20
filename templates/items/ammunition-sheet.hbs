@@ -1,0 +1,34 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Item Sheet Header --}}
+    {{> "systems/t2k4e/templates/items/parts/item-header.hbs"}}
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
+        <a class="item" data-tab="features">{{localize "T2KLANG.ItemSheet.FeaturesTab"}}</a>
+        <a class="item" data-tab="description">{{localize "T2KLANG.ItemSheet.DescriptionTab"}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Features Tab --}}
+        <div class="tab tab-features" data-group="primary" data-tab="features">
+            <div class="grid grid-2col item-features">
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.ItemSheet.Weight"}}</label>
+                    <input type="text" name="data.weight" value="{{numberFormat data.weight decimals=2}}" data-dtype="Number" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.ItemSheet.Price"}}</label>
+                    <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number" />
+                </div>
+            </div>
+        </div>
+
+        {{!-- Description Tab --}}
+        {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
+
+    </section>
+
+</form>

@@ -9,7 +9,7 @@ export default class ItemSheetT2K extends ItemSheet {
 		return mergeObject(super.defaultOptions, {
 			classes: ['t2k4e', 'sheet', 'item'],
 			width: 400,
-			height: 450,
+			height: 520,
 			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'features'}]
 		})
 	}
@@ -23,7 +23,7 @@ export default class ItemSheetT2K extends ItemSheet {
 	getData() {
 		const data = super.getData();
 		data.config = CONFIG.T2K4E;
-		data.itemType = game.i18n.localize(`T2KLANG.itemTypes.${data.item.type}`);
+		data.itemType = game.i18n.localize(`T2KLANG.ItemTypes.${data.item.type}`);
 		return data;
 	}
 

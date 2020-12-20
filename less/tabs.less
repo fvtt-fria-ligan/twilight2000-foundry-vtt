@@ -1,25 +1,31 @@
 .t2k4e.sheet {
-	nav.sheet-tabs {
+	nav.slanted-tabs {
 		// flex: 0 0 @navHeight;
 		// position: relative;
-		// white-space: nowrap;
+		white-space: nowrap;
 		margin: 0;
 		border: none;
 		z-index: 1;
 
 		/* Adjust this padding:
-		 * -> top+bottom: Height of the tab.
-		 * -> left+right: ...
+		 * -> top+bottom: Y-axis position of the tab.
+		 * -> left+right: Navbar X-axis padding.
 		 */
 		padding: 8px 20px;
 
 		a.item {
 			display: inline-block;
 			position: relative;
-
-			// padding: 1.5em 1.5em 1em;
 			// color: inherit;
 			// text-decoration: none;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			/* Adjust this padding:
+			 * -> top+bottom: Height of the tab.
+			 * -> left+right: Space for the text in the tab.
+			 */
+			padding: 0 20px;
 
 			/* Adjust this margin to position the tab:
 			 * -> top+bottom: Y-axis positionment of the tab.

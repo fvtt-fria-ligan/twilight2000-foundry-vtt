@@ -1,14 +1,16 @@
 {
 	"T2KLANG": {
-		"attribute": "Attribute",
-		"attributes": {
+		"Attribute": "Attribute",
+		"Attributes": "Attributes",
+		"AttributeNames": {
 			"str": "Strength",
 			"agl": "Agility",
 			"int": "Intelligence",
 			"emp": "Empathy"
 		},
-		"skill": "Skill",
-		"skills": {
+		"Skill": "Skill",
+		"Skills": "Skills",
+		"SkillNames": {
 			"none": "–",
 			"heavyWeapons": "Heavy Weapons",
 			"closeCombat": "Close Combat",
@@ -23,47 +25,49 @@
 			"persuasion": "Persuasion",
 			"medicalAid": "Medical Aid"
 		},
-		"ranges": {
+		"Ranges": {
 			"close": "In close combat",
 			"short": "Short",
 			"medium": "Medium",
 			"long": "Long",
 			"extreme": "Extreme"
 		},
-		"branches": {
-			"civilian": "civilian",
-			"military": "military"
-		},
-		"speedTypes": {
-			"tracks": "tracks",
-			"wheels": "wheels"
-		},
-		"itemSheet": {
-			"name": "Name",
-			"featuresTab": "Features",
-			"modifiersTab": "Modifiers",
-			"descriptionTab": "Description",
-			"attackWith": "Skill Used",
-			"quantity": "Quantity",
-			"weaponType": "Type",
-			"ammo": "Ammo",
-			"reliability": "Rel",
-			"rof": "RoF",
-			"damage": "Damage",
-			"crit": "Crit",
-			"blast": "Blast",
-			"range": "Range",
-			"mag": "Mag",
+		"ItemTypes": {
+			"ammunition": "Ammunition",
 			"armor": "Armor",
-			"weight": "Weight",
-			"price": "Price",
-			"twoHanded": "Two-Handed",
-			"mounted": "Mounted",
-			"disposable": "Disposable",
-			"ammoBelt": "Ammo Belt"
-		},
-		"itemTypes": {
+			"gear": "Gear",
+			"grenade": "Grenade",
+			"specialty": "Specialty",
 			"weapon": "Weapon"
+		},
+		"ItemSheet": {
+			"Name": "Name",
+			"FeaturesTab": "Features",
+			"ModifiersTab": "Modifiers",
+			"DescriptionTab": "Description",
+			"AttackWith": "Skill Used",
+			"Quantity": "Quantity",
+			"WeaponType": "Type",
+			"Ammo": "Ammo",
+			"Reliability": "Rel",
+			"RoF": "RoF",
+			"Damage": "Damage",
+			"Crit": "Crit",
+			"Blast": "Blast",
+			"Range": "Range",
+			"Mag": "Mag",
+			"Armor": "Armor",
+			"Weight": "Weight",
+			"Price": "Price",
+			"TwoHanded": "Two-Handed",
+			"Mounted": "Mounted",
+			"Disposable": "Disposable",
+			"AmmoBelt": "Ammo Belt",
+			"ArmorLocation": "Protected Location",
+			"ArmorLocationHead": "Head",
+			"ArmorLocationTorso": "Torso",
+			"ArmorLocationArm": "Arm",
+			"ArmorLocationLegs": "Legs"
 		}
 	}
 }

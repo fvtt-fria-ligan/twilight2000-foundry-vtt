@@ -1,0 +1,85 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Item Sheet Header --}}
+    {{> "systems/t2k4e/templates/items/parts/item-header.hbs"}}
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
+        <a class="item" data-tab="features">{{localize "T2KLANG.ItemSheet.FeaturesTab"}}</a>
+        <a class="item" data-tab="modifiers">{{localize "T2KLANG.ItemSheet.ModifiersTab"}}</a>
+        <a class="item" data-tab="description">{{localize "T2KLANG.ItemSheet.DescriptionTab"}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Features Tab --}}
+        <div class="tab tab-features" data-group="primary" data-tab="features">
+            <div class="grid grid-3col item-features">
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.ItemSheet.Armor"}}</label>
+                    <div class="flexrow flex-center">
+                        <input type="text" name="data.rating.value" value="{{data.rating.value}}" data-dtype="Number" />
+                        <span class="sep">/</span>
+                        <input type="text" name="data.rating.max" value="{{data.rating.max}}" data-dtype="Number" />
+                    </div>
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.ItemSheet.Weight"}}</label>
+                    <input type="text" name="data.weight" value="{{numberFormat data.weight decimals=2}}" data-dtype="Number" />
+                </div>
+                <div class="flexcol flex-center">
+                    <label>{{localize "T2KLANG.ItemSheet.Price"}}</label>
+                    <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number" />
+                </div>
+            </div>
+
+            {{!-- Other Parameters --}}
+            <div class="features-other flexcol">
+
+                {{!-- Used Skill --}}
+                {{!-- <div class="form-group">
+                    <label>{{localize "T2KLANG.ItemSheet.AttackWith"}}</label>
+                    <select name="data.attackWith">
+                        {{#select data.attackWith}}
+                        {{#each config.skills as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </div> --}}
+
+                {{!-- Properties --}}
+				<label>{{localize "T2KLANG.ItemSheet.ArmorLocation"}}</label>
+                <div class="form-group-stacked item-properties">
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.location.head" {{checked data.location.head}} />
+                        {{localize "T2KLANG.ItemSheet.ArmorLocationHead"}}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.location.torso" {{checked data.location.torso}} />
+                        {{localize "T2KLANG.ItemSheet.ArmorLocationTorso"}}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.location.arm" {{checked data.location.arm}} />
+                        {{localize "T2KLANG.ItemSheet.ArmorLocationArm"}}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.location.legs" {{checked data.location.legs}} />
+                        {{localize "T2KLANG.ItemSheet.ArmorLocationLegs"}}
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+
+        {{!-- Modifiers Tab --}}
+        {{> "systems/t2k4e/templates/items/parts/item-modifiers.hbs"}}
+
+        {{!-- Description Tab --}}
+        {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
+
+    </section>
+
+</form>

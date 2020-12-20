@@ -1,11 +1,22 @@
 <div class="tab tab-modifiers" data-group="primary" data-tab="modifiers">
     <div class="flexcol">
-        <h2>{{localize "T2KLANG.attribute"}}</h2>
-        {{#each config.attributes as |value key|}}
-        <div class="form-group">
-            <label>{{localize value}}</label>
-            <input type="text" name="data.modifiers.attributes.{{key}}" value="{{numberFormat (lookup data.modifiers.attributes.[key]) sign=true}}" data-dtype="Number" />
+        <h4>{{localize "T2KLANG.Attributes"}}</h4>
+        <div class="modifiers-list flexrow">
+            {{#each data.modifiers.attributes as |value name|}}
+            <div class="form-group col-6 {{#if value}}modified{{/if}}">
+                <label>{{localize (concat "T2KLANG.AttributeNames." name)}}</label>
+                <input type="text" name="data.modifiers.attributes.{{name}}" value="{{numberFormat value sign=value}}" data-dtype="Number" />
+            </div>
+            {{/each}}
         </div>
-        {{/each}}
+        <h4>{{localize "T2KLANG.Skills"}}</h4>
+        <div class="modifiers-list flexrow">
+            {{#each data.modifiers.skills as |value name|}}
+            <div class="form-group col-6 {{#if value}}modified{{/if}}">
+                <label>{{localize (concat "T2KLANG.SkillNames." name)}}</label>
+                <input type="text" name="data.modifiers.skills.{{name}}" value="{{numberFormat value sign=value}}" data-dtype="Number" />
+            </div>
+            {{/each}}
+        </div>
     </div>
 </div>

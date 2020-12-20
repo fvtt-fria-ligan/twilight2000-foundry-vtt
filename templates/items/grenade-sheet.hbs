@@ -6,7 +6,6 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
         <a class="item" data-tab="features">{{localize "T2KLANG.ItemSheet.FeaturesTab"}}</a>
-        <a class="item" data-tab="modifiers">{{localize "T2KLANG.ItemSheet.ModifiersTab"}}</a>
         <a class="item" data-tab="description">{{localize "T2KLANG.ItemSheet.DescriptionTab"}}</a>
     </nav>
 
@@ -20,22 +19,22 @@
                     <label>{{localize "T2KLANG.ItemSheet.WeaponType"}}</label>
                     <input type="text" name="data.weaponType" value="{{data.weaponType}}" />
                 </div>
-                <div class="flexcol flex-center">
+                {{!-- <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Ammo"}}</label>
                     <input type="text" name="data.ammo" value="{{data.ammo}}" />
-                </div>
-                <div class="flexcol flex-center">
+                </div> --}}
+                {{!-- <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Reliability"}}</label>
                     <div class="flexrow flex-center">
                         {{> scoreSelector name="data.reliability.score" selected=data.reliability.score}}
                         <span class="sep">/</span>
                         {{> scoreSelector name="data.reliability.max" selected=data.reliability.max}}
                     </div>
-                </div>
-                <div class="flexcol flex-center">
+                </div> --}}
+                {{!-- <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.RoF"}}</label>
                     <input type="text" name="data.rof" value="{{data.rof}}" data-dtype="Number" />
-                </div>
+                </div> --}}
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Damage"}}</label>
                     <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number" />
@@ -52,14 +51,14 @@
                     <label>{{localize "T2KLANG.ItemSheet.Range"}}</label>
                     <input type="text" name="data.range" value="{{data.range}}" data-dtype="Number" />
                 </div>
-                <div class="flexcol flex-center">
+                {{!-- <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Mag"}}</label>
                     <div class="flexrow flex-center">
                         <input type="text" name="data.mag.value" value="{{data.mag.value}}" data-dtype="Number" />
                         <span class="sep">/</span>
                         <input type="text" name="data.mag.max" value="{{data.mag.max}}" data-dtype="Number" />
                     </div>
-                </div>
+                </div> --}}
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Armor"}}</label>
                     <input type="text" name="data.armorModifier" value="{{numberFormat data.armorModifier sign=true}}" data-dtype="Number" />
@@ -91,7 +90,7 @@
 
                 {{!-- Properties --}}
                 <div class="form-group-stacked item-properties">
-                    <label class="checkbox">
+                    {{!-- <label class="checkbox">
                         <input type="checkbox" name="data.twoHanded" {{checked data.twoHanded}} />
                         {{localize "T2KLANG.ItemSheet.TwoHanded"}}
                     </label>
@@ -102,9 +101,9 @@
                     <label class="checkbox">
                         <input type="checkbox" name="data.ammoBelt" {{checked data.ammoBelt}} />
                         {{localize "T2KLANG.ItemSheet.AmmoBelt"}}
-                    </label>
+                    </label> --}}
                     <label class="checkbox">
-                        <input type="checkbox" name="data.disposable" {{checked data.disposable}} />
+                        <input type="checkbox" checked disabled />
                         {{localize "T2KLANG.ItemSheet.Disposable"}}
                     </label>
                 </div>
@@ -114,7 +113,7 @@
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/t2k4e/templates/items/parts/item-modifiers.hbs"}}
+        {{!-- {{> "systems/t2k4e/templates/items/parts/item-modifiers.hbs"}} --}}
 
         {{!-- Description Tab --}}
         {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}

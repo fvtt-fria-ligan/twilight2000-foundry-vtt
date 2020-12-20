@@ -203,6 +203,7 @@
 		"types": [
 			"weapon",
 			"armor",
+			"ammunition",
 			"grenade",
 			"gear",
 			"specialty"
@@ -281,12 +282,19 @@
 				"limbs": false
 			}
 		},
+		"ammunition": {
+			"templates": ["itemBase"],
+			"ammo": ""
+		},
 		"grenade": {
 			"templates": ["itemBase", "itemOffensive"],
 			"disposable": true
 		},
 		"gear": {
-			"templates": ["itemBase", "itemModifiers"]
+			"templates": ["itemBase", "itemModifiers"],
+			"twoHanded": false,
+			"mounted": false,
+			"disposable": false
 		},
 		"specialty": {
 			"templates": ["itemModifiers"],
