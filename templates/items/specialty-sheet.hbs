@@ -1,0 +1,23 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Item Sheet Header --}}
+    {{> "systems/t2k4e/templates/items/parts/item-header.hbs"}}
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
+        <a class="item" data-tab="modifiers">{{localize "T2KLANG.ItemSheet.ModifiersTab"}}</a>
+        <a class="item" data-tab="description">{{localize "T2KLANG.ItemSheet.DescriptionTab"}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Modifiers Tab --}}
+        {{> "systems/t2k4e/templates/items/parts/item-modifiers.hbs"}}
+
+        {{!-- Description Tab --}}
+        {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
+
+    </section>
+
+</form>

@@ -23,17 +23,30 @@ export default class ActorT2K extends Actor {
 
 	/**
 	 * Prepares Character type specific data.
-	 * @param {*} actorData 
+	 * @param {Object} actorData Actor's data.
+	 * @private
 	 */
 	_prepareCharacterData(actorData) {
 		const data = actorData.data;
 
 		// Gets the attributes and skills values from their scores.
-		for (const [, attribute] of Object.entries(data.attributes)) {
-			attribute.value = getDieSize(attribute.score);
-		}
-		for (const [, skill] of Object.entries(data.skills)) {
-			skill.value = getDieSize(skill.score);
+		this._prepareScores(data.attributes);
+		this._prepareScores(data.skills);
+	}
+
+	/**
+	 * Prepares attributes or skills data.
+	 * The function adds a `value` property for the die's size equal to its score.
+	 * @param {Object} obj data.attributes OR data.skills.
+	 * @private
+	 */
+	_prepareScores(obj) {
+		for (const [, o] of Object.entries(obj)) {
+			o.value = getDieSize(o.score);
 		}
 	}
+
+	_computeHitCapacity(actorData) {}
+	_computeStressCapacity(actorData) {}
+	_computeEncumbrance(actorData) {}
 }

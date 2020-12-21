@@ -11,7 +11,7 @@ export default class ItemSheetT2K extends ItemSheet {
 			width: 400,
 			height: 520,
 			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'features'}]
-		})
+		});
 	}
 
 	/** @override */
