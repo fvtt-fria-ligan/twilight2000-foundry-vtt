@@ -10,7 +10,7 @@ export const preloadHandlebarsTemplates = async function() {
 
 
 	// Actor Sheet Partial
-
+	"systems/t2k4e/templates/actors/parts/actor-description.hbs",
 
 	// Item Sheet Partial
 	"systems/t2k4e/templates/items/parts/item-header.hbs",

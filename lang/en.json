@@ -40,6 +40,14 @@
 			"specialty": "Specialty",
 			"weapon": "Weapon"
 		},
+		"ActorSheet": {
+			"MainTab": "Main",
+			"CombatTab": "Combat",
+			"TalentTab": "Talent",
+			"EquipmentTab": "Gear",
+			"BiographyTab": "Bio",
+			"NoteTab": "Note"
+		},
 		"ItemSheet": {
 			"Name": "Name",
 			"FeaturesTab": "Features",

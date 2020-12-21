@@ -1,0 +1,39 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Item Sheet Header --}}
+    {{!-- {{> "systems/t2k4e/templates/items/parts/item-header.hbs"}} --}}
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
+        <a class="item" data-tab="main">{{localize "T2KLANG.ActorSheet.MainTab"}}</a>
+        <a class="item" data-tab="combat">{{localize "T2KLANG.ActorSheet.CombatTab"}}</a>
+        <a class="item" data-tab="talent">{{localize "T2KLANG.ActorSheet.TalentTab"}}</a>
+        <a class="item" data-tab="equipment">{{localize "T2KLANG.ActorSheet.EquipmentTab"}}</a>
+        <a class="item" data-tab="biography">{{localize "T2KLANG.ActorSheet.BiographyTab"}}</a>
+        <a class="item" data-tab="description">{{localize "T2KLANG.ActorSheet.DescriptionTab"}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Main Tab --}}
+        <div class="tab tab-main" data-group="primary" data-tab="main"></div>
+
+        {{!-- Combat Tab --}}
+        <div class="tab tab-combat" data-group="primary" data-tab="combat"></div>
+
+        {{!-- Equipment Tab --}}
+        <div class="tab tab-talent" data-group="primary" data-tab="talent"></div>
+
+        {{!-- Equipment Tab --}}
+        <div class="tab tab-equipment" data-group="primary" data-tab="equipment"></div>
+
+        {{!-- Biography Tab --}}
+        <div class="tab tab-biography" data-group="primary" data-tab="biography"></div>
+
+        {{!-- Description Tab --}}
+        {{> "systems/t2k4e/templates/actors/parts/actor-description.hbs"}}
+
+    </section>
+
+</form>

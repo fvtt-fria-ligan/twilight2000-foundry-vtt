@@ -21,6 +21,7 @@ import ActorT2K from './module/actor/actor.js';
 import ItemT2K from './module/item/item.js';
 
 // Imports Applications.
+import ActorSheetT2K from './module/actor/actorSheet.js';
 import ItemSheetT2K from './module/item/itemSheet.js';
 
 /* -------------------------------------------- */
@@ -34,6 +35,7 @@ Hooks.once('init', function() {
 	// Places our classes in their own namespace for later reference.
 	game.t2k4e = {
 		applications: {
+			ActorSheetT2K,
 			ItemSheetT2K
 		},
 		config: T2K4E,
@@ -56,8 +58,8 @@ Hooks.once('init', function() {
 
 	// Registers sheet application classes. 
 	// This will stop using the core sheets and instead use our customized versions.
-	// Actors.unregisterSheet('core', ActorSheet);
-	// Actors.registerSheet('t2k4e', ActorSheetT2K, { makeDefault: true });
+	Actors.unregisterSheet('core', ActorSheet);
+	Actors.registerSheet('t2k4e', ActorSheetT2K, { makeDefault: true });
 	Items.unregisterSheet('core', ItemSheet);
 	Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
 
