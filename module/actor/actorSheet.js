@@ -24,7 +24,31 @@ export default class ActorSheetT2K extends ActorSheet {
 		const data = super.getData();
 		data.config = CONFIG.T2K4E;
 		// data.itemType = game.i18n.localize(`T2KLANG.ItemTypes.${data.item.type}`);
+
+		if (this.actor.data.type === 'character') {
+			this._prepareCharacterItems(data);
+		}
+
 		return data;
+	}
+
+	/**
+	 * Organizes and classifies Items for Character Sheets.
+	 * @param {Object} sheetData The data to prepare.
+	 * @private
+	 */
+	_prepareCharacterItems(sheetData) {
+		const actorData = sheetData.actor;
+		const sortedItems = {};
+
+		for (const i of sheetData.items) {
+			// const item = i.data;
+			i.img = i.img || DEFAULT_TOKEN;
+			if (!sortedItems[i.type]) sortedItems[i.type] = [];
+			sortedItems.push(i);
+		}
+
+		actorData.gear = sortedItems;
 	}
 
 	/** 

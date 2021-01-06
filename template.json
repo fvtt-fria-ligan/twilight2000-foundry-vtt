@@ -140,6 +140,9 @@
 				"value": 0
 			}
 		},
+		"monster": {
+			"templates": ["actorDescription"]
+		},
 		"vehicle": {
 			"templates": ["actorDescription"],
 			"type": "",

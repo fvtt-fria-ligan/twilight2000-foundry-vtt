@@ -2,7 +2,16 @@
 /*  Fonts                                      */
 /* ------------------------------------------- */
 
-/* Font for Headlings */
+/* Font for Headers */
+@font-face {
+	font-family: 'GT Eesti Text Medium';
+	font-style: normal;
+	font-weight: 800;
+	src:
+		local('GT Eesti Text Medium');
+}
+
+/* Replacement Font for Headers */
 @font-face {
 	font-family: 'Nunito Sans';
 	font-style: normal;
@@ -29,6 +38,17 @@
 
 /* Font for Generic Text */
 @font-face {
+	font-family: 'TheSansB W5 Plain Medium';
+	font-style: normal;
+	font-weight: 500;
+	src:
+		local('TheSansB W5 Plain'),
+		local('TheSansB W5 Medium'),
+		local('TheSansB W5 Plain Medium');
+}
+
+/* Replacement Font for Generic Text */
+@font-face {
 	font-family: 'Mukta';
 	font-style: normal;
 	font-weight: 500;
@@ -39,6 +59,15 @@
 }
 
 /* Font for Table Headers */
+@font-face {
+	font-family: 'TheSansB W7 Bold';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		local('TheSansB W7 Bold');
+}
+
+/* Replacement Font for Table Headers */
 @font-face {
 	font-family: 'Mukta';
 	font-style: normal;
@@ -55,14 +84,15 @@
 	font-style: normal;
 	font-weight: 400;
 	src:
+		local('DaisyWheel Regular'),
 		local('Daisy Wheel'),
 		local('DaisyWheel'),
 		local('Daisywhl'),
 		url('fonts/daisywheel.otf') format('opentype');
 }
 
-.font-nunito-title {
-	font-family: 'Nunito Sans';
+.font-header {
+	font-family: 'GT Eesti Text Medium', 'Nunito Sans';
 	font-weight: 800;
 	font-size: 20px;
 	text-transform: uppercase;
@@ -75,14 +105,14 @@
 	text-transform: uppercase;
 }
 
-.font-mukta-normal {
-	font-family: 'Mukta';
+.font-text-normal {
+	font-family: 'TheSansB W5 Plain Medium', 'Mukta';
 	font-weight: 500;
 	font-size: 1em;
 }
 
-.font-mukta-bold {
-	font-family: 'Mukta';
+.font-text-bold {
+	font-family: 'TheSansB W7 Bold', 'Mukta';
 	font-weight: 700;
 	font-size: .9em;
 	text-transform: uppercase;
