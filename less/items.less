@@ -6,6 +6,10 @@
 	// 	// background: @colorLightKhaki;
 	// }
 
+	/* ------------------------------------------- */
+	/*  Sheet Header                               */
+	/* ------------------------------------------- */
+
 	.sheet-header {
 		// margin-bottom: 10px;
 
@@ -17,6 +21,10 @@
 		h1 > input {
 			font-size: 22px;
 			color: @colorBrown;
+		}
+
+		.header-details {
+			.font-header();
 		}
 
 		.item-subtitle {
@@ -43,13 +51,22 @@
 		}
 	}
 
+	/* ------------------------------------------- */
+	/*  Sheet Navigation                           */
+	/* ------------------------------------------- */
+
+	.sheet-tabs {
+		.font-bluehighway-bold();
+		color: @colorBrown;
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Body                                 */
+	/* ------------------------------------------- */
+
 	.sheet-body {
 		color: @colorDark;
 		background: @colorLightKhaki;
-		border: 1px groove @colorKhaki;
-		border-radius: 10px 10px 10px 10px;
-		padding: 10px;
-		// box-shadow: 0 2px hsla(0,0%,100%,.5) inset;
 
 		.item-features {
 			&.grid {

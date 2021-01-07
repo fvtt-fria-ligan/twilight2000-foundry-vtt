@@ -2,14 +2,56 @@
 
     {{!-- Item Sheet Header --}}
     {{!-- {{> "systems/t2k4e/templates/items/parts/item-header.hbs"}} --}}
+    <header class="sheet-header flexrow">
+
+        <div class="header-details">
+            <h1>
+                <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'T2KLANG.ActorSheet.Name'}}"/>
+            </h1>
+
+            <div class="flexcol">
+                <div class="header-details-row flexrow">
+                    <div class="flexcol col-6">
+                        <label>{{localize "T2KLANG.ActorSheet.Nationality"}}</label>
+                        <input name="data.bio.nationality" type="text" value="{{data.bio.nationality}}" />
+                    </div>
+                    <div class="flexcol col-6">
+                        <label>{{localize "T2KLANG.ActorSheet.Branch"}}</label>
+                        <input name="data.bio.branch" type="text" value="{{data.bio.branch}}" />
+                    </div>
+                </div>
+                {{#if (eq actor.type 'character')}}
+                <div class="header-details-row flexrow">
+                    <div class="flexcol col-6">
+                        <label>{{localize "T2KLANG.ActorSheet.MilitaryRank"}}</label>
+                        <input name="data.bio.militaryRank" type="text" value="{{data.bio.militaryRank}}" />
+                    </div>
+                    <div class="flexcol col-6">
+                        <label>{{localize "T2KLANG.ActorSheet.Experience"}}</label>
+                        <div class="flexrow flex-between">
+                            <label class="small">{{localize "T2KLANG.ActorSheet.ExperienceCurrent"}}</label>
+                            <input name="data.xp.value" type="number" value="{{data.xp.value}}" />
+                            <label class="small">{{localize "T2KLANG.ActorSheet.ExperienceTotal"}}</label>
+                            <input name="data.xp.total" type="number" value="{{data.xp.total}}" />
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+
+        <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+
+    </header>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
         <a class="item" data-tab="main">{{localize "T2KLANG.ActorSheet.MainTab"}}</a>
         <a class="item" data-tab="combat">{{localize "T2KLANG.ActorSheet.CombatTab"}}</a>
-        <a class="item" data-tab="talent">{{localize "T2KLANG.ActorSheet.TalentTab"}}</a>
         <a class="item" data-tab="equipment">{{localize "T2KLANG.ActorSheet.EquipmentTab"}}</a>
+        {{#if (eq actor.type 'character')}}
         <a class="item" data-tab="biography">{{localize "T2KLANG.ActorSheet.BiographyTab"}}</a>
+        {{/if}}
         <a class="item" data-tab="description">{{localize "T2KLANG.ActorSheet.NoteTab"}}</a>
     </nav>
 
@@ -23,13 +65,17 @@
         <div class="tab tab-combat" data-group="primary" data-tab="combat"></div>
 
         {{!-- Equipment Tab --}}
-        <div class="tab tab-talent" data-group="primary" data-tab="talent"></div>
-
-        {{!-- Equipment Tab --}}
         <div class="tab tab-equipment" data-group="primary" data-tab="equipment"></div>
 
         {{!-- Biography Tab --}}
-        <div class="tab tab-biography" data-group="primary" data-tab="biography"></div>
+        {{#if (eq actor.type 'character')}}
+        <div class="tab tab-biography" data-group="primary" data-tab="biography">
+            <label>{{localize "T2KLANG.ActorSheet.Appearance"}}</label>
+            {{editor content=data.bio.appearance target="data.bio.appearance" button=true owner=owner editable=editable}}
+            <label>{{localize "T2KLANG.ActorSheet.MoralCode"}}</label>
+            <input name="data.bio.moralCode" type="text" value="{{data.bio.moralCode}}" />
+        </div>
+        {{/if}}
 
         {{!-- Description Tab --}}
         {{> "systems/t2k4e/templates/actors/parts/actor-description.hbs"}}

@@ -7,17 +7,17 @@ export default class ActorSheetT2K extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			classes: ['t2k4e', 'sheet', 'actor'],
-			width: 600,
-			height: 650,
 			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main'}]
 		});
 	}
 
 	/** @override */
-	// get template() {
-	// 	return `systems/t2k4e/templates/items/${this.item.data.type}-sheet.hbs`;
-	// }
+	get template() {
+		if (this.actor.data.type === 'npc') {
+			return 'systems/t2k4e/templates/actors/character-sheet.hbs';
+		}
+		return `systems/t2k4e/templates/actors/${this.actor.data.type}-sheet.hbs`;
+	}
 
 	/** @override */
 	getData() {
@@ -25,9 +25,9 @@ export default class ActorSheetT2K extends ActorSheet {
 		data.config = CONFIG.T2K4E;
 		// data.itemType = game.i18n.localize(`T2KLANG.ItemTypes.${data.item.type}`);
 
-		if (this.actor.data.type === 'character') {
-			this._prepareCharacterItems(data);
-		}
+		// if (this.actor.data.type === 'character') {
+		// 	this._prepareCharacterItems(data);
+		// }
 
 		return data;
 	}
@@ -37,19 +37,19 @@ export default class ActorSheetT2K extends ActorSheet {
 	 * @param {Object} sheetData The data to prepare.
 	 * @private
 	 */
-	_prepareCharacterItems(sheetData) {
-		const actorData = sheetData.actor;
-		const sortedItems = {};
+	// _prepareCharacterItems(sheetData) {
+	// 	const actorData = sheetData.actor;
+	// 	const sortedItems = {};
 
-		for (const i of sheetData.items) {
-			// const item = i.data;
-			i.img = i.img || DEFAULT_TOKEN;
-			if (!sortedItems[i.type]) sortedItems[i.type] = [];
-			sortedItems.push(i);
-		}
+	// 	for (const i of sheetData.items) {
+	// 		// const item = i.data;
+	// 		i.img = i.img || DEFAULT_TOKEN;
+	// 		if (!sortedItems[i.type]) sortedItems[i.type] = [];
+	// 		sortedItems.push(i);
+	// 	}
 
-		actorData.gear = sortedItems;
-	}
+	// 	actorData.gear = sortedItems;
+	// }
 
 	/** 
 	 * Handles remembering the sheet's position.

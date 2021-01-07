@@ -2,9 +2,6 @@
  * TWILIGHT 2000 4E
  * Official website: https://frialigan.se/en/games/twilight-2000/
  * ===============================================================================
- * System Version: 0.0.1
- * Last Update:    20.12.2020
- * ===============================================================================
  * Contributing: https://github.com/Stefouch/t2k4e
  * ===============================================================================
  * Creator: Stefouch
@@ -21,7 +18,7 @@ import ActorT2K from './module/actor/actor.js';
 import ItemT2K from './module/item/item.js';
 
 // Imports Applications.
-import ActorSheetT2K from './module/actor/actorSheet.js';
+import ActorSheetT2KCharacter from './module/actor/sheets/character.js';
 import ItemSheetT2K from './module/item/itemSheet.js';
 
 /* -------------------------------------------- */
@@ -35,7 +32,7 @@ Hooks.once('init', function() {
 	// Places our classes in their own namespace for later reference.
 	game.t2k4e = {
 		applications: {
-			ActorSheetT2K,
+			ActorSheetT2KCharacter,
 			ItemSheetT2K
 		},
 		config: T2K4E,
@@ -52,14 +49,19 @@ Hooks.once('init', function() {
 
 	// Patches Core functions.
 	CONFIG.Combat.initiative = {
-		formula: '1d10 + @data.attributes.agl.value / 10',
-		decimals: 1
+		formula: '1d10 + @attributes.agl.value / 100',
+		decimals: 2
 	}
 
 	// Registers sheet application classes. 
 	// This will stop using the core sheets and instead use our customized versions.
 	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('t2k4e', ActorSheetT2K, { makeDefault: true });
+	Actors.registerSheet('t2k4e', ActorSheetT2KCharacter, {
+		types: ['character', 'npc'],
+		makeDefault: true,
+		label: 'T2KLANG.SheetClassCharacter'
+	});
+
 	Items.unregisterSheet('core', ItemSheet);
 	Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
 

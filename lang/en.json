@@ -1,5 +1,6 @@
 {
 	"T2KLANG": {
+		"SheetClassCharacter": "Character Sheet",
 		"Attribute": "Attribute",
 		"Attributes": "Attributes",
 		"AttributeNames": {
@@ -41,12 +42,23 @@
 			"weapon": "Weapon"
 		},
 		"ActorSheet": {
+			"Name": "Name",
 			"MainTab": "Main",
 			"CombatTab": "Combat",
-			"TalentTab": "Talent",
 			"EquipmentTab": "Gear",
 			"BiographyTab": "Bio",
-			"NoteTab": "Note"
+			"NoteTab": "Note",
+			"Nationality": "Nationality",
+			"Branch": "Branch",
+			"MilitaryRank": "Rank",
+			"Experience": "Experience",
+			"ExperienceCurrent": "Current",
+			"ExperienceTotal": "Total",
+			"Appearance": "Appearance",
+			"MoralCode": "Moral Code",
+			"Buddy": "Buddy",
+			"BigDream": "Big Dream",
+			"GroupMeeting": "How you met the group:"
 		},
 		"ItemSheet": {
 			"Name": "Name",

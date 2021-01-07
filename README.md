@@ -1,4 +1,4 @@
-<h1 align="center">Twilight: 2000 4th Edition<br />🎲 <i>Foundry</i> 🎲</h1>
+<h1 align="center"><b>Twilight: 2000</b><br />4<sup>th</sup> Edition<br /><small>🎲 <i>Foundry VTT</i> 🎲</small></h1>
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/Stefouch/t2k4e/graphs/commit-activity" target="_blank">
@@ -24,6 +24,11 @@
 2. Click the Install System button, and paste in this [manifest link](https://raw.githubusercontent.com/stefouch/t2k4e/master/system.json).
 
 3. Create a Game World using the Twilight 2000 4E system.
+
+# Supported Languages
+- English
+
+Your language isn't listed? Think about contributing and help translate this system into another languages!
 
 # Supported Modules
 *Nihil*

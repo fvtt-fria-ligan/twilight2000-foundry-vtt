@@ -32,15 +32,21 @@ export default class ActorT2K extends Actor {
 		// Gets the attributes and skills values from their scores.
 		this._prepareScores(data.attributes);
 		this._prepareScores(data.skills);
+		this._prepareScores(data.cuf);
+		this._prepareScores(data.unitMorale);
 	}
 
 	/**
 	 * Prepares attributes or skills data.
 	 * The function adds a `value` property for the die's size equal to its score.
-	 * @param {Object} obj data.attributes OR data.skills.
+	 * @param {Object} obj data.attributes OR data.skills OR any object with a "score" property.
 	 * @private
 	 */
 	_prepareScores(obj) {
+		if ('score' in obj) {
+			obj.value = getDieSize(obj.score);
+			return;
+		}
 		for (const [, o] of Object.entries(obj)) {
 			o.value = getDieSize(o.score);
 		}

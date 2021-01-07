@@ -2,14 +2,73 @@
 	min-height: 400px;
 	min-width: 400px;
 
-	// .window-content {
-	// 	// background: @colorLightKhaki;
-	// }
+
+	.window-content {
+		// background: @colorLightKhaki;
+		.font-daisywheel();
+		font-size: 11pt;
+		color: @colorBrown;
+	}
+
+	input,
+	div.editable,
+	.editor-content {
+		color: #284283;
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Header                               */
+	/* ------------------------------------------- */
 
 	.sheet-header {
 		img.profile {
 			border: 2px solid @colorBrown;
 			border-radius: 4px;
+			margin: 0 0 0 20px;
+		}
+
+		label {
+			font-size: 9pt;
+			text-transform: uppercase;
+			margin-left: 4px;
+
+			&.small {
+				font-size: 7pt;
+			}
+		}
+
+		.header-details {
+			.header-details-row {
+				margin: 3px 0;
+			}
+		}
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Navigation                           */
+	/* ------------------------------------------- */
+
+	.sheet-tabs {
+		color: @colorBrown;
+		text-transform: uppercase;
+		font-size: 11pt;
+
+		// Fixes a tab bug.
+		&.slanted-tabs {
+			margin-bottom: 1px;
+		}
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Body                                 */
+	/* ------------------------------------------- */
+
+	.sheet-body {
+		.tab-biography {
+			label {
+				font-size: 9pt;
+				text-transform: uppercase;
+			}
 		}
 	}
 }
