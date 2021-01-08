@@ -58,10 +58,6 @@ Give a ⭐️ if this project helped you!
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 
-Let's thank **Jeremy Mettler, Joe Guilmette, Matt Kay, Dale Chenault, Narcomed and all my other patrons** and generous donators who are supporting this project and are making it possible! *May the bot be merciful with their rolls.*
-
-[paypal.me/Stefouch](https://www.paypal.me/stefouch)
-
 # List of Changes
 
 See the [changelog](https://github.com/Stefouch/t2k4e/blob/master/CHANGELOG.md#changelog) for a complete list of changes applied to the Bot since 2021.
