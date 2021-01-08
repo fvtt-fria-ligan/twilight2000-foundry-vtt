@@ -1,6 +1,6 @@
 .t2k4e.sheet.actor {
 	min-height: 400px;
-	min-width: 400px;
+	min-width: 550px;
 
 
 	.window-content {
@@ -13,7 +13,19 @@
 	input,
 	div.editable,
 	.editor-content {
-		color: #284283;
+		color: @colorBlue !important;
+	}
+
+	h3 {
+		font-size: 11pt;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	h4 {
+		font-size: 9pt;
+		text-transform: uppercase;
+		margin: 0;
 	}
 
 	/* ------------------------------------------- */
@@ -64,10 +76,82 @@
 	/* ------------------------------------------- */
 
 	.sheet-body {
+
+		/* ------------------------------------------- */
+
+		.tab-main {
+			h3 {
+				&:not(:first-child) {
+					margin-top: 10px;
+				}
+
+				> * {
+					flex: 0;
+				}
+
+				.item-create {
+					margin-left: auto;
+				}
+			}
+
+			.stat-block {
+				margin-bottom: 6px;
+
+				.stat-header {
+					label {
+						font-size: 7pt;
+						text-transform: uppercase;
+					}
+				}
+
+				.attribute,
+				.skill {
+					label {
+						font-size: 9pt;
+					}
+				}
+			}
+
+			.specialties-list {
+				.specialty-card {
+					margin: 6px 0;
+					color: @colorBlue;
+				}
+			}
+		}
+
+		/* ------------------------------------------- */
+
+		.tab-equipment {
+			.encumbrance {
+				&.overencumbered {
+					color: #f00;
+				}
+			}
+		}
+
+		/* ------------------------------------------- */
+
 		.tab-biography {
 			label {
 				font-size: 9pt;
 				text-transform: uppercase;
+
+				&:not(:first-child) {
+					margin-top: 10px;
+				}
+			}
+
+			.editor {
+				min-height: 32px;
+
+				.editor-content {
+					margin-left: 4px;
+				}
+
+				.tox-tinymce {
+					min-height: 100px;
+				}
 			}
 		}
 	}

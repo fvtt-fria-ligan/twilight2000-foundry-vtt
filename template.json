@@ -24,54 +24,54 @@
 			"actorAttributesAndSkills": {
 				"attributes": {
 					"str": {
-						"score": "D"
+						"score": "C"
 					},
 					"agl": {
-						"score": "D"
+						"score": "C"
 					},
 					"int": {
-						"score": "D"
+						"score": "C"
 					},
 					"emp": {
-						"score": "D"
+						"score": "C"
 					}
 				},
 				"skills": {
 					"heavyWeapons": {
-						"score": "F"
+						"score": "–"
 					},
 					"closeCombat": {
-						"score": "F"
+						"score": "–"
 					},
 					"stamina": {
-						"score": "F"
+						"score": "–"
 					},
 					"driving": {
-						"score": "F"
+						"score": "–"
 					},
 					"mobility": {
-						"score": "F"
+						"score": "–"
 					},
 					"rangedCombat": {
-						"score": "F"
+						"score": "–"
 					},
 					"recon": {
-						"score": "F"
+						"score": "–"
 					},
 					"survival": {
-						"score": "F"
+						"score": "–"
 					},
 					"tech": {
-						"score": "F"
+						"score": "–"
 					},
 					"command": {
-						"score": "F"
+						"score": "–"
 					},
 					"persuasion": {
-						"score": "F"
+						"score": "–"
 					},
 					"medicalAid": {
-						"score": "F"
+						"score": "–"
 					}
 				}
 			},

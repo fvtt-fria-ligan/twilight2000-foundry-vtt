@@ -43,7 +43,7 @@
 		},
 		"ActorSheet": {
 			"Name": "Name",
-			"MainTab": "Main",
+			"MainTab": "Stats",
 			"CombatTab": "Combat",
 			"EquipmentTab": "Gear",
 			"BiographyTab": "Bio",
@@ -58,7 +58,20 @@
 			"MoralCode": "Moral Code",
 			"Buddy": "Buddy",
 			"BigDream": "Big Dream",
-			"GroupMeeting": "How you met the group:"
+			"GroupMeeting": "How you met the group:",
+			"AttributesAndSkills": "Attributes & Skills",
+			"Rating": "Rating",
+			"BaseDie": "Base Die",
+			"Specialties": "Specialties",
+			"AddSpecialty": "Add a new specialty",
+			"NoSpecialty": "This character has no specialty. Click the \"+\" icon to add a specialty.",
+			"Edit": "Edit",
+			"Delete": "Delete",
+			"NewItem": {
+				"weapon": "New Weapon",
+				"armor": "New Armor",
+				"specialty": "New Specialty"
+			}
 		},
 		"ItemSheet": {
 			"Name": "Name",

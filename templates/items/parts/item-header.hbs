@@ -8,10 +8,12 @@
         </h1>
         <div class="item-subtitle flexcol flex-top">
             <h4 class="item-type">{{itemType}}</h4>
+            {{#unless (eq item.type "specialty")}}
             <div class="item-qty flexrow flex-right">
                 <input type="text" name="data.qty" value="{{data.qty}}" data-dtype="Number" />
                 &times;
             </div>
+            {{/unless}}
         </div>
     </div>
 

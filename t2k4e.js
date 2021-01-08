@@ -87,7 +87,10 @@ Hooks.once('init', function() {
 
 	Handlebars.registerHelper('times', function(n, content) {
 		let str = '';
-		for (; n > 0; n--) str += content.fn(n);
+		for (let i = 0; i < n; i++) {
+			content.data.index = i + 1;
+			str += content.fn(i);
+		}
 		return str;
 	});
 
@@ -101,7 +104,7 @@ Hooks.once('init', function() {
 		'scoreSelector',
 		`<select name="{{name}}" class="score-selector">
 			{{#select selected}}
-			{{#each config.dieScores}}
+			{{#each @root.config.dieScores}}
 			<option value="{{.}}">{{.}}</option>
 			{{/each}}
 			{{/select}}

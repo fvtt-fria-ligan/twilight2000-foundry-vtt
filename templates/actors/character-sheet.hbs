@@ -6,33 +6,33 @@
 
         <div class="header-details">
             <h1>
-                <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'T2KLANG.ActorSheet.Name'}}"/>
+                <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'T2KLANG.ActorSheet.Name'}}"/>
             </h1>
 
             <div class="flexcol">
                 <div class="header-details-row flexrow">
                     <div class="flexcol col-6">
                         <label>{{localize "T2KLANG.ActorSheet.Nationality"}}</label>
-                        <input name="data.bio.nationality" type="text" value="{{data.bio.nationality}}" />
+                        <input type="text" name="data.bio.nationality" value="{{data.bio.nationality}}" />
                     </div>
                     <div class="flexcol col-6">
                         <label>{{localize "T2KLANG.ActorSheet.Branch"}}</label>
-                        <input name="data.bio.branch" type="text" value="{{data.bio.branch}}" />
+                        <input type="text" name="data.bio.branch" value="{{data.bio.branch}}" />
                     </div>
                 </div>
                 {{#if (eq actor.type 'character')}}
                 <div class="header-details-row flexrow">
                     <div class="flexcol col-6">
                         <label>{{localize "T2KLANG.ActorSheet.MilitaryRank"}}</label>
-                        <input name="data.bio.militaryRank" type="text" value="{{data.bio.militaryRank}}" />
+                        <input type="text" name="data.bio.militaryRank" value="{{data.bio.militaryRank}}" />
                     </div>
                     <div class="flexcol col-6">
                         <label>{{localize "T2KLANG.ActorSheet.Experience"}}</label>
                         <div class="flexrow flex-between">
                             <label class="small">{{localize "T2KLANG.ActorSheet.ExperienceCurrent"}}</label>
-                            <input name="data.xp.value" type="number" value="{{data.xp.value}}" />
+                            <input type="number" name="data.xp.value" value="{{data.xp.value}}" />
                             <label class="small">{{localize "T2KLANG.ActorSheet.ExperienceTotal"}}</label>
-                            <input name="data.xp.total" type="number" value="{{data.xp.total}}" />
+                            <input type="number" name="data.xp.total" value="{{data.xp.total}}" />
                         </div>
                     </div>
                 </div>
@@ -59,21 +59,33 @@
     <section class="sheet-body">
 
         {{!-- Main Tab --}}
-        <div class="tab tab-main" data-group="primary" data-tab="main"></div>
+        {{> "systems/t2k4e/templates/actors/parts/actor-stats.hbs"}}
 
         {{!-- Combat Tab --}}
-        <div class="tab tab-combat" data-group="primary" data-tab="combat"></div>
+        {{> "systems/t2k4e/templates/actors/parts/actor-combat.hbs"}}
 
         {{!-- Equipment Tab --}}
-        <div class="tab tab-equipment" data-group="primary" data-tab="equipment"></div>
+        {{> "systems/t2k4e/templates/actors/parts/actor-equipment.hbs"}}
 
         {{!-- Biography Tab --}}
         {{#if (eq actor.type 'character')}}
         <div class="tab tab-biography" data-group="primary" data-tab="biography">
-            <label>{{localize "T2KLANG.ActorSheet.Appearance"}}</label>
-            {{editor content=data.bio.appearance target="data.bio.appearance" button=true owner=owner editable=editable}}
-            <label>{{localize "T2KLANG.ActorSheet.MoralCode"}}</label>
-            <input name="data.bio.moralCode" type="text" value="{{data.bio.moralCode}}" />
+            <div class="flexcol">
+                <label>{{localize "T2KLANG.ActorSheet.Appearance"}}</label>
+                {{editor content=data.bio.appearance target="data.bio.appearance" button=true owner=owner editable=editable}}
+
+                <label>{{localize "T2KLANG.ActorSheet.Buddy"}}</label>
+                <input type="text" name="data.bio.buddy" value="{{data.bio.buddy}}" />
+
+                <label>{{localize "T2KLANG.ActorSheet.MoralCode"}}</label>
+                <input type="text" name="data.bio.moralCode" value="{{data.bio.moralCode}}" />
+
+                <label>{{localize "T2KLANG.ActorSheet.BigDream"}}</label>
+                <input type="text" name="data.bio.bigDream" value="{{data.bio.bigDream}}" />
+
+                <label>{{localize "T2KLANG.ActorSheet.GroupMeeting"}}</label>
+                <input type="text" name="data.bio.groupMeeting" value="{{data.bio.groupMeeting}}" />
+            </div>
         </div>
         {{/if}}
 

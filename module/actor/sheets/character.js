@@ -33,24 +33,28 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
 	 * @private
 	 */
 	_prepareCharacterItems(sheetData) {
-		const actorData = sheetData.actor;
-		const sortedItems = {};
+		sheetData.weapons = sheetData.items.filter(i => i.type === 'weapon');
+		sheetData.armors = sheetData.items.filter(i => i.type === 'armor');
+		sheetData.grenades = sheetData.items.filter(i => i.type === 'grenade');
+		sheetData.gears = sheetData.items.filter(i => i.type === 'gear');
+		sheetData.ammunitions = sheetData.items.filter(i => i.type === 'ammunition');
+		sheetData.specialties = sheetData.items.filter(i => i.type === 'specialty');
 
-		for (const i of sheetData.items) {
-			// const item = i.data;
-			i.img = i.img || DEFAULT_TOKEN;
-			if (!sortedItems[i.type]) sortedItems[i.type] = [];
-			sortedItems.push(i);
-		}
+		// const actorData = sheetData.actor;
+		// const sortedItems = {};
 
-		actorData.gear = sortedItems;
+		// for (const i of sheetData.items) {
+		// 	// const item = i.data;
+		// 	i.img = i.img || DEFAULT_TOKEN;
+		// 	if (!sortedItems[i.type]) sortedItems[i.type] = [];
+		// 	sortedItems.push(i);
+		// }
+
+		// actorData.gear = sortedItems;
 	}
 
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
-
-		// Everything below here is only needed if the sheet is editable.
-		// if (!this.options.editable) return;
 	}
 }

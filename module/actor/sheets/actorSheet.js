@@ -1,8 +1,21 @@
+import { clamp } from '../../utils.js';
+
 /**
  * Twilight 2000 Actor Sheet.
  * @extends {ActorSheet} Extends the basic ActorSheet.
  */
 export default class ActorSheetT2K extends ActorSheet {
+
+	// itemContextMenuDelete = [
+	// 	{
+	// 		name: game.i18n.localize('T2KLANG.ActorSheet.Delete'),
+	// 		icon: '<i class="fas fa-trash"></i>',
+	// 		callback: elem => {
+	// 			const itemId = elem.closest('.item').dataset.itemId;
+	// 			this.actor.deleteOwnedItem(itemId);
+	// 		}
+	// 	}
+	// ];
 
 	/** @override */
 	static get defaultOptions() {
@@ -69,5 +82,64 @@ export default class ActorSheetT2K extends ActorSheet {
 
 		// Everything below here is only needed if the sheet is editable.
 		if (!this.options.editable) return;
+
+		// new ContextMenu(html, 'a.item-button.item-delete', this.itemContextMenuDelete);
+
+		html.find('.item-create').click(this._onItemCreate.bind(this));
+		html.find('.item-edit').click(this._onItemEdit.bind(this));
+		html.find('.item-delete').click(this._onItemDelete.bind(this));
+		html.find('.value-change').on('click contextmenu', this._onValueChange.bind(this));
+	}
+
+	_onItemCreate(event) {
+		event.preventDefault();
+		const elem = event.currentTarget;
+
+		const type = elem.dataset.type;
+
+		const itemData = {
+			name: game.i18n.localize(`T2KLANG.ActorSheet.NewItem.${type}`),
+			type
+		};
+
+		return this.actor.createOwnedItem(itemData)
+			// Displays the sheet of the newly created item.
+			.then(itemData => {
+				const item = this.actor.getOwnedItem(itemData._id);
+				item.sheet.render(true);
+			});
+	}
+
+	_onItemEdit(event) {
+		event.preventDefault();
+		const elem = event.currentTarget;
+		const itemId = elem.closest('.item').dataset.itemId;
+		const item = this.actor.getOwnedItem(itemId);
+
+		item.sheet.render(true);
+	}
+
+	_onItemDelete(event) {
+		event.preventDefault();
+		const elem = event.currentTarget;
+		const itemId = elem.closest('.item').dataset.itemId;
+		return this.actor.deleteOwnedItem(itemId);
+	}
+
+	_onValueChange(event) {
+		event.preventDefault();
+		const elem = event.currentTarget;
+		const min = +elem.dataset.min || 0;
+		const max = +elem.dataset.max || 10;
+		const field = elem.dataset.field;
+		const currentCount = this.actor.data.data[field] || 0;
+		let newCount = currentCount;
+
+		if (event.type === 'click') newCount++;
+		else newCount--; // contextmenu
+
+		newCount = clamp(newCount, min, max);
+
+		this.actor.update({ data: { [field]: newCount } });
 	}
 }

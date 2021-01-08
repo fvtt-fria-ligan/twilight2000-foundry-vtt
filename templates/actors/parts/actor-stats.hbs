@@ -1,0 +1,82 @@
+<div class="tab tab-main" data-group="primary" data-tab="main">
+
+    {{!-- Attributes & Skills --}}
+    <h3>{{localize "T2KLANG.ActorSheet.AttributesAndSkills"}}</h3>
+
+    {{!-- <div class="grid grid-2col" style="gap: 0;"> --}}
+    <div class="stats-list flexrow">
+        {{#each data.attributes as |attribute attr|}}
+        <div class="stat-block" style="flex: 0 0 250px;">
+            <div class="stat-header flexrow">
+                <div class="col-6"></div>
+                <div class="col-3">
+                    <label>{{localize "T2KLANG.ActorSheet.Rating"}}</label>
+                </div>
+                <div class="col-3">
+                    <label>{{localize "T2KLANG.ActorSheet.BaseDie"}}</label>
+                </div>
+            </div>
+            <div class="attribute attribute-{{attr}} flexrow">
+                <div class="col-6">
+                    <h4>{{localize (concat "T2KLANG.AttributeNames." attr)}}</h4>
+                </div>
+                <div class="col-3">
+                    {{> scoreSelector name=(concat "data.attributes." attr ".score") selected=attribute.score}}
+                </div>
+                <div class="col-3">
+                    {{#if (lte attribute.value 0)}}–{{else}}{{attribute.value}}{{/if}}
+                </div>
+            </div>
+            {{!-- All skills for an attribute --}}
+            {{#each @root.data.skills as |skill sk|}}
+                {{#if (eq attr (lookup @root.config.skillsMap sk))}}
+                <div class="skill skill-{{sk}} flexrow">
+                    <div class="col-6">
+                        <label>{{localize (concat "T2KLANG.SkillNames." sk)}}</label>
+                    </div>
+                    <div class="col-3">
+                        {{> scoreSelector name=(concat "data.skills." sk ".score") selected=skill.score}}
+                    </div>
+                    <div class="col-3">
+                        {{#if (eq skill.value -1)}}–{{else}}{{skill.value}}{{/if}}
+                    </div>
+                </div>
+                {{/if}}
+            {{/each}}
+        </div>
+        {{/each}}
+    </div>
+
+    {{!-- Specialties --}}
+    <h3 class="flexrow">
+        <div>{{localize "T2KLANG.ActorSheet.Specialties"}}</div>
+        <a class="item-create" data-type="specialty" title="{{localize "T2KLANG.ActorSheet.AddSpecialty"}}">
+            <i class="fas fa-plus"></i>
+        </a>
+    </h3>
+
+    <div class="specialties-list">
+        {{#each specialties as |specialty id|}}
+        <div class="item item-card specialty-card flexrow" data-item-id={{specialty._id}}>
+            <div>
+                {{#if specialty.data.modifiersDescription}}
+                <b><u>{{specialty.name}}</u>:</b> {{specialty.data.modifiersDescription}}
+                {{else}}
+                {{specialty.name}}
+                {{/if}}
+            </div>
+            <div class="card-icons">
+                <a class="item-button item-edit" title="{{localize "T2KLAND.ActorSheet.Edit"}}">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="item-button item-delete" title="{{localize "T2KLANG.ActorSheet.Delete"}}">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        </div>
+        {{else}}
+        <p><i><small>{{localize "T2KLANG.ActorSheet.NoSpecialty"}}</small></i></p>
+        {{/each}}
+    </div>
+
+</div>
