@@ -1,0 +1,9 @@
+<a class="boxes boxes-stress" data-field="stress" data-min="0" data-max="{{data.stressCapacity}}">
+	{{#times data.stressCapacity}}
+		{{#if (gte ../data.stress @index)}}
+		<i class="fas fa-square"></i>
+		{{else}}
+		<i class="far fa-square"></i>
+		{{/if}}
+	{{/times}}
+</a>

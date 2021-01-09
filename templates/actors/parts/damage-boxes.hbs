@@ -1,0 +1,9 @@
+<a class="boxes boxes-damage" data-field="damage" data-min="0" data-max="{{data.hitCapacity}}">
+	{{#times data.hitCapacity}}
+		{{#if (gte ../data.damage @index)}}
+		<i class="fas fa-square"></i>
+		{{else}}
+		<i class="far fa-square"></i>
+		{{/if}}
+	{{/times}}
+</a>

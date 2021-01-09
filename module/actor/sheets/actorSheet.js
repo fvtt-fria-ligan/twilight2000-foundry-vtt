@@ -89,7 +89,7 @@ export default class ActorSheetT2K extends ActorSheet {
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		html.find('.item-edit').click(this._onItemEdit.bind(this));
 		html.find('.item-delete').click(this._onItemDelete.bind(this));
-		html.find('.value-change').on('click contextmenu', this._onValueChange.bind(this));
+		html.find('.boxes').on('click contextmenu', this._onValueChange.bind(this));
 	}
 
 	_onItemCreate(event) {
@@ -141,6 +141,6 @@ export default class ActorSheetT2K extends ActorSheet {
 
 		newCount = clamp(newCount, min, max);
 
-		this.actor.update({ data: { [field]: newCount } });
+		this.actor.update({ 'data': { [field]: newCount } });
 	}
 }

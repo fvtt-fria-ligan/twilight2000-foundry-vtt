@@ -70,6 +70,9 @@
 			"AddArmor": "Add a new armor",
 			"AddGear": "Add new gear",
 			"AddAmmo": "Add new ammunition",
+			"Encumbrance": "Encumbrance",
+			"HitCapacity": "Hit Capacity",
+			"StressCapacity": "Stress Capacity",
 			"Edit": "Edit",
 			"Delete": "Delete",
 			"NewItem": {

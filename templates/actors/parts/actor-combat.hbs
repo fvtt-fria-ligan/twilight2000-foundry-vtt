@@ -1,13 +1,19 @@
-<div class="tab tab-combat" data-group="primary" data-tab="combat"></div>
+<div class="tab tab-combat" data-group="primary" data-tab="combat">
 
-{{!-- <div class="item">
-        <a class="value-change" data-field="damage">
-            {{#times data.hitCapacity}}
-                {{#if (gte ../data.damage @index)}}
-                <i class="fas fa-times-circle"></i>
-                {{else}}
-                <i class="far fa-circle"></i>
-                {{/if}}
-            {{/times}}
-        </a>
-    </div> --}}
+    <div class="capacity">
+        {{> "systems/t2k4e/templates/actors/parts/damage-boxes.hbs"}}
+        <div>
+            <label>{{localize "T2KLANG.ActorSheet.HitCapacity"}}</label>
+            <div>{{data.hitCapacity}}</div>
+        </div>
+    </div>
+
+    <div class="capacity">
+        {{> "systems/t2k4e/templates/actors/parts/stress-boxes.hbs"}}
+        <div>
+            <label>{{localize "T2KLANG.ActorSheet.StressCapacity"}}</label>
+            <div>{{data.stressCapacity}}</div>
+        </div>
+    </div>
+
+</div>
