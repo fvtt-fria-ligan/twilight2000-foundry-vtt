@@ -64,12 +64,19 @@
 			"BaseDie": "Base Die",
 			"Specialties": "Specialties",
 			"AddSpecialty": "Add a new specialty",
-			"NoSpecialty": "This character has no specialty. Click the \"+\" icon to add a specialty.",
+			"NoSpecialty": "This character has no specialty. Click the \"+\" icon to add a new specialty.",
+			"Weapons": "Weapons",
+			"AddWeapon": "Add a new weapon",
+			"AddArmor": "Add a new armor",
+			"AddGear": "Add new gear",
+			"AddAmmo": "Add new ammunition",
 			"Edit": "Edit",
 			"Delete": "Delete",
 			"NewItem": {
 				"weapon": "New Weapon",
 				"armor": "New Armor",
+				"gear": "New Gear",
+				"ammunition": "New Ammunition",
 				"specialty": "New Specialty"
 			}
 		},

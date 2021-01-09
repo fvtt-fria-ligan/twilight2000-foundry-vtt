@@ -1,0 +1,11 @@
+<div class="item item-slot item-armor flexrow" data-item-id={{armor._id}}>
+
+    <div class="col-9">{{armor.name}}</div>
+    <div class="col-1">{{armor.data.rating.value}}/{{armor.data.rating.max}}</div>
+    <div class="col-1">{{armor.data.weight}}</div>
+
+    <div class="col-1">
+        {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
+    </div>
+
+</div>

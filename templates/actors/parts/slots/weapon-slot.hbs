@@ -1,0 +1,18 @@
+<div class="item item-slot item-weapon flexrow" data-item-id={{weapon._id}}>
+
+    <div class="col-2">{{weapon.name}}</div>
+    <div class="col-1">{{weapon.data.rof}}</div>
+    <div class="col-1">{{weapon.data.damage}}</div>
+    <div class="col-1">{{weapon.data.crit}}</div>
+    <div class="col-1">{{weapon.data.armorModifier}}</div>
+    <div class="col-1">{{weapon.data.range}}</div>
+    <div class="col-1">{{weapon.data.mag.max}}</div>
+    <div class="col-1">{{weapon.data.reliability.score}}</div>
+    <div class="col-1">{{weapon.data.blast}}</div>
+    <div class="col-1">{{weapon.data.weight}}</div>
+
+    <div class="col-1">
+        {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
+    </div>
+
+</div>

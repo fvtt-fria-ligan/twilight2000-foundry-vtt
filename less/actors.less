@@ -2,7 +2,6 @@
 	min-height: 400px;
 	min-width: 550px;
 
-
 	.window-content {
 		// background: @colorLightKhaki;
 		.font-daisywheel();
@@ -28,6 +27,16 @@
 		margin: 0;
 	}
 
+	label {
+		font-size: 9pt;
+		text-transform: uppercase;
+		margin-left: 4px;
+
+		&.small {
+			font-size: 7pt;
+		}
+	}
+
 	/* ------------------------------------------- */
 	/*  Sheet Header                               */
 	/* ------------------------------------------- */
@@ -37,16 +46,6 @@
 			border: 2px solid @colorBrown;
 			border-radius: 4px;
 			margin: 0 0 0 20px;
-		}
-
-		label {
-			font-size: 9pt;
-			text-transform: uppercase;
-			margin-left: 4px;
-
-			&.small {
-				font-size: 7pt;
-			}
 		}
 
 		.header-details {
@@ -112,8 +111,8 @@
 				}
 			}
 
-			.specialties-list {
-				.specialty-card {
+			.specialties-slots {
+				.item-specialty {
 					margin: 6px 0;
 					color: @colorBlue;
 				}
