@@ -1,30 +1,8 @@
 <div class="flexrow">
+
     {{!-- COMBAT --}}
     <div class="combat col-6">
         <h2>{{localize "T2KLANG.ActorSheet.Combat"}}</h2>
-
-        {{!-- Actions --}}
-        <div>
-            {{#each data.actions as | action name |}}
-            <div class="flexrow">
-                <div class="col-6">{{localize (concat "T2KLANG.ActionNames." name)}}</div>
-                <div class="col-6 flexrow">
-                    <div>{{action.value}}</div>
-                    <input type="range" name="data.actions.{{name}}.value" min="0" max="{{action.max}}" value="{{action.value}}"/>
-                    <input type="number" name="data.actions.{{name}}.max" value="{{action.max}}"/>
-                </div>
-                {{!-- <div class="col-1">
-                    <input type="number" name="data.actions.{{name}}.value" value="{{action.value}}"/>
-                </div>
-                <div class="col-1">
-                    <span class="sep">/</span>
-                </div>
-                <div class="col-1">
-                    <input type="number" name="data.actions.{{name}}.max" value="{{action.max}}"/>
-                </div> --}}
-            </div>
-            {{/each}}
-        </div>
 
         {{!-- CUF & Unit Morale --}}
         <div class="stat-block">
@@ -70,52 +48,79 @@
 
     </div>
 
-    {{!-- CONDITIONS --}}
-    {{#if (eq actor.type 'character')}}
-    <div class="conditions col-6">
-        <h2>{{localize "T2KLANG.ActorSheet.Conditions"}}</h2>
-        <div class="flexcol">
-            {{#each data.conditions as | value condition |}}
-            <label class="checkbox">
-                {{!-- <h4>{{localize (concat "T2KLANG.ActorSheet.ConditionNames." condition)}}</h4> --}}
-                <input type="checkbox" name="data.conditions.{{condition}}" {{checked value}}/>
-                {{localize (concat "T2KLANG.ConditionNames." condition)}}
-            </label>
-            {{/each}}
+    {{!-- ACTIONS --}}
+    <div class="action col-6">
+        <h2>{{localize "T2KLANG.ActorSheet.Actions"}}</h2>
+
+        {{!-- Header line --}}
+        <div class="stat-header flexrow">
+            <div>&nbsp;</div>
+            <div class="col-2">
+                <h5>{{localize "T2KLANG.ActorSheet.Current"}}</h5>
+            </div>
+            <div class="col-2">
+                <h5>{{localize "T2KLANG.ActorSheet.Max"}}</h5>
+            </div>
         </div>
+
+        {{!-- Slow & Fast --}}
+        {{#each data.actions as | action name |}}
+        <div class="flexrow">
+            <div>{{localize (concat "T2KLANG.ActionNames." name)}}</div>
+            <div class="col-4">
+                <input type="range" name="data.actions.{{name}}.value" min="0" max="{{action.max}}" value="{{action.value}}"/>
+            </div>
+            <div class="col-2">{{action.value}}</div>
+            <div class="col-2">
+                <input type="number" name="data.actions.{{name}}.max" value="{{action.max}}"/>
+            </div>
+        </div>
+        {{/each}}
     </div>
-    {{/if}}
 
     {{!-- ARMOR --}}
     <div class="armor col-6">
         <h2>{{localize "T2KLANG.ItemTypes.armor"}}</h2>
         <div class="flexcol">
             {{#each data.armorRating as | value location |}}
-            <div>
-                {{localize (concat "T2KLANG.ArmorLocationNames." location)}}
-                {{value}}
+            <div class="flexrow">
+                <div class="col-3">
+                    <h4>{{localize (concat "T2KLANG.ArmorLocationNames." location)}}</h4>
+                </div>
+                <div class="armor-names-list">
+                    {{!-- {{#each ../armors as | armor |}}
+                    {{#if (lookup armor.data.location location)}}
+                    {{armor.name}},
+                    {{/if}}
+                    {{/each}} --}}
+                </div>
+                <div class="col-1">{{value}}</div>
             </div>
             {{/each}}
         </div>
     </div>
 
-    {{!-- RADIATION --}}
+    {{!-- CONDITIONS --}}
     {{#if (eq actor.type 'character')}}
-    <div class="radiation col-6">
-        <h2>{{localize "T2KLANG.ActorSheet.Radiation"}}</h2>
-        <div>
-            <h3>{{localize "T2KLANG.ActorSheet.TemporaryRadiation"}}</h3>
-            {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" value="temporary"}}
-        </div>
-        <div>
-            <h3>{{localize "T2KLANG.ActorSheet.PermanentRadiation"}}</h3>
-            {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" value="permanent"}}
+    <div class="conditions col-6">
+        <h2>{{localize "T2KLANG.ActorSheet.Conditions"}}</h2>
+        <div class="flexrow">
+            {{#each data.conditions as | value condition |}}
+            <div class="col-6">
+                <label class="checkbox">
+                    {{!-- <h4>{{localize (concat "T2KLANG.ActorSheet.ConditionNames." condition)}}</h4> --}}
+                    <input type="checkbox" name="data.conditions.{{condition}}" {{checked value}}/>
+                    {{localize (concat "T2KLANG.ConditionNames." condition)}}
+                </label>
+            </div>
+            {{/each}}
         </div>
     </div>
     {{/if}}
 
 </div>
 
+{{#if (eq actor.type 'character')}}
 <div class="flexcol">
 
     <h3>{{localize "T2KLANG.ActorSheet.CriticalInjuries"}}</h3>
@@ -125,3 +130,21 @@
     <textarea name="data.diseases">{{data.diseases}}</textarea>
 
 </div>
+{{/if}}
+
+{{!-- RADIATION --}}
+{{#if (eq actor.type 'character')}}
+<div class="radiation col-12">
+    <h2>{{localize "T2KLANG.ActorSheet.Radiation"}}</h2>
+    <div class="flexrow">
+        <div>
+            <h3>{{localize "T2KLANG.ActorSheet.TemporaryRadiation"}}</h3>
+            {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" value="temporary"}}
+        </div>
+        <div>
+            <h3>{{localize "T2KLANG.ActorSheet.PermanentRadiation"}}</h3>
+            {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" value="permanent"}}
+        </div>
+    </div>
+</div>
+{{/if}}

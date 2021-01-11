@@ -1,8 +1,15 @@
 <div class="item item-slot item-armor flexrow" data-item-id={{armor._id}}>
 
-    <div class="col-9">
+    <div>
         <img src="{{armor.img}}" title="{{armor.name}}" width="24" height="24"/>
         {{armor.name}}
+    </div>
+    <div class="armor-location-icons col-2">
+        {{#each armor.data.location as | bool name |}}
+        {{#if bool}}
+        {{{lookup @root.config.armorLocationIcons name}}}
+        {{/if}}
+        {{/each}}
     </div>
     <div class="col-1">{{armor.data.rating.value}}/{{armor.data.rating.max}}</div>
     <div class="col-1">{{armor.data.weight}}</div>
