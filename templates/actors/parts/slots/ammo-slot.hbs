@@ -1,6 +1,7 @@
 <div class="item item-slot item-ammo flexrow" data-item-id={{ammo._id}}>
 
-	{{ammo.data.qty}}&nbsp;&times;&nbsp;{{ammo.name}}
+    <img src="{{ammo.img}}" title="{{ammo.name}}" width="24" height="24"/>
+    {{ammo.data.qty}}&nbsp;&times;&nbsp;{{ammo.name}}
 
     {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
 

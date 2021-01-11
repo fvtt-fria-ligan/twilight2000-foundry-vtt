@@ -1,6 +1,9 @@
 <div class="item item-slot item-armor flexrow" data-item-id={{armor._id}}>
 
-    <div class="col-9">{{armor.name}}</div>
+    <div class="col-9">
+        <img src="{{armor.img}}" title="{{armor.name}}" width="24" height="24"/>
+        {{armor.name}}
+    </div>
     <div class="col-1">{{armor.data.rating.value}}/{{armor.data.rating.max}}</div>
     <div class="col-1">{{armor.data.weight}}</div>
 

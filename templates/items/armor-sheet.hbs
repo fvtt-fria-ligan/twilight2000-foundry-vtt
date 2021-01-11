@@ -19,18 +19,18 @@
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Armor"}}</label>
                     <div class="flexrow flex-center">
-                        <input type="text" name="data.rating.value" value="{{data.rating.value}}" data-dtype="Number" />
+                        <input type="text" name="data.rating.value" value="{{data.rating.value}}" data-dtype="Number"/>
                         <span class="sep">/</span>
-                        <input type="text" name="data.rating.max" value="{{data.rating.max}}" data-dtype="Number" />
+                        <input type="text" name="data.rating.max" value="{{data.rating.max}}" data-dtype="Number"/>
                     </div>
                 </div>
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Weight"}}</label>
-                    <input type="text" name="data.weight" value="{{numberFormat data.weight decimals=2}}" data-dtype="Number" />
+                    <input type="text" name="data.weight" value="{{numberFormat data.weight decimals=2}}" data-dtype="Number"/>
                 </div>
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Price"}}</label>
-                    <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number" />
+                    <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
                 </div>
             </div>
 
@@ -53,20 +53,20 @@
 				<label>{{localize "T2KLANG.ItemSheet.ArmorLocation"}}</label>
                 <div class="form-group-stacked item-properties">
                     <label class="checkbox">
-                        <input type="checkbox" name="data.location.head" {{checked data.location.head}} />
-                        {{localize "T2KLANG.ItemSheet.ArmorLocationHead"}}
+                        <input type="checkbox" name="data.location.head" {{checked data.location.head}}/>
+                        {{localize "T2KLANG.ArmorLocationNames.head"}}
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox" name="data.location.torso" {{checked data.location.torso}} />
-                        {{localize "T2KLANG.ItemSheet.ArmorLocationTorso"}}
+                        <input type="checkbox" name="data.location.torso" {{checked data.location.torso}}/>
+                        {{localize "T2KLANG.ArmorLocationNames.torso"}}
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox" name="data.location.arm" {{checked data.location.arm}} />
-                        {{localize "T2KLANG.ItemSheet.ArmorLocationArm"}}
+                        <input type="checkbox" name="data.location.arms" {{checked data.location.arms}}/>
+                        {{localize "T2KLANG.ArmorLocationNames.arms"}}
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox" name="data.location.legs" {{checked data.location.legs}} />
-                        {{localize "T2KLANG.ItemSheet.ArmorLocationLegs"}}
+                        <input type="checkbox" name="data.location.legs" {{checked data.location.legs}}/>
+                        {{localize "T2KLANG.ArmorLocationNames.legs"}}
                     </label>
                 </div>
 
@@ -75,10 +75,14 @@
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/t2k4e/templates/items/parts/item-modifiers.hbs"}}
+        <div class="tab tab-modifiers" data-group="primary" data-tab="modifiers">
+            {{> "systems/t2k4e/templates/items/parts/item-modifiers.hbs"}}
+        </div>
 
         {{!-- Description Tab --}}
-        {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
+        <div class="tab tab-description" data-group="primary" data-tab="description">
+            {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
+        </div>
 
     </section>
 

@@ -2,19 +2,19 @@
 
     <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
 
-    <div class="header-details flexrow">
-        <h1>
-            <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'T2KLANG.ItemSheet.Name'}}"/>
-        </h1>
-        <div class="item-subtitle flexcol flex-top">
+    <div class="header-details flexcol">
+        <div class="item-subtitle flexrow">
             <h4 class="item-type">{{itemType}}</h4>
             {{#unless (eq item.type "specialty")}}
             <div class="item-qty flexrow flex-right">
-                <input type="text" name="data.qty" value="{{data.qty}}" data-dtype="Number" />
-                &times;
+                <input type="text" name="data.qty" value="{{data.qty}}" data-dtype="Number" title="{{localize "T2KLANG.ItemSheet.Quantity"}}"/>
+                <div class="flex0">&times;</div>
             </div>
             {{/unless}}
         </div>
+        <h1>
+            <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'T2KLANG.ItemSheet.Name'}}"/>
+        </h1>
     </div>
 
 </header>

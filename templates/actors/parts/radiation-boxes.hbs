@@ -1,0 +1,13 @@
+<a class="boxes boxes-radiation" data-field="rads.{{value}}">
+{{#with (lookup @root.data.rads value) as | val |}}
+{{#times 10}}
+    {{#if (gte val @index)}}
+    {{!-- Full square --}}
+    <i class="fas fa-square"></i>
+    {{else}}
+    {{!-- Empty square --}}
+    <i class="far fa-square"></i>
+    {{/if}}
+{{/times}}
+{{/with}}
+</a>

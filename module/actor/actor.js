@@ -18,14 +18,18 @@ export default class ActorT2K extends Actor {
 
 		// Makes separate methods for each Actor type (character, npc, etc.) to keep
 		// things organized.
-		if (actorData.type === 'character') this._prepareCharacterData(actorData);
-		else if (actorData.type === 'npc') this._prepareNpcData(actorData);
-		// else if (actorData.type === 'animal') this._prepareCharacterData(actorData);
+		switch (actorData.type) {
+			case 'character': this._prepareCharacterData(actorData); break;
+			case 'npc': this._prepareNpcData(actorData); break;
+			default: throw new TypeError('Unknown Actor Type');
+		}
+
+		console.log('t2k4e | Actor: ', this);
 	}
 
 	/**
 	 * Prepares Character type specific data.
-	 * @param {Object} actorData Actor's data.
+	 * @param {Object} actorData The Actor's data.
 	 * @private
 	 */
 	_prepareCharacterData(actorData) {
@@ -37,35 +41,55 @@ export default class ActorT2K extends Actor {
 		if (data.cuf) this._prepareScores(data.cuf);
 		if (data.unitMorale) this._prepareScores(data.unitMorale);
 
-		this._computeEncumbrance(data, actorData.items);
-
-		data.hitCapacity = this._getHitCapacity(data);
-		data.stressCapacity = this._getStressCapacity(data);
+		this._prepareCapacities(data);
+		this._prepareEncumbrance(data, actorData.items);
+		this._prepareArmorRating(data, actorData.items.filter(i => i.type === 'armor'));
 	}
 
+	/**
+	 * Prepares NPC type specific data.
+	 * @param {Object} actorData The Actor's data.
+	 * @private
+	 */
 	_prepareNpcData(actorData) {
 		this._prepareCharacterData(actorData);
 	}
 
 	/**
-	 * Prepares attributes or skills data.
-	 * The function adds a `value` property for the die's size equal to its score.
+	 * Adds a `value` property for the die's size equal to its score.
 	 * @param {Object} obj data.attributes OR data.skills OR any object with a "score" property.
 	 * @private
 	 */
 	_prepareScores(obj) {
 		if ('score' in obj) {
 			obj.value = getDieSize(obj.score);
-			return;
 		}
-		for (const [, o] of Object.entries(obj)) {
-			o.value = getDieSize(o.score);
+		else {
+			for (const [, o] of Object.entries(obj)) {
+				o.value = getDieSize(o.score);
+			}
 		}
 	}
 
 	/**
+	 * Adds Hit & Stress Capacities properties to the Actor.
+	 * Adds also a Health property (with value and max) for token bars.
+	 * @param {Object} data The Actor's data.data.
+	 * @private
+	 */
+	_prepareCapacities(data) {
+		data.hitCapacity = this._getHitCapacity(data);
+		data.stressCapacity = this._getStressCapacity(data);
+
+		data.health = {
+			value: data.hitCapacity - data.damage,
+			max: data.hitCapacity
+		};
+	}
+
+	/**
 	 * Calculates the Hit Capacity.
-	 * @param {Object} data The Actors's data.
+	 * @param {Object} data The Actor's data.data.
 	 * @returns {number}
 	 * @private
 	 */
@@ -77,7 +101,7 @@ export default class ActorT2K extends Actor {
 
 	/**
 	 * Calculates the Stress Capacity.
-	 * @param {Object} data The Actors's data.
+	 * @param {Object} data The Actors's data.data.
 	 * @returns {number}
 	 * @private
 	 */
@@ -88,26 +112,42 @@ export default class ActorT2K extends Actor {
 	}
 
 	/**
-	 * Adds Emcumbrance properties to the actor.
-	 * @param {Object} data The Actor's data.
+	 * Adds Emcumbrance properties to the Actor.
+	 * @param {Object} data The Actor's data.data.
 	 * @param {Item[]} items Array of items.
 	 * @private
 	 */
-	_computeEncumbrance(data, items) {
-		data.encumbrance = {
-			get value() {
-				const count = (items
-					.filter(i => i.type !== 'specialty')
-					.reduce((sum, i) => sum + (i.data.qty * i.data.weight), 0)
-				) || 0;
+	_prepareEncumbrance(data, items) {
+		const value = (
+			items
+				.filter(i => i.type !== 'specialty')
+				.reduce((sum, i) => sum + (i.data.qty * i.data.weight), 0)
+			) || 0;
 
-				return count;
-			},
-			get max() {
-				return data.attributes.str.value;
-			}
+		data.encumbrance = {
+			value,
+			max: data.attributes.str.value
 		};
 
 		data.overEncumbered = data.encumbrance.value > data.encumbrance.max;
+	}
+
+	/**
+	 * Adds Armor Ratings properties to the Actor.
+	 * @param {Object} data The Actor's data.data.
+	 * @param {Item[]} armors An array containing the Actor's armors.
+	 * @private
+	 */
+	_prepareArmorRating(data, armors) {
+		const ratings = armors.reduce((o, i) => {
+			for (const [loc, isProtected] of Object.entries(i.data.location)) {
+				if (!(loc in o)) o[loc] = 0;
+				if (isProtected) {
+					o[loc] = Math.max(o[loc], i.data.rating.value);
+				}
+			}
+			return o;
+		}, {});
+		data.armorRating = ratings;
 	}
 }

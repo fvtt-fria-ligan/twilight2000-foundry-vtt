@@ -26,6 +26,22 @@
 			"persuasion": "Persuasion",
 			"medicalAid": "Medical Aid"
 		},
+		"ArmorLocationNames": {
+			"head": "Head",
+			"arms": "Arms",
+			"torso": "Torso",
+			"legs": "Legs"
+		},
+		"ConditionNames": {
+			"starving": "Starving",
+			"dehydrated": "Dehydrated",
+			"sleepless": "Sleep Deprived",
+			"hypothermic": "Hypothermic"
+		},
+		"ActionNames": {
+			"fast": "Fast",
+			"slow": "Slow"
+		},
 		"Ranges": {
 			"close": "In close combat",
 			"short": "Short",
@@ -47,10 +63,12 @@
 			"CombatTab": "Combat",
 			"EquipmentTab": "Gear",
 			"BiographyTab": "Bio",
-			"NoteTab": "Note",
+			"NoteTab": "Notes",
 			"Nationality": "Nationality",
 			"Branch": "Branch",
 			"MilitaryRank": "Rank",
+			"HitCapacity": "Hit Capacity",
+			"StressCapacity": "Stress Capacity",
 			"Experience": "Experience",
 			"ExperienceCurrent": "Current",
 			"ExperienceTotal": "Total",
@@ -65,14 +83,21 @@
 			"Specialties": "Specialties",
 			"AddSpecialty": "Add a new specialty",
 			"NoSpecialty": "This character has no specialty. Click the \"+\" icon to add a new specialty.",
+			"Combat": "Combat",
+			"CuF": "Coolness Under Fire",
+			"UnitMorale": "Unit Morale",
+			"CriticalInjuries":"Critical Injuries",
+			"Diseases": "Diseases",
+			"Conditions": "Conditions",
+			"Radiation": "Radiation",
+			"TemporaryRadiation": "Temporary",
+			"PermanentRadiation": "Permanent",
 			"Weapons": "Weapons",
 			"AddWeapon": "Add a new weapon",
 			"AddArmor": "Add a new armor",
 			"AddGear": "Add new gear",
 			"AddAmmo": "Add new ammunition",
 			"Encumbrance": "Encumbrance",
-			"HitCapacity": "Hit Capacity",
-			"StressCapacity": "Stress Capacity",
 			"Edit": "Edit",
 			"Delete": "Delete",
 			"NewItem": {
@@ -87,7 +112,7 @@
 			"Name": "Name",
 			"FeaturesTab": "Features",
 			"ModifiersTab": "Modifiers",
-			"DescriptionTab": "Description",
+			"DescriptionTab": "Notes",
 			"AttackWith": "Skill Used",
 			"Quantity": "Quantity",
 			"WeaponType": "Type",
@@ -106,11 +131,7 @@
 			"Mounted": "Mounted",
 			"Disposable": "Disposable",
 			"AmmoBelt": "Ammo Belt",
-			"ArmorLocation": "Protected Location",
-			"ArmorLocationHead": "Head",
-			"ArmorLocationTorso": "Torso",
-			"ArmorLocationArm": "Arm",
-			"ArmorLocationLegs": "Legs"
+			"ArmorLocation": "Protected Location"
 		}
 	}
 }

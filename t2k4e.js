@@ -111,3 +111,14 @@ Hooks.once('init', function() {
 		</select>`
 	);
 });
+
+Hooks.once('ready', function() {
+	console.warn('t2k4e | READY!');
+
+	/**
+	 * @type {Actor}
+	 */
+	const startingActor = game.actors.get('fUiWTxTCwrtkn01p');
+
+	startingActor.sheet.render(true);
+})

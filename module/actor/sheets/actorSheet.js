@@ -20,7 +20,7 @@ export default class ActorSheetT2K extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main'}]
+			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'combat'}]
 		});
 	}
 
@@ -127,13 +127,17 @@ export default class ActorSheetT2K extends ActorSheet {
 		return this.actor.deleteOwnedItem(itemId);
 	}
 
+	/**
+	 * Left click: +1
+	 * Right click: -1
+	 */
 	_onValueChange(event) {
 		event.preventDefault();
 		const elem = event.currentTarget;
 		const min = +elem.dataset.min || 0;
 		const max = +elem.dataset.max || 10;
 		const field = elem.dataset.field;
-		const currentCount = this.actor.data.data[field] || 0;
+		const currentCount = getProperty(this.actor, `data.data.${field}`) || 0;
 		let newCount = currentCount;
 
 		if (event.type === 'click') newCount++;
@@ -141,6 +145,6 @@ export default class ActorSheetT2K extends ActorSheet {
 
 		newCount = clamp(newCount, min, max);
 
-		this.actor.update({ 'data': { [field]: newCount } });
+		this.actor.update({ ['data.'+field]: newCount });
 	}
 }

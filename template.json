@@ -2,8 +2,7 @@
 	"Actor": {
 		"types": [
 			"character",
-			"npc",
-			"animal"
+			"npc"
 		],
 		"templates": {
 			"actorBio": {
@@ -111,14 +110,8 @@
 					"hypothermic": false
 				},
 				"rads": {
-					"temporary": {
-						"value": 0,
-						"max": 10
-					},
-					"permanent": {
-						"value": 0,
-						"max": 10
-					}
+					"temporary": 0,
+					"permanent": 0
 				}
 			}
 		},
@@ -286,9 +279,9 @@
 			},
 			"location": {
 				"head": false,
+				"arms": false,
 				"torso": true,
-				"legs": false,
-				"limbs": false
+				"legs": false
 			}
 		},
 		"ammunition": {

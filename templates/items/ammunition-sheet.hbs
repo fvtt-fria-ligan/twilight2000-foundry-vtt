@@ -17,17 +17,19 @@
             <div class="grid grid-2col item-features">
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Weight"}}</label>
-                    <input type="text" name="data.weight" value="{{numberFormat data.weight decimals=2}}" data-dtype="Number" />
+                    <input type="text" name="data.weight" value="{{numberFormat data.weight decimals=2}}" data-dtype="Number"/>
                 </div>
                 <div class="flexcol flex-center">
                     <label>{{localize "T2KLANG.ItemSheet.Price"}}</label>
-                    <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number" />
+                    <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
                 </div>
             </div>
         </div>
 
         {{!-- Description Tab --}}
-        {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
+        <div class="tab tab-description" data-group="primary" data-tab="description">
+            {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
+        </div>
 
     </section>
 

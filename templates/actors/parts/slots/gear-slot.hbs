@@ -1,6 +1,9 @@
 <div class="item item-slot item-gear flexrow" data-item-id={{gear._id}}>
 
-    <div class="col-10">{{gear.name}}</div>
+    <div class="col-10">
+        <img src="{{gear.img}}" title="{{gear.name}}" width="24" height="24"/>
+        {{gear.name}}
+    </div>
     <div class="col-1">{{gear.data.weight}}</div>
 
     <div class="col-1">

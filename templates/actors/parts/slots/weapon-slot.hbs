@@ -1,6 +1,9 @@
 <div class="item item-slot item-weapon flexrow" data-item-id={{weapon._id}}>
 
-    <div class="col-2">{{weapon.name}}</div>
+    <div class="col-2">
+        <img src="{{weapon.img}}" title="{{weapon.name}}" width="24" height="24"/>
+        {{weapon.name}}
+    </div>
     <div class="col-1">{{weapon.data.rof}}</div>
     <div class="col-1">{{weapon.data.damage}}</div>
     <div class="col-1">{{weapon.data.crit}}</div>

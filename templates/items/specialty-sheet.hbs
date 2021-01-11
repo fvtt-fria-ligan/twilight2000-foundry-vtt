@@ -13,10 +13,14 @@
     <section class="sheet-body">
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/t2k4e/templates/items/parts/item-modifiers.hbs"}}
+        <div class="tab tab-modifiers" data-group="primary" data-tab="modifiers">
+            {{> "systems/t2k4e/templates/items/parts/item-modifiers.hbs"}}
+        </div>
 
         {{!-- Description Tab --}}
-        {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
+        <div class="tab tab-description" data-group="primary" data-tab="description">
+            {{> "systems/t2k4e/templates/items/parts/item-description.hbs"}}
+        </div>
 
     </section>
 
