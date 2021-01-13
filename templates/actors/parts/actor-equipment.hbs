@@ -1,5 +1,10 @@
 <div class="encumbrance {{#if data.overEncumbered}}overencumbered{{/if}}">
-    <i class="fas fa-weight-hanging"></i>
+    {{#if data.overEncumbered}}
+        {{localize "T2KLANG.ActorSheet.EncumbranceTooHeavy"}}
+        {{#times 3}}&nbsp;<i class="fas fa-weight-hanging"></i>{{/times}}
+    {{else}}
+        <i class="fas fa-weight-hanging"></i>
+    {{/if}}
     {{data.encumbrance.value}}&nbsp;/&nbsp;{{data.encumbrance.max}}
 </div>
 

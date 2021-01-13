@@ -300,6 +300,10 @@
 		"ammunition": {
 			"templates": ["itemBase"],
 			"weight": 0.25,
+			"ammo": {
+				"value": 1,
+				"max": 1
+			},
 			"props": {
 				"magazine": true
 			}

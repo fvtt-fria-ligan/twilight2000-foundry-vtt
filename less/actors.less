@@ -9,11 +9,6 @@
 		color: @colorBrown;
 	}
 
-	// Fixes textarea resizing
-	textarea {
-		resize: none;
-	}
-
 	// Fixes h1 margin for the actor's name
 	h1 input {
 		margin: 0;
@@ -53,9 +48,10 @@
 
 	h2 {
 		font-size: 1rem;
-		background-color: @colorVeryLightBrown;
+		background-color: @colorActorH2;
 		padding: 4px @gap;
 		border-top: @borderSheetBold;
+		border-bottom: @borderSheetBold;
 	}
 
 	h3, h4 {
@@ -119,8 +115,14 @@
 			border-bottom: @borderSheet;
 			padding-bottom: 4px;
 
-			&:not(.hit) {
+			&.hit {
+				padding-left: 4px;
+				height: 100%;
+			}
+
+			&.stress {
 				padding-left: @gap;
+				height: 100%;
 				border-left: @borderSheet;
 			}
 
@@ -141,6 +143,10 @@
 
 		.experience {
 			padding-left: @gap;
+
+			input {
+				font-size: smaller;
+			}
 		}
 	}
 
@@ -156,6 +162,10 @@
 		// Fixes a tab bug.
 		&.slanted-tabs {
 			margin-bottom: 1px;
+
+			.active:before {
+				background: @colorVeryLightBrown;
+			}
 		}
 	}
 
@@ -164,13 +174,13 @@
 	/* ------------------------------------------- */
 
 	.sheet-body {
-		background: @colorLightKhaki;
+		background: @colorVeryLightBrown;
 
 		.stat-header {
 			text-align: center;
 			padding-top: 4px;
 			margin-bottom: 4px;
-			background: @colorVeryLightBrown;
+			background: @colorActorH2;
 			border-bottom: @borderSheetBold;
 
 			.header-rating,
@@ -222,6 +232,7 @@
 		.tab-main {
 			h2:first-child {
 				padding-bottom: 0;
+				border-bottom: none;
 			}
 
 			.stats-list {
@@ -260,8 +271,8 @@
 				padding-bottom: 4px;
 
 				h2 {
-					
 					padding-bottom: 0;
+					border-bottom: none;
 				}
 			}
 
@@ -287,13 +298,9 @@
 					text-align: center;
 					align-self: center;
 				}
-			}
 
-			.armor,
-			.conditions,
-			.radiation {
-				h2 {
-					border-bottom: @borderSheetBold;
+				input {
+					font-size: smaller;
 				}
 			}
 
@@ -326,8 +333,13 @@
 
 		.tab-equipment {
 			.encumbrance {
+				text-align: right;
+				margin-bottom: @gap;
+				padding: 2px 4px;
+
 				&.overencumbered {
-					color: #f00;
+					color: @colorBeige;
+					background-color: @colorRed;
 				}
 			}
 		}
@@ -335,6 +347,9 @@
 		/* ------------------------------------------- */
 
 		.tab-biography {
+			h3:not(:first-of-type) {
+				margin-top: @gap;
+			}
 
 			.editor {
 				min-height: 32px;

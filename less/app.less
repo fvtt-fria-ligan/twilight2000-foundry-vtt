@@ -88,6 +88,11 @@
 		}
 	}
 
+	// Fixes textarea resizing
+	textarea {
+		resize: none;
+	}
+
 	.editor {
 		height: 100%;
 		color: @colorDark;
@@ -107,14 +112,18 @@
 		}
 
 		.item-buttons {
-			flex: 0;
-			display: flex;
-			flex-direction: row;
+			// flex: 0;
+			text-align: right;
+			// display: flex;
+			// flex-direction: row;
 			margin-left: auto;
 
 			> a.button {
 				font-size: .7rem;
-				margin-left: 8px;
+
+				& ~ a.button {
+					margin-left: 2px;
+				}
 			}
 		}
 	}

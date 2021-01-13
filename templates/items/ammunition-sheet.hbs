@@ -16,8 +16,12 @@
         <div class="tab tab-features" data-group="primary" data-tab="features">
             <div class="grid grid-3col item-features">
                 <div class="flexcol">
-                    <label>{{localize "T2KLANG.ItemSheet.ItemType"}}</label>
-                    <input type="text" name="data.itemType" value="{{data.itemType}}"/>
+                    <label>{{localize "T2KLANG.ItemSheet.Ammo"}}</label>
+                    <div class="flexrow flex-center">
+                        <input type="text" name="data.ammo.value" value="{{data.ammo.value}}" data-dtype="Number"/>
+                        <span class="sep">/</span>
+                        <input type="text" name="data.ammo.max" value="{{data.ammo.max}}" data-dtype="Number"/>
+                    </div>
                 </div>
                 <div class="flexcol">
                     <label>{{localize "T2KLANG.ItemSheet.Weight"}}</label>
@@ -31,6 +35,13 @@
 
             {{!-- Other Parameters --}}
             <div class="features-other flexcol">
+
+                {{!-- Ammo Type --}}
+                <div class="form-group">
+                    <label>{{localize "T2KLANG.ItemSheet.AmmoType"}}</label>
+                    <input type="text" name="data.itemType" value="{{data.itemType}}"/>
+                </div>
+
                 {{!-- Properties --}}
                 <div class="form-group-stacked item-properties">
                     {{#each data.props as | prop name |}}

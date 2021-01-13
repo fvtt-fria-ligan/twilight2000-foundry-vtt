@@ -124,8 +124,8 @@ export default class ActorT2K extends Actor {
 			items
 				.filter(i => i.type !== 'specialty')
 				.reduce((sum, i) => {
-					if (i.type === 'ammunition' && i.data.props.magazine) {
-						return sum + i.data.weight;
+					if (i.type === 'ammunition' && !i.data.props.magazine) {
+						return sum + (i.data.qty * i.data.ammo.value * i.data.weight);
 					}
 					return sum + (i.data.qty * i.data.weight);
 				}, 0)
