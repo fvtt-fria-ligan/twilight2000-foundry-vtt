@@ -44,6 +44,7 @@ Hooks.once('init', function() {
 
 	// Records configuration values.
 	CONFIG.T2K4E = T2K4E;
+	CONFIG.debug.hooks = true;
 	CONFIG.Actor.entityClass = ActorT2K;
 	CONFIG.Item.entityClass = ItemT2K;
 

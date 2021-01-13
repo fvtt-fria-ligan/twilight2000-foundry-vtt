@@ -5,7 +5,7 @@
 	.window-content {
 		.actor-sheet-background();
 		.font-daisywheel();
-		font-size: 11pt; // = 1em
+		// font-size: 11pt; // = 1em
 		color: @colorBrown;
 	}
 
@@ -20,7 +20,8 @@
 	textarea,
 	div.editable,
 	.editor-content,
-	.item-slot {
+	.item-slot,
+	.inventory .item {
 		.font-text-normal();
 		color: @colorBlue !important;
 	}
@@ -332,16 +333,7 @@
 		/* ------------------------------------------- */
 
 		.tab-equipment {
-			.encumbrance {
-				text-align: right;
-				margin-bottom: @gap;
-				padding: 2px 4px;
-
-				&.overencumbered {
-					color: @colorBeige;
-					background-color: @colorRed;
-				}
-			}
+			overflow-y: hidden;
 		}
 
 		/* ------------------------------------------- */

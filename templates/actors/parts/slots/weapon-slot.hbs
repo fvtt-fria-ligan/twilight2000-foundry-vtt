@@ -1,20 +1,20 @@
-<div class="item item-slot item-weapon flexrow" data-item-id={{weapon._id}}>
+<div class="item item-weapon flexrow" data-item-id={{weapon._id}} draggable="true">
 
-    <div class="col-2">
+    <div class="item-name flexrow">
         <img src="{{weapon.img}}" title="{{weapon.name}}" width="24" height="24"/>
-        {{weapon.name}}
+        <div>{{weapon.name}}</div>
     </div>
-    <div class="col-1">{{weapon.data.rof}}</div>
-    <div class="col-1">{{weapon.data.damage}}</div>
-    <div class="col-1">{{weapon.data.crit}}</div>
-    <div class="col-1">{{weapon.data.armorModifier}}</div>
-    <div class="col-1">{{weapon.data.range}}</div>
-    <div class="col-1">{{weapon.data.mag.max}}</div>
-    <div class="col-1">{{weapon.data.reliability.score}}</div>
-    <div class="col-1">{{weapon.data.blast}}</div>
-    <div class="col-1">{{weapon.data.weight}}</div>
+    <div class="item-detail item-rof">{{weapon.data.rof}}</div>
+    <div class="item-detail item-damage">{{weapon.data.damage}}</div>
+    <div class="item-detail item-crit">{{weapon.data.crit}}</div>
+    <div class="item-detail item-armor">{{#if (gte weapon.data.armorModifier 1)}}+{{/if}}{{weapon.data.armorModifier}}</div>
+    <div class="item-detail item-range">{{weapon.data.range}}</div>
+    <div class="item-detail item-mag" title="{{weapon.data.mag.value}}/{{weapon.data.mag.max}}">{{weapon.data.mag.value}}</div>
+    <div class="item-detail item-reliability" title="{{weapon.data.reliability.score}}/{{weapon.data.reliability.max}}">{{weapon.data.reliability.score}}</div>
+    <div class="item-detail item-blast">{{weapon.data.blast}}</div>
+    <div class="item-detail item-weight">{{weapon.data.weight}}</div>
 
-    <div class="col-1">
+    <div class="item-controls">
         {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
     </div>
 

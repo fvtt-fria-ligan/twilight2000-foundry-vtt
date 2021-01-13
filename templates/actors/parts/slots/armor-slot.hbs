@@ -1,20 +1,20 @@
-<div class="item item-slot item-armor flexrow" data-item-id={{armor._id}}>
+<div class="item item-armor flexrow" data-item-id={{armor._id}} draggable="true">
 
-    <div>
+    <div class="item-name flexrow">
         <img src="{{armor.img}}" title="{{armor.name}}" width="24" height="24"/>
-        {{armor.name}}
+        <div>{{armor.name}}</div>
     </div>
-    <div class="armor-location-icons col-2">
+    <div class="item-detail item-cover">
         {{#each armor.data.location as | bool name |}}
         {{#if bool}}
         {{{lookup @root.config.armorLocationIcons name}}}
         {{/if}}
         {{/each}}
     </div>
-    <div class="col-1">{{armor.data.rating.value}}/{{armor.data.rating.max}}</div>
-    <div class="col-1">{{armor.data.weight}}</div>
+    <div class="item-detail item-rating">{{armor.data.rating.value}}/{{armor.data.rating.max}}</div>
+    <div class="item-detail item-weight">{{armor.data.weight}}</div>
 
-    <div class="col-1">
+    <div class="item-controls">
         {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
     </div>
 

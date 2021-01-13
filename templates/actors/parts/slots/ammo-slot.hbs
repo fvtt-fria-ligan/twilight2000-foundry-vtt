@@ -1,7 +1,12 @@
-<div class="item item-slot item-ammo flexrow" data-item-id={{ammo._id}}>
+<div class="item item-ammo flexrow" data-item-id={{ammo._id}}>
+    {{!-- <img src="{{ammo.img}}" title="{{ammo.name}}" width="24" height="24"/>
+    {{ammo.data.qty}}&nbsp;&times;&nbsp;{{ammo.name}} --}}
 
-    <img src="{{ammo.img}}" title="{{ammo.name}}" width="24" height="24"/>
-    {{ammo.data.qty}}&nbsp;&times;&nbsp;{{ammo.name}}
+    <div class="ammo-icons">
+        {{#times 10}}
+        <abbr class="symbol symbol-ammo" title="{{localize "T2KLANG.ItemSheet.Ammo"}}">{A}</abbr><br/>
+        {{/times}}
+    </div>
 
     {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
 

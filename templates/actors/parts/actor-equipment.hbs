@@ -11,111 +11,125 @@
 <div class="inventory">
 
     {{!-- Weapons --}}
-    <div class="weapon-slots">
-        <div class="inventory-header flexrow">
-            <div>
+    <div class="inventory-weapons">
+        <div class="items-header flexrow">
+            <div class="item-name">
                 <h2>{{localize "T2KLANG.ActorSheet.Weapons"}}</h2>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-rof">
                 <h5>{{localize "T2KLANG.ItemSheet.RoF"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-damage">
                 <h5>{{localize "T2KLANG.ItemSheet.Damage"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-crit">
                 <h5>{{localize "T2KLANG.ItemSheet.Crit"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-armor">
                 <h5>{{localize "T2KLANG.ItemSheet.Armor"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-range">
                 <h5>{{localize "T2KLANG.ItemSheet.Range"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-mag">
                 <h5>{{localize "T2KLANG.ItemSheet.Mag"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-reliability">
                 <h5>{{localize "T2KLANG.ItemSheet.Reliability"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-blast">
                 <h5>{{localize "T2KLANG.ItemSheet.Blast"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-weight">
                 <h5>{{localize "T2KLANG.ItemSheet.Weight"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-controls">
                 <a class="button item-create" data-type="weapon" title="{{localize "T2KLANG.ActorSheet.AddWeapon"}}">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
         </div>
-        {{#each weapons}}
-        {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" weapon=.}}
-        {{/each}}
-        {{#each grenades}}
-        {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" weapon=.}}
-        {{/each}}
+        <div class="items-list">
+            {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot-unarmed.hbs"}}
+            {{#each weapons}}
+            {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" weapon=.}}
+            {{/each}}
+            {{#each grenades}}
+            {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" weapon=.}}
+            {{/each}}
+        </div>
     </div>
 
     {{!-- Armor --}}
-    <div class="armor-slots">
-        <div class="inventory-header flexrow">
-            <div>
+    <div class="inventory-armor">
+        <div class="items-header flexrow">
+            <div class="item-name">
                 <h2>{{localize "T2KLANG.ItemTypes.armor"}}</h2>
             </div>
-            <div class="col-2">
+            <div class="item-detail item-cover">
                 <h5>{{localize "T2KLANG.ActorSheet.Cover"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-rating">
                 <h5>{{localize "T2KLANG.ActorSheet.Rating"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-weight">
                 <h5>{{localize "T2KLANG.ItemSheet.Weight"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-controls">
                 <a class="button item-create" data-type="armor" title="{{localize "T2KLANG.ActorSheet.AddArmor"}}">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
         </div>
-        {{#each armors}}
-        {{> "systems/t2k4e/templates/actors/parts/slots/armor-slot.hbs" armor=.}}
-        {{/each}}
+        <div class="items-list">
+            {{#each armors}}
+            {{> "systems/t2k4e/templates/actors/parts/slots/armor-slot.hbs" armor=.}}
+            {{else}}
+            <div class="item">–</div>
+            {{/each}}
+        </div>
     </div>
 
     {{!-- Gear --}}
-    <div class="gear-slots">
-        <div class="inventory-header flexrow">
-            <div>
+    <div class="inventory-gear">
+        <div class="items-header flexrow">
+            <div class="item-name">
                 <h2>{{localize "T2KLANG.ItemTypes.gear"}}</h2>
             </div>
-            <div class="col-1">
+            <div class="item-detail item-quantity">
+                <h5>{{localize "T2KLANG.ItemSheet.Quantity"}}</h5>
+            </div>
+            <div class="item-detail item-weight">
                 <h5>{{localize "T2KLANG.ItemSheet.Weight"}}</h5>
             </div>
-            <div class="col-1">
+            <div class="item-controls">
                 <a class="button item-create" data-type="gear" title="{{localize "T2KLANG.ActorSheet.AddGear"}}">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
         </div>
-        {{#each gears}}
-        {{> "systems/t2k4e/templates/actors/parts/slots/gear-slot.hbs" gear=.}}
-        {{/each}}
+        <div class="items-list">
+            {{#each gears}}
+            {{> "systems/t2k4e/templates/actors/parts/slots/gear-slot.hbs" gear=.}}
+            {{else}}
+            <div class="item">–</div>
+            {{/each}}
+        </div>
     </div>
 
     {{!-- Ammunitions --}}
-    <div class="ammo-slots">
-        <div class="inventory-header flexrow">
-            <div>
+    <div class="inventory-ammo">
+        <div class="items-header flexrow">
+            <div class="item-name">
                 <h2>{{localize "T2KLANG.ItemTypes.ammunition"}}</h2>
             </div>
-            <div class="col-1">
+            <div class="item-controls">
                 <a class="button item-create" data-type="ammunition" title="{{localize "T2KLANG.ActorSheet.AddAmmo"}}">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
         </div>
-        <div class="form-group-stacked">
+        <div class="ammo-list flexrow">
             {{#each ammunitions}}
             {{> "systems/t2k4e/templates/actors/parts/slots/ammo-slot.hbs" ammo=.}}
             {{/each}}
