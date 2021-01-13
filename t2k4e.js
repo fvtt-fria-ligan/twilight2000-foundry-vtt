@@ -118,6 +118,12 @@ Hooks.once('ready', function() {
 	/**
 	 * @type {Actor}
 	 */
-	const startingActor = game.actors.get('fUiWTxTCwrtkn01p');
-	startingActor.sheet.render(true);
+	const startingActor = game.actors.get('PD9O4dYhP1ED6Pmp');
+	startingActor.sheet.render(true);//*/
+
+	/**
+	 * @type {Item}
+	 *
+	const startingItem = game.items.get('63JHOmp3e1HLbdrL');
+	startingItem.sheet.render(true);//*/
 })

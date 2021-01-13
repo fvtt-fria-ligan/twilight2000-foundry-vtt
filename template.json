@@ -75,13 +75,25 @@
 				}
 			},
 			"actorCombat": {
-				"damage": 0,
-				"stress": 0,
+				"health": {
+					"value": 4,
+					"max": 4,
+					"modifier": 0,
+					"trauma": 0,
+					"temp": 0
+				},
+				"sanity": {
+					"value": 4,
+					"max": 4,
+					"modifier": 0,
+					"trauma": 0,
+					"temp": 0
+				},
 				"cuf": {
-					"score": "F"
+					"score": "D"
 				},
 				"unitMorale": {
-					"score": "F"
+					"score": "D"
 				},
 				"crits": "",
 				"diseases": ""
@@ -213,8 +225,8 @@
 		"templates": {
 			"itemBase": {
 				"qty": 1,
-				"type": "",
-				"weight": 0,
+				"itemType": "",
+				"weight": 1,
 				"price": 0,
 				"description": ""
 			},
@@ -259,17 +271,18 @@
 		},
 		"weapon": {
 			"templates": ["itemBase", "itemOffensive", "itemModifiers", "itemReliability"],
-			"weaponType": "",
 			"ammo": "",
 			"rof": 0,
 			"mag": {
 				"value": 0,
 				"max": 0
 			},
-			"twoHanded": false,
-			"ammoBelt": false,
-			"mounted": false,
-			"disposable": false
+			"props": {
+				"twoHanded": false,
+				"ammoBelt": false,
+				"mounted": false,
+				"disposable": false
+			}
 		},
 		"armor": {
 			"templates": ["itemBase", "itemModifiers"],
@@ -286,17 +299,25 @@
 		},
 		"ammunition": {
 			"templates": ["itemBase"],
-			"ammo": ""
+			"weight": 0.25,
+			"props": {
+				"magazine": true
+			}
 		},
 		"grenade": {
 			"templates": ["itemBase", "itemOffensive"],
-			"disposable": true
+			"weight": 0.25,
+			"props": {
+				"disposable": true
+			}
 		},
 		"gear": {
 			"templates": ["itemBase", "itemModifiers"],
-			"twoHanded": false,
-			"mounted": false,
-			"disposable": false
+			"props": {
+				"twoHanded": false,
+				"mounted": false,
+				"disposable": false
+			}
 		},
 		"specialty": {
 			"templates": ["itemModifiers"],

@@ -38,7 +38,7 @@
 
 /* Font for Generic Text */
 @font-face {
-	font-family: 'TheSansB W5 Plain Medium';
+	font-family: 'TheSansB';
 	font-style: normal;
 	font-weight: 500;
 	src:
@@ -55,12 +55,12 @@
 	src:
 		local('Mukta Medium'),
 		local('Mukta-Medium'),
-		url('fonts/Mukta-Medium.woff') format('woff2');
+		url('fonts/Mukta-Medium.woff') format('woff');
 }
 
 /* Font for Table Headers */
 @font-face {
-	font-family: 'TheSansB W7 Bold';
+	font-family: 'TheSansB';
 	font-style: normal;
 	font-weight: 700;
 	src:
@@ -75,7 +75,7 @@
 	src:
 		local('Mukta Bold'),
 		local('Mukta-Bold'),
-		url('fonts/Mukta-Bold.woff') format('woff2');
+		url('fonts/Mukta-Bold.woff') format('woff');
 }
 
 /* Font for the Character Sheet */
@@ -105,13 +105,13 @@
 }
 
 .font-text-normal() {
-	font-family: 'TheSansB W5 Plain Medium', 'Mukta';
+	font-family: 'TheSansB', 'Mukta';
 	font-weight: 500;
 	font-size: 1em;
 }
 
 .font-text-bold() {
-	font-family: 'TheSansB W7 Bold', 'Mukta';
+	font-family: 'TheSansB', 'Mukta';
 	font-weight: 700;
 	font-size: .9em;
 	text-transform: uppercase;
@@ -129,12 +129,41 @@
 
 @colorDark: #000;
 @colorBeige: #eceee9;
-@colorLightBrown: #bfb6b0;
 @colorBrown: #604f43;
+// @colorLightBrown: #bfb6b0;
+@colorLightBrown: #a59a8b;
+// @colorVeryLightBrown: #d5cbbb;
+@colorVeryLightBrown: rgba(0, 0, 0, .1);
 @colorTan: #7f7f7f;
-@colorLightKhaki: #e5e5d6;
 @colorKhaki: #9d9b7e;
+@colorLightKhaki: #e5e5d6;
 @colorBlue: #284283;
+@colorRed: #9b2423;
+
+@gap: 10px;
+
 @hoverShadow: 0 0 10px @colorBrown;
+
 @borderGroove: 2px groove @colorKhaki;
-@sheetBackground: @colorBeige;
+@borderSheet: 2px solid @colorLightBrown;
+@borderSheetBold: 2px solid @colorBrown;
+
+.actor-sheet-background() {
+	background-image: url(assets/textures/paper_texture_sheet_c.jpg);
+	background-position: top center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: @colorBeige;
+}
+
+.item-sheet-background() {
+	background-image: url(assets/textures/paper_texture_rm_c.jpg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: @colorBeige;
+}
+
+// .sheet-outline() {
+// 	border-image-source: url(assets/textures/papper_outline.png);
+// }

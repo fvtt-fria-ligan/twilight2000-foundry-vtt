@@ -10,37 +10,43 @@
             {{!-- Stat Block: Header line --}}
             <div class="stat-header flexrow">
                 <div class="col-6"></div>
-                <div class="col-3">
+                <div class="col-3 header-rating">
                     <h5>{{localize "T2KLANG.ActorSheet.Rating"}}</h5>
                 </div>
-                <div class="col-3">
+                <div class="col-3 header-die">
                     <h5>{{localize "T2KLANG.ActorSheet.BaseDie"}}</h5>
                 </div>
             </div>
 
             {{!-- Coolness Under Fire --}}
-            <div class="stat flexrow">
+            <div class="stat stat-cuf flexrow">
                 <div class="col-6 stat-name">
-                    <h3>{{localize "T2KLANG.ActorSheet.CuF"}}</h3>
+                    <h4>{{localize "T2KLANG.ActorSheet.CuF"}}</h4>
                 </div>
                 <div class="col-3 stat-score">
                     {{> scoreSelector name="data.cuf.score" selected=data.cuf.score}}
                 </div>
                 <div class="col-3 stat-value">
-                    {{#if (lte data.cuf.value 0)}}–{{else}}D{{data.cuf.value}}{{/if}}
+                    {{#if (lte data.cuf.value 0)}}–
+                    {{else}}
+                    <div class="boxed-value">D{{data.cuf.value}}</div>
+                    {{/if}}
                 </div>
             </div>
 
             {{!-- Unit Morale --}}
             <div class="stat flexrow">
                 <div class="col-6 stat-name">
-                    <h3>{{localize "T2KLANG.ActorSheet.UnitMorale"}}</h3>
+                    <h4>{{localize "T2KLANG.ActorSheet.UnitMorale"}}</h4>
                 </div>
                 <div class="col-3 stat-score">
                     {{> scoreSelector name="data.unitMorale.score" selected=data.unitMorale.score}}
                 </div>
                 <div class="col-3 stat-value">
-                    {{#if (lte data.unitMorale.value 0)}}–{{else}}D{{data.unitMorale.value}}{{/if}}
+                    {{#if (lte data.unitMorale.value 0)}}–
+                    {{else}}
+                    <div class="boxed-value">D{{data.unitMorale.value}}</div>
+                    {{/if}}
                 </div>
             </div>
 
@@ -54,11 +60,11 @@
 
         {{!-- Header line --}}
         <div class="stat-header flexrow">
-            <div>&nbsp;</div>
-            <div class="col-2">
+            <div class="col-8"></div>
+            <div class="col-2 header-rating">
                 <h5>{{localize "T2KLANG.ActorSheet.Current"}}</h5>
             </div>
-            <div class="col-2">
+            <div class="col-2 header-die">
                 <h5>{{localize "T2KLANG.ActorSheet.Max"}}</h5>
             </div>
         </div>
@@ -66,12 +72,12 @@
         {{!-- Slow & Fast --}}
         {{#each data.actions as | action name |}}
         <div class="flexrow">
-            <div>{{localize (concat "T2KLANG.ActionNames." name)}}</div>
-            <div class="col-4">
+            <div class="action-name">{{localize (concat "T2KLANG.ActionNames." name)}}</div>
+            <div class="col-4 action-slider">
                 <input type="range" name="data.actions.{{name}}.value" min="0" max="{{action.max}}" value="{{action.value}}"/>
             </div>
-            <div class="col-2">{{action.value}}</div>
-            <div class="col-2">
+            <div class="col-2 action-value">{{action.value}}</div>
+            <div class="col-2 action-max">
                 <input type="number" name="data.actions.{{name}}.max" value="{{action.max}}"/>
             </div>
         </div>
@@ -96,6 +102,8 @@
                 </div>
                 <div class="col-1">{{value}}</div>
             </div>
+            {{else}}
+            <p class="no-armor">{{localize "T2KLANG.ActorSheet.NoArmor"}}</p>
             {{/each}}
         </div>
     </div>
@@ -139,11 +147,11 @@
     <div class="flexrow">
         <div>
             <h3>{{localize "T2KLANG.ActorSheet.TemporaryRadiation"}}</h3>
-            {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" value="temporary"}}
+            {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" field="temporary" value=data.rads.temporary}}
         </div>
         <div>
             <h3>{{localize "T2KLANG.ActorSheet.PermanentRadiation"}}</h3>
-            {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" value="permanent"}}
+            {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" field="permanent" value=data.rads.permanent}}
         </div>
     </div>
 </div>

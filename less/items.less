@@ -2,9 +2,9 @@
 	min-height: 400px;
 	min-width: 400px;
 
-	// .window-content {
-	// 	// background: @colorLightKhaki;
-	// }
+	.window-content {
+		.item-sheet-background();
+	}
 
 	/* ------------------------------------------- */
 	/*  Sheet Header                               */
@@ -32,7 +32,7 @@
 			.font-daisywheel();
 
 			h4.item-type {
-				font-size: 24px;
+				font-size: 16px;
 				margin: 0;
 			}
 
@@ -67,9 +67,6 @@
 
 		.item-features {
 			text-align: center;
-			&.grid {
-				gap: 0;
-			}
 
 			label {
 				width: 100%;
@@ -90,6 +87,10 @@
 				&:focus {
 					background: #fff;
 					border: 1px solid @colorBrown;
+				}
+
+				&.score-selector {
+					align-self: center;
 				}
 			}
 		}

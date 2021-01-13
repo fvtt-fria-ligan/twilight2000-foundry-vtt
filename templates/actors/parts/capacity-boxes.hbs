@@ -1,7 +1,6 @@
-<a class="boxes boxes-capacity" data-field="{{value}}" data-min="{{min}}" data-max="{{max}}">
-{{#with (lookup @root.data value) as | val |}}
-{{#times ../max}}
-    {{#if (gte val @index)}}
+<a class="boxes boxes-capacity" data-field="{{field}}" data-min="{{min}}" data-max="{{max}}">
+{{#times max}}
+    {{#if (gte ../value @index)}}
     {{!-- Full square --}}
     <i class="fas fa-square"></i>
     {{else}}
@@ -9,5 +8,4 @@
     <i class="far fa-square"></i>
     {{/if}}
 {{/times}}
-{{/with}}
 </a>

@@ -24,7 +24,7 @@ export default class ActorT2K extends Actor {
 			default: throw new TypeError('Unknown Actor Type');
 		}
 
-		console.log('t2k4e | Actor: ', this);
+		console.log('t2k4e | Updated Actor: ', this.id);
 	}
 
 	/**
@@ -78,13 +78,15 @@ export default class ActorT2K extends Actor {
 	 * @private
 	 */
 	_prepareCapacities(data) {
-		data.hitCapacity = this._getHitCapacity(data);
-		data.stressCapacity = this._getStressCapacity(data);
+		data.health.max = this._getHitCapacity(data) + data.health.modifier;
+		data.health.trauma = data.health.max - data.health.value;
+		data.hitCapacity = data.health.max;
+		data.damage = data.health.trauma;
 
-		data.health = {
-			value: data.hitCapacity - data.damage,
-			max: data.hitCapacity
-		};
+		data.sanity.max = this._getStressCapacity(data) + data.sanity.modifier;
+		data.sanity.trauma = data.sanity.max - data.sanity.value;
+		data.stressCapacity = data.sanity.max;
+		data.stress = data.sanity.trauma;
 	}
 
 	/**
@@ -121,7 +123,12 @@ export default class ActorT2K extends Actor {
 		const value = (
 			items
 				.filter(i => i.type !== 'specialty')
-				.reduce((sum, i) => sum + (i.data.qty * i.data.weight), 0)
+				.reduce((sum, i) => {
+					if (i.type === 'ammunition' && i.data.props.magazine) {
+						return sum + i.data.weight;
+					}
+					return sum + (i.data.qty * i.data.weight);
+				}, 0)
 			) || 0;
 
 		data.encumbrance = {

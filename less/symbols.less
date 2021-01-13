@@ -1,0 +1,32 @@
+.symbol {
+	display: inline-block;
+	margin: 1px 1px -1px 1px;
+	// -webkit-border-radius: 500px;
+	// border-radius: 500px;
+	// -webkit-box-shadow: -1px 1px 0 rgba(0,0,0,0.85);
+	// box-shadow: -1px 1px 0 rgba(0,0,0,0.85);
+	text-indent: -999em;
+	overflow: hidden;
+	width: 15px;
+	height: 15px;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	background-position: top left;
+	-webkit-print-color-adjust: exact;
+	color-adjust: exact;
+
+	+ .symbol {
+		margin-left: 2px;
+	}
+
+	&.symbol.ammo {
+		margin: 0 2px -2px 0;
+		width: 7px;
+		height: 14px;
+		// -webkit-box-shadow: none;
+		// box-shadow: none;
+		// -webkit-border-radius: none;
+		// border-radius: none;
+		background-image: url(assets/icons/bullet.svg);
+	}
+}

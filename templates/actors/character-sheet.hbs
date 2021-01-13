@@ -1,74 +1,84 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
     {{!-- Actor Sheet Header --}}
-    <header class="sheet-header flexrow">
+    <header class="sheet-header"> {{!--flexrow--}}
 
-        <div class="header-details">
-            <h1>
+        <img class="t2k-trombone" src="./systems/t2k4e/assets/textures/trombone.png" name="trombone"/>
+
+        <div class="grid-actor-header">
+
+            {{!-- Actor's name --}}
+            <h1 class="name">
                 <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'T2KLANG.ActorSheet.Name'}}"/>
             </h1>
 
-            <div class="flexcol">
-
-                {{!-- Biography Details --}}
-                <div class="header-details-row flexrow">
-                    <div class="flexcol col-4">
-                        <h3>{{localize "T2KLANG.ActorSheet.Nationality"}}</h3>
-                        <input type="text" name="data.bio.nationality" value="{{data.bio.nationality}}"/>
-                    </div>
-                    <div class="flexcol col-4">
-                        <h3>{{localize "T2KLANG.ActorSheet.Branch"}}</h3>
-                        <input type="text" name="data.bio.branch" value="{{data.bio.branch}}"/>
-                    </div>
-                    <div class="flexcol col-4">
-                        <h3>{{localize "T2KLANG.ActorSheet.MilitaryRank"}}</h3>
-                        <input type="text" name="data.bio.militaryRank" value="{{data.bio.militaryRank}}"/>
-                    </div>
-                </div>
-
-                {{!-- Capacities --}}
-                <div class="header-details-row flexrow">
-
-                    {{!-- Hit Capacity --}}
-                    <div class="capacity">
-                        <div class="flexrow">
-                            <h3>{{localize "T2KLANG.ActorSheet.HitCapacity"}}</h3>
-                            <div class="capacity-value">{{data.hitCapacity}}</div>
-                        </div>
-                        {{> "systems/t2k4e/templates/actors/parts/capacity-boxes.hbs" value="damage" min=0 max=data.hitCapacity}}
-                    </div>
-
-                    {{!-- Stress Capacity --}}
-                    {{#if (eq actor.type 'character')}}
-                    <div class="capacity">
-                        <div class="flexrow">
-                            <h3>{{localize "T2KLANG.ActorSheet.StressCapacity"}}</h3>
-                            <div class="capacity-value">{{data.stressCapacity}}</div>
-                        </div>
-                        {{> "systems/t2k4e/templates/actors/parts/capacity-boxes.hbs" value="stress" min=0 max=data.stressCapacity}}
-                    </div>
-                    {{/if}}
-
-                </div>
-
+            {{!-- Nationality, Branch & Rank --}}
+            <div class="nation">
+                <h3>{{localize "T2KLANG.ActorSheet.Nationality"}}</h3>
+                <input type="text" name="data.bio.nationality" value="{{data.bio.nationality}}"/>
+            </div>
+            <div class="branch">
+                <h3>{{localize "T2KLANG.ActorSheet.Branch"}}</h3>
+                <input type="text" name="data.bio.branch" value="{{data.bio.branch}}"/>
+            </div>
+            <div class="rank">
+                <h3>{{localize "T2KLANG.ActorSheet.MilitaryRank"}}</h3>
+                <input type="text" name="data.bio.militaryRank" value="{{data.bio.militaryRank}}"/>
             </div>
 
-        </div>
+            {{!-- Hit Capacity --}}
+            <div class="capacity hit flexrow flex-middle">
+                <div>
+                    <h3>{{localize "T2KLANG.ActorSheet.HitCapacity"}}</h3>
+                    {{> "systems/t2k4e/templates/actors/parts/capacity-boxes.hbs" field="health" value=data.health.trauma min=0 max=data.hitCapacity}}
+                </div>
+                <div class="capacity-value boxed-value">{{data.health.value}}/{{data.hitCapacity}}</div>
+                <div class="capacity-buttons flexcol">
+                    <a class="button capacity-increase" data-field="health">
+                        <i class="far fa-plus-square"></i>
+                    </a>
+                    <a class="button capacity-decrease" data-field="health">
+                        <i class="far fa-minus-square"></i>
+                    </a>
+                </div>
+            </div>
 
-        <div class="flex0 flexcol">
-            <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
-            <div>
-                <h3>{{localize "T2KLANG.ActorSheet.Experience"}}</h3>
-                <div class="flexrow flex-between">
+            {{!-- Stress Capacity --}}
+            {{#if (eq actor.type 'character')}}
+            <div class="capacity stress flexrow flex-middle">
+                <div>
+                    <h3>{{localize "T2KLANG.ActorSheet.StressCapacity"}}</h3>
+                    {{> "systems/t2k4e/templates/actors/parts/capacity-boxes.hbs" field="sanity" value=data.sanity.trauma min=0 max=data.stressCapacity}}
+                </div>
+                <div class="capacity-value boxed-value">{{data.sanity.value}}/{{data.stressCapacity}}</div>
+                <div class="capacity-buttons flexcol">
+                    <a class="button capacity-increase" data-field="sanity">
+                        <i class="far fa-plus-square"></i>
+                    </a>
+                    <a class="button capacity-decrease" data-field="sanity">
+                        <i class="far fa-minus-square"></i>
+                    </a>
+                </div>
+            </div>
+            {{/if}}
+
+            {{!-- Profile IMG & XP --}}
+            <div class="img">
+                <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+
+                {{#if (eq actor.type 'character')}}
+                <div class="experience flexrow flex-middle">
                     <h5>{{localize "T2KLANG.ActorSheet.ExperienceCurrent"}}</h5>
-                    <input type="number" name="data.xp.value" value="{{data.xp.value}}"/>
-                    <h5>{{localize "T2KLANG.ActorSheet.ExperienceTotal"}}</h5>
-                    <input type="number" name="data.xp.total" value="{{data.xp.total}}"/>
+                    <input type="number" class="smallbox" name="data.xp.value" value="{{data.xp.value}}"/>
                 </div>
+                <div class="experience flexrow flex-middle">
+                    <h5>{{localize "T2KLANG.ActorSheet.ExperienceTotal"}}</h5>
+                    <input type="number" class="smallbox" name="data.xp.total" value="{{data.xp.total}}"/>
+                </div>
+                {{/if}}
             </div>
-        </div>
 
-        
+        </div>
 
     </header>
 

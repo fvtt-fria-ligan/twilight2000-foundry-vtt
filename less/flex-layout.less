@@ -1,0 +1,88 @@
+/* ------------------------------------------- */
+/*  Flexbox                                    */
+/* ------------------------------------------- */
+
+.flexrow {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+
+	> * {
+		flex: 1;
+	}
+
+	.flex0 { flex: 0; }
+	.flex1 { flex: 1; }
+	.flex2 { flex: 2; }
+	.flex3 { flex: 3; }
+	.flex4 { flex: 4; }
+ }
+
+.flexcol {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+
+	> * {
+		flex: 1;
+	}
+
+	.flex0 { flex: 0; }
+	.flex1 { flex: 1; }
+	.flex2 { flex: 2; }
+	.flex3 { flex: 3; }
+	.flex4 { flex: 4; }
+}
+
+.flex-center {
+	justify-content: center;
+	// text-align: center;
+}
+
+.flex-left {
+	justify-content: flex-start;
+	// text-align: left;
+}
+
+.flex-right {
+	justify-content: flex-end;
+	// text-align: right;
+}
+
+.flex-between {
+	justify-content: space-between;
+}
+
+.flex-around {
+	justify-content: space-around;
+}
+
+.flex-top {
+	align-items: flex-start;
+}
+
+.flex-bottom {
+	align-items: flex-end;
+}
+
+.flex-middle {
+	align-items: center;
+}
+
+/* ------------------------------------------- */
+/*  Column Layout                              */
+/* ------------------------------------------- */
+
+/**
+ * Creates a range of styles from .col-1 to .col-12
+ * for placing flex elements like in a table.
+ */
+.col-loop (@i) when (@i > 0) {
+	.col-@{i} {
+		flex: 0 0 auto;
+		width: round(@i / 12 * 100%, 2);
+	}
+	.col-loop(@i - 1);
+}
+.col-loop(12);

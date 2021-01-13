@@ -1,16 +1,15 @@
 {{!-- Attributes & Skills --}}
 <h2>{{localize "T2KLANG.ActorSheet.AttributesAndSkills"}}</h2>
 
-{{!-- <div class="grid grid-2col" style="gap: 0;"> --}}
 <div class="stats-list flexrow">
     {{#each data.attributes as |attribute attr|}}
-    <div class="stat-block" style="flex: 0 0 250px;">
+    <div class="stat-block stat-block-{{attr}}">
         <div class="stat-header flexrow">
             <div class="col-6"></div>
-            <div class="col-3">
+            <div class="col-3 header-rating">
                 <h5>{{localize "T2KLANG.ActorSheet.Rating"}}</h5>
             </div>
-            <div class="col-3">
+            <div class="col-3 header-die header-die-{{@index}}">
                 <h5>{{localize "T2KLANG.ActorSheet.BaseDie"}}</h5>
             </div>
         </div>
@@ -22,7 +21,10 @@
                 {{> scoreSelector name=(concat "data.attributes." attr ".score") selected=attribute.score}}
             </div>
             <div class="col-3 stat-value">
-                {{#if (lte attribute.value 0)}}–{{else}}D{{attribute.value}}{{/if}}
+                {{#if (lte attribute.value 0)}}–
+                {{else}}
+                <div class="boxed-value">D{{attribute.value}}</div>
+                {{/if}}
             </div>
         </div>
         {{!-- All skills for an attribute --}}
@@ -36,7 +38,10 @@
                     {{> scoreSelector name=(concat "data.skills." sk ".score") selected=skill.score}}
                 </div>
                 <div class="col-3 stat-value">
-                    {{#if (eq skill.value -1)}}–{{else}}D{{skill.value}}{{/if}}
+                    {{#if (lte skill.value 0)}}–
+                    {{else}}
+                    <div class="boxed-value">D{{skill.value}}</div>
+                    {{/if}}
                 </div>
             </div>
             {{/if}}
@@ -46,7 +51,7 @@
 </div>
 
 {{!-- Specialties --}}
-<div class="flexrow">
+<div class="specialty-title flexrow">
     <h3>{{localize "T2KLANG.ActorSheet.Specialties"}}</h3>
     <a class="button item-create" data-type="specialty" title="{{localize "T2KLANG.ActorSheet.AddSpecialty"}}">
         <i class="fas fa-plus"></i>
@@ -55,13 +60,13 @@
 
 <div class="specialties-slots">
     {{#each specialties as |specialty id|}}
-    <div class="item item-slot item-specialty flexrow" data-item-id={{specialty._id}}>
+    <div class="item item-slot slot-specialty flexrow" data-item-id={{specialty._id}}>
         <div>
             {{#if specialty.data.description}}
             <b><u>{{specialty.name}}</u>:</b> {{{specialty.data.description}}}
             {{else}}
-                {{#if specialty.data.modifiersDescription}}
-                <b><u>{{specialty.name}}</u>:</b> {{specialty.data.modifiersDescription}}
+                {{#if specialty.data.modifiers.description}}
+                <b><u>{{specialty.name}}</u>:</b> {{specialty.data.modifiers.description}}
                 {{else}}
                 {{specialty.name}}
                 {{/if}}
@@ -70,6 +75,6 @@
         {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
     </div>
     {{else}}
-    <p><i><small>{{localize "T2KLANG.ActorSheet.NoSpecialty"}}</small></i></p>
+    <p class="no-specialty">{{localize "T2KLANG.ActorSheet.NoSpecialty"}}</p>
     {{/each}}
 </div>

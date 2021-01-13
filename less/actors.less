@@ -3,18 +3,36 @@
 	min-width: 550px;
 
 	.window-content {
-		// background: @colorLightKhaki;
+		.actor-sheet-background();
 		.font-daisywheel();
-		font-size: 11pt;
+		font-size: 11pt; // = 1em
 		color: @colorBrown;
 	}
 
+	// Fixes textarea resizing
+	textarea {
+		resize: none;
+	}
+
+	// Fixes h1 margin for the actor's name
+	h1 input {
+		margin: 0;
+	}
+
+	// Custom colors for editable inputs
 	input,
+	select,
+	textarea,
 	div.editable,
 	.editor-content,
 	.item-slot {
+		.font-text-normal();
 		color: @colorBlue !important;
 	}
+
+	/* ------------------------------------------- */
+	/*  Headings                                   */
+	/* ------------------------------------------- */
 
 	h1, h2 {
 		border: 0;
@@ -24,21 +42,105 @@
 		margin: 0;
 	}
 
+	h2, h3, h5 {
+		text-transform: uppercase;
+	}
+
+	h1 {
+		font-size: 2rem;
+		font-weight: bold;
+	}
+
+	h2 {
+		font-size: 1rem;
+		background-color: @colorVeryLightBrown;
+		padding: 4px @gap;
+		border-top: @borderSheetBold;
+	}
+
+	h3, h4 {
+		font-size: 1rem * (9pt / 11pt);
+	}
+
+	h5 {
+		font-size: 1rem * (7pt / 11pt);
+	}
+
 	/* ------------------------------------------- */
 	/*  Sheet Header                               */
 	/* ------------------------------------------- */
 
 	.sheet-header {
+		padding-left: 6px;
+		padding-right: @gap;
+
+		.t2k-trombone {
+			position: absolute;
+			top: 30px;
+			right: 2px;
+			transform: rotate(20deg);
+			-webkit-transform: rotate(20deg);
+			border: none;
+			z-index: 999;
+		}
+
 		img.profile {
 			border: 2px solid @colorBrown;
 			border-radius: 4px;
-			margin: 0;
+			margin: @gap 0 4px @gap;
+			width: 100px;
+			height: 100px;
+			transform: rotate(5deg);
+			-webkit-transform: rotate(5deg);
+			background-color: #fff;
 		}
 
-		.header-details {
-			.header-details-row {
-				margin: 3px 0;
+		.name {
+			border-bottom: @borderSheetBold;
+			margin-bottom: @gap;
+		}
+
+		.nation,
+		.branch,
+		.rank {
+			border-bottom: @borderSheet;
+
+			h3 {
+				margin-left: 4px;
 			}
+		}
+
+		.branch,
+		.rank {
+			border-left: @borderSheet;
+		}
+
+		.capacity {
+			border-bottom: @borderSheet;
+			padding-bottom: 4px;
+
+			&:not(.hit) {
+				padding-left: @gap;
+				border-left: @borderSheet;
+			}
+
+			.capacity-value {
+				flex: 0;
+			}
+
+			.capacity-buttons {
+				flex:0 ;
+				margin-left: 6px;
+				margin-right: @gap;
+
+				a.button {
+					font-size: .7rem;
+				}
+			}
+		}
+
+		.experience {
+			padding-left: @gap;
 		}
 	}
 
@@ -62,9 +164,163 @@
 	/* ------------------------------------------- */
 
 	.sheet-body {
+		background: @colorLightKhaki;
+
+		.stat-header {
+			text-align: center;
+			padding-top: 4px;
+			margin-bottom: 4px;
+			background: @colorVeryLightBrown;
+			border-bottom: @borderSheetBold;
+
+			.header-rating,
+			.header-die {
+				padding-bottom: 4px;
+				border-left: @borderSheet;
+			}
+		}
+
+		.stat-block {
+			&.stat-block-agl,
+			&.stat-block-emp {
+				border-left: @borderSheetBold;
+			}
+		}
+
+		.stat {
+			padding: 2px 0;
+
+			.stat-name {
+				padding-left: @gap;
+			}
+
+			.stat-score {
+				text-align: center;
+			}
+
+			.stat-value {
+				text-align: center;
+				display: flex;
+				justify-content: center;
+			}
+
+			&.stat-attribute {
+				.stat-name {
+					border-bottom: @borderSheetBold;
+				}
+			}
+
+			&.stat-skill:not(:last-child) {
+				.stat-name {
+					border-bottom: @borderSheet;
+				}
+			}
+		}
 
 		/* ------------------------------------------- */
 
+		.tab-main {
+			h2:first-child {
+				padding-bottom: 0;
+			}
+
+			.stats-list {
+				margin-bottom: @gap;
+
+				.stat-block {
+					// flex: 0 0 250px;
+					.col-6();
+					padding-bottom: 4px;
+					border-bottom: @borderSheetBold;
+				}
+			}
+
+			.specialty-title {
+				padding: 0 @gap 4px @gap;
+				border-bottom: @borderSheet;
+				a.button {
+					flex: 0;
+				}
+			}
+
+			.specialties-slots {
+				.no-specialty {
+					padding: 0 @gap;
+					font-style: italic;
+					font-size: smaller;
+				}
+			}
+		}
+
+		/* ------------------------------------------- */
+
+		.tab-combat {
+			.combat,
+			.action {
+				padding-bottom: 4px;
+
+				h2 {
+					
+					padding-bottom: 0;
+				}
+			}
+
+			.combat {
+				.stat-cuf {
+					.stat-name {
+						align-self: center;
+						border-bottom: @borderSheet;
+					}
+				}
+			}
+
+			.action {
+				border-left: @borderSheetBold;
+
+				.action-name {
+					padding-left: @gap;
+					align-self: center;
+				}
+
+				.action-value,
+				.action-max {
+					text-align: center;
+					align-self: center;
+				}
+			}
+
+			.armor,
+			.conditions,
+			.radiation {
+				h2 {
+					border-bottom: @borderSheetBold;
+				}
+			}
+
+			.armor,
+			.conditions,
+			.radiation {
+				h2 + div {
+					padding: 4px 0 @gap @gap;
+				}
+			}
+
+			.armor {
+				.no-armor {
+					font-size: smaller;
+					font-style: italic;
+					margin-right: @gap;
+				}
+			}
+
+			.conditions {
+				border-left: @borderSheetBold;
+			}
+
+			textarea {
+				margin-bottom: @gap;
+			}
+		}
 
 		/* ------------------------------------------- */
 

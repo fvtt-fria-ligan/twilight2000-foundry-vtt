@@ -89,7 +89,10 @@ export default class ActorSheetT2K extends ActorSheet {
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		html.find('.item-edit').click(this._onItemEdit.bind(this));
 		html.find('.item-delete').click(this._onItemDelete.bind(this));
-		html.find('.boxes').on('click contextmenu', this._onValueChange.bind(this));
+		html.find('.boxes-radiation').on('click contextmenu', this._onValueChange.bind(this));
+		html.find('.boxes-capacity').on('click contextmenu', this._onCapacityChange.bind(this));
+		html.find('.capacity-increase').click(this._onCapacityIncrease.bind(this));
+		html.find('.capacity-decrease').click(this._onCapacityDecrease.bind(this));
 	}
 
 	_onItemCreate(event) {
@@ -146,5 +149,47 @@ export default class ActorSheetT2K extends ActorSheet {
 		newCount = clamp(newCount, min, max);
 
 		this.actor.update({ ['data.'+field]: newCount });
+	}
+
+	_onCapacityChange(event) {
+		event.preventDefault();
+		const elem = event.currentTarget;
+		const min = +elem.dataset.min || 0;
+		const max = +elem.dataset.max || 10;
+		const field = elem.dataset.field;
+		const currentCount = getProperty(this.actor, `data.data.${field}.value`) || 0;
+		let newCount = currentCount;
+
+		if (event.type === 'click') newCount--;
+		else newCount++; // contextmenu
+
+		newCount = clamp(newCount, min, max);
+
+		this.actor.update({ [`data.${field}.value`]: newCount });
+	}
+
+	_onCapacityIncrease(event) {
+		this._changeCapacityModifier(event, 1);
+	}
+
+	_onCapacityDecrease(event) {
+		this._changeCapacityModifier(event, -1);
+	}
+
+	_changeCapacityModifier(event, mod) {
+		event.preventDefault();
+		const elem = event.currentTarget;
+		const field = elem.dataset.field;
+
+		const maxi = getProperty(this.actor, `data.data.${field}.max`);
+		if (mod < 0 && maxi < 2) return;
+		if (mod > 0 && maxi > 11) return;
+
+		const min = -12;
+		const max = 12;
+		const currentMod = getProperty(this.actor, `data.data.${field}.modifier`) || 0;
+		const newMod = clamp(currentMod + mod, min, max);
+
+		this.actor.update({ [`data.${field}.modifier`]: newMod});
 	}
 }

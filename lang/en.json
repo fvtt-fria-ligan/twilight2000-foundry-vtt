@@ -57,6 +57,13 @@
 			"specialty": "Specialty",
 			"weapon": "Weapon"
 		},
+		"ItemPropNames": {
+			"twoHanded": "Two-Handed",
+			"mounted": "Mounted",
+			"disposable": "Disposable",
+			"ammoBelt": "Ammo Belt",
+			"magazine": "Is Magazine"
+		},
 		"ActorSheet": {
 			"Name": "Name",
 			"MainTab": "Stats",
@@ -70,8 +77,8 @@
 			"HitCapacity": "Hit Capacity",
 			"StressCapacity": "Stress Capacity",
 			"Experience": "Experience",
-			"ExperienceCurrent": "Current",
-			"ExperienceTotal": "Total",
+			"ExperienceCurrent": "XP Current",
+			"ExperienceTotal": "XP Total",
 			"Appearance": "Appearance",
 			"MoralCode": "Moral Code",
 			"Buddy": "Buddy",
@@ -89,15 +96,17 @@
 			"Max": "Max",
 			"CuF": "Coolness Under Fire",
 			"UnitMorale": "Unit Morale",
+			"NoArmor": "This character has no equipped armor.",
+			"Conditions": "Conditions",
 			"CriticalInjuries":"Critical Injuries",
 			"Diseases": "Diseases",
-			"Conditions": "Conditions",
 			"Radiation": "Radiation",
 			"TemporaryRadiation": "Temporary",
 			"PermanentRadiation": "Permanent",
 			"Weapons": "Weapons",
 			"AddWeapon": "Add a new weapon",
 			"Cover": "Cover",
+			"Add": "Add",
 			"AddArmor": "Add a new armor",
 			"AddGear": "Add new gear",
 			"AddAmmo": "Add new ammunition",
@@ -119,7 +128,7 @@
 			"DescriptionTab": "Notes",
 			"AttackWith": "Skill Used",
 			"Quantity": "Quantity",
-			"WeaponType": "Type",
+			"ItemType": "Type",
 			"Ammo": "Ammo",
 			"Reliability": "Rel",
 			"RoF": "RoF",
@@ -131,10 +140,6 @@
 			"Armor": "Armor",
 			"Weight": "Weight",
 			"Price": "Price",
-			"TwoHanded": "Two-Handed",
-			"Mounted": "Mounted",
-			"Disposable": "Disposable",
-			"AmmoBelt": "Ammo Belt",
 			"ArmorLocation": "Protected Location"
 		}
 	}

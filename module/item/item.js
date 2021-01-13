@@ -14,9 +14,22 @@ export default class ItemT2K extends Item {
 		const actorData = this.actor ? this.actor.data : {};
 		const data = itemData.data;
 
-		if (this.type === 'specialty') {
-			data.modifiersDescription = this._getModifiersDescription(data);
-		}
+		this._prepareModifiers(data);
+
+		// switch (this.type) {
+		// 	case 'specialty': break;
+		// }
+	}
+
+	/**
+	 * Adds more properties to the Modifiers prop.
+	 * @param {Object} data
+	 * @private
+	 */
+	_prepareModifiers(data) {
+		if (!data.modifiers) return;
+		data.modifiers.description = this._getModifiersDescription(data);
+		data.modifiers.hasModifiers = data.modifiers.description.length > 0;
 	}
 
 	/**
@@ -26,7 +39,6 @@ export default class ItemT2K extends Item {
 	 * @private
 	 */
 	_getModifiersDescription(data) {
-		if (!data.modifiers) return;
 		const out = [];
 
 		for (const [attr, val] of Object.entries(data.modifiers.attributes)) {
