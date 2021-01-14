@@ -11,7 +11,8 @@
 
 // Imports Modules.
 import { T2K4E } from './module/config.js';
-import { preloadHandlebarsTemplates } from './module/templates.js';
+import { preloadHandlebarsTemplates, registerHandlebars } from './module/templates.js';
+import { registerDice } from './module/dice.js';
 
 // Imports Entities.
 import ActorT2K from './module/actor/actor.js';
@@ -50,7 +51,7 @@ Hooks.once('init', function() {
 
 	// Patches Core functions.
 	CONFIG.Combat.initiative = {
-		formula: '1d10 + @attributes.agl.value / 100',
+		formula: '1d10 + (@attributes.agl.value / 100)',
 		decimals: 2
 	}
 
@@ -67,67 +68,8 @@ Hooks.once('init', function() {
 	Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
 
 	preloadHandlebarsTemplates();
-
-	/* -------------------------------------------- */
-	/*  HandlebarsJS Custom Helpers                 */
-	/* -------------------------------------------- */
-
-	Handlebars.registerHelper('concat', function() {
-		let str = '';
-		for (const arg in arguments) {
-			if (typeof arguments[arg] !== 'object') {
-				str += arguments[arg];
-			}
-		}
-		return str;
-	});
-	
-	Handlebars.registerHelper('toLowerCase', function(str) {
-		return str.toLowerCase();
-	});
-
-	Handlebars.registerHelper('times', function(n, content) {
-		let str = '';
-		for (let i = 0; i < n; i++) {
-			content.data.max = n;
-			content.data.index = i + 1;
-			str += content.fn(i);
-		}
-		return str;
-	});
-
-	Handlebars.registerHelper('add', function(a, b) {
-		return a + b;
-	});
-
-	Handlebars.registerHelper('divide', function(a, b) {
-		return a / b;
-	});
-
-	Handlebars.registerHelper('multiply', function(a, b) {
-		return a * b;
-	});
-
-	Handlebars.registerHelper('ratio', function(a, b) {
-		return (a / b) * 100;
-	});
-
-	/**
-	 * Templates for a die Score selector.
-	 * Parameters:
-	 * * `name` - The name of the affected variable.
-	 * * `selected` - The current selected value.
-	 */
-	Handlebars.registerPartial(
-		'scoreSelector',
-		`<select name="{{name}}" class="score-selector">
-			{{#select selected}}
-			{{#each @root.config.dieScores}}
-			<option value="{{.}}">{{.}}</option>
-			{{/each}}
-			{{/select}}
-		</select>`
-	);
+	registerHandlebars();
+	registerDice();
 });
 
 Hooks.once('ready', function() {

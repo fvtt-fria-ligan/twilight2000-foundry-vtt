@@ -32,3 +32,69 @@ export const preloadHandlebarsTemplates = async function() {
 		'systems/t2k4e/templates/chat/weapon-chat.hbs',
 	]);
 }
+
+/**
+ * Defines Handlebars custom Helpers and Partials.
+ */
+export function registerHandlebars() {
+	/* -------------------------------------------- */
+	/*  HandlebarsJS Custom Helpers                 */
+	/* -------------------------------------------- */
+
+	Handlebars.registerHelper('concat', function() {
+		let str = '';
+		for (const arg in arguments) {
+			if (typeof arguments[arg] !== 'object') {
+				str += arguments[arg];
+			}
+		}
+		return str;
+	});
+	
+	Handlebars.registerHelper('toLowerCase', function(str) {
+		return str.toLowerCase();
+	});
+
+	Handlebars.registerHelper('times', function(n, content) {
+		let str = '';
+		for (let i = 0; i < n; i++) {
+			content.data.max = n;
+			content.data.index = i + 1;
+			str += content.fn(i);
+		}
+		return str;
+	});
+
+	Handlebars.registerHelper('add', function(a, b) {
+		return a + b;
+	});
+
+	Handlebars.registerHelper('divide', function(a, b) {
+		return a / b;
+	});
+
+	Handlebars.registerHelper('multiply', function(a, b) {
+		return a * b;
+	});
+
+	Handlebars.registerHelper('ratio', function(a, b) {
+		return (a / b) * 100;
+	});
+
+	/**
+	 * Templates for a die Score selector.
+	 * Parameters:
+	 * * `name` - The name of the affected variable.
+	 * * `selected` - The current selected value.
+	 */
+	Handlebars.registerPartial(
+		'scoreSelector',
+		`<select name="{{name}}" class="score-selector">
+			{{#select selected}}
+			{{#each @root.config.dieScores}}
+			<option value="{{.}}">{{.}}</option>
+			{{/each}}
+			{{/select}}
+		</select>`
+	);
+}

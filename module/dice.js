@@ -36,27 +36,29 @@ export async function TwilightRoll(
 	console.warn(roll);
 	console.warn('toPhrase:', roll.toPhrase());
 	console.warn('toValues:', roll.toValues());
-	console.error(JSON.stringify(roll));
+	console.warn(JSON.stringify(roll));
+
+	roll.send();
 
 	// Creates
-	const rollFormula = roll.toPhrase();
-	const rollData = {
-		...actorData,
-		title: roll.name,
-		yzroll: JSON.stringify(roll),
-	};
+	// const rollFormula = roll.toPhrase();
+	// const rollData = {
+	// 	...actorData,
+	// 	title: roll.name,
+	// 	yzroll: JSON.stringify(roll),
+	// };
 
-	const rollResult = new Roll(rollFormula, rollData).roll();
-	const messageTemplate = 'systems/t2k4e/templates/chat/roll.hbs';
-	const renderedRoll = await rollResult.render({ template: messageTemplate });
-	const messageData = {
-		speaker: ChatMessage.getSpeaker(),
-		content: renderedRoll,
-		yzroll: JSON.stringify(roll),
-	};
+	// const rollResult = new Roll(rollFormula, rollData).roll();
+	// const messageTemplate = 'systems/t2k4e/templates/chat/roll.hbs';
+	// const renderedRoll = await rollResult.render({ template: messageTemplate });
+	// const messageData = {
+	// 	speaker: ChatMessage.getSpeaker(),
+	// 	content: renderedRoll,
+	// 	roll: JSON.stringify(roll),
+	// };
 
-	rollResult.toMessage(messageData);
-	console.warn(rollResult);
+	// rollResult.toMessage(messageData);
+	// console.warn(rollResult);
 }
 
 /**
@@ -72,4 +74,62 @@ export function getDieSize(score) {
 	if (size == undefined) throw new RangeError(`Die Size Not Found! Score: "${score}"`);
 
 	return size;
+}
+
+export function registerDice() {
+	CONFIG.Dice.terms.a = BaseDieD12;
+	CONFIG.Dice.terms.b = BaseDieD10;
+	CONFIG.Dice.terms.c = BaseDieD8;
+	CONFIG.Dice.terms.d = BaseDieD6;
+	CONFIG.Dice.terms['12'] = BaseDieD12;
+	CONFIG.Dice.terms['10'] = BaseDieD10;
+	CONFIG.Dice.terms['8'] = BaseDieD8;
+	CONFIG.Dice.terms['6'] = BaseDieD6;
+	CONFIG.Dice.terms.m = AmmoDie;
+}
+
+export class BaseDieD12 extends Die {
+	constructor(termData) {
+		termData.faces = 12;
+		super(termData);
+	}
+	static DENOMINATION = 'a';
+}
+
+export class BaseDieD10 extends Die {
+	constructor(termData) {
+		termData.faces = 10;
+		super(termData);
+	}
+	static DENOMINATION = 'b';
+}
+
+export class BaseDieD8 extends Die {
+	constructor(termData) {
+		termData.faces = 8;
+		super(termData);
+	}
+	static DENOMINATION = 'c';
+}
+
+export class BaseDieD6 extends Die {
+	constructor(termData) {
+		termData.faces = 6;
+		super(termData);
+	}
+	static DENOMINATION = 'd';
+}
+
+export class AmmoDie extends Die {
+	constructor(termData) {
+		termData.faces = 6;
+		super(termData);
+	}
+	static DENOMINATION = 'm';
+	static MODIFIERS = {
+		'p': 'push',
+	};
+	push() {
+		console.error('pushed');
+	}
 }
