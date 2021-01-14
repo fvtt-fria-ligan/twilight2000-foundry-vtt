@@ -142,12 +142,20 @@
 			}
 		},
 		"npc": {
-			"templates": ["actorDescription", "actorAttributesAndSkills", "actorActions"],
-			"damage": 0
+			"templates": [
+				"actorDescription",
+				"actorAttributesAndSkills",
+				"actorCombat",
+				"actorActions"
+			]
 		},
 		"animal": {
-			"templates": ["actorDescription", "actorAttributesAndSkills", "actorActions"],
-			"damage": 0,
+			"templates": [
+				"actorDescription",
+				"actorAttributesAndSkills",
+				"actorCombat",
+				"actorActions"
+			],
 			"attack": {
 				"name": "",
 				"damage": 0,

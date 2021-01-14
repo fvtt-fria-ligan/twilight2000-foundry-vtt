@@ -4,6 +4,7 @@
 	margin: 0;
 	padding: 0;
 	overflow-y: auto;
+	height: 100%;
 
 	.items-header {
 		align-items: flex-end;
@@ -37,13 +38,17 @@
 			&:hover {
 				background-color: @colorBeige;
 			}
+
+			.item-name img,
+			.item-name > div {
+				cursor: pointer;
+			}
 		}
 	}
 
 	/* ------------------------------------------- */
 
 	.item-name {
-		cursor: pointer;
 		flex: 2;
 		margin: 0;
 		overflow: hidden;
@@ -82,20 +87,22 @@
 	/* ------------------------------------------- */
 
 	.item-cover {
-		flex: 0 0 100px;
+		flex: 0 0 70px;
 		text-align: right;
-		padding-right: @itemGap;
-		
-		h5 {
-			border-left: 0 none !important;
-		}
+		padding-right: 2 * @itemGap;
+		font-size: .7rem;
 	}
 
 	.item-quantity {
-		flex: 0 0 60px;
+		flex: 0 0 70px;
 	}
 
-	.ammo-list {
-		padding: 2px @itemGap;
+	.inventory-ammo .item-quantity {
+		text-align: right;
+		padding-right: 2 * @itemGap;
 	}
+
+	// .ammo-list {
+	// 	padding: 2px @itemGap;
+	// }
 }

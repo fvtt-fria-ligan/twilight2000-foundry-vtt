@@ -1,4 +1,5 @@
 import { getDieSize } from '../dice.js';
+import { clamp } from '../utils.js';
 
 /**
  * Twilight 2000 Actor.
@@ -123,20 +124,15 @@ export default class ActorT2K extends Actor {
 		const value = (
 			items
 				.filter(i => i.type !== 'specialty')
-				.reduce((sum, i) => {
-					if (i.type === 'ammunition' && !i.data.props.magazine) {
-						return sum + (i.data.qty * i.data.ammo.value * i.data.weight);
-					}
-					return sum + (i.data.qty * i.data.weight);
-				}, 0)
+				.reduce((sum, i) => sum + i.data.encumbrance, 0)
 			) || 0;
 
 		data.encumbrance = {
 			value,
-			max: data.attributes.str.value
+			max: data.attributes.str.value,
+			pct: clamp((value / data.attributes.str.value) * 100, 0, 100),
+			encumbered: value > data.attributes.str.value
 		};
-
-		data.overEncumbered = data.encumbrance.value > data.encumbrance.max;
 	}
 
 	/**

@@ -14,11 +14,30 @@ export default class ItemT2K extends Item {
 		const actorData = this.actor ? this.actor.data : {};
 		const data = itemData.data;
 
+		this._prepareEncumbrance(this.type, data);
 		this._prepareModifiers(data);
 
 		// switch (this.type) {
-		// 	case 'specialty': break;
+		// 	case 'ammunition': 
 		// }
+	}
+
+	/**
+	 * Calculates a custom encumbrance for Ammunition items.
+	 * @param {string} type Item type.
+	 * @param {Object} data item.data.data.
+	 */
+	_prepareEncumbrance(type, data) {
+		let weight = 0;
+		if (type === 'ammunition' && !data.props.magazine) {
+			weight = data.qty * data.weight * data.ammo.value;
+		}
+		else {
+			weight = data.qty * data.weight;
+		}
+		
+		if (!weight) data.encumbrance = 0;
+		else data.encumbrance = weight;
 	}
 
 	/**

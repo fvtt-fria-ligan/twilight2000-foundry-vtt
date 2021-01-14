@@ -12,7 +12,7 @@
         {{/each}}
     </div>
     <div class="item-detail item-rating">{{armor.data.rating.value}}/{{armor.data.rating.max}}</div>
-    <div class="item-detail item-weight">{{armor.data.weight}}</div>
+    <div class="item-detail item-weight" title="{{localize "T2KLANG.ItemSheet.Quantity"}}: {{armor.data.qty}}">{{armor.data.encumbrance}}</div>
 
     <div class="item-controls">
         {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}

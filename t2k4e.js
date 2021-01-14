@@ -89,10 +89,27 @@ Hooks.once('init', function() {
 	Handlebars.registerHelper('times', function(n, content) {
 		let str = '';
 		for (let i = 0; i < n; i++) {
+			content.data.max = n;
 			content.data.index = i + 1;
 			str += content.fn(i);
 		}
 		return str;
+	});
+
+	Handlebars.registerHelper('add', function(a, b) {
+		return a + b;
+	});
+
+	Handlebars.registerHelper('divide', function(a, b) {
+		return a / b;
+	});
+
+	Handlebars.registerHelper('multiply', function(a, b) {
+		return a * b;
+	});
+
+	Handlebars.registerHelper('ratio', function(a, b) {
+		return (a / b) * 100;
 	});
 
 	/**

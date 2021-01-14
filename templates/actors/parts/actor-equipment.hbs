@@ -1,16 +1,6 @@
-<div class="encumbrance {{#if data.overEncumbered}}overencumbered{{/if}}">
-    {{#if data.overEncumbered}}
-        {{localize "T2KLANG.ActorSheet.EncumbranceTooHeavy"}}
-        {{#times 3}}&nbsp;<i class="fas fa-weight-hanging"></i>{{/times}}
-    {{else}}
-        <i class="fas fa-weight-hanging"></i>
-    {{/if}}
-    {{data.encumbrance.value}}&nbsp;/&nbsp;{{data.encumbrance.max}}
-</div>
-
 <div class="inventory">
 
-    {{!-- Weapons --}}
+    {{!-- Weapons & Grenades --}}
     <div class="inventory-weapons">
         <div class="items-header flexrow">
             <div class="item-name">
@@ -123,13 +113,19 @@
             <div class="item-name">
                 <h2>{{localize "T2KLANG.ItemTypes.ammunition"}}</h2>
             </div>
+            <div class="item-detail item-quantity">
+                <h5>{{localize "T2KLANG.ItemSheet.Quantity"}}</h5>
+            </div>
+            <div class="item-detail item-weight">
+                <h5>{{localize "T2KLANG.ItemSheet.Weight"}}</h5>
+            </div>
             <div class="item-controls">
                 <a class="button item-create" data-type="ammunition" title="{{localize "T2KLANG.ActorSheet.AddAmmo"}}">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
         </div>
-        <div class="ammo-list flexrow">
+        <div class="items-list">
             {{#each ammunitions}}
             {{> "systems/t2k4e/templates/actors/parts/slots/ammo-slot.hbs" ammo=.}}
             {{/each}}
@@ -137,3 +133,24 @@
     </div>
 
 </div>
+
+{{!-- ENCUMBRANCE --}}
+<div class="encumbrance{{#if data.encumbrance.encumbered}} encumbered{{/if}}">
+    <span class="encumbrance-bar" style="width: {{data.encumbrance.pct}}%;"></span>
+    <span class="encumbrance-label">
+        {{#if (eq data.encumbrance.value data.encumbrance.max)}}
+        {{localize "T2KLANG.ActorSheet.EncumbranceFull"}}&nbsp;—&nbsp;
+        {{/if}}
+        {{#if data.encumbrance.encumbered}}
+        {{localize "T2KLANG.ActorSheet.EncumbranceTooHeavy"}}&nbsp;—&nbsp;
+        {{/if}}
+        {{data.encumbrance.value}}&nbsp;/&nbsp;{{data.encumbrance.max}}
+    </span>
+    {{#times data.encumbrance.max}}
+    {{#if (lte @index (add @max -1))}}
+    <i class="encumbrance-breakpoint arrow-down" style="left: {{ratio @index @max}}%"></i>
+    <i class="encumbrance-breakpoint arrow-up" style="left: {{ratio @index @max}}%"></i>
+    {{/if}}
+    {{/times}}
+</div>
+

@@ -12,7 +12,7 @@
     <div class="item-detail item-mag" title="{{weapon.data.mag.value}}/{{weapon.data.mag.max}}">{{weapon.data.mag.value}}</div>
     <div class="item-detail item-reliability" title="{{weapon.data.reliability.score}}/{{weapon.data.reliability.max}}">{{weapon.data.reliability.score}}</div>
     <div class="item-detail item-blast">{{weapon.data.blast}}</div>
-    <div class="item-detail item-weight">{{weapon.data.weight}}</div>
+    <div class="item-detail item-weight" title="{{localize "T2KLANG.ItemSheet.Quantity"}}: {{weapon.data.qty}}">{{weapon.data.encumbrance}}</div>
 
     <div class="item-controls">
         {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}

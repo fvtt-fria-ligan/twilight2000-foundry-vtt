@@ -1,12 +1,10 @@
-.t2k4e .encumbrance {
-	text-align: right;
-	margin-bottom: @gap;
-	padding: 2px 4px;
+@encumbranceBarHeight: 16px;
 
-/*	flex: 0 0 12px;
-	background: #7a7971;
-	margin: 1px 15px 0 1px;
-	border: 1px solid #191813;
+.t2k4e.sheet.actor .encumbrance {
+	flex: 0 0 @encumbranceBarHeight;
+	background: @colorLightBrown;
+	margin: 1px 6px 0 4px;
+	border: 1px solid @colorDark;
 	border-radius: 3px;
 	position: relative;
 
@@ -15,26 +13,58 @@
 		top: 1px;
 		left: 1px;
 		background: #6c8aa5;
-		height: 8px;
-		border: 1px solid #cde4ff;
+		height: @encumbranceBarHeight - 4px;
+		border: 1px solid @colorBeige;
 		border-radius: 2px;
 	}
 
 	.encumbrance-label {
-		height: 10px;
+		height: @encumbranceBarHeight - 2px;
 		padding: 0 5px;
 		position: absolute;
 		top: 0;
 		right: 0;
-		font-size: 13px;
-		line-height: 12px;
+		font-size: @encumbranceBarHeight;
+		line-height: @encumbranceBarHeight - 1px;
 		text-align: right;
-		color: #EEE;
+		color: @colorBeige;
 		text-shadow: 0 0 5px #000;
 	}
-//*/
-	&.overencumbered {
-		color: @colorBeige;
-		background-color: @colorRed;
+
+	.encumbrance-breakpoint {
+		display: block;
+		position: absolute;
+
+		&.encumbrance-33 {
+			left: 33%;
+		}
+		&.encumbrance-66 {
+			left: 66%;
+		}
+	}
+
+	.arrow-up {
+		bottom: 0;
+		width: 0;
+		height: 0;
+		border-left: 4px solid transparent;
+		border-right: 4px solid transparent;
+		border-bottom: 4px solid @colorBrown;
+	}
+
+	.arrow-down {
+		top: 0;
+		width: 0;
+		height: 0;
+		border-left: 4px solid transparent;
+		border-right: 4px solid transparent;
+		border-top: 4px solid @colorBrown;
+	}
+
+	&.encumbered {
+		.encumbrance-bar {
+			background: @colorRed;
+			border-color: lighten(@colorRed, 33%);
+		}
 	}
 }
