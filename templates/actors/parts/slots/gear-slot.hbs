@@ -1,8 +1,8 @@
 <div class="item item-gear flexrow" data-item-id={{gear._id}}>
 
     <div class="item-name flexrow">
-        <img src="{{gear.img}}" title="{{gear.name}}" width="24" height="24"/>
-        <div>{{gear.name}}</div>
+        <img class="item-roll" src="{{gear.img}}" title="{{gear.name}}" width="24" height="24"/>
+        <a class="item-roll">{{gear.name}}</a>
     </div>
     <div class="item-detail item-quantity">{{gear.data.qty}}</div>
     <div class="item-detail item-weight">{{gear.data.encumbrance}}</div>

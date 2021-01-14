@@ -1,4 +1,5 @@
 import { clamp } from '../../utils.js';
+import * as YZDIce from '../../dice.js';
 
 /**
  * Twilight 2000 Actor Sheet.
@@ -20,7 +21,7 @@ export default class ActorSheetT2K extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'equipment'}]
+			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main'}]
 		});
 	}
 
@@ -93,6 +94,28 @@ export default class ActorSheetT2K extends ActorSheet {
 		html.find('.boxes-capacity').on('click contextmenu', this._onCapacityChange.bind(this));
 		html.find('.capacity-increase').click(this._onCapacityIncrease.bind(this));
 		html.find('.capacity-decrease').click(this._onCapacityDecrease.bind(this));
+
+		// Owner-only listeners.
+		if (this.actor.owner) {
+			html.find('.skill-roll').click(this._onSkillRoll.bind(this));
+			html.find('.item-roll').click(this._onItemRoll.bind(this));
+		}
+	}
+
+	_onSkillRoll(event) {
+		event.preventDefault();
+		const skillName = event.currentTarget.dataset.skill;
+		const attributeName = CONFIG.T2K4E.skillsMap[skillName];
+		const skill = this.actor.data.data.skills[skillName].value;
+		const attribute = this.actor.data.data.attributes[attributeName].value;
+		YZDIce.TwilightRoll({ attribute, skill });
+	}
+
+	_onItemRoll(event) {
+		event.preventDefault();
+		const itemId = event.currentTarget.closest('.item').dataset.itemId;
+		const item = this.actor.getOwnedItem(itemId);
+		item.roll();
 	}
 
 	_onItemCreate(event) {

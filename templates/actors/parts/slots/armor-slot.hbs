@@ -1,8 +1,8 @@
 <div class="item item-armor flexrow" data-item-id={{armor._id}} draggable="true">
 
     <div class="item-name flexrow">
-        <img src="{{armor.img}}" title="{{armor.name}}" width="24" height="24"/>
-        <div>{{armor.name}}</div>
+        <img class="item-roll" src="{{armor.img}}" title="{{armor.name}}" width="24" height="24"/>
+        <a class="item-roll">{{armor.name}}</a>
     </div>
     <div class="item-detail item-cover">
         {{#each armor.data.location as | bool name |}}

@@ -6,6 +6,7 @@
 export const preloadHandlebarsTemplates = async function() {
 	return loadTemplates([
 		// Shared Partial
+		'templates/dice/roll.html',
 
 		// Actor Sheet Partial
 		'systems/t2k4e/templates/actors/parts/actor-stats.hbs',
@@ -24,6 +25,10 @@ export const preloadHandlebarsTemplates = async function() {
 		// Item Sheet Partial
 		'systems/t2k4e/templates/items/parts/item-header.hbs',
 		'systems/t2k4e/templates/items/parts/item-modifiers.hbs',
-		'systems/t2k4e/templates/items/parts/item-description.hbs'
+		'systems/t2k4e/templates/items/parts/item-description.hbs',
+		
+		// Chat Partials
+		'systems/t2k4e/templates/chat/roll.hbs',
+		'systems/t2k4e/templates/chat/weapon-chat.hbs',
 	]);
 }

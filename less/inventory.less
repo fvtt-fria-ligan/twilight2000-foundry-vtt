@@ -39,9 +39,17 @@
 				background-color: @colorBeige;
 			}
 
-			.item-name img,
-			.item-name > div {
+			.item-name > img {
 				cursor: pointer;
+			}
+
+			.item-name > a {
+				// flex: 0;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: min-content;
+				min-height: 100%;
 			}
 		}
 	}

@@ -1,0 +1,16 @@
+<div class="chat-card weapon" data-item-id="{{_id}}" data-owner-id="{{owner}}">
+    <div class="description">
+        <h2>{{name}}</h2>
+    </div>
+
+    <div class="card-content">
+        {{{data.description}}}
+    </div>
+
+    <div class="card-buttons">
+        <button class="weapon-attack">{{localize "T2KLANG.Chat.Actions.Attack"}}</button>
+        {{#if data.mag.max}}
+        <button class="weapon-reload">{{localize "T2KLANG.Chat.Actions.Reload"}}</button>
+        {{/if}}
+    </div>
+</div>

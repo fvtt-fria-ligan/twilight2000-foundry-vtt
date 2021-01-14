@@ -1,6 +1,9 @@
 <h1 align="center"><b>Twilight: 2000</b><br/>4<sup>th</sup> Edition<br/><small>🎲 <i>Foundry VTT</i> 🎲</small></h1>
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000"/>
+  <a href="https://foundryvtt.com" target="_blank">
+    <img src="https://camo.githubusercontent.com/33b200c1560ed35beb3218d019cfb8b4021ec36397521103c02292ac38bb2e7a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f466f756e6472792d76302e372e382d696e666f726d6174696f6e616c" alt="foundry-shield-078" data-canonical-src="https://img.shields.io/badge/Foundry-v0.7.8-informational" style="max-width:100%;"/>
+  </a>
   <a href="https://github.com/Stefouch/t2k4e/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"/>
   </a>
@@ -37,6 +40,14 @@ Your language isn't listed? Think about contributing and help translate this sys
 *Nihil*
 
 # Planned Features
+- Animal (NPC) Sheet
+- Weapon ammo consumption, reload, etc.
+- More automation
+- Vehicle Sheet
+- Backpack
+- Crits (if able)
+- Dice So Nice support
+- Party Sheet (for travel)
 
 # Author
 

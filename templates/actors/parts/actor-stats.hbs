@@ -2,7 +2,7 @@
 <h2>{{localize "T2KLANG.ActorSheet.AttributesAndSkills"}}</h2>
 
 <div class="stats-list flexrow">
-    {{#each data.attributes as |attribute attr|}}
+    {{#each data.attributes as | attribute attr |}}
     <div class="stat-block stat-block-{{attr}}">
         <div class="stat-header flexrow">
             <div class="col-6"></div>
@@ -28,11 +28,11 @@
             </div>
         </div>
         {{!-- All skills for an attribute --}}
-        {{#each @root.data.skills as |skill sk|}}
+        {{#each @root.data.skills as | skill sk |}}
             {{#if (eq attr (lookup @root.config.skillsMap sk))}}
             <div class="stat stat-skill skill-{{sk}} flexrow">
                 <div class="col-6 stat-name">
-                    <h4>{{localize (concat "T2KLANG.SkillNames." sk)}}</h4>
+                    <h4><a class="button skill-roll" data-skill="{{sk}}">{{localize (concat "T2KLANG.SkillNames." sk)}}</a></h4>
                 </div>
                 <div class="col-3 stat-score">
                     {{> scoreSelector name=(concat "data.skills." sk ".score") selected=skill.score}}
@@ -59,7 +59,7 @@
 </div>
 
 <div class="specialties-slots">
-    {{#each specialties as |specialty id|}}
+    {{#each specialties as | specialty id |}}
     <div class="item item-slot slot-specialty flexrow" data-item-id={{specialty._id}}>
         <div>
             {{#if specialty.data.description}}

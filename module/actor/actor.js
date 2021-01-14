@@ -79,6 +79,8 @@ export default class ActorT2K extends Actor {
 	 * @private
 	 */
 	_prepareCapacities(data) {
+		// Capacities are done like this because we want
+		// a Health bar for tokens.
 		data.health.max = this._getHitCapacity(data) + data.health.modifier;
 		data.health.trauma = data.health.max - data.health.value;
 		data.hitCapacity = data.health.max;

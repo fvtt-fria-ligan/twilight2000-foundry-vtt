@@ -145,6 +145,12 @@
 			"Weight": "Weight",
 			"Price": "Price",
 			"ArmorLocation": "Protected Location"
+		},
+		"Chat": {
+			"Actions": {
+				"Attack": "Attack",
+				"Reload": "Reload"
+			}
 		}
 	}
 }

@@ -1,8 +1,8 @@
 <div class="item item-ammo flexrow" data-item-id={{ammo._id}}>
 
     <div class="item-name flexrow">
-        <img src="{{ammo.img}}" title="{{ammo.name}}" width="24" height="24"/>
-        <div title="{{ammo.data.itemType}}">{{ammo.name}}</div>
+        <img class="item-roll" src="{{ammo.img}}" title="{{ammo.name}}" width="24" height="24"/>
+        <a class="item-roll" title="{{ammo.data.itemType}}">{{ammo.name}}</a>
     </div>
     <div class="item-detail item-quantity">{{ammo.data.qty}}&times;&nbsp;{{ammo.data.ammo.value}}/{{ammo.data.ammo.max}}</div>
     <div class="item-detail item-weight">{{ammo.data.encumbrance}}</div>

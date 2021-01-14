@@ -3,6 +3,29 @@
  * @extends {Item} Extends the basic Item.
  */
 export default class ItemT2K extends Item {
+
+	chatTemplate = {
+		'weapon': 'systems/t2k4e/templates/chat/weapon-chat.hbs',
+		'grenade': 'systems/t2k4e/templates/chat/weapon-chat.hbs',
+	};
+
+	async roll() {
+		const chatData = {
+			user: game.user._id,
+			speaker: ChatMessage.getSpeaker()
+		};
+
+		const cardData = {
+			...this.data,
+			owner: this.actor.id
+		};
+
+		chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
+		chatData.roll = true;
+
+		return ChatMessage.create(chatData);
+	}
+
 	/**
 	 * Augments the basic Item data model with additional dynamic data.
 	 * @override
