@@ -1,5 +1,5 @@
 import { clamp } from '../../utils.js';
-import * as YZDice from '../../dice.js';
+import * as Dice from '../../dice.js';
 
 /**
  * Twilight 2000 Actor Sheet.
@@ -21,7 +21,7 @@ export default class ActorSheetT2K extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main'}]
+			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'equipment'}]
 		});
 	}
 
@@ -111,17 +111,14 @@ export default class ActorSheetT2K extends ActorSheet {
 		const attributeName = event.currentTarget.dataset.attribute;
 		const attribute = this.actor.data.data.attributes[attributeName].value;
 		const name = game.i18n.localize(CONFIG.T2K4E.attributes[attributeName]);
-		YZDice.RollTwilight({ name, attribute });
+		return Dice.TaskCheck({ name, attribute, actor: this.actor });
 	}
 
 	_onSkillRoll(event) {
 		event.preventDefault();
 		const skillName = event.currentTarget.dataset.skill;
-		const attributeName = CONFIG.T2K4E.skillsMap[skillName];
-		const skill = this.actor.data.data.skills[skillName].value;
-		const attribute = this.actor.data.data.attributes[attributeName].value;
-		const name = game.i18n.localize(CONFIG.T2K4E.skills[skillName]);
-		YZDice.RollTwilight({ name, attribute, skill });
+		const statData = Dice.getAttributeAndSkill(skillName, this.actor.data.data);
+		return Dice.TaskCheck({ ...statData, actor: this.actor });
 	}
 
 	_onMoraleRoll(event, type) {
@@ -136,14 +133,14 @@ export default class ActorSheetT2K extends ActorSheet {
 			value = this.actor.data.data.unitMorale.value;
 			name = game.i18n.localize('T2KLANG.ActorSheet.UnitMorale');
 		}
-		YZDice.RollTwilight({ name, attribute: value });
+		return Dice.TaskCheck({ name, attribute: value, actor: this.actor });
 	}
 
 	_onItemRoll(event) {
 		event.preventDefault();
 		const itemId = event.currentTarget.closest('.item').dataset.itemId;
 		const item = this.actor.getOwnedItem(itemId);
-		item.roll();
+		return item.roll();
 	}
 
 	_onItemCreate(event) {

@@ -128,6 +128,8 @@
         <div class="items-list">
             {{#each ammunitions}}
             {{> "systems/t2k4e/templates/actors/parts/slots/ammo-slot.hbs" this}}
+            {{else}}
+            <div class="item">–</div>
             {{/each}}
         </div>
     </div>

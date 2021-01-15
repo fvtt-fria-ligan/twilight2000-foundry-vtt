@@ -1,29 +1,81 @@
+import { TaskCheck } from "../dice.js";
+
 /**
  * Twilight 2000 Item.
- * @extends {Item} Extends the basic Item.
+ * @extends {Item} Extends the basic Item
  */
 export default class ItemT2K extends Item {
 
 	chatTemplate = {
 		'weapon': 'systems/t2k4e/templates/chat/weapon-chat.hbs',
 		'grenade': 'systems/t2k4e/templates/chat/weapon-chat.hbs',
+		'armor': 'systems/t2k4e/templates/chat/armor-chat.hbs',
+		'gear': 'systems/t2k4e/templates/chat/gear-chat.hbs',
+		'ammunition': 'systems/t2k4e/templates/chat/gear-chat.hbs',
 	};
 
 	async roll() {
 		const chatData = {
 			user: game.user._id,
-			speaker: ChatMessage.getSpeaker()
+			speaker: ChatMessage.getSpeaker(),
 		};
 
 		const cardData = {
 			...this.data,
-			owner: this.actor.id
+			owner: this.actor.id,
 		};
 
 		chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
 		chatData.roll = true;
 
 		return ChatMessage.create(chatData);
+	}
+
+	/**
+	 * Reloads a weapon.
+	 * @async
+	 */
+	async reload() {
+		TaskCheck({
+			name: 'Reload',
+			attribute: this.actor?.data.data.attributes.agl.value,
+			skill: this.actor?.data.data.skills.rangedCombat.value,
+		});
+		console.warn('t2k4e | RELOAD => Function not implemented yet! — Planned for a future release.');
+		return;
+		if (this.type !== 'weapon') return;
+		if (!this.actor) return;
+
+		const actorData = this.actor ? this.actor.data : {};
+
+		const itemData = this.data;
+		const data = itemData.data;
+
+		// We don't need to reload the weapon if it's already full.
+		if (data.mag?.value === data.mag?.max) {
+		}
+
+		let ammoMissing = data.mag.max - data.mag.value;
+
+		while (ammoMissing > 0) {
+			// Filters all magazines in the actor's inventory.
+			const ammunitions = this.actor.items.filter(i => i.type === 'ammunition');
+
+			// If it's empty, we cannot reload the weapon.
+			if (ammunitions.length <= 0) {
+			}
+
+			// Filters the right ammo type.
+			const ammoType = this.ammo;
+			const munitions = ammunitions.filter(i => i.data.itemType === ammoType);
+
+			// If it's empty, we cannot -again- reload the weapon, obviously.
+			if (munitions.length <= 0) {
+			}
+
+			// Gets the first corresponding.
+			const ammo = munitions[0];
+		}
 	}
 
 	/**

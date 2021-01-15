@@ -1,5 +1,17 @@
-<div class="chat-card roll" data-owner-id="{{owner}}">
-    {{> "templates/dice/roll.html"}}
+<div class="t2k4e chat-card roll-card" data-owner-id="{{owner}}">
     <div class="card-content">
-        Hello
+
+        <h2>{{yzroll.name}}</h2>
+        {{{roll}}}
+
+        <div class="card-description">
+        </div>
+
+        <div class="card-buttons">
+            {{#if yzroll.pushable}}
+            <button class="roll-push" data-roll-id="{{yzroll._id}}">{{localize "T2KLANG.Chat.Actions.Push"}}</button>
+            {{/if}}
+        </div>
+
     </div>
+</div>

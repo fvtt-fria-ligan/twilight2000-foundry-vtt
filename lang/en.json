@@ -151,6 +151,9 @@
 				"Attack": "Attack",
 				"Reload": "Reload",
 				"Push": "Push"
+			},
+			"Attack": {
+				"Title": "Attack ({weapon})"
 			}
 		}
 	},

@@ -22,3 +22,11 @@ export function rand(min, max) {
 export function clamp(input, min, max) {
 	return Math.min(Math.max(input, min || 0), undefined === max ? 1 : max);
 }
+
+/**
+ * Generates a string of random alphanumeric characters.
+ * @param {number} [length=4] Number of characters to return
+ */
+export function randomID(length = 4) {
+	return Math.random().toString(36).substr(2, (length || 4) + 2);
+}

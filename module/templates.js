@@ -28,8 +28,9 @@ export const preloadHandlebarsTemplates = async function() {
 		'systems/t2k4e/templates/items/parts/item-description.hbs',
 		
 		// Chat Partials
-		'systems/t2k4e/templates/chat/roll.hbs',
-		'systems/t2k4e/templates/chat/weapon-chat.hbs',
+		// 'systems/t2k4e/templates/chat/roll.hbs',
+		// 'systems/t2k4e/templates/chat/weapon-chat.hbs',
+		// 'systems/t2k4e/templates/chat/armor-chat.hbs',
 	]);
 }
 

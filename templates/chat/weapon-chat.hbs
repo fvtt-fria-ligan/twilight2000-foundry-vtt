@@ -1,14 +1,17 @@
 <div class="t2k4e chat-card weapon" data-item-id="{{_id}}" data-owner-id="{{owner}}">
     <div class="card-content">
+
         <div class="card-name">
             <h2>{{name}}</h2>
         </div>
+
         <div class="card-image">
             <img src="{{img}}" alt="{{name}}"/>
         </div>
+
         <div class="card-description">
             {{{data.description}}}
-            <h4>{{localize "T2KLANG.ItemSheet.FeaturesTab"}}</h4>
+            {{!-- <h4>{{localize "T2KLANG.ItemSheet.FeaturesTab"}}</h4> --}}
             <div class="grid grid-3col">
                 {{#if data.rof}}
                 <div><b>{{localize "T2KLANG.ItemSheet.RoF"}}:</b> <code>{{data.rof}}</code></div>
@@ -28,8 +31,9 @@
         <div class="card-buttons">
             <button class="weapon-attack"><i class="fas fa-crosshairs"></i> {{localize "T2KLANG.Chat.Actions.Attack"}}</button>
             {{#if data.mag.max}}
-            <button class="weapon-reload"><i class="fas fa-sync-alt"></i> {{localize "T2KLANG.Chat.Actions.Reload"}}</button>
+            <button class="weapon-reload"{{#if (eq data.mag.value data.mag.max)}} disabled{{/if}}><i class="fas fa-sync-alt"></i> {{localize "T2KLANG.Chat.Actions.Reload"}}</button>
             {{/if}}
         </div>
+
     </div>
 </div>

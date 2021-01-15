@@ -46,7 +46,7 @@ Hooks.once('init', function() {
 	};
 
 	// Records configuration values.
-	// CONFIG.debug.hooks = true;
+	CONFIG.debug.hooks = true;
 	CONFIG.T2K4E = T2K4E;
 	CONFIG.Actor.entityClass = ActorT2K;
 	CONFIG.Item.entityClass = ItemT2K;
@@ -92,3 +92,4 @@ Hooks.once('ready', function() {
 });
 
 Hooks.on('renderChatLog', (app, html, data) => Chat.addChatListeners(html));
+Hooks.on('getChatLogEntryContext', Chat.addChatMessageContextOptions);
