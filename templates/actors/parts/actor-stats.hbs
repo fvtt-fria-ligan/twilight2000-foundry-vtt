@@ -15,7 +15,7 @@
         </div>
         <div class="stat stat-attribute attribute-{{attr}} flexrow">
             <div class="col-6 stat-name">
-                <h3>{{localize (concat "T2KLANG.AttributeNames." attr)}}</h3>
+                <h3><a class="button attribute-roll" data-attribute="{{attr}}">{{localize (concat "T2KLANG.AttributeNames." attr)}}</a></h3>
             </div>
             <div class="col-3 stat-score">
                 {{> scoreSelector name=(concat "data.attributes." attr ".score") selected=attribute.score}}

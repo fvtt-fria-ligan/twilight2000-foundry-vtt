@@ -1,9 +1,9 @@
 import { clamp } from '../../utils.js';
-import * as YZDIce from '../../dice.js';
+import * as YZDice from '../../dice.js';
 
 /**
  * Twilight 2000 Actor Sheet.
- * @extends {ActorSheet} Extends the basic ActorSheet.
+ * @extends {ActorSheet} Extends the basic ActorSheet
  */
 export default class ActorSheetT2K extends ActorSheet {
 
@@ -97,9 +97,20 @@ export default class ActorSheetT2K extends ActorSheet {
 
 		// Owner-only listeners.
 		if (this.actor.owner) {
+			html.find('.attribute-roll').click(this._onAttributeRoll.bind(this));
 			html.find('.skill-roll').click(this._onSkillRoll.bind(this));
 			html.find('.item-roll').click(this._onItemRoll.bind(this));
+			html.find('.cuf-roll').click(this._onMoraleRoll.bind(this, event, 'cuf'));
+			html.find('.unit-morale-roll').click(this._onMoraleRoll.bind(this, event, 'unit-morale'));
 		}
+	}
+
+	_onAttributeRoll(event) {
+		event.preventDefault();
+		const attributeName = event.currentTarget.dataset.attribute;
+		const attribute = this.actor.data.data.attributes[attributeName].value;
+		const name = game.i18n.localize(CONFIG.T2K4E.attributes[attributeName]);
+		YZDice.RollTwilight({ name, attribute });
 	}
 
 	_onSkillRoll(event) {
@@ -108,7 +119,23 @@ export default class ActorSheetT2K extends ActorSheet {
 		const attributeName = CONFIG.T2K4E.skillsMap[skillName];
 		const skill = this.actor.data.data.skills[skillName].value;
 		const attribute = this.actor.data.data.attributes[attributeName].value;
-		YZDIce.TwilightRoll({ attribute, skill });
+		const name = game.i18n.localize(CONFIG.T2K4E.skills[skillName]);
+		YZDice.RollTwilight({ name, attribute, skill });
+	}
+
+	_onMoraleRoll(event, type) {
+		event.preventDefault();
+		let value = 0;
+		let name = '';
+		if (type === 'cuf') {
+			value = this.actor.data.data.cuf.value;
+			name = game.i18n.localize('T2KLANG.ActorSheet.CuF');
+		}
+		else {
+			value = this.actor.data.data.unitMorale.value;
+			name = game.i18n.localize('T2KLANG.ActorSheet.UnitMorale');
+		}
+		YZDice.RollTwilight({ name, attribute: value });
 	}
 
 	_onItemRoll(event) {
@@ -153,10 +180,7 @@ export default class ActorSheetT2K extends ActorSheet {
 		return this.actor.deleteOwnedItem(itemId);
 	}
 
-	/**
-	 * Left click: +1
-	 * Right click: -1
-	 */
+	/** Left-clic: +1, Right-clic: -1 */
 	_onValueChange(event) {
 		event.preventDefault();
 		const elem = event.currentTarget;
@@ -174,6 +198,7 @@ export default class ActorSheetT2K extends ActorSheet {
 		this.actor.update({ ['data.'+field]: newCount });
 	}
 
+	/** Left-clic: -1, Right-clic: +1 */
 	_onCapacityChange(event) {
 		event.preventDefault();
 		const elem = event.currentTarget;

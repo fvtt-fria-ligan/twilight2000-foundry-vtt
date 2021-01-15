@@ -149,8 +149,15 @@
 		"Chat": {
 			"Actions": {
 				"Attack": "Attack",
-				"Reload": "Reload"
+				"Reload": "Reload",
+				"Push": "Push"
 			}
+		}
+	},
+	"SETTINGS": {
+		"showTaskCheckOptions": {
+			"name": "Ask for Task Check options by default.",
+			"label": "Hold Shift to Toggle."
 		}
 	}
 }

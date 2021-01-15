@@ -11,7 +11,9 @@
 
 // Imports Modules.
 import { T2K4E } from './module/config.js';
+import { registerSystemSettings } from './module/settings.js';
 import { preloadHandlebarsTemplates, registerHandlebars } from './module/templates.js';
+import * as Chat from './module/chat.js';
 import { registerDice } from './module/dice.js';
 
 // Imports Entities.
@@ -44,8 +46,8 @@ Hooks.once('init', function() {
 	};
 
 	// Records configuration values.
+	// CONFIG.debug.hooks = true;
 	CONFIG.T2K4E = T2K4E;
-	CONFIG.debug.hooks = true;
 	CONFIG.Actor.entityClass = ActorT2K;
 	CONFIG.Item.entityClass = ItemT2K;
 
@@ -67,9 +69,10 @@ Hooks.once('init', function() {
 	Items.unregisterSheet('core', ItemSheet);
 	Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
 
-	preloadHandlebarsTemplates();
-	registerHandlebars();
+	registerSystemSettings();
 	registerDice();
+	registerHandlebars();
+	preloadHandlebarsTemplates();
 });
 
 Hooks.once('ready', function() {
@@ -86,4 +89,6 @@ Hooks.once('ready', function() {
 	 *
 	const startingItem = game.items.get('63JHOmp3e1HLbdrL');
 	startingItem.sheet.render(true);//*/
-})
+});
+
+Hooks.on('renderChatLog', (app, html, data) => Chat.addChatListeners(html));

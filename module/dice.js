@@ -3,17 +3,17 @@ import T2KRoll from './twilight-roller.js';
 
 /**
  * Rolls dice for T2K.
- * @param {string} title The title of the roll.
- * @param {Object} actorData The Actor's data.
- * @param {number} attribute The attribute's value.
- * @param {number} skill The skill's value.
- * @param {number} rof The RoF's value (for weapons).
- * @param {number[]} modifiers An array of modifiers.
+ * @param {string} name        The title of the roll
+ * @param {Object} actorData    The Actor's data
+ * @param {number} attribute    The attribute's value
+ * @param {number} skill        The skill's value
+ * @param {number} rof          The RoF's value (for weapons)
+ * @param {number[]} modifiers  An array of modifiers
  * @async
  */
-export async function TwilightRoll(
+export async function RollTwilight(
 	{
-		title = 'Unnamed Roll',
+		name = 'Unnamed Roll',
 		actorData = {},
 		attribute = 6,
 		skill = 0,
@@ -24,7 +24,7 @@ export async function TwilightRoll(
 	// Uses of my YZRoll library (NPM package "yearzero-roll")
 	// for correctly constructing the roll and modifying it properly.
 	const roll = new T2KRoll({
-		name: title,
+		name,
 		attribute,
 		skill,
 		rof,
@@ -76,6 +76,10 @@ export function getDieSize(score) {
 	return size;
 }
 
+/* -------------------------------------------- */
+/*  Custom Dice Registration                    */
+/* -------------------------------------------- */
+
 export function registerDice() {
 	CONFIG.Dice.terms.a = BaseDieD12;
 	CONFIG.Dice.terms.b = BaseDieD10;
@@ -88,48 +92,97 @@ export function registerDice() {
 	CONFIG.Dice.terms.m = AmmoDie;
 }
 
-export class BaseDieD12 extends Die {
+/* -------------------------------------------- */
+/*  Custom Dice Classes                         */
+/* -------------------------------------------- */
+
+export class TwilightDie extends Die {
+	/** @override */
+	static getResultLabel(result) {
+		// console.log('Result label:', result);
+		return super.getResultLabel(result);
+	}
+}
+
+export class BaseDieD12 extends TwilightDie {
 	constructor(termData) {
 		termData.faces = 12;
 		super(termData);
 	}
 	static DENOMINATION = 'a';
+
+	/** @override */
+	static getResultLabel(result) {
+		const ico = CONFIG.T2K4E.diceIcons.base.d12[result];
+		const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
+		return super.getResultLabel(str);
+	}
 }
 
-export class BaseDieD10 extends Die {
+export class BaseDieD10 extends TwilightDie {
 	constructor(termData) {
 		termData.faces = 10;
 		super(termData);
 	}
 	static DENOMINATION = 'b';
+
+	/** @override */
+	static getResultLabel(result) {
+		const ico = CONFIG.T2K4E.diceIcons.base.d10[result];
+		const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
+		return super.getResultLabel(str);
+	}
 }
 
-export class BaseDieD8 extends Die {
+export class BaseDieD8 extends TwilightDie {
 	constructor(termData) {
 		termData.faces = 8;
 		super(termData);
 	}
 	static DENOMINATION = 'c';
+
+	/** @override */
+	static getResultLabel(result) {
+		const ico = CONFIG.T2K4E.diceIcons.base.d8[result];
+		const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
+		return super.getResultLabel(str);
+	}
 }
 
-export class BaseDieD6 extends Die {
+export class BaseDieD6 extends TwilightDie {
 	constructor(termData) {
 		termData.faces = 6;
 		super(termData);
 	}
 	static DENOMINATION = 'd';
+
+	/** @override */
+	static getResultLabel(result) {
+		const ico = CONFIG.T2K4E.diceIcons.base.d6[result];
+		const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
+		return super.getResultLabel(str);
+	}
 }
 
-export class AmmoDie extends Die {
+export class AmmoDie extends TwilightDie {
 	constructor(termData) {
 		termData.faces = 6;
 		super(termData);
+		this.type = 'ammo';
 	}
 	static DENOMINATION = 'm';
 	static MODIFIERS = {
-		'p': 'push',
+		'm': 'mag',
 	};
-	push() {
-		console.error('pushed');
+
+	mag(modifier) {
+		console.warn('Magazine modifier:', modifier);
+	}
+
+	/** @override */
+	static getResultLabel(result) {
+		const ico = CONFIG.T2K4E.diceIcons.ammo.d6[result];
+		const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
+		return super.getResultLabel(str);
 	}
 }

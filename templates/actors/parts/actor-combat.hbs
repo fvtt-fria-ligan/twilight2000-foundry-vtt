@@ -21,7 +21,7 @@
             {{!-- Coolness Under Fire --}}
             <div class="stat stat-cuf flexrow">
                 <div class="col-6 stat-name">
-                    <h4>{{localize "T2KLANG.ActorSheet.CuF"}}</h4>
+                    <h4><a class="button cuf-roll">{{localize "T2KLANG.ActorSheet.CuF"}}</a></h4>
                 </div>
                 <div class="col-3 stat-score">
                     {{> scoreSelector name="data.cuf.score" selected=data.cuf.score}}
@@ -37,7 +37,7 @@
             {{!-- Unit Morale --}}
             <div class="stat flexrow">
                 <div class="col-6 stat-name">
-                    <h4>{{localize "T2KLANG.ActorSheet.UnitMorale"}}</h4>
+                    <h4><a class="button unit-morale-roll">{{localize "T2KLANG.ActorSheet.UnitMorale"}}</a></h4>
                 </div>
                 <div class="col-3 stat-score">
                     {{> scoreSelector name="data.unitMorale.score" selected=data.unitMorale.score}}

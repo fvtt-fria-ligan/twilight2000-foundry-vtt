@@ -1,8 +1,22 @@
 .chat-message {
+	@dieSize: 64px;
 	// .actor-sheet-background();
 	// .font-text-normal();
-}
-.message-content {
-	display: flex;
-	flex-direction: column;
+
+	.message-content {
+		// display: flex;
+		// flex-direction: column;
+
+		.roll {
+			width: @dieSize;
+			// background-size: @dieSize @dieSize;
+			background-position: center;
+		}
+
+		.roll img {
+			// max-width: @dieSize;
+			// height: @dieSize;
+			border: none;
+		}
+	}
 }

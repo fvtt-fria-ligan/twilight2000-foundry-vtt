@@ -68,8 +68,8 @@ T2K4E.diceIcons = {
 	base: {
 		d12: [
 			null,
-			't2k-a0.png',
 			't2k-a1.png',
+			't2k-a0.png',
 			't2k-a0.png',
 			't2k-a0.png',
 			't2k-a0.png',
@@ -88,7 +88,6 @@ T2K4E.diceIcons = {
 			't2k-b0.png',
 			't2k-b0.png',
 			't2k-b0.png',
-			't2k-b0.png',
 			't2k-b6.png',
 			't2k-b6.png',
 			't2k-b6.png',
@@ -98,7 +97,6 @@ T2K4E.diceIcons = {
 		d8: [
 			null,
 			't2k-c1.png',
-			't2k-c0.png',
 			't2k-c0.png',
 			't2k-c0.png',
 			't2k-c0.png',
@@ -114,7 +112,6 @@ T2K4E.diceIcons = {
 			't2k-d0.png',
 			't2k-d0.png',
 			't2k-d0.png',
-			't2k-d0.png',
 			't2k-d6.png',
 		],
 	},
@@ -122,7 +119,6 @@ T2K4E.diceIcons = {
 		d6: [
 			null,
 			't2k-g1.png',
-			't2k-g0.png',
 			't2k-g0.png',
 			't2k-g0.png',
 			't2k-g0.png',
