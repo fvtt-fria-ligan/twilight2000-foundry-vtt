@@ -1,16 +1,35 @@
 <div class="t2k4e chat-card weapon" data-item-id="{{_id}}" data-owner-id="{{owner}}">
-    <div class="description">
-        <h2>{{name}}</h2>
-    </div>
-
     <div class="card-content">
-        {{{data.description}}}
-    </div>
+        <div class="card-name">
+            <h2>{{name}}</h2>
+        </div>
+        <div class="card-image">
+            <img src="{{img}}" alt="{{name}}"/>
+        </div>
+        <div class="card-description">
+            {{{data.description}}}
+            <h3>{{localize "T2KLANG.ItemSheet.FeaturesTab"}}</h3>
+            <div class="grid grid-3col">
+                {{#if data.rof}}
+                <div><b>{{localize "T2KLANG.ItemSheet.RoF"}}:</b> {{data.rof}}</div>
+                {{/if}}
+                <div><b>{{localize "T2KLANG.ItemSheet.Damage"}}:</b> {{data.damage}}</div>
+                <div><b>{{localize "T2KLANG.ItemSheet.Crit"}}:</b> {{data.crit}}</div>
+                <div><b>{{localize "T2KLANG.ItemSheet.Armor"}}:</b> {{#if (gte data.armorModifier 1)}}+{{/if}}{{data.armorModifier}}</div>
+                {{#if data.range}}
+                <div><b>{{localize "T2KLANG.ItemSheet.Range"}}:</b> {{data.range}}</div>
+                {{/if}}
+                {{#unless (eq data.blast "–")}}
+                <div><b>{{localize "T2KLANG.ItemSheet.Blast"}}:</b> {{data.blast}}</div>
+                {{/unless}}
+            </div>
+        </div>
 
-    <div class="card-buttons">
-        <button class="weapon-attack">{{localize "T2KLANG.Chat.Actions.Attack"}}</button>
-        {{#if data.mag.max}}
-        <button class="weapon-reload">{{localize "T2KLANG.Chat.Actions.Reload"}}</button>
-        {{/if}}
+        <div class="card-buttons">
+            <button class="weapon-attack">{{localize "T2KLANG.Chat.Actions.Attack"}}</button>
+            {{#if data.mag.max}}
+            <button class="weapon-reload">{{localize "T2KLANG.Chat.Actions.Reload"}}</button>
+            {{/if}}
+        </div>
     </div>
 </div>

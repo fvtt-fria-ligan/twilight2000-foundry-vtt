@@ -90,6 +90,7 @@ export default class ActorSheetT2K extends ActorSheet {
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		html.find('.item-edit').click(this._onItemEdit.bind(this));
 		html.find('.item-delete').click(this._onItemDelete.bind(this));
+		html.find('.item-mag .weapon-edit-ammo').change(this._onWeaponAmmoChange.bind(this));
 		html.find('.boxes-radiation').on('click contextmenu', this._onValueChange.bind(this));
 		html.find('.boxes-capacity').on('click contextmenu', this._onCapacityChange.bind(this));
 		html.find('.capacity-increase').click(this._onCapacityIncrease.bind(this));
@@ -148,14 +149,11 @@ export default class ActorSheetT2K extends ActorSheet {
 	_onItemCreate(event) {
 		event.preventDefault();
 		const elem = event.currentTarget;
-
 		const type = elem.dataset.type;
-
 		const itemData = {
 			name: game.i18n.localize(`T2KLANG.ActorSheet.NewItem.${type}`),
 			type
 		};
-
 		return this.actor.createOwnedItem(itemData)
 			// Displays the sheet of the newly created item.
 			.then(itemData => {
@@ -169,8 +167,7 @@ export default class ActorSheetT2K extends ActorSheet {
 		const elem = event.currentTarget;
 		const itemId = elem.closest('.item').dataset.itemId;
 		const item = this.actor.getOwnedItem(itemId);
-
-		item.sheet.render(true);
+		return item.sheet.render(true);
 	}
 
 	_onItemDelete(event) {
@@ -178,6 +175,15 @@ export default class ActorSheetT2K extends ActorSheet {
 		const elem = event.currentTarget;
 		const itemId = elem.closest('.item').dataset.itemId;
 		return this.actor.deleteOwnedItem(itemId);
+	}
+
+	_onWeaponAmmoChange(event) {
+		event.preventDefault();
+		const elem = event.currentTarget;
+		const itemId = elem.closest('.item').dataset.itemId;
+		const item = this.actor.getOwnedItem(itemId);
+		const value = +elem.value;
+		return item.update({ 'data.mag.value': value });
 	}
 
 	/** Left-clic: +1, Right-clic: -1 */
@@ -192,10 +198,9 @@ export default class ActorSheetT2K extends ActorSheet {
 
 		if (event.type === 'click') newCount++;
 		else newCount--; // contextmenu
-
 		newCount = clamp(newCount, min, max);
 
-		this.actor.update({ ['data.'+field]: newCount });
+		return this.actor.update({ ['data.'+field]: newCount });
 	}
 
 	/** Left-clic: -1, Right-clic: +1 */
@@ -210,10 +215,9 @@ export default class ActorSheetT2K extends ActorSheet {
 
 		if (event.type === 'click') newCount--;
 		else newCount++; // contextmenu
-
 		newCount = clamp(newCount, min, max);
 
-		this.actor.update({ [`data.${field}.value`]: newCount });
+		return this.actor.update({ [`data.${field}.value`]: newCount });
 	}
 
 	_onCapacityIncrease(event) {
@@ -238,6 +242,6 @@ export default class ActorSheetT2K extends ActorSheet {
 		const currentMod = getProperty(this.actor, `data.data.${field}.modifier`) || 0;
 		const newMod = clamp(currentMod + mod, min, max);
 
-		this.actor.update({ [`data.${field}.modifier`]: newMod});
+		return this.actor.update({ [`data.${field}.modifier`]: newMod});
 	}
 }

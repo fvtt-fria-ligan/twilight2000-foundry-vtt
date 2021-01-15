@@ -25,7 +25,7 @@ export default class ActorT2K extends Actor {
 			default: throw new TypeError('Unknown Actor Type');
 		}
 
-		console.log('t2k4e | Updated Actor: ', this.id);
+		console.log('t2k4e | Updated Actor: ', this.name, this._id);
 	}
 
 	/**

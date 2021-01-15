@@ -43,6 +43,7 @@ export default class ItemT2K extends Item {
 		// switch (this.type) {
 		// 	case 'ammunition': 
 		// }
+		console.log('t2k4e | Updated Item: ', this.name, this._id);
 	}
 
 	/**

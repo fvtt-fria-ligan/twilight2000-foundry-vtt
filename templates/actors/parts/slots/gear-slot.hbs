@@ -1,11 +1,11 @@
-<div class="item item-gear flexrow" data-item-id={{gear._id}}>
+<div class="item item-gear flexrow" data-item-id={{_id}}>
 
     <div class="item-name flexrow">
-        <img class="item-roll" src="{{gear.img}}" title="{{gear.name}}" width="24" height="24"/>
-        <a class="item-roll">{{gear.name}}</a>
+        <img class="item-roll" src="{{img}}" title="{{name}}" width="24" height="24"/>
+        <a class="item-roll">{{name}}</a>
     </div>
-    <div class="item-detail item-quantity">{{gear.data.qty}}</div>
-    <div class="item-detail item-weight">{{gear.data.encumbrance}}</div>
+    <div class="item-detail item-quantity">{{data.qty}}</div>
+    <div class="item-detail item-weight">{{data.encumbrance}}</div>
 
     <div class="item-controls">
         {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}

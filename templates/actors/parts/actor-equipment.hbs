@@ -42,10 +42,10 @@
         <div class="items-list">
             {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot-unarmed.hbs"}}
             {{#each weapons}}
-            {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" weapon=.}}
+            {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" this}}
             {{/each}}
             {{#each grenades}}
-            {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" weapon=.}}
+            {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" this}}
             {{/each}}
         </div>
     </div>
@@ -73,7 +73,7 @@
         </div>
         <div class="items-list">
             {{#each armors}}
-            {{> "systems/t2k4e/templates/actors/parts/slots/armor-slot.hbs" armor=.}}
+            {{> "systems/t2k4e/templates/actors/parts/slots/armor-slot.hbs" this}}
             {{else}}
             <div class="item">–</div>
             {{/each}}
@@ -100,7 +100,7 @@
         </div>
         <div class="items-list">
             {{#each gears}}
-            {{> "systems/t2k4e/templates/actors/parts/slots/gear-slot.hbs" gear=.}}
+            {{> "systems/t2k4e/templates/actors/parts/slots/gear-slot.hbs" this}}
             {{else}}
             <div class="item">–</div>
             {{/each}}
@@ -127,7 +127,7 @@
         </div>
         <div class="items-list">
             {{#each ammunitions}}
-            {{> "systems/t2k4e/templates/actors/parts/slots/ammo-slot.hbs" ammo=.}}
+            {{> "systems/t2k4e/templates/actors/parts/slots/ammo-slot.hbs" this}}
             {{/each}}
         </div>
     </div>

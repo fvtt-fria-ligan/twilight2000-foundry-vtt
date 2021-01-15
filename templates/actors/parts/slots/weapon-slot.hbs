@@ -1,18 +1,24 @@
-<div class="item item-weapon flexrow" data-item-id={{weapon._id}} draggable="true">
+<div class="item item-weapon flexrow" data-item-id={{_id}} draggable="true">
 
     <div class="item-name flexrow">
-        <img class="item-roll" src="{{weapon.img}}" title="{{weapon.name}}" width="24" height="24"/>
-        <a class="item-roll">{{weapon.name}}</a>
+        <img class="item-roll" src="{{img}}" title="{{name}}" width="24" height="24"/>
+        <a class="item-roll">{{name}}</a>
     </div>
-    <div class="item-detail item-rof">{{weapon.data.rof}}</div>
-    <div class="item-detail item-damage">{{weapon.data.damage}}</div>
-    <div class="item-detail item-crit">{{weapon.data.crit}}</div>
-    <div class="item-detail item-armor">{{#if (gte weapon.data.armorModifier 1)}}+{{/if}}{{weapon.data.armorModifier}}</div>
-    <div class="item-detail item-range">{{weapon.data.range}}</div>
-    <div class="item-detail item-mag" title="{{weapon.data.mag.value}}/{{weapon.data.mag.max}}">{{weapon.data.mag.value}}</div>
-    <div class="item-detail item-reliability" title="{{weapon.data.reliability.score}}/{{weapon.data.reliability.max}}">{{weapon.data.reliability.score}}</div>
-    <div class="item-detail item-blast">{{weapon.data.blast}}</div>
-    <div class="item-detail item-weight" title="{{localize "T2KLANG.ItemSheet.Quantity"}}: {{weapon.data.qty}}">{{weapon.data.encumbrance}}</div>
+    <div class="item-detail item-rof">{{data.rof}}</div>
+    <div class="item-detail item-damage">{{data.damage}}</div>
+    <div class="item-detail item-crit">{{data.crit}}</div>
+    <div class="item-detail item-armor">{{#if (gte data.armorModifier 1)}}+{{/if}}{{data.armorModifier}}</div>
+    <div class="item-detail item-range">{{data.range}}</div>
+    {{#if data.mag.max}}
+    <div class="item-detail item-mag">
+        <input type="number" class="weapon-edit-ammo" value="{{data.mag.value}}" title="{{data.mag.value}}/{{data.mag.max}}"/>
+    </div>
+    {{else}}
+    <div class="item-detail item-mag" title="{{data.mag.value}}/{{data.mag.max}}">{{data.mag.value}}</div>
+    {{/if}}
+    <div class="item-detail item-reliability" title="{{data.reliability.score}}/{{data.reliability.max}}">{{data.reliability.score}}</div>
+    <div class="item-detail item-blast">{{data.blast}}</div>
+    <div class="item-detail item-weight" title="{{localize "T2KLANG.ItemSheet.Quantity"}}: {{data.qty}}">{{data.encumbrance}}</div>
 
     <div class="item-controls">
         {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
