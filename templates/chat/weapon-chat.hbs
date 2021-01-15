@@ -8,27 +8,27 @@
         </div>
         <div class="card-description">
             {{{data.description}}}
-            <h3>{{localize "T2KLANG.ItemSheet.FeaturesTab"}}</h3>
+            <h4>{{localize "T2KLANG.ItemSheet.FeaturesTab"}}</h4>
             <div class="grid grid-3col">
                 {{#if data.rof}}
-                <div><b>{{localize "T2KLANG.ItemSheet.RoF"}}:</b> {{data.rof}}</div>
+                <div><b>{{localize "T2KLANG.ItemSheet.RoF"}}:</b> <code>{{data.rof}}</code></div>
                 {{/if}}
-                <div><b>{{localize "T2KLANG.ItemSheet.Damage"}}:</b> {{data.damage}}</div>
-                <div><b>{{localize "T2KLANG.ItemSheet.Crit"}}:</b> {{data.crit}}</div>
-                <div><b>{{localize "T2KLANG.ItemSheet.Armor"}}:</b> {{#if (gte data.armorModifier 1)}}+{{/if}}{{data.armorModifier}}</div>
+                <div><b>{{localize "T2KLANG.ItemSheet.Damage"}}:</b> <code>{{data.damage}}</code></div>
+                <div><b>{{localize "T2KLANG.ItemSheet.Crit"}}:</b> <code>{{data.crit}}</code></div>
+                <div><b>{{localize "T2KLANG.ItemSheet.Armor"}}:</b> <code>{{#if (gte data.armorModifier 1)}}+{{/if}}{{data.armorModifier}}</code></div>
                 {{#if data.range}}
-                <div><b>{{localize "T2KLANG.ItemSheet.Range"}}:</b> {{data.range}}</div>
+                <div><b>{{localize "T2KLANG.ItemSheet.Range"}}:</b> <code>{{data.range}}</code></div>
                 {{/if}}
                 {{#unless (eq data.blast "–")}}
-                <div><b>{{localize "T2KLANG.ItemSheet.Blast"}}:</b> {{data.blast}}</div>
+                <div><b>{{localize "T2KLANG.ItemSheet.Blast"}}:</b> <code>{{data.blast}}</code></div>
                 {{/unless}}
             </div>
         </div>
 
         <div class="card-buttons">
-            <button class="weapon-attack">{{localize "T2KLANG.Chat.Actions.Attack"}}</button>
+            <button class="weapon-attack"><i class="fas fa-crosshairs"></i> {{localize "T2KLANG.Chat.Actions.Attack"}}</button>
             {{#if data.mag.max}}
-            <button class="weapon-reload">{{localize "T2KLANG.Chat.Actions.Reload"}}</button>
+            <button class="weapon-reload"><i class="fas fa-sync-alt"></i> {{localize "T2KLANG.Chat.Actions.Reload"}}</button>
             {{/if}}
         </div>
     </div>
