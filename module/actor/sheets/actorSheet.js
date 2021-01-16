@@ -9,7 +9,7 @@ export default class ActorSheetT2K extends ActorSheet {
 
 	// itemContextMenuDelete = [
 	// 	{
-	// 		name: game.i18n.localize('T2KLANG.ActorSheet.Delete'),
+	// 		name: game.i18n.localize('T2K4E.ActorSheet.Delete'),
 	// 		icon: '<i class="fas fa-trash"></i>',
 	// 		callback: elem => {
 	// 			const itemId = elem.closest('.item').dataset.itemId;
@@ -37,7 +37,7 @@ export default class ActorSheetT2K extends ActorSheet {
 	getData() {
 		const data = super.getData();
 		data.config = CONFIG.T2K4E;
-		// data.itemType = game.i18n.localize(`T2KLANG.ItemTypes.${data.item.type}`);
+		// data.itemType = game.i18n.localize(`T2K4E.ItemTypes.${data.item.type}`);
 
 		// if (this.actor.data.type === 'character') {
 		// 	this._prepareCharacterItems(data);
@@ -136,11 +136,11 @@ export default class ActorSheetT2K extends ActorSheet {
 		let name = '';
 		if (type === 'cuf') {
 			value = this.actor.data.data.cuf.value;
-			name = game.i18n.localize('T2KLANG.ActorSheet.CuF');
+			name = game.i18n.localize('T2K4E.ActorSheet.CuF');
 		}
 		else {
 			value = this.actor.data.data.unitMorale.value;
-			name = game.i18n.localize('T2KLANG.ActorSheet.UnitMorale');
+			name = game.i18n.localize('T2K4E.ActorSheet.UnitMorale');
 		}
 		return Dice.TaskCheck({
 			name,
@@ -162,7 +162,7 @@ export default class ActorSheetT2K extends ActorSheet {
 		const elem = event.currentTarget;
 		const type = elem.dataset.type;
 		const itemData = {
-			name: game.i18n.localize(`T2KLANG.ActorSheet.NewItem.${type}`),
+			name: game.i18n.localize(`T2K4E.ActorSheet.NewItem.${type}`),
 			type,
 		};
 		return this.actor.createOwnedItem(itemData)

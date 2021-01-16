@@ -63,7 +63,7 @@ Hooks.once('init', function() {
 	Actors.registerSheet('t2k4e', ActorSheetT2KCharacter, {
 		types: ['character', 'npc'],
 		makeDefault: true,
-		label: 'T2KLANG.SheetClassCharacter'
+		label: 'T2K4E.SheetClassCharacter'
 	});
 
 	Items.unregisterSheet('core', ItemSheet);

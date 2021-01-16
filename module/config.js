@@ -15,26 +15,26 @@ T2K4E.ASCII = `_________________________________________
 _________________________________________`;
 
 T2K4E.attributes = {
-	str: 'T2KLANG.AttributeNames.str',
-	agl: 'T2KLANG.AttributeNames.agl',
-	int: 'T2KLANG.AttributeNames.int',
-	emp: 'T2KLANG.AttributeNames.emp',
+	str: 'T2K4E.AttributeNames.str',
+	agl: 'T2K4E.AttributeNames.agl',
+	int: 'T2K4E.AttributeNames.int',
+	emp: 'T2K4E.AttributeNames.emp',
 };
 
 T2K4E.skills = {
-	none: 'T2KLANG.SkillNames.none',
-	heavyWeapons: 'T2KLANG.SkillNames.heavyWeapons',
-	closeCombat: 'T2KLANG.SkillNames.closeCombat',
-	stamina: 'T2KLANG.SkillNames.stamina',
-	driving: 'T2KLANG.SkillNames.driving',
-	mobility: 'T2KLANG.SkillNames.mobility',
-	rangedCombat: 'T2KLANG.SkillNames.rangedCombat',
-	recon: 'T2KLANG.SkillNames.recon',
-	survival: 'T2KLANG.SkillNames.survival',
-	tech: 'T2KLANG.SkillNames.tech',
-	command: 'T2KLANG.SkillNames.command',
-	persuasion: 'T2KLANG.SkillNames.persuasion',
-	medicalAid: 'T2KLANG.SkillNames.medicalAid',
+	none: 'T2K4E.SkillNames.none',
+	heavyWeapons: 'T2K4E.SkillNames.heavyWeapons',
+	closeCombat: 'T2K4E.SkillNames.closeCombat',
+	stamina: 'T2K4E.SkillNames.stamina',
+	driving: 'T2K4E.SkillNames.driving',
+	mobility: 'T2K4E.SkillNames.mobility',
+	rangedCombat: 'T2K4E.SkillNames.rangedCombat',
+	recon: 'T2K4E.SkillNames.recon',
+	survival: 'T2K4E.SkillNames.survival',
+	tech: 'T2K4E.SkillNames.tech',
+	command: 'T2K4E.SkillNames.command',
+	persuasion: 'T2K4E.SkillNames.persuasion',
+	medicalAid: 'T2K4E.SkillNames.medicalAid',
 };
 
 T2K4E.skillsMap = {
@@ -129,9 +129,9 @@ T2K4E.diceIcons = {
 };
 
 T2K4E.ranges = [
-	'T2KLANG.Ranges.close',
-	'T2KLANG.Ranges.short',
-	'T2KLANG.Ranges.medium',
-	'T2KLANG.Ranges.long',
-	'T2KLANG.Ranges.extreme',
+	'T2K4E.Ranges.close',
+	'T2K4E.Ranges.short',
+	'T2K4E.Ranges.medium',
+	'T2K4E.Ranges.long',
+	'T2K4E.Ranges.extreme',
 ];

@@ -18,7 +18,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
 	/** @override */
 	getData() {
 		const data = super.getData();
-		// data.itemType = game.i18n.localize(`T2KLANG.ItemTypes.${data.item.type}`);
+		// data.itemType = game.i18n.localize(`T2K4E.ItemTypes.${data.item.type}`);
 
 		switch (this.actor.data.type) {
 			case 'character': this._prepareCharacterItems(data); break;

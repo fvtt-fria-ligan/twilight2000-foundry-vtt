@@ -2,7 +2,7 @@
 
     {{!-- COMBAT --}}
     <div class="combat col-6">
-        <h2>{{localize "T2KLANG.ActorSheet.Combat"}}</h2>
+        <h2>{{localize "T2K4E.ActorSheet.Combat"}}</h2>
 
         {{!-- CUF & Unit Morale --}}
         <div class="stat-block">
@@ -11,17 +11,17 @@
             <div class="stat-header flexrow">
                 <div class="col-6"></div>
                 <div class="col-3 header-rating">
-                    <h5>{{localize "T2KLANG.ActorSheet.Rating"}}</h5>
+                    <h5>{{localize "T2K4E.ActorSheet.Rating"}}</h5>
                 </div>
                 <div class="col-3 header-die">
-                    <h5>{{localize "T2KLANG.ActorSheet.BaseDie"}}</h5>
+                    <h5>{{localize "T2K4E.ActorSheet.BaseDie"}}</h5>
                 </div>
             </div>
 
             {{!-- Coolness Under Fire --}}
             <div class="stat stat-cuf flexrow">
                 <div class="col-6 stat-name">
-                    <h4><a class="button cuf-roll">{{localize "T2KLANG.ActorSheet.CuF"}}</a></h4>
+                    <h4><a class="button cuf-roll">{{localize "T2K4E.ActorSheet.CuF"}}</a></h4>
                 </div>
                 <div class="col-3 stat-score">
                     {{> scoreSelector name="data.cuf.score" selected=data.cuf.score}}
@@ -37,7 +37,7 @@
             {{!-- Unit Morale --}}
             <div class="stat flexrow">
                 <div class="col-6 stat-name">
-                    <h4><a class="button unit-morale-roll">{{localize "T2KLANG.ActorSheet.UnitMorale"}}</a></h4>
+                    <h4><a class="button unit-morale-roll">{{localize "T2K4E.ActorSheet.UnitMorale"}}</a></h4>
                 </div>
                 <div class="col-3 stat-score">
                     {{> scoreSelector name="data.unitMorale.score" selected=data.unitMorale.score}}
@@ -56,23 +56,23 @@
 
     {{!-- ACTIONS --}}
     <div class="action col-6">
-        <h2>{{localize "T2KLANG.ActorSheet.Actions"}}</h2>
+        <h2>{{localize "T2K4E.ActorSheet.Actions"}}</h2>
 
         {{!-- Header line --}}
         <div class="stat-header flexrow">
             <div class="col-8"></div>
             <div class="col-2 header-rating">
-                <h5>{{localize "T2KLANG.ActorSheet.Current"}}</h5>
+                <h5>{{localize "T2K4E.ActorSheet.Current"}}</h5>
             </div>
             <div class="col-2 header-die">
-                <h5>{{localize "T2KLANG.ActorSheet.Max"}}</h5>
+                <h5>{{localize "T2K4E.ActorSheet.Max"}}</h5>
             </div>
         </div>
 
         {{!-- Slow & Fast --}}
         {{#each data.actions as | action name |}}
         <div class="flexrow">
-            <div class="action-name">{{localize (concat "T2KLANG.ActionNames." name)}}</div>
+            <div class="action-name">{{localize (concat "T2K4E.ActionNames." name)}}</div>
             <div class="col-4 action-slider">
                 <input type="range" name="data.actions.{{name}}.value" min="0" max="{{action.max}}" value="{{action.value}}"/>
             </div>
@@ -86,12 +86,12 @@
 
     {{!-- ARMOR --}}
     <div class="armor col-6">
-        <h2>{{localize "T2KLANG.ItemTypes.armor"}}</h2>
+        <h2>{{localize "T2K4E.ItemTypes.armor"}}</h2>
         <div class="flexcol">
             {{#each data.armorRating as | value location |}}
             <div class="flexrow">
                 <div class="col-3">
-                    <h4>{{localize (concat "T2KLANG.ArmorLocationNames." location)}}</h4>
+                    <h4>{{localize (concat "T2K4E.ArmorLocationNames." location)}}</h4>
                 </div>
                 <div class="armor-names-list">
                     {{!-- {{#each ../armors as | armor |}}
@@ -103,7 +103,7 @@
                 <div class="col-1">{{value}}</div>
             </div>
             {{else}}
-            <p class="no-armor">{{localize "T2KLANG.ActorSheet.NoArmor"}}</p>
+            <p class="no-armor">{{localize "T2K4E.ActorSheet.NoArmor"}}</p>
             {{/each}}
         </div>
     </div>
@@ -111,14 +111,14 @@
     {{!-- CONDITIONS --}}
     {{#if (eq actor.type 'character')}}
     <div class="conditions col-6">
-        <h2>{{localize "T2KLANG.ActorSheet.Conditions"}}</h2>
+        <h2>{{localize "T2K4E.ActorSheet.Conditions"}}</h2>
         <div class="flexrow">
             {{#each data.conditions as | value condition |}}
             <div class="col-6">
                 <label class="checkbox">
-                    {{!-- <h4>{{localize (concat "T2KLANG.ActorSheet.ConditionNames." condition)}}</h4> --}}
+                    {{!-- <h4>{{localize (concat "T2K4E.ActorSheet.ConditionNames." condition)}}</h4> --}}
                     <input type="checkbox" name="data.conditions.{{condition}}" {{checked value}}/>
-                    {{localize (concat "T2KLANG.ConditionNames." condition)}}
+                    {{localize (concat "T2K4E.ConditionNames." condition)}}
                 </label>
             </div>
             {{/each}}
@@ -131,10 +131,10 @@
 {{#if (eq actor.type 'character')}}
 <div class="flexcol">
 
-    <h3>{{localize "T2KLANG.ActorSheet.CriticalInjuries"}}</h3>
+    <h3>{{localize "T2K4E.ActorSheet.CriticalInjuries"}}</h3>
     <textarea name="data.crits">{{data.crits}}</textarea>
 
-    <h3>{{localize "T2KLANG.ActorSheet.Diseases"}}</h3>
+    <h3>{{localize "T2K4E.ActorSheet.Diseases"}}</h3>
     <textarea name="data.diseases">{{data.diseases}}</textarea>
 
 </div>
@@ -143,14 +143,14 @@
 {{!-- RADIATION --}}
 {{#if (eq actor.type 'character')}}
 <div class="radiation col-12">
-    <h2>{{localize "T2KLANG.ActorSheet.Radiation"}}</h2>
+    <h2>{{localize "T2K4E.ActorSheet.Radiation"}}</h2>
     <div class="flexrow">
         <div>
-            <h3>{{localize "T2KLANG.ActorSheet.TemporaryRadiation"}}</h3>
+            <h3>{{localize "T2K4E.ActorSheet.TemporaryRadiation"}}</h3>
             {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" field="temporary" value=data.rads.temporary}}
         </div>
         <div>
-            <h3>{{localize "T2KLANG.ActorSheet.PermanentRadiation"}}</h3>
+            <h3>{{localize "T2K4E.ActorSheet.PermanentRadiation"}}</h3>
             {{> "systems/t2k4e/templates/actors/parts/radiation-boxes.hbs" field="permanent" value=data.rads.permanent}}
         </div>
     </div>

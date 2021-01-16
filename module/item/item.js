@@ -138,14 +138,14 @@ export default class ItemT2K extends Item {
 
 		for (const [attr, val] of Object.entries(data.modifiers.attributes)) {
 			if (val !== 0) {
-				const str = game.i18n.localize(`T2KLANG.AttributeNames.${attr}`)
+				const str = game.i18n.localize(`T2K4E.AttributeNames.${attr}`)
 					+ ` ${val > 0 ? '+' : ''}${val}`;
 				out.push(str);
 			}
 		}
 		for (const [sk, val] of Object.entries(data.modifiers.skills)) {
 			if (val !== 0) {
-				const str = game.i18n.localize(`T2KLANG.SkillNames.${sk}`)
+				const str = game.i18n.localize(`T2K4E.SkillNames.${sk}`)
 					+ ` ${val > 0 ? '+' : ''}${val}`;
 				out.push(str);
 			}

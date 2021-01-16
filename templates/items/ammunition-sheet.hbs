@@ -5,8 +5,8 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
-        <a class="item" data-tab="features">{{localize "T2KLANG.ItemSheet.FeaturesTab"}}</a>
-        <a class="item" data-tab="description">{{localize "T2KLANG.ItemSheet.DescriptionTab"}}</a>
+        <a class="item" data-tab="features">{{localize "T2K4E.ItemSheet.FeaturesTab"}}</a>
+        <a class="item" data-tab="description">{{localize "T2K4E.ItemSheet.DescriptionTab"}}</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -16,7 +16,7 @@
         <div class="tab tab-features" data-group="primary" data-tab="features">
             <div class="grid grid-3col item-features">
                 <div class="flexcol">
-                    <label>{{localize "T2KLANG.ItemSheet.Ammo"}}</label>
+                    <label>{{localize "T2K4E.ItemSheet.Ammo"}}</label>
                     <div class="flexrow flex-center">
                         <input type="text" name="data.ammo.value" value="{{data.ammo.value}}" data-dtype="Number"/>
                         <span class="sep">/</span>
@@ -24,11 +24,11 @@
                     </div>
                 </div>
                 <div class="flexcol">
-                    <label>{{localize "T2KLANG.ItemSheet.Weight"}}</label>
+                    <label>{{localize "T2K4E.ItemSheet.Weight"}}</label>
                     <input type="text" name="data.weight" value="{{numberFormat data.weight decimals=2}}" data-dtype="Number"/>
                 </div>
                 <div class="flexcol">
-                    <label>{{localize "T2KLANG.ItemSheet.Price"}}</label>
+                    <label>{{localize "T2K4E.ItemSheet.Price"}}</label>
                     <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
                 </div>
             </div>
@@ -38,7 +38,7 @@
 
                 {{!-- Ammo Type --}}
                 <div class="form-group">
-                    <label>{{localize "T2KLANG.ItemSheet.AmmoType"}}</label>
+                    <label>{{localize "T2K4E.ItemSheet.AmmoType"}}</label>
                     <input type="text" name="data.itemType" value="{{data.itemType}}"/>
                 </div>
 
@@ -47,7 +47,7 @@
                     {{#each data.props as | prop name |}}
                     <label class="checkbox">
                         <input type="checkbox" name="data.props.{{name}}" {{checked prop}}/>
-                        {{localize (concat "T2KLANG.ItemPropNames." name)}}
+                        {{localize (concat "T2K4E.ItemPropNames." name)}}
                     </label>
                     {{/each}}
                 </div>

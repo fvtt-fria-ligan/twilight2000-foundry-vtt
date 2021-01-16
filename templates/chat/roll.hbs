@@ -17,19 +17,19 @@
         <div class="card-description">
             <div class="success">
                 {{#if (lte successCount 1)}}
-                {{localize "T2KLANG.Chat.Roll.Success"}}: <b>{{successCount}}</b>
+                {{localize "T2K4E.Chat.Roll.Success"}}: <b>{{successCount}}</b>
                 {{else}}
-                {{localize "T2KLANG.Chat.Roll.Successes"}}: <b>{{successCount}}</b>
+                {{localize "T2K4E.Chat.Roll.Successes"}}: <b>{{successCount}}</b>
                 {{/if}}
             </div>
             {{#if mishap}}
-            <div class="mishap">{{localize "T2KLANG.Chat.Roll.Mishap"}}</span>
+            <div class="mishap">{{localize "T2K4E.Chat.Roll.Mishap"}}</span>
             {{/if}}
         </div>
 
         <div class="card-buttons">
             {{#if pushable}}
-            <button class="roll-push" data-roll-id="{{_id}}">{{localize "T2KLANG.Chat.Actions.Push"}}</button>
+            <button class="roll-push" data-roll-id="{{_id}}">{{localize "T2K4E.Chat.Actions.Push"}}</button>
             {{/if}}
         </div>
         {{/with}}

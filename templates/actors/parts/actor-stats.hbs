@@ -1,5 +1,5 @@
 {{!-- Attributes & Skills --}}
-<h2>{{localize "T2KLANG.ActorSheet.AttributesAndSkills"}}</h2>
+<h2>{{localize "T2K4E.ActorSheet.AttributesAndSkills"}}</h2>
 
 <div class="stats-list flexrow">
     {{#each data.attributes as | attribute attr |}}
@@ -7,15 +7,15 @@
         <div class="stat-header flexrow">
             <div class="col-6"></div>
             <div class="col-3 header-rating">
-                <h5>{{localize "T2KLANG.ActorSheet.Rating"}}</h5>
+                <h5>{{localize "T2K4E.ActorSheet.Rating"}}</h5>
             </div>
             <div class="col-3 header-die header-die-{{@index}}">
-                <h5>{{localize "T2KLANG.ActorSheet.BaseDie"}}</h5>
+                <h5>{{localize "T2K4E.ActorSheet.BaseDie"}}</h5>
             </div>
         </div>
         <div class="stat stat-attribute attribute-{{attr}} flexrow">
             <div class="col-6 stat-name">
-                <h3><a class="button attribute-roll" data-attribute="{{attr}}">{{localize (concat "T2KLANG.AttributeNames." attr)}}</a></h3>
+                <h3><a class="button attribute-roll" data-attribute="{{attr}}">{{localize (concat "T2K4E.AttributeNames." attr)}}</a></h3>
             </div>
             <div class="col-3 stat-score">
                 {{> scoreSelector name=(concat "data.attributes." attr ".score") selected=attribute.score}}
@@ -32,7 +32,7 @@
             {{#if (eq attr (lookup @root.config.skillsMap sk))}}
             <div class="stat stat-skill skill-{{sk}} flexrow">
                 <div class="col-6 stat-name">
-                    <h4><a class="button skill-roll" data-skill="{{sk}}">{{localize (concat "T2KLANG.SkillNames." sk)}}</a></h4>
+                    <h4><a class="button skill-roll" data-skill="{{sk}}">{{localize (concat "T2K4E.SkillNames." sk)}}</a></h4>
                 </div>
                 <div class="col-3 stat-score">
                     {{> scoreSelector name=(concat "data.skills." sk ".score") selected=skill.score}}
@@ -52,8 +52,8 @@
 
 {{!-- Specialties --}}
 <div class="specialty-title flexrow">
-    <h3>{{localize "T2KLANG.ActorSheet.Specialties"}}</h3>
-    <a class="button item-create" data-type="specialty" title="{{localize "T2KLANG.ActorSheet.AddSpecialty"}}">
+    <h3>{{localize "T2K4E.ActorSheet.Specialties"}}</h3>
+    <a class="button item-create" data-type="specialty" title="{{localize "T2K4E.ActorSheet.AddSpecialty"}}">
         <i class="fas fa-plus"></i>
     </a>
 </div>
@@ -75,6 +75,6 @@
         {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
     </div>
     {{else}}
-    <p class="no-specialty">{{localize "T2KLANG.ActorSheet.NoSpecialty"}}</p>
+    <p class="no-specialty">{{localize "T2K4E.ActorSheet.NoSpecialty"}}</p>
     {{/each}}
 </div>

@@ -128,15 +128,15 @@ async function GetTaskCheckOptions(taskType, item, specialties) {
 	return new Promise(resolve => {
 		// Sets the data of the dialog.
 		const data = {
-			title: game.i18n.localize('T2KLANG.Chat.Actions.Roll'),
+			title: game.i18n.localize('T2K4E.Chat.Actions.Roll'),
 			content: html,
 			buttons: {
 				normal: {
-					label: game.i18n.localize('T2KLANG.Chat.Actions.Roll'),
+					label: game.i18n.localize('T2K4E.Chat.Actions.Roll'),
 					callback: html => resolve(_processTaskCheckOptions(html[0].querySelector('form'))),
 				},
 				cancel: {
-					label: game.i18n.localize('T2KLANG.Dialog.Actions.Cancel'),
+					label: game.i18n.localize('T2K4E.Dialog.Actions.Cancel'),
 					callback: html => resolve({ cancelled: true }),
 				}
 			},
