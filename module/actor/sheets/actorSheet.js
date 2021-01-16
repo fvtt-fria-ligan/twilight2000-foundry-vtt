@@ -21,7 +21,7 @@ export default class ActorSheetT2K extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'equipment'}]
+			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main'}]
 		});
 	}
 
@@ -111,14 +111,23 @@ export default class ActorSheetT2K extends ActorSheet {
 		const attributeName = event.currentTarget.dataset.attribute;
 		const attribute = this.actor.data.data.attributes[attributeName].value;
 		const name = game.i18n.localize(CONFIG.T2K4E.attributes[attributeName]);
-		return Dice.TaskCheck({ name, attribute, actor: this.actor });
+		return Dice.TaskCheck({
+			name,
+			attribute,
+			actor: this.actor,
+			askForOptions: event.shiftKey,
+		});
 	}
 
 	_onSkillRoll(event) {
 		event.preventDefault();
 		const skillName = event.currentTarget.dataset.skill;
 		const statData = Dice.getAttributeAndSkill(skillName, this.actor.data.data);
-		return Dice.TaskCheck({ ...statData, actor: this.actor });
+		return Dice.TaskCheck({
+			...statData,
+			actor: this.actor,
+			askForOptions: event.shiftKey,
+		});
 	}
 
 	_onMoraleRoll(event, type) {
@@ -133,7 +142,12 @@ export default class ActorSheetT2K extends ActorSheet {
 			value = this.actor.data.data.unitMorale.value;
 			name = game.i18n.localize('T2KLANG.ActorSheet.UnitMorale');
 		}
-		return Dice.TaskCheck({ name, attribute: value, actor: this.actor });
+		return Dice.TaskCheck({
+			name,
+			attribute: value,
+			actor: this.actor,
+			askForOptions: event.shiftKey,
+		});
 	}
 
 	_onItemRoll(event) {
@@ -149,7 +163,7 @@ export default class ActorSheetT2K extends ActorSheet {
 		const type = elem.dataset.type;
 		const itemData = {
 			name: game.i18n.localize(`T2KLANG.ActorSheet.NewItem.${type}`),
-			type
+			type,
 		};
 		return this.actor.createOwnedItem(itemData)
 			// Displays the sheet of the newly created item.

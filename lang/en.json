@@ -153,6 +153,12 @@
 				"Roll": "Roll",
 				"Push": "Push"
 			},
+			"Roll": {
+				"Success": "Success",
+				"Successes": "Successes",
+				"Mishap": "Mishap",
+				"Ammo": "Ammo Spent;"
+			},
 			"Attack": {
 				"Title": "Attack ({weapon})"
 			}

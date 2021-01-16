@@ -56,7 +56,7 @@ export function hideChatActionButtons(message, html, data) {
 	if (chatCard.length <= 0) return;
 
 	// Hides buttons for non-owners.
-	const actor = game.actors.get(chatCard.dataset.actorId);
+	const actor = game.actors.get(chatCard.attr('data-actor-id'));
 	if (actor && !actor.owner) {
 		const buttons = chatCard.find('button');
 		for (const btn of buttons) {

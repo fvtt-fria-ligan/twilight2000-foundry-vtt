@@ -31,8 +31,6 @@
 # Supported Languages
 - English
 
-Your language isn't listed? Think about contributing and help translate this system into another languages!
-
 # Supported Modules
 *Nihil*
 
@@ -71,7 +69,7 @@ Give a ⭐️ if this project helped you!
 
 # List of Changes
 
-See the [changelog](https://github.com/Stefouch/t2k4e/blob/master/CHANGELOG.md#changelog) for a complete list of changes applied to the Bot since 2021.
+See the [changelog](https://github.com/Stefouch/t2k4e/blob/master/CHANGELOG.md#changelog) for a complete list of changes applied to the system since 2021.
 
 # 📝 License
 

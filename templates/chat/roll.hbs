@@ -1,17 +1,38 @@
-<div class="t2k4e chat-card roll-card" data-owner-id="{{owner}}">
+<div class="t2k4e chat-card roll-card" data-owner-id="{{owner}}"{{#if actor}} data-actor-id="{{actor._id}}"{{/if}}>
     <div class="card-content">
 
-        <h2>{{yzroll.name}}</h2>
-        {{{roll}}}
+        {{#with yzroll}}
+        <h2>{{name}}</h2>
+        {{!-- {{{roll}}} --}}
+
+        <div class="card-dice">
+            {{#each baseDice as | die |}}
+            <span>Base: [ {{die.result}} ]</span>&nbsp;
+            {{/each}}
+            {{#each ammoDice as | die |}}
+            <span>Ammo: [ {{die.result}} ]</span>&nbsp;
+            {{/each}}
+        </div>
 
         <div class="card-description">
+            <div class="success">
+                {{#if (lte successCount 1)}}
+                {{localize "T2KLANG.Chat.Roll.Success"}}: <b>{{successCount}}</b>
+                {{else}}
+                {{localize "T2KLANG.Chat.Roll.Successes"}}: <b>{{successCount}}</b>
+                {{/if}}
+            </div>
+            {{#if mishap}}
+            <div class="mishap">{{localize "T2KLANG.Chat.Roll.Mishap"}}</span>
+            {{/if}}
         </div>
 
         <div class="card-buttons">
-            {{#if yzroll.pushable}}
-            <button class="roll-push" data-roll-id="{{yzroll._id}}">{{localize "T2KLANG.Chat.Actions.Push"}}</button>
+            {{#if pushable}}
+            <button class="roll-push" data-roll-id="{{_id}}">{{localize "T2KLANG.Chat.Actions.Push"}}</button>
             {{/if}}
         </div>
+        {{/with}}
 
     </div>
 </div>

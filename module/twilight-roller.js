@@ -84,7 +84,8 @@ export default class T2KRoll extends YZRoll {
 		const forgeRoll = this.createFoundryRoll();
 		const renderedRoll = await forgeRoll.render();
 		const templateContext = {
-			owner: actor._id,
+			actor: actor.data,
+			owner: game.user._id,
 			yzroll: this,
 			roll: renderedRoll,
 		};

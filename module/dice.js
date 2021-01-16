@@ -3,13 +3,14 @@ import T2KRoll from './twilight-roller.js';
 
 /**
  * Rolls dice for T2K.
- * @param {string} name          The title of the roll
- * @param {Actor} actor          An actor that rolled the dice, if any
- * @param {number} attribute     The attribute's value
- * @param {number} skill         The skill's value
- * @param {number} rof           The RoF's value (for weapons)
- * @param {number[]} modifiers   An array of modifiers
- * @param {boolean} sendMessage  Whether the message should be sent
+ * @param {string} name            The title of the roll
+ * @param {Actor} actor            An actor that rolled the dice, if any
+ * @param {number} attribute       The attribute's value
+ * @param {number} skill           The skill's value
+ * @param {number} rof             The RoF's value (for weapons)
+ * @param {number[]} modifiers     An array of modifiers
+ * @param {boolean} askForOptions  Whether to show a Dialog for roll options
+ * @param {boolean} sendMessage    Whether the message should be sent
  * @returns {Promise<T2KRoll>}
  * @async
  */
@@ -20,15 +21,28 @@ export async function TaskCheck({
 	skill = 0,
 	rof = 0,
 	modifiers = [],
+	askForOptions = true,
 	sendMessage = true,
 } = {}) {
-	// Uses of my YZRoll library (NPM package "yearzero-roll")
+	// 1 - Checks if we send a Roll Dialog.
+	const showTaskCheckOptions = game.settings.get('t2k4e', 'showTaskCheckOptions');
+	if (askForOptions !== showTaskCheckOptions) {
+		const opts = await GetTaskCheckOptions();
+
+		// Exits early if the dialog was cancelled.
+		if (opts.cancelled) return;
+
+		// Uses options from the roll dialog.
+		modifiers.push(opts.modifier);
+	}
+	// 2 - Uses of my YZRoll library (NPM package "yearzero-roll")
 	// for correctly constructing the roll and modifying it properly.
 	const roll = new T2KRoll({ name, attribute, skill, rof,
 		modifier: modifiers.reduce((a, b) => a + b, 0),
 	});
 	console.warn('t2k4e | ROLL', roll.toString());
 
+	// 3 - Sends the message and returns.
 	if (sendMessage) await roll.send(actor);
 	return roll;
 
@@ -107,13 +121,14 @@ export function Push(actor, rollId) {
 /*  Roll Dialog                                 */
 /* -------------------------------------------- */
 
-async function GetTaskCheckOptions(taskType) {
+async function GetTaskCheckOptions(taskType, item, specialties) {
 	const template = 'systems/t2k4e/templates/dialog/roll-dialog.hbs';
 	const html = await renderTemplate(template, {});
 
 	return new Promise(resolve => {
+		// Sets the data of the dialog.
 		const data = {
-			title: 'Roll',
+			title: game.i18n.localize('T2KLANG.Chat.Actions.Roll'),
 			content: html,
 			buttons: {
 				normal: {
@@ -128,11 +143,15 @@ async function GetTaskCheckOptions(taskType) {
 			default: 'normal',
 			close: () => resolve({ cancelled: true }),
 		};
+		// Renders the dialog.
+		new Dialog(data, null).render(true);
 	});
 }
 
-function _processTaskCheckOptions(html) {
-	
+function _processTaskCheckOptions(form) {
+	return {
+		modifier: parseInt(form.modifier.value),
+	};
 }
 
 /* -------------------------------------------- */

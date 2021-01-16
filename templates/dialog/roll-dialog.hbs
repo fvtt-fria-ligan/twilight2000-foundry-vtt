@@ -5,6 +5,18 @@
         <input type="number" name="modifier" value="0"/>
     </div>
 
+    {{#if specialties}}
+    <label>{{localize "T2KLANG.ActorSheet.Specialties"}}</label>
+    <div class="form-group-stacked">
+        {{#each specialties as | specialty |}}
+        <label class="checkbox">
+            <input type="checkbox" name="specialty-{{specialty.name}}" value="{{specialty.value}}"/>
+            {{specialty.name}}
+        </label>
+        {{/each}}
+    </div>
+    {{/if}}
+
     {{#if weapon}}
     {{#if weapon.data.rof}}
     <div class="form-group">
