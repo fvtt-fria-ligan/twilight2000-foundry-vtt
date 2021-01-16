@@ -34,6 +34,33 @@ function _onRollPush(event) {
 	return Dice.Push(owner, event.currentTarget.dataset.rollId);
 }
 
+/**
+ * Adds a context menu (right-clic) to Chat messages.
+ * @param {Object} html DOM
+ * @param {Object} options Options
+ */
 export function addChatMessageContextOptions(html, options) {
 	// TODO: See Part 6, 6:55
+}
+
+/**
+ * Hides buttons of Chat messages for non-owners.
+ * @param {Object} message (app) Message
+ * @param {Object} html DOM
+ * @param {Object} data Additional data
+ */
+export function hideChatActionButtons(message, html, data) {
+	const chatCard = html.find('.t2k4e.chat-card');
+
+	// Exits early if no chatCard were found.
+	if (chatCard.length <= 0) return;
+
+	// Hides buttons for non-owners.
+	const actor = game.actors.get(chatCard.dataset.actorId);
+	if (actor && !actor.owner) {
+		const buttons = chatCard.find('button');
+		for (const btn of buttons) {
+			btn.style.display = 'none';
+		}
+	}
 }

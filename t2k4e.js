@@ -93,3 +93,4 @@ Hooks.once('ready', function() {
 
 Hooks.on('renderChatLog', (app, html, data) => Chat.addChatListeners(html));
 Hooks.on('getChatLogEntryContext', Chat.addChatMessageContextOptions);
+Hooks.on('renderChatMessage', (app, html, data) => Chat.hideChatActionButtons(app, html, data));

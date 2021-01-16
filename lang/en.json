@@ -150,10 +150,20 @@
 			"Actions": {
 				"Attack": "Attack",
 				"Reload": "Reload",
+				"Roll": "Roll",
 				"Push": "Push"
 			},
 			"Attack": {
 				"Title": "Attack ({weapon})"
+			}
+		},
+		"Dialog": {
+			"Actions": {
+				"Cancel": "Cancel"
+			},
+			"Roll": {
+				"Modifier": "Modifier",
+				"RoF": "Rate of Fire"
 			}
 		}
 	},

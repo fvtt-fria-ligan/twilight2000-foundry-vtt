@@ -13,17 +13,15 @@ import T2KRoll from './twilight-roller.js';
  * @returns {Promise<T2KRoll>}
  * @async
  */
-export async function TaskCheck(
-	{
-		name = 'Unnamed Roll',
-		actor = null,
-		attribute = 6,
-		skill = 0,
-		rof = 0,
-		modifiers = [],
-		sendMessage = true,
-	} = {}
-) {
+export async function TaskCheck({
+	name = 'Unnamed Roll',
+	actor = null,
+	attribute = 6,
+	skill = 0,
+	rof = 0,
+	modifiers = [],
+	sendMessage = true,
+} = {}) {
 	// Uses of my YZRoll library (NPM package "yearzero-roll")
 	// for correctly constructing the roll and modifying it properly.
 	const roll = new T2KRoll({ name, attribute, skill, rof,
@@ -92,6 +90,7 @@ export async function Attack(attacker, weapon) {
 }
 
 export function Push(actor, rollId) {
+	// TODO
 	const roll = actor.data.lastRoll;
 	if (!roll) throw new Error('Pushing: Roll Not Found');
 	if (!rollId) throw new Error('Pushing: no Roll ID');
@@ -102,6 +101,38 @@ export function Push(actor, rollId) {
 	roll.push();
 
 	roll.send(actor);
+}
+
+/* -------------------------------------------- */
+/*  Roll Dialog                                 */
+/* -------------------------------------------- */
+
+async function GetTaskCheckOptions(taskType) {
+	const template = 'systems/t2k4e/templates/dialog/roll-dialog.hbs';
+	const html = await renderTemplate(template, {});
+
+	return new Promise(resolve => {
+		const data = {
+			title: 'Roll',
+			content: html,
+			buttons: {
+				normal: {
+					label: game.i18n.localize('T2KLANG.Chat.Actions.Roll'),
+					callback: html => resolve(_processTaskCheckOptions(html[0].querySelector('form'))),
+				},
+				cancel: {
+					label: game.i18n.localize('T2KLANG.Dialog.Actions.Cancel'),
+					callback: html => resolve({ cancelled: true }),
+				}
+			},
+			default: 'normal',
+			close: () => resolve({ cancelled: true }),
+		};
+	});
+}
+
+function _processTaskCheckOptions(html) {
+	
 }
 
 /* -------------------------------------------- */

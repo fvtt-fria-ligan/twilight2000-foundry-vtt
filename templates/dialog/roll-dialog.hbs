@@ -1,0 +1,17 @@
+<form class="t2k4e dialog roll-dialog">
+
+    <div class="form-group">
+        <label>{{localize "T2KLANG.Dialog.Roll.Modifier"}}</label>
+        <input type="number" name="modifier" value="0"/>
+    </div>
+
+    {{#if weapon}}
+    {{#if weapon.data.rof}}
+    <div class="form-group">
+        <label>{{localize "T2KLANG.Dialog.Roll.RoF"}}</label>
+        <input type="number" name="rof" value="1" min="1" max="{{weapon.data.rof}}"/>
+    </div>
+    {{/if}}
+    {{/if}}
+
+</form>
