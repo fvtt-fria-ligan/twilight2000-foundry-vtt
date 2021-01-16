@@ -27,7 +27,7 @@
 	"secondaryTokenAttribute": "sanity",
 	"initiative": "1d10",
 	"url": "https://github.com/Stefouch/t2k4e",
-	"manifest": "",
-	"download": "",
+	"manifest": "https://github.com/stefouch/t2k4e/releases/latest/download/system.json",
+	"download": "https://github.com/stefouch/t2k4e/releases/latest/download/master.zip",
 	"license": "LICENSE"
 }
