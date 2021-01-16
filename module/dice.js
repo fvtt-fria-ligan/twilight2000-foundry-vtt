@@ -68,7 +68,7 @@ export async function TaskCheck({
 }
 
 export async function Attack(attacker, weapon) {
-	const messageTemplate = 'systems/t2k4e/templates/chat/attack-roll.hbs';
+	const messageTemplate = 'systems/t2k4e/templates/chat/roll.hbs';
 	const skillName = weapon.data.data.attackWith;
 
 	if (!skillName || skillName === 'none' || skillName === '–') {

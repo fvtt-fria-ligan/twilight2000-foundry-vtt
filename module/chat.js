@@ -30,8 +30,8 @@ function _onReload(event) {
 function _onRollPush(event) {
 	event.preventDefault();
 	const card = event.currentTarget.closest('.roll-card');
-	const owner = game.actors.get(card.dataset.ownerId);
-	return Dice.Push(owner, event.currentTarget.dataset.rollId);
+	const actor = game.actors.get(card.dataset.actorId);
+	return Dice.Push(actor, event.currentTarget.dataset.rollId);
 }
 
 /**
