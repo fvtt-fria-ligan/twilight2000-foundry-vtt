@@ -138,7 +138,7 @@
 
 {{!-- ENCUMBRANCE --}}
 {{#with data.encumbrance}}
-<div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.CombatGear'}}">
+<div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.CombatGearEncumbrance'}}">
     <span class="encumbrance-bar" style="width: {{pct}}%;"></span>
     <span class="encumbrance-label">
         {{#if (eq value max)}}
@@ -160,7 +160,7 @@
 
 {{!-- BACKPACK --}}
 {{#with data.encumbrance.backpack}}
-<div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.Backpack'}}">
+<div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.BackpackEncumbrance'}}">
     <span class="encumbrance-bar" style="width: {{pct}}%;"></span>
     <span class="encumbrance-label">
         {{#if (eq value max)}}
