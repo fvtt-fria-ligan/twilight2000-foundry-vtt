@@ -87,9 +87,12 @@ export default class ActorSheetT2K extends ActorSheet {
 
 		// new ContextMenu(html, 'a.item-button.item-delete', this.itemContextMenuDelete);
 
+		// html.find('.stat-score .score-selector').change(this._onAttributeChange.bind(this));
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		html.find('.item-edit').click(this._onItemEdit.bind(this));
 		html.find('.item-delete').click(this._onItemDelete.bind(this));
+		html.find('.item-equip').click(this._onItemEquip.bind(this));
+		html.find('.item-backpack').click(this._onItemStore.bind(this));
 		html.find('.item-mag .weapon-edit-ammo').change(this._onWeaponAmmoChange.bind(this));
 		html.find('.boxes-radiation').on('click contextmenu', this._onValueChange.bind(this));
 		html.find('.boxes-capacity').on('click contextmenu', this._onCapacityChange.bind(this));
@@ -106,6 +109,20 @@ export default class ActorSheetT2K extends ActorSheet {
 		}
 	}
 
+	// _onAttributeChange(event) {
+	// 	event.preventDefault();
+	// 	console.warn('d');
+	// 	const data = this.actor.data.data;
+	// 	this.actor.update({
+	// 		'data.health.value': data.health.max,
+	// 		'data.sanity.value': data.sanity.max,
+	// 		'data.health.modifier': 0,
+	// 		'data.sanity.modifier': 0,
+	// 		'data.health.trauma': 0,
+	// 		'data.sanity.trauma': 0,
+	// 	});
+	// }
+
 	_onAttributeRoll(event) {
 		event.preventDefault();
 		const attributeName = event.currentTarget.dataset.attribute;
@@ -114,6 +131,7 @@ export default class ActorSheetT2K extends ActorSheet {
 		return Dice.TaskCheck({
 			name,
 			attribute,
+			attributeName,
 			actor: this.actor,
 			askForOptions: event.shiftKey,
 		});
@@ -125,6 +143,7 @@ export default class ActorSheetT2K extends ActorSheet {
 		const statData = Dice.getAttributeAndSkill(skillName, this.actor.data.data);
 		return Dice.TaskCheck({
 			...statData,
+			skillName,
 			actor: this.actor,
 			askForOptions: event.shiftKey,
 		});
@@ -186,6 +205,26 @@ export default class ActorSheetT2K extends ActorSheet {
 		const elem = event.currentTarget;
 		const itemId = elem.closest('.item').dataset.itemId;
 		return this.actor.deleteOwnedItem(itemId);
+	}
+
+	_onItemEquip(event) {
+		event.preventDefault();
+		const itemId = event.currentTarget.closest('.item').dataset.itemId;
+		const item = this.actor.getOwnedItem(itemId);
+		const equipped = item.data.data.equipped;
+		const updateData = { 'data.equipped': !equipped };
+		if (!equipped && item.data.data.backpack) updateData['data.backpack'] = false;
+		return item.update(updateData);
+	}
+
+	_onItemStore(event) {
+		event.preventDefault();
+		const itemId = event.currentTarget.closest('.item').dataset.itemId;
+		const item = this.actor.getOwnedItem(itemId);
+		const stored = item.data.data.backpack;
+		const updateData = { 'data.backpack': !stored };
+		if (!stored && item.data.data.equipped) updateData['data.equipped'] = false;
+		return item.update(updateData);
 	}
 
 	_onWeaponAmmoChange(event) {

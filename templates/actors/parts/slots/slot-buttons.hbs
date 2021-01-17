@@ -1,4 +1,20 @@
 <div class="item-buttons">
+    {{#unless (eq type 'specialty')}}
+    <a class="button item-equip{{#if data.equipped}} equipped{{/if}}" title="{{localize "T2K4E.ActorSheet.Equip"}}">
+        {{#if data.equipped}}
+        <i class="fas fa-star"></i>
+        {{else}}
+        <i class="far fa-star"></i>
+        {{/if}}
+    </a>
+    <a class="button item-backpack{{#if data.backpack}} packed{{/if}}" title="{{localize "T2K4E.ActorSheet.Store"}}">
+        {{#if data.backpack}}
+        <i class="fas fa-shopping-bag"></i>
+        {{else}}
+        <i class="fas fa-shopping-bag"></i>
+        {{/if}}
+    </a>
+    {{/unless}}
     <a class="button item-edit" title="{{localize "T2K4E.ActorSheet.Edit"}}">
         <i class="fas fa-edit"></i>
     </a>

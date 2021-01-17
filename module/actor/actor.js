@@ -81,13 +81,14 @@ export default class ActorT2K extends Actor {
 	_prepareCapacities(data) {
 		// Capacities are done like this because we want
 		// a Health bar for tokens.
+		// Only `.value` & `.modifier` should be modified in the Actor's sheet.
 		data.health.max = this._getHitCapacity(data) + data.health.modifier;
-		data.health.trauma = data.health.max - data.health.value;
+		data.health.trauma = Math.max(0, data.health.max - data.health.value);
 		data.hitCapacity = data.health.max;
 		data.damage = data.health.trauma;
 
 		data.sanity.max = this._getStressCapacity(data) + data.sanity.modifier;
-		data.sanity.trauma = data.sanity.max - data.sanity.value;
+		data.sanity.trauma = Math.max(0, data.sanity.max - data.sanity.value);
 		data.stressCapacity = data.sanity.max;
 		data.stress = data.sanity.trauma;
 	}
@@ -160,6 +161,7 @@ export default class ActorT2K extends Actor {
 	 */
 	_prepareArmorRating(data, armors) {
 		const ratings = armors.reduce((o, i) => {
+			if (!i.data.equipped) return o;
 			for (const [loc, isProtected] of Object.entries(i.data.location)) {
 				if (!(loc in o)) o[loc] = 0;
 				if (isProtected) {
