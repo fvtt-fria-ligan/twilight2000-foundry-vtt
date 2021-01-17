@@ -41,7 +41,7 @@ export default class T2KRoll extends YZRoll {
 		if (ammoDiceSize > 0) {
 			out.push(`${ammoDiceSize}dm`);
 		}
-		return out.join('+');
+		return out.join(' + ');
 	}
 
 	/**
@@ -58,6 +58,22 @@ export default class T2KRoll extends YZRoll {
 	 */
 	get ammoDice() {
 		return this.getDice('ammo');
+	}
+
+	/**
+	 * @type {number}
+	 * @readonly
+	 */
+	get spentAmmo() {
+		return this.ammoDice.reduce((t, d) => t + d.result, 0);
+	}
+
+	/**
+	 * @type {number}
+	 * @readonly
+	 */
+	get hitCount() {
+		return this.ammoDice.reduce((t, d) => t + (d.result >= 6 ? 1 : 0), 0);
 	}
 
 	/**
@@ -84,7 +100,7 @@ export default class T2KRoll extends YZRoll {
 		const forgeRoll = this.createFoundryRoll();
 		const renderedRoll = await forgeRoll.render();
 		const templateContext = {
-			actor: actor.data,
+			actor: actor ? actor.data : {},
 			owner: game.user._id,
 			yzroll: this,
 			roll: renderedRoll,
@@ -99,31 +115,6 @@ export default class T2KRoll extends YZRoll {
 			// whisper: // TODO: See Part 6, 12:08
 		};
 		return await ChatMessage.create(chatData);
-
-
-		// // const rollData = JSON.stringify(this);
-		// // const html = await renderTemplate(hbs, rollData);
-		// const roll = this.createFoundryRoll();
-
-		// // const roll = Roll.fromData(fakeRoll);
-		// console.warn('t2k4e | Created roll:', roll);
-		// // roll._total = this.successCount;
-		// // roll._dice = [];
-		// // roll.pushable = this.pushable;
-
-		// // const renderedRoll = await roll.render({ template: chatRollTemplate });
-
-		// const messageData = {
-		// 	user: game.user._id,
-		// 	speaker: ChatMessage.getSpeaker(),
-		// 	// sound: 'sounds/dice.wav',
-		// 	content: await roll.render({ template: chatRollTemplate }),
-		// 	// roll: JSON.stringify(fakeRoll),
-		// 	pushable: this.pushable,
-		// };
-		// // ChatMessage.create(messageData);
-		// roll.toMessage(messageData);
-
 	}
 
 	/**
@@ -153,15 +144,6 @@ export default class T2KRoll extends YZRoll {
 			dice: [],
 			terms,
 		});
-		// roll._dice = [];
-		// roll.pushable = this.pushable;
-		// return roll;
-		// return {
-		// 	class: 'Roll',
-		// 	dice: [],
-		// 	formula: this.formula,
-		// 	terms
-		// };
 	}
 
 	/**

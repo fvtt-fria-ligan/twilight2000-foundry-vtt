@@ -31,7 +31,7 @@ function _onRollPush(event) {
 	event.preventDefault();
 	const card = event.currentTarget.closest('.roll-card');
 	const actor = game.actors.get(card.dataset.actorId);
-	return Dice.Push(actor, event.currentTarget.dataset.rollId);
+	return Dice.Push(card.dataset.rollId, actor);
 }
 
 /**
@@ -55,12 +55,27 @@ export function hideChatActionButtons(message, html, data) {
 	// Exits early if no chatCard were found.
 	if (chatCard.length <= 0) return;
 
-	// Hides buttons for non-owners.
+	// Hides buttons.
+	const pushable = game.t2k4e.rolls.has(chatCard.attr('data-roll-id'));
 	const actor = game.actors.get(chatCard.attr('data-actor-id'));
-	if (actor && !actor.owner) {
-		const buttons = chatCard.find('button');
-		for (const btn of buttons) {
-			btn.style.display = 'none';
-		}
+	const buttons = chatCard.find('button');
+	for (const btn of buttons) {
+		if (actor && !actor.owner) btn.style.display = 'none';
+		else if (btn.className === 'roll-push' && !pushable) btn.style.display = 'none';
 	}
+
+	// Hides buttons for non-owners.
+	// const actor = game.actors.get(chatCard.attr('data-actor-id'));
+	// if (actor && !actor.owner) {
+	// 	const buttons = chatCard.find('button');
+	// 	for (const btn of buttons) {
+	// 		btn.style.display = 'none';
+	// 	}
+	// }
+
+	// Hides push buttons for non-pushable rolls.
+	// const pushButton = chatCard.find('button.roll-push')[0];
+	// if (pushButton) {
+	// 	pushButton.style.display = game.t2k4e.rolls.has(chatCard.attr('data-roll-id')) ? 'block' : 'none';
+	// }
 }

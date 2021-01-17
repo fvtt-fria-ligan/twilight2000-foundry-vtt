@@ -1,35 +1,59 @@
-<div class="t2k4e chat-card roll-card" data-owner-id="{{owner}}"{{#if actor}} data-actor-id="{{actor._id}}"{{/if}}>
+<div class="t2k4e chat-card roll-card" data-roll-id="{{yzroll._id}}" data-owner-id="{{owner}}"{{#if actor}} data-actor-id="{{actor._id}}"{{/if}}>
     <div class="card-content">
 
         {{#with yzroll}}
         <h2>{{name}}</h2>
-        {{!-- {{{roll}}} --}}
+        {{{roll}}}
+
+        <div class="card-formula">{{formula}}</div>
 
         <div class="card-dice">
-            {{#each baseDice as | die |}}
-            <span>Base: [ {{die.result}} ]</span>&nbsp;
-            {{/each}}
-            {{#each ammoDice as | die |}}
-            <span>Ammo: [ {{die.result}} ]</span>&nbsp;
-            {{/each}}
+            <div class="base-dice">
+                {{#each baseDice as | die |}}
+                <div class="die d{{die.range}}{{#if (gte die.result 6)}} stunt{{/if}}{{#if (lte die.result 1)}} bane{{/if}}">{{die.result}}</div>
+                {{/each}}
+            </div>
+            {{#if ammoDice.length}}
+            <div class="ammo-dice">
+                {{#each ammoDice as | die |}}
+                <div class="die d{{die.range}}{{#if (gte die.result 6)}} stunt{{/if}}{{#if (lte die.result 1)}} bane{{/if}}">{{die.result}}</div>
+                {{/each}}
+            </div>
+            {{/if}}
         </div>
 
         <div class="card-description">
-            <div class="success">
+            <div class="success{{#if successCount}} successful{{/if}}">
                 {{#if (lte successCount 1)}}
                 {{localize "T2K4E.Chat.Roll.Success"}}: <b>{{successCount}}</b>
                 {{else}}
                 {{localize "T2K4E.Chat.Roll.Successes"}}: <b>{{successCount}}</b>
                 {{/if}}
             </div>
+            {{#if hitCount}}
+            <div class="hit">
+                {{#unless successCount}}
+                {{localize "T2K4E.Chat.Roll.Suppression"}}: <b>{{hitCount}}</b>
+                {{else}}
+                    {{#if (lte hitCount 1)}}
+                    {{localize "T2K4E.Chat.Roll.ExtraHit"}}: <b>{{hitCount}}</b>
+                    {{else}}
+                    {{localize "T2K4E.Chat.Roll.ExtraHits"}}: <b>{{hitCount}}</b>
+                    {{/if}}
+                {{/unless}}
+            </div>
+            {{/if}}
             {{#if mishap}}
-            <div class="mishap">{{localize "T2K4E.Chat.Roll.Mishap"}}</span>
+            <div class="mishap">{{localize "T2K4E.Chat.Roll.Mishap"}}</div>
+            {{/if}}
+            {{#if spentAmmo}}
+            <div class="ammo">{{localize "T2K4E.Chat.Roll.AmmoSpent"}}: <b>{{spentAmmo}}</b></div>
             {{/if}}
         </div>
 
         <div class="card-buttons">
             {{#if pushable}}
-            <button class="roll-push" data-roll-id="{{_id}}">{{localize "T2K4E.Chat.Actions.Push"}}</button>
+            <button class="roll-push">{{localize "T2K4E.Chat.Actions.Push"}}</button>
             {{/if}}
         </div>
         {{/with}}

@@ -1,5 +1,5 @@
 .chat-message {
-	@dieSize: 64px;
+	@dieSize: 32px;
 	.actor-sheet-background();
 	.font-text-normal();
 
@@ -22,20 +22,88 @@
 		img {
 			border: none;
 		}
+
+		&>div {
+			margin-bottom: @gap;
+		}
+
+		.card-formula {
+			text-align: center;
+			padding: 2px;
+			color: @colorTan;
+			border: 1px solid #999;
+			border-radius: 3px;
+			background-color: rgba(0, 0, 0, 0.1);
+			word-break: break-all;
+		}
+
+		.card-dice {
+			&> div + div {
+				margin-top: 2px;
+			}
+
+			.base-dice,
+			.ammo-dice {
+				display: flex;
+				flex-direction: row;
+			}
+
+			.die {
+				width: @dieSize;
+				line-height: @dieSize;
+				margin-right: 2px;
+				background-image: url(../../../icons/svg/d6-grey.svg);
+				background-repeat: no-repeat;
+				background-size: @dieSize @dieSize;
+				font-size: @dieSize / 1.5;
+				font-weight: bold;
+				text-align: center;
+
+				&.d12 {
+					background-image: url(../../../icons/svg/d12-grey.svg);
+				}
+
+				&.d10 {
+					background-image: url(../../../icons/svg/d10-grey.svg);
+				}
+
+				&.d8 {
+					background-image: url(../../../icons/svg/d8-grey.svg);
+				}
+
+				&.d6 {
+					background-image: url(../../../icons/svg/d6-grey.svg);
+				}
+
+				&.stunt {
+					color: @colorGreen;
+					filter: sepia(0.5) hue-rotate(60deg);
+				}
+
+				&.bane {
+					color: @colorRed;
+					filter: sepia(0.5) hue-rotate(-60deg);
+				}
+			}
+		}
+
+		.card-description {
+			.success.successful {
+				color: green;
+			}
+
+			.mishap {
+				color: @colorRed;
+			}
+		}
+
 		.card-description {
 			h4 {
 				border-top: 1px solid @colorBrown;
 			}
-
-			// .grid > div {
-			// 	display: flex;
-			// 	flex-direction: column;
-			// }
 		}
 
 		.card-buttons {
-			margin-top: @gap;
-
 			button {
 				line-height: 1rem;
 			}

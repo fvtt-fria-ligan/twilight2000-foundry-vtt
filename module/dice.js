@@ -5,6 +5,7 @@ import T2KRoll from './twilight-roller.js';
  * Rolls dice for T2K.
  * @param {string} name            The title of the roll
  * @param {Actor} actor            An actor that rolled the dice, if any
+ * @param {Item} item              An item used to roll the dice, if any
  * @param {number} attribute       The attribute's value
  * @param {number} skill           The skill's value
  * @param {number} rof             The RoF's value (for weapons)
@@ -17,6 +18,7 @@ import T2KRoll from './twilight-roller.js';
 export async function TaskCheck({
 	name = 'Unnamed Roll',
 	actor = null,
+	item = null,
 	attribute = 6,
 	skill = 0,
 	rof = 0,
@@ -24,111 +26,143 @@ export async function TaskCheck({
 	askForOptions = true,
 	sendMessage = true,
 } = {}) {
-	// 1 - Checks if we send a Roll Dialog.
+	// 1 — Checks if we ask for options (roll dialog).
 	const showTaskCheckOptions = game.settings.get('t2k4e', 'showTaskCheckOptions');
 	if (askForOptions !== showTaskCheckOptions) {
-		const opts = await GetTaskCheckOptions();
+		const opts = await GetTaskCheckOptions({ name, actor, item });
 
 		// Exits early if the dialog was cancelled.
 		if (opts.cancelled) return;
 
 		// Uses options from the roll dialog.
 		modifiers.push(opts.modifier);
+		rof = opts.rof;
 	}
-	// 2 - Uses of my YZRoll library (NPM package "yearzero-roll")
+	// 2 — Uses of my YZRoll library (NPM package "yearzero-roll")
 	// for correctly constructing the roll and modifying it properly.
 	const roll = new T2KRoll({ name, attribute, skill, rof,
 		modifier: modifiers.reduce((a, b) => a + b, 0),
 	});
 	console.warn('t2k4e | ROLL', roll.toString());
 
-	// 3 - Sends the message and returns.
+	// 3 — Saves to roll to the system config.
+	if (roll.pushable) game.t2k4e.rolls.set(roll._id, roll);
+
+	// 4 — Sends the message and returns.
 	if (sendMessage) await roll.send(actor);
 	return roll;
-
-	// Creates
-	// const rollFormula = roll.toPhrase();
-	// const rollData = {
-	// 	...actorData,
-	// 	title: roll.name,
-	// 	yzroll: JSON.stringify(roll),
-	// };
-
-	// const rollResult = new Roll(rollFormula, rollData).roll();
-	// const messageTemplate = 'systems/t2k4e/templates/chat/roll.hbs';
-	// const renderedRoll = await rollResult.render({ template: messageTemplate });
-	// const messageData = {
-	// 	speaker: ChatMessage.getSpeaker(),
-	// 	content: renderedRoll,
-	// 	roll: JSON.stringify(roll),
-	// };
-
-	// rollResult.toMessage(messageData);
-	// console.warn(rollResult);
 }
 
+/**
+ * Attacks with a weapon.
+ * @param {Actor} attacker  Attacking actor
+ * @param {Item} weapon     Weapon used for the attack
+ * @async
+ */
 export async function Attack(attacker, weapon) {
 	const messageTemplate = 'systems/t2k4e/templates/chat/roll.hbs';
-	const skillName = weapon.data.data.attackWith;
+	const attributeName = weapon.data.data.attribute;
+	const skillName = weapon.data.data.skill;
 
+	// Exits early if no attack skill was found.
 	if (!skillName || skillName === 'none' || skillName === '–') {
 		const msg = `No skill defined for the ${weapon.data.name}`;
 		return ui.notifications.error(msg);
 	}
 
-	const statData = getAttributeAndSkill(skillName, attacker.data.data);
-
 	const roll = await TaskCheck({
-		...statData,
+		name: game.i18n.format('T2K4E.Chat.Attack.Title', { weapon: weapon.data.name }),
+		actor: attacker,
+		item: weapon,
+		attribute: attacker.data.data.attributes[attributeName].value,
+		skill: attacker.data.data.skills[skillName].value,
 		rof: weapon.data.data.rof,
-		sendMessage: false,
+		askForOptions: true,
+		sendMessage: true,
 	});
+	// TODO
+	return;
+	// // Exits if no roll (cancelled task check).
+	// if (!roll) return;
 
-	const forgeRoll = roll.createFoundryRoll();
-	const renderedRoll = await forgeRoll.render();
-	const templateContext = {
-		owner: attacker._id,
-		yzroll: roll,
-		weapon: weapon.data,
-		roll: renderedRoll,
-	};
-	const chatData = {
-		user: game.user._id,
-		speaker: ChatMessage.getSpeaker(),
-		roll: forgeRoll,
-		content: await renderTemplate(messageTemplate, templateContext),
-		sound: CONFIG.sounds.dice,
-		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-	};
-	return await ChatMessage.create(chatData);
+	// const forgeRoll = roll.createFoundryRoll();
+	// const renderedRoll = await forgeRoll.render();
+	// const templateContext = {
+	// 	owner: game.user._id,
+	// 	yzroll: roll,
+	// 	weapon: weapon.data,
+	// 	roll: renderedRoll,
+	// };
+	// const chatData = {
+	// 	user: game.user._id,
+	// 	speaker: ChatMessage.getSpeaker(),
+	// 	roll: forgeRoll,
+	// 	content: await renderTemplate(messageTemplate, templateContext),
+	// 	sound: CONFIG.sounds.dice,
+	// 	type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+	// };
+	// return await ChatMessage.create(chatData);
 }
 
-export function Push(actor, rollId) {
-	// TODO
-	const roll = actor.data.lastRoll;
-	if (!roll) throw new Error('Pushing: Roll Not Found');
-	if (!rollId) throw new Error('Pushing: no Roll ID');
-	if (rollId !== roll._id) {
-		ui.notifications.error('This roll cannot be pushed because it is not the last one of this actor!');
+/**
+ * Pushes a Twilight Roll.
+ * @param {string} rollId  ID of the roll to push
+ * @param {Actor} actor    Actor, if any
+ * @async
+ */
+export async function Push(rollId, actor = null) {
+	// Retrieves the roll to push from the cache.
+	const roll = game.t2k4e.rolls.get(rollId);
+	
+	// Exits early if the roll wasn't found or if it can't be pushed.
+	if (!roll || !roll.pushable) {
+		ui.notifications.error(game.i18n.localize('T2K4E.Chat.Roll.CannotPush'));
 		return;
 	}
-	roll.push();
 
-	roll.send(actor);
+	// Pushes the roll and sends the message.
+	roll.name += game.i18n.localize('T2K4E.Chat.Roll.Pushed');
+	roll.push();
+	await roll.send(actor);
+
+	// Damages the actor.
+	// TODO
+	if (actor && ['character', 'npc'].includes(actor.data.type)) {
+		// TODO
+	}
+
+	// Clears the cache.
+	if (!roll.pushable) game.t2k4e.rolls.delete(roll._id);
 }
 
 /* -------------------------------------------- */
 /*  Roll Dialog                                 */
 /* -------------------------------------------- */
 
-async function GetTaskCheckOptions(taskType, item, specialties) {
+async function GetTaskCheckOptions({ taskType, name, skill, actor, item } = {}) {
 	const template = 'systems/t2k4e/templates/dialog/roll-dialog.hbs';
-	const html = await renderTemplate(template, {});
+
+	// const specialties = [];
+	// if (actor && ['character', 'npc'].includes(actor.data.type)) {
+	// 	specialties = actor.data.items
+	// 		.filter(i => i.data.type === 'specialty')
+	// 		.reduce((o, s) => {
+	// 			if ()
+	// 			return {
+	// 				name: s
+	// 			}
+	// 		})
+	// }
+
+	const html = await renderTemplate(template, {
+		specialties: [],
+		weapon: item?.data?.type === 'weapon' ? item.data : {},
+	});
 
 	return new Promise(resolve => {
 		// Sets the data of the dialog.
 		const data = {
-			title: game.i18n.localize('T2K4E.Chat.Actions.Roll'),
+			title: game.i18n.localize('T2K4E.Chat.Actions.Roll') + ' — ' + name,
 			content: html,
 			buttons: {
 				normal: {
@@ -151,6 +185,7 @@ async function GetTaskCheckOptions(taskType, item, specialties) {
 function _processTaskCheckOptions(form) {
 	return {
 		modifier: parseInt(form.modifier.value),
+		rof: form.rof ? parseInt(form.rof.value) : 0,
 	};
 }
 
@@ -195,9 +230,9 @@ export function registerDice() {
 	CONFIG.Dice.terms.b = BaseDieD10;
 	CONFIG.Dice.terms.c = BaseDieD8;
 	CONFIG.Dice.terms.d = BaseDieD6;
-	CONFIG.Dice.terms['12'] = BaseDieD12;
-	CONFIG.Dice.terms['10'] = BaseDieD10;
-	CONFIG.Dice.terms['8'] = BaseDieD8;
+	// CONFIG.Dice.terms['12'] = BaseDieD12;
+	// CONFIG.Dice.terms['10'] = BaseDieD10;
+	// CONFIG.Dice.terms['8'] = BaseDieD8;
 	// CONFIG.Dice.terms['6'] = BaseDieD6;
 	CONFIG.Dice.terms.m = AmmoDie;
 }

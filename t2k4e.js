@@ -42,7 +42,9 @@ Hooks.once('init', function() {
 		entities: {
 			ActorT2K,
 			ItemT2K
-		}
+		},
+		// Cache for pushable rolls.
+		rolls: new Collection(),
 	};
 
 	// Records configuration values.
@@ -54,7 +56,7 @@ Hooks.once('init', function() {
 	// Patches Core functions.
 	CONFIG.Combat.initiative = {
 		formula: '1d10 + (@attributes.agl.value / 100)',
-		decimals: 2
+		decimals: 2,
 	}
 
 	// Registers sheet application classes. 
@@ -63,7 +65,7 @@ Hooks.once('init', function() {
 	Actors.registerSheet('t2k4e', ActorSheetT2KCharacter, {
 		types: ['character', 'npc'],
 		makeDefault: true,
-		label: 'T2K4E.SheetClassCharacter'
+		label: 'T2K4E.SheetClassCharacter',
 	});
 
 	Items.unregisterSheet('core', ItemSheet);
@@ -76,7 +78,7 @@ Hooks.once('init', function() {
 });
 
 Hooks.once('ready', function() {
-	console.log('t2k4e | READY!');
+	console.warn('t2k4e | READY!');
 
 	/**
 	 * @type {Actor}

@@ -245,7 +245,8 @@
 				}
 			},
 			"itemOffensive": {
-				"attackWith": "rangedCombat",
+				"attribute": "agl",
+				"skill": "rangedCombat",
 				"damage": 0,
 				"crit": 0,
 				"blast": "–",

@@ -129,7 +129,8 @@
 			"FeaturesTab": "Features",
 			"ModifiersTab": "Modifiers",
 			"DescriptionTab": "Notes",
-			"AttackWith": "Skill Used",
+			"AttributeUsed": "Attribute Used",
+			"SkillUsed": "Skill Used",
 			"Quantity": "Quantity",
 			"ItemType": "Type",
 			"Ammo": "Ammo",
@@ -156,8 +157,13 @@
 			"Roll": {
 				"Success": "Success",
 				"Successes": "Successes",
+				"CannotPush": "The roll has already been pushed",
+				"Pushed": "— Pushed",
+				"Suppression": "Suppression",
+				"ExtraHit": "Extra Hit",
+				"ExtraHits": "Extra Hits",
 				"Mishap": "Mishap",
-				"Ammo": "Ammo Spent;"
+				"AmmoSpent": "Ammo Spent"
 			},
 			"Attack": {
 				"Title": "Attack ({weapon})"
