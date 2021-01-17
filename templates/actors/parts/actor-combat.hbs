@@ -29,7 +29,7 @@
                 <div class="col-3 stat-value">
                     {{#if (lte data.cuf.value 0)}}–
                     {{else}}
-                    <div class="boxed-value">D{{data.cuf.value}}</div>
+                    <div class="boxed-value cuf-roll rollable">D{{data.cuf.value}}</div>
                     {{/if}}
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <div class="col-3 stat-value">
                     {{#if (lte data.unitMorale.value 0)}}–
                     {{else}}
-                    <div class="boxed-value">D{{data.unitMorale.value}}</div>
+                    <div class="boxed-value unit-morale-roll rollable">D{{data.unitMorale.value}}</div>
                     {{/if}}
                 </div>
             </div>

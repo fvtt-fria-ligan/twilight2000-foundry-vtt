@@ -23,7 +23,7 @@
             <div class="col-3 stat-value">
                 {{#if (lte attribute.value 0)}}–
                 {{else}}
-                <div class="boxed-value">D{{attribute.value}}</div>
+                <div class="boxed-value attribute-roll rollable" data-attribute="{{attr}}">D{{attribute.value}}</div>
                 {{/if}}
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <div class="col-3 stat-value">
                     {{#if (lte skill.value 0)}}–
                     {{else}}
-                    <div class="boxed-value">D{{skill.value}}</div>
+                    <div class="boxed-value skill-roll rollable" data-skill="{{sk}}">D{{skill.value}}</div>
                     {{/if}}
                 </div>
             </div>
