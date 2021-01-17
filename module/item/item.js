@@ -37,9 +37,11 @@ export default class ItemT2K extends Item {
 	 */
 	async reload() {
 		TaskCheck({
-			name: 'Reload',
+			name: game.i18n.localize('T2K4E.Chat.Actions.Reload'),
 			attribute: this.actor?.data.data.attributes.agl.value,
 			skill: this.actor?.data.data.skills.rangedCombat.value,
+			actor: this.actor,
+			item: this,
 		});
 		console.warn('t2k4e | RELOAD => Function not implemented yet! — Planned for a future release.');
 		return;
@@ -95,7 +97,7 @@ export default class ItemT2K extends Item {
 		// switch (this.type) {
 		// 	case 'ammunition': 
 		// }
-		console.log('t2k4e | Updated Item: ', this.name, this._id);
+		// console.log('t2k4e | Updated Item: ', this.name, this._id);
 	}
 
 	/**

@@ -48,7 +48,7 @@ Hooks.once('init', function() {
 	};
 
 	// Records configuration values.
-	CONFIG.debug.hooks = true;
+	// CONFIG.debug.hooks = true;
 	CONFIG.T2K4E = T2K4E;
 	CONFIG.Actor.entityClass = ActorT2K;
 	CONFIG.Item.entityClass = ItemT2K;
@@ -82,7 +82,7 @@ Hooks.once('ready', function() {
 
 	/**
 	 * @type {Actor}
-	 */
+	 *
 	const startingActor = game.actors.get('PD9O4dYhP1ED6Pmp');
 	startingActor.sheet.render(true);//*/
 
