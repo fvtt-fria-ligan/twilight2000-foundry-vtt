@@ -10,7 +10,7 @@
     <div class="form-group-stacked">
         {{#each specialties as | specialty |}}
         <label class="checkbox">
-            <input type="checkbox" name="specialty-{{specialty.name}}" value="{{specialty.value}}" {{checked specialty.checked}}/>
+            <input type="checkbox" name="specialty-{{@index}}" value="{{specialty.value}}"/>
             {{specialty.name}}
         </label>
         {{/each}}
@@ -20,11 +20,7 @@
     {{#if weapon}}
     {{#if weapon.data.rof}}
     <div class="form-group">
-        <label>
-            <span>{{localize "T2K4E.Dialog.Roll.RoF"}}<br/>
-                <small>(min: 1, max: {{weapon.data.rof}})</small>
-            </span>
-        </label>
+        <label>{{localize "T2K4E.Dialog.Roll.RoF"}} <small><i>(min 1, max {{weapon.data.rof}})</i></small></label>
         <input type="number" name="rof" value="1" min="1" max="{{weapon.data.rof}}"/>
     </div>
     {{/if}}

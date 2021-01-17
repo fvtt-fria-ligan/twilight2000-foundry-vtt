@@ -4,9 +4,11 @@ import T2KRoll from './twilight-roller.js';
 /**
  * Rolls dice for T2K.
  * @param {string} name            The title of the roll
- * @param {Actor} actor            An actor that rolled the dice, if any
- * @param {Item} item              An item used to roll the dice, if any
+ * @param {Actor} actor            The actor who rolled the dice, if any
+ * @param {Item} item              The item used to roll the dice, if any
+ * @param {string} attributeName   The attribute's codename (non-mandatory)
  * @param {number} attribute       The attribute's value
+ * @param {string} skillName       The skill's codename (non-mandatory)
  * @param {number} skill           The skill's value
  * @param {number} rof             The RoF's value (for weapons)
  * @param {number[]} modifiers     An array of modifiers
@@ -19,7 +21,9 @@ export async function TaskCheck({
 	name = 'Unnamed Roll',
 	actor = null,
 	item = null,
+	attributeName = null,
 	attribute = 6,
+	skillName = null,
 	skill = 0,
 	rof = 0,
 	modifiers = [],
@@ -28,13 +32,34 @@ export async function TaskCheck({
 } = {}) {
 	// 1 — Checks if we ask for options (roll dialog).
 	const showTaskCheckOptions = game.settings.get('t2k4e', 'showTaskCheckOptions');
-	if (askForOptions !== showTaskCheckOptions) {
-		const opts = await GetTaskCheckOptions({ name, actor, item });
+	if (rof || askForOptions !== showTaskCheckOptions) {
+		// 1.1 — Gets other applicable items with modifiers.
+		let modifyingItems = [];
+		// if (actor && (attributeName || skillName)) {
+		// 	modifyingItems = actor.data.items.filter(i => {
+		// 		const modifiers = i.data.modifiers;
+		// 		if (!modifiers) return false;
+		// 		if (attributeName) {
+		// 			for (const [k, v] of Object.entries(modifiers.attributes)) {
+		// 				if (v != null && v !== 0 && k === attributeName) return true;
+		// 			}
+		// 		}
+		// 		if (skillName) {
+		// 			for (const [k, v] of Object.entries(modifiers.skills)) {
+		// 				if (v != null && v !== 0 && k === skillName) return true;
+		// 			}
+		// 		}
+		// 		return false;
+		// 	});
+		// }
+
+		// 1.2 – Renders the dialog.
+		const opts = await GetTaskCheckOptions({ name, actor, item, modifyingItems });
 
 		// Exits early if the dialog was cancelled.
 		if (opts.cancelled) return;
 
-		// Uses options from the roll dialog.
+		// 1.3 – Uses options from the roll dialog.
 		modifiers.push(opts.modifier);
 		rof = opts.rof;
 	}
@@ -74,6 +99,8 @@ export async function Attack(attacker, weapon) {
 		name: game.i18n.format('T2K4E.Chat.Attack.Title', { weapon: weapon.data.name }),
 		actor: attacker,
 		item: weapon,
+		attributeName,
+		skillName,
 		attribute: attacker.data.data.attributes[attributeName].value,
 		skill: attacker.data.data.skills[skillName].value,
 		rof: weapon.data.data.rof,
@@ -139,24 +166,21 @@ export async function Push(rollId, actor = null) {
 /*  Roll Dialog                                 */
 /* -------------------------------------------- */
 
-async function GetTaskCheckOptions({ taskType, name, skill, actor, item } = {}) {
+/**
+ * Renders a TaskCheck Options dialog.
+ * @param {string} taskType        Unused for now
+ * @param {string} name            The name of the roll (for the dialog's title)
+ * @param {Actor} actor            The actor who rolled the dice, if any
+ * @param {Item} item              The item used to roll the dice, if any
+ * @param {Item[]} modifyingItems  Other items with applicable modifiers
+ * @async
+ */
+async function GetTaskCheckOptions({ taskType, name, actor, item, modifyingItems = [] } = {}) {
 	const template = 'systems/t2k4e/templates/dialog/roll-dialog.hbs';
 
-	// const specialties = [];
-	// if (actor && ['character', 'npc'].includes(actor.data.type)) {
-	// 	specialties = actor.data.items
-	// 		.filter(i => i.data.type === 'specialty')
-	// 		.reduce((o, s) => {
-	// 			if ()
-	// 			return {
-	// 				name: s
-	// 			}
-	// 		})
-	// }
-
 	const html = await renderTemplate(template, {
-		specialties: [],
-		weapon: item?.data?.type === 'weapon' ? item.data : {},
+		modifiers: modifyingItems,
+		weapon: item?.data?.type === 'weapon' ? item.data : null,
 	});
 
 	return new Promise(resolve => {
