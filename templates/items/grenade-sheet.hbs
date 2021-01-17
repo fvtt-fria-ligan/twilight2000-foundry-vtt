@@ -110,6 +110,24 @@
 
             </div>
 
+            {{!-- Inventory Options --}}
+            {{#if inActor}}
+            <div class="features-other flexcol">
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="data.equipped" {{checked data.equipped}}/>
+                        {{localize "T2K4E.ItemSheet.Equipped"}}
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="data.backpack" {{checked data.backpack}}/>
+                        {{localize "T2K4E.ItemSheet.StoredInBackpack"}}
+                    </label>
+                </div>
+            </div>
+            {{/if}}
+
         </div>
 
         {{!-- Description Tab --}}

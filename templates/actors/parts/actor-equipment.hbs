@@ -137,22 +137,45 @@
 </div>
 
 {{!-- ENCUMBRANCE --}}
-<div class="encumbrance{{#if data.encumbrance.encumbered}} encumbered{{/if}}">
-    <span class="encumbrance-bar" style="width: {{data.encumbrance.pct}}%;"></span>
+{{#with data.encumbrance}}
+<div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.CombatGear'}}">
+    <span class="encumbrance-bar" style="width: {{pct}}%;"></span>
     <span class="encumbrance-label">
-        {{#if (eq data.encumbrance.value data.encumbrance.max)}}
+        {{#if (eq value max)}}
         {{localize "T2K4E.ActorSheet.EncumbranceFull"}}&nbsp;—&nbsp;
         {{/if}}
-        {{#if data.encumbrance.encumbered}}
+        {{#if encumbered}}
         {{localize "T2K4E.ActorSheet.EncumbranceTooHeavy"}}&nbsp;—&nbsp;
         {{/if}}
-        {{data.encumbrance.value}}&nbsp;/&nbsp;{{data.encumbrance.max}}
+        {{value}}&nbsp;/&nbsp;{{max}}
     </span>
-    {{#times data.encumbrance.max}}
+    {{#times max}}
     {{#if (lte @index (add @max -1))}}
     <i class="encumbrance-breakpoint arrow-down" style="left: {{ratio @index @max}}%"></i>
     <i class="encumbrance-breakpoint arrow-up" style="left: {{ratio @index @max}}%"></i>
     {{/if}}
     {{/times}}
 </div>
+{{/with}}
 
+{{!-- BACKPACK --}}
+{{#with data.encumbrance.backpack}}
+<div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.Backpack'}}">
+    <span class="encumbrance-bar" style="width: {{pct}}%;"></span>
+    <span class="encumbrance-label">
+        {{#if (eq value max)}}
+        {{localize "T2K4E.ActorSheet.EncumbranceFull"}}&nbsp;—&nbsp;
+        {{/if}}
+        {{#if encumbered}}
+        {{localize "T2K4E.ActorSheet.EncumbranceTooHeavy"}}&nbsp;—&nbsp;
+        {{/if}}
+        {{value}}&nbsp;/&nbsp;{{max}}
+    </span>
+    {{#times max}}
+    {{#if (lte @index (add @max -1))}}
+    <i class="encumbrance-breakpoint arrow-down" style="left: {{ratio @index @max}}%"></i>
+    <i class="encumbrance-breakpoint arrow-up" style="left: {{ratio @index @max}}%"></i>
+    {{/if}}
+    {{/times}}
+</div>
+{{/with}}

@@ -1,6 +1,6 @@
 /**
  * Twilight 2000 Item Sheet.
- * @extends {ItemSheet} Extends the basic ItemSheet.
+ * @extends {ItemSheet} Extends the basic ItemSheet
  */
 export default class ItemSheetT2K extends ItemSheet {
 
@@ -23,7 +23,10 @@ export default class ItemSheetT2K extends ItemSheet {
 	getData() {
 		const data = super.getData();
 		data.config = CONFIG.T2K4E;
-		data.itemType = game.i18n.localize(`T2K4E.ItemTypes.${data.item.type}`);
+		// data.itemType = game.i18n.localize(`T2K4E.ItemTypes.${data.item.type}`);
+
+		data.inActor = this.item.actor ? true : false;
+
 		return data;
 	}
 

@@ -115,19 +115,19 @@
         {{#if (eq actor.type 'character')}}
         <div class="tab tab-biography" data-group="primary" data-tab="biography">
             <div class="flexcol">
-                <h3>{{localize "T2K4E.ActorSheet.Appearance"}}</h3>
+                <h2>{{localize "T2K4E.ActorSheet.Appearance"}}</h2>
                 {{editor content=data.bio.appearance target="data.bio.appearance" button=true owner=owner editable=editable}}
 
-                <h3>{{localize "T2K4E.ActorSheet.Buddy"}}</h3>
+                <h2>{{localize "T2K4E.ActorSheet.Buddy"}}</h2>
                 <input type="text" name="data.bio.buddy" value="{{data.bio.buddy}}"/>
 
-                <h3>{{localize "T2K4E.ActorSheet.MoralCode"}}</h3>
+                <h2>{{localize "T2K4E.ActorSheet.MoralCode"}}</h2>
                 <input type="text" name="data.bio.moralCode" value="{{data.bio.moralCode}}"/>
 
-                <h3>{{localize "T2K4E.ActorSheet.BigDream"}}</h3>
+                <h2>{{localize "T2K4E.ActorSheet.BigDream"}}</h2>
                 <input type="text" name="data.bio.bigDream" value="{{data.bio.bigDream}}"/>
 
-                <h3>{{localize "T2K4E.ActorSheet.GroupMeeting"}}</h3>
+                <h2>{{localize "T2K4E.ActorSheet.GroupMeeting"}}</h2>
                 <textarea name="data.bio.groupMeeting">{{data.bio.groupMeeting}}</textarea>
             </div>
         </div>

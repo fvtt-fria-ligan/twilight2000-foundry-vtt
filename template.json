@@ -236,6 +236,8 @@
 				"itemType": "",
 				"weight": 1,
 				"price": 0,
+				"equipped": false,
+				"backpack": false,
 				"description": ""
 			},
 			"itemReliability": {

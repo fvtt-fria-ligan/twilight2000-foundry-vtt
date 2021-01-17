@@ -30,7 +30,7 @@ export default class ActorT2K extends Actor {
 
 	/**
 	 * Prepares Character type specific data.
-	 * @param {Object} actorData The Actor's data.
+	 * @param {Object} actorData The Actor's data
 	 * @private
 	 */
 	_prepareCharacterData(actorData) {
@@ -49,7 +49,7 @@ export default class ActorT2K extends Actor {
 
 	/**
 	 * Prepares NPC type specific data.
-	 * @param {Object} actorData The Actor's data.
+	 * @param {Object} actorData The Actor's data
 	 * @private
 	 */
 	_prepareNpcData(actorData) {
@@ -58,7 +58,7 @@ export default class ActorT2K extends Actor {
 
 	/**
 	 * Adds a `value` property for the die's size equal to its score.
-	 * @param {Object} obj data.attributes OR data.skills OR any object with a "score" property.
+	 * @param {Object} obj data.attributes OR data.skills OR any object with a "score" property
 	 * @private
 	 */
 	_prepareScores(obj) {
@@ -75,7 +75,7 @@ export default class ActorT2K extends Actor {
 	/**
 	 * Adds Hit & Stress Capacities properties to the Actor.
 	 * Adds also a Health property (with value and max) for token bars.
-	 * @param {Object} data The Actor's data.data.
+	 * @param {Object} data The Actor's data.data
 	 * @private
 	 */
 	_prepareCapacities(data) {
@@ -94,7 +94,7 @@ export default class ActorT2K extends Actor {
 
 	/**
 	 * Calculates the Hit Capacity.
-	 * @param {Object} data The Actor's data.data.
+	 * @param {Object} data The Actor's data.data
 	 * @returns {number}
 	 * @private
 	 */
@@ -106,7 +106,7 @@ export default class ActorT2K extends Actor {
 
 	/**
 	 * Calculates the Stress Capacity.
-	 * @param {Object} data The Actors's data.data.
+	 * @param {Object} data The Actors's data.data
 	 * @returns {number}
 	 * @private
 	 */
@@ -118,29 +118,44 @@ export default class ActorT2K extends Actor {
 
 	/**
 	 * Adds Emcumbrance properties to the Actor.
-	 * @param {Object} data The Actor's data.data.
-	 * @param {Item[]} items Array of items.
+	 * @param {Object} data   The Actor's data.data
+	 * @param {Item[]} items  Array of items
 	 * @private
 	 */
 	_prepareEncumbrance(data, items) {
-		const value = (
+		// Computes the Encumbrance.
+		const val1 = (
 			items
-				.filter(i => i.type !== 'specialty')
+				.filter(i => !i.data.backpack && i.type !== 'specialty')
 				.reduce((sum, i) => sum + i.data.encumbrance, 0)
 			) || 0;
 
 		data.encumbrance = {
-			value,
+			value: val1,
 			max: data.attributes.str.value,
-			pct: clamp((value / data.attributes.str.value) * 100, 0, 100),
-			encumbered: value > data.attributes.str.value
+			pct: clamp((val1 / data.attributes.str.value) * 100, 0, 100),
+			encumbered: val1 > data.attributes.str.value,
+		};
+
+		// Computes the Backpack.
+		const val2 = (
+			items
+				.filter(i => i.data.backpack && i.type !== 'specialty')
+				.reduce((sum, i) => sum + i.data.encumbrance, 0)
+			) || 0;
+
+		data.encumbrance.backpack = {
+			value: val2,
+			max: data.attributes.str.value,
+			pct: clamp((val2 / data.attributes.str.value) * 100, 0, 100),
+			encumbered: val2 > data.attributes.str.value,
 		};
 	}
 
 	/**
 	 * Adds Armor Ratings properties to the Actor.
-	 * @param {Object} data The Actor's data.data.
-	 * @param {Item[]} armors An array containing the Actor's armors.
+	 * @param {Object} data    The Actor's data.data
+	 * @param {Item[]} armors  An array containing the Actor's armors
 	 * @private
 	 */
 	_prepareArmorRating(data, armors) {

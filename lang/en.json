@@ -114,6 +114,8 @@
 			"AddGear": "Add new gear",
 			"AddAmmo": "Add new ammunition",
 			"Encumbrance": "Encumbrance",
+			"CombatGear":"Combat Gear ({{T2K4E.ActorSheet.Encumbrance}})",
+			"Backpack": "Backpack ({{T2K4E.ActorSheet.Encumbrance}})",
 			"Edit": "Edit",
 			"Delete": "Delete",
 			"NewItem": {
@@ -145,7 +147,9 @@
 			"Armor": "Armor",
 			"Weight": "Weight",
 			"Price": "Price",
-			"ArmorLocation": "Protected Location"
+			"ArmorLocation": "Protected Location",
+			"Equipped": "Equipped",
+			"StoredInBackpack": "Stored in the backpack"
 		},
 		"Chat": {
 			"Actions": {
@@ -157,7 +161,7 @@
 			"Roll": {
 				"Success": "Success",
 				"Successes": "Successes",
-				"CannotPush": "The roll has already been pushed",
+				"CannotPush": "This roll has already been pushed",
 				"Pushed": "— Pushed",
 				"Suppression": "Suppression",
 				"ExtraHit": "Extra Hit",
@@ -171,6 +175,7 @@
 		},
 		"Dialog": {
 			"Actions": {
+				"Reload": "Reload",
 				"Cancel": "Cancel"
 			},
 			"Roll": {

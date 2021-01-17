@@ -99,9 +99,9 @@ export default class ItemT2K extends Item {
 	}
 
 	/**
-	 * Calculates a custom encumbrance for Ammunition items.
-	 * @param {string} type Item type.
-	 * @param {Object} data item.data.data.
+	 * Calculates a custom encumbrance for items.
+	 * @param {string} type  Item type
+	 * @param {Object} data  item.data.data
 	 */
 	_prepareEncumbrance(type, data) {
 		let weight = 0;
@@ -109,7 +109,8 @@ export default class ItemT2K extends Item {
 			weight = data.qty * data.weight * data.ammo.value;
 		}
 		else {
-			weight = data.qty * data.weight;
+			const belt = data.props?.ammoBelt ? 1 : 0;
+			weight = data.qty * (data.weight + belt);
 		}
 		
 		if (!weight) data.encumbrance = 0;
