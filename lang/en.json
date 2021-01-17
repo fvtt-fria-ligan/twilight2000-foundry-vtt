@@ -114,8 +114,10 @@
 			"AddGear": "Add new gear",
 			"AddAmmo": "Add new ammunition",
 			"Encumbrance": "Encumbrance",
-			"CombatGear":"Combat Gear ({{T2K4E.ActorSheet.Encumbrance}})",
-			"Backpack": "Backpack ({{T2K4E.ActorSheet.Encumbrance}})",
+			"CombatGearEncumbrance":"Combat Gear (Encumbrance)",
+			"BackpackEncumbrance": "Backpack (Encumbrance)",
+			"Equip": "Equip",
+			"Store": "Store in the backpack",
 			"Edit": "Edit",
 			"Delete": "Delete",
 			"NewItem": {

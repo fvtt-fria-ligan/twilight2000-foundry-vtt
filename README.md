@@ -20,9 +20,11 @@
 
 > A system for Twilight 2000 4E (Free League Publishing) on Foundry VTT.
 
-<a href="https://frialigan.se/en/games/twilight-2000/" target="_blank">
-  <img src="./assets/t2k-banner.jpg" alt="Twilight 2000 4E"/>
-</a>
+<p align="center">
+  <a href="https://frialigan.se/en/games/twilight-2000/" target="_blank">
+    <img src="./assets/t2k-banner.jpg" alt="Twilight 2000 4E"/>
+  </a>
+</p>
 
 # Install
 
@@ -39,7 +41,11 @@
 *Nihil*
 
 # Previews
-*Nihil*
+
+
+<img src="./assets/screenshots/210117-characterSheet-stats.png" height=300 alt="T2K Foundry"/> <img src="./assets/screenshots/210117-characterSheet-combat.png" height=300 alt="T2K Foundry"/> <img src="./assets/screenshots/210117-characterSheet-equipment.png" height=300 alt="T2K Foundry"/>
+<img src="./assets/screenshots/210117-itemSheets-weapon-armor.png" height=300 alt="T2K Foundry"/>
+<img src="./assets/screenshots/210117-chatlog.png" height=400 alt="T2K Foundry"/>
 
 # Planned Features
 - **Vehicle Sheet**
@@ -56,11 +62,11 @@ Contributions, issues and feature requests are welcome!<br/>Feel free to check t
 
 # Author
 
-<div style="text-align: center;">
+<p align="center">
   <a href="https://stefouch.be" target="_blank">
-    <img src="./assets/stefouch-banner.png" alt="Stefouch Gaming Lab" style="width: auto; height: auto; max-height: 100px; margin: 20px 0;"/>
+    <img src="./assets/stefouch-banner.png" alt="Stefouch Gaming Lab" style="width: auto; height: auto; max-height: 100px;"/>
   </a>
-</div>
+</p>
 
 ### 👤 Stefouch
 
