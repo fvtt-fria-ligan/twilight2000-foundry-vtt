@@ -68,7 +68,7 @@ export async function TaskCheck({
 	const roll = new T2KRoll({ name, attribute, skill, rof,
 		modifier: modifiers.reduce((a, b) => a + b, 0),
 	});
-	console.warn('t2k4e | ROLL', roll.toString());
+	console.log('t2k4e | ROLL', roll.toString());
 
 	// 3 — Saves to roll to the system config.
 	if (roll.pushable) game.t2k4e.rolls.set(roll._id, roll);
