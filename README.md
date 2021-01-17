@@ -1,6 +1,6 @@
 <h1 align="center"><b>Twilight: 2000</b><br/>4<sup>th</sup> Edition<br/><small>🎲 <i>Foundry VTT</i> 🎲</small></h1>
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000"/>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.7.1-blue.svg?cacheSeconds=2592000"/>
   <a href="https://foundryvtt.com" target="_blank">
     <img src="https://camo.githubusercontent.com/33b200c1560ed35beb3218d019cfb8b4021ec36397521103c02292ac38bb2e7a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f466f756e6472792d76302e372e382d696e666f726d6174696f6e616c" alt="foundry-shield-078" data-canonical-src="https://img.shields.io/badge/Foundry-v0.7.8-informational" style="max-width:100%;"/>
   </a>
@@ -20,6 +20,10 @@
 
 > A system for Twilight 2000 4E (Free League Publishing) on Foundry VTT.
 
+<a href="https://frialigan.se/en/games/twilight-2000/" target="_blank">
+  <img src="./assets/t2k-banner.jpg" alt="Twilight 2000 4E"/>
+</a>
+
 # Install
 
 1. Go to the setup page and choose Game Systems.
@@ -38,26 +42,33 @@
 *Nihil*
 
 # Planned Features
+- **Vehicle Sheet**
+- **Dice So Nice support**
 - Animal (NPC) Sheet
 - Weapon ammo consumption, reload, etc.
 - More automation
-- Vehicle Sheet
-- Backpack
 - Crits (if able)
-- Dice So Nice support
 - Party Sheet (for travel)
 
+# 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br/>Feel free to check the [issues page](https://github.com/Stefouch/t2k4e/issues).
+
 # Author
+
+<div style="text-align: center;">
+  <a href="https://stefouch.be" target="_blank">
+    <img src="./assets/stefouch-banner.png" alt="Stefouch Gaming Lab" style="width: auto; height: auto; max-height: 100px; margin: 20px 0;"/>
+  </a>
+</div>
 
 ### 👤 Stefouch
 
 * **Twitter:** [@stefouch](https://twitter.com/stefouch)
 * **Github:** [@Stefouch](https://github.com/Stefouch)
-* **Discord:** Stefouch#5202 on [Year Zero Worlds](https://discord.gg/ftxkYZn)
-
-# 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br/>Feel free to check [issues page](https://github.com/Stefouch/t2k4e/issues).
+* **Discord:** Stefouch#5202
+  * [Year Zero Worlds](https://discord.gg/RnaydHR)
+  * [The Foundry](https://discord.gg/8yAKUHZZKE)
 
 # 🙏 Show Your Support
 
