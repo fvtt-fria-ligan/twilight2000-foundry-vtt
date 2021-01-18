@@ -4,7 +4,7 @@
 
     <div class="header-details flexcol">
         <div class="item-subtitle flexrow">
-            <h4 class="item-type">{{itemType}}</h4>
+            <h4 class="item-type">{{item.type}}</h4>
             {{#unless (eq item.type "specialty")}}
             <div class="item-qty flexrow flex-right">
                 <input type="text" name="data.qty" value="{{data.qty}}" data-dtype="Number" title="{{localize "T2K4E.ItemSheet.Quantity"}}"/>
