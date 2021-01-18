@@ -33,6 +33,7 @@ export async function TaskCheck({
 	// 1 — Checks if we ask for options (roll dialog).
 	const showTaskCheckOptions = game.settings.get('t2k4e', 'showTaskCheckOptions');
 	if (rof || askForOptions !== showTaskCheckOptions) {
+		// TODO
 		// 1.1 — Gets other applicable items with modifiers.
 		let modifyingItems = [];
 		// if (actor && (attributeName || skillName)) {
@@ -95,6 +96,7 @@ export async function Attack(attacker, weapon) {
 		return ui.notifications.error(msg);
 	}
 
+	// TODO
 	const roll = await TaskCheck({
 		name: game.i18n.format('T2K4E.Chat.Attack.Title', { weapon: weapon.data.name }),
 		actor: attacker,
@@ -178,7 +180,9 @@ export async function Push(rollId, actor = null) {
 async function GetTaskCheckOptions({ taskType, name, actor, item, modifyingItems = [] } = {}) {
 	const template = 'systems/t2k4e/templates/dialog/roll-dialog.hbs';
 
+	// TODO
 	const html = await renderTemplate(template, {
+		// actor,
 		modifiers: modifyingItems,
 		weapon: item?.data?.type === 'weapon' ? item.data : null,
 	});
@@ -186,7 +190,7 @@ async function GetTaskCheckOptions({ taskType, name, actor, item, modifyingItems
 	return new Promise(resolve => {
 		// Sets the data of the dialog.
 		const data = {
-			title: game.i18n.localize('T2K4E.Chat.Actions.Roll') + ' — ' + name,
+			title: `${game.i18n.localize('T2K4E.Chat.Actions.Roll')} — ${name}`,
 			content: html,
 			buttons: {
 				normal: {
@@ -207,6 +211,7 @@ async function GetTaskCheckOptions({ taskType, name, actor, item, modifyingItems
 }
 
 function _processTaskCheckOptions(form) {
+	// TODO
 	return {
 		modifier: parseInt(form.modifier.value),
 		rof: form.rof ? parseInt(form.rof.value) : 0,

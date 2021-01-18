@@ -42,7 +42,6 @@
 
 # Previews
 
-
 <img src="./assets/screenshots/210117-characterSheet-stats.png" height=300 alt="T2K Foundry"/> <img src="./assets/screenshots/210117-characterSheet-combat.png" height=300 alt="T2K Foundry"/> <img src="./assets/screenshots/210117-characterSheet-equipment.png" height=300 alt="T2K Foundry"/>
 <img src="./assets/screenshots/210117-itemSheets-weapon-armor.png" height=300 alt="T2K Foundry"/>
 <img src="./assets/screenshots/210117-chatlog.png" height=400 alt="T2K Foundry"/>

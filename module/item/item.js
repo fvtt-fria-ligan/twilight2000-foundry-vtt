@@ -14,6 +14,7 @@ export default class ItemT2K extends Item {
 		'ammunition': 'systems/t2k4e/templates/chat/gear-chat.hbs',
 	};
 
+	// TODO
 	async roll() {
 		const chatData = {
 			user: game.user._id,
@@ -33,6 +34,7 @@ export default class ItemT2K extends Item {
 
 	/**
 	 * Reloads a weapon.
+	 * TODO
 	 * @async
 	 */
 	async reload() {

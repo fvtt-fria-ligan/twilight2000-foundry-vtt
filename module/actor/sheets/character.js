@@ -2,7 +2,7 @@ import ActorSheetT2K from "./actorSheet.js";
 
 /**
  * Twilight 2000 Actor Sheet for Character.
- * @extends {ActorSheet} Extends the T2K ActorSheet.
+ * @extends {ActorSheet} Extends the T2K ActorSheet
  */
 export default class ActorSheetT2KCharacter extends ActorSheetT2K {
 
@@ -30,7 +30,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
 
 	/**
 	 * Organizes and classifies Items for Character Sheets.
-	 * @param {Object} sheetData The data to prepare.
+	 * @param {Object} sheetData The data to prepare
 	 * @private
 	 */
 	_prepareCharacterItems(sheetData) {
