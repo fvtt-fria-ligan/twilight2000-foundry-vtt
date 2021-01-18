@@ -164,15 +164,21 @@
 		},
 		"vehicle": {
 			"templates": ["actorDescription"],
-			"type": "",
+			"vehicleType": "",
 			"reliability": {
 				"score": "A",
-				"max": "A"
+				"maxScore": "A"
 			},
 			"movement": {
-				"combat": [0, 0],
-				"travel": [0, 0],
-				"type": ""
+				"combat": {
+					"onRoad": 0,
+					"offRoad": 0
+				},
+				"travel": {
+					"onRoad": 0,
+					"offRoad": 0
+				},
+				"type": "W"
 			},
 			"armor": {
 				"front": {
@@ -191,10 +197,11 @@
 			"fuel": {
 				"value": 0,
 				"max": 0,
-				"type": "",
+				"type": "G",
 				"cap": 0,
 				"cons": 0
 			},
+			"cargo": 0,
 			"crew": {
 				"driver": 1,
 				"passenger": 0,
@@ -203,18 +210,52 @@
 				"commander": 0
 			},
 			"components": {
-				"fuel": 1,
-				"engine": 1,
-				"suspension": 1,
-				"ammo": 0,
-				"cargo": 1,
-				"radio": 0,
-				"trackWheel": 1,
-				"weapon": 0,
-				"fcs": 0,
-				"antenna": 0,
-				"externalStores": 0
+				"fuel": {
+					"value": 1,
+					"max": 1
+				},
+				"engine": {
+					"value": 1,
+					"max": 1
+				},
+				"suspension": {
+					"value": 1,
+					"max": 1
+				},
+				"ammo": {
+					"value": 0,
+					"max": 0
+				},
+				"cargo": {
+					"value": 1,
+					"max": 1
+				},
+				"radio": {
+					"value": 0,
+					"max": 0
+				},
+				"trackWheel": {
+					"value": 0,
+					"max": 0
+				},
+				"weapon": {
+					"value": 0,
+					"max": 0
+				},
+				"fcs": {
+					"value": 0,
+					"max": 0
+				},
+				"antenna": {
+					"value": 0,
+					"max": 0
+				},
+				"externalStores": {
+					"value": 0,
+					"max": 0
+				}
 			},
+			"trailer": false,
 			"price": 0
 		},
 		"party": {
