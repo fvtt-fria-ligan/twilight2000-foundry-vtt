@@ -103,7 +103,11 @@
 
         {{!-- Combat Tab --}}
         <div class="tab tab-combat" data-group="primary" data-tab="combat">
-            {{> "systems/t2k4e/templates/actors/parts/actor-combat.hbs"}}
+{{!-- HANDLEBAR.JS BUG WITH TEXTAREA INSIDE PARTIALS: --}}
+{{!-- ADDS INFINTE SPACES AFTER A LINE BREAK!! --}}
+{{!-- SOLUTION: REMOVE LEADING SPACES --}}
+{{!-- SEE: https://codepen.io/Munvier/post/stranges-white-spaces-with-backbone-handlebars --}}
+{{> "systems/t2k4e/templates/actors/parts/actor-combat.hbs"}}
         </div>
 
         {{!-- Equipment Tab --}}
@@ -128,7 +132,7 @@
                 <input type="text" name="data.bio.bigDream" value="{{data.bio.bigDream}}"/>
 
                 <h2>{{localize "T2K4E.ActorSheet.GroupMeeting"}}</h2>
-                <textarea name="data.bio.groupMeeting">{{{data.bio.groupMeeting}}}</textarea>
+                <textarea name="data.bio.groupMeeting">{{data.bio.groupMeeting}}</textarea>
             </div>
         </div>
         {{/if}}

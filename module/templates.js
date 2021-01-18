@@ -6,7 +6,7 @@
 export const preloadHandlebarsTemplates = async function() {
 	return loadTemplates([
 		// Shared Partial
-		'templates/dice/roll.html',
+		// 'templates/dice/roll.html',
 
 		// Actor Sheet Partial
 		'systems/t2k4e/templates/actors/parts/actor-stats.hbs',
@@ -28,19 +28,17 @@ export const preloadHandlebarsTemplates = async function() {
 		'systems/t2k4e/templates/items/parts/item-description.hbs',
 		
 		// Chat Partials
-		// 'systems/t2k4e/templates/chat/roll.hbs',
-		// 'systems/t2k4e/templates/chat/weapon-chat.hbs',
-		// 'systems/t2k4e/templates/chat/armor-chat.hbs',
 	]);
 }
+
+/* -------------------------------------------- */
+/*  HandlebarsJS Custom Helpers                 */
+/* -------------------------------------------- */
 
 /**
  * Defines Handlebars custom Helpers and Partials.
  */
 export function registerHandlebars() {
-	/* -------------------------------------------- */
-	/*  HandlebarsJS Custom Helpers                 */
-	/* -------------------------------------------- */
 
 	Handlebars.registerHelper('concat', function() {
 		let str = '';
@@ -88,14 +86,13 @@ export function registerHandlebars() {
 	 * * `name` - The name of the affected variable.
 	 * * `selected` - The current selected value.
 	 */
-	Handlebars.registerPartial(
-		'scoreSelector',
+	Handlebars.registerPartial('scoreSelector',
 		`<select name="{{name}}" class="score-selector">
 			{{#select selected}}
 			{{#each @root.config.dieScores}}
 			<option value="{{.}}">{{.}}</option>
 			{{/each}}
 			{{/select}}
-		</select>`
+		</select>`,
 	);
 }
