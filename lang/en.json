@@ -1,6 +1,7 @@
 {
 	"T2K4E": {
 		"SheetClassCharacter": "Character Sheet",
+		"SheetClassVehicle": "Vehicle Sheet",
 		"Attribute": "Attribute",
 		"Attributes": "Attributes",
 		"AttributeNames": {
@@ -76,6 +77,7 @@
 			"MilitaryRank": "Rank",
 			"HitCapacity": "Hit Capacity",
 			"StressCapacity": "Stress Capacity",
+			"CapacityModifier": "Modifier:",
 			"Experience": "Experience",
 			"ExperienceCurrent": "XP Current",
 			"ExperienceTotal": "XP Total",
@@ -152,6 +154,12 @@
 			"ArmorLocation": "Protected Location",
 			"Equipped": "Equipped",
 			"StoredInBackpack": "Stored in the backpack"
+		},
+		"VehicleSheet": {
+			"Wheels": "Wheels",
+			"Tracks": "Tracks",
+			"Gasoline": "Gasoline",
+			"Diesel": "Diesel"
 		},
 		"Chat": {
 			"Actions": {
