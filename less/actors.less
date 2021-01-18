@@ -231,6 +231,8 @@
 		/* ------------------------------------------- */
 
 		.tab-main {
+			overflow-y: hidden;
+
 			h2:first-child {
 				padding-bottom: 0;
 				border-bottom: none;
@@ -248,6 +250,7 @@
 			}
 
 			.specialty-title {
+				flex: 0 0 auto;
 				padding: 0 @gap 4px @gap;
 				border-bottom: @borderSheet;
 				a.button {
@@ -256,6 +259,15 @@
 			}
 
 			.specialties-slots {
+				margin: 0;
+				padding: 0;
+				overflow-y: auto;
+				height: 100%;
+
+				.item-buttons {
+					flex: 0 0 40px;
+				}
+
 				.no-specialty {
 					padding: 0 @gap;
 					font-style: italic;
@@ -345,6 +357,7 @@
 
 			textarea {
 				margin-top: 4px;
+				min-height: 100px;
 			}
 
 			.editor {

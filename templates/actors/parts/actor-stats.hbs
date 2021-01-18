@@ -1,53 +1,55 @@
 {{!-- Attributes & Skills --}}
-<h2>{{localize "T2K4E.ActorSheet.AttributesAndSkills"}}</h2>
+<div>
+    <h2>{{localize "T2K4E.ActorSheet.AttributesAndSkills"}}</h2>
 
-<div class="stats-list flexrow">
-    {{#each data.attributes as | attribute attr |}}
-    <div class="stat-block stat-block-{{attr}}">
-        <div class="stat-header flexrow">
-            <div class="col-6"></div>
-            <div class="col-3 header-rating">
-                <h5>{{localize "T2K4E.ActorSheet.Rating"}}</h5>
+    <div class="stats-list flexrow">
+        {{#each data.attributes as | attribute attr |}}
+        <div class="stat-block stat-block-{{attr}}">
+            <div class="stat-header flexrow">
+                <div class="col-6"></div>
+                <div class="col-3 header-rating">
+                    <h5>{{localize "T2K4E.ActorSheet.Rating"}}</h5>
+                </div>
+                <div class="col-3 header-die header-die-{{@index}}">
+                    <h5>{{localize "T2K4E.ActorSheet.BaseDie"}}</h5>
+                </div>
             </div>
-            <div class="col-3 header-die header-die-{{@index}}">
-                <h5>{{localize "T2K4E.ActorSheet.BaseDie"}}</h5>
-            </div>
-        </div>
-        <div class="stat stat-attribute attribute-{{attr}} flexrow">
-            <div class="col-6 stat-name">
-                <h3><a class="button attribute-roll" data-attribute="{{attr}}">{{localize (concat "T2K4E.AttributeNames." attr)}}</a></h3>
-            </div>
-            <div class="col-3 stat-score">
-                {{> scoreSelector name=(concat "data.attributes." attr ".score") selected=attribute.score}}
-            </div>
-            <div class="col-3 stat-value">
-                {{#if (lte attribute.value 0)}}–
-                {{else}}
-                <div class="boxed-value attribute-roll rollable" data-attribute="{{attr}}">D{{attribute.value}}</div>
-                {{/if}}
-            </div>
-        </div>
-        {{!-- All skills for an attribute --}}
-        {{#each @root.data.skills as | skill sk |}}
-            {{#if (eq attr (lookup @root.config.skillsMap sk))}}
-            <div class="stat stat-skill skill-{{sk}} flexrow">
+            <div class="stat stat-attribute attribute-{{attr}} flexrow">
                 <div class="col-6 stat-name">
-                    <h4><a class="button skill-roll" data-skill="{{sk}}">{{localize (concat "T2K4E.SkillNames." sk)}}</a></h4>
+                    <h3><a class="button attribute-roll" data-attribute="{{attr}}">{{localize (concat "T2K4E.AttributeNames." attr)}}</a></h3>
                 </div>
                 <div class="col-3 stat-score">
-                    {{> scoreSelector name=(concat "data.skills." sk ".score") selected=skill.score}}
+                    {{> scoreSelector name=(concat "data.attributes." attr ".score") selected=attribute.score}}
                 </div>
                 <div class="col-3 stat-value">
-                    {{#if (lte skill.value 0)}}–
+                    {{#if (lte attribute.value 0)}}–
                     {{else}}
-                    <div class="boxed-value skill-roll rollable" data-skill="{{sk}}">D{{skill.value}}</div>
+                    <div class="boxed-value attribute-roll rollable" data-attribute="{{attr}}">D{{attribute.value}}</div>
                     {{/if}}
                 </div>
             </div>
-            {{/if}}
+            {{!-- All skills for an attribute --}}
+            {{#each @root.data.skills as | skill sk |}}
+                {{#if (eq attr (lookup @root.config.skillsMap sk))}}
+                <div class="stat stat-skill skill-{{sk}} flexrow">
+                    <div class="col-6 stat-name">
+                        <h4><a class="button skill-roll" data-skill="{{sk}}">{{localize (concat "T2K4E.SkillNames." sk)}}</a></h4>
+                    </div>
+                    <div class="col-3 stat-score">
+                        {{> scoreSelector name=(concat "data.skills." sk ".score") selected=skill.score}}
+                    </div>
+                    <div class="col-3 stat-value">
+                        {{#if (lte skill.value 0)}}–
+                        {{else}}
+                        <div class="boxed-value skill-roll rollable" data-skill="{{sk}}">D{{skill.value}}</div>
+                        {{/if}}
+                    </div>
+                </div>
+                {{/if}}
+            {{/each}}
+        </div>
         {{/each}}
     </div>
-    {{/each}}
 </div>
 
 {{!-- Specialties --}}
@@ -62,15 +64,19 @@
     {{#each specialties as | specialty id |}}
     <div class="item item-slot slot-specialty flexrow" data-item-id={{specialty._id}}>
         <div>
-            {{#if specialty.data.description}}
-            <b><u>{{specialty.name}}</u>:</b> {{{specialty.data.description}}}
+            {{#with specialty}}
+            {{#if data.description}}
+            <b><u>{{name}}</u>:</b>&nbsp;
+            <small>{{{data.description}}}</small>
             {{else}}
-                {{#if specialty.data.modifiers.description}}
-                <b><u>{{specialty.name}}</u>:</b> {{specialty.data.modifiers.description}}
+                {{#if data.modifiers.description}}
+                <b><u>{{name}}</u>:</b>&nbsp;
+                <small>{{data.modifiers.description}}</small>
                 {{else}}
-                {{specialty.name}}
+                {{name}}
                 {{/if}}
             {{/if}}
+            {{/with}}
         </div>
         {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
     </div>
