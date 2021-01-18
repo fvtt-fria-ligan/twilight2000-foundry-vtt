@@ -1,0 +1,143 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Actor Sheet Header --}}
+    <header class="sheet-header">
+
+        <img class="t2k-trombone" src="./systems/t2k4e/assets/textures/trombone.png" name="trombone"/>
+
+        <div class="grid-actor-header">
+
+            {{!-- Actor's name --}}
+            <h1 class="name">
+                <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'T2K4E.ActorSheet.Name'}}"/>
+            </h1>
+
+            {{!-- Nationality, Branch & Rank --}}
+            <div class="nation">
+                <h3>{{localize "T2K4E.ActorSheet.Nationality"}}</h3>
+                <input type="text" name="data.bio.nationality" value="{{data.bio.nationality}}"/>
+            </div>
+            <div class="branch">
+                <h3>{{localize "T2K4E.ActorSheet.Branch"}}</h3>
+                <input type="text" name="data.bio.branch" value="{{data.bio.branch}}"/>
+            </div>
+            <div class="rank">
+                <h3>{{localize "T2K4E.ActorSheet.MilitaryRank"}}</h3>
+                <input type="text" name="data.bio.militaryRank" value="{{data.bio.militaryRank}}"/>
+            </div>
+
+            {{!-- Hit Capacity --}}
+            <div class="capacity hit flexrow flex-middle">
+                <div>
+                    <h3>{{localize "T2K4E.ActorSheet.HitCapacity"}}</h3>
+                    {{> "systems/t2k4e/templates/actors/parts/capacity-boxes.hbs" field="health" value=data.health.trauma min=0 max=data.hitCapacity}}
+                </div>
+                <div class="capacity-value boxed-value" title="{{localize 'T2K4E.ActorSheet.CapacityModifier'}} {{#if (gte data.health.modifier 1)}}+{{/if}}{{data.health.modifier}}">{{data.health.value}}/{{data.hitCapacity}}</div>
+                <div class="capacity-buttons flexcol">
+                    <a class="button capacity-increase" data-field="health">
+                        <i class="far fa-plus-square"></i>
+                    </a>
+                    <a class="button capacity-decrease" data-field="health">
+                        <i class="far fa-minus-square"></i>
+                    </a>
+                </div>
+            </div>
+
+            {{!-- Stress Capacity --}}
+            {{#if (eq actor.type 'character')}}
+            <div class="capacity stress flexrow flex-middle">
+                <div>
+                    <h3>{{localize "T2K4E.ActorSheet.StressCapacity"}}</h3>
+                    {{> "systems/t2k4e/templates/actors/parts/capacity-boxes.hbs" field="sanity" value=data.sanity.trauma min=0 max=data.stressCapacity}}
+                </div>
+                <div class="capacity-value boxed-value" title="{{localize 'T2K4E.ActorSheet.CapacityModifier'}} {{#if (gte data.sanity.modifier 1)}}+{{/if}}{{data.sanity.modifier}}">{{data.sanity.value}}/{{data.stressCapacity}}</div>
+                <div class="capacity-buttons flexcol">
+                    <a class="button capacity-increase" data-field="sanity">
+                        <i class="far fa-plus-square"></i>
+                    </a>
+                    <a class="button capacity-decrease" data-field="sanity">
+                        <i class="far fa-minus-square"></i>
+                    </a>
+                </div>
+            </div>
+            {{/if}}
+
+            {{!-- Profile IMG & XP --}}
+            <div class="img">
+                <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+
+                {{#if (eq actor.type 'character')}}
+                <div class="experience flexrow flex-middle">
+                    <h5>{{localize "T2K4E.ActorSheet.ExperienceCurrent"}}</h5>
+                    <input type="number" class="smallbox" name="data.xp.value" value="{{data.xp.value}}"/>
+                </div>
+                <div class="experience flexrow flex-middle">
+                    <h5>{{localize "T2K4E.ActorSheet.ExperienceTotal"}}</h5>
+                    <input type="number" class="smallbox" name="data.xp.total" value="{{data.xp.total}}"/>
+                </div>
+                {{/if}}
+            </div>
+
+        </div>
+
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
+        <a class="item" data-tab="main">{{localize "T2K4E.ActorSheet.MainTab"}}</a>
+        <a class="item" data-tab="combat">{{localize "T2K4E.ActorSheet.CombatTab"}}</a>
+        <a class="item" data-tab="equipment">{{localize "T2K4E.ActorSheet.EquipmentTab"}}</a>
+        {{#if (eq actor.type 'character')}}
+        <a class="item" data-tab="biography">{{localize "T2K4E.ActorSheet.BiographyTab"}}</a>
+        {{/if}}
+        <a class="item" data-tab="description">{{localize "T2K4E.ActorSheet.NoteTab"}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Main Tab --}}
+        <div class="tab tab-main flexcol" data-group="primary" data-tab="main">
+            {{> "systems/t2k4e/templates/actors/parts/actor-stats.hbs"}}
+        </div>
+
+        {{!-- Combat Tab --}}
+        <div class="tab tab-combat" data-group="primary" data-tab="combat">
+            {{> "systems/t2k4e/templates/actors/parts/actor-combat.hbs"}}
+        </div>
+
+        {{!-- Equipment Tab --}}
+        <div class="tab tab-equipment flexcol" data-group="primary" data-tab="equipment">
+            {{> "systems/t2k4e/templates/actors/parts/actor-equipment.hbs"}}
+        </div>
+
+        {{!-- Biography Tab --}}
+        {{#if (eq actor.type 'character')}}
+        <div class="tab tab-biography" data-group="primary" data-tab="biography">
+            <div class="flexcol">
+                <h2>{{localize "T2K4E.ActorSheet.Appearance"}}</h2>
+                {{editor content=data.bio.appearance target="data.bio.appearance" button=true owner=owner editable=editable}}
+
+                <h2>{{localize "T2K4E.ActorSheet.Buddy"}}</h2>
+                <input type="text" name="data.bio.buddy" value="{{data.bio.buddy}}"/>
+
+                <h2>{{localize "T2K4E.ActorSheet.MoralCode"}}</h2>
+                <input type="text" name="data.bio.moralCode" value="{{data.bio.moralCode}}"/>
+
+                <h2>{{localize "T2K4E.ActorSheet.BigDream"}}</h2>
+                <input type="text" name="data.bio.bigDream" value="{{data.bio.bigDream}}"/>
+
+                <h2>{{localize "T2K4E.ActorSheet.GroupMeeting"}}</h2>
+                <textarea name="data.bio.groupMeeting">{{{data.bio.groupMeeting}}}</textarea>
+            </div>
+        </div>
+        {{/if}}
+
+        {{!-- Description Tab --}}
+        <div class="tab tab-description" data-group="primary" data-tab="description">
+            {{> "systems/t2k4e/templates/actors/parts/actor-description.hbs"}}
+        </div>
+
+    </section>
+
+</form>

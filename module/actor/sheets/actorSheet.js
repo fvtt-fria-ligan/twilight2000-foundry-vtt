@@ -1,22 +1,10 @@
 import { clamp } from '../../utils.js';
-import * as Dice from '../../dice.js';
 
 /**
  * Twilight 2000 Actor Sheet.
  * @extends {ActorSheet} Extends the basic ActorSheet
  */
 export default class ActorSheetT2K extends ActorSheet {
-
-	// itemContextMenuDelete = [
-	// 	{
-	// 		name: game.i18n.localize('T2K4E.ActorSheet.Delete'),
-	// 		icon: '<i class="fas fa-trash"></i>',
-	// 		callback: elem => {
-	// 			const itemId = elem.closest('.item').dataset.itemId;
-	// 			this.actor.deleteOwnedItem(itemId);
-	// 		}
-	// 	}
-	// ];
 
 	/** @override */
 	static get defaultOptions() {
@@ -85,88 +73,17 @@ export default class ActorSheetT2K extends ActorSheet {
 		if (!this.options.editable) return;
 		if (!this.isEditable) return;
 
-		// new ContextMenu(html, 'a.item-button.item-delete', this.itemContextMenuDelete);
-
-		// html.find('.stat-score .score-selector').change(this._onAttributeChange.bind(this));
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		html.find('.item-edit').click(this._onItemEdit.bind(this));
 		html.find('.item-delete').click(this._onItemDelete.bind(this));
 		html.find('.item-equip').click(this._onItemEquip.bind(this));
 		html.find('.item-backpack').click(this._onItemStore.bind(this));
 		html.find('.item-mag .weapon-edit-ammo').change(this._onWeaponAmmoChange.bind(this));
-		html.find('.boxes-radiation').on('click contextmenu', this._onValueChange.bind(this));
-		html.find('.boxes-capacity').on('click contextmenu', this._onCapacityChange.bind(this));
-		html.find('.capacity-increase').click(this._onCapacityIncrease.bind(this));
-		html.find('.capacity-decrease').click(this._onCapacityDecrease.bind(this));
 
 		// Owner-only listeners.
 		if (this.actor.owner) {
-			html.find('.attribute-roll').click(this._onAttributeRoll.bind(this));
-			html.find('.skill-roll').click(this._onSkillRoll.bind(this));
 			html.find('.item-roll').click(this._onItemRoll.bind(this));
-			html.find('.cuf-roll').click(this._onMoraleRoll.bind(this, event, 'cuf'));
-			html.find('.unit-morale-roll').click(this._onMoraleRoll.bind(this, event, 'unit-morale'));
 		}
-	}
-
-	// _onAttributeChange(event) {
-	// 	event.preventDefault();
-	// 	console.warn('d');
-	// 	const data = this.actor.data.data;
-	// 	this.actor.update({
-	// 		'data.health.value': data.health.max,
-	// 		'data.sanity.value': data.sanity.max,
-	// 		'data.health.modifier': 0,
-	// 		'data.sanity.modifier': 0,
-	// 		'data.health.trauma': 0,
-	// 		'data.sanity.trauma': 0,
-	// 	});
-	// }
-
-	_onAttributeRoll(event) {
-		event.preventDefault();
-		const attributeName = event.currentTarget.dataset.attribute;
-		const attribute = this.actor.data.data.attributes[attributeName].value;
-		const name = game.i18n.localize(CONFIG.T2K4E.attributes[attributeName]);
-		return Dice.TaskCheck({
-			name,
-			attribute,
-			attributeName,
-			actor: this.actor,
-			askForOptions: event.shiftKey,
-		});
-	}
-
-	_onSkillRoll(event) {
-		event.preventDefault();
-		const skillName = event.currentTarget.dataset.skill;
-		const statData = Dice.getAttributeAndSkill(skillName, this.actor.data.data);
-		return Dice.TaskCheck({
-			...statData,
-			skillName,
-			actor: this.actor,
-			askForOptions: event.shiftKey,
-		});
-	}
-
-	_onMoraleRoll(event, type) {
-		event.preventDefault();
-		let value = 0;
-		let name = '';
-		if (type === 'cuf') {
-			value = this.actor.data.data.cuf.value;
-			name = game.i18n.localize('T2K4E.ActorSheet.CuF');
-		}
-		else {
-			value = this.actor.data.data.unitMorale.value;
-			name = game.i18n.localize('T2K4E.ActorSheet.UnitMorale');
-		}
-		return Dice.TaskCheck({
-			name,
-			attribute: value,
-			actor: this.actor,
-			askForOptions: event.shiftKey,
-		});
 	}
 
 	_onItemRoll(event) {
@@ -251,47 +168,5 @@ export default class ActorSheetT2K extends ActorSheet {
 		newCount = clamp(newCount, min, max);
 
 		return this.actor.update({ ['data.'+field]: newCount });
-	}
-
-	/** Left-clic: -1, Right-clic: +1 */
-	_onCapacityChange(event) {
-		event.preventDefault();
-		const elem = event.currentTarget;
-		const min = +elem.dataset.min || 0;
-		const max = +elem.dataset.max || 10;
-		const field = elem.dataset.field;
-		const currentCount = getProperty(this.actor, `data.data.${field}.value`) || 0;
-		let newCount = currentCount;
-
-		if (event.type === 'click') newCount--;
-		else newCount++; // contextmenu
-		newCount = clamp(newCount, min, max);
-
-		return this.actor.update({ [`data.${field}.value`]: newCount });
-	}
-
-	_onCapacityIncrease(event) {
-		this._changeCapacityModifier(event, 1);
-	}
-
-	_onCapacityDecrease(event) {
-		this._changeCapacityModifier(event, -1);
-	}
-
-	_changeCapacityModifier(event, mod) {
-		event.preventDefault();
-		const elem = event.currentTarget;
-		const field = elem.dataset.field;
-
-		const maxi = getProperty(this.actor, `data.data.${field}.max`);
-		if (mod < 0 && maxi < 2) return;
-		if (mod > 0 && maxi > 11) return;
-
-		const min = -12;
-		const max = 12;
-		const currentMod = getProperty(this.actor, `data.data.${field}.modifier`) || 0;
-		const newMod = clamp(currentMod + mod, min, max);
-
-		return this.actor.update({ [`data.${field}.modifier`]: newMod});
 	}
 }
