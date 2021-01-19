@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
-## [0.7.2-alpha] - 2020-01-18
+## [0.7.3-alpha] - 2021-01-19
+### Added
+- Vehicle Sheet !
+
+## [0.7.2-alpha] - 2021-01-18
 ### Added
 - A tooltip above Hit & Stress capacities to show the applied modifier.
 
@@ -18,7 +22,7 @@ All notable changes to this project will be documented in this file.
 - Bug: style causing the character's specialties description not taking the whole width of the sheet.
 - Bug: ugly style for *equipped* and *backpack* checkboxes in an embed item properties.
 
-## [0.7.1-alpha] - 2020-01-17
+## [0.7.1-alpha] - 2021-01-17
 ### Added
 - Item equipping and backpack support.
 - T2K Banner in `/assets` folder.
@@ -28,5 +32,5 @@ All notable changes to this project will be documented in this file.
 - Verbose log.
 - CSS styles.
 
-## [0.7.0-alpha] - 2020-01-17
+## [0.7.0-alpha] - 2021-01-17
 - First release
