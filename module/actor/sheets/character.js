@@ -13,7 +13,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
 		return mergeObject(super.defaultOptions, {
 			classes: ['t2k4e', 'sheet', 'actor', 'character'],
 			width: 550,
-			height: 715
+			height: 715,
 		});
 	}
 

@@ -9,7 +9,7 @@ export default class ActorSheetT2K extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main'}]
+			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main'}],
 		});
 	}
 
@@ -25,12 +25,6 @@ export default class ActorSheetT2K extends ActorSheet {
 	getData() {
 		const data = super.getData();
 		data.config = CONFIG.T2K4E;
-		// data.itemType = game.i18n.localize(`T2K4E.ItemTypes.${data.item.type}`);
-
-		// if (this.actor.data.type === 'character') {
-		// 	this._prepareCharacterItems(data);
-		// }
-
 		return data;
 	}
 
