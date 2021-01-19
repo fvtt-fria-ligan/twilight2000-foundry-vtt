@@ -1,6 +1,6 @@
 <h1 align="center"><b>Twilight: 2000</b><br/>4<sup>th</sup> Edition<br/><small>🎲 <i>Foundry VTT</i> 🎲</small></h1>
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.7.1-blue.svg?cacheSeconds=2592000"/>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.7.3-blue.svg?cacheSeconds=2592000"/>
   <a href="https://foundryvtt.com" target="_blank">
     <img src="https://camo.githubusercontent.com/33b200c1560ed35beb3218d019cfb8b4021ec36397521103c02292ac38bb2e7a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f466f756e6472792d76302e372e382d696e666f726d6174696f6e616c" alt="foundry-shield-078" data-canonical-src="https://img.shields.io/badge/Foundry-v0.7.8-informational" style="max-width:100%;"/>
   </a>
@@ -89,5 +89,11 @@ See the [changelog](https://github.com/Stefouch/t2k4e/blob/master/CHANGELOG.md#c
 
 # 📝 License
 
-Copyright © 2021 [Stefouch](https://github.com/Stefouch).<br/>
-This project JavaScript code is [MIT](https://github.com/Stefouch/t2k4e/blob/master/LICENSE) licensed.
+- Content: Twilight 2000 4E: © Fria Ligan / Free League Publishing.
+- Foundry VTT: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
+- Source code: Copyright © 2021 [Stefouch](https://github.com/Stefouch), [MIT](https://github.com/Stefouch/t2k4e/blob/master/LICENSE) licensed.
+- Fonts:
+  - [Daisy Wheel](https://www.dafont.com/daisy-wheel.font)
+  - [Blue Highway](https://typodermicfonts.com/blue-highway-5-0/)
+  - [Mukta](https://fonts.google.com/specimen/Mukta)
+  - [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans)

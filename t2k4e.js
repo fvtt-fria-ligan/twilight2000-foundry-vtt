@@ -22,6 +22,7 @@ import ItemT2K from './module/item/item.js';
 
 // Imports Applications.
 import ActorSheetT2KCharacter from './module/actor/sheets/character.js';
+import ActorSheetT2KVehicle from './module/actor/sheets/vehicle.js';
 import ItemSheetT2K from './module/item/itemSheet.js';
 
 /* -------------------------------------------- */
@@ -36,19 +37,20 @@ Hooks.once('init', function() {
 	game.t2k4e = {
 		applications: {
 			ActorSheetT2KCharacter,
-			ItemSheetT2K
+			ActorSheetT2KVehicle,
+			ItemSheetT2K,
 		},
 		config: T2K4E,
 		entities: {
 			ActorT2K,
-			ItemT2K
+			ItemT2K,
 		},
 		// Cache for pushable rolls.
 		rolls: new Collection(),
 	};
 
 	// Records configuration values.
-	// CONFIG.debug.hooks = true;
+	CONFIG.debug.hooks = true;
 	CONFIG.T2K4E = T2K4E;
 	CONFIG.Actor.entityClass = ActorT2K;
 	CONFIG.Item.entityClass = ItemT2K;
@@ -57,7 +59,7 @@ Hooks.once('init', function() {
 	CONFIG.Combat.initiative = {
 		formula: '1d10 + (@attributes.agl.value / 100)',
 		decimals: 2,
-	}
+	};
 
 	// Registers sheet application classes. 
 	// This will stop using the core sheets and instead use our customized versions.
@@ -66,6 +68,11 @@ Hooks.once('init', function() {
 		types: ['character', 'npc'],
 		makeDefault: true,
 		label: 'T2K4E.SheetClassCharacter',
+	});
+	Actors.registerSheet('t2k4e', ActorSheetT2KVehicle, {
+		types: ['vehicle'],
+		makeDefault: true,
+		label: 'T2K4E.SheetClassVehicle',
 	});
 
 	Items.unregisterSheet('core', ItemSheet);
@@ -80,17 +87,24 @@ Hooks.once('init', function() {
 Hooks.once('ready', function() {
 	console.warn('t2k4e | READY!');
 
-	/**
-	 * @type {Actor}
-	 *
-	const startingActor = game.actors.get('PD9O4dYhP1ED6Pmp');
-	startingActor.sheet.render(true);//*/
-
-	/**
-	 * @type {Item}
-	 *
-	const startingItem = game.items.get('63JHOmp3e1HLbdrL');
-	startingItem.sheet.render(true);//*/
+	// Debugging
+	if (CONFIG.debug.hooks === true) {
+		try {
+			// Renders a starting actor or item.
+			/** @type {Actor} *
+			const startingActor = game.actors.get('PD9O4dYhP1ED6Pmp');
+			startingActor.sheet.render(true);//*/
+			/** @type {Actor} */
+			const startingVehicle = game.actors.get('PqpLwMzCw6WTmsHx');
+			startingVehicle.sheet.render(true);//*/
+			/** @type {Item} *
+			const startingItem = game.items.get('63JHOmp3e1HLbdrL');
+			startingItem.sheet.render(true);//*/
+		}
+		catch (error) {
+			console.warn(`t2k4e | DEBUG | Cannot find starting Entity.`, error);
+		}
+	}
 });
 
 Hooks.on('renderChatLog', (app, html, data) => Chat.addChatListeners(html));
