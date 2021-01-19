@@ -57,6 +57,17 @@ T2K4E.dieSizes = [-1, 12, 10, 8, 6, 0];
 T2K4E.dieScores = ['–', 'A', 'B', 'C', 'D', 'F'];
 T2K4E.dieSizesMap = new Map(T2K4E.dieScores.map((x, i) => [x, T2K4E.dieSizes[i]]));
 
+T2K4E.vehicle = {
+	movementTypes: {
+		'W': 'T2K4E.VehicleSheet.Wheels',
+		'T': 'T2K4E.VehicleSheet.Tracks',
+	},
+	fuelTypes: {
+		'G': 'T2K4E.VehicleSheet.Gasoline',
+		'D': 'T2K4E.VehicleSheet.Diesel',
+	}
+};
+
 T2K4E.armorLocationIcons = {
 	head: '<i class="fas fa-hard-hat"></i>',
 	arms: '<i class="fas fa-hand-paper"></i>',

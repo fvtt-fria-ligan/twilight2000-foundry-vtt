@@ -2,7 +2,8 @@
 	"Actor": {
 		"types": [
 			"character",
-			"npc"
+			"npc",
+			"vehicle"
 		],
 		"templates": {
 			"actorBio": {
@@ -198,7 +199,6 @@
 				"value": 0,
 				"max": 0,
 				"type": "G",
-				"cap": 0,
 				"cons": 0
 			},
 			"cargo": 0,
@@ -209,6 +209,8 @@
 				"gunner": 0,
 				"commander": 0
 			},
+			"tempDamage": "",
+			"tempComponents": "",
 			"components": {
 				"fuel": {
 					"value": 1,

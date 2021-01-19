@@ -96,16 +96,35 @@ export default class ItemT2K extends Item {
 		this._prepareEncumbrance(this.type, data);
 		this._prepareModifiers(data);
 
-		// switch (this.type) {
-		// 	case 'ammunition': 
-		// }
+		switch (this.type) {
+			case 'weapon': this._prepareWeapon(data, actorData);
+		}
 		// console.log('t2k4e | Updated Item: ', this.name, this._id);
+	}
+
+	/**
+	 * Prepares weapon data.
+	 * @param {Object} data       Item's data data
+	 * @param {Object} actorData  Actor's data (1x)
+	 * @private
+	 */
+	_prepareWeapon(data, actorData = {}) {
+		// Adds "data.mount: [number]" property.
+		if (actorData.type === 'vehicle') {
+			if (data.equipped && data.props?.mounted) {
+				data.isMounted = true;
+			}
+			else {
+				data.isMounted = false;
+			}
+		}
 	}
 
 	/**
 	 * Calculates a custom encumbrance for items.
 	 * @param {string} type  Item type
-	 * @param {Object} data  item.data.data
+	 * @param {Object} data  Item's data
+	 * @private
 	 */
 	_prepareEncumbrance(type, data) {
 		let weight = 0;
@@ -123,18 +142,18 @@ export default class ItemT2K extends Item {
 
 	/**
 	 * Adds more properties to the Modifiers prop.
-	 * @param {Object} data
+	 * @param {Object} data Item's data
 	 * @private
 	 */
 	_prepareModifiers(data) {
 		if (!data.modifiers) return;
 		data.modifiers.description = this._getModifiersDescription(data);
-		data.modifiers.hasModifiers = data.modifiers.description.length > 0;
+		data.hasModifiers = data.modifiers.description.length > 0;
 	}
 
 	/**
 	 * Returns a string resuming the modifiers.
-	 * @param {Object} data 
+	 * @param {Object} data Item's data
 	 * @returns {string}
 	 * @private
 	 */

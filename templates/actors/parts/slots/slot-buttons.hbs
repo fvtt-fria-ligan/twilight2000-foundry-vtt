@@ -1,24 +1,50 @@
 <div class="item-buttons">
-    {{#unless (eq type 'specialty')}}
-    <a class="button item-equip{{#if data.equipped}} equipped{{/if}}" title="{{localize "T2K4E.ActorSheet.Equip"}}">
-        {{#if data.equipped}}
-        <i class="fas fa-star"></i>
-        {{else}}
-        <i class="far fa-star"></i>
+    {{#unless @root.inVehicle}}
+        {{#unless (eq type 'specialty')}}
+        <a class="button item-equip{{#if data.equipped}} equipped{{/if}}" title="{{localize "T2K4E.ActorSheet.Equip"}}">
+            {{#if data.equipped}}
+            <i class="fas fa-star"></i>
+            {{else}}
+            <i class="far fa-star"></i>
+            {{/if}}
+        </a>
+        <a class="button item-backpack{{#if data.backpack}} packed{{/if}}" title="{{localize 'T2K4E.ActorSheet.Store'}}">
+            {{#if data.backpack}}
+            <i class="fas fa-shopping-bag"></i>
+            {{else}}
+            <i class="fas fa-shopping-bag"></i>
+            {{/if}}
+        </a>
+        {{/unless}}
+    {{else}}
+        {{#if (eq type 'weapon')}}
+            {{#if data.isMounted}}
+            <a class="button item-mount" title="{{localize 'T2K4E.VehicleSheet.Unmount'}}">
+                <i class="fas fa-times"></i>
+            </a>
+            {{else}}
+            <a class="button item-mount" title="{{localize 'T2K4E.VehicleSheet.Mount'}}">
+                <i class="fas fa-wrench"></i>
+            </a>
+            {{/if}}
+        </a>
+            {{#if data.isMounted}}
+            <a class="button item-mount-move" title="{{localize 'T2K4E.VehicleSheet.MoveMount'}}">
+                {{#if (lte data.mountSlot 1)}}
+                <i class="fas fa-arrow-down"></i>
+                {{else}}
+                <i class="fas fa-arrow-up"></i>
+                {{/if}}
+            </a>
+            {{/if}}
         {{/if}}
-    </a>
-    <a class="button item-backpack{{#if data.backpack}} packed{{/if}}" title="{{localize "T2K4E.ActorSheet.Store"}}">
-        {{#if data.backpack}}
-        <i class="fas fa-shopping-bag"></i>
-        {{else}}
-        <i class="fas fa-shopping-bag"></i>
-        {{/if}}
-    </a>
     {{/unless}}
     <a class="button item-edit" title="{{localize "T2K4E.ActorSheet.Edit"}}">
         <i class="fas fa-edit"></i>
     </a>
+    {{#unless data.isMounted}}
     <a class="button item-delete" title="{{localize "T2K4E.ActorSheet.Delete"}}">
         <i class="fas fa-trash"></i>
     </a>
+    {{/unless}}
 </div>

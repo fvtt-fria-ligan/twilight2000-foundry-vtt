@@ -1,143 +1,136 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-    {{!-- Actor Sheet Header --}}
-    <header class="sheet-header">
+  {{!-- VEHICLE SHEET HEADER --}}
+  <header class="sheet-header">
 
-        <img class="t2k-trombone" src="./systems/t2k4e/assets/textures/trombone.png" name="trombone"/>
+    <div class="grid-vehicle-header">
 
-        <div class="grid-actor-header">
+      {{!-- Header Info: IMG, NAME, TYPE --}}
+      <img class="vehicle-profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
 
-            {{!-- Actor's name --}}
-            <h1 class="name">
-                <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'T2K4E.ActorSheet.Name'}}"/>
-            </h1>
+      <div class="info">
+        <h1 class="name">
+          <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'T2K4E.ItemSheet.Name'}}"/>
+        <h2 class="type">
+          <input type="text" name="data.vehicleType" value="{{data.vehicleType}}" placeholder="{{localize 'T2K4E.VehicleSheet.VehicleType'}}"/>
+        </h2>
+      </div>
 
-            {{!-- Nationality, Branch & Rank --}}
-            <div class="nation">
-                <h3>{{localize "T2K4E.ActorSheet.Nationality"}}</h3>
-                <input type="text" name="data.bio.nationality" value="{{data.bio.nationality}}"/>
-            </div>
-            <div class="branch">
-                <h3>{{localize "T2K4E.ActorSheet.Branch"}}</h3>
-                <input type="text" name="data.bio.branch" value="{{data.bio.branch}}"/>
-            </div>
-            <div class="rank">
-                <h3>{{localize "T2K4E.ActorSheet.MilitaryRank"}}</h3>
-                <input type="text" name="data.bio.militaryRank" value="{{data.bio.militaryRank}}"/>
-            </div>
+      {{!-- Header details: REL, MOVEMENT, FUEL, etc. --}}
+      <div class="header-details grid-vehicle-details">
 
-            {{!-- Hit Capacity --}}
-            <div class="capacity hit flexrow flex-middle">
-                <div>
-                    <h3>{{localize "T2K4E.ActorSheet.HitCapacity"}}</h3>
-                    {{> "systems/t2k4e/templates/actors/parts/capacity-boxes.hbs" field="health" value=data.health.trauma min=0 max=data.hitCapacity}}
-                </div>
-                <div class="capacity-value boxed-value" title="{{localize 'T2K4E.ActorSheet.CapacityModifier'}} {{#if (gte data.health.modifier 1)}}+{{/if}}{{data.health.modifier}}">{{data.health.value}}/{{data.hitCapacity}}</div>
-                <div class="capacity-buttons flexcol">
-                    <a class="button capacity-increase" data-field="health">
-                        <i class="far fa-plus-square"></i>
-                    </a>
-                    <a class="button capacity-decrease" data-field="health">
-                        <i class="far fa-minus-square"></i>
-                    </a>
-                </div>
-            </div>
-
-            {{!-- Stress Capacity --}}
-            {{#if (eq actor.type 'character')}}
-            <div class="capacity stress flexrow flex-middle">
-                <div>
-                    <h3>{{localize "T2K4E.ActorSheet.StressCapacity"}}</h3>
-                    {{> "systems/t2k4e/templates/actors/parts/capacity-boxes.hbs" field="sanity" value=data.sanity.trauma min=0 max=data.stressCapacity}}
-                </div>
-                <div class="capacity-value boxed-value" title="{{localize 'T2K4E.ActorSheet.CapacityModifier'}} {{#if (gte data.sanity.modifier 1)}}+{{/if}}{{data.sanity.modifier}}">{{data.sanity.value}}/{{data.stressCapacity}}</div>
-                <div class="capacity-buttons flexcol">
-                    <a class="button capacity-increase" data-field="sanity">
-                        <i class="far fa-plus-square"></i>
-                    </a>
-                    <a class="button capacity-decrease" data-field="sanity">
-                        <i class="far fa-minus-square"></i>
-                    </a>
-                </div>
-            </div>
-            {{/if}}
-
-            {{!-- Profile IMG & XP --}}
-            <div class="img">
-                <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
-
-                {{#if (eq actor.type 'character')}}
-                <div class="experience flexrow flex-middle">
-                    <h5>{{localize "T2K4E.ActorSheet.ExperienceCurrent"}}</h5>
-                    <input type="number" class="smallbox" name="data.xp.value" value="{{data.xp.value}}"/>
-                </div>
-                <div class="experience flexrow flex-middle">
-                    <h5>{{localize "T2K4E.ActorSheet.ExperienceTotal"}}</h5>
-                    <input type="number" class="smallbox" name="data.xp.total" value="{{data.xp.total}}"/>
-                </div>
-                {{/if}}
-            </div>
-
+        {{!-- MOVEMENT --}}
+        <div class="movement-type flexcol">
+          <label>{{localize "T2K4E.VehicleSheet.Movement"}}</label>
+          <select name="data.movement.type">
+            {{selectOptions config.vehicle.movementTypes selected=data.movement.type localize=true}}
+          </select>
         </div>
 
-    </header>
-
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
-        <a class="item" data-tab="main">{{localize "T2K4E.ActorSheet.MainTab"}}</a>
-        <a class="item" data-tab="combat">{{localize "T2K4E.ActorSheet.CombatTab"}}</a>
-        <a class="item" data-tab="equipment">{{localize "T2K4E.ActorSheet.EquipmentTab"}}</a>
-        {{#if (eq actor.type 'character')}}
-        <a class="item" data-tab="biography">{{localize "T2K4E.ActorSheet.BiographyTab"}}</a>
-        {{/if}}
-        <a class="item" data-tab="description">{{localize "T2K4E.ActorSheet.NoteTab"}}</a>
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        {{!-- Main Tab --}}
-        <div class="tab tab-main flexcol" data-group="primary" data-tab="main">
-            {{> "systems/t2k4e/templates/actors/parts/actor-stats.hbs"}}
+        <div class="combat-speed flexcol">
+          <label>{{localize "T2K4E.VehicleSheet.CombatSpeed"}}</label>
+          <div class="flexrow">
+            <input type="number" name="data.movement.combat.onRoad" value={{data.movement.combat.onRoad}} data-dtype="Number"/>
+            <span class="sep">/</span>
+            <input type="number" name="data.movement.combat.offRoad" value={{data.movement.combat.offRoad}} data-dtype="Number"/>
+          </div>
         </div>
 
-        {{!-- Combat Tab --}}
-        <div class="tab tab-combat" data-group="primary" data-tab="combat">
-            {{> "systems/t2k4e/templates/actors/parts/actor-combat.hbs"}}
+        <div class="travel-speed flexcol">
+          <label>{{localize "T2K4E.VehicleSheet.TravelSpeed"}}</label>
+          <div class="flexrow">
+            <input type="number" name="data.movement.travel.onRoad" value={{data.movement.travel.onRoad}} data-dtype="Number"/>
+            <span class="sep">/</span>
+            <input type="number" name="data.movement.travel.offRoad" value={{data.movement.travel.offRoad}} data-dtype="Number"/>
+          </div>
         </div>
 
-        {{!-- Equipment Tab --}}
-        <div class="tab tab-equipment flexcol" data-group="primary" data-tab="equipment">
-            {{> "systems/t2k4e/templates/actors/parts/actor-equipment.hbs"}}
+        {{!-- FUEL --}}
+        <div class="fuel-type flexcol">
+          <label>{{localize "T2K4E.VehicleSheet.Fuel"}}</label>
+          <div class="flexrow">
+            <select name="data.fuel.type">
+              {{selectOptions config.vehicle.fuelTypes selected=data.fuel.type localize=true}}
+            </select>
+            <progress class="fuel-gauge" value="{{data.fuel.value}}" max="{{data.fuel.max}}"></progress>
+          </div>
         </div>
 
-        {{!-- Biography Tab --}}
-        {{#if (eq actor.type 'character')}}
-        <div class="tab tab-biography" data-group="primary" data-tab="biography">
-            <div class="flexcol">
-                <h2>{{localize "T2K4E.ActorSheet.Appearance"}}</h2>
-                {{editor content=data.bio.appearance target="data.bio.appearance" button=true owner=owner editable=editable}}
-
-                <h2>{{localize "T2K4E.ActorSheet.Buddy"}}</h2>
-                <input type="text" name="data.bio.buddy" value="{{data.bio.buddy}}"/>
-
-                <h2>{{localize "T2K4E.ActorSheet.MoralCode"}}</h2>
-                <input type="text" name="data.bio.moralCode" value="{{data.bio.moralCode}}"/>
-
-                <h2>{{localize "T2K4E.ActorSheet.BigDream"}}</h2>
-                <input type="text" name="data.bio.bigDream" value="{{data.bio.bigDream}}"/>
-
-                <h2>{{localize "T2K4E.ActorSheet.GroupMeeting"}}</h2>
-                <textarea name="data.bio.groupMeeting">{{{data.bio.groupMeeting}}}</textarea>
-            </div>
-        </div>
-        {{/if}}
-
-        {{!-- Description Tab --}}
-        <div class="tab tab-description" data-group="primary" data-tab="description">
-            {{> "systems/t2k4e/templates/actors/parts/actor-description.hbs"}}
+        <div class="fuel-cap flexcol">
+          <label>{{localize "T2K4E.VehicleSheet.FuelCapacity"}}</label>
+          <div class="flexrow">
+            <input type="number" name="data.fuel.value" value="{{data.fuel.value}}" data-dtype="Number"/>
+            <span class="sep">/</span>
+            <input type="number" name="data.fuel.max" value="{{data.fuel.max}}" data-dtype="Number"/>
+          </div>
         </div>
 
-    </section>
+        <div class="fuel-consumption flexcol">
+          <label>{{localize "T2K4E.VehicleSheet.FuelConsumption"}}</label>
+          <input type="number" name="data.fuel.cons" value={{data.fuel.cons}} data-dtype="Number"/>
+        </div>
+
+        {{!-- RELIABILITY --}}
+        <div class="reliability flexcol">
+          <label>{{localize "T2K4E.VehicleSheet.Reliability"}}</label>
+          <div>
+            {{> scoreSelector name="data.reliability.score" selected=data.reliability.score}}
+            <span class="sep">/</span>
+            {{> scoreSelector name="data.reliability.maxScore" selected=data.reliability.maxScore}}
+          </div>
+        </div>
+
+        {{!-- PRICE --}}
+        <div class="price flexcol">
+          <label>{{localize "T2K4E.VehicleSheet.Price"}}</label>
+          <input type="number" name="data.price" value={{data.price}} data-dtype="Number"/>
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  {{!-- SHEET TAB NAVIGATION --}}
+  <nav class="sheet-tabs slanted-tabs flexrow" data-group="primary">
+    {{!-- <a class="item" data-tab="features">{{localize "T2K4E.ItemSheet.FeaturesTab"}}</a> --}}
+    <a class="item" data-tab="crew">{{localize "T2K4E.VehicleSheet.CrewTab"}}</a>
+    <a class="item" data-tab="combat">{{localize "T2K4E.VehicleSheet.CombatTab"}}</a>
+    <a class="item" data-tab="cargo">{{localize "T2K4E.VehicleSheet.CargoTab"}}</a>
+    {{!-- <a class="item" data-tab="components">{{localize "T2K4E.VehicleSheet.ComponentsTab"}}</a> --}}
+    <a class="item" data-tab="description">{{localize "T2K4E.ActorSheet.NoteTab"}}</a>
+  </nav>
+
+  {{!-- SHEET BODY --}}
+  <section class="sheet-body">
+
+    {{!-- Crew Tab --}}
+    <div class="tab tab-crew" data-group="primary" data-tab="crew">
+      {{> "systems/t2k4e/templates/actors/parts/vehicle-crew.hbs"}}
+    </div>
+
+    {{!-- Combat Tab --}}
+    <div class="tab tab-combat" data-group="primary" data-tab="combat">
+{{!-- DO NOT ADD INDENT: HandlebarJS+TextArea BUG --}}
+{{> "systems/t2k4e/templates/actors/parts/vehicle-combat.hbs"}}
+    </div>
+
+    {{!-- Cargo Tab --}}
+    <div class="tab tab-cargo flexcol" data-group="primary" data-tab="cargo">
+      {{> "systems/t2k4e/templates/actors/parts/vehicle-cargo.hbs"}}
+    </div>
+
+    {{!-- Components Tab --}}
+    {{!-- <div class="tab tab-components" data-group="primary" data-tab="components">
+      {{> "systems/t2k4e/templates/actors/parts/vehicle-components.hbs"}}
+    </div> --}}
+
+    {{!-- Description Tab --}}
+    <div class="tab tab-description" data-group="primary" data-tab="description">
+      {{> "systems/t2k4e/templates/actors/parts/actor-description.hbs"}}
+    </div>
+
+  </section>
 
 </form>

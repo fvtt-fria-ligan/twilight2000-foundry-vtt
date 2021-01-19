@@ -130,6 +130,41 @@
 				"specialty": "New Specialty"
 			}
 		},
+		"VehicleSheet": {
+			"CrewTab": "Crew",
+			"CombatTab": "Combat",
+			"CargoTab": "Cargo",
+			"ComponentsTab": "Components",
+			"VehicleType": "Vehicle Type",
+			"Reliability": "Reliability",
+			"Movement": "Movement",
+			"CombatSpeed": "Combat Speed",
+			"TravelSpeed": "Travel Speed",
+			"Wheels": "Wheels",
+			"Tracks": "Tracks",
+			"Fuel": "Fuel",
+			"FuelCapacity": "Fuel Capacity",
+			"FuelConsumption": "Fuel Consumption",
+			"Gasoline": "Gasoline",
+			"Diesel": "Diesel",
+			"Drivers": "Drivers",
+			"Passengers": "Passengers",
+			"Armor": "Armor",
+			"FrontArmor": "Front",
+			"SideArmor": "Side",
+			"RearArmor": "Rear",
+			"Damage": "Damage",
+			"MountedWeapons1": "Primary Weapons",
+			"MountedWeapons2": "Secondary Weapons",
+			"MountedWeaponType": "Type",
+			"CargoCapacity": "Cargo Capacity:",
+			"CrewCargo": "Crew Weight:",
+			"VehicleEncumbrance": "Encumbrance (Vehicle)",
+			"Mount": "Mount weapon",
+			"Unmount": "Unmount weapon",
+			"MoveMount": "Toggle weapon mount",
+			"Price": "Price"
+		},
 		"ItemSheet": {
 			"Name": "Name",
 			"FeaturesTab": "Features",
@@ -154,12 +189,6 @@
 			"ArmorLocation": "Protected Location",
 			"Equipped": "Equipped",
 			"StoredInBackpack": "Stored in the backpack"
-		},
-		"VehicleSheet": {
-			"Wheels": "Wheels",
-			"Tracks": "Tracks",
-			"Gasoline": "Gasoline",
-			"Diesel": "Diesel"
 		},
 		"Chat": {
 			"Actions": {

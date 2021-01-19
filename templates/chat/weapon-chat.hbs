@@ -29,10 +29,13 @@
         </div>
 
         <div class="card-buttons">
+            {{!-- TODO --}}
+            {{#unless data.isMounted}}
             <button class="weapon-attack"><i class="fas fa-crosshairs"></i> {{localize "T2K4E.Chat.Actions.Attack"}}</button>
             {{#if data.mag.max}}
             <button class="weapon-reload"{{#if (eq data.mag.value data.mag.max)}} disabled{{/if}}><i class="fas fa-sync-alt"></i> {{localize "T2K4E.Chat.Actions.Reload"}}</button>
             {{/if}}
+            {{/unless}}
         </div>
 
     </div>

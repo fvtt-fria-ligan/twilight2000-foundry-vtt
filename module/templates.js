@@ -5,10 +5,10 @@
  */
 export const preloadHandlebarsTemplates = async function() {
 	return loadTemplates([
-		// Shared Partial
+		// Shared Partials
 		// 'templates/dice/roll.html',
 
-		// Actor Sheet Partial
+		// Actor Sheet Partials
 		'systems/t2k4e/templates/actors/parts/actor-stats.hbs',
 		'systems/t2k4e/templates/actors/parts/actor-combat.hbs',
 		'systems/t2k4e/templates/actors/parts/actor-equipment.hbs',
@@ -22,7 +22,14 @@ export const preloadHandlebarsTemplates = async function() {
 		'systems/t2k4e/templates/actors/parts/slots/gear-slot.hbs',
 		'systems/t2k4e/templates/actors/parts/slots/ammo-slot.hbs',
 
-		// Item Sheet Partial
+		// Vehicle Sheet Partials
+		'systems/t2k4e/templates/actors/parts/vehicle-crew.hbs',
+		'systems/t2k4e/templates/actors/parts/vehicle-combat.hbs',
+		'systems/t2k4e/templates/actors/parts/vehicle-cargo.hbs',
+		'systems/t2k4e/templates/actors/parts/vehicle-components.hbs',
+		'systems/t2k4e/templates/actors/parts/slots/vehicle-weapon-slot.hbs',
+
+		// Item Sheet Partials
 		'systems/t2k4e/templates/items/parts/item-header.hbs',
 		'systems/t2k4e/templates/items/parts/item-modifiers.hbs',
 		'systems/t2k4e/templates/items/parts/item-description.hbs',

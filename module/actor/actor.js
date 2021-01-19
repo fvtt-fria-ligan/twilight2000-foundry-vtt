@@ -22,11 +22,16 @@ export default class ActorT2K extends Actor {
 		switch (actorData.type) {
 			case 'character': this._prepareCharacterData(actorData); break;
 			case 'npc': this._prepareNpcData(actorData); break;
-			default: throw new TypeError('Unknown Actor Type');
+			case 'vehicle': this._prepareVehicleData(actorData); break;
+			default: throw new TypeError(`Unknown Actor Type: "${actorData.type}"`);
 		}
 
 		console.log('t2k4e | Updated Actor: ', this.name, this._id);
 	}
+
+	/* ------------------------------------------- */
+	/*  Character & NPC                            */
+	/* ------------------------------------------- */
 
 	/**
 	 * Prepares Character type specific data.
@@ -69,6 +74,9 @@ export default class ActorT2K extends Actor {
 			for (const [, o] of Object.entries(obj)) {
 				o.value = getDieSize(o.score);
 			}
+		}
+		if ('maxScore' in obj) {
+			obj.max = getDieSize(obj.maxScore);
 		}
 	}
 
@@ -171,5 +179,43 @@ export default class ActorT2K extends Actor {
 			return o;
 		}, {});
 		data.armorRating = ratings;
+	}
+
+	/* ------------------------------------------- */
+	/*  Vehicle                                    */
+	/* ------------------------------------------- */
+
+	/**
+	 * Prepares Vehicle type specific data.
+	 * @param {Object} actorData The Actor's data
+	 * @private
+	 */
+	_prepareVehicleData(actorData) {
+		const data = actorData.data;
+		this._prepareScores(data.reliability);
+		this._computeVehicleEncumbrance(data, actorData.items);
+	}
+
+	/**
+	 * Adds Emcumbrance properties a vehicle.
+	 * @param {Object} data   The Actor's data.data
+	 * @param {Item[]} items  Array of items
+	 * @private
+	 */
+	_computeVehicleEncumbrance(data, items) {
+		const val = (
+			items
+				.filter(i => !i.data.isMounted && i.type !== 'specialty')
+				.reduce((sum, i) => sum + i.data.encumbrance, 0)
+			) || 0;
+
+		const max = data.cargo - (data.crew.driver * 25) + (data.trailer ? data.cargo : 0);
+
+		data.encumbrance = {
+			value: val,
+			max,
+			pct: clamp((val / max) * 100, 0, 100),
+			encumbered: val > max,
+		};
 	}
 }

@@ -1,0 +1,213 @@
+.t2k4e.sheet.actor.vehicle {
+	min-width: 650px;
+	min-height: 400px;
+
+	.window-content {
+		.item-sheet-background();
+	}
+
+	select {
+		min-height: 22px;
+		border: 1px solid transparent;
+		&:hover,
+		&:focus {
+			background: #fff;
+			border: 1px solid @colorBrown;
+		}
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Header                               */
+	/* ------------------------------------------- */
+
+	.sheet-header {
+		img.vehicle-profile {
+			height: 200px;
+			width: auto;
+			margin: 0;
+			padding: 0;
+			border: 2px solid transparent;
+			border-radius: 4px;
+			&:hover {
+				border: 2px solid @colorBrown;
+				box-shadow: 0 0 10px #604f43;
+			}
+		}
+
+		h1 > input {
+			text-align: center;
+			color: @colorBrown;
+		}
+
+		h2 > input {
+			text-align: center;
+			.font-daisywheel();
+		}
+
+		.fuel-type select {
+			max-width: 80px;
+		}
+
+		progress.fuel-gauge {
+			height: 22px;
+			margin-left: 4px;
+		}
+
+		/* ------------------------------------------- */
+
+		.header-details {
+			flex: 0 0 auto;
+			// align-self: flex-start;
+			text-align: center;
+
+			&> div.flexcol {
+				text-align: center;
+				align-items: center;
+			}
+
+			.type {
+				color: @colorTan;
+				.font-daisywheel();
+			}
+
+			input {
+				min-height: 22px;
+				height: 22px;
+				max-height: 22px;
+			}
+
+			label {
+				width: 100%;
+				background: @colorItemLabel;
+				border-bottom: 1px solid @colorBrown;
+				.font-text-bold();
+				color: @colorBrown;
+			}
+		}
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Navigation                           */
+	/* ------------------------------------------- */
+
+	.sheet-tabs {
+		.font-bluehighway-bold();
+		color: @colorBrown;
+	}
+
+	/* ------------------------------------------- */
+	/*  Sheet Body                                 */
+	/* ------------------------------------------- */
+
+	.sheet-body {
+		color: @colorDark;
+		background: @colorLightKhaki;
+
+		h3 {
+			padding: 2px 4px;
+			margin-bottom: @gap;
+			color: @colorBrown;
+			text-transform: uppercase;
+			font-weight: bold;
+			background-color: @colorItemLabel;
+			border-bottom: 1px solid @colorBrown;
+		}
+
+		.tab-crew,
+		.tab-combat,
+		.tab-cargo {
+			overflow-y: hidden;
+		}
+
+		/* ------------------------------------------- */
+
+		@borderVehicle: 1px solid @colorBrown;
+
+		.inventory {
+			.items-header {
+				color: @colorBrown;
+				background: @colorItemLabel;
+				border-top: none;
+				border-bottom: @borderVehicle;
+
+				> div h2 {
+					text-transform: uppercase;
+					font-size: 1rem;
+					font-weight: bold;
+				}
+
+				> div h5 {
+					text-transform: uppercase;
+					font-size: .6rem;
+					font-weight: normal;
+					border-left: @borderVehicle;
+				}
+			}
+
+			.items-list {
+				.item {
+					&:not(:first-child) {
+						border-top: @borderVehicle;
+					}
+				}
+			}
+
+		}
+
+		/* ------------------------------------------- */
+
+		.tab-crew {
+			.crew-list {
+				width: 300px;
+			}
+		}
+
+		/* ------------------------------------------- */
+
+		.tab-combat {
+			div.armor,
+			div.damage {
+				margin-bottom: @gap;
+			}
+
+			div.armor {
+				.grid {
+					grid-template-columns: 100px 1fr 1fr;
+				}
+
+				.armor-location {
+					text-transform: uppercase;
+				}
+
+				.armor-gauge {
+					margin: 0 @gap;
+				}
+			}
+		}
+
+		/* ------------------------------------------- */
+
+		.tab-cargo {
+			.caargoo {
+				flex: 0 0 auto;
+			}
+			.cargo-capacity {
+				text-align: right;
+
+				label {
+					margin-right: @gap;
+				}
+
+				div.boxed-value {
+					border: none;
+				}
+			}
+
+			.encumbrance {
+				.font-daisywheel();
+			}
+		}
+
+		/* ------------------------------------------- */
+	}
+}
