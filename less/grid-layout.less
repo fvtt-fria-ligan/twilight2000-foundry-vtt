@@ -68,7 +68,8 @@
 
 .grid-actor-header {
 	display: grid;
-	align-items: flex-start;
+	// align-items: stretch;
+	// justify-items: stretch;
 	grid-column: span 7 / span 7;
 	grid-template-columns: repeat(6, minmax(0, 1fr)) auto;
 	grid-template-rows: auto 1fr 1fr;
@@ -87,4 +88,32 @@
 	.xp { grid-area: xp; }
 }
 
-// .grid-actor-
+.grid-vehicle-header {
+	display: grid;
+	align-items: center;
+	grid-template-areas:
+		"img info"
+		"details details";
+
+	.vehicle-profile { grid-area: img; }
+	.info { grid-area: info; }
+	.header-details { grid-area: details; }
+}
+
+.grid-vehicle-details {
+	display: grid;
+	grid-template-columns: auto repeat(3, 140px);
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas:
+		"mt cs ts rel"
+		"fuel cap cons price";
+
+	.combat-speed { grid-area: cs; }
+	.travel-speed { grid-area: ts; }
+	.movement-type { grid-area: mt; }
+	.fuel-type { grid-area: fuel; }
+	.fuel-cap { grid-area: cap; }
+	.fuel-consumption { grid-area: cons;}
+	.reliability { grid-area: rel; }
+	.price { grid-area: price; }
+}
