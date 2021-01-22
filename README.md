@@ -91,7 +91,7 @@ See the [changelog](https://github.com/Stefouch/t2k4e/blob/master/CHANGELOG.md#c
 
 - Content: Twilight 2000 4E: © Fria Ligan / Free League Publishing.
 - Foundry VTT: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
-- Source code: Copyright © 2021 [Stefouch](https://github.com/Stefouch), [MIT](https://github.com/Stefouch/t2k4e/blob/master/LICENSE) licensed.
+- Source code: Copyright © 2021 [Stefouch](https://github.com/Stefouch), and licenced under the [GNU General Public License v3.0](https://github.com/Stefouch/t2k4e/blob/master/LICENSE).
 - Fonts:
   - [Daisy Wheel](https://www.dafont.com/daisy-wheel.font)
   - [Blue Highway](https://typodermicfonts.com/blue-highway-5-0/)

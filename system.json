@@ -29,5 +29,5 @@
 	"url": "https://github.com/Stefouch/t2k4e",
 	"manifest": "https://github.com/stefouch/t2k4e/releases/latest/download/system.json",
 	"download": "https://github.com/stefouch/t2k4e/releases/latest/download/master.zip",
-	"license": "LICENSE"
+	"license": "GPL-3.0-or-later"
 }

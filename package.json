@@ -23,7 +23,7 @@
     "Roleplaying Game"
   ],
   "author": "Stefouch",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "eslint": "^7.18.0",
     "gulp": "^4.0.2",
