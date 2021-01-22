@@ -28,5 +28,5 @@ export function clamp(input, min, max) {
  * @param {number} [length=4] Number of characters to return
  */
 export function randomID(length = 4) {
-	return Math.random().toString(36).substr(2, (length || 4) + 2);
+	return Math.random().toString(36).substr(2, (length || 4));
 }
