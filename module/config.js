@@ -1,5 +1,5 @@
 /**
- * The T2K4E Configuration file.
+ * The T2K4E Configuration.
  * @constant
  */
 export const T2K4E = {};
@@ -57,6 +57,8 @@ T2K4E.dieSizes = [-1, 12, 10, 8, 6, 0];
 T2K4E.dieScores = ['–', 'A', 'B', 'C', 'D', 'F'];
 T2K4E.dieSizesMap = new Map(T2K4E.dieScores.map((x, i) => [x, T2K4E.dieSizes[i]]));
 
+T2K4E.physicalItems = ['weapon', 'armor', 'grenade', 'ammunition', 'gear'];
+
 T2K4E.vehicle = {
   movementTypes: {
     'W': 'T2K4E.VehicleSheet.Wheels',
@@ -65,6 +67,50 @@ T2K4E.vehicle = {
   fuelTypes: {
     'G': 'T2K4E.VehicleSheet.Gasoline',
     'D': 'T2K4E.VehicleSheet.Diesel',
+  },
+  components: [
+    'FUEL',
+    'ENGINE',
+    'SUSPENSION',
+    'AMMUNITION',
+    'CARGO',
+    'DRIVER',
+    'PASSENGER',
+    'GUNNER',
+    'COMMANDER',
+    'RADIO',
+    'TRACK_WHEEL',
+    'WEAPON',
+    'FIRE_CONTROL_SYSTEM',
+    'ANTENNA',
+    'EXTERNAL_STORES',
+    'EXPOSED_PASSENGER',
+    'RICOCHET',
+  ],
+  componentDamage: {
+    penetration: [
+      'FUEL',
+      'ENGINE',
+      'SUSPENSION',
+      'AMMUNITION',
+      'CARGO',
+      'DRIVER',
+      'PASSENGER',
+      'GUNNER',
+      'COMMANDER',
+      'RADIO',
+    ],
+    glancingBlow: [
+      'TRACK_WHEEL',
+      'WEAPON',
+      'FIRE_CONTROL_SYSTEM',
+      'ANTENNA',
+      'EXTERNAL_STORES',
+      'EXPOSED_PASSENGER',
+      'EXPOSED_PASSENGER',
+      'RICOCHET',
+      'RICOCHET',
+    ],
   },
 };
 

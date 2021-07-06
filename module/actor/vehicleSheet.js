@@ -22,16 +22,10 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
   getData() {
     const sheetData = super.getData();
 
-    if (this.actor.data.type !== 'vehicle') return sheetData;
-
-    sheetData.inVehicle = true;
-
-    // this._prepareVehiclePassengers(sheetData);
-    this._prepareMountedWeapons(sheetData);
-
-    // switch (this.actor.data.type) {
-    // 	case 'vehicle': this._prepareVehicleItems(data); break;
-    // }
+    if (this.actor.data.type === 'vehicle') {
+      sheetData.inVehicle = true;
+      this._prepareMountedWeapons(sheetData);
+    }
 
     return sheetData;
   }
@@ -60,12 +54,6 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     // Everything below here is only needed if the sheet is editable.
     if (!this.options.editable) return;
     if (!this.isEditable) return;
-
-    // html.find('.stat-score .score-selector').change(this._onAttributeChange.bind(this));
-    // html.find('.item-backpack').click(this._onItemStore.bind(this));
-    // html.find('.item-mag .weapon-edit-ammo').change(this._onWeaponAmmoChange.bind(this));
-    // html.find('.boxes-radiation').on('click contextmenu', this._onValueChange.bind(this));
-    // html.find('.boxes-capacity').on('click contextmenu', this._onCapacityChange.bind(this));
 
     // Owner-only listeners.
     if (this.actor.isOwner) {
@@ -103,5 +91,14 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     else slot++;
 
     return item.update({ 'data.mountSlot': slot });
+  }
+
+  dropCrew(actorId) {
+    const crew = game.actors.get(actorId);
+
+    if (!crew) return;
+    if (crew.type !== 'character' || crew.type !== 'npc') return;
+
+    
   }
 }
