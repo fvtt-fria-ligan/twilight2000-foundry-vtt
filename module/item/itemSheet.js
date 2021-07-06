@@ -4,49 +4,67 @@
  */
 export default class ItemSheetT2K extends ItemSheet {
 
-	/** @override */
-	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
-			classes: ['t2k4e', 'sheet', 'item'],
-			width: 400,
-			height: 520,
-			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'features'}]
-		});
-	}
+  /** @override */
+  static get defaultOptions() {
+    return mergeObject(super.defaultOptions, {
+      classes: ['t2k4e', 'sheet', 'item'],
+      width: 400,
+      height: 520,
+      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'features' }],
+    });
+  }
 
-	/** @override */
-	get template() {
-		return `systems/t2k4e/templates/items/${this.item.data.type}-sheet.hbs`;
-	}
+  /** @override */
+  get template() {
+    return `systems/t2k4e/templates/items/${this.item.data.type}-sheet.hbs`;
+  }
 
-	/** @override */
-	getData() {
-		const data = super.getData();
-		data.config = CONFIG.T2K4E;
-		// data.itemType = game.i18n.localize(`T2K4E.ItemTypes.${data.item.type}`);
+  /** @override */
+  getData() {
+    const baseData = super.getData();
+    const sheetData = {
+      owner: this.item.isOwner,
+      editable: this.isEditable,
+      item: baseData.item,
+      data: baseData.item.data.data,
+      config: CONFIG.T2K4E,
+      inActor: this.item.actor ? true : false,
+    };
+    return sheetData;
+  }
 
-		data.inActor = this.item.actor ? true : false;
+  /** @override */
+  activateListeners(html) {
+    super.activateListeners(html);
 
-		return data;
-	}
+    // Editable-only Listeners
+    if (!this.options.editable) return;
+    if (!this.isEditable) return;
 
-	/** 
-	 * Handles remembering the sheet's position.
-	 * @override
-	 */
-	// setPosition(options = {}) {
-	// 	const position = super.setPosition(options);
-	// 	const sheetBody = this.element.find('.sheet-body');
-	// 	const bodyHeight = position.height - 192;
-	// 	sheetBody.css('height', bodyHeight);
-	// 	return position;
-	// }
+    // Input Focus & Update
+    const inputs = html.find('input');
+    inputs.focus(ev => ev.currentTarget.select());
+    inputs.addBack().find('[data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
 
-	/** @override */
-	activateListeners(html) {
-		super.activateListeners(html);
+    // // Owner-only listeners.
+    // // if (this.actor.isOwner) {
+    // // }
+  }
 
-		// Everything below here is only needed if the sheet is editable.
-		if (!this.options.editable) return;
-	}
+  /**
+   * Changes the value based on an input delta.
+   * @param {Event} event
+   */
+  _onChangeInputDelta(event) {
+    event.preventDefault();
+    const input = event.target;
+    const value = input.value;
+    if (value[0] === '+' || value[0] === '-') {
+      const delta = parseFloat(value);
+      input.value = foundry.utils.getProperty(this.item.data, input.name) + delta;
+    }
+    else if (value[0] === '=') {
+      input.value = value.slice(1);
+    }
+  }
 }

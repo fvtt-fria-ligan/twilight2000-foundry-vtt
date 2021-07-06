@@ -1,6 +1,6 @@
 {
   "name": "t2k4e",
-  "version": "0.7.3",
+  "version": "1.0.0",
   "description": "A Foundry VTT system for Twilight 2000 4E (Free League Publishing)",
   "main": "t2k4e.js",
   "scripts": {
@@ -12,27 +12,29 @@
   "keywords": [
     "Foundry",
     "VTT",
-    "System",
     "T2K",
+    "T2K4",
     "T2K4E",
     "Twilight 2000",
     "Free League",
+    "Free League Publishing",
     "Fria Ligan",
     "RPG",
     "TTRPG",
-    "Roleplaying Game"
+    "Roleplaying Game",
+    "Tabletop Roleplaying Game"
   ],
   "author": "Stefouch",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "eslint": "^7.18.0",
+    "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
+    "eslint": "^7.30.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-less": "^4.0.1",
     "less": "^3.13.1",
     "yearzero-roll": "^1.1.0"
   },
-  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Stefouch/t2k4e.git"

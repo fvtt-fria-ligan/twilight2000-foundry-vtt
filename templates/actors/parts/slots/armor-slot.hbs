@@ -1,21 +1,23 @@
-<div class="item item-armor flexrow" data-item-id={{_id}} draggable="true">
+<div class="item item-armor flexrow" data-item-id={{id}} draggable="true">
 
-    <div class="item-name flexrow">
-        <img class="item-roll" src="{{img}}" title="{{name}}" width="24" height="24"/>
-        <a class="item-roll">{{name}}</a>
-    </div>
-    <div class="item-detail item-cover">
-        {{#each data.location as | bool name |}}
-        {{#if bool}}
-        {{{lookup @root.config.armorLocationIcons name}}}
-        {{/if}}
-        {{/each}}
-    </div>
-    <div class="item-detail item-rating">{{data.rating.value}}/{{data.rating.max}}</div>
-    <div class="item-detail item-weight" title="{{localize "T2K4E.ItemSheet.Quantity"}}: {{data.qty}}">{{data.encumbrance}}</div>
+  <div class="item-name flexrow">
+    <img class="item-roll" src="{{img}}" title="{{name}}" width="24" height="24"/>
+    <a class="item-roll">{{name}}</a>
+  </div>
+  {{#with data}}
+  <div class="item-detail item-cover">
+    {{#each data.location as | bool name |}}
+    {{#if bool}}
+    {{{lookup @root.config.Icons.armorLocationIcons name}}}
+    {{/if}}
+    {{/each}}
+  </div>
+  <div class="item-detail item-rating">{{data.rating.value}}/{{data.rating.max}}</div>
+  <div class="item-detail item-weight" title="{{localize "T2K4E.ItemSheet.Quantity"}}: {{data.qty}}">{{data.encumbrance}}</div>
 
-    <div class="item-controls">
-        {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
-    </div>
+  <div class="item-controls">
+    {{> "systems/t2k4e/templates/actors/parts/slots/slot-buttons.hbs"}}
+  </div>
+  {{/with}}
 
 </div>

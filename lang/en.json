@@ -225,8 +225,8 @@
 	},
 	"SETTINGS": {
 		"showTaskCheckOptions": {
-			"name": "Ask for Task Check options by default.",
-			"label": "Hold Shift to Toggle."
+			"name": "Ask for Task Check Options by Default",
+			"label": "Hold Shift to toggle."
 		}
 	}
 }

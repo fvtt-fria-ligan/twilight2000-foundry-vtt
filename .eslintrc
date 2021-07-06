@@ -1,0 +1,67 @@
+{
+  "env": {
+    "es2020": true,
+    "browser": true,
+    "jquery": true
+  },
+  "extends": [
+    "eslint:recommended",
+    // https://github.com/typhonjs-fvtt/eslint-config-foundry.js
+    "@typhonjs-fvtt/eslint-config-foundry.js"
+    // "@typhonjs-fvtt/eslint-config-foundry.js/diff-0.7.9-0.8.0"
+    // "prettier",
+    // "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    // "prettier"
+  ],
+  // "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2021,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    // "prettier/prettier": ["error"],
+    "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+    "comma-dangle": ["error", "always-multiline"],
+    "comma-spacing": "error",
+    "comma-style": "error",
+    "curly": ["error", "multi-line", "consistent"],
+    "dot-location": ["error", "property"],
+    "handle-callback-err": "off",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "max-len": ["error", { "code": 120 }],
+    "max-nested-callbacks": ["error", { "max": 4 }],
+    "max-statements-per-line": ["error", { "max": 2 }],
+    "no-console": "off",
+    "no-empty-function": "warn",
+    "no-floating-decimal": "error",
+    "no-inline-comments": "warn",
+    "no-lonely-if": "error",
+    "no-multi-spaces": "error",
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 0 }],
+    "no-prototype-builtins": "off",
+    "no-shadow": ["error", { "builtinGlobals": true, "hoist": "all", "allow": ["event"] }],
+    "no-trailing-spaces": ["error", { "ignoreComments": true }],
+    "no-unused-vars": "warn",
+    "no-var": "error",
+    "object-curly-spacing": ["error", "always"],
+    "prefer-const": "warn",
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "space-before-blocks": "error",
+    "space-before-function-paren": ["error", {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "space-in-parens": "error",
+    "space-infix-ops": "error",
+    "space-unary-ops": "error",
+    "spaced-comment": "error",
+    "yoda": "error"
+  }
+}

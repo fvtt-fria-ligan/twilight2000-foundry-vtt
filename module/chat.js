@@ -14,7 +14,7 @@ function _onAttack(event) {
 	event.preventDefault();
 	const card = event.currentTarget.closest('.weapon');
 	const attacker = game.actors.get(card.dataset.ownerId);
-	const weapon = attacker.getOwnedItem(card.dataset.itemId);
+	const weapon = attacker.items.get(card.dataset.itemId);
 	return Dice.Attack(attacker, weapon);
 }
 
@@ -22,7 +22,7 @@ function _onReload(event) {
 	event.preventDefault();
 	const card = event.currentTarget.closest('.weapon');
 	const attacker = game.actors.get(card.dataset.ownerId);
-	const weapon = attacker.getOwnedItem(card.dataset.itemId);
+	const weapon = attacker.items.get(card.dataset.itemId);
 	// return Dice.Reload(attacker, weapon);
 	return weapon.reload();
 }
@@ -60,13 +60,13 @@ export function hideChatActionButtons(message, html, data) {
 	const actor = game.actors.get(chatCard.attr('data-actor-id'));
 	const buttons = chatCard.find('button');
 	for (const btn of buttons) {
-		if (actor && !actor.owner) btn.style.display = 'none';
+		if (actor && !actor.isOwner) btn.style.display = 'none';
 		else if (btn.className === 'roll-push' && !pushable) btn.style.display = 'none';
 	}
 
 	// Hides buttons for non-owners.
 	// const actor = game.actors.get(chatCard.attr('data-actor-id'));
-	// if (actor && !actor.owner) {
+	// if (actor && !actor.isOwner) {
 	// 	const buttons = chatCard.find('button');
 	// 	for (const btn of buttons) {
 	// 		btn.style.display = 'none';

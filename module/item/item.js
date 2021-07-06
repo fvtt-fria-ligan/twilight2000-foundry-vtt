@@ -17,12 +17,13 @@ export default class ItemT2K extends Item {
 	// TODO
 	async roll() {
 		const chatData = {
-			user: game.user._id,
+			user: game.user.id,
 			speaker: ChatMessage.getSpeaker(),
 		};
 
 		const cardData = {
 			...this.data,
+			id: this.id,
 			owner: this.actor.id,
 		};
 
@@ -99,7 +100,7 @@ export default class ItemT2K extends Item {
 		switch (this.type) {
 			case 'weapon': this._prepareWeapon(data, actorData);
 		}
-		// console.log('t2k4e | Updated Item: ', this.name, this._id);
+		// console.log('t2k4e | Updated Item: ', this.name, this.id);
 	}
 
 	/**

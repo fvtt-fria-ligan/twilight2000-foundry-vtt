@@ -1,11 +1,11 @@
 <a class="boxes boxes-radiation" data-field="rads.{{field}}">
 {{#times 10}}
-    {{#if (gte ../value @index)}}
-    {{!-- Full square --}}
-    <i class="fas fa-square"></i>
-    {{else}}
-    {{!-- Empty square --}}
-    <i class="far fa-square"></i>
-    {{/if}}
+  {{#if (gte ../value @index)}}
+  {{!-- Full square --}}
+  <i class="fas fa-square"></i>
+  {{else}}
+  {{!-- Empty square --}}
+  <i class="far fa-square"></i>
+  {{/if}}
 {{/times}}
 </a>

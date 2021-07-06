@@ -7,25 +7,25 @@ const cleanCSS = require('gulp-clean-css');
 /* ----------------------------------------- */
 
 function handleError(err) {
-	console.log(err.toString());
-	this.emit('end');
+  console.log(err.toString());
+  this.emit('end');
 }
 
 /* ----------------------------------------- */
 /*  Compile LESS
 /* ----------------------------------------- */
 
-const T2K4E_LESS = ['less/**/*.less'];
+const T2K_LESS = ['less/**/*.less'];
 
 function compileLESS() {
-	return gulp
-		.src('./less/t2k4e.less')
-		.pipe(less().on('error', handleError))
-		.pipe(cleanCSS({ debug: true }, details => {
-			console.log(`${details.name}: ${details.stats.originalSize}`);
-			console.log(`${details.name}: ${details.stats.minifiedSize}`);
-		}))
-		.pipe(gulp.dest('./'))
+  return gulp
+    .src('./less/t2k4e.less')
+    .pipe(less().on('error', handleError))
+    .pipe(cleanCSS({ debug: true }, details => {
+      console.log(`${details.name}: ${details.stats.originalSize}`);
+      console.log(`${details.name}: ${details.stats.minifiedSize}`);
+    }))
+    .pipe(gulp.dest('./'));
 }
 const css = gulp.series(compileLESS);
 
@@ -34,7 +34,7 @@ const css = gulp.series(compileLESS);
 /* ----------------------------------------- */
 
 function watchUpdates() {
-	gulp.watch(T2K4E_LESS, css);
+  gulp.watch(T2K_LESS, css);
 }
 
 /* ----------------------------------------- */
@@ -42,7 +42,7 @@ function watchUpdates() {
 /* ----------------------------------------- */
 
 exports.default = gulp.series(
-	gulp.parallel(css),
-	watchUpdates
+  gulp.parallel(css),
+  watchUpdates,
 );
 exports.css = css;

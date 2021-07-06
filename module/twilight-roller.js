@@ -101,12 +101,12 @@ export default class T2KRoll extends YZRoll {
 		const renderedRoll = await forgeRoll.render();
 		const templateContext = {
 			actor: actor ? actor.data : {},
-			owner: game.user._id,
+			owner: game.user.id,
 			yzroll: this,
 			roll: renderedRoll,
 		};
 		const chatData = {
-			user: game.user._id,
+			user: game.user.id,
 			speaker: ChatMessage.getSpeaker(),
 			roll: forgeRoll,
 			content: await renderTemplate(chatRollTemplate, templateContext),

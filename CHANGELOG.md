@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [1.0.0-final+FoundryV8] - 2021-07-07
+Major release supporting the final core rules.
+
+### Changed
+- Use of final core rules.
+- Rolls now use the Year Zero Universal Roller (YZUR) library.
+
+### Added
+- Dice So Nice configuration for the rolls.
+- More options for the roll dialog.
+- Clicking an input field will now select its whole value.
+- Editing a number input field in an item sheet with `+`/`-`/`=` will modify the value accordingly.
+- Rolls in the chat are more wordy.
+- Migration script.
+
+### Fixed
+- Bug: broken encumbrance & backpack progress bars (at the bottom of the Gear tab in a character sheet).
+
 ## [0.7.3-alpha] - 2021-01-19
 ### Added
 - Vehicle Sheet !
