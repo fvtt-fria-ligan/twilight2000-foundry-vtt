@@ -1,6 +1,9 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  {{!-- VEHICLE SHEET HEADER --}}
+  {{!-- ================================================== --}}
+  {{!--  Actor Sheet Header                                --}}
+  {{!-- ================================================== --}}
+
   <header class="sheet-header">
 
     <div class="grid-vehicle-header">
@@ -73,10 +76,10 @@
         {{!-- RELIABILITY --}}
         <div class="reliability flexcol">
           <label>{{localize "T2K4E.VehicleSheet.Reliability"}}</label>
-          <div>
-            {{> scoreSelector name="data.reliability.score" selected=data.reliability.score}}
+          <div class="flexrow">
+            <input type="number" name="data.reliability.value" value="{{data.reliability.value}}" data-dtype="Number"/>
             <span class="sep">/</span>
-            {{> scoreSelector name="data.reliability.maxScore" selected=data.reliability.maxScore}}
+            <input type="number" name="data.reliability.max" value="{{data.reliability.max}}" data-dtype="Number"/>
           </div>
         </div>
 
@@ -92,22 +95,33 @@
 
   </header>
 
-  {{!-- SHEET TAB NAVIGATION --}}
+  {{!-- ================================================== --}}
+  {{!--  Sheet Tab Navigation                              --}}
+  {{!-- ================================================== --}}
+
   <nav class="sheet-tabs slanted-tabs flexrow" data-group="primary">
     {{!-- <a class="item" data-tab="features">{{localize "T2K4E.ItemSheet.FeaturesTab"}}</a> --}}
     <a class="item" data-tab="crew">{{localize "T2K4E.VehicleSheet.CrewTab"}}</a>
+    <a class="item" data-tab="components">{{localize "T2K4E.VehicleSheet.ComponentsTab"}}</a>
     <a class="item" data-tab="combat">{{localize "T2K4E.VehicleSheet.CombatTab"}}</a>
     <a class="item" data-tab="cargo">{{localize "T2K4E.VehicleSheet.CargoTab"}}</a>
-    {{!-- <a class="item" data-tab="components">{{localize "T2K4E.VehicleSheet.ComponentsTab"}}</a> --}}
     <a class="item" data-tab="description">{{localize "T2K4E.ActorSheet.NoteTab"}}</a>
   </nav>
 
-  {{!-- SHEET BODY --}}
+  {{!-- ================================================== --}}
+  {{!--  Sheet Body                                        --}}
+  {{!-- ================================================== --}}
+
   <section class="sheet-body">
 
     {{!-- Crew Tab --}}
-    <div class="tab tab-crew" data-group="primary" data-tab="crew">
+    <div class="tab tab-crew flexcol" data-group="primary" data-tab="crew">
       {{> "systems/t2k4e/templates/actors/parts/vehicle-crew.hbs"}}
+    </div>
+
+    {{!-- Components Tab --}}
+    <div class="tab tab-components" data-group="primary" data-tab="components">
+      {{> "systems/t2k4e/templates/actors/parts/vehicle-components.hbs"}}
     </div>
 
     {{!-- Combat Tab --}}
@@ -120,11 +134,6 @@
     <div class="tab tab-cargo flexcol" data-group="primary" data-tab="cargo">
       {{> "systems/t2k4e/templates/actors/parts/vehicle-cargo.hbs"}}
     </div>
-
-    {{!-- Components Tab --}}
-    {{!-- <div class="tab tab-components" data-group="primary" data-tab="components">
-      {{> "systems/t2k4e/templates/actors/parts/vehicle-components.hbs"}}
-    </div> --}}
 
     {{!-- Description Tab --}}
     <div class="tab tab-description" data-group="primary" data-tab="description">

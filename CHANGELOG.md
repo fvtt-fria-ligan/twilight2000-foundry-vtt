@@ -5,18 +5,22 @@ All notable changes to this project will be documented in this file.
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
 ## [1.0.0-final+FoundryV8] - 2021-07-07
-Major release supporting the final core rules.
-
 ### Changed
-- Use of final core rules.
+- Compatibility with the latest Foundry version (v0.8.8).
+- Use of Twilight 2000 4E final core rules:
+  - Dice mechanics are updated.
+  - Weapons & Vehicles's reliability score becomes a number instead of a letter.
 - Rolls now use the Year Zero Universal Roller (YZUR) library.
 
 ### Added
 - Dice So Nice configuration for the rolls.
+- Crew management for vehicles.
+- Components management for vehicles.
 - More options for the roll dialog.
 - Clicking an input field will now select its whole value.
-- Editing a number input field in an item sheet with `+`/`-`/`=` will modify the value accordingly.
+- Editing a number input field in an item sheet with `+`/`-`/`=` will increase/decrease/set the value accordingly.
 - Rolls in the chat are more wordy.
+- New property for weapon Items: `Armored` (used by weapons mounted on vehicles).
 - Migration script.
 
 ### Fixed

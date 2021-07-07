@@ -7,13 +7,6 @@ import { T2K4E } from '../config.js';
  */
 export default class ItemT2K extends Item {
 
-  get stashed() {
-    if (T2K4E.physicalItems.includes(this.type)) {
-      return this.data.data.backpack;
-    }
-    return null;
-  }
-
   chatTemplate = {
     'weapon': 'systems/t2k4e/templates/chat/weapon-chat.hbs',
     'grenade': 'systems/t2k4e/templates/chat/weapon-chat.hbs',
@@ -21,6 +14,24 @@ export default class ItemT2K extends Item {
     'gear': 'systems/t2k4e/templates/chat/gear-chat.hbs',
     'ammunition': 'systems/t2k4e/templates/chat/gear-chat.hbs',
   };
+
+  /* -------------------------------------------- */
+  /*  Additional Getters                          */
+  /* -------------------------------------------- */
+
+  get isStashed() {
+    if (T2K4E.physicalItems.includes(this.type)) return this.data.data.backpack;
+    return null;
+  }
+
+  get isEquipped() {
+    return this.data.data.equipped;
+  }
+
+  get isMounted() {
+    if (this.data.data.props?.mounted == undefined) return null;
+    return this.isEquipped && this.data.data.props?.mounted;
+  }
 
   // TODO
   async roll() {

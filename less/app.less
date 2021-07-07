@@ -7,69 +7,69 @@
 /* ------------------------------------------- */
 
 .t2k4e {
-	.window-content {
-		background: @colorBeige;
-		font-size: 11pt;
-		color: @colorDark;
-		.font-text-normal();
-	}
+  .window-content {
+    background: @colorBeige;
+    font-size: 11pt;
+    color: @colorDark;
+    .font-text-normal();
+  }
 
-	/* ------------------------------------------- */
-	/*  Element Styles                             */
-	/* ------------------------------------------- */
+  /* ------------------------------------------- */
+  /*  Element Styles                             */
+  /* ------------------------------------------- */
 
-	h1, h2, h3, h4, h5 {
-		margin: 0;
-		padding: 0;
-		border: none;
-	}
+  h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
 
-	a:hover {
-		text-shadow: @hoverShadow;
-	}
+  a:hover {
+    text-shadow: @hoverShadow;
+  }
 
-	input[type="text"],
-	input[type="number"],
-	select {
-		height: calc(100% - 2px);
-		border: 1px solid @colorTan;
-		background: rgba(0, 0, 0, 0.05);
-		color: @colorDark;
-	}
+  input[type="text"],
+  input[type="number"],
+  select {
+    height: calc(100% - 2px);
+    border: 1px solid @colorTan;
+    background: rgba(0, 0, 0, 0.05);
+    color: @colorDark;
+  }
 
-	input[type="text"],
-	input[type="number"] {
-		&:hover,
-		&:focus {
-			border: 1px solid #111;
-			box-shadow: 0 0 8px @colorBrown;
-		}
-	}
+  input[type="text"],
+  input[type="number"] {
+    &:hover,
+    &:focus {
+      border: 1px solid #111;
+      box-shadow: 0 0 8px @colorBrown;
+    }
+  }
 
-	input:disabled,
-	select:disabled,
-	textarea:disabled {
-		color: @colorTan;
-		&:hover,
-		&:focus {
-			box-shadow: none !important;
-			border: 1px solid transparent !important;
-			outline: none !important;
-		}
-	}
+  input:disabled,
+  select:disabled,
+  textarea:disabled {
+    color: @colorTan;
+    &:hover,
+    &:focus {
+      box-shadow: none !important;
+      border: 1px solid transparent !important;
+      outline: none !important;
+    }
+  }
 
-	button {
-		background: rgba(0, 0, 0, 0.10);
-		border: @borderGroove;
-		&:hover {
-			box-shadow: @hoverShadow;
-		}
-	}
+  button {
+    background: rgba(0, 0, 0, 0.10);
+    border: @borderGroove;
+    &:hover {
+      box-shadow: @hoverShadow;
+    }
+  }
 
-	select.score-selector {
-		width: 42px;
-		max-width: 42px;
-	}
+  select.score-selector {
+    width: 42px;
+    max-width: 42px;
+  }
 }
 
 /* ------------------------------------------- */
@@ -77,178 +77,182 @@
 /* ------------------------------------------- */
 
 .t2k4e.sheet {
-	.window-content {
-		overflow-y: hidden;
-		padding: 5px;
-		font-size: 13px;
-		color: @colorDark;
+  .window-content {
+    overflow-y: hidden;
+    padding: 5px;
+    font-size: 13px;
+    color: @colorDark;
 
-		form {
-			height: 100%;
-			overflow: hidden;
-		}
+    form {
+      height: 100%;
+      overflow: hidden;
+    }
 
-		.tab {
-			height: 100%;
-			overflow-y: auto;
-			align-content: flex-start;
-		}
-	}
+    .tab {
+      height: 100%;
+      overflow-y: auto;
+      align-content: flex-start;
+    }
+  }
 
-	// Fixes textarea resizing
-	textarea {
-		resize: none;
-	}
+  // Fixes textarea resizing
+  textarea {
+    resize: none;
+  }
 
-	.editor {
-		height: 100%;
-		color: @colorDark;
-	}
+  .editor {
+    height: 100%;
+    color: @colorDark;
+  }
 
-	/* ------------------------------------------- */
+  /* ------------------------------------------- */
 
-	.item-slot {
-		border: 1px solid transparent;
-		border-radius: 5px;
-		padding: 2px @gap;
-		margin: 1px 0;
+  .item-slot {
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 2px @gap;
+    margin: 1px 0;
 
-		&:hover {
-			background: @colorBeige;
-			border: 1px solid @colorLightBrown;
-		}
+    &:hover {
+      background: @colorBeige;
+      border: 1px solid @colorLightBrown;
+    }
 
-		.item-buttons {
-			// flex: 0;
-			text-align: right;
-			// display: flex;
-			// flex-direction: row;
-			margin-left: auto;
+    .item-buttons {
+      // flex: 0;
+      text-align: right;
+      // display: flex;
+      // flex-direction: row;
+      margin-left: auto;
 
-			> a.button {
-				font-size: .7rem;
+      > a.button {
+        font-size: .7rem;
 
-				& ~ a.button {
-					margin-left: 2px;
-				}
-			}
-		}
-	}
+        & ~ a.button {
+          margin-left: 2px;
+        }
+      }
+    }
+  }
 
-	/* ------------------------------------------- */
-	/*  Element Styles                             */
-	/* ------------------------------------------- */
+  /* ------------------------------------------- */
+  /*  Element Styles                             */
+  /* ------------------------------------------- */
 
-	input[type="text"],
-	input[type="number"],
-	div.editable {
-		background: none;
-		border: 1px solid transparent;
-		&:hover,
-		&:focus {
-			border: 1px solid @colorBrown;
-			background: #fff;
-		}
-		&.smallbox {
-			max-width: 40px;
-			text-align: center;
-		}
-	}
+  input[type="text"],
+  input[type="number"],
+  div.editable {
+    background: none;
+    border: 1px solid transparent;
+    &:hover,
+    &:focus {
+      border: 1px solid @colorBrown;
+      background: #fff;
+    }
+    &.smallbox {
+      max-width: 40px;
+      text-align: center;
+    }
+  }
 
-	select {
-		// flex: 1;
-		font-size: 12px;
-		height: 22px;
-		background: transparent;
-		&:hover,
-		&:focus {
-			box-shadow: @hoverShadow;
-		}
-	}
+  select {
+    // flex: 1;
+    font-size: 12px;
+    height: 22px;
+    background: transparent;
+    &:hover,
+    &:focus {
+      box-shadow: @hoverShadow;
+    }
+  }
 
-	/* Rollable Titles */
-	.editable .rollable:hover {
-		cursor: pointer;
-		box-shadow: 0 0 8px @colorBrown;
-	}
+  /* Rollable Titles */
+  .editable .rollable:hover {
+    cursor: pointer;
+    box-shadow: 0 0 8px @colorBrown;
+  }
 
-	.editable h4.rollable:hover,
-	.editable .rollable:hover > h4 {
-		color: #000;
-		text-shadow: @hoverShadow;
-	}
-	
-	/* Separator */
-	span.sep {
-		flex: none;
-		margin: 0 1px;
-		display: inline;
-		position: relative;
-		color: @colorBrown;
-		font-weight: normal;
-	}
+  .editable h4.rollable:hover,
+  .editable .rollable:hover > h4 {
+    color: #000;
+    text-shadow: @hoverShadow;
+  }
+  
+  /* Separator */
+  span.sep {
+    flex: none;
+    margin: 0 1px;
+    display: inline;
+    position: relative;
+    color: @colorBrown;
+    font-weight: normal;
+  }
 
-	.boxed-value {
-		padding: 1px 3px;
-		width: 42px;
-		max-width: 42px;
-		height: 22px;
-		text-align: center;
-		border: 1px solid @colorTan;
-		border-radius: 3px;
-	}
+  .boxed-value {
+    padding: 1px 3px;
+    width: 42px;
+    max-width: 42px;
+    height: 22px;
+    text-align: center;
+    border: 1px solid @colorTan;
+    border-radius: 3px;
+  }
 
-	/* ------------------------------------------- */
-	/*  Sheet Header                               */
-	/* ------------------------------------------- */
+  label.checkbox {
+    cursor: pointer;
+  }
 
-	.sheet-header {
-		flex: 0 0 @headerHeight;
+  /* ------------------------------------------- */
+  /*  Sheet Header                               */
+  /* ------------------------------------------- */
 
-		// h1 {
-		// 	// flex: 1;
-		// 	border-bottom: none;
-		// 	height: 60px;
-		// 	margin: 0;
-		// 	padding: 5px;
-		// 	color: @colorKhaki;
-		// }
+  .sheet-header {
+    flex: 0 0 @headerHeight;
 
-		// input[name="name"] {
-		// 	display: block;
-		// 	height: 50px;
-		// 	font-size: 32px;
-		// 	margin: 0;
-		// }
+    // h1 {
+    // 	// flex: 1;
+    // 	border-bottom: none;
+    // 	height: 60px;
+    // 	margin: 0;
+    // 	padding: 5px;
+    // 	color: @colorKhaki;
+    // }
 
-		img.profile {
-			flex: 0 0 @headerHeight;
-			max-width: @headerHeight;
-			height: @headerHeight;
-			object-fit: contain;
-			border: none;
-			cursor: pointer;
-			&:hover {
-				box-shadow: @hoverShadow;
-			}
-		}
-	}
+    // input[name="name"] {
+    // 	display: block;
+    // 	height: 50px;
+    // 	font-size: 32px;
+    // 	margin: 0;
+    // }
 
-	/* ------------------------------------------- */
-	/*  Sheet Navigation                           */
-	/* ------------------------------------------- */
+    img.profile {
+      flex: 0 0 @headerHeight;
+      max-width: @headerHeight;
+      height: @headerHeight;
+      object-fit: contain;
+      border: none;
+      cursor: pointer;
+      &:hover {
+        box-shadow: @hoverShadow;
+      }
+    }
+  }
 
-	/* ------------------------------------------- */
-	/*  Sheet Body                                 */
-	/* ------------------------------------------- */
+  /* ------------------------------------------- */
+  /*  Sheet Navigation                           */
+  /* ------------------------------------------- */
 
-	.sheet-body {
-		flex: 1;
-		overflow: hidden;
+  /* ------------------------------------------- */
+  /*  Sheet Body                                 */
+  /* ------------------------------------------- */
 
-		border: 1px groove @colorKhaki;
-		border-radius: 10px 10px 10px 10px;
-		padding: 10px;
-		// box-shadow: 0 2px hsla(0,0%,100%,.5) inset;
-	}
+  .sheet-body {
+    flex: 1;
+    overflow: hidden;
+
+    border: 1px groove @colorKhaki;
+    border-radius: 10px 10px 10px 10px;
+    padding: 10px;
+    // box-shadow: 0 2px hsla(0,0%,100%,.5) inset;
+  }
 }

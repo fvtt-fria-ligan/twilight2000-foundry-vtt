@@ -29,7 +29,7 @@
   "flags": {},
   "socket": false,
   "protected": false,
-  "background": "./assets/gear-intro.jpg",
+  "background": "./assets/gear-intro_c.jpg",
   "gridDistance": 10,
   "gridUnits": "m",
   "primaryTokenAttribute": "health",

@@ -3,16 +3,16 @@
     {{#unless (eq type 'specialty')}}
     <a class="button item-equip{{#if data.equipped}} equipped{{/if}}" title="{{localize "T2K4E.ActorSheet.Equip"}}">
       {{#if data.equipped}}
-      <i class="fas fa-star"></i>
+      {{{@root.config.Icons.buttons.fullStar}}}
       {{else}}
-      <i class="far fa-star"></i>
+      {{{@root.config.Icons.buttons.emptyStar}}}
       {{/if}}
     </a>
     <a class="button item-backpack{{#if data.backpack}} packed{{/if}}" title="{{localize 'T2K4E.ActorSheet.Store'}}">
       {{#if data.backpack}}
-      <i class="fas fa-shopping-bag"></i>
+      {{{@root.config.Icons.buttons.stash}}}
       {{else}}
-      <i class="fas fa-shopping-bag"></i>
+      {{{@root.config.Icons.buttons.stash}}}
       {{/if}}
     </a>
     {{/unless}}
@@ -20,31 +20,31 @@
     {{#if (eq type 'weapon')}}
       {{#if data.isMounted}}
       <a class="button item-mount" title="{{localize 'T2K4E.VehicleSheet.Unmount'}}">
-        <i class="fas fa-thumbtack"></i>
+        {{{@root.config.Icons.buttons.unmount}}}
       </a>
       {{else}}
       <a class="button item-mount" title="{{localize 'T2K4E.VehicleSheet.Mount'}}">
-        <i class="fas fa-wrench"></i>
+        {{{@root.config.Icons.buttons.mount}}}
       </a>
       {{/if}}
     </a>
       {{#if data.isMounted}}
       <a class="button item-mount-move" title="{{localize 'T2K4E.VehicleSheet.MoveMount'}}">
         {{#if (lte data.mountSlot 1)}}
-        <i class="fas fa-angle-up"></i>
+        {{{@root.config.Icons.buttons.primaryWeapon}}}
         {{else}}
-        <i class="fas fa-angle-double-up"></i>
+        {{{@root.config.Icons.buttons.secondaryWeapon}}}
         {{/if}}
       </a>
       {{/if}}
     {{/if}}
   {{/unless}}
   <a class="button item-edit" title="{{localize "T2K4E.ActorSheet.Edit"}}">
-    <i class="fas fa-edit"></i>
+    {{{@root.config.Icons.buttons.edit}}}
   </a>
   {{#unless data.isMounted}}
   <a class="button item-delete" title="{{localize "T2K4E.ActorSheet.Delete"}}">
-    <i class="fas fa-trash"></i>
+    {{{@root.config.Icons.buttons.delete}}}
   </a>
   {{/unless}}
 </div>

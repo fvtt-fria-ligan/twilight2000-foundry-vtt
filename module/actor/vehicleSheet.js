@@ -1,4 +1,5 @@
 import ActorSheetT2K from './actorSheet.js';
+import { T2K4E } from '../config.js';
 
 /**
  * Twilight 2000 Actor Sheet for Vehicles.
@@ -12,7 +13,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
       classes: ['t2k4e', 'sheet', 'actor', 'vehicle'],
       width: 650,
       height: 715,
-      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'combat'}],
+      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'crew' }],
     });
   }
 
@@ -22,11 +23,32 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
   getData() {
     const sheetData = super.getData();
 
-    if (this.actor.data.type === 'vehicle') {
-      sheetData.inVehicle = true;
+    if (this.actor.type === 'vehicle') {
+      this._prepareCrew(sheetData);
       this._prepareMountedWeapons(sheetData);
+      sheetData.inVehicle = true;
     }
 
+    return sheetData;
+  }
+
+  _prepareCrew(sheetData) {
+    sheetData.crew = sheetData.data.crew.occupants.reduce((arr, o) => {
+      o.actor = game.actors.get(o.id);
+      // TODO cleanse dead actors.
+      if (o.actor) arr.push(o);
+      return arr;
+    }, []);
+    sheetData.crew.sort((o1, o2) => {
+      const pos1 = T2K4E.vehicle.crewPositionFlags.indexOf(o1.position);
+      const pos2 = T2K4E.vehicle.crewPositionFlags.indexOf(o2.position);
+      if (pos1 < pos2) return -1;
+      if (pos1 > pos2) return 1;
+      // If they are at the same position, sort by their actor's names.
+      if (o1.actor.name < o2.actor.name) return -1;
+      if (o1.actor.name > o2.actor.name) return 1;
+      return 0;
+    });
     return sheetData;
   }
 
@@ -39,11 +61,21 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
       primary: sheetData.actor.items.filter(i => m(i, 1)),
       secondary: sheetData.actor.items.filter(i => m(i, 2)),
     };
+    return sheetData;
   }
 
   // _prepareVehiclePassengers(sheetData) {
   // 	sheetData.passengers = game.actors.filter(a => ['character', 'npc'].includes(a.data.type));
   // }
+
+  /* ------------------------------------------- */
+
+  dropCrew(actorId) {
+    const crew = game.actors.get(actorId);
+    if (!crew) return;
+    if (crew.type !== 'character' && crew.type !== 'npc') return;
+    return this.actor.addVehicleOccupant(actorId);
+  }
 
   /* ------------------------------------------- */
 
@@ -57,10 +89,58 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
 
     // Owner-only listeners.
     if (this.actor.isOwner) {
+      // Crew
+      html.find('.crew-edit').click(this._onCrewEdit.bind(this));
+      html.find('.crew-remove').click(this._onCrewRemove.bind(this));
+      html.find('.crew-expose').click(this._onExposeCrew.bind(this));
+      html.find('.crew-position').change(this._onChangePosition.bind(this));
+      // Items
       html.find('.item-mount').click(this._onWeaponMount.bind(this));
       html.find('.item-mount-move').click(this._onWeaponMountMove.bind(this));
     }
   }
+
+  /* ------------------------------------------- */
+
+  /**
+   * @param {Event} event
+   * @private
+   */
+  _onCrewEdit(event) {
+    event.preventDefault();
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const actor = game.actors.get(crewId);
+    return actor.sheet.render(true);
+  }
+
+  _onCrewRemove(event) {
+    event.preventDefault();
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const occupants = this.actor.removeVehicleOccupant(crewId);
+    return this.actor.update({ 'data.crew.occupants': occupants });
+  }
+
+  _onExposeCrew(event) {
+    event.preventDefault();
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const position = this.actor.getVehicleOccupant(crewId)?.position;
+    const exposed = elem.checked;
+    return this.actor.addVehicleOccupant(crewId, position, exposed);
+  }
+
+  _onChangePosition(event) {
+    event.preventDefault();
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const position = elem.value;
+    const exposed = this.actor.getVehicleOccupant(crewId)?.exposed;
+    return this.actor.addVehicleOccupant(crewId, position, exposed);
+  }
+
+  /* ------------------------------------------- */
 
   _onWeaponMount(event) {
     event.preventDefault();
@@ -91,14 +171,5 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     else slot++;
 
     return item.update({ 'data.mountSlot': slot });
-  }
-
-  dropCrew(actorId) {
-    const crew = game.actors.get(actorId);
-
-    if (!crew) return;
-    if (crew.type !== 'character' || crew.type !== 'npc') return;
-
-    
   }
 }

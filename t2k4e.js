@@ -33,7 +33,7 @@ import ActorSheetT2KVehicle from './module/actor/vehicleSheet.js';
 import ItemSheetT2K from './module/item/itemSheet.js';
 
 // Imports Helpers.
-import * as migrations from './module/migration.js';
+import { checkMigration } from './module/migration.js';
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -98,7 +98,7 @@ Hooks.once('ready', function() {
   // Hooks.on('hotbarDrop', (bar, data, slot) => macros.create5eMacro(data, slot));
 
   // Determines whether a system migration is required and feasible.
-  //migrations.checkMigration();
+  checkMigration();
 
   console.warn('t2k4e | READY!');
 
@@ -107,14 +107,14 @@ Hooks.once('ready', function() {
   if (CONFIG.debug.hooks === true) {
     try {
       // Renders a starting actor or item.
-      /** @type {Actor} *
+      /** @type {Actor} */
       const startingActor = game.actors.getName('Stefouch');
-      startingActor.sheet.render(true);
-      console.warn(startingActor);//*/
+      // startingActor.sheet.render(true);
+      console.warn(startingActor);
       /** @type {Actor} */
       const startingVehicle = game.actors.getName('T-80');
       startingVehicle.sheet.render(true);
-      console.warn(startingVehicle);//*/
+      console.warn(startingVehicle);
       /** @type {Item} *
       const startingItem = game.items.get('63JHOmp3e1HLbdrL');
       startingItem.sheet.render(true);
@@ -131,3 +131,11 @@ Hooks.once('diceSoNiceReady', dice3d => registerDsN(dice3d));
 Hooks.on('renderChatLog', (app, html, data) => Chat.addChatListeners(html));
 Hooks.on('getChatLogEntryContext', Chat.addChatMessageContextOptions);
 Hooks.on('renderChatMessage', (app, html, data) => Chat.hideChatActionButtons(app, html, data));
+
+Hooks.on('dropActorSheetData', (actor, sheet, data) => {
+  // Dropping something on a vehicle sheet.
+  if (actor.type === 'vehicle') {
+    // Dropping an actor on a vehicle sheet.
+    if (data.type === 'Actor') sheet.dropCrew(data.id);
+  }
+});

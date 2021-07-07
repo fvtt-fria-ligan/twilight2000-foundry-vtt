@@ -167,8 +167,8 @@
       "templates": ["actorDescription"],
       "vehicleType": "",
       "reliability": {
-        "score": "A",
-        "maxScore": "A"
+        "value": 5,
+        "max": 5
       },
       "movement": {
         "combat": {
@@ -203,58 +203,47 @@
       },
       "cargo": 0,
       "crew": {
-        "driver": 1,
-        "passenger": 0,
-        "exposedPassenger": 0,
-        "gunner": 0,
-        "commander": 0
+        "qty": 1,
+        "passengerQty": 0,
+        "occupants": []
       },
       "tempDamage": "",
-      "tempComponents": "",
       "components": {
         "fuel": {
-          "value": 1,
-          "max": 1
+          "active": true,
+          "damage": 0
         },
         "engine": {
-          "value": 1,
-          "max": 1
+          "active": true,
+          "damage": 0
         },
         "suspension": {
-          "value": 1,
-          "max": 1
+          "active": true,
+          "damage": 0
         },
-        "ammo": {
-          "value": 0,
-          "max": 0
-        },
-        "cargo": {
-          "value": 1,
-          "max": 1
+        "ammunition": {
+          "active": true,
+          "damage": 0
         },
         "radio": {
-          "value": 0,
-          "max": 0
+          "active": true,
+          "reliability": {
+            "value": 1,
+            "max": 1
+          }
         },
         "trackWheel": {
-          "value": 0,
-          "max": 0
-        },
-        "weapon": {
-          "value": 0,
-          "max": 0
+          "active": true,
+          "damage": 0
         },
         "fcs": {
-          "value": 0,
-          "max": 0
+          "active": false,
+          "damage": 0,
+          "type": ""
         },
         "antenna": {
-          "value": 0,
-          "max": 0
-        },
-        "externalStores": {
-          "value": 0,
-          "max": 0
+          "active": true,
+          "damage": 0
         }
       },
       "trailer": false,
@@ -285,8 +274,8 @@
       },
       "itemReliability": {
         "reliability": {
-          "score": "A",
-          "max": "A"
+          "value": 5,
+          "max": 5
         }
       },
       "itemOffensive": {
@@ -335,6 +324,7 @@
         "twoHanded": false,
         "ammoBelt": false,
         "mounted": false,
+        "armored": false,
         "disposable": false
       }
     },

@@ -60,6 +60,15 @@ T2K4E.dieSizesMap = new Map(T2K4E.dieScores.map((x, i) => [x, T2K4E.dieSizes[i]]
 T2K4E.physicalItems = ['weapon', 'armor', 'grenade', 'ammunition', 'gear'];
 
 T2K4E.vehicle = {
+  extraPassengerEncumbrance: 50,
+  emptySeatEncumbrance: 25,
+  crewPositionFlags: ['DRIVER', 'GUNNER', 'COMMANDER', 'PASSENGER'],
+  crewPositionFlagsLocalized: {
+    'DRIVER': 'T2K4E.VehicleSheet.crewPositions.driver',
+    'GUNNER': 'T2K4E.VehicleSheet.crewPositions.gunner',
+    'COMMANDER': 'T2K4E.VehicleSheet.crewPositions.commander',
+    'PASSENGER': 'T2K4E.VehicleSheet.crewPositions.passenger',
+  },
   movementTypes: {
     'W': 'T2K4E.VehicleSheet.Wheels',
     'T': 'T2K4E.VehicleSheet.Tracks',
@@ -127,6 +136,18 @@ T2K4E.ranges = [
 /* ------------------------------------------- */
 
 T2K4E.Icons = {
+  buttons: {
+    edit: '<i class="fas fa-edit"></i>',
+    delete: '<i class="fas fa-trash"></i>',
+    remove: '<i class="fas fa-times"></i>',
+    fullStar: '<i class="fas fa-star"></i>',
+    emptyStar: '<i class="far fa-star"></i>',
+    stash: '<i class="fas fa-shopping-bag"></i>',
+    unmount: '<i class="fas fa-thumbtack"></i>',
+    mount: '<i class="fas fa-wrench"></i>',
+    primaryWeapon: '<i class="fas fa-angle-up"></i>',
+    secondaryWeapon: '<i class="fas fa-angle-double-up"></i>',
+  },
   armorLocationIcons: {
     head: '<i class="fas fa-hard-hat"></i>',
     arms: '<i class="fas fa-hand-paper"></i>',

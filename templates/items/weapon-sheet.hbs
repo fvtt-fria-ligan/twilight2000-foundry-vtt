@@ -27,9 +27,9 @@
         <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Reliability"}}</label>
           <div class="flexrow flex-center">
-            {{> scoreSelector name="data.reliability.score" selected=data.reliability.score}}
+            <input type="number" name="data.reliability.value" value="{{data.reliability.value}}" data-dtype="Number"/>
             <span class="sep">/</span>
-            {{> scoreSelector name="data.reliability.max" selected=data.reliability.max}}
+            <input type="number" name="data.reliability.max" value="{{data.reliability.max}}" data-dtype="Number"/>
           </div>
         </div>
         <div class="flexcol">
