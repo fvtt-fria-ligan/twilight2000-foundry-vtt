@@ -2,10 +2,10 @@
 
   <div class="item-name flexrow">
     <img class="item-roll" src="{{img}}" title="{{name}}" width="24" height="24"/>
-    <a class="item-roll" title="{{data.data.itemType}}">{{name}}</a>
+    <a class="item-roll" title="{{data.data.itemType}}">{{detailedName}}</a>
   </div>
   {{#with data}}
-  <div class="item-detail item-quantity">{{data.qty}}&times;&nbsp;{{data.ammo.value}}/{{data.ammo.max}}</div>
+  {{!-- <div class="item-detail item-quantity">{{data.qty}}&times;&nbsp;{{data.ammo.value}}/{{data.ammo.max}}</div> --}}
   <div class="item-detail item-weight">{{data.encumbrance}}</div>
 
   <div class="item-controls">

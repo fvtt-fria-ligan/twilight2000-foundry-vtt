@@ -2,25 +2,29 @@
 
   {{!-- ================================================== --}}
 
-  {{!-- Attribute --}}
-  {{!-- <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.Attribute"}}</label>
-    {{rangePicker name="attribute" value=data.attribute min=6 max=12 step=2}}
-  </div> --}}
-
-  {{!-- Skill --}}
-  {{!-- {{#if data.skill}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.Skill"}}</label>
-    {{rangePicker name="skill" value=data.skill min=6 max=12 step=2}}
-  </div>
-  {{/if}} --}}
-
+  {{#if (or data.attribute data.skill)}}
   {{!-- Roll Formula --}}
   <div class="form-group">
     <label>{{localize "T2K4E.Dialog.Roll.Formula"}}</label>
     <input type="text" name="formula" value="{{data.formula}}" disabled/>
   </div>
+
+  {{else}}
+  {{!-- Attribute --}}
+  <div class="form-group">
+    <label>{{localize "T2K4E.Dialog.Roll.Attribute"}}</label>
+    <div class="flexrow">{{rangePicker name="attribute" value=data.attribute min=6 max=12 step=2}}</div>
+  </div>
+
+  {{!-- Skill --}}
+  <div class="form-group">
+    <label>{{localize "T2K4E.Dialog.Roll.Skill"}}</label>
+    <div class="flexrow">{{rangePicker name="skill" value=data.skill min=6 max=12 step=2}}</div>
+  </div>
+  {{/if}}
+
+  {{!-- ================================================== --}}
+
 
   {{!-- Rate of Fire --}}
   {{#if data.rof}}
