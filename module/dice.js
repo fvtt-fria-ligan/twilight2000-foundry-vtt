@@ -22,8 +22,8 @@ export class T2KRoller {
    * Rolls dice for T2K.
    * @param {string?}  title                The title of the roll
    * @param {Actor?}   actor                The actor who rolled the dice, if any
-   * @param {number}   attribute            The attribute's size
-   * @param {number}   skill                The skill's size
+   * @param {number}  [attribute=0]         The attribute's size
+   * @param {number}  [skill=0]             The skill's size
    * @param {number}  [rof=0]               The RoF's value
    * @param {number}  [modifier=0]          The task modifier
    * @param {boolean} [locate=false]        Whether to roll a Location die
@@ -32,14 +32,15 @@ export class T2KRoller {
    * @param {boolean} [askForOptions=false] Whether to show a Dialog for roll options
    * @param {boolean} [skipDialog=false]    Whether to force skip the Dialog for roll options
    * @param {boolean} [sendMessage=true]    Whether the message should be sent
-   * @returns {Promise<YearZeroRoll>}
+   * @returns {Promise<YearZeroRoll|ChatMessage>} If sendMessage=true, returns the ChatMessage,
+   *      otherwise returns the YearZeroRoll.
    * @static
    * @async
    */
   static async taskCheck({
     title = 'Twilight 2000 4E – Task Check',
     actor = null,
-    attribute = 6,
+    attribute = 0,
     skill = 0,
     rof = 0,
     modifier = 0,
@@ -52,43 +53,47 @@ export class T2KRoller {
   } = {}) {
     // 1 — Prepares data.
     rollMode = rollMode ?? game.settings.get('core', 'rollMode');
-    attribute = Math.clamped(attribute, 0, 12);
-    skill = Math.clamped(skill, 0, 12);
 
-    // 2 — Creates the roll.
-    const dice = getDiceQuantities(attribute, skill);
-    let roll = YearZeroRoll.createFromDiceQuantities(dice, { maxPush });
-    roll.name = title;
-
-    // 3 — Checks if we ask for options (roll dialog).
+    // 2 — Checks if we ask for options (roll dialog).
     const showTaskCheckOptions = game.settings.get('t2k4e', 'showTaskCheckOptions');
     if (!skipDialog && askForOptions !== showTaskCheckOptions) {
-      // 3.1 — Renders the dialog.
+      // 2.1 — Prepares a formula.
+      const formula = YearZeroRoll.createFromDiceQuantities(
+        getDiceQuantities(attribute, skill),
+      ).formula;
+
+      // 2.2 — Renders the dialog.
       const opts = await T2KDialog.askRollOptions({
-        title, attribute, skill, rof, modifier, locate, maxPush, rollMode,
-        formula: roll.formula,
+        title, attribute, skill, rof, modifier, locate,
+        maxPush, rollMode, formula,
       });
 
-      // 3.1.5 — Exits early if the dialog was cancelled.
+      // 2.2.5 — Exits early if the dialog was cancelled.
       if (opts.cancelled) return null;
 
-      // 3.2 — Uses options from the roll dialog.
+      // 2.3 — Uses options from the roll dialog.
+      if (!attribute && !skill) {
+        attribute = opts.attribute;
+        skill = opts.skill;
+      }
       rof = opts.rof;
       modifier = opts.modifier;
       locate = opts.locate;
       maxPush = opts.maxPush;
       rollMode = opts.rollMode;
     }
-    // 4 — Clamps values.
+    // 3 — Clamps values.
+    attribute = Math.clamped(attribute, 0, 12);
+    skill = Math.clamped(skill, 0, 12);
     modifier = Math.clamped(modifier, -100, 100);
     maxPush = Math.clamped(maxPush, 0, 100);
 
+    // 4 — Creates the roll.
+    const dice = getDiceQuantities(attribute, skill, rof, locate);
+    let roll = YearZeroRoll.createFromDiceQuantities(dice, { maxPush });
+    roll.name = title;
+
     // 5 — Modifies the roll.
-    if (rof || locate || maxPush !== 1) {
-      if (rof) dice.ammo = rof;
-      if (locate) dice.loc = 1;
-      roll = YearZeroRoll.createFromDiceQuantities(dice, { maxPush });
-    }
     if (modifier) {
       roll = roll.modify(modifier);
     }
@@ -99,7 +104,7 @@ export class T2KRoller {
 
     // 7 — Sends the message and returns.
     if (sendMessage) {
-      await roll.toMessage(null, { rollMode });
+      return roll.toMessage(null, { rollMode });
     }
     return roll;
   }
@@ -108,7 +113,7 @@ export class T2KRoller {
 
   /**
    * Rolls dice for a Coolness Under Fire test.
-   * @returns {Promise<YearZeroRoll>}
+   * @returns {Promise<YearZeroRoll|ChatMessage>}
    */
   static async cufCheck({
     title = game.i18n.localize('T2K4E.Dialog.CuF.CoolnessUnderFire'),
@@ -158,15 +163,33 @@ export class T2KRoller {
  * @async
  */
 export async function rollPush(roll, message) {
+  if (!roll.pushable) return roll;
+
   // Copies the roll.
   roll = roll.duplicate();
 
   // Pushes the roll.
-  if (roll.pushable) {
-    await roll.push({ async: true });
-    if (message) await message.delete();
-    await roll.toMessage();
+  await roll.push({ async: true });
+
+  // Returns the pushed roll if there is no message.
+  if (!message) return roll.toMessage();
+
+  // Gets all the message's flags.
+  const flags = message.data.flags.t2k4e ?? {};
+  const oldAmmoSpent = flags.ammoSpent;
+  const newAmmoSpent = roll.ammoSpent;
+
+  // Gets the item;
+
+  // Updates the spent ammo.
+  if (oldAmmoSpent && oldAmmoSpent !== newAmmoSpent) {
+
   }
+
+  // No need to await the deletion.
+  message.delete();
+
+  await roll.toMessage();
   return roll;
 }
 

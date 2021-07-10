@@ -112,19 +112,18 @@ export function addChatMessageContextOptions(html, options) {
  * @param {Object} data Additional data
  */
 export function hideChatActionButtons(message, html, data) {
-  return;
   const chatCard = html.find('.t2k4e.chat-card');
 
   // Exits early if no chatCard were found.
   if (chatCard.length <= 0) return;
 
   // Hides buttons.
-  const pushable = game.t2k4e.rolls.has(chatCard.attr('data-roll-id'));
+  // const pushable = message.roll?.pushable;
   const actor = game.actors.get(chatCard.attr('data-actor-id'));
   const buttons = chatCard.find('button');
   for (const btn of buttons) {
     if (actor && !actor.isOwner) btn.style.display = 'none';
-    else if (btn.className === 'roll-push' && !pushable) btn.style.display = 'none';
+    // else if (btn.className === 'roll-push' && !pushable) btn.style.display = 'none';
   }
 
   // Hides buttons for non-owners.

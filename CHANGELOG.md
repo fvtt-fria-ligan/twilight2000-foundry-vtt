@@ -4,12 +4,15 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
-## [1.0.0-final+FoundryV8] - 2021-07-07
+## [1.0.0-final+FoundryV8] - 2021-07-10
 
 > :warning: **Major Update with Breaking Changes**
-> This is a major update from an old alpha version. Migration should work fine, but issues may occur.
+> This is a major update from the alpha version. Migration should work fine, but issues may occur.
 > Before applying the system update, [backup your world](https://www.youtube.com/watch?v=OmbxMmqNNXU)!
 > If the update inadvertedly broke your world, restore your backup and roll back to the [previous version](https://github.com/Stefouch/t2k4e/releases/tag/0.7.3) of the T2K system. Then contact me to solve the issue ([find me on Discord](https://discordapp.com/invite/DDBZUDf) or [open an issue](https://github.com/Stefouch/t2k4e/issues)).
+
+### Breaking Change
+- New Ammunition Management: All ammo values in all weapons will be erased with this update. Now, to choose an ammo for a weapon, you must select a magazine from your inventory with a corresponding ammo type.
 
 ### Changed
 - Compatibility with the latest Foundry version (v0.8.8).
@@ -18,6 +21,7 @@ All notable changes to this project will be documented in this file.
   - Weapons & Vehicles's reliability score becomes a number instead of a letter.
 - Rolls now use the Year Zero Universal Roller (YZUR) library.
 - Pushed roll messages are now modified in the chat.
+- Ammunition management has been revamped (see breaking change above).
 
 ### Added
 - Dice So Nice configuration for the rolls.
@@ -28,7 +32,10 @@ All notable changes to this project will be documented in this file.
 - Editing a number input field in an item sheet with `+`/`-`/`=` will increase/decrease/set the value accordingly.
 - Rolls in the chat are more wordy.
 - New property for weapon Items: `Armored` (used by weapons mounted on vehicles).
+- Attack rolls now consume ammo.
 - Migration script.
+- [Discussions](https://github.com/Stefouch/t2k4e/discussions).
+- Templates for issues reporting and pull requests.
 
 ### Fixed
 - Bug: broken encumbrance & backpack progress bars (at the bottom of the Gear tab in a character sheet).

@@ -1,5 +1,6 @@
-import { T2K4E } from '../config.js';
 import { getChatCardActor } from '../chat.js';
+import { T2K4E } from '../config.js';
+import { T2KRoller } from '../dice.js';
 
 /**
  * Twilight 2000 Item.
@@ -11,8 +12,16 @@ export default class ItemT2K extends Item {
   /*  Properties                                 */
   /* ------------------------------------------- */
 
+  get qty() {
+    return this.data.data.qty;
+  }
+
   get hasDamage() {
     return !!this.data.data.damage;
+  }
+
+  get hasAttack() {
+    return this.hasDamage;
   }
 
   get isStashed() {
@@ -27,6 +36,31 @@ export default class ItemT2K extends Item {
   get isMounted() {
     if (this.data.data.props?.mounted == undefined) return null;
     return this.isEquipped && this.data.data.props?.mounted;
+  }
+
+  get hasAmmo() {
+    return !!this.data.data.mag?.max;
+  }
+
+  get hasReliability() {
+    return !!this.data.data.reliability?.max;
+  }
+
+  /**
+   * The name with a quantity in parentheses.
+   * @type {string}
+   * @readonly
+   */
+  get detailedName() {
+    let str = this.name;
+    if (this.type == 'ammunition') {
+      const ammo = this.data.data.ammo;
+      str += ` [${ammo.value}/${ammo.max}]`;
+    }
+    if (this.qty > 1) {
+      str += ` (${this.qty})`;
+    }
+    return str;
   }
 
   /* ------------------------------------------- */
@@ -141,15 +175,150 @@ export default class ItemT2K extends Item {
   /* ------------------------------------------- */
 
   /**
-   * Rolls an item, sending its infos in the chat.
-   * If the item is a weapon, it'll have an attack button.
-   * @param {MouseEvent} [event] You can pass the Event to check if the Shift key was pushed
-   * @returns {Promise}
+   * Roll the item to Chat, creating a chat card which contains follow up attack or reload roll options.
+   * @param {boolean} [configureDialog] Display a configuration dialog for the item roll, if applicable?
+   * @param {string}  [rollMode]        The roll display mode with which to display (or not) the card
+   * @param {boolean} [sendMessage]     Whether to automatically create a chat message (if true) or simply return
+   *                                    the prepared chat message data (if false).
+   * @return {Promise<ChatMessage|object>}
    * @async
    */
-  async roll(event = {}) {
-    if (event.shiftKey && this.isEquipped && this.hasDamage) return await this.rollAttack();
+  async roll({ configureDialog = true, rollMode, sendMessage = true } = {}) {
+    const itemData = this.data.data;
+    const actor = this.actor;
+    const actorData = actor.data.data;
 
+    // Creates or returns the chat message data.
+    return this.displayCard({ rollMode, sendMessage });
+  }
+
+  /* ------------------------------------------- */
+
+  /**
+   * Places an attack using an item (weapon, grenade, or equipment).
+   * @param {object} options Roll options which are configured and provided to the task check
+   * @returns {Promise<import('../lib/yzur.js').YearZeroRoll>}
+   * @async
+   */
+  async rollAttack(options = {}) {
+    if (!this.hasAttack) throw new Error('You may not place an Attack Roll with this Item.');
+    if (!this.actor) throw new Error('This weapon has no owner.');
+    // TODO attacks from vehicles.
+    if (this.actor.type === 'vehicle') throw new Error('Attacks from Vehicle are not supported yet');
+
+    // Prepares data.
+    const itemData = this.data.data;
+    let title = game.i18n.format('T2K4E.Combat.Attack', { weapon: this.name });
+    let qty = itemData.qty;
+    const attributeName = itemData.attribute;
+    const skillName = itemData.skill;
+    const isDisposable = itemData.props.disposable;
+
+    // Prepares values.
+    const actorData = this.actor.data.data;
+    const attribute = actorData.attributes[attributeName].value;
+    const skill = actorData.skills[skillName].value;
+    let rof = itemData.rof;
+
+    // Gets the magazine.
+    let ammo = null;
+    if (this.hasAmmo) {
+      ammo = this.actor.items.get(this.data.data.mag.target);
+      if (ammo?.data) {
+        const ammoLeft = ammo.data.data.ammo.value;
+        if (ammoLeft <= 0) {
+          ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoAmmoLeft', { weapon: this.name }));
+          return;
+        }
+        title += ` [${ammo.name}]`;
+        rof = Math.min(rof, ammoLeft);
+      }
+    }
+
+    // Handles unit consumption.
+    if (isDisposable) {
+      if (qty <= 0) {
+        ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoQuantityLeft', { weapon: this.name }));
+        return;
+      }
+      else {
+        qty--;
+        // No need to await for this update.
+        this.update({ 'data.qty': qty });
+      }
+    }
+
+    // Composes the options for the task check.
+    const rollOptions = foundry.utils.mergeObject({
+      title,
+      actor: this.actor,
+      item: this,
+      attribute, skill, rof,
+      locate: true,
+    }, options);
+
+    const message = await T2KRoller.taskCheck(rollOptions);
+    if (!message) return;
+
+    const roll = message.roll;
+
+    // Consumes ammo.
+    if (ammo) {
+      const ammoSpent = await this.consumeAmmo(Math.max(1, roll.ammoSpent), ammo);
+      await message.setFlag('t2k4e', 'ammoSpent', ammoSpent);
+    }
+
+    return roll;
+
+    // ! Gets the defenders, if any.
+    //const defenders = [];
+    // if (game.user.targets.size) {
+    //   for (const token of game.user.targets.values()) {
+    //     defenders.push(token.actor);
+    //   }
+    // }
+
+    // return this.actor.attack(this, defenders, {
+    //   // title,
+    //   //rollMode: game.settings.get('core', 'rollMode'),
+    //   askForOptions: options?.event?.shiftKey,
+    // });
+  }
+
+  /* ------------------------------------------- */
+
+  /**
+   * Consumes a quantity of ammo from the weapon's magazine,
+   * updates the weapon data, and return the quantity of ammo consumed.
+   * If the quantity is negative, it will increase the ammo count.
+   * @param {number}  qty   Quantity of ammo to consume
+   * @param {Item?}  [ammo] The ammo item can be inserted
+   * @returns {number} The real quantity of ammo consumed
+   * @async
+   */
+  async consumeAmmo(qty, ammo) {
+    if (!this.hasAmmo) return 0;
+    ammo = ammo ?? this.actor.items.get(this.data.data.mag.target);
+    if (!(ammo?.data)) return 0;
+    const ammoValue = ammo.data.data.ammo.value;
+    const ammoLeft = Math.max(0, ammoValue - qty);
+    await ammo.update({ 'data.ammo.value': ammoLeft });
+    return ammoValue - ammoLeft;
+  }
+
+  /* ------------------------------------------- */
+  /*  Chat Card                                  */
+  /* ------------------------------------------- */
+
+  /**
+   * Display the chat card for an Item as a Chat Message.
+   * @param {string?}  rollMode          The message visibility mode to apply to the created card
+   * @param {boolean} [sendMessage=true] Whether to send the message or return its data
+   * @returns {Promise<ChatMessage|object>}
+   * @async
+   */
+  async displayCard({ rollMode, sendMessage = true } = {}) {
+    // Renders the chat card template.
     const token = this.actor.token;
     const cardData = {
       ...this.data,
@@ -158,36 +327,24 @@ export default class ItemT2K extends Item {
       owner: game.user.id,
       config: CONFIG.T2K4E,
     };
+
+    // Creates the ChatMessage data object.
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ actor: this.actor, token }),
       content: await renderTemplate(ItemT2K.CHAT_TEMPLATE[this.type], cardData),
+      // flavor: this.name,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
     };
 
-    ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+    // Apply the roll mode to adjust message visibility.
+    ChatMessage.applyRollMode(chatData, rollMode || game.settings.get('core', 'rollMode'));
 
-    return ChatMessage.create(chatData);
+    // Creates the chat message or return its data.
+    return sendMessage ? ChatMessage.create(chatData) : chatData;
   }
 
-  // // TODO
-  // async roll() {
-  //   const chatData = {
-  //     user: game.user.id,
-  //     speaker: ChatMessage.getSpeaker(),
-  //   };
-
-  //   const cardData = {
-  //     ...this.data,
-  //     id: this.id,
-  //     owner: this.actor.id,
-  //   };
-
-  //   chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
-  //   chatData.roll = true;
-
-  //   return ChatMessage.create(chatData);
-  // }
+  // TODO Reload weapon
 
   // /**
   //  * Reloads a weapon.
@@ -291,15 +448,15 @@ export default class ItemT2K extends Item {
     }
 
     // Handles different actions.
+    const askForOptions = event.shiftKey;
     switch (action) {
-      case 'attack': await item.rollAttack({ event }); break;
-      // ! case 'defend': await item.rollDefense({ event }); break;
+      case 'attack': await item.rollAttack({ askForOptions }); break;
+      // ! case 'reload': await item.rollReload({ askForOptions }); break;
     }
 
     // Re-enables the button.
     button.disabled = false;
   }
-
 }
 
 /* ------------------------------------------- */

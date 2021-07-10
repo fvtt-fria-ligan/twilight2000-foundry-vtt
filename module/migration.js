@@ -146,6 +146,7 @@ export function migrateItemData(itemData) {
     case 'weapon':
       _migrateWeaponProps(itemData, updateData);
       _migrateWeaponReliability(itemData, updateData);
+      _migrateWeaponAmmo(itemData, updateData);
       break;
   }
   return updateData;
@@ -221,6 +222,19 @@ function _migrateWeaponReliability(itemData, updateData) {
     updateData['data.reliability.max'] = RELIABILITY_VALUES[rel.max];
     // Deletes old properties.
     updateData['data.reliability.-=score'] = null;
+  }
+  return updateData;
+}
+
+/**
+ * Migrates the weapon's ammunition.
+ * @param {object} itemData
+ * @param {object} updateData
+ */
+function _migrateWeaponAmmo(itemData, updateData) {
+  const mag = itemData.data.mag;
+  if (mag.target == undefined) {
+    updateData['data.mag.target'] = '';
   }
   return updateData;
 }

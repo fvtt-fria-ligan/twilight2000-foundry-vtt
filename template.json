@@ -317,6 +317,7 @@
       "ammo": "",
       "rof": 0,
       "mag": {
+        "target": "",
         "value": 0,
         "max": 0
       },
@@ -348,6 +349,12 @@
         "value": 1,
         "max": 1
       },
+      "damage": 0,
+      "crit": 0,
+      "blast": "–",
+      "range": 0,
+      "armorModifier": 0,
+      "override": false,
       "props": {
         "magazine": true
       }
