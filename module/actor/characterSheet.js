@@ -1,5 +1,5 @@
 import ActorSheetT2K from './actorSheet.js';
-import * as Dice from '../dice.js';
+import { T2KRoller, getDieSize, getAttributeAndSkill } from '../dice.js';
 
 /**
  * Twilight 2000 Actor Sheet for Character.
@@ -49,7 +49,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     }
   }
 
-  // TODO
+  // TODO Update actor HP when attribute are changed.
   // _onAttributeChange(event) {
   // 	event.preventDefault();
   // 	console.warn('d');
@@ -68,12 +68,12 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     event.preventDefault();
     const attributeName = event.currentTarget.dataset.attribute;
     const attribute = this.actor.data.data.attributes[attributeName].value;
-    const name = game.i18n.localize(CONFIG.T2K4E.attributes[attributeName]);
-    return Dice.TaskCheck({
-      name,
-      attribute,
-      attributeName,
+    const title = game.i18n.localize(CONFIG.T2K4E.attributes[attributeName]);
+    return T2KRoller.taskCheck({
+      title,
       actor: this.actor,
+      attribute,
+      skill: 0,
       askForOptions: event.shiftKey,
     });
   }
@@ -81,48 +81,38 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
   _onSkillRoll(event) {
     event.preventDefault();
     const skillName = event.currentTarget.dataset.skill;
-    const statData = Dice.getAttributeAndSkill(skillName, this.actor.data.data);
-    console.warn(event);
-    return Dice.TaskCheck({
+    const statData = getAttributeAndSkill(skillName, this.actor.data.data);
+    return T2KRoller.taskCheck({
       ...statData,
-      skillName,
       actor: this.actor,
       askForOptions: event.shiftKey,
     });
   }
 
+  /* ------------------------------------------- */
+
   _onCoolnessRoll(event) {
     event.preventDefault();
     const stat = event.currentTarget.closest('.stat');
     const type = stat.dataset.type;
-    return this._onMoraleRoll(type, event.shiftKey);
+    return this._onMoraleRoll(type);
   }
 
   _onUnitMoraleRoll(event) {
     event.preventDefault();
     const stat = event.currentTarget.closest('.stat');
     const type = stat.dataset.type;
-    return this._onMoraleRoll(type, event.shiftKey);
+    return this._onMoraleRoll(type);
   }
 
-  _onMoraleRoll(type, askForOptions) {
-    let value = 0;
-    let name = '';
-    if (type === 'cuf') {
-      value = this.actor.data.data.cuf.value;
-      name = game.i18n.localize('T2K4E.ActorSheet.CuF');
-    }
-    else {
-      value = this.actor.data.data.unitMorale.value;
-      name = game.i18n.localize('T2K4E.ActorSheet.UnitMorale');
-    }
-    return Dice.TaskCheck({
-      name,
-      attribute: value,
+  _onMoraleRoll(type) {
+    return T2KRoller.cufCheck({
       actor: this.actor,
-      askForOptions,
+      unitMorale: type === 'cuf' ? false : true,
     });
   }
+
+  /* ------------------------------------------- */
 
   /** Left-clic: -1, Right-clic: +1 */
   _onCapacityChange(event) {

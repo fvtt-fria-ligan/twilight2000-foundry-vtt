@@ -64,10 +64,10 @@ T2K4E.vehicle = {
   emptySeatEncumbrance: 25,
   crewPositionFlags: ['DRIVER', 'GUNNER', 'COMMANDER', 'PASSENGER'],
   crewPositionFlagsLocalized: {
-    'DRIVER': 'T2K4E.VehicleSheet.crewPositions.driver',
-    'GUNNER': 'T2K4E.VehicleSheet.crewPositions.gunner',
-    'COMMANDER': 'T2K4E.VehicleSheet.crewPositions.commander',
-    'PASSENGER': 'T2K4E.VehicleSheet.crewPositions.passenger',
+    'DRIVER': 'T2K4E.VehicleSheet.CrewPositions.Driver',
+    'GUNNER': 'T2K4E.VehicleSheet.CrewPositions.Gunner',
+    'COMMANDER': 'T2K4E.VehicleSheet.CrewPositions.Commander',
+    'PASSENGER': 'T2K4E.VehicleSheet.CrewPositions.Passenger',
   },
   movementTypes: {
     'W': 'T2K4E.VehicleSheet.Wheels',
@@ -131,6 +131,13 @@ T2K4E.ranges = [
   'T2K4E.Ranges.extreme',
 ];
 
+T2K4E.rollModes = {
+  roll: 'CHAT.RollPublic',
+  gmroll: 'CHAT.RollPrivate',
+  blindroll: 'CHAT.RollBlind',
+  selfroll: 'CHAT.RollSelf',
+};
+
 /* ------------------------------------------- */
 /*  Icons                                      */
 /* ------------------------------------------- */
@@ -140,13 +147,17 @@ T2K4E.Icons = {
     edit: '<i class="fas fa-edit"></i>',
     delete: '<i class="fas fa-trash"></i>',
     remove: '<i class="fas fa-times"></i>',
-    fullStar: '<i class="fas fa-star"></i>',
-    emptyStar: '<i class="far fa-star"></i>',
+    plus: '<i class="fas fa-plus"></i>',
+    minus: '<i class="fas fa-minus"></i>',
+    equip: '<i class="fas fa-star"></i>',
+    unequip: '<i class="far fa-star"></i>',
     stash: '<i class="fas fa-shopping-bag"></i>',
     unmount: '<i class="fas fa-thumbtack"></i>',
     mount: '<i class="fas fa-wrench"></i>',
     primaryWeapon: '<i class="fas fa-angle-up"></i>',
     secondaryWeapon: '<i class="fas fa-angle-double-up"></i>',
+    attack: '<i class="fas fa-crosshairs"></i>',
+    reload: '<i class="fas fa-sync-alt"></i>',
   },
   armorLocationIcons: {
     head: '<i class="fas fa-hard-hat"></i>',

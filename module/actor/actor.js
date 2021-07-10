@@ -6,6 +6,19 @@ import { T2K4E } from '../config.js';
  * @extends {Actor} Extends the basic Actor.
  */
 export default class ActorT2K extends Actor {
+
+  /* ------------------------------------------- */
+  /*  Properties                                 */
+  /* ------------------------------------------- */
+
+  get inCombat() {
+    return game.combat?.combatants?.some(c => c.actor.id === this.id);
+  }
+
+  /* ------------------------------------------- */
+  /*  Data Preparation                           */
+  /* ------------------------------------------- */
+
   /**
    * Augments the basic Actor data model with additional dynamic data.
    * @override
@@ -41,7 +54,8 @@ export default class ActorT2K extends Actor {
   }
 
   /* ------------------------------------------- */
-  /*  Character & NPC                            */
+  /*  Data Preparation                           */
+  /*   → Character & NPC                         */
   /* ------------------------------------------- */
 
   /**
@@ -63,6 +77,8 @@ export default class ActorT2K extends Actor {
     this._prepareArmorRating(data, actorData.items.filter(i => i.type === 'armor'));
   }
 
+  /* ------------------------------------------- */
+
   /**
    * Prepares NPC type specific data.
    * @param {Object} actorData The Actor's data
@@ -71,6 +87,8 @@ export default class ActorT2K extends Actor {
   _prepareNpcData(actorData) {
     this._prepareCharacterData(actorData);
   }
+
+  /* ------------------------------------------- */
 
   /**
    * Adds a `value` property for the die's size equal to its score.
@@ -90,6 +108,8 @@ export default class ActorT2K extends Actor {
     //   obj.max = getDieSize(obj.maxScore);
     // }
   }
+
+  /* ------------------------------------------- */
 
   /**
    * Adds Hit & Stress Capacities properties to the Actor.
@@ -112,6 +132,8 @@ export default class ActorT2K extends Actor {
     return data;
   }
 
+  /* ------------------------------------------- */
+
   /**
    * Calculates the Hit Capacity.
    * @param {Object} data The Actor's data.data
@@ -124,6 +146,8 @@ export default class ActorT2K extends Actor {
     return Math.ceil((str + agl) / 4);
   }
 
+  /* ------------------------------------------- */
+
   /**
    * Calculates the Stress Capacity.
    * @param {Object} data The Actors's data.data
@@ -135,6 +159,8 @@ export default class ActorT2K extends Actor {
     const emp = data.attributes.emp.value;
     return Math.ceil((int + emp) / 4);
   }
+
+  /* ------------------------------------------- */
 
   /**
    * Adds Emcumbrance properties to the Actor.
@@ -171,6 +197,8 @@ export default class ActorT2K extends Actor {
     return data;
   }
 
+  /* ------------------------------------------- */
+
   /**
    * Adds Armor Ratings properties to the Actor.
    * @param {Object} data    The Actor's data.data
@@ -193,7 +221,8 @@ export default class ActorT2K extends Actor {
   }
 
   /* ------------------------------------------- */
-  /*  Vehicle                                    */
+  /*  Data Preparation                           */
+  /*   → Vehicle                                 */
   /* ------------------------------------------- */
 
   /**
@@ -205,6 +234,8 @@ export default class ActorT2K extends Actor {
     const data = actorData.data;
     this._computeVehicleEncumbrance(data, actorData.items);
   }
+
+  /* ------------------------------------------- */
 
   /**
    * Adds Emcumbrance properties a vehicle.
@@ -238,6 +269,8 @@ export default class ActorT2K extends Actor {
   }
 
   /* ------------------------------------------- */
+  /*  Vehicle: Crew Management                   */
+  /* ------------------------------------------- */
 
   /**
    * Adds an occupant to the vehicle.
@@ -268,6 +301,8 @@ export default class ActorT2K extends Actor {
     return occupant;
   }
 
+  /* ------------------------------------------- */
+
   /**
    * Removes an occupant from the vehicle.
    * @param {string} crewId The id of the occupant to remove
@@ -280,6 +315,8 @@ export default class ActorT2K extends Actor {
     return crew.occupants;
   }
 
+  /* ------------------------------------------- */
+
   /**
    * Gets a specific occupant in the vehicle.
    * @param {string} crewId The id of the occupant to find
@@ -289,7 +326,15 @@ export default class ActorT2K extends Actor {
     if (this.type !== 'vehicle') return;
     return this.data.data.crew.occupants.find(o => o.id === crewId);
   }
+
+  /* ------------------------------------------- */
+  /*  Chat Card Actions                          */
+  /* ------------------------------------------- */
+
+  static chatListeners(html) {}
 }
+
+/* ------------------------------------------- */
 
 /**
  * @typedef {object} VehicleOccupant

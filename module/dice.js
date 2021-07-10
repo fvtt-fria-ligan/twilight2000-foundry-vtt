@@ -1,227 +1,178 @@
+import T2KDialog from './dialog.js';
+import { YearZeroRoll } from '../lib/yzur.js';
 import { T2K4E } from './config.js';
-import T2KRoll from './twilight-roller.js';
+
+/* -------------------------------------------- */
+/*  Custom Dice Roller Interface                */
+/* -------------------------------------------- */
 
 /**
- * Rolls dice for T2K.
- * @param {string} name            The title of the roll
- * @param {Actor} actor            The actor who rolled the dice, if any
- * @param {Item} item              The item used to roll the dice, if any
- * @param {string} attributeName   The attribute's codename (non-mandatory)
- * @param {number} attribute       The attribute's value
- * @param {string} skillName       The skill's codename (non-mandatory)
- * @param {number} skill           The skill's value
- * @param {number} rof             The RoF's value (for weapons)
- * @param {number[]} modifiers     An array of modifiers
- * @param {boolean} askForOptions  Whether to show a Dialog for roll options
- * @param {boolean} sendMessage    Whether the message should be sent
- * @returns {Promise<T2KRoll>}
- * @async
+ * Interface for performing tasks and rolling dice.
+ * @abstract
+ * @interface
  */
-export async function TaskCheck({
-  name = 'Unnamed Roll',
-  actor = null,
-  item = null,
-  attributeName = null,
-  attribute = 6,
-  skillName = null,
-  skill = 0,
-  rof = 0,
-  modifiers = [],
-  askForOptions = true,
-  sendMessage = true,
-} = {}) {
-  // 1 — Checks if we ask for options (roll dialog).
-  const showTaskCheckOptions = game.settings.get('t2k4e', 'showTaskCheckOptions');
-  if (rof || askForOptions !== showTaskCheckOptions) {
-    // TODO
-    // 1.1 — Gets other applicable items with modifiers.
-    let modifyingItems = [];
-    // if (actor && (attributeName || skillName)) {
-    // 	modifyingItems = actor.data.items.filter(i => {
-    // 		const modifiers = i.data.modifiers;
-    // 		if (!modifiers) return false;
-    // 		if (attributeName) {
-    // 			for (const [k, v] of Object.entries(modifiers.attributes)) {
-    // 				if (v != null && v !== 0 && k === attributeName) return true;
-    // 			}
-    // 		}
-    // 		if (skillName) {
-    // 			for (const [k, v] of Object.entries(modifiers.skills)) {
-    // 				if (v != null && v !== 0 && k === skillName) return true;
-    // 			}
-    // 		}
-    // 		return false;
-    // 	});
-    // }
+export class T2KRoller {
+  constructor() {
+    throw new SyntaxError(`${this.constructor.name} cannot be instanciated. Use static methods instead.`);
+  }
 
-    // 1.2 – Renders the dialog.
-    const opts = await GetTaskCheckOptions({ name, actor, item, modifyingItems });
+  /* -------------------------------------------- */
+
+  /**
+   * Rolls dice for T2K.
+   * @param {string?}  title                The title of the roll
+   * @param {Actor?}   actor                The actor who rolled the dice, if any
+   * @param {number}   attribute            The attribute's size
+   * @param {number}   skill                The skill's size
+   * @param {number}  [rof=0]               The RoF's value
+   * @param {number}  [modifier=0]          The task modifier
+   * @param {boolean} [locate=false]        Whether to roll a Location die
+   * @param {number}  [maxPush=1]           The maximum number of pushes (default is 1)
+   * @param {string?}  rollMode             Dice roll visibility mode @see DICE_ROLL_MODES
+   * @param {boolean} [askForOptions=false] Whether to show a Dialog for roll options
+   * @param {boolean} [skipDialog=false]    Whether to force skip the Dialog for roll options
+   * @param {boolean} [sendMessage=true]    Whether the message should be sent
+   * @returns {Promise<YearZeroRoll>}
+   * @static
+   * @async
+   */
+  static async taskCheck({
+    title = 'Twilight 2000 4E – Task Check',
+    actor = null,
+    attribute = 6,
+    skill = 0,
+    rof = 0,
+    modifier = 0,
+    locate = false,
+    maxPush = 1,
+    rollMode = null,
+    askForOptions = false,
+    skipDialog = false,
+    sendMessage = true,
+  } = {}) {
+    // 1 — Prepares data.
+    rollMode = rollMode ?? game.settings.get('core', 'rollMode');
+    attribute = Math.clamped(attribute, 0, 12);
+    skill = Math.clamped(skill, 0, 12);
+
+    // 2 — Creates the roll.
+    const dice = getDiceQuantities(attribute, skill);
+    let roll = YearZeroRoll.createFromDiceQuantities(dice, { maxPush });
+    roll.name = title;
+
+    // 3 — Checks if we ask for options (roll dialog).
+    const showTaskCheckOptions = game.settings.get('t2k4e', 'showTaskCheckOptions');
+    if (!skipDialog && askForOptions !== showTaskCheckOptions) {
+      // 3.1 — Renders the dialog.
+      const opts = await T2KDialog.askRollOptions({
+        title, attribute, skill, rof, modifier, locate, maxPush, rollMode,
+        formula: roll.formula,
+      });
+
+      // 3.1.5 — Exits early if the dialog was cancelled.
+      if (opts.cancelled) return null;
+
+      // 3.2 — Uses options from the roll dialog.
+      rof = opts.rof;
+      modifier = opts.modifier;
+      locate = opts.locate;
+      maxPush = opts.maxPush;
+      rollMode = opts.rollMode;
+    }
+    // 4 — Clamps values.
+    modifier = Math.clamped(modifier, -100, 100);
+    maxPush = Math.clamped(maxPush, 0, 100);
+
+    // 5 — Modifies the roll.
+    if (rof || locate || maxPush !== 1) {
+      if (rof) dice.ammo = rof;
+      if (locate) dice.loc = 1;
+      roll = YearZeroRoll.createFromDiceQuantities(dice, { maxPush });
+    }
+    if (modifier) {
+      roll = roll.modify(modifier);
+    }
+
+    // 6 — Evaluates the roll.
+    await roll.roll({ async: true });
+    console.log('t2k4e | ROLL', roll.name, roll);
+
+    // 7 — Sends the message and returns.
+    if (sendMessage) {
+      await roll.toMessage(null, { rollMode });
+    }
+    return roll;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Rolls dice for a Coolness Under Fire test.
+   * @returns {Promise<YearZeroRoll>}
+   */
+  static async cufCheck({
+    title = game.i18n.localize('T2K4E.Dialog.CuF.CoolnessUnderFire'),
+    actor = null,
+    unitMorale = false,
+    modifier = 0,
+    maxPush = 1,
+    rollMode = null,
+    sendMessage = true,
+  } = {}) {
+    if (!actor) return;
+    rollMode = rollMode ?? game.settings.get('core', 'rollMode');
+    const opts = await T2KDialog.askCuFOptions({ title, unitMorale, modifier, maxPush, rollMode });
 
     // Exits early if the dialog was cancelled.
-    if (opts.cancelled) return;
+    if (opts.cancelled) return null;
 
-    // 1.3 – Uses options from the roll dialog.
-    modifiers.push(opts.modifier);
-    rof = opts.rof;
+    // Uses options from the CuF dialog.
+    unitMorale = opts.unitMorale;
+    rollMode = opts.rollMode;
+
+    // Gets attributes' values.
+    const cuf = actor.data.data.cuf.value;
+    const um = actor.data.data.unitMorale.value;
+
+    return this.taskCheck({
+      title,
+      attribute: cuf,
+      skill: unitMorale ? um : 0,
+      modifier, maxPush, rollMode,
+      skipDialog: true,
+      sendMessage,
+    });
+
   }
-  // 2 — Uses of my YZRoll library (NPM package "yearzero-roll")
-  // for correctly constructing the roll and modifying it properly.
-  const roll = new T2KRoll({ name, attribute, skill, rof,
-    modifier: modifiers.reduce((a, b) => a + b, 0),
-  });
-  console.log('t2k4e | ROLL', roll.toString());
+}
 
-  // 3 — Saves to roll to the system config.
-  if (roll.pushable) game.t2k4e.rolls.set(roll._id, roll);
+/* -------------------------------------------- */
+/*  Roll Push                                   */
+/* -------------------------------------------- */
 
-  // 4 — Sends the message and returns.
-  if (sendMessage) await roll.send(actor);
+/**
+ * Pushes a roll.
+ * @param {YearZeroRoll} roll    The roll to push
+ * @param {ChatMessage?} message The message holding the roll that will be deleted
+ * @returns {Promise<YearZeroRoll>}
+ * @async
+ */
+export async function rollPush(roll, message) {
+  // Copies the roll.
+  roll = roll.duplicate();
+
+  // Pushes the roll.
+  if (roll.pushable) {
+    await roll.push({ async: true });
+    if (message) await message.delete();
+    await roll.toMessage();
+  }
   return roll;
 }
 
-/**
- * Attacks with a weapon.
- * @param {Actor} attacker  Attacking actor
- * @param {Item} weapon     Weapon used for the attack
- * @async
- */
-export async function Attack(attacker, weapon) {
-  const messageTemplate = 'systems/t2k4e/templates/chat/roll.hbs';
-  const attributeName = weapon.data.data.attribute;
-  const skillName = weapon.data.data.skill;
-
-  // Exits early if no attack skill was found.
-  if (!skillName || skillName === 'none' || skillName === '–') {
-    const msg = `No skill defined for the ${weapon.data.name}`;
-    return ui.notifications.error(msg);
-  }
-
-  // TODO
-  const roll = await TaskCheck({
-    name: game.i18n.format('T2K4E.Chat.Attack.Title', { weapon: weapon.data.name }),
-    actor: attacker,
-    item: weapon,
-    attributeName,
-    skillName,
-    attribute: attacker.data.data.attributes[attributeName].value,
-    skill: attacker.data.data.skills[skillName].value,
-    rof: weapon.data.data.rof,
-    askForOptions: true,
-    sendMessage: true,
-  });
-  // TODO
-  return;
-  // // Exits if no roll (cancelled task check).
-  // if (!roll) return;
-
-  // const forgeRoll = roll.createFoundryRoll();
-  // const renderedRoll = await forgeRoll.render();
-  // const templateContext = {
-  // 	owner: game.user.id,
-  // 	yzroll: roll,
-  // 	weapon: weapon.data,
-  // 	roll: renderedRoll,
-  // };
-  // const chatData = {
-  // 	user: game.user.id,
-  // 	speaker: ChatMessage.getSpeaker(),
-  // 	roll: forgeRoll,
-  // 	content: await renderTemplate(messageTemplate, templateContext),
-  // 	sound: CONFIG.sounds.dice,
-  // 	type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-  // };
-  // return await ChatMessage.create(chatData);
-}
-
-/**
- * Pushes a Twilight Roll.
- * @param {string} rollId  ID of the roll to push
- * @param {Actor} actor    Actor, if any
- * @async
- */
-export async function Push(rollId, actor = null) {
-  // Retrieves the roll to push from the cache.
-  const roll = game.t2k4e.rolls.get(rollId);
-  
-  // Exits early if the roll wasn't found or if it can't be pushed.
-  if (!roll || !roll.pushable) {
-    ui.notifications.error(game.i18n.localize('T2K4E.Chat.Roll.CannotPush'));
-    return;
-  }
-
-  // Pushes the roll and sends the message.
-  roll.name += game.i18n.localize('T2K4E.Chat.Roll.Pushed');
-  roll.push();
-  await roll.send(actor);
-
-  // Damages the actor.
-  // TODO
-  if (actor && ['character', 'npc'].includes(actor.data.type)) {
-    // TODO
-  }
-
-  // Clears the cache.
-  if (!roll.pushable) game.t2k4e.rolls.delete(roll._id);
-}
-
 /* -------------------------------------------- */
-/*  Roll Dialog                                 */
+/*  Dice Utility Functions                      */
 /* -------------------------------------------- */
-
-/**
- * Renders a TaskCheck Options dialog.
- * @param {string} taskType        Unused for now
- * @param {string} name            The name of the roll (for the dialog's title)
- * @param {Actor} actor            The actor who rolled the dice, if any
- * @param {Item} item              The item used to roll the dice, if any
- * @param {Item[]} modifyingItems  Other items with applicable modifiers
- * @async
- */
-async function GetTaskCheckOptions({ taskType, name, actor, item, modifyingItems = [] } = {}) {
-  const template = 'systems/t2k4e/templates/dialog/roll-dialog.hbs';
-
-  // TODO
-  const html = await renderTemplate(template, {
-    // actor,
-    modifiers: modifyingItems,
-    weapon: item?.data?.type === 'weapon' ? item.data : null,
-  });
-
-  return new Promise(resolve => {
-    // Sets the data of the dialog.
-    const data = {
-      title: `${game.i18n.localize('T2K4E.Chat.Actions.Roll')} — ${name}`,
-      content: html,
-      buttons: {
-        normal: {
-          label: game.i18n.localize('T2K4E.Chat.Actions.Roll'),
-          callback: html => resolve(_processTaskCheckOptions(html[0].querySelector('form'))),
-        },
-        cancel: {
-          label: game.i18n.localize('T2K4E.Dialog.Actions.Cancel'),
-          callback: html => resolve({ cancelled: true }),
-        }
-      },
-      default: 'normal',
-      close: () => resolve({ cancelled: true }),
-    };
-    // Renders the dialog.
-    new Dialog(data, null).render(true);
-  });
-}
-
-function _processTaskCheckOptions(form) {
-  // TODO
-  return {
-    modifier: parseInt(form.modifier.value),
-    rof: form.rof ? parseInt(form.rof.value) : 0,
-  };
-}
-
-/* -------------------------------------------- */
-/*  Dice Utility functions                      */
-/* -------------------------------------------- */
-
 /**
  * Gets the size of a die from its rating.
  * @param {string} score A, B, C, D or F
@@ -229,136 +180,54 @@ function _processTaskCheckOptions(form) {
 export function getDieSize(score) {
   if (typeof score !== 'string') throw new TypeError(`Die Score Not a String: "${score}"`);
   if (score.length !== 1) throw new SyntaxError(`Die Score Incorrect: "${score}"`);
-
   const size = T2K4E.dieSizesMap.get(score);
   if (size == undefined) throw new RangeError(`Die Size Not Found! Score: "${score}"`);
-
   return size;
 }
+
+/* -------------------------------------------- */
 
 /**
  * Gets the Attribute and Skill values (+ the skill's name).
  * @param {string} skillName The code of the skill
  * @param {Object} data Actor's data data
- * @returns {Object} `{ name, attribute, skill }`
+ * @returns {{ title: string, attribute: number, skill: number }}
  */
 export function getAttributeAndSkill(skillName, data) {
   const skill = data.skills[skillName].value;
   const attributeName = T2K4E.skillsMap[skillName];
   const attribute = data.attributes[attributeName].value;
-  const name = game.i18n.localize(T2K4E.skills[skillName]);
-  return { name, attribute, skill };
+  const title = game.i18n.localize(T2K4E.skills[skillName]);
+  return { title, attribute, skill };
 }
 
 /* -------------------------------------------- */
-/*  Custom Dice Registration                    */
-/* -------------------------------------------- */
 
-export function registerDice() {
-  CONFIG.Dice.terms.a = BaseDieD12;
-  CONFIG.Dice.terms.b = BaseDieD10;
-  CONFIG.Dice.terms.c = BaseDieD8;
-  CONFIG.Dice.terms.d = BaseDieD6;
-  CONFIG.Dice.terms['12'] = BaseDieD12;
-  CONFIG.Dice.terms['10'] = BaseDieD10;
-  CONFIG.Dice.terms['8'] = BaseDieD8;
-  CONFIG.Dice.terms['6'] = BaseDieD6;
-  CONFIG.Dice.terms.m = AmmoDie;
-}
-
-/* -------------------------------------------- */
-/*  Custom Dice Classes                         */
-/* -------------------------------------------- */
-
-export class TwilightDie extends Die {
-  /** @override */
-  static getResultLabel(result) {
-    // console.log('Result label:', result);
-    return super.getResultLabel(result);
+/**
+ * Gets a DiceQuantities object from given values.
+ * @param {number}   attribute     The attribute's size
+ * @param {number}  [skill=0]      The skill's size
+ * @param {number}  [rof=0]        The RoF's value
+ * @param {number}  [modifier=0]   The task modifier
+ * @param {boolean} [locate=false] Whether to roll a Location die
+ * @see {YearZeroRoll}
+ * @returns {import('../lib/yzur.js').DiceQuantities}
+ */
+export function getDiceQuantities(attribute, skill = 0, rof = 0, locate = false) {
+  const DIE_SIZES = [0, 0, 0, 0, 0, 0, 'd', 'd', 'c', 'c', 'b', 'b', 'a'];
+  const attributeScore = DIE_SIZES[attribute];
+  const skillScore = DIE_SIZES[skill];
+  const dice = {};
+  if (attributeScore === skillScore && attribute >= 6) {
+    dice[`${attributeScore}`] = 2;
   }
-}
-
-export class BaseDieD12 extends TwilightDie {
-  constructor(termData) {
-    termData.faces = 12;
-    super(termData);
+  else {
+    if (attribute >= 6) dice[`${attributeScore}`] = 1;
+    if (skill >= 6) dice[`${skillScore}`] = 1;
   }
-  static DENOMINATION = 'a';
-
-  /** @override */
-  static getResultLabel(result) {
-    const ico = CONFIG.T2K4E.diceIcons.base.d12[result];
-    const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
-    return super.getResultLabel(str);
-  }
-}
-
-export class BaseDieD10 extends TwilightDie {
-  constructor(termData) {
-    termData.faces = 10;
-    super(termData);
-  }
-  static DENOMINATION = 'b';
-
-  /** @override */
-  static getResultLabel(result) {
-    const ico = CONFIG.T2K4E.diceIcons.base.d10[result];
-    const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
-    return super.getResultLabel(str);
-  }
-}
-
-export class BaseDieD8 extends TwilightDie {
-  constructor(termData) {
-    termData.faces = 8;
-    super(termData);
-  }
-  static DENOMINATION = 'c';
-
-  /** @override */
-  static getResultLabel(result) {
-    const ico = CONFIG.T2K4E.diceIcons.base.d8[result];
-    const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
-    return super.getResultLabel(str);
-  }
-}
-
-export class BaseDieD6 extends TwilightDie {
-  constructor(termData) {
-    termData.faces = 6;
-    super(termData);
-  }
-  static DENOMINATION = 'd';
-
-  /** @override */
-  static getResultLabel(result) {
-    const ico = CONFIG.T2K4E.diceIcons.base.d6[result];
-    const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
-    return super.getResultLabel(str);
-  }
-}
-
-export class AmmoDie extends TwilightDie {
-  constructor(termData) {
-    termData.faces = 6;
-    super(termData);
-    this.type = 'ammo';
-  }
-  static DENOMINATION = 'm';
-  static MODIFIERS = {
-    'm': 'mag',
-  };
-
-  mag(modifier) {
-    console.warn('Magazine modifier:', modifier);
-  }
-
-  /** @override */
-  static getResultLabel(result) {
-    const ico = CONFIG.T2K4E.diceIcons.ammo.d6[result];
-    const str = `<img src="systems/t2k4e/assets/icons/dice/${ico}" alt="${result}" title="${result}"/>`;
-    return super.getResultLabel(str);
-  }
+  if (rof) dice.ammo = rof;
+  if (locate) dice.loc = 1;
+  return dice;
 }
 
 /* -------------------------------------------- */
@@ -376,12 +245,12 @@ export function registerDsN(dice3d) {
     name: 't2k-base',
     category: 'Twilight 2000 4E',
     description: 'T2K Base Die',
-    foreground: '#E2C45F',
-    background: '#4C5847',
+    foreground: '#cfa826', // '#E2C45F',
+    background: '#262c23', // '#4C5847',
     outline: 'none',
-    edge: '#000',
+    // edge: '#000',
     texture: 'none',
-    material: 'plastic',
+    material: 'metal',
     font: 'DaisyWheel',
   }, 'default');
 
@@ -390,36 +259,41 @@ export function registerDsN(dice3d) {
     category: 'Twilight 2000 4E',
     description: 'T2K Ammo Die',
     foreground: '#000',
-    background: '#A3904D',
+    background: '#726435', // '#A3904D',
     outline: 'none',
-    edge: '#000',
-    texture: 'none',
-    material: 'plastic',
+    // edge: '#000',
+    texture: 'bronze01',
+    material: 'metal',
     font: 'DaisyWheel',
+    fontScale: { dm: 0.75, d6: 0.75 },
   }, 'default');
 
   dice3d.addColorset({
     name: 't2k-loc',
     category: 'Twilight 2000 4E',
-    description: 'T2K Location Die',
+    description: 'T2K Hit Location Die',
     foreground: '#000',
-    background: '#DED8CC',
+    background: '#fff', // '#9b978e', // '#DED8CC',
     outline: 'none',
-    edge: '#000',
+    // edge: '#000',
     texture: 'none',
-    material: 'plastic',
+    material: 'glass',
     font: 'DaisyWheel',
   }, 'default');
 
   dice3d.addDicePreset({
     type: 'd6',
     labels: [
-      '💥',
+      'systems/t2k4e/assets/dice/d6/t2k_d6_1_dsn.png',
       '2',
       '3',
       '4',
       '5',
-      '6',
+      'systems/t2k4e/assets/dice/d6/t2k_d6_6_dsn.png',
+    ],
+    bumpMaps: [
+      'systems/t2k4e/assets/dice/d6/t2k_d6_1_dsn_bump.png',,,,,
+      'systems/t2k4e/assets/dice/d6/t2k_d6_6_dsn_bump.png',
     ],
     system: 't2k4e',
     colorset: 't2k-base',
@@ -428,14 +302,20 @@ export function registerDsN(dice3d) {
   dice3d.addDicePreset({
     type: 'd8',
     labels: [
-      '💥',
+      'systems/t2k4e/assets/dice/d8/t2k_d8_1_dsn.png',
       '2',
       '3',
       '4',
       '5',
-      '6',
-      '7',
-      '8',
+      'systems/t2k4e/assets/dice/d8/t2k_d8_6_dsn.png',
+      'systems/t2k4e/assets/dice/d8/t2k_d8_7_dsn.png',
+      'systems/t2k4e/assets/dice/d8/t2k_d8_8_dsn.png',
+    ],
+    bumpMaps: [
+      'systems/t2k4e/assets/dice/d8/t2k_d8_1_dsn_bump.png',,,,,
+      'systems/t2k4e/assets/dice/d8/t2k_d8_6_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d8/t2k_d8_7_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d8/t2k_d8_8_dsn_bump.png',
     ],
     system: 't2k4e',
     colorset: 't2k-base',
@@ -444,16 +324,24 @@ export function registerDsN(dice3d) {
   dice3d.addDicePreset({
     type: 'd10',
     labels: [
-      '💥',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_1_dsn.png',
       '2',
       '3',
       '4',
       '5',
-      '6',
-      '7',
-      '8',
-      '9',
-      '10',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_6_dsn.png',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_7_dsn.png',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_8_dsn.png',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_9_dsn.png',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_10_dsn.png',
+    ],
+    bumpMaps: [
+      'systems/t2k4e/assets/dice/d10/t2k_d10_1_dsn_bump.png',,,,,
+      'systems/t2k4e/assets/dice/d10/t2k_d10_6_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_7_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_8_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_9_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d10/t2k_d10_10_dsn_bump.png',
     ],
     system: 't2k4e',
     colorset: 't2k-base',
@@ -462,18 +350,28 @@ export function registerDsN(dice3d) {
   dice3d.addDicePreset({
     type: 'd12',
     labels: [
-      '💥',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_1_dsn.png',
       '2',
       '3',
       '4',
       '5',
-      '6',
-      '7',
-      '8',
-      '9',
-      '10',
-      '11',
-      '12',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_6_dsn.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_7_dsn.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_8_dsn.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_9_dsn.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_10_dsn.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_11_dsn.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_12_dsn.png',
+    ],
+    bumpMaps: [
+      'systems/t2k4e/assets/dice/d12/t2k_d12_1_dsn_bump.png',,,,,
+      'systems/t2k4e/assets/dice/d12/t2k_d12_6_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_7_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_8_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_9_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_10_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_11_dsn_bump.png',
+      'systems/t2k4e/assets/dice/d12/t2k_d12_12_dsn_bump.png',
     ],
     system: 't2k4e',
     colorset: 't2k-base',
@@ -482,12 +380,16 @@ export function registerDsN(dice3d) {
   dice3d.addDicePreset({
     type: 'dm',
     labels: [
-      '💥',
+      'systems/t2k4e/assets/dice/dm/t2k_dm_1_dsn.png',
       '2',
       '3',
       '4',
       '5',
-      '🎯',
+      'systems/t2k4e/assets/dice/dm/t2k_dm_6_dsn.png',
+    ],
+    bumpMaps: [
+      'systems/t2k4e/assets/dice/dm/t2k_dm_1_dsn.png',,,,,
+      'systems/t2k4e/assets/dice/dm/t2k_dm_6_dsn.png',
     ],
     system: 't2k4e',
     colorset: 't2k-ammo',
@@ -496,12 +398,20 @@ export function registerDsN(dice3d) {
   dice3d.addDicePreset({
     type: 'dl',
     labels: [
-      'L',
-      'T',
-      'T',
-      'T',
-      'A',
-      'H',
+      'systems/t2k4e/assets/dice/dl/hit_L.png',
+      'systems/t2k4e/assets/dice/dl/hit_T.png',
+      'systems/t2k4e/assets/dice/dl/hit_T.png',
+      'systems/t2k4e/assets/dice/dl/hit_T.png',
+      'systems/t2k4e/assets/dice/dl/hit_A.png',
+      'systems/t2k4e/assets/dice/dl/hit_H.png',
+    ],
+    bumpMaps: [
+      'systems/t2k4e/assets/dice/dl/hit_L.png',
+      'systems/t2k4e/assets/dice/dl/hit_T.png',
+      'systems/t2k4e/assets/dice/dl/hit_T.png',
+      'systems/t2k4e/assets/dice/dl/hit_T.png',
+      'systems/t2k4e/assets/dice/dl/hit_A.png',
+      'systems/t2k4e/assets/dice/dl/hit_H.png',
     ],
     system: 't2k4e',
     colorset: 't2k-loc',

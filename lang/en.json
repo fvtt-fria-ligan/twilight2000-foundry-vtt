@@ -148,9 +148,9 @@
       "FuelConsumption": "Fuel Consumption",
       "Gasoline": "Gasoline",
       "Diesel": "Diesel",
-      "crewQty": "Crew:",
-      "passengerQty": "Passengers:",
-      "emptyCrew": "Drag-'n-drop an actor to add it to the crew.",
+      "CrewQty": "Crew:",
+      "PassengerQty": "Passengers:",
+      "EmptyCrew": "Drag-'n-drop an actor to add it to the crew.",
       "Armor": "Armor",
       "FrontArmor": "Front",
       "SideArmor": "Side",
@@ -166,18 +166,18 @@
       "Unmount": "Unmount weapon",
       "MoveMount": "Toggle weapon mount",
       "Price": "Price",
-      "crewPositions": {
-        "driver": "DRIVER",
-        "gunner": "GUNNER",
-        "commander": "COMMANDER",
-        "passenger": "PASSENGER"
+      "CrewPositions": {
+        "Driver": "DRIVER",
+        "Gunner": "GUNNER",
+        "Commander": "COMMANDER",
+        "Passenger": "PASSENGER"
       },
-      "exposedPassenger": "Exposed",
-      "innerComponents": "Inner Components",
-      "outerComponents": "Outer Components",
-      "componentDamage": "Quantity of damage dealt to this component",
-      "fcsType": "Type",
-      "components": {
+      "ExposedPassenger": "Exposed",
+      "InnerComponents": "Inner Components",
+      "OuterComponents": "Outer Components",
+      "ComponentDamage": "Quantity of damage dealt to this component",
+      "FcsType": "Type",
+      "Components": {
         "fuel": "Fuel",
         "engine": "Engine",
         "suspension": "Suspension",
@@ -187,7 +187,7 @@
         "fcs": "Fire Control System",
         "antenna": "Antenna"
       },
-      "hasTrailer": "Has a trailer"
+      "HasTrailer": "Has a trailer"
     },
     "ItemSheet": {
       "Name": "Name",
@@ -230,7 +230,8 @@
         "ExtraHit": "Extra Hit",
         "ExtraHits": "Extra Hits",
         "Mishap": "Mishap",
-        "AmmoSpent": "Ammo Spent"
+        "AmmoSpent": "Ammo Spent",
+        "NoItemNotif": "The item does not exist anymore."
       },
       "Attack": {
         "Title": "Attack ({weapon})"
@@ -238,12 +239,23 @@
     },
     "Dialog": {
       "Actions": {
+        "Normal": "Roll",
         "Reload": "Reload",
         "Cancel": "Cancel"
       },
       "Roll": {
+        "Attribute": "Attribute",
+        "Skill": "Skill",
+        "Formula": "Formula",
+        "RoF": "Rate of Fire",
         "Modifier": "Modifier",
-        "RoF": "Rate of Fire"
+        "Locate": "Add a Hit Die?",
+        "MaxPush": "Max Pushes",
+        "RollMode": "Roll Mode"
+      },
+      "CuF": {
+        "CoolnessUnderFire": "Coolness Under Fire (CUF)",
+        "UnitMorale": "Add the Unit Morale?"
       }
     }
   },
@@ -251,6 +263,20 @@
     "showTaskCheckOptions": {
       "name": "Ask for Task Check Options by Default",
       "label": "Hold Shift to toggle."
+    }
+  },
+  "YZUR": {
+    "CHAT.ROLL.push": "Push",
+    "CHAT.ROLL.suppression": "Suppression",
+    "CHAT.ROLL.ammoSpent": "Ammunition Spent",
+    "CHAT.ROLL.jammed": "Weapon Jam!",
+    "DIETYPES": {
+      "D6TwilightDie": "D6",
+      "D8TwilightDie": "D8",
+      "D10TwilightDie": "D10",
+      "D12TwilightDie": "D12",
+      "AmmoDie": "Ammo Die",
+      "LocationDie": "Location Die"
     }
   }
 }

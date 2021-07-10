@@ -7,6 +7,10 @@ import { T2K4E } from '../config.js';
  */
 export default class ActorSheetT2KVehicle extends ActorSheetT2K {
 
+  /* ------------------------------------------- */
+  /*  Sheet Properties                           */
+  /* ------------------------------------------- */
+
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -17,6 +21,8 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     });
   }
 
+  /* ------------------------------------------- */
+  /*  Sheet Data Preparation                     */
   /* ------------------------------------------- */
 
   /** @override */
@@ -31,6 +37,8 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
 
     return sheetData;
   }
+
+  /* ------------------------------------------- */
 
   _prepareCrew(sheetData) {
     sheetData.crew = sheetData.data.crew.occupants.reduce((arr, o) => {
@@ -52,6 +60,8 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     return sheetData;
   }
 
+  /* ------------------------------------------- */
+
   _prepareMountedWeapons(sheetData) {
     const m = (i, slot) => i.type === 'weapon'
       && i.data.data.isMounted
@@ -64,10 +74,8 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     return sheetData;
   }
 
-  // _prepareVehiclePassengers(sheetData) {
-  // 	sheetData.passengers = game.actors.filter(a => ['character', 'npc'].includes(a.data.type));
-  // }
-
+  /* ------------------------------------------- */
+  /*  Crew Management                            */
   /* ------------------------------------------- */
 
   dropCrew(actorId) {
@@ -77,6 +85,8 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     return this.actor.addVehicleOccupant(actorId);
   }
 
+  /* ------------------------------------------- */
+  /*  Sheet Listeners                            */
   /* ------------------------------------------- */
 
   /** @override */

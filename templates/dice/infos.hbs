@@ -1,0 +1,57 @@
+<div class="dice-infos">
+
+  {{!-- MYZ & FBL attributes and gear damage --}}
+  {{#if roll.pushed}}
+  {{#if (or (eq roll.game 'myz') (eq roll.game 'fbl'))}}
+    {{#if roll.attributeTrauma}}
+    <div class="dice-info">
+      <span class="label">{{localize "YZUR.CHAT.ROLL.trauma"}}:</span>
+      <span class="result">{{roll.attributeTrauma}}</span>
+    </div>
+    {{/if}}
+    {{#if roll.gearDamage}}
+    <div class="dice-info">
+      <span class="label">{{localize "YZUR.CHAT.ROLL.gearDamage"}}:</span>
+      <span class="result">{{roll.gearDamage}}</span>
+    </div>
+    {{/if}}
+  {{/if}}
+  {{/if}}
+
+  {{!-- T2K: Extra Hits --}}
+  {{#if roll.hitCount}}
+  <div class="dice-info">
+    {{#if roll.successful}}
+    <span class="label">{{#if (gt roll.hitCount 1)}}{{localize "YZUR.CHAT.ROLL.extraHits"}}{{else}}{{localize "YZUR.CHAT.ROLL.extraHit"}}{{/if}}:</span>
+    {{else}}
+    <span class="label">{{localize "YZUR.CHAT.ROLL.suppression"}}:</span>
+    {{/if}}
+    <span class="result">{{roll.hitCount}}</span>
+  </div>
+  {{/if}}
+
+  {{!-- T2K: Ammo spent --}}
+  {{#if roll.ammoSpent}}
+  <div class="dice-info">
+    <span class="label">{{localize "YZUR.CHAT.ROLL.ammoSpent"}}:</span>
+    <span class="result">{{roll.ammoSpent}}</span>
+  </div>
+    {{#if (and roll.jamCount roll.pushed)}}
+    <div class="dice-info">
+      <span class="label">{{localize "YZUR.CHAT.ROLL.jamCount"}}:</span>
+      <span class="result">{{roll.jamCount}}</span>
+    </div>
+      {{#if roll.jammed}}
+      <div class="dice-info">
+        <span class="label">{{localize "YZUR.CHAT.ROLL.jammed"}}</span>
+      </div>
+      {{/if}}
+    {{/if}}
+  {{/if}}
+
+  {{!-- Mishap --}}
+  {{!-- {{#if roll.mishap}} --}}
+  {{!-- <div class="dice-info">{{localize "YZUR.CHAT.ROLL.mishap"}}</div> --}}
+  {{!-- {{/if}} --}}
+
+</div>

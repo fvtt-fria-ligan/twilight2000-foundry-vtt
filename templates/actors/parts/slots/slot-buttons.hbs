@@ -3,9 +3,9 @@
     {{#unless (eq type 'specialty')}}
     <a class="button item-equip{{#if data.equipped}} equipped{{/if}}" title="{{localize "T2K4E.ActorSheet.Equip"}}">
       {{#if data.equipped}}
-      {{{@root.config.Icons.buttons.fullStar}}}
+      {{{@root.config.Icons.buttons.equip}}}
       {{else}}
-      {{{@root.config.Icons.buttons.emptyStar}}}
+      {{{@root.config.Icons.buttons.unequip}}}
       {{/if}}
     </a>
     <a class="button item-backpack{{#if data.backpack}} packed{{/if}}" title="{{localize 'T2K4E.ActorSheet.Store'}}">

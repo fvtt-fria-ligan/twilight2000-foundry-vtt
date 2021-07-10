@@ -4,20 +4,28 @@
  */
 export default class ActorSheetT2K extends ActorSheet {
 
+  /* ------------------------------------------- */
+  /*  Sheet Properties                           */
+  /* ------------------------------------------- */
+
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main'}],
+      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main' }],
     });
   }
 
   /** @override */
   get template() {
-    if (this.actor.data.type === 'npc') {
+    if (this.actor.type === 'npc') {
       return 'systems/t2k4e/templates/actors/character-sheet.hbs';
     }
-    return `systems/t2k4e/templates/actors/${this.actor.data.type}-sheet.hbs`;
+    return `systems/t2k4e/templates/actors/${this.actor.type}-sheet.hbs`;
   }
+
+  /* ------------------------------------------- */
+  /*  Sheet Data Preparation                     */
+  /* ------------------------------------------- */
 
   /** @override */
   getData() {
@@ -31,6 +39,10 @@ export default class ActorSheetT2K extends ActorSheet {
     };
     return sheetData;
   }
+
+  /* ------------------------------------------- */
+  /*  Sheet Listeners                            */
+  /* ------------------------------------------- */
 
   /** @override */
   activateListeners(html) {
@@ -59,12 +71,16 @@ export default class ActorSheetT2K extends ActorSheet {
     }
   }
 
+  /* ------------------------------------------- */
+
   _onItemRoll(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
     return item.roll();
   }
+
+  /* ------------------------------------------- */
 
   _onItemCreate(event) {
     event.preventDefault();
@@ -74,7 +90,6 @@ export default class ActorSheetT2K extends ActorSheet {
       name: game.i18n.localize(`T2K4E.ActorSheet.NewItem.${type}`),
       type,
     };
-    //return this.actor.createOwnedItem(itemData)
     return this.actor.createEmbeddedDocuments('Item', [itemData])
       // Displays the sheet of the newly created item.
       .then(itmData => {
@@ -96,7 +111,6 @@ export default class ActorSheetT2K extends ActorSheet {
     event.preventDefault();
     const elem = event.currentTarget;
     const itemId = elem.closest('.item').dataset.itemId;
-    //return this.actor.deleteOwnedItem(itemId);
     return this.actor.deleteEmbeddedDocuments('Item', [itemId]);
   }
 
@@ -120,6 +134,8 @@ export default class ActorSheetT2K extends ActorSheet {
     return item.update(updateData);
   }
 
+  /* ------------------------------------------- */
+
   _onWeaponAmmoChange(event) {
     event.preventDefault();
     const elem = event.currentTarget;
@@ -128,6 +144,8 @@ export default class ActorSheetT2K extends ActorSheet {
     const value = +elem.value;
     return item.update({ 'data.mag.value': value });
   }
+
+  /* ------------------------------------------- */
 
   /** Left-clic: +1, Right-clic: -1 */
   _onValueChange(event) {
@@ -143,6 +161,6 @@ export default class ActorSheetT2K extends ActorSheet {
     else newCount--; // contextmenu
     newCount = Math.clamped(newCount, min, max);
 
-    return this.actor.update({ ['data.'+field]: newCount });
+    return this.actor.update({ [`data.${field}`]: newCount });
   }
 }

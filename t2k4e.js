@@ -17,10 +17,9 @@
 
 // Imports Modules.
 import { T2K4E } from './module/config.js';
-import { registerDsN } from './module/dice.js';
+import { registerDsN, T2KRoller } from './module/dice.js';
 import { registerSystemSettings } from './module/settings.js';
 import { preloadHandlebarsTemplates, registerHandlebars } from './module/templates.js';
-import { registerDice } from './module/dice.js';
 import * as Chat from './module/chat.js';
 
 // Imports Documents.
@@ -34,6 +33,7 @@ import ItemSheetT2K from './module/item/itemSheet.js';
 
 // Imports Helpers.
 import { checkMigration } from './module/migration.js';
+import { YearZeroRollManager } from './lib/yzur.js';
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -41,6 +41,15 @@ import { checkMigration } from './module/migration.js';
 
 Hooks.once('init', function() {
   console.log(`t2k4e | Initializing the Twilight 2000 4E Game System\n${T2K4E.ASCII}`);
+
+  // Registers dice.
+  YearZeroRollManager.register('t2k', {
+    'ROLL.chatTemplate': 'systems/t2k4e/templates/dice/roll.hbs',
+    'ROLL.tooltipTemplate': 'systems/t2k4e/templates/dice/tooltip.hbs',
+    'ROLL.infosTemplate': 'systems/t2k4e/templates/dice/infos.hbs',
+    'CHAT.showInfos': true,
+    'DICE.ICONS.t2k.ammo.6': '<img src="systems/t2k4e/assets/icons/bullet2.png"/>',
+  });
 
   // Creates a namespace within the game global.
   // Places our classes in their own namespace for later reference.
@@ -55,8 +64,9 @@ Hooks.once('init', function() {
       ActorT2K,
       ItemT2K,
     },
+    roller: T2KRoller,
     // Cache for pushable rolls.
-    rolls: new Collection(),
+    // rolls: new Collection(),
   };
 
   // Records configuration values.
@@ -88,7 +98,6 @@ Hooks.once('init', function() {
   Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
 
   registerSystemSettings();
-  registerDice();
   registerHandlebars();
   preloadHandlebarsTemplates();
 });
@@ -109,11 +118,11 @@ Hooks.once('ready', function() {
       // Renders a starting actor or item.
       /** @type {Actor} */
       const startingActor = game.actors.getName('Stefouch');
-      // startingActor.sheet.render(true);
+      startingActor.sheet.render(true);
       console.warn(startingActor);
       /** @type {Actor} */
       const startingVehicle = game.actors.getName('T-80');
-      startingVehicle.sheet.render(true);
+      // startingVehicle.sheet.render(true);
       console.warn(startingVehicle);
       /** @type {Item} *
       const startingItem = game.items.get('63JHOmp3e1HLbdrL');

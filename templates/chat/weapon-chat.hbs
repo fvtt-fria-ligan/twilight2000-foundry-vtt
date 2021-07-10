@@ -1,4 +1,4 @@
-<div class="t2k4e chat-card weapon" data-item-id="{{id}}" data-owner-id="{{owner}}">
+<div class="t2k4e chat-card weapon" data-item-id="{{_id}}" data-owner-id="{{owner}}" data-actor-id="{{actorId}}"{{#if tokenId}} data-token-id="{{tokenId}}"{{/if}}>
     <div class="card-content">
 
         <div class="card-name">
@@ -31,9 +31,9 @@
         <div class="card-buttons">
             {{!-- TODO --}}
             {{#unless data.isMounted}}
-            <button class="weapon-attack"><i class="fas fa-crosshairs"></i> {{localize "T2K4E.Chat.Actions.Attack"}}</button>
+            <button class="weapon-attack" data-action="attack">{{{@root.config.Icons.buttons.attack}}} {{localize "T2K4E.Chat.Actions.Attack"}}</button>
             {{#if data.mag.max}}
-            <button class="weapon-reload"{{#if (eq data.mag.value data.mag.max)}} disabled{{/if}}><i class="fas fa-sync-alt"></i> {{localize "T2K4E.Chat.Actions.Reload"}}</button>
+            <button class="weapon-reload"{{#if (eq data.mag.value data.mag.max)}} data-action="reload" disabled{{/if}}>{{{@root.config.Icons.buttons.reload}}} {{localize "T2K4E.Chat.Actions.Reload"}}</button>
             {{/if}}
             {{/unless}}
         </div>

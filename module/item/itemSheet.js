@@ -16,7 +16,7 @@ export default class ItemSheetT2K extends ItemSheet {
 
   /** @override */
   get template() {
-    return `systems/t2k4e/templates/items/${this.item.data.type}-sheet.hbs`;
+    return `systems/t2k4e/templates/items/${this.item.type}-sheet.hbs`;
   }
 
   /** @override */
