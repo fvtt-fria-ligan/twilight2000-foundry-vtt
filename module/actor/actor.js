@@ -15,6 +15,10 @@ export default class ActorT2K extends Actor {
     return game.combat?.combatants?.some(c => c.actor.id === this.id);
   }
 
+  get hasReliability() {
+    return !!this.data.data.reliability?.max;
+  }
+
   /* ------------------------------------------- */
   /*  Data Preparation                           */
   /* ------------------------------------------- */

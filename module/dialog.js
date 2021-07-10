@@ -76,8 +76,8 @@ export default class T2KDialog extends Dialog {
 
   static _processRollOptions(form) {
     return {
-      // attribute: parseInt(form.attribute?.value) || 0,
-      // skill: parseInt(form.skill?.value) || 0,
+      attribute: parseInt(form.attribute?.value) || 0,
+      skill: parseInt(form.skill?.value) || 0,
       rof: parseInt(form.rof?.value) || 0,
       modifier: parseInt(form.modifier.value) || 0,
       locate: form.locate.checked,

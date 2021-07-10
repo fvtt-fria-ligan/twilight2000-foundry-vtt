@@ -196,10 +196,12 @@
       "DescriptionTab": "Notes",
       "AttributeUsed": "Attribute Used",
       "SkillUsed": "Skill Used",
+      "WeaponMagazine": "Magazine",
       "Quantity": "Quantity",
       "ItemType": "Type",
       "Ammo": "Ammo",
       "AmmoType": "Ammo Identifier",
+      "OverrideOption": "Override Weapon's Features",
       "Reliability": "Rel",
       "RoF": "RoF",
       "Damage": "Damage",
@@ -232,10 +234,12 @@
         "Mishap": "Mishap",
         "AmmoSpent": "Ammo Spent",
         "NoItemNotif": "The item does not exist anymore."
-      },
-      "Attack": {
-        "Title": "Attack ({weapon})"
       }
+    },
+    "Combat": {
+      "Attack": "{weapon} — Attack",
+      "NoQuantityLeft": "No unit left for weapon {weapon}.",
+      "NoAmmoLeft": "No ammo left in the magazine of the weapon {weapon}."
     },
     "Dialog": {
       "Actions": {
@@ -269,6 +273,7 @@
     "CHAT.ROLL.push": "Push",
     "CHAT.ROLL.suppression": "Suppression",
     "CHAT.ROLL.ammoSpent": "Ammunition Spent",
+    "CHAT.ROLL.jamCount": "Reliability decreased by",
     "CHAT.ROLL.jammed": "Weapon Jam!",
     "DIETYPES": {
       "D6TwilightDie": "D6",

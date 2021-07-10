@@ -124,10 +124,10 @@ Hooks.once('ready', function() {
       const startingVehicle = game.actors.getName('T-80');
       // startingVehicle.sheet.render(true);
       console.warn(startingVehicle);
-      /** @type {Item} *
-      const startingItem = game.items.get('63JHOmp3e1HLbdrL');
-      startingItem.sheet.render(true);
-      console.warn(startingItem);//*/
+      /** @type {Item} */
+      const startingItem = game.items.getName('FN FAL');
+      // startingItem.sheet.render(true);
+      console.warn(startingItem);
     }
     catch (error) {
       console.warn('t2k4e | DEBUG | Cannot find starting Entity.', error);
