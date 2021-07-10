@@ -5,12 +5,19 @@ All notable changes to this project will be documented in this file.
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
 ## [1.0.0-final+FoundryV8] - 2021-07-07
+
+> :warning: **Major Update with Breaking Changes**
+> This is a major update from an old alpha version. Migration should work fine, but issues may occur.
+> Before applying the system update, [backup your world](https://www.youtube.com/watch?v=OmbxMmqNNXU)!
+> If the update inadvertedly broke your world, restore your backup and roll back to the [previous version](https://github.com/Stefouch/t2k4e/releases/tag/0.7.3) of the T2K system. Then contact me to solve the issue ([find me on Discord](https://discordapp.com/invite/DDBZUDf) or [open an issue](https://github.com/Stefouch/t2k4e/issues)).
+
 ### Changed
 - Compatibility with the latest Foundry version (v0.8.8).
 - Use of Twilight 2000 4E final core rules:
   - Dice mechanics are updated.
   - Weapons & Vehicles's reliability score becomes a number instead of a letter.
 - Rolls now use the Year Zero Universal Roller (YZUR) library.
+- Pushed roll messages are now modified in the chat.
 
 ### Added
 - Dice So Nice configuration for the rolls.
