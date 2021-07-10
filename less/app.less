@@ -30,20 +30,27 @@
 
   input[type="text"],
   input[type="number"],
+  input[list],
   select {
-    height: calc(100% - 2px);
+    height: auto; // calc(100% - 2px);
     border: 1px solid @colorTan;
+    border-radius: 3px;
     background: rgba(0, 0, 0, 0.05);
     color: @colorDark;
   }
 
   input[type="text"],
-  input[type="number"] {
+  input[type="number"],
+  input[list] {
     &:hover,
     &:focus {
       border: 1px solid #111;
       box-shadow: 0 0 8px @colorBrown;
     }
+  }
+
+  input[list] {
+    .font-text-normal();
   }
 
   input:disabled,
@@ -141,6 +148,7 @@
 
   input[type="text"],
   input[type="number"],
+  input[list],
   div.editable {
     background: none;
     border: 1px solid transparent;
