@@ -1,3 +1,4 @@
+import { YearZeroRoll } from '../../lib/yzur.js';
 import { getChatCardActor } from '../chat.js';
 import { T2K4E } from '../config.js';
 import { T2KRoller } from '../dice.js';
@@ -197,7 +198,7 @@ export default class ItemT2K extends Item {
   /**
    * Places an attack using an item (weapon, grenade, or equipment).
    * @param {object} options Roll options which are configured and provided to the task check
-   * @returns {Promise<import('../lib/yzur.js').YearZeroRoll>}
+   * @returns {Promise<YearZeroRoll|ChatMessage>}
    * @async
    */
   async rollAttack(options = {}) {
@@ -257,18 +258,32 @@ export default class ItemT2K extends Item {
       locate: true,
     }, options);
 
+    // Performs the task check.
     const message = await T2KRoller.taskCheck(rollOptions);
     if (!message) return;
+    if (message instanceof YearZeroRoll) return message;
 
     const roll = message.roll;
 
+    const flagData = {};
+
     // Consumes ammo.
     if (ammo) {
-      const ammoSpent = await this.consumeAmmo(Math.max(1, roll.ammoSpent), ammo);
-      await message.setFlag('t2k4e', 'ammoSpent', ammoSpent);
+      const ammoDiff = await this.consumeAmmo(Math.max(1, roll.ammoSpent), ammo);
+      flagData.ammoSpent = ammoDiff;
+      flagData.ammo = ammo.id;
+      // await message.setFlag('t2k4e', 'ammoSpent', ammoDiff);
+      // await message.setFlag('t2k4e', 'ammo', ammo.id);
     }
 
-    return roll;
+    // Stores the referenced IDs.
+    // await message.setFlag('t2k4e', 'item', this.id);
+    // if (this.actor) await message.setFlag('t2k4e', 'actor', this.actor.id);
+    flagData.item = this.id;
+    flagData.actor = this.actor.id;
+    await message.setFlag('t2k4e', 'data', flagData);
+
+    return message;
 
     // ! Gets the defenders, if any.
     //const defenders = [];
@@ -292,18 +307,36 @@ export default class ItemT2K extends Item {
    * updates the weapon data, and return the quantity of ammo consumed.
    * If the quantity is negative, it will increase the ammo count.
    * @param {number}  qty   Quantity of ammo to consume
-   * @param {Item?}  [ammo] The ammo item can be inserted
+   * @param {Item?}  [ammo] The ammo item may be defined if you already have it
    * @returns {number} The real quantity of ammo consumed
    * @async
    */
   async consumeAmmo(qty, ammo) {
     if (!this.hasAmmo) return 0;
     ammo = ammo ?? this.actor.items.get(this.data.data.mag.target);
-    if (!(ammo?.data)) return 0;
-    const ammoValue = ammo.data.data.ammo.value;
-    const ammoLeft = Math.max(0, ammoValue - qty);
-    await ammo.update({ 'data.ammo.value': ammoLeft });
-    return ammoValue - ammoLeft;
+    return ammo.updateAmmo(-qty);
+  }
+
+  /* ------------------------------------------- */
+
+  /**
+   * Updates the ammo value of a magazine based on the interval [0, max].
+   * @param {number}   modifier     How much to modify the magazine
+   * @param {boolean} [update=true] Whether to update the ammo item
+   * @returns {number} The real difference applied
+   * @async
+   */
+  async updateAmmo(modifier, update = true) {
+    const ammoData = this.data.data.ammo;
+    if (this.type !== 'ammunition' || !ammoData) {
+      throw new Error('t2k4e | ItemT2K#updateAmmo() | This is not an ammunition!');
+    }
+    const ammoValue = ammoData.value || 0;
+    const ammoMax = ammoData.max;
+    const newAmmoValue = Math.clamped(ammoValue + modifier, 0, ammoMax);
+
+    if (update) await this.update({ 'data.ammo.value': newAmmoValue });
+    return newAmmoValue - ammoValue;
   }
 
   /* ------------------------------------------- */

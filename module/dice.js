@@ -22,6 +22,7 @@ export class T2KRoller {
    * Rolls dice for T2K.
    * @param {string?}  title                The title of the roll
    * @param {Actor?}   actor                The actor who rolled the dice, if any
+   * @param {Item?}    item                 The item used to roll the dice, if any
    * @param {number}  [attribute=0]         The attribute's size
    * @param {number}  [skill=0]             The skill's size
    * @param {number}  [rof=0]               The RoF's value
@@ -40,6 +41,7 @@ export class T2KRoller {
   static async taskCheck({
     title = 'Twilight 2000 4E – Task Check',
     actor = null,
+    item = null,
     attribute = 0,
     skill = 0,
     rof = 0,
@@ -159,7 +161,7 @@ export class T2KRoller {
  * Pushes a roll.
  * @param {YearZeroRoll} roll    The roll to push
  * @param {ChatMessage?} message The message holding the roll that will be deleted
- * @returns {Promise<YearZeroRoll>}
+ * @returns {Promise<YearZeroRoll|ChatMessage>}
  * @async
  */
 export async function rollPush(roll, message) {
@@ -175,22 +177,42 @@ export async function rollPush(roll, message) {
   if (!message) return roll.toMessage();
 
   // Gets all the message's flags.
-  const flags = message.data.flags.t2k4e ?? {};
-  const oldAmmoSpent = flags.ammoSpent;
-  const newAmmoSpent = roll.ammoSpent;
-
-  // Gets the item;
-
-  // Updates the spent ammo.
-  if (oldAmmoSpent && oldAmmoSpent !== newAmmoSpent) {
-
-  }
+  const flags = message.getFlag('t2k4e', 'data') ?? {};
+  const oldAmmoSpent = flags.ammoSpent || 0;
+  let newAmmoSpent = -roll.ammoSpent;
+  const actorId = flags.actor;
+  const actor = game.actors.get(actorId);
+  const ammoId = flags.ammo;
+  const ammo = actor ? actor.items.get(ammoId) : game.items.get(ammoId);
+  const itemId = flags.item;
+  const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
 
   // No need to await the deletion.
   message.delete();
 
-  await roll.toMessage();
-  return roll;
+  const m = await roll.toMessage();
+
+  const flagData = {};
+
+  // Updates the ammunition.
+  if (ammo) {
+    if (oldAmmoSpent !== newAmmoSpent) {
+      newAmmoSpent = await ammo.updateAmmo(newAmmoSpent - oldAmmoSpent);
+    }
+    flagData.ammoSpent = -roll.ammoSpent;
+    flagData.ammo = ammo.id;
+    // await m.setFlag('t2k4e', 'ammoSpent', -roll.ammoSpent);
+    // await m.setFlag('t2k4e', 'ammo', ammo.id);
+  }
+
+  // Stores the referenced IDs.
+  if (actor) flagData.actor = actor.id;
+  if (item) flagData.item = item.id;
+  // if (actor) await m.setFlag('t2k4e', 'actor', actor.id);
+  // if (item) await m.setFlag('t2k4e', 'item', item.id);
+  await m.setFlag('t2k4e', 'data', flagData);
+
+  return m;
 }
 
 /* -------------------------------------------- */

@@ -39,15 +39,60 @@
       word-break: break-all;
     }
 
-    .card-dice {
-      &> div + div {
-        margin-top: 2px;
+    .dice-tooltip {
+      // &> div + div {
+      //   margin-top: 2px;
+      // }
+
+      // .base-dice,
+      // .ammo-dice {
+      //   display: flex;
+      //   flex-direction: row;
+      // }
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-bottom: 3px;
+
+      .part-formula {
+        display: none;
       }
 
-      .base-dice,
-      .ammo-dice {
-        display: flex;
-        flex-direction: row;
+      .tooltip-part {
+        width: auto;
+        min-width: 30%;
+        margin: 0 2px 2px 0;
+        border: 1px solid #999;
+        border-radius: 3px;
+
+        .part-header {
+          justify-content: flex-end;
+          background-color: @colorLightKhaki;
+
+          .part-total {
+            border-top: none;
+            border-right: none;
+          }
+        }
+
+        .dice-rolls {
+          margin: 5px 2px;
+        }
+
+        // &.base .part-header {
+        //   color: #cfa826;
+        //   background-color: #262c23;
+        // }
+
+        // &.loc .part-header {
+        //   color: #000;
+        //   background-color: #fff;
+        // }
+
+        // &.ammo .part-header {
+        //   color: #000;
+        //   background-color: #726435;
+        // }
       }
 
       .die {
@@ -77,33 +122,55 @@
           background-image: url(../../../icons/svg/d6-grey.svg);
         }
 
-        &.stunt {
-          color: @colorGreen;
-          filter: sepia(0.5) hue-rotate(60deg);
+        // &.stunt {
+        //   color: @colorGreen;
+        //   filter: sepia(0.5) hue-rotate(60deg);
+        // }
+
+        // &.bane {
+        //   color: @colorRed;
+        //   filter: sepia(0.5) hue-rotate(-60deg);
+        // }
+      }
+    }
+
+    .dice-infos {
+      .dice-info {
+        display: flex;
+        flex-direction: row;
+
+        .label {
+          flex: 0 0 150px;
+        }
+        .result {
+          flex: 0 0 auto;
+          font-weight: bold;
         }
 
-        &.bane {
-          color: @colorRed;
-          filter: sepia(0.5) hue-rotate(-60deg);
+        &.roll-jammed {
+          .label {
+            font-weight: bold;
+            color: @colorRed;
+          }
         }
       }
     }
 
-    .card-description {
-      .success.successful {
-        color: green;
-      }
+    // .card-description {
+    //   .success.successful {
+    //     color: green;
+    //   }
 
-      .mishap {
-        color: @colorRed;
-      }
-    }
+    //   .mishap {
+    //     color: @colorRed;
+    //   }
+    // }
 
-    .card-description {
-      h4 {
-        border-top: 1px solid @colorBrown;
-      }
-    }
+    // .card-description {
+    //   h4 {
+    //     border-top: 1px solid @colorBrown;
+    //   }
+    // }
 
     .card-buttons,
     .dice-buttons {

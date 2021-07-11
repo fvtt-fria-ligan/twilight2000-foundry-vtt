@@ -7,7 +7,11 @@
       <div class="dice-result">
         <div class="dice-formula">{{formula}}</div>
         {{{tooltip}}}
+        {{#if t2k}}
+        <h4 class="dice-total">{{baseSuccessQty}}{{#if ammoSpent}}&nbsp;({{hitCount}}){{/if}}</h4>
+        {{else}}
         <h4 class="dice-total">{{total}}</h4>
+        {{/if}}
       </div>
     </div>
 
@@ -19,7 +23,7 @@
     {{!-- Push button --}}
     {{#if pushable}}
     <div class="dice-buttons">
-      <button class="dice-button push" data-action="push">{{localize "YZUR.CHAT.ROLL.push"}}</button>
+      <button class="dice-button push" data-action="push">{{localize "YZUR.CHAT.ROLL.Push"}}</button>
     </div>
     {{/if}}
   </div>

@@ -270,18 +270,31 @@
     }
   },
   "YZUR": {
-    "CHAT.ROLL.push": "Push",
-    "CHAT.ROLL.suppression": "Suppression",
-    "CHAT.ROLL.ammoSpent": "Ammunition Spent",
-    "CHAT.ROLL.jamCount": "Reliability decreased by",
-    "CHAT.ROLL.jammed": "Weapon Jam!",
+    "CHAT.ROLL.Push": "Push",
+    "CHAT.ROLL.HitLocation": "Hit Location:",
+    "CHAT.ROLL.HitLocations": "Hit Locations:",
+    "CHAT.ROLL.Locations": {
+      "1": "Legs",
+      "2": "Torso",
+      "3": "Torso",
+      "4": "Torso",
+      "5": "Arms",
+      "6": "Head"
+    },
+    "CHAT.ROLL.ExtraHit": "Extra Hit:",
+    "CHAT.ROLL.ExtraHits": "Extra Hits:",
+    "CHAT.ROLL.Suppression": "Suppression:",
+    "CHAT.ROLL.AmmoSpent": "Ammunition Spent:",
+    "CHAT.ROLL.DamageOrStress": "Damage/Stress:",
+    "CHAT.ROLL.JamCount": "Reliability:",
+    "CHAT.ROLL.Jammed": "WEAPON JAM!!",
     "DIETYPES": {
-      "D6TwilightDie": "D6",
-      "D8TwilightDie": "D8",
-      "D10TwilightDie": "D10",
-      "D12TwilightDie": "D12",
-      "AmmoDie": "Ammo Die",
-      "LocationDie": "Location Die"
+      "D6TwilightDie": "Base D6",
+      "D8TwilightDie": "Base D8",
+      "D10TwilightDie": "Base D10",
+      "D12TwilightDie": "Base D12",
+      "AmmoDie": "Ammo",
+      "LocationDie": "Hit Die"
     }
   }
 }
