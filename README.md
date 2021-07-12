@@ -53,9 +53,8 @@
 <img src="./screenshots/210117-chatlog.png" height=400 alt="T2K Foundry"/>
 
 # Planned Features
-- Animal (NPC) Sheet
-- Crits (if able)
-- Weapon ammo consumption, reload, etc.
+- Applying weapon's damage to selected tokens
+- Weapon reload
 - More automation
 - Party Sheet (for travel)
 
