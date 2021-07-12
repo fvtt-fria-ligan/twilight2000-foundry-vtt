@@ -59,7 +59,7 @@ export default class ActorSheetT2K extends ActorSheet {
     let allowed = true;
 
     if (!alwaysAllowedItems.includes(type)) {
-      if (allowedItems[this.actor.type].includes(type)) {
+      if (!allowedItems[this.actor.type].includes(type)) {
         allowed = false;
       }
     }
