@@ -13,7 +13,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['t2k4e', 'sheet', 'actor', 'vehicle'],
       width: 650,
       height: 715,
@@ -43,7 +43,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
   _prepareCrew(sheetData) {
     sheetData.crew = sheetData.data.crew.occupants.reduce((arr, o) => {
       o.actor = game.actors.get(o.id);
-      // TODO cleanse dead actors.
+      // TODO cleanse unexisting actors.
       if (o.actor) arr.push(o);
       return arr;
     }, []);

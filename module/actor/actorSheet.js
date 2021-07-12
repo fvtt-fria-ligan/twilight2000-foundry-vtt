@@ -1,3 +1,6 @@
+import { T2K4E } from '../config.js';
+import T2KDialog from '../dialog.js';
+
 /**
  * Twilight 2000 Actor Sheet.
  * @extends {ActorSheet} Extends the basic ActorSheet
@@ -10,7 +13,7 @@ export default class ActorSheetT2K extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main' }],
     });
   }
@@ -40,6 +43,39 @@ export default class ActorSheetT2K extends ActorSheet {
     return sheetData;
   }
 
+  /* -------------------------------------------- */
+  /*  Filtering Dropped Items                     */
+  /* -------------------------------------------- */
+
+  /** @override */
+  async _onDropItemCreate(itemData) {
+    const type = itemData.type;
+    const alwaysAllowedItems = T2K4E.physicalItems;
+    const allowedItems = {
+      character: ['specialty', 'injury'],
+      npc: ['specialty'],
+      vehicle: [],
+    };
+    let allowed = true;
+
+    if (!alwaysAllowedItems.includes(type)) {
+      if (allowedItems[this.actor.type].includes(type)) {
+        allowed = false;
+      }
+    }
+
+    if (!allowed) {
+      const msg = game.i18n.format('T2K4E.ActorSheet.NotifWrongItemType', {
+        type: game.i18n.localize(`T2K4E.ItemTypes.${type}`),
+        actor: game.i18n.localize(`T2K4E.ActorTypes.${this.actor.type}`),
+      });
+      console.warn(`t2k4e | ${msg}`);
+      ui.notifications.warn(msg);
+      return false;
+    }
+    return super._onDropItemCreate(itemData);
+  }
+
   /* ------------------------------------------- */
   /*  Sheet Listeners                            */
   /* ------------------------------------------- */
@@ -63,7 +99,7 @@ export default class ActorSheetT2K extends ActorSheet {
     html.find('.item-delete').click(this._onItemDelete.bind(this));
     html.find('.item-equip').click(this._onItemEquip.bind(this));
     html.find('.item-backpack').click(this._onItemStore.bind(this));
-    html.find('.item-mag .weapon-edit-ammo').change(this._onWeaponAmmoChange.bind(this));
+    // html.find('.item-mag .weapon-edit-ammo').change(this._onWeaponAmmoChange.bind(this));
 
     // Owner-only listeners.
     if (this.actor.isOwner) {
@@ -73,10 +109,28 @@ export default class ActorSheetT2K extends ActorSheet {
 
   /* ------------------------------------------- */
 
-  _onItemRoll(event) {
+  async _onItemRoll(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
+    if (this.actor.type === 'vehicle' && item.type === 'weapon') {
+      const actors = this.actor.data.data.crew.occupants.reduce((data, o) => {
+        const a = game.actors.get(o.id);
+        const nm = `${a.name} (${game.i18n.localize(T2K4E.vehicle.crewPositionFlagsLocalized[o.position])})`;
+        data[o.id] = { id: a.id, name: nm };
+        return data;
+      }, {});
+
+      const opts = await T2KDialog.chooseActor(actors);
+      if (opts.cancelled) return;
+      const actorId = opts.actor;
+      const actor = game.actors.get(actorId); //this.actor.getCrew().get(actorId);
+      if (!actor) {
+        ui.notifications.warn('Actor does not exist.');
+        return;
+      }
+      return item.rollAttack(null, actor);
+    }
     return item.roll();
   }
 

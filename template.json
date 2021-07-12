@@ -96,7 +96,6 @@
         "unitMorale": {
           "score": "D"
         },
-        "crits": "",
         "diseases": ""
       },
       "actorActions": {
@@ -260,7 +259,8 @@
       "ammunition",
       "grenade",
       "gear",
-      "specialty"
+      "specialty",
+      "injury"
     ],
     "templates": {
       "itemBase": {
@@ -318,7 +318,6 @@
       "rof": 0,
       "mag": {
         "target": "",
-        "value": 0,
         "max": 0
       },
       "props": {
@@ -377,6 +376,15 @@
     "specialty": {
       "templates": ["itemModifiers"],
       "description": ""
+    },
+    "injury": {
+      "templates": ["itemModifiers"],
+      "description": "",
+      "category": "physical",
+      "location": "",
+      "lethal": false,
+      "timeLimit": "Shift",
+      "healTime": "D6"
     }
   }
 }

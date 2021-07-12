@@ -105,7 +105,10 @@ function migrateActorData(actorData) {
   const updateData = {};
 
   if (actorData.data) {
-    if (actorData.type === 'vehicle') {
+    if (actorData.type === 'character') {
+      _migrateCharacterInjuries(actorData, updateData);
+    }
+    else if (actorData.type === 'vehicle') {
       _migrateVehicleReliability(actorData, updateData);
       _migrateVehicleCrew(actorData, updateData);
       _migrateVehicleComponents(actorData, updateData);
@@ -178,12 +181,12 @@ function migrateSceneData(sceneData) {
         const updates = new Map(update[embeddedName].map(u => [u._id, u]));
         t.actorData[embeddedName].forEach(original => {
           const upd = updates.get(original._id);
-          if (upd) mergeObject(original, upd);
+          if (upd) foundry.utils.mergeObject(original, upd);
         });
         delete update[embeddedName];
       });
 
-      mergeObject(t.actorData, update);
+      foundry.utils.mergeObject(t.actorData, update);
     }
     return t;
   });
@@ -235,6 +238,23 @@ function _migrateWeaponAmmo(itemData, updateData) {
   const mag = itemData.data.mag;
   if (mag.target == undefined) {
     updateData['data.mag.target'] = '';
+    // Deletes old properties.
+    updateData['data.mag.-=value'] = null;
+  }
+  return updateData;
+}
+
+/**
+ * Migrates a character's injuries.
+ * @param {object} actorData
+ * @param {object} updateData
+ * @private
+ */
+function _migrateCharacterInjuries(actorData, updateData) {
+  const crits = actorData.data.crits;
+  if (crits != undefined) {
+    // Deletes old properties.
+    updateData['data.-=crits'] = null;
   }
   return updateData;
 }
@@ -247,7 +267,7 @@ function _migrateWeaponAmmo(itemData, updateData) {
  */
 function _migrateVehicleReliability(actorData, updateData) {
   const rel = actorData.data.reliability;
-  if (rel.score !== undefined) {
+  if (rel.score != undefined) {
     updateData['data.reliability.value'] = RELIABILITY_VALUES[rel.score];
     updateData['data.reliability.max'] = RELIABILITY_VALUES[rel.maxScore];
     // Deletes old properties.
@@ -265,7 +285,7 @@ function _migrateVehicleReliability(actorData, updateData) {
  */
 function _migrateVehicleCrew(actorData, updateData) {
   const oldCrew = actorData.data.crew;
-  if (oldCrew.driver !== undefined) {
+  if (oldCrew.driver != undefined) {
     updateData['data.crew.qty'] = oldCrew.driver;
     updateData['data.crew.passengerQty'] = oldCrew.passenger;
     updateData['data.crew.occupants'] = [];

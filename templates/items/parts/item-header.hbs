@@ -5,12 +5,12 @@
     <div class="header-details flexcol">
         <div class="item-subtitle flexrow">
             <h4 class="item-type">{{item.type}}</h4>
-            {{#unless (eq item.type "specialty")}}
+            {{#if item.isPhysical}}
             <div class="item-qty flexrow flex-right">
                 <input type="text" name="data.qty" value="{{data.qty}}" data-dtype="Number" title="{{localize "T2K4E.ItemSheet.Quantity"}}"/>
                 <div class="flex0">&times;</div>
             </div>
-            {{/unless}}
+            {{/if}}
         </div>
         <h1>
             <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'T2K4E.ItemSheet.Name'}}"/>

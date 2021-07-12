@@ -179,7 +179,7 @@ export async function rollPush(roll, message) {
   // Gets all the message's flags.
   const flags = message.getFlag('t2k4e', 'data') ?? {};
   const oldAmmoSpent = flags.ammoSpent || 0;
-  let newAmmoSpent = -roll.ammoSpent;
+  let newAmmoSpent = -Math.max(1, roll.ammoSpent);
   const actorId = flags.actor;
   const actor = game.actors.get(actorId);
   const ammoId = flags.ammo;
@@ -196,10 +196,12 @@ export async function rollPush(roll, message) {
 
   // Updates the ammunition.
   if (ammo) {
+    flagData.ammoSpent = oldAmmoSpent;
+
     if (oldAmmoSpent !== newAmmoSpent) {
       newAmmoSpent = await ammo.updateAmmo(newAmmoSpent - oldAmmoSpent);
+      flagData.ammoSpent = oldAmmoSpent + newAmmoSpent;
     }
-    flagData.ammoSpent = -roll.ammoSpent;
     flagData.ammo = ammo.id;
     // await m.setFlag('t2k4e', 'ammoSpent', -roll.ammoSpent);
     // await m.setFlag('t2k4e', 'ammo', ammo.id);

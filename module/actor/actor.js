@@ -1,4 +1,4 @@
-import { getDieSize } from '../dice.js';
+import { getDieSize, T2KRoller } from '../dice.js';
 import { T2K4E } from '../config.js';
 
 /**
@@ -329,6 +329,50 @@ export default class ActorT2K extends Actor {
   getVehicleOccupant(crewId) {
     if (this.type !== 'vehicle') return;
     return this.data.data.crew.occupants.find(o => o.id === crewId);
+  }
+
+  /* ------------------------------------------- */
+
+  /**
+   * Gets a collection of crewed actors.
+   * @returns {Collection<string, Actor>} [id, actor]
+   */
+  getCrew() {
+    if (this.type !== 'vehicle') return undefined;
+    const c = new foundry.utils.Collection();
+    for (const o of this.data.data.crew.occupants) {
+      c.set(o.id, game.actors.get(o.id));
+    }
+    return c;
+  }
+
+  /* ------------------------------------------- */
+  /*  Radiation Roll                             */
+  /* ------------------------------------------- */
+
+  /**
+   * Rolls a radiation attack for this character.
+   * @param {object} options Additional task check options
+   * @returns {Promise<import('../../lib/yzur.js').YearZeroRoll|ChatMessage>}
+   */
+  async rollRadiationAttack(options) {
+    if (this.type !== 'character') return;
+
+    const data = this.data.data;
+    const rads = data.rads || {};
+    const sievert = rads.temporary + rads.permanent;
+
+    if (sievert <= 0) return;
+
+    const rollConfig = foundry.utils.mergeObject({
+      title: game.i18n.localize('T2K4E.ActorSheet.RadiationRoll'),
+      actor: this,
+      attribute: data.attributes.str.value,
+      skill: data.skills.stamina.value,
+      modifier: T2K4E.radiationVirulence - sievert,
+    }, options);
+
+    return T2KRoller.taskCheck(rollConfig);
   }
 
   /* ------------------------------------------- */

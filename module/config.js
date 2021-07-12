@@ -123,6 +123,22 @@ T2K4E.vehicle = {
   },
 };
 
+T2K4E.hitLocations = {
+  none: '',
+  head: 'T2K4E.ArmorLocationNames.head',
+  arms: 'T2K4E.ArmorLocationNames.arms',
+  torso: 'T2K4E.ArmorLocationNames.torso',
+  legs: 'T2K4E.ArmorLocationNames.legs',
+};
+
+T2K4E.injuryCategories = {
+  none: '',
+  physical: 'T2K4E.InjuryCategoryNames.physical',
+  mental: 'T2K4E.InjuryCategoryNames.mental',
+};
+
+T2K4E.radiationVirulence = 4;
+
 T2K4E.ranges = [
   'T2K4E.Ranges.close',
   'T2K4E.Ranges.short',
@@ -158,6 +174,8 @@ T2K4E.Icons = {
     secondaryWeapon: '<i class="fas fa-angle-double-up"></i>',
     attack: '<i class="fas fa-crosshairs"></i>',
     reload: '<i class="fas fa-sync-alt"></i>',
+    lethal: '<i class="fas fa-skull"></i>',
+    mental: '<i class="fas fa-brain"></i>',
   },
   armorLocationIcons: {
     head: '<i class="fas fa-hard-hat"></i>',
@@ -165,67 +183,67 @@ T2K4E.Icons = {
     torso: '<i class="fas fa-tshirt"></i>',
     legs: '<i class="fas fa-socks"></i>',
   },
-  diceIcons: {
-    base: {
-      d12: [
-        null,
-        't2k-a1.png',
-        't2k-a0.png',
-        't2k-a0.png',
-        't2k-a0.png',
-        't2k-a0.png',
-        't2k-a6.png',
-        't2k-a6.png',
-        't2k-a6.png',
-        't2k-a6.png',
-        't2k-a10.png',
-        't2k-a10.png',
-        't2k-a10.png',
-      ],
-      d10: [
-        null,
-        't2k-b1.png',
-        't2k-b0.png',
-        't2k-b0.png',
-        't2k-b0.png',
-        't2k-b0.png',
-        't2k-b6.png',
-        't2k-b6.png',
-        't2k-b6.png',
-        't2k-b6.png',
-        't2k-b10.png',
-      ],
-      d8: [
-        null,
-        't2k-c1.png',
-        't2k-c0.png',
-        't2k-c0.png',
-        't2k-c0.png',
-        't2k-c0.png',
-        't2k-c6.png',
-        't2k-c6.png',
-        't2k-c6.png',
-      ],
-      d6: [
-        null,
-        't2k-d1.png',
-        't2k-d0.png',
-        't2k-d0.png',
-        't2k-d0.png',
-        't2k-d0.png',
-        't2k-d6.png',
-      ],
-    },
-    ammo: {
-      d6: [
-        null,
-        't2k-g1.png',
-        't2k-g0.png',
-        't2k-g0.png',
-        't2k-g0.png',
-        't2k-g0.png',
-        't2k-g6.png',
-      ],
-    },
-  },
+  // diceIcons: {
+  //   base: {
+  //     d12: [
+  //       null,
+  //       't2k-a1.png',
+  //       't2k-a0.png',
+  //       't2k-a0.png',
+  //       't2k-a0.png',
+  //       't2k-a0.png',
+  //       't2k-a6.png',
+  //       't2k-a6.png',
+  //       't2k-a6.png',
+  //       't2k-a6.png',
+  //       't2k-a10.png',
+  //       't2k-a10.png',
+  //       't2k-a10.png',
+  //     ],
+  //     d10: [
+  //       null,
+  //       't2k-b1.png',
+  //       't2k-b0.png',
+  //       't2k-b0.png',
+  //       't2k-b0.png',
+  //       't2k-b0.png',
+  //       't2k-b6.png',
+  //       't2k-b6.png',
+  //       't2k-b6.png',
+  //       't2k-b6.png',
+  //       't2k-b10.png',
+  //     ],
+  //     d8: [
+  //       null,
+  //       't2k-c1.png',
+  //       't2k-c0.png',
+  //       't2k-c0.png',
+  //       't2k-c0.png',
+  //       't2k-c0.png',
+  //       't2k-c6.png',
+  //       't2k-c6.png',
+  //       't2k-c6.png',
+  //     ],
+  //     d6: [
+  //       null,
+  //       't2k-d1.png',
+  //       't2k-d0.png',
+  //       't2k-d0.png',
+  //       't2k-d0.png',
+  //       't2k-d0.png',
+  //       't2k-d6.png',
+  //     ],
+  //   },
+  //   ammo: {
+  //     d6: [
+  //       null,
+  //       't2k-g1.png',
+  //       't2k-g0.png',
+  //       't2k-g0.png',
+  //       't2k-g0.png',
+  //       't2k-g0.png',
+  //       't2k-g6.png',
+  //     ],
+  //   },
+  // },
 };

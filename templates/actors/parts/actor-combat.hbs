@@ -131,8 +131,51 @@
 {{#if (eq actor.type 'character')}}
 <div class="flexcol">
 
-  <h3>{{localize "T2K4E.ActorSheet.CriticalInjuries"}}</h3>
-  <textarea name="data.crits" rows="2">{{data.crits}}</textarea>
+  <h3>{{localize "T2K4E.ActorSheet.CriticalInjuries"}}
+    <span class="item-controls">&nbsp;
+      <a class="button item-create" data-type="injury" title="{{localize "T2K4E.ActorSheet.AddInjury"}}">
+        {{{config.Icons.buttons.plus}}}
+      </a>
+    </span>
+  </h3>
+  {{!-- <textarea name="data.crits" rows="2">{{data.crits}}</textarea> --}}
+  <div class="injuries-list">
+    {{#each actor.itemTypes.injury}}
+    <div class="item injury" data-item-id="{{id}}">
+      <a class="item-edit">
+        {{#with data.data}}
+        {{#if (eq category 'mental')}}
+        <span class="injury-location">
+          {{{@root.config.Icons.buttons.mental}}}&nbsp;
+        </span>
+        {{/if}}
+        {{#unless (eq location 'none')}}
+        <span class="injury-location">
+          {{{lookup @root.config.Icons.armorLocationIcons location}}}&nbsp;
+        </span>
+        {{/unless}}
+        <span class="injury-name">{{../name}}</span>
+        {{#if lethal}}
+        <span class="injury-lethality">
+          &nbsp;{{{@root.config.Icons.buttons.lethal}}}
+        </span>
+        {{/if}}
+        {{#if description}}
+        <span class="injury-effect">&nbsp;{{description}}</span>
+        {{/if}}
+        {{#if healTime}}
+        <span class="injury-heal-time">&nbsp;[{{localize "T2K4E.ActorSheet.InjuryTimeLeft" time=healTime}}]</span>
+        {{/if}}
+        {{/with}}
+      </a>
+      <a class="btn btn-small item-delete" title="{{localize "T2K4E.ActorSheet.Delete"}}">
+        {{{@root.config.Icons.buttons.delete}}}
+      </a>
+    </div>
+    {{else}}
+    <div class="no-injury">—</div>
+    {{/each}}
+  </div>
 
   <h3>{{localize "T2K4E.ActorSheet.Diseases"}}</h3>
   <textarea name="data.diseases" rows="2">{{data.diseases}}</textarea>
@@ -143,7 +186,7 @@
 {{!-- RADIATION --}}
 {{#if (eq actor.type 'character')}}
 <div class="radiation col-12">
-  <h2>{{localize "T2K4E.ActorSheet.Radiation"}}</h2>
+  <h2><a class="radiation-roll">{{localize "T2K4E.ActorSheet.Radiation"}}</a></h2>
   <div class="flexrow">
     <div>
       <h3>{{localize "T2K4E.ActorSheet.TemporaryRadiation"}}</h3>

@@ -10,7 +10,7 @@ export default class ItemSheetT2K extends ItemSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['t2k4e', 'sheet', 'item'],
       width: 400,
       height: 550,
@@ -39,9 +39,13 @@ export default class ItemSheetT2K extends ItemSheet {
       inActor: this.item.actor ? true : false,
     };
 
-    // Potential Ammo Targets
-    sheetData.availableAmmoTypes = this._getAvailableAmmoTypes();
-    sheetData.ammunitionTargets = this._getItemAmmunitionTargets();
+    if (['weapon', 'ammunition'].includes(this.item.type)) {
+      // Potential Ammo Targets
+      sheetData.availableAmmoTypes = this._getAvailableAmmoTypes();
+    }
+    if (this.item.type === 'weapon') {
+      sheetData.ammunitionTargets = this._getItemAmmunitionTargets();
+    }
 
     return sheetData;
   }
@@ -63,7 +67,7 @@ export default class ItemSheetT2K extends ItemSheet {
    * Extracts the ammo types stored in the items provided.
    * @param   {Item[]} items      List of items
    * @param   {Set}   [ammoTypes] A collection of ammo types
-   * @returns {Set<string>} Returns a set object because it removes the duplicates.
+   * @returns {Set<string>} Returns a Set object because it removes the duplicates.
    * @private
    */
   _extractAmmoTypes(items = [], ammoTypes = new Set()) {

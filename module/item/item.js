@@ -17,6 +17,10 @@ export default class ItemT2K extends Item {
     return this.data.data.qty;
   }
 
+  get isPhysical() {
+    return T2K4E.physicalItems.includes(this.type);
+  }
+
   get hasDamage() {
     return !!this.data.data.damage;
   }
@@ -26,7 +30,7 @@ export default class ItemT2K extends Item {
   }
 
   get isStashed() {
-    if (T2K4E.physicalItems.includes(this.type)) return this.data.data.backpack;
+    if (this.isPhysical) return this.data.data.backpack;
     return null;
   }
 
@@ -54,7 +58,7 @@ export default class ItemT2K extends Item {
    */
   get detailedName() {
     let str = this.name;
-    if (this.type == 'ammunition') {
+    if (this.type === 'ammunition') {
       const ammo = this.data.data.ammo;
       str += ` [${ammo.value}/${ammo.max}]`;
     }
@@ -198,14 +202,13 @@ export default class ItemT2K extends Item {
   /**
    * Places an attack using an item (weapon, grenade, or equipment).
    * @param {object} options Roll options which are configured and provided to the task check
+   * @param {Actor}  actor   (for Vehicles) You can define another actor that holds the weapon
    * @returns {Promise<YearZeroRoll|ChatMessage>}
    * @async
    */
-  async rollAttack(options = {}) {
+  async rollAttack(options = {}, actor = null) {
     if (!this.hasAttack) throw new Error('You may not place an Attack Roll with this Item.');
-    if (!this.actor) throw new Error('This weapon has no owner.');
-    // TODO attacks from vehicles.
-    if (this.actor.type === 'vehicle') throw new Error('Attacks from Vehicle are not supported yet');
+    if (!this.actor) throw new Error('This weapon has no bearer.');
 
     // Prepares data.
     const itemData = this.data.data;
@@ -216,7 +219,8 @@ export default class ItemT2K extends Item {
     const isDisposable = itemData.props.disposable;
 
     // Prepares values.
-    const actorData = this.actor.data.data;
+    if (!actor) actor = this.actor;
+    const actorData = actor.data.data;
     const attribute = actorData.attributes[attributeName].value;
     const skill = actorData.skills[skillName].value;
     let rof = itemData.rof;
@@ -226,13 +230,17 @@ export default class ItemT2K extends Item {
     if (this.hasAmmo) {
       ammo = this.actor.items.get(this.data.data.mag.target);
       if (ammo?.data) {
-        const ammoLeft = ammo.data.data.ammo.value;
+        const ammoLeft = ammo.data.data.ammo.value ?? ammo.data.data.qty;
         if (ammoLeft <= 0) {
           ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoAmmoLeft', { weapon: this.name }));
           return;
         }
         title += ` [${ammo.name}]`;
         rof = Math.min(rof, ammoLeft);
+      }
+      else {
+        ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoMag', { weapon: this.name }));
+        return;
       }
     }
 
@@ -250,16 +258,17 @@ export default class ItemT2K extends Item {
     }
 
     // Composes the options for the task check.
-    const rollOptions = foundry.utils.mergeObject({
+    const rollConfig = foundry.utils.mergeObject({
       title,
-      actor: this.actor,
-      item: this,
       attribute, skill, rof,
       locate: true,
     }, options);
+    // Better to not put them in a mergeObject:
+    rollConfig.actor = actor;
+    rollConfig.item = this;
 
     // Performs the task check.
-    const message = await T2KRoller.taskCheck(rollOptions);
+    const message = await T2KRoller.taskCheck(rollConfig);
     if (!message) return;
     if (message instanceof YearZeroRoll) return message;
 
@@ -320,22 +329,38 @@ export default class ItemT2K extends Item {
   /* ------------------------------------------- */
 
   /**
-   * Updates the ammo value of a magazine based on the interval [0, max].
+   * Updates the ammo value of a magazine based on its interval [0, max].
    * @param {number}   modifier     How much to modify the magazine
    * @param {boolean} [update=true] Whether to update the ammo item
    * @returns {number} The real difference applied
    * @async
    */
   async updateAmmo(modifier, update = true) {
-    const ammoData = this.data.data.ammo;
-    if (this.type !== 'ammunition' || !ammoData) {
+    if (modifier === 0) return 0;
+
+    let ammoData = {};
+    if (this.type === 'ammunition') {
+      ammoData = this.data.data.ammo;
+    }
+    else if (this.type === 'weapon') {
+      ammoData = {
+        value: this.data.data.qty,
+        max: 100000,
+      };
+    }
+    else {
       throw new Error('t2k4e | ItemT2K#updateAmmo() | This is not an ammunition!');
     }
     const ammoValue = ammoData.value || 0;
     const ammoMax = ammoData.max;
     const newAmmoValue = Math.clamped(ammoValue + modifier, 0, ammoMax);
 
-    if (update) await this.update({ 'data.ammo.value': newAmmoValue });
+    if (update) {
+      switch (this.type) {
+        case 'ammunition': await this.update({ 'data.ammo.value': newAmmoValue }); break;
+        case 'weapon': await this.update({ 'data.qty': newAmmoValue }); break;
+      }
+    }
     return newAmmoValue - ammoValue;
   }
 
@@ -504,4 +529,5 @@ ItemT2K.CHAT_TEMPLATE = {
   'armor': 'systems/t2k4e/templates/chat/armor-chat.hbs',
   'gear': 'systems/t2k4e/templates/chat/gear-chat.hbs',
   'ammunition': 'systems/t2k4e/templates/chat/gear-chat.hbs',
+  // TODO injury template
 };

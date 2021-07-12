@@ -1,5 +1,5 @@
 import ActorSheetT2K from './actorSheet.js';
-import { T2KRoller, getDieSize, getAttributeAndSkill } from '../dice.js';
+import { T2KRoller, getAttributeAndSkill } from '../dice.js';
 
 /**
  * Twilight 2000 Actor Sheet for Character.
@@ -7,15 +7,21 @@ import { T2KRoller, getDieSize, getAttributeAndSkill } from '../dice.js';
  */
 export default class ActorSheetT2KCharacter extends ActorSheetT2K {
 
+  /* ------------------------------------------- */
+  /*  Sheet Properties                           */
+  /* ------------------------------------------- */
+
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['t2k4e', 'sheet', 'actor', 'character'],
       width: 550,
       height: 715,
     });
   }
 
+  /* ------------------------------------------- */
+  /*  Sheet Data Preparation                     */
   /* ------------------------------------------- */
 
   // /** @override */
@@ -24,6 +30,8 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
   //   return data;
   // }
 
+  /* ------------------------------------------- */
+  /*  Sheet Listeners                            */
   /* ------------------------------------------- */
 
   /** @override */
@@ -46,6 +54,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
       html.find('.skill-roll').click(this._onSkillRoll.bind(this));
       html.find('.cuf-roll').click(this._onCoolnessRoll.bind(this));
       html.find('.unit-morale-roll').click(this._onUnitMoraleRoll.bind(this));
+      html.find('.radiation-roll').click(this._onRadiationRoll.bind(this));
     }
   }
 
@@ -64,6 +73,8 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
   // 	});
   // }
 
+  /* ------------------------------------------- */
+
   _onAttributeRoll(event) {
     event.preventDefault();
     const attributeName = event.currentTarget.dataset.attribute;
@@ -77,6 +88,8 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
       askForOptions: event.shiftKey,
     });
   }
+
+  /* ------------------------------------------- */
 
   _onSkillRoll(event) {
     event.preventDefault();
@@ -110,6 +123,13 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
       actor: this.actor,
       unitMorale: type === 'cuf' ? false : true,
     });
+  }
+
+  /* ------------------------------------------- */
+
+  _onRadiationRoll(event) {
+    event.preventDefault();
+    return this.actor.rollRadiationAttack({ askForOptions: event.shiftKey });
   }
 
   /* ------------------------------------------- */

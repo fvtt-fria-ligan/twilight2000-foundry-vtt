@@ -39,6 +39,10 @@
       "sleepless": "Sleep Deprived",
       "hypothermic": "Hypothermic"
     },
+    "InjuryCategoryNames": {
+      "physical": "Physical",
+      "mental": "Mental"
+    },
     "ActionNames": {
       "fast": "Fast",
       "slow": "Slow"
@@ -55,6 +59,7 @@
       "armor": "Armor",
       "gear": "Gear",
       "grenade": "Grenade",
+      "injury": "Injury",
       "specialty": "Specialty",
       "weapon": "Weapon"
     },
@@ -65,6 +70,11 @@
       "ammoBelt": "Ammo Belt",
       "magazine": "Is Magazine",
       "armored": "Armored"
+    },
+    "ActorTypes": {
+      "character": "Player Character (PC)",
+      "npc": "Non-Player Character (NPC)",
+      "vehicle": "Vehicle"
     },
     "ActorSheet": {
       "Name": "Name",
@@ -102,8 +112,11 @@
       "NoArmor": "This character has no equipped armor.",
       "Conditions": "Conditions",
       "CriticalInjuries":"Critical Injuries",
+      "AddInjury": "Add a new injury",
+      "InjuryTimeLeft": "{time} left",
       "Diseases": "Diseases",
       "Radiation": "Radiation",
+      "RadiationRoll": "Rad Attack",
       "TemporaryRadiation": "Temporary",
       "PermanentRadiation": "Permanent",
       "EncumbranceFull": "FULL",
@@ -128,8 +141,10 @@
         "armor": "New Armor",
         "gear": "New Gear",
         "ammunition": "New Ammunition",
-        "specialty": "New Specialty"
-      }
+        "specialty": "New Specialty",
+        "injury": "New Injury"
+      },
+      "NotifWrongItemType": "\"{type}\" items cannot be added to a {actor}!"
     },
     "VehicleSheet": {
       "CrewTab": "Crew",
@@ -216,6 +231,14 @@
       "Equipped": "Equipped",
       "StoredInBackpack": "Stored in the backpack"
     },
+    "InjurySheet": {
+      "Category": "Category",
+      "Location" : "Location",
+      "TimeLimit": "Time Limit",
+      "HealTime": "Heal Time",
+      "Effect": "Effect",
+      "Lethal": "Lethal"
+    },
     "Chat": {
       "Actions": {
         "Attack": "Attack",
@@ -226,7 +249,6 @@
       "Roll": {
         "Success": "Success",
         "Successes": "Successes",
-        "CannotPush": "This roll has already been pushed",
         "Pushed": "— Pushed",
         "Suppression": "Suppression",
         "ExtraHit": "Extra Hit",
@@ -239,12 +261,14 @@
     "Combat": {
       "Attack": "{weapon} — Attack",
       "NoQuantityLeft": "No unit left for weapon {weapon}.",
-      "NoAmmoLeft": "No ammo left in the magazine of the weapon {weapon}."
+      "NoAmmoLeft": "No ammo left in the magazine of the weapon {weapon}.",
+      "NoMag": "Please insert a magazine for the weapon {weapon}."
     },
     "Dialog": {
       "Actions": {
         "Normal": "Roll",
         "Reload": "Reload",
+        "Ok": "OK",
         "Cancel": "Cancel"
       },
       "Roll": {
@@ -260,6 +284,9 @@
       "CuF": {
         "CoolnessUnderFire": "Coolness Under Fire (CUF)",
         "UnitMorale": "Add the Unit Morale?"
+      },
+      "Actor": {
+        "ChooseActor": "Choose an Actor"
       }
     }
   },

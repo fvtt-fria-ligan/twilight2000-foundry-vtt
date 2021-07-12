@@ -19,7 +19,7 @@ export function addChatListeners(html) {
 /**
  * Triggers a push from the chat.
  * @param {Event} event
- * @returns {Promise<import('../lib/yzur.js').YearZeroRoll>}
+ * @returns {Promise<import('../lib/yzur.js').YearZeroRoll|ChatMessage>}
  */
 function _onRollPush(event) {
   event.preventDefault();
