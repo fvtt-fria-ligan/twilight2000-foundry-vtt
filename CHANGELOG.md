@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
-## [1.0.0-final+FoundryV8] - 2021-07-10
+## [1.0.1-hotfix] - 2021-07-12
+
+### Fixed
+- Bug: impossible to add non-physical items to a character, and vice-versa for vehicles.
+
+## [1.0.0-final+FoundryV8] - 2021-07-12
 
 > :warning: **Major Update with Breaking Changes**
 > This is a major update from the alpha version. Migration should work fine, but issues may occur.

@@ -24,7 +24,7 @@
   </a>
 </p>
 
-> A system for Twilight 2000 4E (Free League Publishing) on Foundry VTT.
+> An OFFICIAL system for Twilight 2000 4E (Free League Publishing) on Foundry VTT.
 
 <p align="center">
   <a href="https://frialigan.se/en/games/twilight-2000/" target="_blank">
