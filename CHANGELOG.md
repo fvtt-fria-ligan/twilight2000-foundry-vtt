@@ -12,7 +12,9 @@ All notable changes to this project will be documented in this file.
 > If the update inadvertedly broke your world, restore your backup and roll back to the [previous version](https://github.com/Stefouch/t2k4e/releases/tag/0.7.3) of the T2K system. Then contact me to solve the issue ([find me on Discord](https://discordapp.com/invite/DDBZUDf) or [open an issue](https://github.com/Stefouch/t2k4e/issues)).
 
 ### Breaking Change
-- New Ammunition Management: All ammo values in all weapons will be erased with this update. Now, to choose an ammo for a weapon, you must select a magazine from your inventory with a corresponding ammo type.
+- Foundry 0.8.x!
+- New Ammunition Management: All ammo values in all weapons will be erased with this update (only the current value, not the max). Now, to choose an ammo for a weapon, you must select a magazine from your inventory with a corresponding ammo type.
+- New Critical Injuries Management: The content of the textarea used to write your critical injuries will be erased and replaced by a more user-friendly way for tracking them.
 
 ### Changed
 - Compatibility with the latest Foundry version (v0.8.8).
@@ -27,18 +29,21 @@ All notable changes to this project will be documented in this file.
 - Dice So Nice configuration for the rolls.
 - Crew management for vehicles.
 - Components management for vehicles.
+- New item: `injury`, for tracking critical injuries.
+- Ammo tracking: rolling an attack with ammo dice will consume ammo from your inventory.
+- Radiation Attacks rolling.
 - More options for the roll dialog.
 - Clicking an input field will now select its whole value.
 - Editing a number input field in an item sheet with `+`/`-`/`=` will increase/decrease/set the value accordingly.
 - Rolls in the chat are more wordy.
 - New property for weapon Items: `Armored` (used by weapons mounted on vehicles).
-- Attack rolls now consume ammo.
 - Migration script.
 - [Discussions](https://github.com/Stefouch/t2k4e/discussions).
 - Templates for issues reporting and pull requests.
 
 ### Fixed
 - Bug: broken encumbrance & backpack progress bars (at the bottom of the Gear tab in a character sheet).
+- Bug: impossible to shoot a weapon from a vehicle.
 
 ## [0.7.3-alpha] - 2021-01-19
 ### Added
