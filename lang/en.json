@@ -1,232 +1,327 @@
 {
-	"T2K4E": {
-		"SheetClassCharacter": "Character Sheet",
-		"SheetClassVehicle": "Vehicle Sheet",
-		"Attribute": "Attribute",
-		"Attributes": "Attributes",
-		"AttributeNames": {
-			"str": "Strength",
-			"agl": "Agility",
-			"int": "Intelligence",
-			"emp": "Empathy"
-		},
-		"Skill": "Skill",
-		"Skills": "Skills",
-		"SkillNames": {
-			"none": "–",
-			"heavyWeapons": "Heavy Weapons",
-			"closeCombat": "Close Combat",
-			"stamina": "Stamina",
-			"driving": "Driving",
-			"mobility": "Mobility",
-			"rangedCombat": "Ranged Combat",
-			"recon": "Recon",
-			"survival": "Survival",
-			"tech": "Tech",
-			"command": "Command",
-			"persuasion": "Persuasion",
-			"medicalAid": "Medical Aid"
-		},
-		"ArmorLocationNames": {
-			"head": "Head",
-			"arms": "Arms",
-			"torso": "Torso",
-			"legs": "Legs"
-		},
-		"ConditionNames": {
-			"starving": "Starving",
-			"dehydrated": "Dehydrated",
-			"sleepless": "Sleep Deprived",
-			"hypothermic": "Hypothermic"
-		},
-		"ActionNames": {
-			"fast": "Fast",
-			"slow": "Slow"
-		},
-		"Ranges": {
-			"close": "In close combat",
-			"short": "Short",
-			"medium": "Medium",
-			"long": "Long",
-			"extreme": "Extreme"
-		},
-		"ItemTypes": {
-			"ammunition": "Ammunition",
-			"armor": "Armor",
-			"gear": "Gear",
-			"grenade": "Grenade",
-			"specialty": "Specialty",
-			"weapon": "Weapon"
-		},
-		"ItemPropNames": {
-			"twoHanded": "Two-Handed",
-			"mounted": "Mounted",
-			"disposable": "Disposable",
-			"ammoBelt": "Ammo Belt",
-			"magazine": "Is Magazine"
-		},
-		"ActorSheet": {
-			"Name": "Name",
-			"MainTab": "Stats",
-			"CombatTab": "Combat",
-			"EquipmentTab": "Gear",
-			"BiographyTab": "Bio",
-			"NoteTab": "Notes",
-			"Nationality": "Nationality",
-			"Branch": "Branch",
-			"MilitaryRank": "Rank",
-			"HitCapacity": "Hit Capacity",
-			"StressCapacity": "Stress Capacity",
-			"CapacityModifier": "Modifier:",
-			"Experience": "Experience",
-			"ExperienceCurrent": "XP Current",
-			"ExperienceTotal": "XP Total",
-			"Appearance": "Appearance",
-			"MoralCode": "Moral Code",
-			"Buddy": "Buddy",
-			"BigDream": "Big Dream",
-			"GroupMeeting": "How you met the group:",
-			"AttributesAndSkills": "Attributes & Skills",
-			"Rating": "Rating",
-			"BaseDie": "Base Die",
-			"Specialties": "Specialties",
-			"AddSpecialty": "Add a new specialty",
-			"NoSpecialty": "This character has no specialty. Click the \"+\" icon to add a new specialty.",
-			"Combat": "Combat",
-			"Actions": "Actions",
-			"Current": "Current",
-			"Max": "Max",
-			"CuF": "Coolness Under Fire",
-			"UnitMorale": "Unit Morale",
-			"NoArmor": "This character has no equipped armor.",
-			"Conditions": "Conditions",
-			"CriticalInjuries":"Critical Injuries",
-			"Diseases": "Diseases",
-			"Radiation": "Radiation",
-			"TemporaryRadiation": "Temporary",
-			"PermanentRadiation": "Permanent",
-			"EncumbranceFull": "FULL",
-			"EncumbranceTooHeavy": "TOO HEAVY",
-			"Weapons": "Weapons",
-			"AddWeapon": "Add a new weapon",
-			"Unarmed": "Unarmed",
-			"Cover": "Cover",
-			"Add": "Add",
-			"AddArmor": "Add a new armor",
-			"AddGear": "Add new gear",
-			"AddAmmo": "Add new ammunition",
-			"Encumbrance": "Encumbrance",
-			"CombatGearEncumbrance":"Combat Gear (Encumbrance)",
-			"BackpackEncumbrance": "Backpack (Encumbrance)",
-			"Equip": "Equip",
-			"Store": "Store in the backpack",
-			"Edit": "Edit",
-			"Delete": "Delete",
-			"NewItem": {
-				"weapon": "New Weapon",
-				"armor": "New Armor",
-				"gear": "New Gear",
-				"ammunition": "New Ammunition",
-				"specialty": "New Specialty"
-			}
-		},
-		"VehicleSheet": {
-			"CrewTab": "Crew",
-			"CombatTab": "Combat",
-			"CargoTab": "Cargo",
-			"ComponentsTab": "Components",
-			"VehicleType": "Vehicle Type",
-			"Reliability": "Reliability",
-			"Movement": "Movement",
-			"CombatSpeed": "Combat Speed",
-			"TravelSpeed": "Travel Speed",
-			"Wheels": "Wheels",
-			"Tracks": "Tracks",
-			"Fuel": "Fuel",
-			"FuelCapacity": "Fuel Capacity",
-			"FuelConsumption": "Fuel Consumption",
-			"Gasoline": "Gasoline",
-			"Diesel": "Diesel",
-			"Drivers": "Drivers",
-			"Passengers": "Passengers",
-			"Armor": "Armor",
-			"FrontArmor": "Front",
-			"SideArmor": "Side",
-			"RearArmor": "Rear",
-			"Damage": "Damage",
-			"MountedWeapons1": "Primary Weapons",
-			"MountedWeapons2": "Secondary Weapons",
-			"MountedWeaponType": "Type",
-			"CargoCapacity": "Cargo Capacity:",
-			"CrewCargo": "Crew Weight:",
-			"VehicleEncumbrance": "Encumbrance (Vehicle)",
-			"Mount": "Mount weapon",
-			"Unmount": "Unmount weapon",
-			"MoveMount": "Toggle weapon mount",
-			"Price": "Price"
-		},
-		"ItemSheet": {
-			"Name": "Name",
-			"FeaturesTab": "Features",
-			"ModifiersTab": "Modifiers",
-			"DescriptionTab": "Notes",
-			"AttributeUsed": "Attribute Used",
-			"SkillUsed": "Skill Used",
-			"Quantity": "Quantity",
-			"ItemType": "Type",
-			"Ammo": "Ammo",
-			"AmmoType": "Ammo Identifier",
-			"Reliability": "Rel",
-			"RoF": "RoF",
-			"Damage": "Damage",
-			"Crit": "Crit",
-			"Blast": "Blast",
-			"Range": "Range",
-			"Mag": "Mag",
-			"Armor": "Armor",
-			"Weight": "Weight",
-			"Price": "Price",
-			"ArmorLocation": "Protected Location",
-			"Equipped": "Equipped",
-			"StoredInBackpack": "Stored in the backpack"
-		},
-		"Chat": {
-			"Actions": {
-				"Attack": "Attack",
-				"Reload": "Reload",
-				"Roll": "Roll",
-				"Push": "Push"
-			},
-			"Roll": {
-				"Success": "Success",
-				"Successes": "Successes",
-				"CannotPush": "This roll has already been pushed",
-				"Pushed": "— Pushed",
-				"Suppression": "Suppression",
-				"ExtraHit": "Extra Hit",
-				"ExtraHits": "Extra Hits",
-				"Mishap": "Mishap",
-				"AmmoSpent": "Ammo Spent"
-			},
-			"Attack": {
-				"Title": "Attack ({weapon})"
-			}
-		},
-		"Dialog": {
-			"Actions": {
-				"Reload": "Reload",
-				"Cancel": "Cancel"
-			},
-			"Roll": {
-				"Modifier": "Modifier",
-				"RoF": "Rate of Fire"
-			}
-		}
-	},
-	"SETTINGS": {
-		"showTaskCheckOptions": {
-			"name": "Ask for Task Check options by default.",
-			"label": "Hold Shift to Toggle."
-		}
-	}
+  "T2K4E": {
+    "SheetClassCharacter": "Character Sheet",
+    "SheetClassVehicle": "Vehicle Sheet",
+    "Attribute": "Attribute",
+    "Attributes": "Attributes",
+    "AttributeNames": {
+      "str": "Strength",
+      "agl": "Agility",
+      "int": "Intelligence",
+      "emp": "Empathy"
+    },
+    "Skill": "Skill",
+    "Skills": "Skills",
+    "SkillNames": {
+      "none": "–",
+      "heavyWeapons": "Heavy Weapons",
+      "closeCombat": "Close Combat",
+      "stamina": "Stamina",
+      "driving": "Driving",
+      "mobility": "Mobility",
+      "rangedCombat": "Ranged Combat",
+      "recon": "Recon",
+      "survival": "Survival",
+      "tech": "Tech",
+      "command": "Command",
+      "persuasion": "Persuasion",
+      "medicalAid": "Medical Aid"
+    },
+    "ArmorLocationNames": {
+      "head": "Head",
+      "arms": "Arms",
+      "torso": "Torso",
+      "legs": "Legs"
+    },
+    "ConditionNames": {
+      "starving": "Starving",
+      "dehydrated": "Dehydrated",
+      "sleepless": "Sleep Deprived",
+      "hypothermic": "Hypothermic"
+    },
+    "InjuryCategoryNames": {
+      "physical": "Physical",
+      "mental": "Mental"
+    },
+    "ActionNames": {
+      "fast": "Fast",
+      "slow": "Slow"
+    },
+    "Ranges": {
+      "close": "In close combat",
+      "short": "Short",
+      "medium": "Medium",
+      "long": "Long",
+      "extreme": "Extreme"
+    },
+    "ItemTypes": {
+      "ammunition": "Ammunition",
+      "armor": "Armor",
+      "gear": "Gear",
+      "grenade": "Grenade",
+      "injury": "Injury",
+      "specialty": "Specialty",
+      "weapon": "Weapon"
+    },
+    "ItemPropNames": {
+      "twoHanded": "Two-Handed",
+      "mounted": "Mounted",
+      "disposable": "Disposable",
+      "ammoBelt": "Ammo Belt",
+      "magazine": "Is Magazine",
+      "armored": "Armored"
+    },
+    "ActorTypes": {
+      "character": "Player Character (PC)",
+      "npc": "Non-Player Character (NPC)",
+      "vehicle": "Vehicle"
+    },
+    "ActorSheet": {
+      "Name": "Name",
+      "MainTab": "Stats",
+      "CombatTab": "Combat",
+      "EquipmentTab": "Gear",
+      "BiographyTab": "Bio",
+      "NoteTab": "Notes",
+      "Nationality": "Nationality",
+      "Branch": "Branch",
+      "MilitaryRank": "Rank",
+      "HitCapacity": "Hit Capacity",
+      "StressCapacity": "Stress Capacity",
+      "CapacityModifier": "Modifier:",
+      "Experience": "Experience",
+      "ExperienceCurrent": "XP Current",
+      "ExperienceTotal": "XP Total",
+      "Appearance": "Appearance",
+      "MoralCode": "Moral Code",
+      "Buddy": "Buddy",
+      "BigDream": "Big Dream",
+      "GroupMeeting": "How you met the group:",
+      "AttributesAndSkills": "Attributes & Skills",
+      "Rating": "Rating",
+      "BaseDie": "Base Die",
+      "Specialties": "Specialties",
+      "AddSpecialty": "Add a new specialty",
+      "NoSpecialty": "This character has no specialty. Click the \"+\" icon to add a new specialty.",
+      "Combat": "Combat",
+      "Actions": "Actions",
+      "Current": "Current",
+      "Max": "Max",
+      "CuF": "Coolness Under Fire",
+      "UnitMorale": "Unit Morale",
+      "NoArmor": "This character has no equipped armor.",
+      "Conditions": "Conditions",
+      "CriticalInjuries":"Critical Injuries",
+      "AddInjury": "Add a new injury",
+      "InjuryTimeLeft": "{time} left",
+      "Diseases": "Diseases",
+      "Radiation": "Radiation",
+      "RadiationRoll": "Rad Attack",
+      "TemporaryRadiation": "Temporary",
+      "PermanentRadiation": "Permanent",
+      "EncumbranceFull": "FULL",
+      "EncumbranceTooHeavy": "TOO HEAVY",
+      "Weapons": "Weapons",
+      "AddWeapon": "Add a new weapon",
+      "Unarmed": "Unarmed",
+      "Cover": "Cover",
+      "Add": "Add",
+      "AddArmor": "Add a new armor",
+      "AddGear": "Add new gear",
+      "AddAmmo": "Add new ammunition",
+      "Encumbrance": "Encumbrance",
+      "CombatGearEncumbrance":"Combat Gear (Encumbrance)",
+      "BackpackEncumbrance": "Backpack (Encumbrance)",
+      "Equip": "Equip",
+      "Store": "Store in the backpack",
+      "Edit": "Edit",
+      "Delete": "Delete",
+      "NewItem": {
+        "weapon": "New Weapon",
+        "armor": "New Armor",
+        "gear": "New Gear",
+        "ammunition": "New Ammunition",
+        "specialty": "New Specialty",
+        "injury": "New Injury"
+      },
+      "NotifWrongItemType": "\"{type}\" items cannot be added to a {actor}!"
+    },
+    "VehicleSheet": {
+      "CrewTab": "Crew",
+      "ComponentsTab": "Components",
+      "CombatTab": "Combat",
+      "CargoTab": "Cargo",
+      "VehicleType": "Vehicle Type",
+      "Reliability": "Reliability",
+      "Movement": "Movement",
+      "CombatSpeed": "Combat Speed",
+      "TravelSpeed": "Travel Speed",
+      "Wheels": "Wheels",
+      "Tracks": "Tracks",
+      "Fuel": "Fuel",
+      "FuelCapacity": "Fuel Capacity",
+      "FuelConsumption": "Fuel Consumption",
+      "Gasoline": "Gasoline",
+      "Diesel": "Diesel",
+      "CrewQty": "Crew:",
+      "PassengerQty": "Passengers:",
+      "EmptyCrew": "Drag-'n-drop an actor to add it to the crew.",
+      "Armor": "Armor",
+      "FrontArmor": "Front",
+      "SideArmor": "Side",
+      "RearArmor": "Rear",
+      "Damage": "Damage",
+      "MountedWeapons1": "Primary Weapons",
+      "MountedWeapons2": "Secondary Weapons",
+      "MountedWeaponType": "Type",
+      "CargoCapacity": "Cargo Capacity:",
+      "CrewCargo": "Crew Weight:",
+      "VehicleEncumbrance": "Encumbrance (Vehicle)",
+      "Mount": "Mount weapon",
+      "Unmount": "Unmount weapon",
+      "MoveMount": "Toggle weapon mount",
+      "Price": "Price",
+      "CrewPositions": {
+        "Driver": "DRIVER",
+        "Gunner": "GUNNER",
+        "Commander": "COMMANDER",
+        "Passenger": "PASSENGER"
+      },
+      "ExposedPassenger": "Exposed",
+      "InnerComponents": "Inner Components",
+      "OuterComponents": "Outer Components",
+      "ComponentDamage": "Quantity of damage dealt to this component",
+      "FcsType": "Type",
+      "Components": {
+        "fuel": "Fuel",
+        "engine": "Engine",
+        "suspension": "Suspension",
+        "ammunition": "Ammunition",
+        "radio": "Radio",
+        "trackWheel": "Tracks / Wheels",
+        "fcs": "Fire Control System",
+        "antenna": "Antenna"
+      },
+      "HasTrailer": "Has a trailer"
+    },
+    "ItemSheet": {
+      "Name": "Name",
+      "FeaturesTab": "Features",
+      "ModifiersTab": "Modifiers",
+      "DescriptionTab": "Notes",
+      "AttributeUsed": "Attribute Used",
+      "SkillUsed": "Skill Used",
+      "WeaponMagazine": "Magazine",
+      "Quantity": "Quantity",
+      "ItemType": "Type",
+      "Ammo": "Ammo",
+      "AmmoType": "Ammo Identifier",
+      "OverrideOption": "Override Weapon's Features",
+      "Reliability": "Rel",
+      "RoF": "RoF",
+      "Damage": "Damage",
+      "Crit": "Crit",
+      "Blast": "Blast",
+      "Range": "Range",
+      "Mag": "Mag",
+      "Armor": "Armor",
+      "Weight": "Weight",
+      "Price": "Price",
+      "ArmorLocation": "Protected Location",
+      "Equipped": "Equipped",
+      "StoredInBackpack": "Stored in the backpack"
+    },
+    "InjurySheet": {
+      "Category": "Category",
+      "Location" : "Location",
+      "TimeLimit": "Time Limit",
+      "HealTime": "Heal Time",
+      "Effect": "Effect",
+      "Lethal": "Lethal"
+    },
+    "Chat": {
+      "Actions": {
+        "Attack": "Attack",
+        "Reload": "Reload",
+        "Roll": "Roll",
+        "Push": "Push"
+      },
+      "Roll": {
+        "Success": "Success",
+        "Successes": "Successes",
+        "Pushed": "— Pushed",
+        "Suppression": "Suppression",
+        "ExtraHit": "Extra Hit",
+        "ExtraHits": "Extra Hits",
+        "Mishap": "Mishap",
+        "AmmoSpent": "Ammo Spent",
+        "NoItemNotif": "The item does not exist anymore."
+      }
+    },
+    "Combat": {
+      "Attack": "{weapon} — Attack",
+      "NoQuantityLeft": "No unit left for weapon {weapon}.",
+      "NoAmmoLeft": "No ammo left in the magazine of the weapon {weapon}.",
+      "NoMag": "Please insert a magazine for the weapon {weapon}."
+    },
+    "Dialog": {
+      "Actions": {
+        "Normal": "Roll",
+        "Reload": "Reload",
+        "Ok": "OK",
+        "Cancel": "Cancel"
+      },
+      "Roll": {
+        "Attribute": "Attribute",
+        "Skill": "Skill",
+        "Formula": "Formula",
+        "RoF": "Rate of Fire",
+        "Modifier": "Modifier",
+        "Locate": "Add a Hit Die?",
+        "MaxPush": "Max Pushes",
+        "RollMode": "Roll Mode"
+      },
+      "CuF": {
+        "CoolnessUnderFire": "Coolness Under Fire (CUF)",
+        "UnitMorale": "Add the Unit Morale?"
+      },
+      "Actor": {
+        "ChooseActor": "Choose an Actor"
+      }
+    }
+  },
+  "SETTINGS": {
+    "showTaskCheckOptions": {
+      "name": "Ask for Task Check Options by Default",
+      "label": "Hold Shift to toggle."
+    }
+  },
+  "YZUR": {
+    "CHAT.ROLL.Push": "Push",
+    "CHAT.ROLL.HitLocation": "Hit Location:",
+    "CHAT.ROLL.HitLocations": "Hit Locations:",
+    "CHAT.ROLL.Locations": {
+      "1": "Legs",
+      "2": "Torso",
+      "3": "Torso",
+      "4": "Torso",
+      "5": "Arms",
+      "6": "Head"
+    },
+    "CHAT.ROLL.ExtraHit": "Extra Hit:",
+    "CHAT.ROLL.ExtraHits": "Extra Hits:",
+    "CHAT.ROLL.Suppression": "Suppression:",
+    "CHAT.ROLL.AmmoSpent": "Ammunition Spent:",
+    "CHAT.ROLL.DamageOrStress": "Damage/Stress:",
+    "CHAT.ROLL.JamCount": "Reliability:",
+    "CHAT.ROLL.Jammed": "WEAPON JAM!!",
+    "DIETYPES": {
+      "D6TwilightDie": "Base D6",
+      "D8TwilightDie": "Base D8",
+      "D10TwilightDie": "Base D10",
+      "D12TwilightDie": "Base D12",
+      "AmmoDie": "Ammo",
+      "LocationDie": "Hit Die"
+    }
+  }
 }

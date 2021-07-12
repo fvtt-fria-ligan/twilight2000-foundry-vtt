@@ -1,385 +1,390 @@
 {
-	"Actor": {
-		"types": [
-			"character",
-			"npc",
-			"vehicle"
-		],
-		"templates": {
-			"actorBio": {
-				"bio": {
-					"nationality": "",
-					"branch": "",
-					"militaryRank": "",
-					"buddy": "",
-					"appearance": "",
-					"moralCode": "",
-					"bigDream": "",
-					"groupMeeting": ""
-				}
-			},
-			"actorDescription": {
-				"description": ""
-			},
-			"actorAttributesAndSkills": {
-				"attributes": {
-					"str": {
-						"score": "C"
-					},
-					"agl": {
-						"score": "C"
-					},
-					"int": {
-						"score": "C"
-					},
-					"emp": {
-						"score": "C"
-					}
-				},
-				"skills": {
-					"heavyWeapons": {
-						"score": "–"
-					},
-					"closeCombat": {
-						"score": "–"
-					},
-					"stamina": {
-						"score": "–"
-					},
-					"driving": {
-						"score": "–"
-					},
-					"mobility": {
-						"score": "–"
-					},
-					"rangedCombat": {
-						"score": "–"
-					},
-					"recon": {
-						"score": "–"
-					},
-					"survival": {
-						"score": "–"
-					},
-					"tech": {
-						"score": "–"
-					},
-					"command": {
-						"score": "–"
-					},
-					"persuasion": {
-						"score": "–"
-					},
-					"medicalAid": {
-						"score": "–"
-					}
-				}
-			},
-			"actorCombat": {
-				"health": {
-					"value": 4,
-					"max": 4,
-					"modifier": 0,
-					"trauma": 0,
-					"temp": 0
-				},
-				"sanity": {
-					"value": 4,
-					"max": 4,
-					"modifier": 0,
-					"trauma": 0,
-					"temp": 0
-				},
-				"cuf": {
-					"score": "D"
-				},
-				"unitMorale": {
-					"score": "D"
-				},
-				"crits": "",
-				"diseases": ""
-			},
-			"actorActions": {
-				"actions": {
-					"slow": {
-						"value": 1,
-						"max": 1
-					},
-					"fast": {
-						"value": 1,
-						"max": 1
-					}
-				},
-				"movement": {
-					"value": 2,
-					"max": 2
-				}
-			},
-			"actorConditions": {
-				"conditions": {
-					"starving": false,
-					"dehydrated": false,
-					"sleepless": false,
-					"hypothermic": false
-				},
-				"rads": {
-					"temporary": 0,
-					"permanent": 0
-				}
-			}
-		},
-		"character": {
-			"templates": [
-				"actorBio",
-				"actorDescription",
-				"actorAttributesAndSkills",
-				"actorCombat",
-				"actorConditions",
-				"actorActions"
-			],
-			"xp": {
-				"value": 0,
-				"total": 0
-			}
-		},
-		"npc": {
-			"templates": [
-				"actorDescription",
-				"actorAttributesAndSkills",
-				"actorCombat",
-				"actorActions"
-			]
-		},
-		"animal": {
-			"templates": [
-				"actorDescription",
-				"actorAttributesAndSkills",
-				"actorCombat",
-				"actorActions"
-			],
-			"attack": {
-				"name": "",
-				"damage": 0,
-				"note": ""
-			}
-		},
-		"vehicle": {
-			"templates": ["actorDescription"],
-			"vehicleType": "",
-			"reliability": {
-				"score": "A",
-				"maxScore": "A"
-			},
-			"movement": {
-				"combat": {
-					"onRoad": 0,
-					"offRoad": 0
-				},
-				"travel": {
-					"onRoad": 0,
-					"offRoad": 0
-				},
-				"type": "W"
-			},
-			"armor": {
-				"front": {
-					"value": 0,
-					"max": 0
-				},
-				"side": {
-					"value": 0,
-					"max": 0
-				},
-				"rear": {
-					"value": 0,
-					"max": 0
-				}
-			},
-			"fuel": {
-				"value": 0,
-				"max": 0,
-				"type": "G",
-				"cons": 0
-			},
-			"cargo": 0,
-			"crew": {
-				"driver": 1,
-				"passenger": 0,
-				"exposedPassenger": 0,
-				"gunner": 0,
-				"commander": 0
-			},
-			"tempDamage": "",
-			"tempComponents": "",
-			"components": {
-				"fuel": {
-					"value": 1,
-					"max": 1
-				},
-				"engine": {
-					"value": 1,
-					"max": 1
-				},
-				"suspension": {
-					"value": 1,
-					"max": 1
-				},
-				"ammo": {
-					"value": 0,
-					"max": 0
-				},
-				"cargo": {
-					"value": 1,
-					"max": 1
-				},
-				"radio": {
-					"value": 0,
-					"max": 0
-				},
-				"trackWheel": {
-					"value": 0,
-					"max": 0
-				},
-				"weapon": {
-					"value": 0,
-					"max": 0
-				},
-				"fcs": {
-					"value": 0,
-					"max": 0
-				},
-				"antenna": {
-					"value": 0,
-					"max": 0
-				},
-				"externalStores": {
-					"value": 0,
-					"max": 0
-				}
-			},
-			"trailer": false,
-			"price": 0
-		},
-		"party": {
-			"templates": ["actorDescription"]
-		}
-	},
-	"Item": {
-		"types": [
-			"weapon",
-			"armor",
-			"ammunition",
-			"grenade",
-			"gear",
-			"specialty"
-		],
-		"templates": {
-			"itemBase": {
-				"qty": 1,
-				"itemType": "",
-				"weight": 1,
-				"price": 0,
-				"equipped": false,
-				"backpack": false,
-				"description": ""
-			},
-			"itemReliability": {
-				"reliability": {
-					"score": "A",
-					"max": "A"
-				}
-			},
-			"itemOffensive": {
-				"attribute": "agl",
-				"skill": "rangedCombat",
-				"damage": 0,
-				"crit": 0,
-				"blast": "–",
-				"range": 0,
-				"armorModifier": 0
-			},
-			"itemModifiers": {
-				"modifiers": {
-					"attributes": {
-						"str": 0,
-						"agl": 0,
-						"int": 0,
-						"emp": 0
-					},
-					"skills": {
-						"heavyWeapons": 0,
-						"closeCombat": 0,
-						"stamina": 0,
-						"driving": 0,
-						"mobility": 0,
-						"rangedCombat": 0,
-						"recon": 0,
-						"survival": 0,
-						"tech": 0,
-						"command": 0,
-						"persuasion": 0,
-						"medicalAid": 0
-					}
-				}
-			}
-		},
-		"weapon": {
-			"templates": ["itemBase", "itemOffensive", "itemModifiers", "itemReliability"],
-			"ammo": "",
-			"rof": 0,
-			"mag": {
-				"value": 0,
-				"max": 0
-			},
-			"props": {
-				"twoHanded": false,
-				"ammoBelt": false,
-				"mounted": false,
-				"disposable": false
-			}
-		},
-		"armor": {
-			"templates": ["itemBase", "itemModifiers"],
-			"rating": {
-				"value": 0,
-				"max": 0
-			},
-			"location": {
-				"head": false,
-				"arms": false,
-				"torso": true,
-				"legs": false
-			}
-		},
-		"ammunition": {
-			"templates": ["itemBase"],
-			"weight": 0.25,
-			"ammo": {
-				"value": 1,
-				"max": 1
-			},
-			"props": {
-				"magazine": true
-			}
-		},
-		"grenade": {
-			"templates": ["itemBase", "itemOffensive"],
-			"weight": 0.25,
-			"props": {
-				"disposable": true
-			}
-		},
-		"gear": {
-			"templates": ["itemBase", "itemModifiers"],
-			"props": {
-				"twoHanded": false,
-				"mounted": false,
-				"disposable": false
-			}
-		},
-		"specialty": {
-			"templates": ["itemModifiers"],
-			"description": ""
-		}
-	}
+  "Actor": {
+    "types": [
+      "character",
+      "npc",
+      "vehicle"
+    ],
+    "templates": {
+      "actorBio": {
+        "bio": {
+          "nationality": "",
+          "branch": "",
+          "militaryRank": "",
+          "buddy": "",
+          "appearance": "",
+          "moralCode": "",
+          "bigDream": "",
+          "groupMeeting": ""
+        }
+      },
+      "actorDescription": {
+        "description": ""
+      },
+      "actorAttributesAndSkills": {
+        "attributes": {
+          "str": {
+            "score": "C"
+          },
+          "agl": {
+            "score": "C"
+          },
+          "int": {
+            "score": "C"
+          },
+          "emp": {
+            "score": "C"
+          }
+        },
+        "skills": {
+          "heavyWeapons": {
+            "score": "–"
+          },
+          "closeCombat": {
+            "score": "–"
+          },
+          "stamina": {
+            "score": "–"
+          },
+          "driving": {
+            "score": "–"
+          },
+          "mobility": {
+            "score": "–"
+          },
+          "rangedCombat": {
+            "score": "–"
+          },
+          "recon": {
+            "score": "–"
+          },
+          "survival": {
+            "score": "–"
+          },
+          "tech": {
+            "score": "–"
+          },
+          "command": {
+            "score": "–"
+          },
+          "persuasion": {
+            "score": "–"
+          },
+          "medicalAid": {
+            "score": "–"
+          }
+        }
+      },
+      "actorCombat": {
+        "health": {
+          "value": 4,
+          "max": 4,
+          "modifier": 0,
+          "trauma": 0,
+          "temp": 0
+        },
+        "sanity": {
+          "value": 4,
+          "max": 4,
+          "modifier": 0,
+          "trauma": 0,
+          "temp": 0
+        },
+        "cuf": {
+          "score": "D"
+        },
+        "unitMorale": {
+          "score": "D"
+        },
+        "diseases": ""
+      },
+      "actorActions": {
+        "actions": {
+          "slow": {
+            "value": 1,
+            "max": 1
+          },
+          "fast": {
+            "value": 1,
+            "max": 1
+          }
+        },
+        "movement": {
+          "value": 2,
+          "max": 2
+        }
+      },
+      "actorConditions": {
+        "conditions": {
+          "starving": false,
+          "dehydrated": false,
+          "sleepless": false,
+          "hypothermic": false
+        },
+        "rads": {
+          "temporary": 0,
+          "permanent": 0
+        }
+      }
+    },
+    "character": {
+      "templates": [
+        "actorBio",
+        "actorDescription",
+        "actorAttributesAndSkills",
+        "actorCombat",
+        "actorConditions",
+        "actorActions"
+      ],
+      "xp": {
+        "value": 0,
+        "total": 0
+      }
+    },
+    "npc": {
+      "templates": [
+        "actorDescription",
+        "actorAttributesAndSkills",
+        "actorCombat",
+        "actorActions"
+      ]
+    },
+    "animal": {
+      "templates": [
+        "actorDescription",
+        "actorAttributesAndSkills",
+        "actorCombat",
+        "actorActions"
+      ],
+      "attack": {
+        "name": "",
+        "damage": 0,
+        "note": ""
+      }
+    },
+    "vehicle": {
+      "templates": ["actorDescription"],
+      "vehicleType": "",
+      "reliability": {
+        "value": 5,
+        "max": 5
+      },
+      "movement": {
+        "combat": {
+          "onRoad": 0,
+          "offRoad": 0
+        },
+        "travel": {
+          "onRoad": 0,
+          "offRoad": 0
+        },
+        "type": "W"
+      },
+      "armor": {
+        "front": {
+          "value": 0,
+          "max": 0
+        },
+        "side": {
+          "value": 0,
+          "max": 0
+        },
+        "rear": {
+          "value": 0,
+          "max": 0
+        }
+      },
+      "fuel": {
+        "value": 0,
+        "max": 0,
+        "type": "G",
+        "cons": 0
+      },
+      "cargo": 0,
+      "crew": {
+        "qty": 1,
+        "passengerQty": 0,
+        "occupants": []
+      },
+      "tempDamage": "",
+      "components": {
+        "fuel": {
+          "active": true,
+          "damage": 0
+        },
+        "engine": {
+          "active": true,
+          "damage": 0
+        },
+        "suspension": {
+          "active": true,
+          "damage": 0
+        },
+        "ammunition": {
+          "active": true,
+          "damage": 0
+        },
+        "radio": {
+          "active": true,
+          "reliability": {
+            "value": 1,
+            "max": 1
+          }
+        },
+        "trackWheel": {
+          "active": true,
+          "damage": 0
+        },
+        "fcs": {
+          "active": false,
+          "damage": 0,
+          "type": ""
+        },
+        "antenna": {
+          "active": true,
+          "damage": 0
+        }
+      },
+      "trailer": false,
+      "price": 0
+    },
+    "party": {
+      "templates": ["actorDescription"]
+    }
+  },
+  "Item": {
+    "types": [
+      "weapon",
+      "armor",
+      "ammunition",
+      "grenade",
+      "gear",
+      "specialty",
+      "injury"
+    ],
+    "templates": {
+      "itemBase": {
+        "qty": 1,
+        "itemType": "",
+        "weight": 1,
+        "price": 0,
+        "equipped": false,
+        "backpack": false,
+        "description": ""
+      },
+      "itemReliability": {
+        "reliability": {
+          "value": 5,
+          "max": 5
+        }
+      },
+      "itemOffensive": {
+        "attribute": "agl",
+        "skill": "rangedCombat",
+        "damage": 0,
+        "crit": 0,
+        "blast": "–",
+        "range": 0,
+        "armorModifier": 0
+      },
+      "itemModifiers": {
+        "modifiers": {
+          "attributes": {
+            "str": 0,
+            "agl": 0,
+            "int": 0,
+            "emp": 0
+          },
+          "skills": {
+            "heavyWeapons": 0,
+            "closeCombat": 0,
+            "stamina": 0,
+            "driving": 0,
+            "mobility": 0,
+            "rangedCombat": 0,
+            "recon": 0,
+            "survival": 0,
+            "tech": 0,
+            "command": 0,
+            "persuasion": 0,
+            "medicalAid": 0
+          }
+        }
+      }
+    },
+    "weapon": {
+      "templates": ["itemBase", "itemOffensive", "itemModifiers", "itemReliability"],
+      "ammo": "",
+      "rof": 0,
+      "mag": {
+        "target": "",
+        "max": 0
+      },
+      "props": {
+        "twoHanded": false,
+        "ammoBelt": false,
+        "mounted": false,
+        "armored": false,
+        "disposable": false
+      }
+    },
+    "armor": {
+      "templates": ["itemBase", "itemModifiers"],
+      "rating": {
+        "value": 0,
+        "max": 0
+      },
+      "location": {
+        "head": false,
+        "arms": false,
+        "torso": true,
+        "legs": false
+      }
+    },
+    "ammunition": {
+      "templates": ["itemBase"],
+      "weight": 0.25,
+      "ammo": {
+        "value": 1,
+        "max": 1
+      },
+      "damage": 0,
+      "crit": 0,
+      "blast": "–",
+      "range": 0,
+      "armorModifier": 0,
+      "override": false,
+      "props": {
+        "magazine": true
+      }
+    },
+    "grenade": {
+      "templates": ["itemBase", "itemOffensive"],
+      "weight": 0.25,
+      "props": {
+        "disposable": true
+      }
+    },
+    "gear": {
+      "templates": ["itemBase", "itemModifiers"],
+      "props": {
+        "twoHanded": false,
+        "mounted": false,
+        "disposable": false
+      }
+    },
+    "specialty": {
+      "templates": ["itemModifiers"],
+      "description": ""
+    },
+    "injury": {
+      "templates": ["itemModifiers"],
+      "description": "",
+      "category": "physical",
+      "location": "",
+      "lethal": false,
+      "timeLimit": "Shift",
+      "healTime": "D6"
+    }
+  }
 }

@@ -22,14 +22,20 @@
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Ammo"}}</label>
-          <input type="text" name="data.ammo" value="{{data.ammo}}"/>
+          {{!-- <input type="text" name="data.ammo" value="{{data.ammo}}"/> --}}
+          <input list="ammo-types" name="data.ammo" value="{{data.ammo}}"/>
+          <datalist id="ammo-types">
+            {{#each availableAmmoTypes}}
+            <option value="{{.}}"></option>
+            {{/each}}
+          </datalist>
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Reliability"}}</label>
           <div class="flexrow flex-center">
-            {{> scoreSelector name="data.reliability.score" selected=data.reliability.score}}
+            <input type="number" name="data.reliability.value" value="{{data.reliability.value}}" data-dtype="Number"/>
             <span class="sep">/</span>
-            {{> scoreSelector name="data.reliability.max" selected=data.reliability.max}}
+            <input type="number" name="data.reliability.max" value="{{data.reliability.max}}" data-dtype="Number"/>
           </div>
         </div>
         <div class="flexcol">
@@ -54,11 +60,11 @@
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Mag"}}</label>
-          <div class="flexrow flex-center">
-            <input type="text" name="data.mag.value" value="{{data.mag.value}}" data-dtype="Number"/>
-            <span class="sep">/</span>
+          {{!-- <div class="flexrow flex-center"> --}}
+            {{!-- <input type="text" name="data.mag.value" value="{{data.mag.value}}" data-dtype="Number"/> --}}
+            {{!-- <span class="sep">/</span> --}}
             <input type="text" name="data.mag.max" value="{{data.mag.max}}" data-dtype="Number"/>
-          </div>
+          {{!-- </div> --}}
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Armor"}}</label>
@@ -92,6 +98,21 @@
             {{selectOptions config.skills selected=data.skill localize=true}}
           </select>
         </div>
+
+        {{!-- Used Ammo --}}
+        {{#if data.mag.max}}
+        <div class="form-group">
+          <label>{{localize "T2K4E.ItemSheet.WeaponMagazine"}}</label>
+          <select name="data.mag.target">
+            {{#select data.mag.target}}
+            <option value=""></option>
+            {{#each ammunitionTargets as | name key |}}
+            <option value="{{key}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+          </select>
+        </div>
+        {{/if}}
 
         {{!-- Properties --}}
         <div class="form-group-stacked item-properties">

@@ -1,11 +1,11 @@
 <a class="boxes boxes-capacity" data-field="{{field}}" data-min="{{min}}" data-max="{{max}}">
 {{#times max}}
-    {{#if (gte ../value @index)}}
-    {{!-- Full square --}}
-    <i class="fas fa-square"></i>
-    {{else}}
-    {{!-- Empty square --}}
-    <i class="far fa-square"></i>
-    {{/if}}
+  {{#if (gte ../value @index)}}
+  {{!-- Full square --}}
+  <i class="fas fa-square"></i>
+  {{else}}
+  {{!-- Empty square --}}
+  <i class="far fa-square"></i>
+  {{/if}}
 {{/times}}
 </a>

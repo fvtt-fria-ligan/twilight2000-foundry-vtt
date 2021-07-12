@@ -1,42 +1,41 @@
-<div class="t2k4e chat-card weapon" data-item-id="{{_id}}" data-owner-id="{{owner}}">
-    <div class="card-content">
+<div class="t2k4e chat-card weapon" data-item-id="{{_id}}" data-owner-id="{{owner}}" data-actor-id="{{actorId}}"{{#if tokenId}} data-token-id="{{tokenId}}"{{/if}}>
+  <div class="card-content">
 
-        <div class="card-name">
-            <h2>{{name}}</h2>
-        </div>
-
-        <div class="card-image">
-            <img src="{{img}}" alt="{{name}}"/>
-        </div>
-
-        <div class="card-description">
-            {{{data.description}}}
-            {{!-- <h4>{{localize "T2K4E.ItemSheet.FeaturesTab"}}</h4> --}}
-            <div class="grid grid-3col">
-                {{#if data.rof}}
-                <div><b>{{localize "T2K4E.ItemSheet.RoF"}}:</b> <code>{{data.rof}}</code></div>
-                {{/if}}
-                <div><b>{{localize "T2K4E.ItemSheet.Damage"}}:</b> <code>{{data.damage}}</code></div>
-                <div><b>{{localize "T2K4E.ItemSheet.Crit"}}:</b> <code>{{data.crit}}</code></div>
-                <div><b>{{localize "T2K4E.ItemSheet.Armor"}}:</b> <code>{{#if (gte data.armorModifier 1)}}+{{/if}}{{data.armorModifier}}</code></div>
-                {{#if data.range}}
-                <div><b>{{localize "T2K4E.ItemSheet.Range"}}:</b> <code>{{data.range}}</code></div>
-                {{/if}}
-                {{#unless (eq data.blast "–")}}
-                <div><b>{{localize "T2K4E.ItemSheet.Blast"}}:</b> <code>{{data.blast}}</code></div>
-                {{/unless}}
-            </div>
-        </div>
-
-        <div class="card-buttons">
-            {{!-- TODO --}}
-            {{#unless data.isMounted}}
-            <button class="weapon-attack"><i class="fas fa-crosshairs"></i> {{localize "T2K4E.Chat.Actions.Attack"}}</button>
-            {{#if data.mag.max}}
-            <button class="weapon-reload"{{#if (eq data.mag.value data.mag.max)}} disabled{{/if}}><i class="fas fa-sync-alt"></i> {{localize "T2K4E.Chat.Actions.Reload"}}</button>
-            {{/if}}
-            {{/unless}}
-        </div>
-
+    <div class="card-name">
+      <h2>{{name}}</h2>
     </div>
+
+    <div class="card-image">
+      <img src="{{img}}" alt="{{name}}"/>
+    </div>
+
+    <div class="card-description">
+      {{{data.description}}}
+      {{!-- <h4>{{localize "T2K4E.ItemSheet.FeaturesTab"}}</h4> --}}
+      <div class="grid grid-3col">
+        {{#if data.rof}}
+        <div><b>{{localize "T2K4E.ItemSheet.RoF"}}:</b> <code>{{data.rof}}</code></div>
+        {{/if}}
+        <div><b>{{localize "T2K4E.ItemSheet.Damage"}}:</b> <code>{{data.damage}}</code></div>
+        <div><b>{{localize "T2K4E.ItemSheet.Crit"}}:</b> <code>{{data.crit}}</code></div>
+        <div><b>{{localize "T2K4E.ItemSheet.Armor"}}:</b> <code>{{#if (gte data.armorModifier 1)}}+{{/if}}{{data.armorModifier}}</code></div>
+        {{#if data.range}}
+        <div><b>{{localize "T2K4E.ItemSheet.Range"}}:</b> <code>{{data.range}}</code></div>
+        {{/if}}
+        {{#unless (eq data.blast "–")}}
+        <div><b>{{localize "T2K4E.ItemSheet.Blast"}}:</b> <code>{{data.blast}}</code></div>
+        {{/unless}}
+      </div>
+    </div>
+
+    <div class="card-buttons">
+      {{#unless data.isMounted}}
+      <button class="weapon-attack" data-action="attack">{{{@root.config.Icons.buttons.attack}}} {{localize "T2K4E.Chat.Actions.Attack"}}</button>
+      {{!-- {{#if data.mag.max}}
+      <button class="weapon-reload"{{#if (eq data.mag.value data.mag.max)}} data-action="reload" disabled{{/if}}>{{{@root.config.Icons.buttons.reload}}} {{localize "T2K4E.Chat.Actions.Reload"}}</button>
+      {{/if}} --}}
+      {{/unless}}
+    </div>
+
+  </div>
 </div>

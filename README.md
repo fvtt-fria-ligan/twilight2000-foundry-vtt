@@ -1,8 +1,14 @@
 <h1 align="center"><b>Twilight: 2000</b><br/>4<sup>th</sup> Edition<br/><small>🎲 <i>Foundry VTT</i> 🎲</small></h1>
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.7.3-blue.svg?cacheSeconds=2592000"/>
+  <img alt="Version" src="https://img.shields.io/badge/dynamic/json?color=blue&label=version&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2FStefouch%2Ft2k4e%2Fmaster%2Fsystem.json"/>
   <a href="https://foundryvtt.com" target="_blank">
-    <img src="https://camo.githubusercontent.com/33b200c1560ed35beb3218d019cfb8b4021ec36397521103c02292ac38bb2e7a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f466f756e6472792d76302e372e382d696e666f726d6174696f6e616c" alt="foundry-shield-078" data-canonical-src="https://img.shields.io/badge/Foundry-v0.7.8-informational" style="max-width:100%;"/>
+    <img alt="Foundry Version" src="https://img.shields.io/badge/dynamic/json?color=blue&label=Foundry&query=compatibleCoreVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2FStefouch%2Ft2k4e%2Fmaster%2Fsystem.json"/>
+  </a>
+  <a href="https://foundryvtt.com/packages/t2k4e/" target="_blank">
+    <img alt="Forge Installs" src="https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ft2k4e&colorB=4aa94a"/>
+  </a>
+  <a href="https://github.com/Stefouch/t2k4e/releases">
+    <img alt="Downloads" src="https://img.shields.io/github/downloads/Stefouch/t2k4e/latest/master.zip"/>
   </a>
   <a href="https://github.com/Stefouch/t2k4e/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"/>
@@ -42,17 +48,15 @@
 
 # Previews
 
-<img src="./assets/screenshots/210117-characterSheet-stats.png" height=300 alt="T2K Foundry"/> <img src="./assets/screenshots/210117-characterSheet-combat.png" height=300 alt="T2K Foundry"/> <img src="./assets/screenshots/210117-characterSheet-equipment.png" height=300 alt="T2K Foundry"/>
-<img src="./assets/screenshots/210117-itemSheets-weapon-armor.png" height=300 alt="T2K Foundry"/>
-<img src="./assets/screenshots/210117-chatlog.png" height=400 alt="T2K Foundry"/>
+<img src="./screenshots/210117-characterSheet-stats.png" height=300 alt="T2K Foundry"/> <img src="./screenshots/210117-characterSheet-combat.png" height=300 alt="T2K Foundry"/> <img src="./screenshots/210117-characterSheet-equipment.png" height=300 alt="T2K Foundry"/>
+<img src="./screenshots/210117-itemSheets-weapon-armor.png" height=300 alt="T2K Foundry"/>
+<img src="./screenshots/210117-chatlog.png" height=400 alt="T2K Foundry"/>
 
 # Planned Features
-- **Vehicle Sheet**
-- **Dice So Nice support**
 - Animal (NPC) Sheet
+- Crits (if able)
 - Weapon ammo consumption, reload, etc.
 - More automation
-- Crits (if able)
 - Party Sheet (for travel)
 
 # 🤝 Contributing

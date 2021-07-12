@@ -1,33 +1,42 @@
 {
-	"name": "t2k4e",
-	"title": "Twilight 2000 4E (alpha)",
-	"description": "A system for Twilight 2000 4th edition by Free League Publishing.",
-	"author": "Stefouch",
-	"authors": ["Stefouch"],
-	"version": "0.7.3",
-	"minimumCoreVersion": "0.7.8",
-	"compatibleCoreVersion": "0.7.8",
-	"esmodules": [
-		"t2k4e.js"
-	],
-	"styles": [
-		"t2k4e.css"
-	],
-	"packs": [],
-	"languages": [
-		{
-			"lang": "en",
-			"name": "English",
-			"path": "lang/en.json"
-		}
-	],
-	"gridDistance": 10,
-	"gridUnits": "m",
-	"primaryTokenAttribute": "health",
-	"secondaryTokenAttribute": "sanity",
-	"initiative": "1d10",
-	"url": "https://github.com/Stefouch/t2k4e",
-	"manifest": "https://github.com/stefouch/t2k4e/releases/latest/download/system.json",
-	"download": "https://github.com/stefouch/t2k4e/releases/latest/download/master.zip",
-	"license": "GPL-3.0-or-later"
+  "name": "t2k4e",
+  "title": "Twilight 2000 4E",
+  "description": "Official game system for Twilight 2000 4th edition by Free League Publishing.",
+  "version": "1.0.0-final+FoundryV8",
+  "minimumCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.8",
+  "author": "Stefouch",
+  "authors": [
+    "Stefouch"
+  ],
+  "scripts": [],
+  "esmodules": [
+    "t2k4e.js"
+  ],
+  "styles": [
+    "t2k4e.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "packs": [],
+  "system": [],
+  "dependencies": [],
+  "flags": {},
+  "socket": false,
+  "protected": false,
+  "background": "./assets/gear-intro_c.jpg",
+  "gridDistance": 10,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "sanity",
+  "initiative": "1d10",
+  "url": "https://github.com/Stefouch/t2k4e",
+  "manifest": "https://github.com/stefouch/t2k4e/releases/latest/download/system.json",
+  "download": "https://github.com/stefouch/t2k4e/releases/latest/download/master.zip",
+  "license": "GPL-3.0-or-later"
 }
