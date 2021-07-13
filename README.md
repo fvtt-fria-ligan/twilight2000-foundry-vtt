@@ -40,7 +40,7 @@
 
 3. Create a Game World using the Twilight 2000 4E system.
 
-4. Read the [Wiki](./wiki)!
+4. Read the [Wiki](https://github.com/Stefouch/t2k4e/wiki)!
 
 # Supported Languages
 - English
