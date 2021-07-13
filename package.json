@@ -1,6 +1,6 @@
 {
   "name": "t2k4e",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Foundry VTT system for Twilight 2000 4E (Free League Publishing)",
   "main": "t2k4e.js",
   "scripts": {
@@ -31,8 +31,8 @@
     "eslint": "^7.30.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
-    "gulp-less": "^4.0.1",
-    "less": "^3.13.1"
+    "gulp-less": "^5.0.0",
+    "less": "^4.1.1"
   },
   "repository": {
     "type": "git",
