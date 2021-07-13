@@ -36,15 +36,20 @@
 
 1. Go to the setup page and choose Game Systems.
 
-2. Click the Install System button, and paste in this [manifest link](https://raw.githubusercontent.com/stefouch/t2k4e/master/system.json).
+2. Click the Install System button, and paste in this [manifest link](https://raw.githubusercontent.com/stefouch/t2k4e/master/system.json) (right-click, copy link).
 
 3. Create a Game World using the Twilight 2000 4E system.
+
+4. Read the [Wiki](./wiki)!
 
 # Supported Languages
 - English
 
+You may help translate the game system in your language by translating the [language file](./lang/en.json).
+
 # Supported Modules
-*Nihil*
+- [Dice So Nice!](https://foundryvtt.com/packages/dice-so-nice)
+- [Reverse Initiative Order](https://foundryvtt.com/packages/reverse-initiative-order)
 
 # Previews
 
