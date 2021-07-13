@@ -43,8 +43,15 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
   _prepareCrew(sheetData) {
     sheetData.crew = sheetData.data.crew.occupants.reduce((arr, o) => {
       o.actor = game.actors.get(o.id);
-      // TODO cleanse unexisting actors.
-      if (o.actor) arr.push(o);
+      // Creates a fake actor if it doesn't exist anymore in the database.
+      if (!o.actor) {
+        o.actor = {
+          name: '{MISSING_CREW}',
+          data: { data: { health: { value: 0, max: 0 } } },
+          isCrewDeleted: true,
+        };
+      }
+      arr.push(o);
       return arr;
     }, []);
     sheetData.crew.sort((o1, o2) => {

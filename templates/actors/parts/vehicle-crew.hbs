@@ -42,9 +42,11 @@
 
     {{!-- Buttons --}}
     <div class="occupant-buttons">
+      {{#unless actor.isCrewDeleted}}
       <a class="button crew-edit" title="{{localize "T2K4E.ActorSheet.Edit"}}">
         {{{@root.config.Icons.buttons.edit}}}
       </a>
+      {{/unless}}
       <a class="button crew-remove" title="{{localize "T2K4E.ActorSheet.Delete"}}">
         {{{@root.config.Icons.buttons.remove}}}
       </a>

@@ -4,10 +4,14 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
-## [1.0.1-hotfix] - 2021-07-12
-
+## [1.0.2] - 2021-07-13
 ### Fixed
-- Bug: impossible to add non-physical items to a character, and vice-versa for vehicles.
+- A bug where it was impossible to use a vehicle's weapon after adding a crew member and then deleting it from the database without removing it from the vehicle.
+- Clamped font size values until a better scaling CSS is produced.
+
+## [1.0.1-hotfix] - 2021-07-12
+### Fixed
+- A bug where it was impossible to add non-physical items to a character, and vice-versa for vehicles.
 
 ## [1.0.0-final+FoundryV8] - 2021-07-12
 
@@ -47,8 +51,8 @@ All notable changes to this project will be documented in this file.
 - Templates for issues reporting and pull requests.
 
 ### Fixed
-- Bug: broken encumbrance & backpack progress bars (at the bottom of the Gear tab in a character sheet).
-- Bug: impossible to shoot a weapon from a vehicle.
+- A bug with broken encumbrance & backpack progress bars (at the bottom of the Gear tab in a character sheet).
+- A bug where it was impossible to shoot a weapon from a vehicle.
 
 ## [0.7.3-alpha] - 2021-01-19
 ### Added
