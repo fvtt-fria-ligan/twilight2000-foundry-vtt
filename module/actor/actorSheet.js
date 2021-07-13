@@ -113,16 +113,20 @@ export default class ActorSheetT2K extends ActorSheet {
     event.preventDefault();
     const itemId = event.currentTarget.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
+
+    // Specific item click on Vehicles.
     if (this.actor.type === 'vehicle' && item.type === 'weapon') {
       const actors = this.actor.data.data.crew.occupants.reduce((data, o) => {
         const a = game.actors.get(o.id);
+        if (!a) return data;
         const nm = `${a.name} (${game.i18n.localize(T2K4E.vehicle.crewPositionFlagsLocalized[o.position])})`;
-        data[o.id] = { id: a.id, name: nm };
+        data[o.id] = nm;
         return data;
       }, {});
 
       const opts = await T2KDialog.chooseActor(actors);
       if (opts.cancelled) return;
+
       const actorId = opts.actor;
       const actor = game.actors.get(actorId); //this.actor.getCrew().get(actorId);
       if (!actor) {
@@ -131,6 +135,8 @@ export default class ActorSheetT2K extends ActorSheet {
       }
       return item.rollAttack(null, actor);
     }
+
+    // Global action for item click.
     return item.roll();
   }
 
