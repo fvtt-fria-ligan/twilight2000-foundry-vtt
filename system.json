@@ -2,7 +2,7 @@
   "name": "t2k4e",
   "title": "Twilight 2000 4E",
   "description": "Official game system for Twilight 2000 4th edition by Free League Publishing.",
-  "version": "1.0.2+FoundryV8",
+  "version": "1.1.0",
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "0.8.8",
   "author": "Stefouch",
