@@ -3,8 +3,11 @@
   <section class="tooltip-part {{this.type}}">
     <div class="dice">
       <header class="part-header flexrow">
+        {{#unless this.isYearZeroDie}}
         <span class="part-formula">{{this.formula}}</span>
+        {{else}}
         {{#if this.flavor}}<span class="part-flavor">{{this.flavor}}</span>{{/if}}
+        {{/unless}}
         <span class="part-total">{{this.total}}</span>
       </header>
       <ol class="dice-rolls">
