@@ -63,9 +63,9 @@
       flex-wrap: wrap;
       margin-bottom: 3px;
 
-      .part-formula {
-        display: none;
-      }
+      // .part-formula {
+      //   display: none;
+      // }
 
       .tooltip-part {
         width: auto;
@@ -77,6 +77,10 @@
         .part-header {
           justify-content: flex-end;
           background-color: @colorLightKhaki;
+
+          .part-formula {
+            margin-left: 4px;
+          }
 
           .part-total {
             border-top: none;
@@ -111,9 +115,17 @@
         background-image: url(../../../icons/svg/d6-grey.svg);
         background-repeat: no-repeat;
         background-size: @dieSize @dieSize;
-        font-size: @dieSize / 1.5;
+        font-size: (@dieSize / 1.5);
         font-weight: bold;
         text-align: center;
+
+        &.d100 {
+          background-image: url(../../../icons/svg/d10-grey.svg);
+        }
+
+        &.d20 {
+          background-image: url(../../../icons/svg/d20-grey.svg);
+        }
 
         &.d12 {
           background-image: url(../../../icons/svg/d12-grey.svg);
@@ -129,6 +141,10 @@
 
         &.d6 {
           background-image: url(../../../icons/svg/d6-grey.svg);
+        }
+
+        &.d4 {
+          background-image: url(../../../icons/svg/d4-grey.svg);
         }
 
         // &.stunt {

@@ -5,9 +5,9 @@
     <div>{{localize "T2K4E.ActorSheet.Unarmed"}}</div>
   </div>
   <div class="item-detail item-rof"></div>
-  <div class="item-detail item-damage">1</div>
-  <div class="item-detail item-crit">3</div>
-  <div class="item-detail item-armor">+3</div>
+  <div class="item-detail item-damage">{{@root.config.unarmedData.damage}}</div>
+  <div class="item-detail item-crit">{{@root.config.unarmedData.crit}}</div>
+  <div class="item-detail item-armor">+{{@root.config.unarmedData.armorModifier}}</div>
   <div class="item-detail item-range"></div>
   <div class="item-detail item-mag"></div>
   <div class="item-detail item-reliability"></div>

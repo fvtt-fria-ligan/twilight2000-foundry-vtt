@@ -65,8 +65,6 @@ Hooks.once('init', function() {
       ItemT2K,
     },
     roller: T2KRoller,
-    // Cache for pushable rolls.
-    // rolls: new Collection(),
   };
 
   // Records configuration values.
@@ -112,17 +110,17 @@ Hooks.once('ready', function() {
   console.warn('t2k4e | READY!');
 
   // Debugging
-  CONFIG.debug.hooks = true;
-  if (CONFIG.debug.hooks === true) {
+  if (game.userId === 'OPqJPiI75DlhwfVv') {
+    CONFIG.debug.hooks = true;
     try {
       // Renders a starting actor or item.
       /** @type {Actor} */
       const startingActor = game.actors.getName('Stefouch');
-      // startingActor.sheet.render(true);
+      startingActor.sheet.render(true);
       console.warn(startingActor);
       /** @type {Actor} */
       const startingVehicle = game.actors.getName('T-80');
-      startingVehicle.sheet.render(true);
+      // startingVehicle.sheet.render(true);
       console.warn(startingVehicle);
       /** @type {Item} */
       const startingItem = game.items.getName('FN FAL');
@@ -142,9 +140,9 @@ Hooks.on('getChatLogEntryContext', Chat.addChatMessageContextOptions);
 Hooks.on('renderChatMessage', (app, html, data) => Chat.hideChatActionButtons(app, html, data));
 
 Hooks.on('dropActorSheetData', (actor, sheet, data) => {
-  // Dropping something on a vehicle sheet.
+  // When dropping something on a vehicle sheet.
   if (actor.type === 'vehicle') {
-    // Dropping an actor on a vehicle sheet.
+    // When dropping an actor on a vehicle sheet.
     if (data.type === 'Actor') sheet.dropCrew(data.id);
   }
 });

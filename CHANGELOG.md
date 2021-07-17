@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [1.1.0] - 2021-07-17
+### Changed
+- Ammunition choice has been simplified: It is no more required to have the same *"Ammo Identifier"*. Now the Magazine drop-down in the Weapon sheet shows all available magazines in the player's inventory, compatible or not with the weapon. This change also allows weapons to use different kind of ammunition.
+
+### Added
+- Default parameters to tokens.
+- The `Heal Time` property in an Injury item can be a roll formula. It will be rolled upon creating such injury in a Character actor.
+- Wiki infos for the Weapon sheet.
+
+### Fixed
+- A bug where a pushed roll would not render if it contained unexpected dice, like d4, d20 and d100.
+- A bug where rolled d4, d20 and d100 would not show their icon in the chat.
+- A bug where the Foundry would say there was a newer version of the system but you already had the latest version.
+- Weapon "unarmed" wrong crit value (was 3 instead of 4).
+
 ## [1.0.2] - 2021-07-13
 ### Fixed
 - A bug where it was impossible to use a vehicle's weapon after adding a crew member and then deleting it from the database without removing it from the vehicle.

@@ -384,7 +384,7 @@
       "location": "",
       "lethal": false,
       "timeLimit": "Shift",
-      "healTime": "D6"
+      "healTime": ""
     }
   }
 }

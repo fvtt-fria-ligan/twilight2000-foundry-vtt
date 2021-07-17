@@ -273,6 +273,33 @@ export default class ActorT2K extends Actor {
   }
 
   /* ------------------------------------------- */
+  /*  Event Handlers                             */
+  /* ------------------------------------------- */
+
+  /** @override */
+  async _preCreate(data, options, user) {
+    await super._preCreate(data, options, user);
+
+    // Adds default parameters to tokens.
+    const updateData = {
+      'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      'token.disposition': CONST.TOKEN_DISPOSITIONS.NEUTRAL,
+    };
+    switch (this.type) {
+      case 'character':
+        updateData['token.vision'] = true;
+        updateData['token.actorLink'] = true;
+        break;
+      case 'vehicle':
+        updateData['token.bar1'] = { attribute: 'reliability' };
+        updateData['token.vision'] = true;
+        break;
+    }
+    this.data.update(updateData);
+  }
+
+  /* ------------------------------------------- */
   /*  Vehicle: Crew Management                   */
   /* ------------------------------------------- */
 

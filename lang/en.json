@@ -237,7 +237,9 @@
       "TimeLimit": "Time Limit",
       "HealTime": "Heal Time",
       "Effect": "Effect",
-      "Lethal": "Lethal"
+      "Lethal": "Lethal",
+      "day": "day",
+      "days": "days"
     },
     "Chat": {
       "Actions": {

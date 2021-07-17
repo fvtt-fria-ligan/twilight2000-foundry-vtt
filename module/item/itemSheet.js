@@ -92,17 +92,18 @@ export default class ItemSheetT2K extends ItemSheet {
    * @private
    */
   _getItemAmmunitionTargets() {
+    // TODO clean this code
     const itemData = this.item.data.data;
-    const ammoType = itemData.ammo;
-    if (!ammoType) return {};
+    // const ammoType = itemData.ammo;
+    // if (!ammoType) return {};
 
     const actor = this.item.actor;
     if (!actor) return {};
 
     return actor.itemTypes.ammunition.reduce((ammo, i) => {
-      if (i.data.data.itemType === ammoType) {
-        ammo[i.id] = i.detailedName;
-      }
+      // if (i.data.data.itemType === ammoType) {
+      ammo[i.id] = i.detailedName;
+      // }
       return ammo;
     }, { [this.item.id]: `${this.item.name} (${itemData.qty})` });
   }
