@@ -17,7 +17,7 @@ assignees: ''
 - Low (formatting issues, things that don't impact operation)
 - Medium (minor functional impact)
 - High (a broken feature, major functional impact)
-- Critical (bot crash, extremely major functional impact)
+- Critical (game crash, extremely major functional impact)
 
 ### Context
 <!-- The command run that the bug occurs in and any choice trees. -->
@@ -35,7 +35,7 @@ Steps to reproduce the behavior:
 ### Expected Behavior
 <!-- A clear and concise description of what you expected to happen. -->
 
-(Your expected behavior.)
+(Your expected behavior here.)
 
 ### Screenshots
 <!-- If applicable, add screenshots to help explain your problem. -->

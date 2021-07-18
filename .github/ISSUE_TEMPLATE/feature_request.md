@@ -12,11 +12,11 @@ assignees: ''
 ### Who would use it?
 <!-- The use case for this feature. -->
 
-### What part of the bot?
-<!-- i.e. Initiative, dice roller, general functionality, commands aliasing. -->
+### What part of the system?
+<!-- i.e. Initiative, combat, sheets, dice roller, general functionality. -->
 
 ### How would it work?
-<!-- This is where you put the syntax/command. -->
+<!-- This is where you put the details. -->
 
 ### Why should this be added?
 <!-- Justify why you think it'd help others. -->
