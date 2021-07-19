@@ -7,8 +7,8 @@
       <div class="dice-result">
         <div class="dice-formula">{{formula}}</div>
         {{{tooltip}}}
-        {{#if t2k}}
-        <h4 class="dice-total">{{baseSuccessQty}}{{#if ammoSpent}}&nbsp;({{hitCount}}){{/if}}</h4>
+        {{#if (eq roll.game 't2k')}}
+        <h4 class="dice-total">{{roll.baseSuccessQty}}{{#if roll.ammoSpent}}&nbsp;({{roll.hitCount}}){{/if}}</h4>
         {{else}}
         <h4 class="dice-total">{{total}}</h4>
         {{/if}}
