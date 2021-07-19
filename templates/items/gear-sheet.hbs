@@ -15,10 +15,18 @@
 
         {{!-- Features Tab --}}
         <div class="tab tab-features" data-group="primary" data-tab="features">
-            <div class="grid grid-3col item-features">
+            <div class="grid grid-4col item-features">
                 <div class="flexcol">
                     <label>{{localize "T2K4E.ItemSheet.ItemType"}}</label>
                     <input type="text" name="data.itemType" value="{{data.itemType}}"/>
+                </div>
+                <div class="flexcol">
+                <label>{{localize "T2K4E.ItemSheet.Reliability"}}</label>
+                <div class="flexrow flex-center">
+                    <input type="number" name="data.reliability.value" value="{{data.reliability.value}}" data-dtype="Number"/>
+                    <span class="sep">/</span>
+                    <input type="number" name="data.reliability.max" value="{{data.reliability.max}}" data-dtype="Number"/>
+                </div>
                 </div>
                 <div class="flexcol">
                     <label>{{localize "T2K4E.ItemSheet.Weight"}}</label>
