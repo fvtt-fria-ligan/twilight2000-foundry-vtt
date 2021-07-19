@@ -69,9 +69,9 @@
       <b><u>{{specialty.name}}</u>:</b>&nbsp;
       <small>{{{data.description}}}</small>
       {{else}}
-        {{#if data.modifiers.description}}
+        {{#if specialty.hasModifier}}
         <b><u>{{specialty.name}}</u>:</b>&nbsp;
-        <small>{{data.modifiers.description}}</small>
+        <small>{{specialty.modifiersDescription}}</small>
         {{else}}
         {{specialty.name}}
         {{/if}}
