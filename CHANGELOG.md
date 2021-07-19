@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [1.2.0] - 2021-07-19
+### Fixed
+- A critical bug breaking random tables when rolling T2K dice on them.
+- A bug with the github templates mentioning a "bot" instead of the game system.
+- A bug where the dice roller dialog macro would not show properly the attribute and skill scores.
+- A typo in a character's gear tab ("cover**s**" instead of "cover").
+
 ## [1.1.0] - 2021-07-17
 ### Changed
 - Ammunition choice has been simplified: It is no more required to have the same *"Ammo Identifier"*. Now the Magazine drop-down in the Weapon sheet shows all available magazines in the player's inventory, compatible or not with the weapon. This change also allows weapons to use different kind of ammunition.

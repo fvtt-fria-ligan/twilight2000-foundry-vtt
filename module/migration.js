@@ -32,6 +32,12 @@ export function checkMigration() {
  * @return {Promise} A Promise which resolves once the migration is completed
  */
 async function migrateWorld() {
+  const migrateDialog = new Dialog({
+    title: 'T2K4E | System Migration',
+    content: 'Migration in progress, please wait...',
+    buttons: {},
+  }).render(true);
+
   ui.notifications.info(
     `Applying T2K System Migration for version ${game.system.data.version}.`
     + ' Please be patient and do not close your game or shut down your server.',
@@ -90,6 +96,7 @@ async function migrateWorld() {
   // Sets the migration as complete.
   game.settings.set('t2k4e', 'systemMigrationVersion', game.system.data.version);
   ui.notifications.info(`T2K System Migration to version ${game.system.data.version} completed!`, { permanent: true });
+  migrateDialog.close();
 }
 
 /* -------------------------------------------- */
