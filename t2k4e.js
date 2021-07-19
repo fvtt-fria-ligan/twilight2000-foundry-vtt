@@ -116,7 +116,7 @@ Hooks.once('ready', function() {
       // Renders a starting actor or item.
       /** @type {Actor} */
       const startingActor = game.actors.getName('Stefouch');
-      startingActor.sheet.render(true);
+      // startingActor.sheet.render(true);
       console.warn(startingActor);
       /** @type {Actor} */
       const startingVehicle = game.actors.getName('T-80');
@@ -130,6 +130,26 @@ Hooks.once('ready', function() {
     catch (error) {
       console.warn('t2k4e | DEBUG | Cannot find starting Entity.', error);
     }
+  }
+  else {
+    // TODO clean this code when official release
+    // Introductory dialog for the beta.
+    const disclaimerContent = `<h1>Welcome</h1>
+    <p>This is the beta version of the <b>Twilight 2000 4E</b> game system for the Foundry VTT.</p>
+    <p>Thank you for playtesting this unreleased version!
+    <br/>Please report any bugs, rules errors, feedback and feature requests at the github repository: 
+    <a href="https://github.com/Stefouch/t2k4e/issues">https://github.com/Stefouch/t2k4e/issues</a></p>
+    <hr/>
+    <p><u>Important Note</u>:&nbsp;Do not share this system on social media until the official release. Thank you.</p>`;
+    new Dialog({
+      title: 'T2K4E — Message',
+      content: disclaimerContent,
+      buttons: {
+        ok: {
+          label: 'OK',
+        },
+      },
+    }).render(true);
   }
 });
 
