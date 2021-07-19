@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.2.0] - 2021-07-19
 ### Fixed
-- A critical bug breaking random tables.
+- A critical bug breaking random tables when rolling T2K dice on them.
 - A bug with the github templates mentioning a "bot" instead of the game system.
 - A bug where the dice roller dialog macro would not show properly the attribute and skill scores.
 - A typo in a character's gear tab ("cover**s**" instead of "cover").
