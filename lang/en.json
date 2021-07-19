@@ -351,6 +351,10 @@
     "showTaskCheckOptions": {
       "name": "Ask for Task Check Options by Default",
       "label": "Hold Shift to toggle."
+    },
+    "defaultCharTokenSize": {
+      "name": "Default Token Size for Characters & NPCs",
+      "label": "Set a default size between [0.3, 2.0] for newly created character & npc Actors."
     }
   },
   "YZUR": {

@@ -296,6 +296,19 @@ export default class ActorT2K extends Actor {
         updateData['token.vision'] = true;
         break;
     }
+    // Adds default character token size.
+    if (['character', 'npc'].includes(this.type)) {
+      const size = game.settings.get('t2k4e', 'defaultCharTokenSize');
+      if (size >= 0.3 && size <= 2) {
+        updateData['token.height'] = size;
+        updateData['token.width'] = size;
+      }
+      else {
+        console.warn('t2k4e | defaultCharTokenSize settings not between acceptable range.', size);
+      }
+    }
+
+    // Performs the update.
     this.data.update(updateData);
   }
 
