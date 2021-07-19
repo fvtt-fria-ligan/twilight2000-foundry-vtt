@@ -71,6 +71,14 @@ export function registerHandlebars() {
     return str;
   });
 
+  Handlebars.registerHelper('min', function(a, b) {
+    return Math.min(a, b);
+  });
+
+  Handlebars.registerHelper('max', function(a, b) {
+    return Math.max(a, b);
+  });
+
   Handlebars.registerHelper('add', function(a, b) {
     return a + b;
   });
