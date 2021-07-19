@@ -24,19 +24,24 @@
   </a>
 </p>
 
-> An OFFICIAL system for Twilight 2000 4E (Free League Publishing) on Foundry VTT.
+> **DISCLAIMER:** This is the beta version for the playtesters of the Twilight 2000 4E game system for Foundry VTT. The system will be released on Foundry when ready. You feedback and bug reports are greatly appreciated.
 
-<p align="center">
+<!-- An OFFICIAL system for Twilight 2000 4E (Free League Publishing) on Foundry VTT.-->
+
+<!--<p align="center">
   <a href="https://frialigan.se/en/games/twilight-2000/" target="_blank">
     <img src="./assets/t2k-banner.jpg" alt="Twilight 2000 4E"/>
   </a>
-</p>
+</p>-->
 
 # Install
 
 1. Go to the setup page and choose Game Systems.
 
-2. Click the Install System button, and paste in this [manifest link](https://raw.githubusercontent.com/stefouch/t2k4e/master/system.json) (right-click, copy link).
+2. Click the Install System button, and paste in this manifest link:
+```
+https://raw.githubusercontent.com/stefouch/t2k4e/master/system.json
+```
 
 3. Create a Game World using the Twilight 2000 4E system.
 
