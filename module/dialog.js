@@ -15,7 +15,12 @@ export default class T2KDialog extends Dialog {
       event.preventDefault();
       const elem = event.currentTarget;
       const span = elem.nextElementSibling;
-      span.innerHTML = elem.value;
+      if (['attribute', 'skill'].includes(elem.name)) {
+        span.innerHTML = elem.value < 6 ? 0 : elem.value;
+      }
+      else {
+        span.innerHTML = elem.value;
+      }
     });
 
     // Modifier Buttons
