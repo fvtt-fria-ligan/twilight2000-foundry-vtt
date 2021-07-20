@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [1.3.0] - 2021-07-20
+### Changed
+- Modifiers management on items has changed, for the better.
+
+### Added
+- Reliability values (current & max) for Gear items.
+- New settings option for default size for non-vehicle tokens.
+
+### Removed
+- Default vision for tokens.
+
+### Fixed
+- A bug introduced by the previous update that caused the Emcumbrance's max value to display `NaN` on sheets.
+- A bug where shooting a weapon was not possible if it had no skill set in its options.
+
 ## [1.2.0] - 2021-07-19
 ### Fixed
 - A critical bug breaking random tables when rolling T2K dice on them.

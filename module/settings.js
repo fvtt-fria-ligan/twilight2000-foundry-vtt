@@ -22,4 +22,13 @@ export function registerSystemSettings() {
     type: Boolean,
     default: true,
   });
+
+  game.settings.register('t2k4e', 'defaultCharTokenSize', {
+    config: true,
+    scope: 'world',
+    name: 'SETTINGS.defaultCharTokenSize.name',
+    hint: 'SETTINGS.defaultCharTokenSize.label',
+    type: Number,
+    default: 1,
+  });
 }

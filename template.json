@@ -288,28 +288,7 @@
         "armorModifier": 0
       },
       "itemModifiers": {
-        "modifiers": {
-          "attributes": {
-            "str": 0,
-            "agl": 0,
-            "int": 0,
-            "emp": 0
-          },
-          "skills": {
-            "heavyWeapons": 0,
-            "closeCombat": 0,
-            "stamina": 0,
-            "driving": 0,
-            "mobility": 0,
-            "rangedCombat": 0,
-            "recon": 0,
-            "survival": 0,
-            "tech": 0,
-            "command": 0,
-            "persuasion": 0,
-            "medicalAid": 0
-          }
-        }
+        "rollModifiers": {}
       }
     },
     "weapon": {
@@ -366,7 +345,7 @@
       }
     },
     "gear": {
-      "templates": ["itemBase", "itemModifiers"],
+      "templates": ["itemBase", "itemModifiers", "itemReliability"],
       "props": {
         "twoHanded": false,
         "mounted": false,

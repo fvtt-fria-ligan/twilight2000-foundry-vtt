@@ -51,6 +51,11 @@ export default class ItemT2K extends Item {
     return !!this.data.data.reliability?.max;
   }
 
+  get hasModifier() {
+    if (!this.data.data.rollModifiers) return false;
+    return Object.keys(this.data.data.rollModifiers).length > 0;
+  }
+
   /**
    * The name with a quantity in parentheses.
    * @type {string}
@@ -66,6 +71,11 @@ export default class ItemT2K extends Item {
       str += ` (${this.qty})`;
     }
     return str;
+  }
+
+  get modifiersDescription() {
+    if (!this.hasModifier) return undefined;
+    return this._getModifiersDescription(this.data.data.rollModifiers);
   }
 
   /* ------------------------------------------- */
@@ -84,12 +94,10 @@ export default class ItemT2K extends Item {
     const data = itemData.data;
 
     this._prepareEncumbrance(this.type, data);
-    this._prepareModifiers(data);
 
     switch (this.type) {
       case 'weapon': this._prepareWeapon(data, actorData);
     }
-    // console.log('t2k4e | Updated Item: ', this.name, this.id);
   }
 
   /* ------------------------------------------- */
@@ -136,42 +144,29 @@ export default class ItemT2K extends Item {
   /* ------------------------------------------- */
 
   /**
-   * Adds more properties to the Modifiers prop.
-   * @param {Object} data Item's data
-   * @private
-   */
-  _prepareModifiers(data) {
-    if (!data.modifiers) return;
-    data.modifiers.description = this._getModifiersDescription(data);
-    data.hasModifiers = data.modifiers.description.length > 0;
-  }
-
-  /* ------------------------------------------- */
-
-  /**
    * Returns a string resuming the modifiers.
-   * @param {Object} data Item's data
+   * @param {Object} modifiersData Item's data
    * @returns {string}
    * @private
    */
-  _getModifiersDescription(data) {
+  _getModifiersDescription(modifiersData) {
     const out = [];
 
-    for (const [attr, val] of Object.entries(data.modifiers.attributes)) {
-      if (val !== 0) {
-        const str = game.i18n.localize(`T2K4E.AttributeNames.${attr}`)
-          + ` ${val > 0 ? '+' : ''}${val}`;
+    for (const m of Object.values(modifiersData)) {
+      if (m && m.name) {
+        const [t, n] = m.name.split('.');
+        let type = '';
+        switch (t) {
+          case 'attribute': type = 'Attribute'; break;
+          case 'constant': type = 'Constant'; break;
+          case 'skill': type = 'Skill'; break;
+          case 'action': type = 'Action'; break;
+          case 'travel': type = 'TravelTask'; break;
+        }
+        const str = game.i18n.localize(`T2K4E.${type}Names.${n}`) + ` ${m.value}`;
         out.push(str);
       }
     }
-    for (const [sk, val] of Object.entries(data.modifiers.skills)) {
-      if (val !== 0) {
-        const str = game.i18n.localize(`T2K4E.SkillNames.${sk}`)
-          + ` ${val > 0 ? '+' : ''}${val}`;
-        out.push(str);
-      }
-    }
-
     return out.join(', ');
   }
 
@@ -251,8 +246,8 @@ export default class ItemT2K extends Item {
     // Prepares values.
     if (!actor) actor = this.actor;
     const actorData = actor.data.data;
-    const attribute = actorData.attributes[attributeName].value;
-    const skill = actorData.skills[skillName].value;
+    const attribute = actorData.attributes[attributeName]?.value ?? 0;
+    const skill = actorData.skills[skillName]?.value ?? 0;
     let rof = itemData.rof;
 
     // Gets the magazine.

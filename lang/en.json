@@ -27,6 +27,56 @@
       "persuasion": "Persuasion",
       "medicalAid": "Medical Aid"
     },
+    "Action": "Action",
+    "Actions": "Actions",
+    "ActionNames": {
+      "unarmedAttack": "Unarmed attack",
+      "meleeAttack": "Melee attack",
+      "grapple": "Grapple",
+      "breakFree": "Break free",
+      "shootFirearm": "Shoot firearm",
+      "clearJam": "Clear jam",
+      "aimSniper": "Sniper aim",
+      "shootBow": "Shoot bow",
+      "throwWeapon": "Throw weapon",
+      "aimMortar": "Aim mortar or howitzer",
+      "shootHeavyWeapon": "Fire heavy weapon",
+      "firstAid": "First aid",
+      "rally": "Rally",
+      "directFire": "Direct indirect fire",
+      "seekCover": "Seek cover",
+      "run": "Run",
+      "crawl": "Crawl",
+      "shove": "Shove",
+      "disarm": "Disarm",
+      "retreat": "Retreat",
+      "aim": "Aim",
+      "prepareBow": "Prepare bow",
+      "overwatch": "Assume overwatch position",
+      "reload": "Reload",
+      "drive": "Drive"
+    },
+    "Constants": "Constants",
+    "ConstantNames": {
+      "encumbrance": "Encumbrance",
+      "awareness": "Combat awareness"
+    },
+    "TravelTasks": "Travel Tasks",
+    "TravelTaskNames": {
+      "marching": "Marching",
+      "driving": "Driving",
+      "gathering": "Gathering",
+      "keepingWatch": "Keeping Watch",
+      "scrounging": "Scrounging",
+      "foraging": "Foraging",
+      "hunting": "Hunting",
+      "fishing": "Fishing",
+      "makingCamp": "Making Camp",
+      "cooking": "Cooking",
+      "resting": "Resting",
+      "sleeping": "Sleeping",
+      "exploring": "Exploring"
+    },
     "ArmorLocationNames": {
       "head": "Head",
       "arms": "Arms",
@@ -43,7 +93,7 @@
       "physical": "Physical",
       "mental": "Mental"
     },
-    "ActionNames": {
+    "ActionTypes": {
       "fast": "Fast",
       "slow": "Slow"
     },
@@ -208,6 +258,11 @@
       "Name": "Name",
       "FeaturesTab": "Features",
       "ModifiersTab": "Modifiers",
+      "RollModifiers": "Roll Modifiers",
+      "AddNewRollModifier": "Add a new roll modifier to this item",
+      "DeleteRollModifier": "Remove this roll modifier",
+      "NoRollModifier": "This item has no modifier. To add one, click the \"+\" icon.",
+      "SelectRollModifier": "Choose a name",
       "DescriptionTab": "Notes",
       "AttributeUsed": "Attribute Used",
       "SkillUsed": "Skill Used",
@@ -296,6 +351,10 @@
     "showTaskCheckOptions": {
       "name": "Ask for Task Check Options by Default",
       "label": "Hold Shift to toggle."
+    },
+    "defaultCharTokenSize": {
+      "name": "Default Token Size for Characters & NPCs",
+      "label": "Set a default size between [0.3, 2.0] for newly created character & npc Actors."
     }
   },
   "YZUR": {

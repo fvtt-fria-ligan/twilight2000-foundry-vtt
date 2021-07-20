@@ -72,7 +72,7 @@
     {{!-- Slow & Fast --}}
     {{#each data.actions as | action name |}}
     <div class="flexrow">
-      <div class="action-name">{{localize (concat "T2K4E.ActionNames." name)}}</div>
+      <div class="action-name">{{localize (concat "T2K4E.ActionTypes." name)}}</div>
       <div class="col-4 action-slider">
         <input type="range" name="data.actions.{{name}}.value" min="0" max="{{action.max}}" value="{{action.value}}"/>
       </div>

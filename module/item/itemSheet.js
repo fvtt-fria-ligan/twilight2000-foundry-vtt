@@ -125,9 +125,9 @@ export default class ItemSheetT2K extends ItemSheet {
     inputs.focus(ev => ev.currentTarget.select());
     inputs.addBack().find('[data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
 
-    // // Owner-only listeners.
-    // // if (this.actor.isOwner) {
-    // // }
+    // Roll Modifiers
+    html.find('.add-modifier').click(this._onAddModifier.bind(this));
+    html.find('.delete-modifier').click(this._onDeleteModifier.bind(this));
   }
 
   /* ------------------------------------------- */
@@ -146,6 +146,23 @@ export default class ItemSheetT2K extends ItemSheet {
     }
     else if (value[0] === '=') {
       input.value = value.slice(1);
+    }
+  }
+
+  /* ------------------------------------------- */
+
+  _onAddModifier(event) {
+    event.preventDefault();
+    const rollModifiers = foundry.utils.duplicate(this.item.data.data.rollModifiers ?? {});
+    const modifierId = Math.max(-1, ...Object.getOwnPropertyNames(rollModifiers)) + 1;
+    return this.item.update({ [`data.rollModifiers.${modifierId}`]: { name: '', value: '+1' } });
+  }
+
+  _onDeleteModifier(event) {
+    event.preventDefault();
+    const modifierId = event.currentTarget.dataset.modifierId;
+    if (this.item.data.data.rollModifiers[modifierId]) {
+      this.item.update({ [`data.rollModifiers.-=${modifierId}`]: null });
     }
   }
 }

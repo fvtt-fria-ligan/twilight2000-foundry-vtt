@@ -1,4 +1,4 @@
-const NEEDS_MIGRATION_VERSION = '1.0.0';
+const NEEDS_MIGRATION_VERSION = '1.2.0';
 const COMPATIBLE_MIGRATION_VERSION = '0.7.3';
 
 /**
@@ -152,11 +152,17 @@ function migrateActorData(actorData) {
  */
 export function migrateItemData(itemData) {
   const updateData = {};
+  if (itemData.data && itemData.type !== 'ammunition') {
+    _migrateRollModifiers(itemData, updateData);
+  }
   switch (itemData.type) {
     case 'weapon':
       _migrateWeaponProps(itemData, updateData);
       _migrateWeaponReliability(itemData, updateData);
       _migrateWeaponAmmo(itemData, updateData);
+      break;
+    case 'gear':
+      _migrateGearReliability(itemData, updateData);
       break;
   }
   return updateData;
@@ -207,6 +213,41 @@ function migrateSceneData(sceneData) {
 const RELIABILITY_VALUES = { 'A': 5, 'B': 4, 'C': 3, 'D': 2, 'F': 1, '–': 0 };
 
 /**
+ * Migrates the roll modifiers of an item.
+ * @param {object} itemData
+ * @param {object} updateData
+ * @private
+ */
+function _migrateRollModifiers(itemData, updateData) {
+  if (itemData.data.rollModifiers == undefined) {
+    const rollModifiers = {};
+    if (itemData.data.modifiers != undefined) {
+      const modifiers = itemData.data.modifiers;
+      let i = 0;
+      // Iterates over each attribute modifier
+      // & over each skill modifier.
+      for (const cat in modifiers) {
+        for (const m in modifiers[cat]) {
+          const value = modifiers[cat][m];
+          if (value) {
+            rollModifiers[i] = {
+              name: `${cat.slice(0, -1)}.${m}`,
+              value,
+            };
+            i++;
+          }
+        }
+      }
+    }
+    updateData['data.rollModifiers'] = rollModifiers;
+    // TODO enable delete old properties
+    // Deletes old properties.
+    // updateData['data.-=modifiers'] = null;
+  }
+  return updateData;
+}
+
+/**
  * Migrates the props of a weapon.
  * @param {object} itemData
  * @param {object} updateData
@@ -247,6 +288,19 @@ function _migrateWeaponAmmo(itemData, updateData) {
     updateData['data.mag.target'] = '';
     // Deletes old properties.
     updateData['data.mag.-=value'] = null;
+  }
+  return updateData;
+}
+
+/**
+ * Migrates the Gear reliability.
+ * @param {object} itemData
+ * @param {object} updateData
+ * @private
+ */
+function _migrateGearReliability(itemData, updateData) {
+  if (itemData.data.reliability == undefined) {
+    updateData['data.reliability'] = { value: null, max: null };
   }
   return updateData;
 }

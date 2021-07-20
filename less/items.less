@@ -109,45 +109,99 @@
       }
     }
 
-    .tab {
-      &.tab-modifiers {
-        h4 {
-          text-transform: uppercase;
-          border-bottom: @borderGroove;
-          .font-header();
-          font-size: 1rem;
-        }
+    .roll-modifiers {
+      .roll-modifiers-title {
+        text-transform: uppercase;
+        border-bottom: @borderGroove;
+        .font-header();
+        font-size: 1rem;
+        margin-bottom: (@gap / 2);
+      }
 
-        .modifiers-list {
-          margin-bottom: 10px;
-        }
+      .no-modifier {
+        margin: @gap;
+        font-style: italic;
+      }
 
-        .form-group {
-          margin: 0 0 1px 0;
-          padding: 0 4px;
-          color: @colorTan;
-          border: 1px solid transparent;
-          border-radius: 4px 20px 20px 4px;
+      .roll-modifier {
+        display: flex;
+        flex-direction: row;
+        margin: (@gap / 2) (@gap / 2) 0 (@gap / 2);
+        padding: 3px (@gap / 2) 3px @gap;
+        background-color: #e8e8e8;
+        border: 1px solid #c7c7c7;
+        border-radius: 10px;
+        color: @colorBlue;
 
+        .roll-modifier-value {
           input {
-            flex: 0 0 40px;
-            text-align: right;
-            color: @colorTan;
+            flex: 1;
+            margin: 0 10px;
+            border: 1px solid @colorTan;
           }
+        }
 
-          &.modified {
-            font-weight: bold;
-            color: @colorBrown;
-            background: darken(@colorLightKhaki, 10%);
-            border-color: @colorBrown;
+        .item-controls {
+          flex: 0;
 
-            input {
-              color: @colorBrown;
-              font-weight: bold;
-            }
+          .delete-modifier {
+            color: transparent;
+          }
+        }
+
+        &:hover,
+        &:focus {
+          // background-color: #c7c7c7;
+          // border: 1px solid @colorDark;
+          box-shadow: @hoverShadow;
+
+          .delete-modifier {
+            color: @colorDark;
           }
         }
       }
     }
+
+    // .tab {
+    //   // TODO clean this code
+    //   // &.tab-modifiers {
+    //     // h4 {
+    //     //   text-transform: uppercase;
+    //     //   border-bottom: @borderGroove;
+    //     //   .font-header();
+    //     //   font-size: 1rem;
+    //     // }
+
+    //     // .modifiers-list {
+    //     //   margin-bottom: 10px;
+    //     // }
+
+    //     // .form-group {
+    //     //   margin: 0 0 1px 0;
+    //     //   padding: 0 4px;
+    //     //   color: @colorTan;
+    //     //   border: 1px solid transparent;
+    //     //   border-radius: 4px 20px 20px 4px;
+
+    //     //   input {
+    //     //     flex: 0 0 40px;
+    //     //     text-align: right;
+    //     //     color: @colorTan;
+    //     //   }
+
+    //     //   &.modified {
+    //     //     font-weight: bold;
+    //     //     color: @colorBrown;
+    //     //     background: darken(@colorLightKhaki, 10%);
+    //     //     border-color: @colorBrown;
+
+    //     //     input {
+    //     //       color: @colorBrown;
+    //     //       font-weight: bold;
+    //     //     }
+    //     //   }
+    //     // }
+    //   }
+    // }
   }
 }

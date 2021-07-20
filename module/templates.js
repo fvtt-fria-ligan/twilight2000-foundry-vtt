@@ -71,11 +71,11 @@ export function registerHandlebars() {
     return str;
   });
 
-  Handlebars.registerHelper('min', function(a, b) {
+  Handlebars.registerHelper('mathMin', function(a, b) {
     return Math.min(a, b);
   });
 
-  Handlebars.registerHelper('max', function(a, b) {
+  Handlebars.registerHelper('mathMax', function(a, b) {
     return Math.max(a, b);
   });
 
