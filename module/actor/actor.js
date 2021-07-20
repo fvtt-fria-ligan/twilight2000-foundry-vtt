@@ -37,7 +37,7 @@ export default class ActorT2K extends Actor {
       case 'character': this._prepareCharacterData(actorData); break;
       case 'npc': this._prepareNpcData(actorData); break;
       case 'vehicle': this._prepareVehicleData(actorData); break;
-      default: throw new TypeError(`Unknown Actor Type: "${actorData.type}"`);
+      default: throw new TypeError(`t2k4e | Unknown Actor Type: "${actorData.type}"`);
     }
 
     console.log('t2k4e | Updated Actor: ', this.name, this.id);
@@ -273,6 +273,41 @@ export default class ActorT2K extends Actor {
   }
 
   /* ------------------------------------------- */
+  /*  Roll Modifiers                             */
+  /* ------------------------------------------- */
+
+  // /**
+  //  * Gets an object containing all the roll modifiers summed together.
+  //  * Form: { string: number }
+  //  * @returns {object}
+  //  */
+  // getRollModifiers() {
+  //   const rollModifiers = {};
+  //   // Iterates over each item owned by the actor.
+  //   for (const i of this.items.contents) {
+  //     // If there are modifiers...
+  //     if (i.hasModifier) {
+  //       // Iterates over each roll modifier.
+  //       for (const m of Object.values(i.data.data.rollModifiers)) {
+  //         if (m && m.name) {
+  //           const v = parseInt(m.value);
+  //           // If there is a value, adds the modifier.
+  //           if (v) {
+  //             if (!rollModifiers[m.name]) {
+  //               rollModifiers[m.name] = v;
+  //             }
+  //             else {
+  //               rollModifiers[m.name] += v;
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  //   return rollModifiers;
+  // }
+
+  /* ------------------------------------------- */
   /*  Event Handlers                             */
   /* ------------------------------------------- */
 
@@ -284,16 +319,14 @@ export default class ActorT2K extends Actor {
     const updateData = {
       'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
       'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      'token.disposition': CONST.TOKEN_DISPOSITIONS.NEUTRAL,
     };
     switch (this.type) {
       case 'character':
-        updateData['token.vision'] = true;
         updateData['token.actorLink'] = true;
+        updateData['token.disposition'] = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
         break;
       case 'vehicle':
         updateData['token.bar1'] = { attribute: 'reliability' };
-        updateData['token.vision'] = true;
         break;
     }
     // Adds default character token size.
@@ -307,7 +340,6 @@ export default class ActorT2K extends Actor {
         console.warn('t2k4e | defaultCharTokenSize settings not between acceptable range.', size);
       }
     }
-
     // Performs the update.
     this.data.update(updateData);
   }
