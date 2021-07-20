@@ -152,18 +152,18 @@ export default class ItemT2K extends Item {
   _getModifiersDescription(modifiersData) {
     const out = [];
 
-    for (const [, m] of Object.entries(modifiersData)) {
+    for (const m of Object.values(modifiersData)) {
       if (m && m.name) {
-        const [kt, kn] = m.name.split('.');
+        const [t, n] = m.name.split('.');
         let type = '';
-        switch (kt) {
+        switch (t) {
           case 'attribute': type = 'Attribute'; break;
           case 'constant': type = 'Constant'; break;
           case 'skill': type = 'Skill'; break;
           case 'action': type = 'Action'; break;
           case 'travel': type = 'TravelTask'; break;
         }
-        const str = game.i18n.localize(`T2K4E.${type}Names.${kn}`) + ` ${m.value}`;
+        const str = game.i18n.localize(`T2K4E.${type}Names.${n}`) + ` ${m.value}`;
         out.push(str);
       }
     }
@@ -246,8 +246,8 @@ export default class ItemT2K extends Item {
     // Prepares values.
     if (!actor) actor = this.actor;
     const actorData = actor.data.data;
-    const attribute = actorData.attributes[attributeName].value;
-    const skill = actorData.skills[skillName].value;
+    const attribute = actorData.attributes[attributeName]?.value ?? 0;
+    const skill = actorData.skills[skillName]?.value ?? 0;
     let rof = itemData.rof;
 
     // Gets the magazine.
