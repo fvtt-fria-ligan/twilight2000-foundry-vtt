@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [1.3.1] - 2021-07-20
+### Fixed
+- Hotfix for missing v1.3 migration.
+
 ## [1.3.0] - 2021-07-20
 ### Changed
 - Modifiers management on items has changed, for the better.
