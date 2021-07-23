@@ -88,6 +88,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
   dropCrew(actorId) {
     const crew = game.actors.get(actorId);
     if (!crew) return;
+    if (crew.type === 'vehicle') return ui.notifications.info('Vehicle inceptions are not allowed!');
     if (crew.type !== 'character' && crew.type !== 'npc') return;
     return this.actor.addVehicleOccupant(actorId);
   }
