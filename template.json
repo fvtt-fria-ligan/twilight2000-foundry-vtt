@@ -302,9 +302,15 @@
       "props": {
         "twoHanded": false,
         "ammoBelt": false,
+        "disposable": false,
+        "scope": false,
+        "nightVision": false,
+        "suppressor": false,
+        "bayonet": false,
+        "bipod": false,
+        "tripod": false,
         "mounted": false,
-        "armored": false,
-        "disposable": false
+        "armored": false
       }
     },
     "armor": {
@@ -339,6 +345,7 @@
     },
     "grenade": {
       "templates": ["itemBase", "itemOffensive"],
+      "skill": "mobility",
       "weight": 0.25,
       "props": {
         "disposable": true

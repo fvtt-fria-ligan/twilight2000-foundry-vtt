@@ -1,4 +1,4 @@
-const NEEDS_MIGRATION_VERSION = '1.3.0';
+const NEEDS_MIGRATION_VERSION = '1.4.0';
 const COMPATIBLE_MIGRATION_VERSION = '0.7.3';
 
 /**
@@ -256,6 +256,24 @@ function _migrateRollModifiers(itemData, updateData) {
 function _migrateWeaponProps(itemData, updateData) {
   if (itemData.data.props?.armored == undefined) {
     updateData['data.props.armored'] = false;
+  }
+  if (itemData.data.props?.bipod == undefined) {
+    updateData['data.props.bipod'] = false;
+  }
+  if (itemData.data.props?.tripod == undefined) {
+    updateData['data.props.tripod'] = false;
+  }
+  if (itemData.data.props?.scope == undefined) {
+    updateData['data.props.scope'] = false;
+  }
+  if (itemData.data.props?.nightVision == undefined) {
+    updateData['data.props.nightVision'] = false;
+  }
+  if (itemData.data.props?.bayonet == undefined) {
+    updateData['data.props.bayonet'] = false;
+  }
+  if (itemData.data.props?.suppressor == undefined) {
+    updateData['data.props.suppressor'] = false;
   }
   return updateData;
 }

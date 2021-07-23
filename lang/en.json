@@ -59,7 +59,8 @@
     "Constants": "Constants",
     "ConstantNames": {
       "encumbrance": "Encumbrance",
-      "awareness": "Combat awareness"
+      "awareness": "Combat awareness",
+      "cuf": "CUF"
     },
     "TravelTasks": "Travel Tasks",
     "TravelTaskNames": {
@@ -108,7 +109,7 @@
       "ammunition": "Ammunition",
       "armor": "Armor",
       "gear": "Gear",
-      "grenade": "Grenade",
+      "grenade": "Explosive",
       "injury": "Injury",
       "specialty": "Specialty",
       "weapon": "Weapon"
@@ -119,7 +120,13 @@
       "disposable": "Disposable",
       "ammoBelt": "Ammo Belt",
       "magazine": "Is Magazine",
-      "armored": "Armored"
+      "armored": "Armored",
+      "bipod": "Bipod",
+      "tripod": "Tripod",
+      "scope": "Scope",
+      "nightVision": "Night Vision",
+      "bayonet": "Bayonet",
+      "suppressor": "Suppressor"
     },
     "ActorTypes": {
       "character": "Player Character (PC)",
@@ -384,5 +391,16 @@
       "AmmoDie": "Ammo",
       "LocationDie": "Hit Die"
     }
-  }
+  },
+  "GAME.Paused": "War Paused",
+  "ACTOR.TypeCharacter": "Player Character",
+  "ACTOR.TypeNpc": "Non-Player Character",
+  "ACTOR.TypeVehicle": "Vehicle",
+  "ITEM.TypeWeapon": "Weapon",
+  "ITEM.TypeArmor": "Body Armor",
+  "ITEM.TypeAmmunition": "Ammo",
+  "ITEM.TypeGrenade": "Explosive",
+  "ITEM.TypeGear": "Gear",
+  "ITEM.TypeInjury": "Critical Injury",
+  "ITEM.TypeSpecialty": "Specialty"
 }
