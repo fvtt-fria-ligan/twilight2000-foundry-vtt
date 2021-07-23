@@ -155,7 +155,7 @@
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: @colorBeige;
+  background-color: none;
 }
 
 .item-sheet-background() {
@@ -164,6 +164,16 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-color: @colorBeige;
+}
+
+.actor-sheet-border() {
+  border: 9px solid transparent;
+  -moz-border-image: url(assets/textures/papper_outline.png) 420 380 420 380 stretch stretch;
+  -webkit-border-image: url(assets/textures/papper_outline.png) 420 380 420 380 stretch stretch;
+  -o-border-image: url(assets/textures/papper_outline.png) 420 380 420 380 stretch stretch;
+  border-image: url(assets/textures/papper_outline.png) 420 380 420 380 stretch stretch;
+  border-image-width: 180px;
+  border-image-outset: 1;
 }
 
 // .sheet-outline() {
