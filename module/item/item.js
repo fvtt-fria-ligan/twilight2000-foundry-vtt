@@ -555,4 +555,5 @@ ItemT2K.CHAT_TEMPLATE = {
   'gear': 'systems/t2k4e/templates/chat/gear-chat.hbs',
   'ammunition': 'systems/t2k4e/templates/chat/gear-chat.hbs',
   // TODO injury template
+  // TODO better templates
 };
