@@ -61,6 +61,10 @@ export function registerHandlebars() {
     return str.toLowerCase();
   });
 
+  Handlebars.registerHelper('toUpperCase', function(str) {
+    return str.toUpperCase();
+  });
+
   Handlebars.registerHelper('times', function(n, content) {
     let str = '';
     for (let i = 0; i < n; i++) {
