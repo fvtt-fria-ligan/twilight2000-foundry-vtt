@@ -56,6 +56,10 @@ export default class ItemT2K extends Item {
     return Object.keys(this.data.data.rollModifiers).length > 0;
   }
 
+  // get inVehicle() {
+  //   return this.actor?.type === 'vehicle';
+  // }
+
   /**
    * The name with a quantity in parentheses.
    * @type {string}
@@ -66,6 +70,13 @@ export default class ItemT2K extends Item {
     if (this.type === 'ammunition') {
       const ammo = this.data.data.ammo;
       str += ` [${ammo.value}/${ammo.max}]`;
+    }
+    else if (this.type === 'weapon' && this.actor?.type === 'vehicle') {
+      const ffv = [];
+      for (const [k, v] of Object.entries(this.data.data.featuresForVehicle)) {
+        if (v) ffv.push(k.toUpperCase());
+      }
+      if (ffv.length) str += ` (${ffv.join(', ')})`;
     }
     if (this.qty > 1) {
       str += ` (${this.qty})`;
