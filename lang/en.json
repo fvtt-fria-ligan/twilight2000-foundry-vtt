@@ -220,6 +220,7 @@
       "FuelConsumption": "Fuel Consumption",
       "Gasoline": "Gasoline",
       "Diesel": "Diesel",
+      "Alcohol": "Alcohol",
       "CrewQty": "Crew:",
       "PassengerQty": "Passengers:",
       "EmptyCrew": "Drag-'n-drop an actor to add it to the crew.",
@@ -259,7 +260,8 @@
         "fcs": "Fire Control System",
         "antenna": "Antenna"
       },
-      "HasTrailer": "Has a trailer"
+      "HasTrailer": "Has a trailer",
+      "HasSmokeDischarger": "Smoke Discharger"
     },
     "ItemSheet": {
       "Name": "Name",
@@ -291,7 +293,8 @@
       "Price": "Price",
       "ArmorLocation": "Protected Location",
       "Equipped": "Equipped",
-      "StoredInBackpack": "Stored in the backpack"
+      "StoredInBackpack": "Stored in the backpack",
+      "FeaturesForVehicle": "Vehicle Features"
     },
     "InjurySheet": {
       "Category": "Category",
