@@ -27,11 +27,13 @@ export function checkMigration() {
   migrateWorld();
 }
 
+/* -------------------------------------------- */
+
 /**
  * Performs a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
  * @return {Promise} A Promise which resolves once the migration is completed
  */
-async function migrateWorld() {
+export async function migrateWorld() {
   // const migrateDialog = new Dialog({
   //   title: 'T2K4E | System Migration',
   //   content: 'Migration in progress, please wait...',
@@ -74,7 +76,7 @@ async function migrateWorld() {
     }
   }
 
-  // Migrates Actor Override Tokens
+  // Migrates Actor Override Tokens.
   for (const s of game.scenes.contents) {
     try {
       const updateData = migrateSceneData(s.data);
@@ -93,10 +95,72 @@ async function migrateWorld() {
     }
   }
 
+  // Migrates World Compendium Packs.
+  for (const p of game.packs) {
+    if (p.metadata.package !== 'world') continue;
+    if (!['Actor', 'Item', 'Scene'].includes(p.metadata.entity)) continue;
+    await migrateCompendium(p);
+  }
+
+
   // Sets the migration as complete.
   game.settings.set('t2k4e', 'systemMigrationVersion', game.system.data.version);
   ui.notifications.info(`T2K System Migration to version ${game.system.data.version} completed!`, { permanent: true });
   // migrateDialog.close();
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Applies migration rules to all Entities within a single Compendium pack.
+ * @param pack
+ * @return {Promise}
+ * @async
+ */
+export async function migrateCompendium(pack) {
+  const entity = pack.metadata.entity;
+  if (!['Actor', 'Item', 'Scene'].includes(entity)) return;
+
+  // Unlocks the pack for editing.
+  const wasLocked = pack.locked;
+  await pack.configure({ locked: false });
+
+  // Begins by requesting server-side data model migration and get the migrated content.
+  await pack.migrate();
+  const documents = await pack.getDocuments();
+
+  // Iterates over compendium entries - applying fine-tuned migration functions.
+  for (const doc of documents) {
+    let updateData = {};
+    try {
+      switch (entity) {
+        case 'Actor':
+          updateData = migrateActorData(doc.data);
+          break;
+        case 'Item':
+          updateData = migrateItemData(doc.toObject());
+          break;
+        case 'Scene':
+          updateData = migrateSceneData(doc.data);
+          break;
+      }
+
+      // Saves the entry, if data was changed.
+      if (foundry.utils.isObjectEmpty(updateData)) continue;
+      await doc.update(updateData);
+      console.log(`Migrated ${entity} entity ${doc.name} in Compendium ${pack.collection}`);
+    }
+
+    // Handles migration failures.
+    catch(err) {
+      err.message = `Failed T2K system migration for entity ${doc.name} in pack ${pack.collection}: ${err.message}`;
+      console.error(err);
+    }
+  }
+
+  // Applies the original locked status for the pack.
+  await pack.configure({ locked: wasLocked });
+  console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
 }
 
 /* -------------------------------------------- */
@@ -108,7 +172,7 @@ async function migrateWorld() {
  * @param {Actor} actorData The actor data object to update
  * @returns {object} The updateData to apply
  */
-function migrateActorData(actorData) {
+export function migrateActorData(actorData) {
   const updateData = {};
 
   if (actorData.data) {
@@ -175,7 +239,7 @@ export function migrateItemData(itemData) {
  * @param {object} sceneData The Scene data to Update
  * @return {object} The updateData to apply
  */
-function migrateSceneData(sceneData) {
+export function migrateSceneData(sceneData) {
   const tokens = sceneData.tokens.map(token => {
     const t = token.toJSON();
     if (!t.actorId || t.actorLink) {
@@ -254,26 +318,28 @@ function _migrateRollModifiers(itemData, updateData) {
  * @private
  */
 function _migrateWeaponProps(itemData, updateData) {
-  if (itemData.data.props?.armored == undefined) {
-    updateData['data.props.armored'] = false;
+  // New PROPERTIES
+  const newProps = ['armored', 'bipod', 'tripod', 'scope', 'nightVision', 'bayonet', 'suppressor'];
+  for (const np of newProps) {
+    if (itemData.data.props[np] == undefined) {
+      updateData[`data.props.${np}`] = false;
+    }
   }
-  if (itemData.data.props?.bipod == undefined) {
-    updateData['data.props.bipod'] = false;
-  }
-  if (itemData.data.props?.tripod == undefined) {
-    updateData['data.props.tripod'] = false;
-  }
-  if (itemData.data.props?.scope == undefined) {
-    updateData['data.props.scope'] = false;
-  }
-  if (itemData.data.props?.nightVision == undefined) {
-    updateData['data.props.nightVision'] = false;
-  }
-  if (itemData.data.props?.bayonet == undefined) {
-    updateData['data.props.bayonet'] = false;
-  }
-  if (itemData.data.props?.suppressor == undefined) {
-    updateData['data.props.suppressor'] = false;
+  // New FEATURES for vehicle
+  if (itemData.data.featuresForVehicle == undefined) {
+    // Creates a new default structure for vehicle features.
+    const featuresForVehicle = {
+      'p': false,
+      'pg': false,
+      't': false,
+      'c': false,
+      'h': false,
+      's': false,
+      'fcs': false,
+      'ir': false,
+      'tm': false,
+    };
+    updateData['data.featuresForVehicle'] = featuresForVehicle;
   }
   return updateData;
 }
@@ -385,8 +451,7 @@ function _migrateVehicleCrew(actorData, updateData) {
  * @private
  */
 function _migrateVehicleComponents(actorData, updateData) {
-  const oldComp = actorData.data.components;
-  if (oldComp.fuel?.value !== undefined) {
+  if (actorData.data.components.fuel?.value !== undefined) {
     // Creates a new default components structure.
     const newComp = {
       'fuel': {
