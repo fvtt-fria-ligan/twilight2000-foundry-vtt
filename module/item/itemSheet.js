@@ -37,6 +37,7 @@ export default class ItemSheetT2K extends ItemSheet {
       data: baseData.item.data.data,
       config: CONFIG.T2K4E,
       inActor: this.item.actor ? true : false,
+      inVehicle: this.item.actor?.type === 'vehicle',
     };
 
     if (['weapon', 'ammunition'].includes(this.item.type)) {
