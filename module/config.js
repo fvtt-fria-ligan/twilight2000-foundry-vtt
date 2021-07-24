@@ -76,6 +76,7 @@ T2K4E.vehicle = {
   fuelTypes: {
     'G': 'T2K4E.VehicleSheet.Gasoline',
     'D': 'T2K4E.VehicleSheet.Diesel',
+    'A': 'T2K4E.VehicleSheet.Alcohol',
   },
   components: [
     'FUEL',
