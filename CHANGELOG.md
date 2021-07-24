@@ -6,13 +6,20 @@ All notable changes to this project will be documented in this file.
 
 ## [1.4.0] - 2021-07-23
 ### Added
-- New boolean properties (checkboxes) for weapons: Scope (Telescopic Sight), Night Vision (Night Vision Sight), Bayonet, Bipod, Tripod, and Suppressor.
+- New boolean properties (checkboxes) for weapons:
+  - Scope (Telescopic Sight), Night Vision (Night Vision Sight), Bayonet, Bipod, Tripod, and Suppressor.
+  - Features for vehicles: P, PG, T, C, H, S, FCS, IR, and Tm.
+- New property for vehicles: Smoke Discharger.
+- New movement and fuel properties for vehicles.
 - New Item modifier for CUF.
 - Armor modifier property for custom ammunitions.
 - Translation for actor & item types in the create drop-down.
 
 ### Changed
-- The "grenade" item type becomes "explosive".
+- The "grenade" item type becomes "explosive". *(This is a mostly a cosmetic change. Use the input field "Type" to specify what type of explosive it is. Eg: Grenade, Mine, Explosive, etc.)*
+
+### Fixed
+- A bug where the mag capacity of a vehicle's mounted weapon was not displayed.
 
 ## [1.3.1] - 2021-07-20
 ### Fixed

@@ -116,11 +116,11 @@ Hooks.once('ready', function() {
       // Renders a starting actor or item.
       /** @type {Actor} */
       const startingActor = game.actors.getName('Stefouch');
-      startingActor.sheet.render(true);
+      // startingActor.sheet.render(true);
       console.warn(startingActor);
       /** @type {Actor} */
       const startingVehicle = game.actors.getName('T-80');
-      // startingVehicle.sheet.render(true);
+      startingVehicle.sheet.render(true);
       console.warn(startingVehicle);
       /** @type {Item} */
       const startingItem = game.items.getName('FN FAL');
