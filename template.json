@@ -246,6 +246,7 @@
         }
       },
       "trailer": false,
+      "smokeDischarger": false,
       "price": 0
     },
     "party": {
@@ -311,6 +312,17 @@
         "tripod": false,
         "mounted": false,
         "armored": false
+      },
+      "featuresForVehicle": {
+        "p": false,
+        "pg": false,
+        "t": false,
+        "c": false,
+        "h": false,
+        "s": false,
+        "fcs": false,
+        "ir": false,
+        "tm": false
       }
     },
     "armor": {

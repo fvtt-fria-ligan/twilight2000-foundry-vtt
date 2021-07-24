@@ -126,6 +126,19 @@
 
       </div>
 
+      {{#if inVehicle}}
+      <div class="features-other flexcol">
+        <div class="form-group-stacked">
+          {{#each data.featuresForVehicle as | prop name |}}
+          <label class="checkbox">
+            <input type="checkbox" name="data.featuresForVehicle.{{name}}" {{checked prop}}/>
+            {{toUpperCase name}}
+          </label>
+          {{/each}}
+        </div>
+      </div>
+      {{/if}}
+
       {{!-- Inventory Options --}}
       {{#if inActor}}
       <div class="features-other flexcol">
