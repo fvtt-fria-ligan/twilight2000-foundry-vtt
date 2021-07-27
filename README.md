@@ -4,12 +4,12 @@
   <a href="https://foundryvtt.com" target="_blank">
     <img alt="Foundry Version" src="https://img.shields.io/badge/dynamic/json?color=blue&label=Foundry&query=compatibleCoreVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2FStefouch%2Ft2k4e%2Fmaster%2Fsystem.json"/>
   </a>
-  <a href="https://foundryvtt.com/packages/t2k4e/" target="_blank">
+  <!-- <a href="https://foundryvtt.com/packages/t2k4e/" target="_blank">
     <img alt="Forge Installs" src="https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ft2k4e&colorB=4aa94a"/>
-  </a>
-  <a href="https://github.com/Stefouch/t2k4e/releases">
+  </a> -->
+  <!-- <a href="https://github.com/Stefouch/t2k4e/releases">
     <img alt="Downloads" src="https://img.shields.io/github/downloads/Stefouch/t2k4e/latest/master.zip"/>
-  </a>
+  </a> -->
   <a href="https://github.com/Stefouch/t2k4e/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"/>
   </a>
@@ -24,7 +24,7 @@
   </a>
 </p>
 
-> **DISCLAIMER:** This is the beta version for the playtesters of the Twilight 2000 4E game system for Foundry VTT. The system will be released on Foundry when ready. You feedback and bug reports are greatly appreciated.
+> **DISCLAIMER:** This is the beta version for the playtesters of the Twilight 2000 4E game system for Foundry VTT. The system will be released on Foundry when ready. Your feedback and bug reports are greatly appreciated.
 
 <!-- An OFFICIAL system for Twilight 2000 4E (Free League Publishing) on Foundry VTT.-->
 
