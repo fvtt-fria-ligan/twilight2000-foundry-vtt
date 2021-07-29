@@ -2,6 +2,15 @@
 /*  Fonts                                      */
 /* ------------------------------------------- */
 
+:root {
+  --font-size--extra-small: .5rem;
+  --font-size--very-small: .7rem;
+  --font-size--small: .8rem;
+  --font-size--default: 1rem;
+  --font-size--large: 1.4rem;
+  --font-size--extra-large: 2rem;
+}
+
 /* Font for Headers */
 @font-face {
   font-family: 'GT Eesti Text Medium';
@@ -45,6 +54,11 @@
     local('TheSansB W5 Plain'),
     local('TheSansB W5 Medium'),
     local('TheSansB W5 Plain Medium');
+}
+@font-face {
+  font-family: 'TheSansB';
+  font-style: italic;
+  src: local('TheSansB W5 Plain Medium Italic');
 }
 
 /* Replacement Font for Generic Text */
@@ -141,6 +155,13 @@
 @colorGreen: #18520b;
 @colorBlue: #284283;
 @colorActorH2: rgba(0, 0, 0, .1);
+
+@colorCoresetBrown: rgb(96, 79, 67);
+@colorCoresetLightGreen: rgb(121, 132, 131);
+@colorCoresetGreen: rgb(61, 75, 73);
+@colorCoresetTeal: rgb(90, 109, 107);
+@colorCoresetTableHeader: rgb(191, 182, 176);
+@colorCoresetTableLine: rgb(217, 212, 208);
 
 @gap: 10px;
 
