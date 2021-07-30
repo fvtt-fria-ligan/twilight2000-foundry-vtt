@@ -30,6 +30,19 @@
     font-weight: bold;
     color: @colorCoresetBrown;
   }
+
+  img {
+    border: none;
+  }
+
+  code {
+    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 6px;
+    font-size: 85%;
+    margin: 0;
+    padding: .2em .4em;
+  }
 }
 
 .app.journal-sheet {
@@ -110,6 +123,7 @@
           table.t2k-table {
             color: @colorCoresetBrown;
             line-height: 1;
+            // vertical-align: top;
             padding: 25px 0;
             max-width: 100%;
             border: none;
@@ -117,14 +131,23 @@
             // margin: auto;
             // margin-bottom: 15px;
             background: none;
+            word-break: keep-all;
 
-            th {
+            tbody {
+              vertical-align: top;
+            }
+
+            th,
+            .t2k-th {
               font-size: .8rem;
               font-weight: bold;
               text-transform: uppercase;
               text-align: left;
               padding-top: 7px;
               padding-bottom: 5px;
+            }
+
+            th {
               background-color: @colorCoresetTableHeader;
             }
 
@@ -144,13 +167,23 @@
               background-color: @colorCoresetTableLine;
             }
 
-            td {
+            td, th {
               padding-right: 10px;
             }
 
             th:nth-child(1),
             td:nth-child(1) {
               padding-left: 10px;
+            }
+
+            ul {
+              list-style: '✓ ';
+              margin: 0;
+              padding: 0 0 0 1em;
+              &>li::before {
+                content: '';
+                margin: 0;
+              }
             }
           }
         }
