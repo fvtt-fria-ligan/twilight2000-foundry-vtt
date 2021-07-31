@@ -14,6 +14,33 @@ export function registerSystemSettings() {
     default: '',
   });
 
+  game.settings.register('t2k4e', 'trackPcAmmo', {
+    config: true,
+    scope: 'world',
+    name: 'SETTINGS.trackPcAmmo.name',
+    hint: 'SETTINGS.trackPcAmmo.label',
+    type: Boolean,
+    default: true,
+  });
+
+  game.settings.register('t2k4e', 'trackNpcAmmo', {
+    config: true,
+    scope: 'world',
+    name: 'SETTINGS.trackNpcAmmo.name',
+    hint: 'SETTINGS.trackNpcAmmo.label',
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register('t2k4e', 'trackVehicleAmmo', {
+    config: true,
+    scope: 'world',
+    name: 'SETTINGS.trackVehicleAmmo.name',
+    hint: 'SETTINGS.trackVehicleAmmo.label',
+    type: Boolean,
+    default: true,
+  });
+
   game.settings.register('t2k4e', 'showTaskCheckOptions', {
     config: true,
     scope: 'client',

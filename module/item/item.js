@@ -26,7 +26,7 @@ export default class ItemT2K extends Item {
   }
 
   get hasAttack() {
-    return this.hasDamage;
+    return this.hasDamage || this.hasAmmo;
   }
 
   get isStashed() {
@@ -44,7 +44,7 @@ export default class ItemT2K extends Item {
   }
 
   get hasAmmo() {
-    return !!this.data.data.mag?.max;
+    return this.data.data.ammo && !!this.data.data.mag?.max;
   }
 
   get hasReliability() {
@@ -257,13 +257,17 @@ export default class ItemT2K extends Item {
     // Prepares values.
     if (!actor) actor = this.actor;
     const actorData = actor.data.data;
-    const attribute = actorData.attributes[attributeName]?.value ?? 0;
-    const skill = actorData.skills[skillName]?.value ?? 0;
+    const attribute = actorData.attributes?.[attributeName]?.value ?? 0;
+    const skill = actorData.skills?.[skillName]?.value ?? 0;
     let rof = itemData.rof;
 
     // Gets the magazine.
+    const track = (this.actor.type === 'character' && game.settings.get('t2k4e', 'trackPcAmmo'))
+      || (this.actor.type === 'npc' && game.settings.get('t2k4e', 'trackNpcAmmo'))
+      || (this.actor.type === 'vehicle' && game.settings.get('t2k4e', 'trackVehicleAmmo'));
+
     let ammo = null;
-    if (this.hasAmmo) {
+    if (track && this.hasAmmo) {
       ammo = this.actor.items.get(this.data.data.mag.target);
       if (ammo?.data) {
         const ammoLeft = ammo.data.data.ammo.value ?? ammo.data.data.qty;
