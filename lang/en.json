@@ -265,8 +265,8 @@
       "HasSmokeDischarger": "Smoke Discharger"
     },
     "UnitSheet": {
-      "Name": "Name (abbreviated)",
-      "FullName": "Full Name",
+      "Name": "Full Name",
+      "Info": "Additional information",
       "Faction": "Faction",
       "UnitAffiliation": "Affiliation",
       "UnitSize": "Unit Size",

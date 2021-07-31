@@ -255,7 +255,7 @@
     },
     "unit": {
       "templates": ["actorDescription"],
-      "fullName": "",
+      "info": "",
       "faction": "",
       "unitAffiliation": "",
       "unitSize": "",
