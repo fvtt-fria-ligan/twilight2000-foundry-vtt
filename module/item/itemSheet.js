@@ -189,7 +189,7 @@ export default class ItemSheetT2K extends ItemSheet {
     const mag = size > 40 ? (size > 55 ? (size > 150 ? 'Box' : 'Belt') : 'Drum') : 'Mag';
 
     const itemData = {
-      name: `${ammo}, ${size}-rounds ${mag}`,
+      name: `${ammo}, ${size}-round ${mag}`,
       type: 'ammunition',
       'data.ammo': { value: size, max: size },
     };
