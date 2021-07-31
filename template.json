@@ -3,7 +3,8 @@
     "types": [
       "character",
       "npc",
-      "vehicle"
+      "vehicle",
+      "unit"
     ],
     "templates": {
       "actorBio": {
@@ -147,7 +148,10 @@
         "actorAttributesAndSkills",
         "actorCombat",
         "actorActions"
-      ]
+      ],
+      "unitMorale": {
+        "score": "–"
+      }
     },
     "animal": {
       "templates": [
@@ -248,6 +252,27 @@
       "trailer": false,
       "smokeDischarger": false,
       "price": 0
+    },
+    "unit": {
+      "templates": ["actorDescription"],
+      "faction": "",
+      "unitAffiliation": "",
+      "unitSize": "",
+      "unitType": "",
+      "unitModifiers": {
+        "airborne": false,
+        "parachute": false,
+        "airmobile": false,
+        "airmobileOrganicLift": false,
+        "amphibious": false,
+        "motorized": false,
+        "moutain": false,
+        "cannon": false,
+        "wheeled": false
+      },
+      "personnel": 0,
+      "vehicles": 0,
+      "hq": false
     },
     "party": {
       "templates": ["actorDescription"]
