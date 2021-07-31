@@ -15,9 +15,10 @@
           <h4 class="item-type">{{localize "ACTOR.TypeUnit"}}</h4>
           {{/if}}
         </div>
-        <h1>
-          <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'T2K4E.UnitSheet.Name'}}"/>
-        </h1>
+        <h4>
+          <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'T2K4E.UnitSheet.Name'}}"/>
+          <input type="text" name="data.fullName" value="{{data.fullName}}" placeholder="{{localize 'T2K4E.UnitSheet.FullName'}}"/>
+        </h4>
     </div>
   </header>
 
