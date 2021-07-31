@@ -334,8 +334,15 @@ export default class ActorT2K extends Actor {
         updateData['token.actorLink'] = true;
         updateData['token.disposition'] = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
         break;
+      case 'npc':
+        updateData['token.bar2'] = { attribute: '' };
+        break;
       case 'vehicle':
         updateData['token.bar1'] = { attribute: 'reliability' };
+        break;
+      case 'unit':
+        updateData['token.displayName'] = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
+        // updateData['token.disposition'] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
         break;
     }
     // Adds default character token size.
