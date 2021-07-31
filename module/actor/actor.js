@@ -342,9 +342,6 @@ export default class ActorT2K extends Actor {
         break;
       case 'unit':
         updateData['token.displayName'] = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
-        // updateData['token.disposition'] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
-        // TODO automatic token disposition on token creation.
-        // TODO automatic token info instead of name.
         break;
     }
     // Adds default character token size.

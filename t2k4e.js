@@ -127,7 +127,7 @@ Hooks.once('ready', function() {
       console.warn(startingActor);
       /** @type {Actor} */
       const startingVehicle = game.actors.getName('T-80');
-      startingVehicle.sheet.render(true);
+      // startingVehicle.sheet.render(true);
       console.warn(startingVehicle);
       /** @type {Item} */
       const startingItem = game.items.getName('FN FAL');
@@ -173,5 +173,41 @@ Hooks.on('dropActorSheetData', (actor, sheet, data) => {
   if (actor.type === 'vehicle') {
     // When dropping an actor on a vehicle sheet.
     if (data.type === 'Actor') sheet.dropCrew(data.id);
+  }
+});
+
+Hooks.on('createToken', (token, data, userId) => {
+  // When creating a Unit token.
+  if (token.actor.type === 'unit') {
+    const updateData = {};
+
+    // Uses abbreviation (info) in place of name.
+    const nm = token.actor.data.data.info;
+    if (nm) updateData['name'] = nm;
+
+    // Uses default affiliation.
+    const afl = token.actor.data.data.unitAffiliation;
+    if (afl) {
+      let disposition;
+      switch (afl) {
+        case 'friendly':
+          disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+          break;
+        case 'hostile':
+          disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+          break;
+        case 'neutral':
+          disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
+          break;
+        default:
+          disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+      }
+      if (disposition !== token.data.disposition) updateData['disposition'] = disposition;
+    }
+
+    // Updates the token.
+    if (!foundry.utils.isObjectEmpty(updateData)) {
+      token.update(updateData);
+    }
   }
 });
