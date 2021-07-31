@@ -2,6 +2,7 @@
   "T2K4E": {
     "SheetClassCharacter": "Character Sheet",
     "SheetClassVehicle": "Vehicle Sheet",
+    "SheetClassUnit": "Unit Sheet",
     "Attribute": "Attribute",
     "Attributes": "Attributes",
     "AttributeNames": {
@@ -263,6 +264,48 @@
       "HasTrailer": "Has a trailer",
       "HasSmokeDischarger": "Smoke Discharger"
     },
+    "UnitSheet": {
+      "Name": "Name",
+      "Faction": "Faction",
+      "UnitAffiliation": "Affiliation",
+      "UnitSize": "Unit Size",
+      "UnitType": "Unit Type",
+      "UnitModifiers": "Unit Modifiers",
+      "Personnel": "Personnel",
+      "Vehicles": "Combat Vehicles",
+      "HQ": "Headquarters (HQ)"
+    },
+    "UnitAffiliationNames": {
+      "friendly": "Friendly",
+      "hostile" : "Hostile",
+      "neutral": "Neutral",
+      "unknown": "Unknown"
+    },
+    "UnitModifierNames": {
+      "airborne": "Airborne",
+      "parachute": "Parachute",
+      "airmobile": "Airmobile",
+      "airmobileOrganicLift": "Airm. O. L.",
+      "amphibious": "Amphibious",
+      "motorized": "Motorized",
+      "moutain": "Mountain",
+      "cannon": "Cannon",
+      "wheeled": "Wheeled"
+    },
+    "UnitSizeNames": {
+      "army": "Army XXXX",
+      "corps": "Corps XXX",
+      "division": "Division XX",
+      "Brigade": "Brigade X",
+      "regiment": "Regiment III",
+      "battalion": "Battalion II",
+      "company": "Company I",
+      "staffel": "Staffel ••••",
+      "platoon": "Platoon •••",
+      "section": "Section ••",
+      "squad": "Squad •",
+      "fireteam": "Fireteam"
+    },
     "ItemSheet": {
       "Name": "Name",
       "FeaturesTab": "Features",
@@ -294,6 +337,8 @@
       "ArmorLocation": "Protected Location",
       "Equipped": "Equipped",
       "StoredInBackpack": "Stored in the backpack",
+      "CreateAmmo": "Generate Ammo",
+      "CreateAmmoNotif": "Generated 1x <b>{ammo}</b> for weapon <b>{weapon}</b>",
       "FeaturesForVehicle": "Vehicle Features"
     },
     "InjurySheet": {
@@ -358,6 +403,18 @@
     }
   },
   "SETTINGS": {
+    "trackPcAmmo": {
+      "name": "Track Player Characters' Ammunitions",
+      "label": "Whether the ammo consumption should be tracked for PCs."
+    },
+    "trackNpcAmmo": {
+      "name": "Track NPCs' Ammunitions",
+      "label": "Whether the ammo consumption should be tracked for NPCs."
+    },
+    "trackVehicleAmmo": {
+      "name": "Track Vehicles' Ammunitions",
+      "label": "Whether the ammo consumption should be tracked for weaponized vehicles."
+    },
     "showTaskCheckOptions": {
       "name": "Ask for Task Check Options by Default",
       "label": "Hold Shift to toggle."
@@ -399,6 +456,7 @@
   "ACTOR.TypeCharacter": "Player Character",
   "ACTOR.TypeNpc": "Non-Player Character",
   "ACTOR.TypeVehicle": "Vehicle",
+  "ACTOR.TypeUnit": "Military Unit",
   "ITEM.TypeWeapon": "Weapon",
   "ITEM.TypeArmor": "Body Armor",
   "ITEM.TypeAmmunition": "Ammo",

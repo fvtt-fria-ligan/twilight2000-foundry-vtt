@@ -29,6 +29,7 @@ import ItemT2K from './module/item/item.js';
 // Imports Applications.
 import ActorSheetT2KCharacter from './module/actor/characterSheet.js';
 import ActorSheetT2KVehicle from './module/actor/vehicleSheet.js';
+import ActorSheetT2KUnit from './module/actor/unitSheet.js';
 import ItemSheetT2K from './module/item/itemSheet.js';
 
 // Imports Helpers.
@@ -57,6 +58,7 @@ Hooks.once('init', function() {
     applications: {
       ActorSheetT2KCharacter,
       ActorSheetT2KVehicle,
+      ActorSheetT2KUnit,
       ItemSheetT2K,
     },
     config: T2K4E,
@@ -90,6 +92,11 @@ Hooks.once('init', function() {
     types: ['vehicle'],
     makeDefault: true,
     label: 'T2K4E.SheetClassVehicle',
+  });
+  Actors.registerSheet('t2k4e', ActorSheetT2KUnit, {
+    types: ['unit'],
+    makeDefault: true,
+    label: 'T2K4E.SheetClassUnit',
   });
 
   Items.unregisterSheet('core', ItemSheet);
@@ -126,6 +133,8 @@ Hooks.once('ready', function() {
       const startingItem = game.items.getName('FN FAL');
       // startingItem.sheet.render(true);
       console.warn(startingItem);
+      /** @type {JournalEntry} */
+      // game.journal.getName('Test').sheet.render(true);
     }
     catch (error) {
       console.warn('t2k4e | DEBUG | Cannot find starting Entity.', error);
