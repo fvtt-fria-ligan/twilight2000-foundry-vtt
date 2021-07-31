@@ -270,8 +270,14 @@
         "cannon": false,
         "wheeled": false
       },
-      "personnel": 0,
-      "vehicles": 0,
+      "personnel": {
+        "value": 0,
+        "max": 0
+      },
+      "vehicles": {
+        "value": 0,
+        "max": 0
+      },
       "hq": false
     },
     "party": {

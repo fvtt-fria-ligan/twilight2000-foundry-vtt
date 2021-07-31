@@ -1,4 +1,4 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<form class="{{cssClass}} flexcol{{#if data.unitAffiliation}} unit-affiliation-{{data.unitAffiliation}}{{/if}}" autocomplete="off">
 
   {{!-- ================================================== --}}
   {{!--  Actor Sheet Header                                --}}
@@ -69,11 +69,19 @@
         {{!-- Counts --}}
         <div class="flexcol">
           <label>{{localize "T2K4E.UnitSheet.Personnel"}}</label>
-          <input type="text" name="data.personnel" value="{{data.personnel}}"/>
+          <div class="flexrow flex-center">
+            <input type="number" name="data.personnel.value" value="{{data.personnel.value}}" data-dtype="Number"/>
+            <span class="sep">/</span>
+            <input type="number" name="data.personnel.max" value="{{data.personnel.max}}" data-dtype="Number"/>
+          </div>
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.UnitSheet.Vehicles"}}</label>
-          <input type="text" name="data.vehicles" value="{{data.vehicles}}"/>
+          <div class="flexrow flex-center">
+            <input type="number" name="data.vehicles.value" value="{{data.vehicles.value}}" data-dtype="Number"/>
+            <span class="sep">/</span>
+            <input type="number" name="data.vehicles.max" value="{{data.vehicles.max}}" data-dtype="Number"/>
+          </div>
         </div>
 
       </div>
