@@ -4,16 +4,21 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
-## [1.4.0] - 2021-07-23
+## [1.4.0] - 2021-07-xx
 ### Added
+- New Actor: **Military Unit**.
+- New "Create Ammo" button for equipped weapons.
 - New boolean properties (checkboxes) for weapons:
   - Scope (Telescopic Sight), Night Vision (Night Vision Sight), Bayonet, Bipod, Tripod, and Suppressor.
   - Features for vehicles: P, PG, T, C, H, S, FCS, IR, and Tm.
 - New property for vehicles: Smoke Discharger.
 - New movement and fuel properties for vehicles.
+- Possibility to roll attacks with crew-less vehicles.
+- Possibility to roll attacks without ammo tracking (new game settings checkboxes).
 - New Item modifier for CUF.
 - Armor modifier property for custom ammunitions.
 - Translation for actor & item types in the create drop-down.
+- CSS styles for Journal Entries and Actor/Item's descriptions.
 
 ### Changed
 - The "grenade" item type becomes "explosive". *(This is a mostly a cosmetic change. Use the input field "Type" to specify what type of explosive it is. Eg: Grenade, Mine, Explosive, etc.)*
