@@ -19,6 +19,7 @@
 import { T2K4E } from './module/config.js';
 import { registerDsN, T2KRoller } from './module/dice.js';
 import { registerSystemSettings } from './module/settings.js';
+import { registerStatusEffects } from './module/statusEffects.js';
 import { preloadHandlebarsTemplates, registerHandlebars } from './module/templates.js';
 import * as Chat from './module/chat.js';
 
@@ -113,6 +114,9 @@ Hooks.once('ready', function() {
 
   // Determines whether a system migration is required and feasible.
   checkMigration();
+
+  // Defines status effects.
+  registerStatusEffects();
 
   console.warn('t2k4e | READY!');
 

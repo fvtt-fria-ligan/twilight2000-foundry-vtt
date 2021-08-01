@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - Possibility to roll attacks with crew-less vehicles.
 - Possibility to roll attacks without ammo tracking (new game settings checkboxes).
 - New Item modifier for CUF.
+- New Status Effect icons for tokens.
 - Armor modifier property for custom ammunitions.
 - Translation for actor & item types in the create drop-down.
 - CSS styles for Journal Entries and Actor/Item's descriptions.

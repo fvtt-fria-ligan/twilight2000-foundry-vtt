@@ -464,5 +464,12 @@
   "ITEM.TypeGrenade": "Explosive",
   "ITEM.TypeGear": "Gear",
   "ITEM.TypeInjury": "Critical Injury",
-  "ITEM.TypeSpecialty": "Specialty"
+  "ITEM.TypeSpecialty": "Specialty",
+  "EFFECT.StatusFullCover":"Full Cover",
+  "EFFECT.StatusPartialCover": "Partial Cover",
+  "EFFECT.StatusOverwatch": "Overwatch",
+  "EFFECT.StatusSuppressed": "Suppressed",
+  "EFFECT.StatusStop": "Stop",
+  "EFFECT.StatusSmoke": "Smoke",
+  "EFFECT.StatusFire": "Fire"
 }
