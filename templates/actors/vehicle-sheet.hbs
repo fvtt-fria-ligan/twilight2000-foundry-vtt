@@ -26,6 +26,7 @@
         <div class="movement-type flexcol">
           <label>{{localize "T2K4E.VehicleSheet.Movement"}}</label>
           <select name="data.movement.type">
+            <option value=""></option>
             {{selectOptions config.vehicle.movementTypes selected=data.movement.type localize=true}}
           </select>
         </div>
@@ -53,6 +54,7 @@
           <label>{{localize "T2K4E.VehicleSheet.Fuel"}}</label>
           <div class="flexrow">
             <select name="data.fuel.type">
+              <option value=""></option>
               {{selectOptions config.vehicle.fuelTypes selected=data.fuel.type localize=true}}
             </select>
             <progress class="fuel-gauge" value="{{data.fuel.value}}" max="{{data.fuel.max}}"></progress>

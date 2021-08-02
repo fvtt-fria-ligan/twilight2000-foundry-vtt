@@ -37,10 +37,11 @@ export default class ActorT2K extends Actor {
       case 'character': this._prepareCharacterData(actorData); break;
       case 'npc': this._prepareNpcData(actorData); break;
       case 'vehicle': this._prepareVehicleData(actorData); break;
+      case 'unit': this._prepareUnitData(actorData); break;
       default: throw new TypeError(`t2k4e | Unknown Actor Type: "${actorData.type}"`);
     }
 
-    console.log('t2k4e | Updated Actor: ', this.name, this.id);
+    // console.log('t2k4e | Updated Actor: ', this.name, this.id);
   }
 
   /** @override */
@@ -273,6 +274,14 @@ export default class ActorT2K extends Actor {
   }
 
   /* ------------------------------------------- */
+  /*  Data Preparation                           */
+  /*   → Military Unit                           */
+  /* ------------------------------------------- */
+
+  // TODO placeholder
+  _prepareUnitData() {}
+
+  /* ------------------------------------------- */
   /*  Roll Modifiers                             */
   /* ------------------------------------------- */
 
@@ -325,8 +334,14 @@ export default class ActorT2K extends Actor {
         updateData['token.actorLink'] = true;
         updateData['token.disposition'] = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
         break;
+      case 'npc':
+        updateData['token.bar2'] = { attribute: '' };
+        break;
       case 'vehicle':
         updateData['token.bar1'] = { attribute: 'reliability' };
+        break;
+      case 'unit':
+        updateData['token.displayName'] = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
         break;
     }
     // Adds default character token size.

@@ -26,7 +26,7 @@ export default class ItemT2K extends Item {
   }
 
   get hasAttack() {
-    return this.hasDamage;
+    return this.hasDamage || this.hasAmmo;
   }
 
   get isStashed() {
@@ -44,7 +44,7 @@ export default class ItemT2K extends Item {
   }
 
   get hasAmmo() {
-    return !!this.data.data.mag?.max;
+    return this.data.data.ammo && !!this.data.data.mag?.max;
   }
 
   get hasReliability() {
@@ -56,6 +56,10 @@ export default class ItemT2K extends Item {
     return Object.keys(this.data.data.rollModifiers).length > 0;
   }
 
+  // get inVehicle() {
+  //   return this.actor?.type === 'vehicle';
+  // }
+
   /**
    * The name with a quantity in parentheses.
    * @type {string}
@@ -66,6 +70,13 @@ export default class ItemT2K extends Item {
     if (this.type === 'ammunition') {
       const ammo = this.data.data.ammo;
       str += ` [${ammo.value}/${ammo.max}]`;
+    }
+    else if (this.type === 'weapon' && this.actor?.type === 'vehicle') {
+      const ffv = [];
+      for (const [k, v] of Object.entries(this.data.data.featuresForVehicle)) {
+        if (v) ffv.push(k.toUpperCase());
+      }
+      if (ffv.length) str += ` (${ffv.join(', ')})`;
     }
     if (this.qty > 1) {
       str += ` (${this.qty})`;
@@ -246,13 +257,17 @@ export default class ItemT2K extends Item {
     // Prepares values.
     if (!actor) actor = this.actor;
     const actorData = actor.data.data;
-    const attribute = actorData.attributes[attributeName]?.value ?? 0;
-    const skill = actorData.skills[skillName]?.value ?? 0;
+    const attribute = actorData.attributes?.[attributeName]?.value ?? 0;
+    const skill = actorData.skills?.[skillName]?.value ?? 0;
     let rof = itemData.rof;
 
     // Gets the magazine.
+    const track = (this.actor.type === 'character' && game.settings.get('t2k4e', 'trackPcAmmo'))
+      || (this.actor.type === 'npc' && game.settings.get('t2k4e', 'trackNpcAmmo'))
+      || (this.actor.type === 'vehicle' && game.settings.get('t2k4e', 'trackVehicleAmmo'));
+
     let ammo = null;
-    if (this.hasAmmo) {
+    if (track && this.hasAmmo) {
       ammo = this.actor.items.get(this.data.data.mag.target);
       if (ammo?.data) {
         const ammoLeft = ammo.data.data.ammo.value ?? ammo.data.data.qty;
@@ -555,4 +570,5 @@ ItemT2K.CHAT_TEMPLATE = {
   'gear': 'systems/t2k4e/templates/chat/gear-chat.hbs',
   'ammunition': 'systems/t2k4e/templates/chat/gear-chat.hbs',
   // TODO injury template
+  // TODO better templates
 };

@@ -2,6 +2,7 @@
   "T2K4E": {
     "SheetClassCharacter": "Character Sheet",
     "SheetClassVehicle": "Vehicle Sheet",
+    "SheetClassUnit": "Unit Sheet",
     "Attribute": "Attribute",
     "Attributes": "Attributes",
     "AttributeNames": {
@@ -59,7 +60,8 @@
     "Constants": "Constants",
     "ConstantNames": {
       "encumbrance": "Encumbrance",
-      "awareness": "Combat awareness"
+      "awareness": "Combat awareness",
+      "cuf": "CUF"
     },
     "TravelTasks": "Travel Tasks",
     "TravelTaskNames": {
@@ -108,7 +110,7 @@
       "ammunition": "Ammunition",
       "armor": "Armor",
       "gear": "Gear",
-      "grenade": "Grenade",
+      "grenade": "Explosive",
       "injury": "Injury",
       "specialty": "Specialty",
       "weapon": "Weapon"
@@ -119,7 +121,13 @@
       "disposable": "Disposable",
       "ammoBelt": "Ammo Belt",
       "magazine": "Is Magazine",
-      "armored": "Armored"
+      "armored": "Armored",
+      "bipod": "Bipod",
+      "tripod": "Tripod",
+      "scope": "Scope",
+      "nightVision": "Night Vision",
+      "bayonet": "Bayonet",
+      "suppressor": "Suppressor"
     },
     "ActorTypes": {
       "character": "Player Character (PC)",
@@ -213,6 +221,7 @@
       "FuelConsumption": "Fuel Consumption",
       "Gasoline": "Gasoline",
       "Diesel": "Diesel",
+      "Alcohol": "Alcohol",
       "CrewQty": "Crew:",
       "PassengerQty": "Passengers:",
       "EmptyCrew": "Drag-'n-drop an actor to add it to the crew.",
@@ -252,7 +261,51 @@
         "fcs": "Fire Control System",
         "antenna": "Antenna"
       },
-      "HasTrailer": "Has a trailer"
+      "HasTrailer": "Has a trailer",
+      "HasSmokeDischarger": "Smoke Discharger"
+    },
+    "UnitSheet": {
+      "Name": "Full Name",
+      "Info": "Additional information",
+      "Faction": "Faction",
+      "UnitAffiliation": "Affiliation",
+      "UnitSize": "Unit Size",
+      "UnitType": "Unit Type",
+      "UnitModifiers": "Unit Modifiers",
+      "Personnel": "Personnel",
+      "Vehicles": "Combat Vehicles",
+      "HQ": "Headquarters (HQ)"
+    },
+    "UnitAffiliationNames": {
+      "friendly": "Friendly",
+      "hostile" : "Hostile",
+      "neutral": "Neutral",
+      "unknown": "Unknown"
+    },
+    "UnitModifierNames": {
+      "airborne": "Airborne",
+      "parachute": "Parachute",
+      "airmobile": "Airmobile",
+      "airmobileOrganicLift": "Airm. O. L.",
+      "amphibious": "Amphibious",
+      "motorized": "Motorized",
+      "moutain": "Mountain",
+      "cannon": "Cannon",
+      "wheeled": "Wheeled"
+    },
+    "UnitSizeNames": {
+      "army": "Army XXXX",
+      "corps": "Corps XXX",
+      "division": "Division XX",
+      "Brigade": "Brigade X",
+      "regiment": "Regiment | | |",
+      "battalion": "Battalion | |",
+      "company": "Company |",
+      "staffel": "Staffel ••••",
+      "platoon": "Platoon •••",
+      "section": "Section ••",
+      "squad": "Squad •",
+      "fireteam": "Fireteam"
     },
     "ItemSheet": {
       "Name": "Name",
@@ -284,7 +337,10 @@
       "Price": "Price",
       "ArmorLocation": "Protected Location",
       "Equipped": "Equipped",
-      "StoredInBackpack": "Stored in the backpack"
+      "StoredInBackpack": "Stored in the backpack",
+      "CreateAmmo": "Generate Ammo",
+      "CreateAmmoNotif": "Generated 1x <b>{ammo}</b> for weapon <b>{weapon}</b>",
+      "FeaturesForVehicle": "Vehicle Features"
     },
     "InjurySheet": {
       "Category": "Category",
@@ -348,6 +404,18 @@
     }
   },
   "SETTINGS": {
+    "trackPcAmmo": {
+      "name": "Track Player Characters' Ammunitions",
+      "label": "Whether the ammo consumption should be tracked for PCs."
+    },
+    "trackNpcAmmo": {
+      "name": "Track NPCs' Ammunitions",
+      "label": "Whether the ammo consumption should be tracked for NPCs."
+    },
+    "trackVehicleAmmo": {
+      "name": "Track Vehicles' Ammunitions",
+      "label": "Whether the ammo consumption should be tracked for weaponized vehicles."
+    },
     "showTaskCheckOptions": {
       "name": "Ask for Task Check Options by Default",
       "label": "Hold Shift to toggle."
@@ -384,5 +452,24 @@
       "AmmoDie": "Ammo",
       "LocationDie": "Hit Die"
     }
-  }
+  },
+  "GAME.Paused": "War Paused",
+  "ACTOR.TypeCharacter": "Player Character",
+  "ACTOR.TypeNpc": "Non-Player Character",
+  "ACTOR.TypeVehicle": "Vehicle",
+  "ACTOR.TypeUnit": "Military Unit",
+  "ITEM.TypeWeapon": "Weapon",
+  "ITEM.TypeArmor": "Body Armor",
+  "ITEM.TypeAmmunition": "Ammo",
+  "ITEM.TypeGrenade": "Explosive",
+  "ITEM.TypeGear": "Gear",
+  "ITEM.TypeInjury": "Critical Injury",
+  "ITEM.TypeSpecialty": "Specialty",
+  "EFFECT.StatusFullCover":"Full Cover",
+  "EFFECT.StatusPartialCover": "Partial Cover",
+  "EFFECT.StatusOverwatch": "Overwatch",
+  "EFFECT.StatusSuppressed": "Suppressed",
+  "EFFECT.StatusStop": "Stop",
+  "EFFECT.StatusSmoke": "Smoke",
+  "EFFECT.StatusFire": "Fire"
 }

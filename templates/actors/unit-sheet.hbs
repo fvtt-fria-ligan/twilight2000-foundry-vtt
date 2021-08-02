@@ -1,0 +1,117 @@
+<form class="{{cssClass}} flexcol{{#if data.unitAffiliation}} unit-affiliation-{{data.unitAffiliation}}{{/if}}" autocomplete="off">
+
+  {{!-- ================================================== --}}
+  {{!--  Actor Sheet Header                                --}}
+  {{!-- ================================================== --}}
+
+  <header class="sheet-header flexrow">
+    <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+
+    <div class="header-details flexcol">
+        <div class="item-subtitle flexrow">
+          {{#if data.hq}}
+          <h4 class="item-type">{{localize "T2K4E.UnitSheet.HQ"}}</h4>
+          {{else}}
+          <h4 class="item-type">{{localize "ACTOR.TypeUnit"}}</h4>
+          {{/if}}
+        </div>
+        <h4>
+          <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'T2K4E.UnitSheet.Name'}}"/>
+          <input type="text" name="data.info" value="{{data.info}}" placeholder="{{localize 'T2K4E.UnitSheet.Info'}}"/>
+        </h4>
+    </div>
+  </header>
+
+  {{!-- ================================================== --}}
+  {{!--  Sheet Tab Navigation                              --}}
+  {{!-- ================================================== --}}
+
+  <nav class="sheet-tabs slanted-tabs flexrow" data-group="primary">
+    <a class="item" data-tab="features">{{localize "T2K4E.ItemSheet.FeaturesTab"}}</a>
+    <a class="item" data-tab="description">{{localize "T2K4E.ItemSheet.DescriptionTab"}}</a>
+  </nav>
+
+  {{!-- ================================================== --}}
+  {{!--  Sheet Body                                        --}}
+  {{!-- ================================================== --}}
+
+  <section class="sheet-body">
+
+    <div class="tab tab-features" data-group="primary" data-tab="features">
+
+      <div class="grid grid-2col item-features">
+
+        {{!-- Faction --}}
+        <div class="flexcol">
+          <label>{{localize "T2K4E.UnitSheet.Faction"}}</label>
+          <input type="text" name="data.faction" value="{{data.faction}}"/>
+        </div>
+        {{!-- Affiliation --}}
+        <div class="flexcol">
+          <label>{{localize "T2K4E.UnitSheet.UnitAffiliation"}}</label>
+          <select name="data.unitAffiliation">
+            <option value=""></option>
+            {{selectOptions config.unit.unitAffiliations selected=data.unitAffiliation localize=true}}
+          </select>
+        </div>
+        {{!-- Type --}}
+        <div class="flexcol">
+          <label>{{localize "T2K4E.UnitSheet.UnitType"}}</label>
+          <input type="text" name="data.unitType" value="{{data.unitType}}"/>
+        </div>
+        {{!-- Size --}}
+        <div class="flexcol">
+          <label>{{localize "T2K4E.UnitSheet.UnitSize"}}</label>
+          <select name="data.unitSize">
+            <option value=""></option>
+            {{selectOptions config.unit.unitSizes selected=data.unitSize localize=true}}
+          </select>
+        </div>
+        {{!-- Counts --}}
+        <div class="flexcol">
+          <label>{{localize "T2K4E.UnitSheet.Personnel"}}</label>
+          <div class="flexrow flex-center">
+            <input type="number" name="data.personnel.value" value="{{data.personnel.value}}" data-dtype="Number"/>
+            <span class="sep">/</span>
+            <input type="number" name="data.personnel.max" value="{{data.personnel.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+        <div class="flexcol">
+          <label>{{localize "T2K4E.UnitSheet.Vehicles"}}</label>
+          <div class="flexrow flex-center">
+            <input type="number" name="data.vehicles.value" value="{{data.vehicles.value}}" data-dtype="Number"/>
+            <span class="sep">/</span>
+            <input type="number" name="data.vehicles.max" value="{{data.vehicles.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+
+      </div>
+
+      {{!-- Modifiers --}}
+      <div class="form-group-stacked item-properties">
+        {{#each data.unitModifiers as | mod name |}}
+        <label class="checkbox">
+          <input type="checkbox" name="data.unitModifiers.{{name}}" {{checked mod}}/>
+          {{localize (concat "T2K4E.UnitModifierNames." name)}}
+        </label>
+        {{/each}}
+      </div>
+
+      {{!-- HQ --}}
+      <div class="form-group-stacked">
+        <label class="checkbox">
+          <input type="checkbox" name="data.hq" {{checked data.hq}}/>
+          {{localize "T2K4E.UnitSheet.HQ"}}
+        </label>
+      </div>
+
+    </div>
+
+    {{!-- Description Tab --}}
+    <div class="tab tab-description" data-group="primary" data-tab="description">
+      {{> "systems/t2k4e/templates/actors/parts/actor-description.hbs"}}
+    </div>
+
+  </section>
+
+</form>

@@ -76,6 +76,7 @@ T2K4E.vehicle = {
   fuelTypes: {
     'G': 'T2K4E.VehicleSheet.Gasoline',
     'D': 'T2K4E.VehicleSheet.Diesel',
+    'A': 'T2K4E.VehicleSheet.Alcohol',
   },
   components: [
     'FUEL',
@@ -120,6 +121,40 @@ T2K4E.vehicle = {
       'RICOCHET',
       'RICOCHET',
     ],
+  },
+};
+
+T2K4E.unit = {
+  unitAffiliations: {
+    'friendly': 'T2K4E.UnitAffiliationNames.friendly',
+    'hostile' : 'T2K4E.UnitAffiliationNames.hostile',
+    'neutral': 'T2K4E.UnitAffiliationNames.neutral',
+    'unknown': 'T2K4E.UnitAffiliationNames.unknown',
+  },
+  unitSizes: {
+    'army': 'T2K4E.UnitSizeNames.army',
+    'corps': 'T2K4E.UnitSizeNames.corps',
+    'division': 'T2K4E.UnitSizeNames.division',
+    'Brigade': 'T2K4E.UnitSizeNames.Brigade',
+    'regiment': 'T2K4E.UnitSizeNames.regiment',
+    'battalion': 'T2K4E.UnitSizeNames.battalion',
+    'company': 'T2K4E.UnitSizeNames.company',
+    'staffel': 'T2K4E.UnitSizeNames.staffel',
+    'platoon': 'T2K4E.UnitSizeNames.platoon',
+    'section': 'T2K4E.UnitSizeNames.section',
+    'squad': 'T2K4E.UnitSizeNames.squad',
+    'fireteam': 'T2K4E.UnitSizeNames.fireteam',
+  },
+  unitModifiers: {
+    'airborne': 'T2K4E.UnitModifierNames.airborne',
+    'parachute': 'T2K4E.UnitModifierNames.parachute',
+    'airmobile': 'T2K4E.UnitModifierNames.airmobile',
+    'airmobileOrganicLift': 'T2K4E.UnitModifierNames.airmobileOrganicLift',
+    'amphibious': 'T2K4E.UnitModifierNames.amphibious',
+    'motorized': 'T2K4E.UnitModifierNames.motorized',
+    'moutain': 'T2K4E.UnitModifierNames.moutain',
+    'cannon': 'T2K4E.UnitModifierNames.cannon',
+    'wheeled': 'T2K4E.UnitModifierNameswheeled.',
   },
 };
 

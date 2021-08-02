@@ -3,7 +3,8 @@
     "types": [
       "character",
       "npc",
-      "vehicle"
+      "vehicle",
+      "unit"
     ],
     "templates": {
       "actorBio": {
@@ -147,7 +148,10 @@
         "actorAttributesAndSkills",
         "actorCombat",
         "actorActions"
-      ]
+      ],
+      "unitMorale": {
+        "score": "–"
+      }
     },
     "animal": {
       "templates": [
@@ -246,7 +250,36 @@
         }
       },
       "trailer": false,
+      "smokeDischarger": false,
       "price": 0
+    },
+    "unit": {
+      "templates": ["actorDescription"],
+      "info": "",
+      "faction": "",
+      "unitAffiliation": "",
+      "unitSize": "",
+      "unitType": "",
+      "unitModifiers": {
+        "airborne": false,
+        "parachute": false,
+        "airmobile": false,
+        "airmobileOrganicLift": false,
+        "amphibious": false,
+        "motorized": false,
+        "moutain": false,
+        "cannon": false,
+        "wheeled": false
+      },
+      "personnel": {
+        "value": 0,
+        "max": 0
+      },
+      "vehicles": {
+        "value": 0,
+        "max": 0
+      },
+      "hq": false
     },
     "party": {
       "templates": ["actorDescription"]
@@ -302,9 +335,26 @@
       "props": {
         "twoHanded": false,
         "ammoBelt": false,
+        "disposable": false,
+        "scope": false,
+        "nightVision": false,
+        "suppressor": false,
+        "bayonet": false,
+        "bipod": false,
+        "tripod": false,
         "mounted": false,
-        "armored": false,
-        "disposable": false
+        "armored": false
+      },
+      "featuresForVehicle": {
+        "p": false,
+        "pg": false,
+        "t": false,
+        "c": false,
+        "h": false,
+        "s": false,
+        "fcs": false,
+        "ir": false,
+        "tm": false
       }
     },
     "armor": {
@@ -339,6 +389,7 @@
     },
     "grenade": {
       "templates": ["itemBase", "itemOffensive"],
+      "skill": "mobility",
       "weight": 0.25,
       "props": {
         "disposable": true

@@ -58,7 +58,10 @@ export default class ActorSheetT2K extends ActorSheet {
     };
     let allowed = true;
 
-    if (!alwaysAllowedItems.includes(type)) {
+    if (this.actor.type === 'unit') {
+      allowed = false;
+    }
+    else if (!alwaysAllowedItems.includes(type)) {
       if (!allowedItems[this.actor.type].includes(type)) {
         allowed = false;
       }
@@ -129,10 +132,10 @@ export default class ActorSheetT2K extends ActorSheet {
 
       const actorId = opts.actor;
       const actor = game.actors.get(actorId); //this.actor.getCrew().get(actorId);
-      if (!actor) {
-        ui.notifications.warn('Actor does not exist.');
-        return;
-      }
+      // if (!actor) {
+      //   ui.notifications.warn('Actor does not exist.');
+      //   return;
+      // }
       return item.rollAttack(null, actor);
     }
 

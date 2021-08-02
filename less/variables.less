@@ -2,6 +2,15 @@
 /*  Fonts                                      */
 /* ------------------------------------------- */
 
+:root {
+  --font-size--extra-small: .5rem;
+  --font-size--very-small: .7rem;
+  --font-size--small: .8rem;
+  --font-size--default: 1rem;
+  --font-size--large: 1.4rem;
+  --font-size--extra-large: 2rem;
+}
+
 /* Font for Headers */
 @font-face {
   font-family: 'GT Eesti Text Medium';
@@ -45,6 +54,11 @@
     local('TheSansB W5 Plain'),
     local('TheSansB W5 Medium'),
     local('TheSansB W5 Plain Medium');
+}
+@font-face {
+  font-family: 'TheSansB';
+  font-style: italic;
+  src: local('TheSansB W5 Plain Medium Italic');
 }
 
 /* Replacement Font for Generic Text */
@@ -142,6 +156,19 @@
 @colorBlue: #284283;
 @colorActorH2: rgba(0, 0, 0, .1);
 
+@colorFriendly: rgb(128, 224, 255);
+@colorUnknown: rgb(255, 255, 128);
+@colorNeutral: rgb(170, 255, 170);
+@colorHostile: rgb(255, 128, 128);
+@colorGrey: rgb(239, 239, 239);
+
+@colorCoresetBrown: rgb(96, 79, 67);
+@colorCoresetLightGreen: rgb(121, 132, 131);
+@colorCoresetGreen: rgb(61, 75, 73);
+@colorCoresetTeal: rgb(90, 109, 107);
+@colorCoresetTableHeader: rgb(191, 182, 176);
+@colorCoresetTableLine: rgb(217, 212, 208);
+
 @gap: 10px;
 
 @hoverShadow: 0 0 10px @colorBrown;
@@ -155,7 +182,7 @@
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: @colorBeige;
+  background-color: none;
 }
 
 .item-sheet-background() {
@@ -164,6 +191,16 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-color: @colorBeige;
+}
+
+.actor-sheet-border() {
+  border: 9px solid transparent;
+  -moz-border-image: url(assets/textures/papper_outline.png) 420 380 420 380 stretch stretch;
+  -webkit-border-image: url(assets/textures/papper_outline.png) 420 380 420 380 stretch stretch;
+  -o-border-image: url(assets/textures/papper_outline.png) 420 380 420 380 stretch stretch;
+  border-image: url(assets/textures/papper_outline.png) 420 380 420 380 stretch stretch;
+  border-image-width: 180px;
+  border-image-outset: 1;
 }
 
 // .sheet-outline() {

@@ -19,6 +19,7 @@
 import { T2K4E } from './module/config.js';
 import { registerDsN, T2KRoller } from './module/dice.js';
 import { registerSystemSettings } from './module/settings.js';
+import { registerStatusEffects } from './module/statusEffects.js';
 import { preloadHandlebarsTemplates, registerHandlebars } from './module/templates.js';
 import * as Chat from './module/chat.js';
 
@@ -29,6 +30,7 @@ import ItemT2K from './module/item/item.js';
 // Imports Applications.
 import ActorSheetT2KCharacter from './module/actor/characterSheet.js';
 import ActorSheetT2KVehicle from './module/actor/vehicleSheet.js';
+import ActorSheetT2KUnit from './module/actor/unitSheet.js';
 import ItemSheetT2K from './module/item/itemSheet.js';
 
 // Imports Helpers.
@@ -57,6 +59,7 @@ Hooks.once('init', function() {
     applications: {
       ActorSheetT2KCharacter,
       ActorSheetT2KVehicle,
+      ActorSheetT2KUnit,
       ItemSheetT2K,
     },
     config: T2K4E,
@@ -91,6 +94,11 @@ Hooks.once('init', function() {
     makeDefault: true,
     label: 'T2K4E.SheetClassVehicle',
   });
+  Actors.registerSheet('t2k4e', ActorSheetT2KUnit, {
+    types: ['unit'],
+    makeDefault: true,
+    label: 'T2K4E.SheetClassUnit',
+  });
 
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
@@ -106,6 +114,9 @@ Hooks.once('ready', function() {
 
   // Determines whether a system migration is required and feasible.
   checkMigration();
+
+  // Defines status effects.
+  registerStatusEffects();
 
   console.warn('t2k4e | READY!');
 
@@ -126,6 +137,8 @@ Hooks.once('ready', function() {
       const startingItem = game.items.getName('FN FAL');
       // startingItem.sheet.render(true);
       console.warn(startingItem);
+      /** @type {JournalEntry} */
+      // game.journal.getName('Test').sheet.render(true);
     }
     catch (error) {
       console.warn('t2k4e | DEBUG | Cannot find starting Entity.', error);
@@ -164,5 +177,41 @@ Hooks.on('dropActorSheetData', (actor, sheet, data) => {
   if (actor.type === 'vehicle') {
     // When dropping an actor on a vehicle sheet.
     if (data.type === 'Actor') sheet.dropCrew(data.id);
+  }
+});
+
+Hooks.on('createToken', (token, data, userId) => {
+  // When creating a Unit token.
+  if (token.actor.type === 'unit') {
+    const updateData = {};
+
+    // Uses abbreviation (info) in place of name.
+    const nm = token.actor.data.data.info;
+    if (nm) updateData['name'] = nm;
+
+    // Uses default affiliation.
+    const afl = token.actor.data.data.unitAffiliation;
+    if (afl) {
+      let disposition;
+      switch (afl) {
+        case 'friendly':
+          disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+          break;
+        case 'hostile':
+          disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+          break;
+        case 'neutral':
+          disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
+          break;
+        default:
+          disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+      }
+      if (disposition !== token.data.disposition) updateData['disposition'] = disposition;
+    }
+
+    // Updates the token.
+    if (!foundry.utils.isObjectEmpty(updateData)) {
+      token.update(updateData);
+    }
   }
 });

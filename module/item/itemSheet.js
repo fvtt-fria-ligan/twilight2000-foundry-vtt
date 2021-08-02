@@ -37,6 +37,7 @@ export default class ItemSheetT2K extends ItemSheet {
       data: baseData.item.data.data,
       config: CONFIG.T2K4E,
       inActor: this.item.actor ? true : false,
+      inVehicle: this.item.actor?.type === 'vehicle',
     };
 
     if (['weapon', 'ammunition'].includes(this.item.type)) {
@@ -128,6 +129,11 @@ export default class ItemSheetT2K extends ItemSheet {
     // Roll Modifiers
     html.find('.add-modifier').click(this._onAddModifier.bind(this));
     html.find('.delete-modifier').click(this._onDeleteModifier.bind(this));
+
+    // Ammo Generation
+    if (this.item.actor) {
+      html.find('button.create-ammo').click(this._onCreateAmmo.bind(this));
+    }
   }
 
   /* ------------------------------------------- */
@@ -164,5 +170,39 @@ export default class ItemSheetT2K extends ItemSheet {
     if (this.item.data.data.rollModifiers[modifierId]) {
       this.item.update({ [`data.rollModifiers.-=${modifierId}`]: null });
     }
+  }
+
+  /* ------------------------------------------- */
+
+  async _onCreateAmmo(event) {
+    event.preventDefault();
+    if (!this.item.hasAmmo) return;
+    if (!this.item.actor) return;
+
+    const button = event.currentTarget;
+    button.disabled = true;
+
+    let ammo = this.item.data.data.ammo;
+    if (ammo.match(/\d{2}$/)) ammo += 'mm';
+
+    const size = this.item.data.data.mag.max;
+    const mag = size > 40 ? (size > 55 ? (size > 150 ? 'Box' : 'Belt') : 'Drum') : 'Mag';
+
+    const itemData = {
+      name: `${ammo}, ${size}-round ${mag}`,
+      type: 'ammunition',
+      'data.ammo': { value: size, max: size },
+    };
+
+    const [ammunition] = await this.item.actor.createEmbeddedDocuments('Item', [itemData]);
+    const msg = game.i18n.format('T2K4E.ItemSheet.CreateAmmoNotif', {
+      ammo: ammunition.name,
+      weapon: this.item.name,
+    });
+    ui.notifications.info(msg);
+    await this.item.update({ 'data.mag.target': ammunition.id });
+
+    button.disabled = false;
+    return ammunition;
   }
 }

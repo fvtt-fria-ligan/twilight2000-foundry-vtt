@@ -72,7 +72,7 @@
           </label>
         </div>
         {{#if data.override}}
-        <div class="grid grid-4col item-features">
+        <div class="grid grid-5col item-features">
           <div class="flexcol">
             <label>{{localize "T2K4E.ItemSheet.Damage"}}</label>
             <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number"/>
@@ -88,6 +88,10 @@
           <div class="flexcol">
             <label>{{localize "T2K4E.ItemSheet.Range"}}</label>
             <input type="text" name="data.range" value="{{data.range}}" data-dtype="Number"/>
+          </div>
+          <div class="flexcol">
+            <label>{{localize "T2K4E.ItemSheet.Armor"}}</label>
+            <input type="text" name="data.armorModifier" value="{{numberFormat data.armorModifier sign=true}}" data-dtype="Number"/>
           </div>
         </div>
         {{/if}}
