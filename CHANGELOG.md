@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - The "grenade" item type becomes "explosive". *(This is a mostly a cosmetic change. Use the input field "Type" to specify what type of explosive it is. Eg: Grenade, Mine, Explosive, etc.)*
+- YZUR Library updated to v2.1.0
 
 ### Fixed
 - A bug where the mag capacity of a vehicle's mounted weapon was not displayed.
