@@ -225,9 +225,9 @@ export default class ItemT2K extends Item {
    * @async
    */
   async roll({ configureDialog = true, rollMode, sendMessage = true } = {}) {
-    const itemData = this.data.data;
-    const actor = this.actor;
-    const actorData = actor.data.data;
+    // const itemData = this.data.data;
+    // const actor = this.actor;
+    // const actorData = actor.data.data;
 
     // Creates or returns the chat message data.
     return this.displayCard({ rollMode, sendMessage });
@@ -421,7 +421,7 @@ export default class ItemT2K extends Item {
     const cardData = {
       ...this.data,
       actorId: this.actor.id,
-      tokenId: token ? `${token.scene.id}.${token.id}` : null,
+      tokenId: token ? `${token.parent.id}.${token.id}` : null,
       owner: game.user.id,
       config: CONFIG.T2K4E,
     };
