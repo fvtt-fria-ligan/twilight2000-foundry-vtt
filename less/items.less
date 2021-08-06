@@ -51,8 +51,16 @@
   /* ------------------------------------------- */
 
   .sheet-tabs {
-    .font-bluehighway-bold();
+    // .font-bluehighway-bold();
+    .font-daisywheel();
+    text-transform: uppercase;
+    font-size: 11pt;
     color: @colorBrown;
+
+      // Fixes a tab bug.
+      &.slanted-tabs {
+        margin-bottom: 1px;
+      }
   }
 
   /* ------------------------------------------- */
@@ -106,6 +114,7 @@
     .item-properties {
       label.checkbox {
         flex: 0 0 98px;
+        font-size: 11px;
       }
     }
 
