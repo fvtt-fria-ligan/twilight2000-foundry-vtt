@@ -100,11 +100,25 @@ export class T2KRoller {
       roll = roll.modify(modifier);
     }
 
-    // 6 — Evaluates the roll.
+    // 6 — Adds actor/token/item IDs.
+    // This is not natively supported by the YZUR library,
+    // but it works because roll.data is conserved by YZUR.
+    if (actor) {
+      roll.data.actorId = actor.id;
+      const token = actor.token;
+      if (token) {
+        roll.data.tokenId = `${token.parent.id}.${token.id}`;
+      }
+    }
+    if (item) {
+      roll.data.itemId = item.id;
+    }
+
+    // 7 — Evaluates the roll.
     await roll.roll({ async: true });
     console.log('t2k4e | ROLL', roll.name, roll);
 
-    // 7 — Sends the message and returns.
+    // 8 — Sends the message and returns.
     if (sendMessage) {
       return roll.toMessage(null, { rollMode });
     }
@@ -149,7 +163,6 @@ export class T2KRoller {
       skipDialog: true,
       sendMessage,
     });
-
   }
 }
 
@@ -159,12 +172,12 @@ export class T2KRoller {
 
 /**
  * Pushes a roll.
- * @param {YearZeroRoll} roll    The roll to push
- * @param {ChatMessage?} message The message holding the roll that will be deleted
+ * @param {YearZeroRoll} roll     The roll to push
+ * @param {ChatMessage} [message] The message holding the roll that will be deleted
  * @returns {Promise<YearZeroRoll|ChatMessage>}
  * @async
  */
-export async function rollPush(roll, message) {
+export async function rollPush(roll, { message } = {}) {
   if (!roll.pushable) return roll;
 
   // Copies the roll.
@@ -180,12 +193,13 @@ export async function rollPush(roll, message) {
   const flags = message.getFlag('t2k4e', 'data') ?? {};
   const oldAmmoSpent = flags.ammoSpent || 0;
   let newAmmoSpent = -Math.max(1, roll.ammoSpent);
-  const actorId = flags.actor;
-  const actor = game.actors.get(actorId);
-  const ammoId = flags.ammo;
-  const ammo = actor ? actor.items.get(ammoId) : game.items.get(ammoId);
-  const itemId = flags.item;
+  const actorId = roll.data.actorId;
+  const tokenKey = roll.data.tokenId;
+  const actor = getRollingActor({ actorId, tokenKey });
+  const itemId = roll.data.itemId;
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
+  const ammoId = flags.ammo ?? (item ? item.data.data.mag?.target : '');
+  const ammo = actor ? actor.items.get(ammoId) : game.items.get(ammoId);
 
   // No need to await the deletion.
   message.delete();
@@ -193,6 +207,17 @@ export async function rollPush(roll, message) {
   const m = await roll.toMessage();
 
   const flagData = {};
+
+  // Updates the reliability.
+  if (item.hasReliability && roll.jamCount) {
+    const oldJam = flags.reliabilityChange ?? 0;
+    const newJam = -roll.jamCount;
+
+    if (oldJam !== newJam) {
+      const relChange = await item.updateReliability(newJam - oldJam);
+      flagData.reliabilityChange = oldJam + relChange;
+    }
+  }
 
   // Updates the ammunition.
   if (ammo) {
@@ -203,16 +228,12 @@ export async function rollPush(roll, message) {
       flagData.ammoSpent = oldAmmoSpent + newAmmoSpent;
     }
     flagData.ammo = ammo.id;
-    // await m.setFlag('t2k4e', 'ammoSpent', -roll.ammoSpent);
-    // await m.setFlag('t2k4e', 'ammo', ammo.id);
   }
 
-  // Stores the referenced IDs.
-  if (actor) flagData.actor = actor.id;
-  if (item) flagData.item = item.id;
-  // if (actor) await m.setFlag('t2k4e', 'actor', actor.id);
-  // if (item) await m.setFlag('t2k4e', 'item', item.id);
-  await m.setFlag('t2k4e', 'data', flagData);
+  // Updates message's flags.
+  if (!foundry.utils.isObjectEmpty(flagData)) {
+    await m.setFlag('t2k4e', 'data', flagData);
+  }
 
   return m;
 }
@@ -220,6 +241,7 @@ export async function rollPush(roll, message) {
 /* -------------------------------------------- */
 /*  Dice Utility Functions                      */
 /* -------------------------------------------- */
+
 /**
  * Gets the size of a die from its rating.
  * @param {string} score A, B, C, D or F
@@ -275,6 +297,29 @@ export function getDiceQuantities(attribute, skill = 0, rof = 0, locate = false)
   if (rof) dice.ammo = rof;
   if (locate) dice.loc = 1;
   return dice;
+}
+/* ------------------------------------------- */
+
+/**
+ * Gets the Actor which is the source of a roll.
+ * @param {string} [actorId]
+ * @param {string} [tokenKey]
+ * @return {Actor}
+ */
+export function getRollingActor({ actorId, tokenKey } = {}) {
+  // Case 1 — A Synthetic Actor from a Token
+  if (tokenKey) {
+    const [sceneId, tokenId] = tokenKey.split('.');
+    const scene = game.scenes.get(sceneId);
+    if (!scene) return null;
+    const token = scene.getEmbeddedDocument('Token', tokenId);
+    // if (!tokenData) return null;
+    // const token = new Token(tokenData);
+    return token.actor;
+  }
+
+  // Case 2 — Use Actor ID instead
+  return game.actors.get(actorId);
 }
 
 /* -------------------------------------------- */
