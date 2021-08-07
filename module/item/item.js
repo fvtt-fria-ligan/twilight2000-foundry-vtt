@@ -145,8 +145,7 @@ export default class ItemT2K extends Item {
       weight = data.qty * data.weight * data.ammo.value;
     }
     else {
-      const belt = data.props?.ammoBelt ? 1 : 0;
-      weight = data.qty * (data.weight + belt);
+      weight = data.qty * data.weight;
     }
     if (!weight) data.encumbrance = 0;
     else data.encumbrance = weight;

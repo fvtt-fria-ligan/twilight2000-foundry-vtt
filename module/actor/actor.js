@@ -177,7 +177,14 @@ export default class ActorT2K extends Actor {
     // Computes the Encumbrance.
     const val1 = (items
       .filter(i => !i.data.data.backpack && i.type !== 'specialty')
-      .reduce((sum, i) => sum + i.data.data.encumbrance, 0)
+      .reduce((sum, i) => {
+        if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
+          const ammoId = i.data.data.mag.target;
+          const ammo = this.items.get(ammoId);
+          if (ammo && ammo.type === 'ammunition') sum -= ammo.data.data.encumbrance;
+        }
+        return sum + i.data.data.encumbrance;
+      }, 0)
     ) ?? 0;
 
     data.encumbrance = {
@@ -190,7 +197,14 @@ export default class ActorT2K extends Actor {
     // Computes the Backpack.
     const val2 = (items
       .filter(i => i.data.data.backpack && i.type !== 'specialty')
-      .reduce((sum, i) => sum + i.data.data.encumbrance, 0)
+      .reduce((sum, i) => {
+        if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
+          const ammoId = i.data.data.mag.target;
+          const ammo = this.items.get(ammoId);
+          if (ammo) sum -= ammo.data.data.encumbrance;
+        }
+        return sum + i.data.data.encumbrance;
+      }, 0)
     ) ?? 0;
 
     data.encumbrance.backpack = {
