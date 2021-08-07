@@ -1,3 +1,7 @@
+/* -------------------------------------------- */
+/*  Author: @aMediocreDad                       */
+/* -------------------------------------------- */
+
 export default async function displayMessages() {
   const { messages } = await fetch('systems/t2k4e/assets/messages/messages.jsonc')
     .then((resp) => resp.text())
@@ -19,6 +23,7 @@ function handleDisplay(msg) {
   if (type === 'chat') return sendToChat(title, content);
 }
 
+// This function has been refactored.
 function isCurrent(msg) {
   const isDisplayable = !msg.display === 'once' || !hasDisplayed(msg.title);
   const minCore = msg['min-core-version'] ?? '0.0.0';
