@@ -33,7 +33,7 @@ function _onRollPush(event) {
   const messageId = chatCard.dataset.messageId;
   const message = game.messages.get(messageId);
   const roll = message.roll;
-  return rollPush(roll, message);
+  return rollPush(roll, { message });
 }
 
 /* ------------------------------------------- */
@@ -50,43 +50,18 @@ export function getChatCardActor(card) {
   const tokenKey = card.dataset.tokenId;
   if (tokenKey) {
     const [sceneId, tokenId] = tokenKey.split('.');
-    // const scene = game.scenes.get(sceneId);
-    // if (!scene) return null;
-    // const tokenData = scene.getEmbeddedEntity('Token', tokenId);
+    const scene = game.scenes.get(sceneId);
+    if (!scene) return null;
+    const token = scene.getEmbeddedDocument('Token', tokenId);
     // if (!tokenData) return null;
     // const token = new Token(tokenData);
-    const token = game.actors.tokens[tokenId];
-    return token;
+    return token.actor;
   }
 
   // Case 2 — Use Actor ID instead
   const actorId = card.dataset.actorId;
   return game.actors.get(actorId);
 }
-
-// function _onAttack(event) {
-//   event.preventDefault();
-//   const card = event.currentTarget.closest('.weapon');
-//   const attacker = game.actors.get(card.dataset.ownerId);
-//   const weapon = attacker.items.get(card.dataset.itemId);
-//   return Dice.Attack(attacker, weapon);
-// }
-
-// function _onReload(event) {
-//   event.preventDefault();
-//   const card = event.currentTarget.closest('.weapon');
-//   const attacker = game.actors.get(card.dataset.ownerId);
-//   const weapon = attacker.items.get(card.dataset.itemId);
-//   // return Dice.Reload(attacker, weapon);
-//   return weapon.reload();
-// }
-
-// function _onRollPush(event) {
-//   event.preventDefault();
-//   const card = event.currentTarget.closest('.roll-card');
-//   const actor = game.actors.get(card.dataset.actorId);
-//   return Dice.Push(card.dataset.rollId, actor);
-// }
 
 /* ------------------------------------------- */
 /*  Context Menu (right-clic)                  */
@@ -102,42 +77,47 @@ export function addChatMessageContextOptions(html, options) {
 }
 
 /* ------------------------------------------- */
+/*  Auto-closing Roll Tooltip                  */
+/* ------------------------------------------- */
+
+/**
+ * Closes the Roll tooltip
+ * @param {ChatMessage} message The message
+ * @param {HTMLElement} html DOM
+ * @param {number} delay How many time to wait before closing the tooltips
+ */
+export function closeRollTooltip(message, html, delay = 60000) {
+  if (!message.isRoll) return;
+  const divs = html.find('.dice-result');
+  if (!divs?.length) return;
+
+  const div = divs[0];
+  if (!div) return;
+
+  setTimeout(() => {
+    // tooltip.style.display = 'none';
+    div.click();
+  }, delay);
+}
+
+/* ------------------------------------------- */
 /*  Hiding Buttons                             */
 /* ------------------------------------------- */
 
 /**
  * Hides buttons of Chat messages for non-owners.
- * @param {Object} message (app) Message
- * @param {Object} html DOM
- * @param {Object} data Additional data
+ * @param {HTMLElement} html DOM
  */
-export function hideChatActionButtons(message, html, data) {
+export function hideChatActionButtons(html) {
   const chatCard = html.find('.t2k4e.chat-card');
 
   // Exits early if no chatCard were found.
   if (chatCard.length <= 0) return;
 
   // Hides buttons.
-  // const pushable = message.roll?.pushable;
   const actor = game.actors.get(chatCard.attr('data-actor-id'));
   const buttons = chatCard.find('button');
   for (const btn of buttons) {
     if (actor && !actor.isOwner) btn.style.display = 'none';
-    // else if (btn.className === 'roll-push' && !pushable) btn.style.display = 'none';
   }
-
-  // Hides buttons for non-owners.
-  // const actor = game.actors.get(chatCard.attr('data-actor-id'));
-  // if (actor && !actor.isOwner) {
-  // 	const buttons = chatCard.find('button');
-  // 	for (const btn of buttons) {
-  // 		btn.style.display = 'none';
-  // 	}
-  // }
-
-  // Hides push buttons for non-pushable rolls.
-  // const pushButton = chatCard.find('button.roll-push')[0];
-  // if (pushButton) {
-  // 	pushButton.style.display = game.t2k4e.rolls.has(chatCard.attr('data-roll-id')) ? 'block' : 'none';
-  // }
 }
