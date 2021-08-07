@@ -245,6 +245,11 @@ export default class ItemT2K extends Item {
   async rollAttack(options = {}, actor = null) {
     if (!this.hasAttack) throw new Error('You may not place an Attack Roll with this Item.');
     if (!this.actor) throw new Error('This weapon has no bearer.');
+    if (this.hasReliability && this.data.data.reliability.value <= 0) {
+      return ui.notifications.warn(
+        game.i18n.localize('T2K4E.Chat.Roll.NoReliabilityNotif'),
+      );
+    }
 
     // Prepares data.
     const itemData = this.data.data;
@@ -321,16 +326,19 @@ export default class ItemT2K extends Item {
       const ammoDiff = await this.consumeAmmo(Math.max(1, roll.ammoSpent), ammo);
       flagData.ammoSpent = ammoDiff;
       flagData.ammo = ammo.id;
-      // await message.setFlag('t2k4e', 'ammoSpent', ammoDiff);
-      // await message.setFlag('t2k4e', 'ammo', ammo.id);
     }
 
-    // Stores the referenced IDs.
-    // await message.setFlag('t2k4e', 'item', this.id);
-    // if (this.actor) await message.setFlag('t2k4e', 'actor', this.actor.id);
-    flagData.item = this.id;
-    flagData.actor = this.actor.id;
-    await message.setFlag('t2k4e', 'data', flagData);
+    // ? There is no jam on unpushed rolls.
+    // Decreases reliability.
+    // if (this.hasReliability && roll.jamCount) {
+    //   const newRel = await this.updateReliability(-roll.jamCount);
+    //   if (newRel) flagData.reliability = newRel;
+    // }
+
+    // Updates message's flags.
+    if (!foundry.utils.isObjectEmpty(flagData)) {
+      await message.setFlag('t2k4e', 'data', flagData);
+    }
 
     return message;
 
@@ -347,6 +355,25 @@ export default class ItemT2K extends Item {
     //   //rollMode: game.settings.get('core', 'rollMode'),
     //   askForOptions: options?.event?.shiftKey,
     // });
+  }
+
+  /* ------------------------------------------- */
+
+  /**
+   * Updates the reliability value of an item based on its interval [0, max].
+   * @param {number}   jam          How much to modify the reliability
+   * @param {boolean} [update=true] Whether to update the item
+   * @returns {number} The real difference applied
+   * @async
+   */
+  async updateReliability(jam, update = true) {
+    if (jam === 0) return 0;
+    if (!this.hasReliability) return 0;
+    const val = this.data.data.reliability.value;
+    const max = this.data.data.reliability.max;
+    const rel = Math.clamped(val + jam, 0, max);
+    if (update && rel !== val) await this.update({ 'data.reliability.value': rel })
+    return rel - val;
   }
 
   /* ------------------------------------------- */
