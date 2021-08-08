@@ -53,7 +53,8 @@ export default class ItemT2K extends Item {
 
   get hasModifier() {
     if (!this.data.data.rollModifiers) return false;
-    return Object.keys(this.data.data.rollModifiers).length > 0;
+    return !foundry.utils.isObjectEmpty(this.data.data.rollModifiers);
+    // return Object.keys(this.data.data.rollModifiers).length > 0;
   }
 
   // get inVehicle() {
@@ -303,7 +304,7 @@ export default class ItemT2K extends Item {
 
     // Composes the options for the task check.
     const rollConfig = foundry.utils.mergeObject({
-      title,
+      title, attributeName, skillName,
       attribute, skill, rof,
       locate: true,
     }, options);

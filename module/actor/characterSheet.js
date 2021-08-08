@@ -1,5 +1,6 @@
 import ActorSheetT2K from './actorSheet.js';
 import { T2KRoller, getAttributeAndSkill } from '../dice.js';
+import { T2K4E } from '../config.js';
 
 /**
  * Twilight 2000 Actor Sheet for Character.
@@ -82,6 +83,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     const title = game.i18n.localize(CONFIG.T2K4E.attributes[attributeName]);
     return T2KRoller.taskCheck({
       title,
+      attributeName,
       actor: this.actor,
       attribute,
       skill: 0,

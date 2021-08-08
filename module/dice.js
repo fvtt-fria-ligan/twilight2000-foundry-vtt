@@ -23,6 +23,8 @@ export class T2KRoller {
    * @param {string?}  title                The title of the roll
    * @param {Actor?}   actor                The actor who rolled the dice, if any
    * @param {Item?}    item                 The item used to roll the dice, if any
+   * @param {string?}  attributeName        The name of the attribute used (important for modifiers)
+   * @param {string?}  skillName            The name of the skill used (important for modifiers)
    * @param {number}  [attribute=0]         The attribute's size
    * @param {number}  [skill=0]             The skill's size
    * @param {number}  [rof=0]               The RoF's value
@@ -42,6 +44,8 @@ export class T2KRoller {
     title = 'Twilight 2000 4E – Task Check',
     actor = null,
     item = null,
+    attributeName = null,
+    skillName = null,
     attribute = 0,
     skill = 0,
     rof = 0,
@@ -64,16 +68,28 @@ export class T2KRoller {
         getDiceQuantities(attribute, skill),
       ).formula;
 
-      // 2.2 — Renders the dialog.
+      // 2.2 — Handles roll modifiers.
+      let modifiers;
+      if (actor) {
+        modifiers = actor.getRollModifiers();
+        if (skillName || attributeName) {
+          modifiers = modifiers.filter(m => m.target === skillName || m.target === attributeName);
+        }
+        if (modifiers.length) {
+          modifier += modifiers.reduce((sum, m) => sum + (m.active ? m.value : 0), 0);
+        }
+      }
+
+      // 2.3 — Renders the dialog.
       const opts = await T2KDialog.askRollOptions({
-        title, attribute, skill, rof, modifier, locate,
+        title, attribute, skill, rof, modifier, modifiers, locate,
         maxPush, rollMode, formula,
       });
 
-      // 2.2.5 — Exits early if the dialog was cancelled.
+      // 2.3.5 — Exits early if the dialog was cancelled.
       if (opts.cancelled) return null;
 
-      // 2.3 — Uses options from the roll dialog.
+      // 2.4 — Uses options from the roll dialog.
       if (!attribute && !skill) {
         attribute = opts.attribute;
         skill = opts.skill;
@@ -142,7 +158,8 @@ export class T2KRoller {
   } = {}) {
     if (!actor) return;
     rollMode = rollMode ?? game.settings.get('core', 'rollMode');
-    const opts = await T2KDialog.askCuFOptions({ title, unitMorale, modifier, maxPush, rollMode });
+    const modifiers = actor.getRollModifiers().filter(m => m.target === 'cuf');
+    const opts = await T2KDialog.askCuFOptions({ title, unitMorale, modifier, modifiers, maxPush, rollMode });
 
     // Exits early if the dialog was cancelled.
     if (opts.cancelled) return null;
@@ -157,6 +174,8 @@ export class T2KRoller {
 
     return this.taskCheck({
       title,
+      // actor,
+      // attributeName: 'cuf',
       attribute: cuf,
       skill: unitMorale ? um : 0,
       modifier, maxPush, rollMode,
@@ -209,7 +228,7 @@ export async function rollPush(roll, { message } = {}) {
   const flagData = {};
 
   // Updates the reliability.
-  if (item.hasReliability && roll.jamCount) {
+  if (item?.hasReliability && roll.jamCount) {
     const oldJam = flags.reliabilityChange ?? 0;
     const newJam = -roll.jamCount;
 
@@ -267,7 +286,7 @@ export function getAttributeAndSkill(skillName, data) {
   const attributeName = T2K4E.skillsMap[skillName];
   const attribute = data.attributes[attributeName].value;
   const title = game.i18n.localize(T2K4E.skills[skillName]);
-  return { title, attribute, skill };
+  return { title, attribute, skill, attributeName, skillName };
 }
 
 /* -------------------------------------------- */

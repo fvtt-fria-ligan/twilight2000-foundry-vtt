@@ -8,6 +8,8 @@
     <input type="checkbox" name="unitMorale" {{checked data.unitMorale}}/>
   </div>
 
+  <hr/>
+
   {{!-- Modifier --}}
   <div class="form-group">
     <label>{{localize "T2K4E.Dialog.Roll.Modifier"}}</label>
@@ -21,7 +23,19 @@
     </div>
   </div>
 
+  {{!-- Modifiers --}}
+  <div class="form-group-stacked">
+    {{#each data.modifiers}}
+    <label class="checkbox" title="{{description}}">
+      <input type="checkbox" class="item-modifier" data-value="{{value}}" {{checked active}}/>
+      {{label}}
+    </label>
+    {{/each}}
+  </div>
+
   {{!-- ================================================== --}}
+
+  <hr/>
 
   {{!-- Max Pushes --}}
   <div class="form-group">
