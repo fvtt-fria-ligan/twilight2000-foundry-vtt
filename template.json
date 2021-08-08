@@ -332,6 +332,7 @@
         "target": "",
         "max": 0
       },
+      "jammed": false,
       "props": {
         "twoHanded": false,
         "ammoBelt": false,
