@@ -402,6 +402,10 @@
       "Actor": {
         "ChooseActor": "Choose an Actor"
       }
+    },
+    "Macro": {
+      "MultipleItems": "Your controlled Actor {actor} has more than one Item with name {item}. The first matched item will be chosen.",
+      "NoItem": "Your controlled Actor {actor} does not have an item named {item}."
     }
   },
   "SETTINGS": {

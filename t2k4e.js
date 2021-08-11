@@ -21,6 +21,8 @@ import { registerDsN, T2KRoller } from './module/dice.js';
 import { registerSystemSettings } from './module/settings.js';
 import { registerStatusEffects } from './module/statusEffects.js';
 import { preloadHandlebarsTemplates, registerHandlebars } from './module/templates.js';
+import { createT2KMacro, rollItemMacro } from './module/macros.js';
+import displayMessages from './module/message-system.js';
 import * as Chat from './module/chat.js';
 
 // Imports Documents.
@@ -36,7 +38,6 @@ import ItemSheetT2K from './module/item/itemSheet.js';
 // Imports Helpers.
 import { checkMigration } from './module/migration.js';
 import { YearZeroRollManager } from './lib/yzur.js';
-import displayMessages from './module/message-system.js';
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -67,6 +68,9 @@ Hooks.once('init', function() {
     entities: {
       ActorT2K,
       ItemT2K,
+    },
+    macros: {
+      rollItemMacro,
     },
     roller: T2KRoller,
   };
@@ -110,16 +114,14 @@ Hooks.once('init', function() {
 });
 
 Hooks.once('ready', function() {
-  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  // Hooks.on('hotbarDrop', (bar, data, slot) => macros.create5eMacro(data, slot));
+  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to.
+  Hooks.on('hotbarDrop', (bar, data, slot) => createT2KMacro(data, slot));
 
   // Determines whether a system migration is required and feasible.
   checkMigration();
 
   // Defines status effects.
   registerStatusEffects();
-
-  console.warn('t2k4e | READY!');
 
   // Debugging
   if (game.userId === 'OPqJPiI75DlhwfVv') {
@@ -148,7 +150,10 @@ Hooks.once('ready', function() {
 
   // Displays starting messages.
   displayMessages();
+
+  console.warn('t2k4e | READY!');
 });
+
 /* -------------------------------------------- */
 /*  Foundry VTT Hooks                           */
 /* -------------------------------------------- */

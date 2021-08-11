@@ -107,6 +107,10 @@ export default class ActorSheetT2K extends ActorSheet {
     // Owner-only listeners.
     if (this.actor.isOwner) {
       html.find('.item-roll').click(this._onItemRoll.bind(this));
+      html.find('.item[data-item-id]').each((index, elem) => {
+        elem.setAttribute('draggable', true);
+        elem.addEventListener('dragstart', ev => this._onDragStart(ev), false);
+      });
     }
   }
 
