@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
-## [1.4.0] - 2021-07-xx
+## [1.5.0] - 2021-08-11
+> The game system is now **officially** released.
+
+### Added
+- Support for Items' modifiers.
+- Support for draggable items in the hotbar.
+- Automatic weapon's reliability change according to the result of the pushed roll.
+- Automatic roll result tooltip closing after delay (see system's settings to define the delay).
+- ItemSheet's height auto resize.
+
+### Fixed
+- #13 - A minor bug where too many ammo was counted in the player's encumbrance.
+- #32 - A major bug where it was impossible to use items in an unlinked token.
+- CSS styles for sheet's tabs.
+- CSS styles for selectors.
+- CSS styles for tiny MCE text editors.
+- YZUR Library updated to v2.1.1
+
+### Removed
+- The "unarmed" line in a character/NPC's inventory is removed. Instead, create an "Unarmed" weapon.
+
+## [1.4.0] - 2021-08-03
 ### Added
 - New Actor: **Military Unit**.
 - New "Create Ammo" button for equipped weapons.
@@ -22,7 +43,7 @@ All notable changes to this project will be documented in this file.
 - CSS styles for Journal Entries and Actor/Item's descriptions.
 
 ### Changed
-- The "grenade" item type becomes "explosive". *(This is a mostly a cosmetic change. Use the input field "Type" to specify what type of explosive it is. Eg: Grenade, Mine, Explosive, etc.)*
+- The "grenade" item type becomes "explosive". *(This is mostly a cosmetic change. Use the input field "Type" to specify what type of explosive it is. Eg: Grenade, Mine, Explosive, etc.)*
 - YZUR Library updated to v2.1.0
 
 ### Fixed

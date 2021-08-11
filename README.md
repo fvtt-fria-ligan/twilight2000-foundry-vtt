@@ -4,12 +4,12 @@
   <a href="https://foundryvtt.com" target="_blank">
     <img alt="Foundry Version" src="https://img.shields.io/badge/dynamic/json?color=blue&label=Foundry&query=compatibleCoreVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2FStefouch%2Ft2k4e%2Fmaster%2Fsystem.json"/>
   </a>
-  <!-- <a href="https://foundryvtt.com/packages/t2k4e/" target="_blank">
+  <a href="https://foundryvtt.com/packages/t2k4e/" target="_blank">
     <img alt="Forge Installs" src="https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ft2k4e&colorB=4aa94a"/>
-  </a> -->
-  <!-- <a href="https://github.com/Stefouch/t2k4e/releases">
+  </a>
+  <a href="https://github.com/Stefouch/t2k4e/releases">
     <img alt="Downloads" src="https://img.shields.io/github/downloads/Stefouch/t2k4e/latest/master.zip"/>
-  </a> -->
+  </a>
   <a href="https://github.com/Stefouch/t2k4e/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"/>
   </a>
@@ -19,22 +19,23 @@
   <a href="https://www.patreon.com/Stefouch">
     <img src="https://img.shields.io/badge/donate-patreon-F96854.svg" alt="Patreon">
   </a>
+  <a href="https://twitter.com/freeleaguepub" target="_blank">
+    <img alt="Twitter: FreeLeaguePub" src="https://img.shields.io/twitter/follow/freeleaguepub.svg?style=social"/>
+  </a>
   <a href="https://twitter.com/stefouch" target="_blank">
     <img alt="Twitter: stefouch" src="https://img.shields.io/twitter/follow/stefouch.svg?style=social"/>
   </a>
 </p>
 
-> **DISCLAIMER:** This is the beta version for the playtesters of the Twilight 2000 4E game system for Foundry VTT. The system will be released on Foundry when ready. Your feedback and bug reports are greatly appreciated.
+The **OFFICIAL** game system for [Twilight 2000 (4th Edition)](https://freeleaguepublishing.com/en/games/twilight-2000/) on Foundry VTT.
 
-<!-- An OFFICIAL system for Twilight 2000 4E (Free League Publishing) on Foundry VTT.-->
-
-<!--<p align="center">
+<p align="center">
   <a href="https://frialigan.se/en/games/twilight-2000/" target="_blank">
     <img src="./assets/t2k-banner.jpg" alt="Twilight 2000 4E"/>
   </a>
-</p>-->
+</p>
 
-# Install
+# 🚀 Install
 
 1. Go to the setup page and choose Game Systems.
 
@@ -43,69 +44,69 @@
 https://raw.githubusercontent.com/stefouch/t2k4e/master/system.json
 ```
 
-3. Create a Game World using the Twilight 2000 4E system.
+3. Create a Game World using the Twilight 2000 (4th Edition) system.
 
 4. Read the [Wiki](https://github.com/Stefouch/t2k4e/wiki)!
 
-# Supported Languages
+# 🧩 Supported Modules
+
+We highly recommend the following modules to play the game:
+
+- [Dice So Nice!](https://foundryvtt.com/packages/dice-so-nice) – Will give you beautiful 3D dice for each roll.
+
+- [Reverse Initiative Order](https://foundryvtt.com/packages/reverse-initiative-order) – Lets you reverse the initiative order in the combat tracker and add non-actor combat tokens (good for multiple initiatives).
+
+- [Year Zero Actions](https://foundryvtt.com/packages/alien-actions) – For a better overview of what actions have been taken in combat.
+
+# 💬 Supported Languages
+
 - English
 
-You may help translate the game system in your language by translating the [language file](./lang/en.json).
+You may help localize the game system in your language by translating the [language file](./lang/en.json).
 
-# Supported Modules
-- [Dice So Nice!](https://foundryvtt.com/packages/dice-so-nice)
-- [Reverse Initiative Order](https://foundryvtt.com/packages/reverse-initiative-order)
-
-# Previews
+# 🖼️ Previews
 
 <img src="./screenshots/210117-characterSheet-stats.png" height=300 alt="T2K Foundry"/> <img src="./screenshots/210117-characterSheet-combat.png" height=300 alt="T2K Foundry"/> <img src="./screenshots/210117-characterSheet-equipment.png" height=300 alt="T2K Foundry"/>
 <img src="./screenshots/210117-itemSheets-weapon-armor.png" height=300 alt="T2K Foundry"/>
 <img src="./screenshots/210117-chatlog.png" height=400 alt="T2K Foundry"/>
 
-# Planned Features
-- Applying weapon's damage to selected tokens
-- Weapon reload
-- More automation
-- Party Sheet (for travel)
-
-# 🤝 Contributing
+# 🛠️ Contributing
 
 Contributions, issues and feature requests are welcome!<br/>Feel free to check the [issues page](https://github.com/Stefouch/t2k4e/issues).
 
-# Author
+### Top Contributors
+
+@aMediocreDad - Lots of code samples come from this artist.
+
+# 👤 Author
 
 <p align="center">
   <a href="https://stefouch.be" target="_blank">
     <img src="./assets/stefouch-banner.png" alt="Stefouch Gaming Lab" style="width: auto; height: auto; max-height: 100px;"/>
   </a>
+  <br/>
+  <i>Built by a fan, for the fans.</i>
 </p>
 
-### 👤 Stefouch
+### Stefouch
 
-* **Twitter:** [@stefouch](https://twitter.com/stefouch)
-* **Github:** [@Stefouch](https://github.com/Stefouch)
-* **Discord:** Stefouch#5202
-  * [Year Zero Worlds](https://discord.gg/RnaydHR)
-  * [The Foundry](https://discord.gg/8yAKUHZZKE)
+- **Twitter:** [@stefouch](https://twitter.com/stefouch)
+- **Github:** [@Stefouch](https://github.com/Stefouch)
+- **Discord:** Stefouch#5202
+  - [Year Zero Worlds](https://discord.gg/RnaydHR)
+  - [The Foundry](https://discord.gg/8yAKUHZZKE)
 
-# 🙏 Show Your Support
-
-Give a ⭐️ if this project helped you!
-
-<a href="https://www.patreon.com/Stefouch">
-  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
-
-# List of Changes
+# 📜 List of Changes
 
 See the [changelog](https://github.com/Stefouch/t2k4e/blob/master/CHANGELOG.md#changelog) for a complete list of changes applied to the system since 2021.
 
-# 📝 License
+# 📝 Licenses
 
-- Content: Twilight 2000 4E: © Fria Ligan / Free League Publishing.
-- Foundry VTT: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
-- Source code: Copyright © 2021 [Stefouch](https://github.com/Stefouch), and licenced under the [GNU General Public License v3.0](https://github.com/Stefouch/t2k4e/blob/master/LICENSE).
-- Fonts:
+- **Content & Logo:** [Twilight 2000 (4th Edition)](https://freeleaguepublishing.com/en/store/?collection_id=270655783061) is ™ & © 2021 GDW and Fria Ligan AB. All rights reserved. The parts of this project protected under this copyright may not be distributed commercially or freely. This includes art, logo, and copyright text.
+- **Source Code:** All source code *(javascript, hbs, less, as well as system templates and the like)* are Copyright © 2021 [Stefouch](https://github.com/Stefouch), and licenced under the [GNU General Public License v3.0](https://github.com/Stefouch/t2k4e/blob/master/LICENSE).
+- **Foundry VTT:** The project is created following the Foundry VTT [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
+- **Icons:** Icons in the `module/t2k4e-coreset/assets/icons/` folder are courtesy of [Game-icons.net](https://game-icons.net/) and licenced under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+- **Fonts:** The fonts used in this project carry their own licences:
   - [Daisy Wheel](https://www.dafont.com/daisy-wheel.font)
   - [Blue Highway](https://typodermicfonts.com/blue-highway-5-0/)
   - [Mukta](https://fonts.google.com/specimen/Mukta)
