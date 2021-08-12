@@ -11,7 +11,7 @@ export default class T2KDialog extends Dialog {
     html.find('input').focus(ev => ev.currentTarget.select());
 
     // Range Pickers
-    html.find('input[type="range"]').change(event => {
+    html.find('input[type=range]').change(event => {
       event.preventDefault();
       const elem = event.currentTarget;
       const span = elem.nextElementSibling;
@@ -33,7 +33,15 @@ export default class T2KDialog extends Dialog {
         case 'plus': value++; break;
         case 'minus': value--; break;
       }
-      target.value = value > 0 ? `+${value}` : value;
+      target.value = value >= 0 ? `+${value}` : value;
+    });
+
+    html.find('input[type=checkbox].item-modifier').on('change', function() {
+      const modifierInput = html.find('input[name=modifier]')[0];
+      let value = +modifierInput.value;
+      if (this.checked) value += +this.dataset.value;
+      else value -= +this.dataset.value;
+      modifierInput.value = value >= 0 ? `+${value}` : value;
     });
   }
 

@@ -368,7 +368,8 @@
         "ExtraHits": "Extra Hits",
         "Mishap": "Mishap",
         "AmmoSpent": "Ammo Spent",
-        "NoItemNotif": "The item does not exist anymore."
+        "NoItemNotif": "The item does not exist anymore.",
+        "NoReliabilityNotif": "The current reliability value of this item does not allow to use it."
       }
     },
     "Combat": {
@@ -401,6 +402,10 @@
       "Actor": {
         "ChooseActor": "Choose an Actor"
       }
+    },
+    "Macro": {
+      "MultipleItems": "Your controlled Actor {actor} has more than one Item with name {item}. The first matched item will be chosen.",
+      "NoItem": "Your controlled Actor {actor} does not have an item named {item}."
     }
   },
   "SETTINGS": {
@@ -419,6 +424,10 @@
     "showTaskCheckOptions": {
       "name": "Ask for Task Check Options by Default",
       "label": "Hold Shift to toggle."
+    },
+    "closeRollTooltipDelay": {
+      "name": "Close Roll Tooltip Delay",
+      "label": "How many seconds to wait before automatically closing dice results tooltips. Maximum is 15 minutes. Set this value to -1 for never."
     },
     "defaultCharTokenSize": {
       "name": "Default Token Size for Characters & NPCs",
@@ -471,5 +480,7 @@
   "EFFECT.StatusSuppressed": "Suppressed",
   "EFFECT.StatusStop": "Stop",
   "EFFECT.StatusSmoke": "Smoke",
-  "EFFECT.StatusFire": "Fire"
+  "EFFECT.StatusFire": "Fire",
+  "EFFECT.StatusSlowAction": "Slow Action Spent",
+  "EFFECT.StatusFastAction": "Fast Action Spent"
 }

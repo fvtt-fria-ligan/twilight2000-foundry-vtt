@@ -21,6 +21,8 @@ import { registerDsN, T2KRoller } from './module/dice.js';
 import { registerSystemSettings } from './module/settings.js';
 import { registerStatusEffects } from './module/statusEffects.js';
 import { preloadHandlebarsTemplates, registerHandlebars } from './module/templates.js';
+import { createT2KMacro, rollItemMacro } from './module/macros.js';
+import displayMessages from './module/message-system.js';
 import * as Chat from './module/chat.js';
 
 // Imports Documents.
@@ -67,6 +69,9 @@ Hooks.once('init', function() {
       ActorT2K,
       ItemT2K,
     },
+    macros: {
+      rollItemMacro,
+    },
     roller: T2KRoller,
   };
 
@@ -109,16 +114,14 @@ Hooks.once('init', function() {
 });
 
 Hooks.once('ready', function() {
-  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  // Hooks.on('hotbarDrop', (bar, data, slot) => macros.create5eMacro(data, slot));
+  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to.
+  Hooks.on('hotbarDrop', (bar, data, slot) => createT2KMacro(data, slot));
 
   // Determines whether a system migration is required and feasible.
   checkMigration();
 
   // Defines status effects.
   registerStatusEffects();
-
-  console.warn('t2k4e | READY!');
 
   // Debugging
   if (game.userId === 'OPqJPiI75DlhwfVv') {
@@ -144,33 +147,42 @@ Hooks.once('ready', function() {
       console.warn('t2k4e | DEBUG | Cannot find starting Entity.', error);
     }
   }
-  else {
-    // TODO clean this code when official release
-    // Introductory dialog for the beta.
-    const disclaimerContent = `<h1>Welcome</h1>
-    <p>This is the beta version of the <b>Twilight 2000 4E</b> game system for the Foundry VTT.</p>
-    <p>Thank you for playtesting this unreleased version!
-    <br/>Please report any bugs, rules errors, feedback and feature requests at the github repository: 
-    <a href="https://github.com/Stefouch/t2k4e/issues">https://github.com/Stefouch/t2k4e/issues</a></p>
-    <hr/>
-    <p><u>Important Note</u>:&nbsp;Do not share this system on social media until the official release. Thank you.</p>`;
-    new Dialog({
-      title: 'T2K4E — Message',
-      content: disclaimerContent,
-      buttons: {
-        ok: {
-          label: 'OK',
-        },
-      },
-    }).render(true);
-  }
+
+  // Displays starting messages.
+  displayMessages();
+
+  console.warn('t2k4e | READY!');
 });
+
+/* -------------------------------------------- */
+/*  Foundry VTT Hooks                           */
+/* -------------------------------------------- */
 
 Hooks.once('diceSoNiceReady', dice3d => registerDsN(dice3d));
 
+/* -------------------------------------------- */
+
 Hooks.on('renderChatLog', (app, html, data) => Chat.addChatListeners(html));
+
+/* -------------------------------------------- */
+
 Hooks.on('getChatLogEntryContext', Chat.addChatMessageContextOptions);
-Hooks.on('renderChatMessage', (app, html, data) => Chat.hideChatActionButtons(app, html, data));
+
+/* -------------------------------------------- */
+
+Hooks.on('renderChatMessage', (app, html, data) => {
+  // Hides chat action buttons.
+  Chat.hideChatActionButtons(html);
+
+  // Automatically closes dice results tooltips.
+  let delay = game.settings.get('t2k4e', 'closeRollTooltipDelay');
+  if (delay >= 0) {
+    delay = Math.min(delay, 15 * 60);
+    Chat.closeRollTooltip(app, html, delay * 1000);
+  }
+});
+
+/* -------------------------------------------- */
 
 Hooks.on('dropActorSheetData', (actor, sheet, data) => {
   // When dropping something on a vehicle sheet.
@@ -179,6 +191,8 @@ Hooks.on('dropActorSheetData', (actor, sheet, data) => {
     if (data.type === 'Actor') sheet.dropCrew(data.id);
   }
 });
+
+/* -------------------------------------------- */
 
 Hooks.on('createToken', (token, data, userId) => {
   // When creating a Unit token.
@@ -214,4 +228,10 @@ Hooks.on('createToken', (token, data, userId) => {
       token.update(updateData);
     }
   }
+});
+
+/* -------------------------------------------- */
+
+Hooks.on('renderItemSheet', function(app, html) {
+  app._element[0].style.height = 'auto';
 });

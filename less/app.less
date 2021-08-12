@@ -22,9 +22,9 @@ a.inline-roll {
 /* ------------------------------------------- */
 
 // TODO fix until finding a happy scaling medium
-body {
-  font-size: clamp(0.8rem, 1.5vmin, 1.2rem);
-}
+// body {
+//   font-size: clamp(0.8rem, 1.5vmin, 1.2rem);
+// }
 
 .t2k4e {
   .window-content {
@@ -129,7 +129,17 @@ body {
 
   .editor {
     height: 100%;
+    min-height: 32px;
     color: @colorDark;
+
+    .editor-content {
+      height: 100%;
+    }
+
+    .tox-tinymce {
+      min-height: 200px;
+      height: 100%;
+    }
   }
 
   /* ------------------------------------------- */
@@ -185,8 +195,8 @@ body {
 
   select {
     // flex: 1;
-    font-size: 12px;
-    height: 22px;
+    // font-size: 12px;
+    // height: 22px;
     background: transparent;
     &:hover,
     &:focus {

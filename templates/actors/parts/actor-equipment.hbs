@@ -40,9 +40,10 @@
       </div>
     </div>
     <div class="items-list">
-      {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot-unarmed.hbs"}}
       {{#each actor.itemTypes.weapon}}
       {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" this}}
+      {{else}}
+      <div class="item">–</div>
       {{/each}}
       {{#each actor.itemTypes.grenade}}
       {{> "systems/t2k4e/templates/actors/parts/slots/weapon-slot.hbs" this}}

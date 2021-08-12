@@ -1,5 +1,6 @@
 import { getDieSize, T2KRoller } from '../dice.js';
 import { T2K4E } from '../config.js';
+import Modifier from '../modifier.js';
 
 /**
  * Twilight 2000 Actor.
@@ -177,7 +178,14 @@ export default class ActorT2K extends Actor {
     // Computes the Encumbrance.
     const val1 = (items
       .filter(i => !i.data.data.backpack && i.type !== 'specialty')
-      .reduce((sum, i) => sum + i.data.data.encumbrance, 0)
+      .reduce((sum, i) => {
+        if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
+          const ammoId = i.data.data.mag.target;
+          const ammo = this.items.get(ammoId);
+          if (ammo && ammo.type === 'ammunition') sum -= ammo.data.data.encumbrance;
+        }
+        return sum + i.data.data.encumbrance;
+      }, 0)
     ) ?? 0;
 
     data.encumbrance = {
@@ -190,7 +198,14 @@ export default class ActorT2K extends Actor {
     // Computes the Backpack.
     const val2 = (items
       .filter(i => i.data.data.backpack && i.type !== 'specialty')
-      .reduce((sum, i) => sum + i.data.data.encumbrance, 0)
+      .reduce((sum, i) => {
+        if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
+          const ammoId = i.data.data.mag.target;
+          const ammo = this.items.get(ammoId);
+          if (ammo) sum -= ammo.data.data.encumbrance;
+        }
+        return sum + i.data.data.encumbrance;
+      }, 0)
     ) ?? 0;
 
     data.encumbrance.backpack = {
@@ -279,11 +294,29 @@ export default class ActorT2K extends Actor {
   /* ------------------------------------------- */
 
   // TODO placeholder
-  _prepareUnitData() {}
+  _prepareUnitData(data) {}
 
   /* ------------------------------------------- */
   /*  Roll Modifiers                             */
   /* ------------------------------------------- */
+
+  getRollModifiers() {
+    const modifiers = [];
+    // Iterates over each item owned by the actor.
+    for (const i of this.items) {
+      // If there are modifiers...
+      if (i.hasModifier) {
+        // Physical items must be equipped to give their modifier.
+        if (i.isPhysical && !i.isEquipped) continue;
+        // Iterates over each roll modifier.
+        for (const m of Object.values(i.data.data.rollModifiers)) {
+          const mod = new Modifier(m.name, m.value, i);
+          modifiers.push(mod);
+        }
+      }
+    }
+    return modifiers;
+  }
 
   // /**
   //  * Gets an object containing all the roll modifiers summed together.

@@ -50,6 +50,15 @@ export function registerSystemSettings() {
     default: true,
   });
 
+  game.settings.register('t2k4e', 'closeRollTooltipDelay', {
+    config: true,
+    scope: 'client',
+    name: 'SETTINGS.closeRollTooltipDelay.name',
+    hint: 'SETTINGS.closeRollTooltipDelay.label',
+    type: Number,
+    default: 60,
+  });
+
   game.settings.register('t2k4e', 'defaultCharTokenSize', {
     config: true,
     scope: 'world',
