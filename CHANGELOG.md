@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
-## [1.5.0] - 2021-08-11
+## [1.5.0] - 2021-08-12
 > The game system is now **officially** released.
 
 ### Added
