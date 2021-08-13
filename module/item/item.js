@@ -341,20 +341,6 @@ export default class ItemT2K extends Item {
     }
 
     return message;
-
-    // ! Gets the defenders, if any.
-    //const defenders = [];
-    // if (game.user.targets.size) {
-    //   for (const token of game.user.targets.values()) {
-    //     defenders.push(token.actor);
-    //   }
-    // }
-
-    // return this.actor.attack(this, defenders, {
-    //   // title,
-    //   //rollMode: game.settings.get('core', 'rollMode'),
-    //   askForOptions: options?.event?.shiftKey,
-    // });
   }
 
   /* ------------------------------------------- */
@@ -372,7 +358,7 @@ export default class ItemT2K extends Item {
     const val = this.data.data.reliability.value;
     const max = this.data.data.reliability.max;
     const rel = Math.clamped(val + jam, 0, max);
-    if (update && rel !== val) await this.update({ 'data.reliability.value': rel })
+    if (update && rel !== val) await this.update({ 'data.reliability.value': rel });
     return rel - val;
   }
 
@@ -450,7 +436,7 @@ export default class ItemT2K extends Item {
       actorId: this.actor.id,
       tokenId: token ? `${token.parent.id}.${token.id}` : null,
       owner: game.user.id,
-      config: CONFIG.T2K4E,
+      config: T2K4E,
     };
 
     // Creates the ChatMessage data object.

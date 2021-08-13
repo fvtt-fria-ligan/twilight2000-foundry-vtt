@@ -38,7 +38,7 @@ export default class ActorSheetT2K extends ActorSheet {
       editable: this.isEditable,
       actor: baseData.actor,
       data: baseData.actor.data.data,
-      config: CONFIG.T2K4E,
+      config: T2K4E,
     };
     return sheetData;
   }
