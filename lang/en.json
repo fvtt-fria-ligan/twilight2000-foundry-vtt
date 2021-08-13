@@ -357,7 +357,8 @@
         "Attack": "Attack",
         "Reload": "Reload",
         "Roll": "Roll",
-        "Push": "Push"
+        "Push": "Push",
+        "ApplyDamage": "Apply Damage"
       },
       "Roll": {
         "Success": "Success",
@@ -401,6 +402,13 @@
       },
       "Actor": {
         "ChooseActor": "Choose an Actor"
+      },
+      "Damage": {
+        "ChooseDamage": "Amount of Damage",
+        "Description": "Choose how much damage to inflict to <b>{target}</b>.",
+        "DamageQuantity": "Base Amount",
+        "ExtraHits": "Extra Hits",
+        "BarrierArmor": "Barrier's Armor Level"
       }
     },
     "Macro": {
