@@ -1,6 +1,7 @@
 import { getDieSize, T2KRoller } from '../dice.js';
 import { T2K4E } from '../config.js';
 import Modifier from '../modifier.js';
+import { YearZeroRoll } from '../../lib/yzur.js';
 
 /**
  * Twilight 2000 Actor.
@@ -18,6 +19,12 @@ export default class ActorT2K extends Actor {
 
   get hasReliability() {
     return !!this.data.data.reliability?.max;
+  }
+
+  get cover() {
+    if (this.effects.some(e => e.getFlag('cover', 'statusId') === 'fullCover')) return 'fullCover';
+    if (this.effects.some(e => e.getFlag('cover', 'statusId') === 'partialCover')) return 'partialCover';
+    return 0;
   }
 
   /* ------------------------------------------- */
@@ -318,37 +325,6 @@ export default class ActorT2K extends Actor {
     return modifiers;
   }
 
-  // /**
-  //  * Gets an object containing all the roll modifiers summed together.
-  //  * Form: { string: number }
-  //  * @returns {object}
-  //  */
-  // getRollModifiers() {
-  //   const rollModifiers = {};
-  //   // Iterates over each item owned by the actor.
-  //   for (const i of this.items.contents) {
-  //     // If there are modifiers...
-  //     if (i.hasModifier) {
-  //       // Iterates over each roll modifier.
-  //       for (const m of Object.values(i.data.data.rollModifiers)) {
-  //         if (m && m.name) {
-  //           const v = parseInt(m.value);
-  //           // If there is a value, adds the modifier.
-  //           if (v) {
-  //             if (!rollModifiers[m.name]) {
-  //               rollModifiers[m.name] = v;
-  //             }
-  //             else {
-  //               rollModifiers[m.name] += v;
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   return rollModifiers;
-  // }
-
   /* ------------------------------------------- */
   /*  Event Handlers                             */
   /* ------------------------------------------- */
@@ -486,14 +462,142 @@ export default class ActorT2K extends Actor {
 
     const rollConfig = foundry.utils.mergeObject({
       title: game.i18n.localize('T2K4E.ActorSheet.RadiationRoll'),
-      actor: this,
       attribute: data.attributes.str.value,
       skill: data.skills.stamina.value,
       modifier: T2K4E.radiationVirulence - sievert,
     }, options);
+    rollConfig.actor = this;
 
     return T2KRoller.taskCheck(rollConfig);
   }
+
+  /* ------------------------------------------- */
+  /*  Combat & Damage                            */
+  /* ------------------------------------------- */
+
+  async applyDamage(amount = 0, attackData, sendMessage = true) {
+    amount = +amount ?? 0;
+
+    switch (this.type) {
+      case 'character':
+      case 'npc':
+        this.applyDamageToCharacter(amount, attackData, sendMessage);
+        break;
+      case 'vehicle':
+        break;
+    }
+  }
+
+  /* ------------------------------------------- */
+
+  async applyDamageToCharacter(amount, attackData, sendMessage = true) {
+    const data = this.data.data;
+    let msg = '';
+    // ! let ablated, incapacited;
+    let armorModifier = attackData.armorModifier || 0;
+    const baseDamage = attackData.damage;
+
+    // 1 — Barrier & Armor
+    if (!attackData.location) {
+      const locRoll = new YearZeroRoll('1dl');
+      await locRoll.roll({ async: true });
+      const loc = locRoll.bestHitLocation;
+      attackData.location = T2K4E.hitLocs[loc - 1];
+    }
+    let barrier = attackData.barrier || 0;
+    if (!attackData.cover) { barrier = 0; }
+    else if (barrier > 0 && attackData.cover === 'partialCover' && ['arms', 'head'].includes(attackData.location)) {
+      barrier = 0;
+    }
+    const armor = this.data.data.armorRatings[attackData.location];
+    const armorLevel = barrier + armor + armorModifier;
+    const armorPenetrationLimit = armorLevel - 2;
+    const penetrated = baseDamage > armorPenetrationLimit;
+
+
+    barrier.rating = attackData.barrier || 0;
+    barrier.level = barrier.rating > 0 ? Math.max(0, barrier.rating + armorModifier) : 0;
+    barrier.penetrationLimit = barrier.level - 2;
+    barrier.penetrated = baseDamage > barrier.penetrationLimit;
+    barrier.damage = barrier.penetrated ? barrier.level : amount;
+    amount -= barrier.damage;
+    barrier.deflected = amount <= 0;
+
+    // 2 — Armor
+    // const armor = {};
+
+    // 3 — Armor Reduction
+    armor = Math.max(0, armor - armorModifier);
+
+    // 3 — Armor Penetration
+    const penetrationLimit = armor - 2;
+    deflected = baseDamage <= penetrationLimit ? true : (armor >= amount);
+
+    // 4 — Armor Ablation
+    if (deflected) {
+      amount = 0;
+    }
+    else {
+      amount -= armor;
+
+      // 4.1 — Checks whether there is ablation.
+      if (armored) {
+        const ablationRoll = new YearZeroRoll('1d6np');
+        await ablationRoll.roll({ async: true });
+
+        if (ablationRoll.total <= 1) {
+          // 4.2 — Finds the affected armor;
+          const armors = this.items.filter(i => i.type === 'armor' && i.data.data.location[attackData.location]);
+
+          // 4.3 — Takes the highest.
+          const armorItem = armors.sort((a, b) => b.data.data.rating.value - a.data.data.rating.value)[0];
+
+          // 4.4 — Decreases the armor rating.
+          if (armorItem) {
+            let rating = armorItem.data.data.rating.value;
+            rating = Math.max(0, rating - 1);
+            armorItem.update({ 'data.rating.value': rating });
+            ablated = true;
+          }
+        }
+      }
+    }
+
+    // Exits early if no damage is dealt.
+    if (amount <= 0) return 0;
+
+    // 5 — Damage & Health Change
+    const oldVal = data.health.value;
+    const newVal = Math.max(0, oldVal - amount);
+    const diff = newVal - oldVal;
+    incapacited = newVal <= 0;
+
+    await this.update({ 'data.health.value': newVal });
+
+    if (!sendMessage) return diff;
+
+    // Prepares the chat message.
+    const template = 'systems/t2k4e/templates/chat/apply-damage-chat.hbs';
+    const templateData = {
+      armored, deflected, ablated, incapacited,
+      amount,
+      data: attackData,
+      config: T2K4E,
+    };
+    const chatData = {
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ token: this.token }),
+      content: await renderTemplate(template, templateData),
+      sound: CONFIG.sounds.notification,
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+    };
+    ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+    await ChatMessage.create(chatData);
+
+    return diff;
+  }
+
+  /* ------------------------------------------- */
 
   /* ------------------------------------------- */
   /*  Chat Card Actions                          */
