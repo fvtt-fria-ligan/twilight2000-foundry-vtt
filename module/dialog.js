@@ -244,7 +244,7 @@ export default class T2KDialog extends Dialog {
     return {
       damage: parseInt(form.damage.value) || 0,
       hitCount: parseInt(form.hits?.value) || 0,
-      barrier: parseInt(form.barrier?.value) || 0,
+      barriers: form.barriers?.value,
     };
   }
 }

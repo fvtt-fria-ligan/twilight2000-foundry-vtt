@@ -408,7 +408,8 @@
         "Description": "Choose how much damage to inflict to <b>{target}</b>.",
         "DamageQuantity": "Base Amount",
         "ExtraHits": "Extra Hits",
-        "BarrierArmor": "Barrier's Armor Level"
+        "BarrierArmors": "Barrier's Armor Levels",
+        "BarrierArmorsHint": "Multiple barriers are comma-separated."
       }
     },
     "Macro": {

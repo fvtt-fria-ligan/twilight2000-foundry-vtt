@@ -2,6 +2,7 @@ import { getDieSize, T2KRoller } from '../dice.js';
 import { T2K4E } from '../config.js';
 import Modifier from '../modifier.js';
 import { YearZeroRoll } from '../../lib/yzur.js';
+import Armor from '../armor.js';
 
 /**
  * Twilight 2000 Actor.
@@ -22,8 +23,8 @@ export default class ActorT2K extends Actor {
   }
 
   get cover() {
-    if (this.effects.some(e => e.getFlag('cover', 'statusId') === 'fullCover')) return 'fullCover';
-    if (this.effects.some(e => e.getFlag('cover', 'statusId') === 'partialCover')) return 'partialCover';
+    if (this.effects.some(e => e.getFlag('core', 'statusId') === 'fullCover')) return 'fullCover';
+    if (this.effects.some(e => e.getFlag('core', 'statusId') === 'partialCover')) return 'partialCover';
     return 0;
   }
 
@@ -491,102 +492,75 @@ export default class ActorT2K extends Actor {
   /* ------------------------------------------- */
 
   async applyDamageToCharacter(amount, attackData, sendMessage = true) {
+    const initialAmount = amount;
     const data = this.data.data;
-    let msg = '';
-    // ! let ablated, incapacited;
-    let armorModifier = attackData.armorModifier || 0;
+    const armorModifier = attackData.armorModifier || 0;
     const baseDamage = attackData.damage;
 
-    // 1 — Barrier & Armor
+    // 1 — Location
     if (!attackData.location) {
       const locRoll = new YearZeroRoll('1dl');
       await locRoll.roll({ async: true });
       const loc = locRoll.bestHitLocation;
       attackData.location = T2K4E.hitLocs[loc - 1];
     }
-    let barrier = attackData.barrier || 0;
-    if (!attackData.cover) { barrier = 0; }
-    else if (barrier > 0 && attackData.cover === 'partialCover' && ['arms', 'head'].includes(attackData.location)) {
-      barrier = 0;
+
+    // 2 — Barrier(s)
+    const barriers = [];
+    for (let barrierRating of attackData.barriers) {
+      barrierRating = +barrierRating;
+      if (!barrierRating) continue;
+      const barrier = new Armor(barrierRating);
+      amount = await barrier.penetration(amount, baseDamage, armorModifier);
+      // TODO barrier ablation
+      barriers.push(barrier);
     }
-    const armor = this.data.data.armorRatings[attackData.location];
-    const armorLevel = barrier + armor + armorModifier;
-    const armorPenetrationLimit = armorLevel - 2;
-    const penetrated = baseDamage > armorPenetrationLimit;
 
+    // 3 — Body Armor
+    const armorRating = this.data.data.armorRating[attackData.location] || 0;
+    const bodyArmor = new Armor(armorRating);
+    amount = await bodyArmor.penetration(amount, baseDamage, armorModifier);
 
-    barrier.rating = attackData.barrier || 0;
-    barrier.level = barrier.rating > 0 ? Math.max(0, barrier.rating + armorModifier) : 0;
-    barrier.penetrationLimit = barrier.level - 2;
-    barrier.penetrated = baseDamage > barrier.penetrationLimit;
-    barrier.damage = barrier.penetrated ? barrier.level : amount;
-    amount -= barrier.damage;
-    barrier.deflected = amount <= 0;
+    // 3.1 — Body Armor Ablation
+    if (bodyArmor.damaged) {
+      // 3.1.1 — Finds the affected armor.
+      const armors = this.items.filter(i => i.type === 'armor' && i.data.data.location[attackData.location]);
 
-    // 2 — Armor
-    // const armor = {};
+      // 3.1.2 — Takes the best.
+      const armorItem = armors.sort((a, b) => b.data.data.rating.value - a.data.data.rating.value)[0];
 
-    // 3 — Armor Reduction
-    armor = Math.max(0, armor - armorModifier);
-
-    // 3 — Armor Penetration
-    const penetrationLimit = armor - 2;
-    deflected = baseDamage <= penetrationLimit ? true : (armor >= amount);
-
-    // 4 — Armor Ablation
-    if (deflected) {
-      amount = 0;
-    }
-    else {
-      amount -= armor;
-
-      // 4.1 — Checks whether there is ablation.
-      if (armored) {
-        const ablationRoll = new YearZeroRoll('1d6np');
-        await ablationRoll.roll({ async: true });
-
-        if (ablationRoll.total <= 1) {
-          // 4.2 — Finds the affected armor;
-          const armors = this.items.filter(i => i.type === 'armor' && i.data.data.location[attackData.location]);
-
-          // 4.3 — Takes the highest.
-          const armorItem = armors.sort((a, b) => b.data.data.rating.value - a.data.data.rating.value)[0];
-
-          // 4.4 — Decreases the armor rating.
-          if (armorItem) {
-            let rating = armorItem.data.data.rating.value;
-            rating = Math.max(0, rating - 1);
-            armorItem.update({ 'data.rating.value': rating });
-            ablated = true;
-          }
-        }
+      // 3.1.3 — Decreases the armor rating.
+      if (armorItem) {
+        let rating = armorItem.data.data.rating.value;
+        rating = Math.max(0, rating - 1);
+        armorItem.update({ 'data.rating.value': rating });
       }
     }
 
-    // Exits early if no damage is dealt.
-    if (amount <= 0) return 0;
-
-    // 5 — Damage & Health Change
+    // 4 — Damage & Health Change
     const oldVal = data.health.value;
     const newVal = Math.max(0, oldVal - amount);
     const diff = newVal - oldVal;
-    incapacited = newVal <= 0;
+    const incapacited = newVal <= 0;
 
-    await this.update({ 'data.health.value': newVal });
+    if (diff !== 0) await this.update({ 'data.health.value': newVal });
 
     if (!sendMessage) return diff;
 
     // Prepares the chat message.
-    const template = 'systems/t2k4e/templates/chat/apply-damage-chat.hbs';
+    const template = 'systems/t2k4e/templates/chat/character-damage-chat.hbs';
     const templateData = {
-      armored, deflected, ablated, incapacited,
+      incapacited,
+      initialAmount,
       amount,
+      barriers,
+      armor: bodyArmor,
       data: attackData,
       config: T2K4E,
     };
     const chatData = {
       user: game.user.id,
-      speaker: ChatMessage.getSpeaker({ token: this.token }),
+      speaker: ChatMessage.getSpeaker({ actor: this }),
       content: await renderTemplate(template, templateData),
       sound: CONFIG.sounds.notification,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,

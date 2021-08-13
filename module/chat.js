@@ -79,7 +79,7 @@ export function addChatMessageContextOptions(html, options) {
   // TODO: See Part 6, 6:55
   // Allows only this menu option if we have selected some tokens
   // & the message contains some damage.
-  const canDefend = li => canvas.tokens.controlled.length && li.find('.dice-info.roll-trauma').length;
+  const canDefend = li => canvas.tokens.controlled.length && li.find('.dice-roll').length;
   options.push(
     {
       name: game.i18n.localize('T2K4E.Chat.Actions.ApplyDamage'),
@@ -121,6 +121,8 @@ async function _applyDamage(messageElem) {
   // Gets the selected tokens.
   const defenders = canvas.tokens.controlled;
   for (const defender of defenders) {
+    // TODO clean log
+    console.warn('Defender:', defender, 'Attack data:', attackData);
     const s = roll.baseSuccessQty;
     let damage = s > 0 ? attackData.damage + 1 * (s - 1) : 0;
     const isGM = game.user.isGM;
@@ -134,19 +136,23 @@ async function _applyDamage(messageElem) {
         damage,
         hitCount,
         location: attackData.location,
+        target: defender.name,
         barrier,
         isGM,
       });
-      if (!opts.cancelled) {
+      if (opts.cancelled) {
+        return;
+      }
+      else {
         damage = opts.damage + opts.hitCount;
-        if (opts.barrier) attackData.barrier = opts.barrier;
         if (opts.hitCount) {
           hitCount = Math.max(0, hitCount - opts.hitCount);
           await message.setFlag('t2k4e', 'hitCountLeft', hitCount);
         }
       }
+      attackData.barriers = opts.barriers ? opts.barriers.split(',') : [];
     }
-    await defender.actor.applyDamage(damage, attackData);
+    await defender.actor.applyDamage(damage, attackData, damage !== 0);
   }
 }
 

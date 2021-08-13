@@ -5,12 +5,13 @@
         hitCount: number
         barrier: number
         location: string
+        target: string
         isGM: boolean
 
         OUTPUT VARIABLES:
         damage: number
         hitCount: number
-        barrier: number
+        barriers: string<number>[]
   --}}
 
   {{#with data}}
@@ -18,9 +19,9 @@
   {{!-- ================================================== --}}
 
   <p>
-    {{localize "T2K4E.Dialog.Damage.Description" target=target}}
+    {{{localize "T2K4E.Dialog.Damage.Description" target=target}}}
     {{#if location}}
-    <br/>{{localize "CHAT.ROLL.HitLocation"}}&nbsp;<b>{{localize (concat "T2K4E.ArmorLocationNames." location)}}</b>
+    <br/>{{localize "YZUR.CHAT.ROLL.HitLocation"}}&nbsp;<b>{{localize (concat "T2K4E.ArmorLocationNames." location)}}</b>
     {{/if}}
   </p>
 
@@ -50,8 +51,11 @@
   {{!-- BARRIER --}}
   {{#if barrier}}
   <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Damage.BarrierArmor"}}</label>
-    <input type="number" name="barrier" value="{{barrier}}"/>
+    <label style="line-height: 1;">
+      {{localize "T2K4E.Dialog.Damage.BarrierArmors"}}
+      <br/><small>{{localize "T2K4E.Dialog.Damage.BarrierArmorsHint"}}</small>
+    </label>
+    <input type="text" name="barriers" value="{{barrier}}"/>
   </div>
   {{/if}}
 
