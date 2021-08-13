@@ -158,6 +158,13 @@ T2K4E.unit = {
   },
 };
 
+T2K4E.hitLocs = [
+  'legs',
+  'torso', 'torso', 'torso',
+  'arms',
+  'head',
+];
+
 T2K4E.hitLocations = {
   none: '',
   head: 'T2K4E.ArmorLocationNames.head',
@@ -189,21 +196,21 @@ T2K4E.rollModes = {
   selfroll: 'CHAT.RollSelf',
 };
 
-T2K4E.unarmedData = {
-  attribute: 'str',
-  skill: 'closeCombat',
-  damage: 1,
-  crit: 4,
-  blast: '–',
-  armorModifier: 3,
-  range: 0,
-  weight: 0,
-  price: 0,
-  modifiers: { attributes: {}, skills: {} },
-  rof: 0,
-  mag: {},
-  props: {},
-};
+// T2K4E.unarmedData = {
+//   attribute: 'str',
+//   skill: 'closeCombat',
+//   damage: 1,
+//   crit: 4,
+//   blast: '–',
+//   armorModifier: 3,
+//   range: 0,
+//   weight: 0,
+//   price: 0,
+//   modifiers: { attributes: {}, skills: {} },
+//   rof: 0,
+//   mag: {},
+//   props: {},
+// };
 
 /* ------------------------------------------- */
 /*  Icons                                      */
