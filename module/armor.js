@@ -1,15 +1,22 @@
 import { YearZeroRoll } from '../lib/yzur.js';
 
 export default class Armor {
-  constructor(rating, modifier = 0) {
+  // eslint-disable-next-line no-shadow
+  constructor(rating, name, modifier = 0) {
     this.rating = rating;
     this.value = rating;
+    this.name = name ?? 'Armor';
     this.modifier = modifier;
+    this.damage = 0;
   }
 
   /* ------------------------------------------- */
   /*  Getters                                    */
   /* ------------------------------------------- */
+
+  get label() {
+    return `${this.name} (${this.value}/${this.rating})`;
+  }
 
   get level() {
     return this.value > 0 ? Math.max(0, this.value + this.modifier) : 0;
@@ -37,10 +44,12 @@ export default class Armor {
   }
 
   async penetration(amount, baseDamage, modifier) {
+    const initialAmount = amount;
     if (modifier) this.modify(modifier);
-    if (!this.isPenetratedByDamage(baseDamage)) return 0;
-    amount -= this.level;
+    if (!this.isPenetratedByDamage(baseDamage)) amount = 0;
+    else amount -= this.level;
     if (amount > 0) await this.ablation();
+    this.damage += initialAmount - amount;
     this.modifier = this._modifier;
     return amount;
   }

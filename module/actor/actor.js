@@ -25,7 +25,7 @@ export default class ActorT2K extends Actor {
   get cover() {
     if (this.effects.some(e => e.getFlag('core', 'statusId') === 'fullCover')) return 'fullCover';
     if (this.effects.some(e => e.getFlag('core', 'statusId') === 'partialCover')) return 'partialCover';
-    return 0;
+    return null;
   }
 
   /* ------------------------------------------- */
@@ -506,28 +506,29 @@ export default class ActorT2K extends Actor {
     }
 
     // 2 — Barrier(s)
-    const barriers = [];
-    for (let barrierRating of attackData.barriers) {
-      barrierRating = +barrierRating;
+    const armors = [];
+    for (let i = 0; i < attackData.barriers.length; i++) {
+      const barrierRating = +attackData.barriers[i];
       if (!barrierRating) continue;
-      const barrier = new Armor(barrierRating);
+      const barrierName = `${game.i18n.localize('T2K4E.Combat.Barrier')} #${i + 1}`;
+      const barrier = new Armor(barrierRating, barrierName);
       amount = await barrier.penetration(amount, baseDamage, armorModifier);
       // TODO barrier ablation
-      barriers.push(barrier);
+      armors.push(barrier);
     }
 
     // 3 — Body Armor
     const armorRating = this.data.data.armorRating[attackData.location] || 0;
-    const bodyArmor = new Armor(armorRating);
+    const bodyArmor = new Armor(armorRating, game.i18n.localize('T2K4E.Combat.BodyArmor'));
     amount = await bodyArmor.penetration(amount, baseDamage, armorModifier);
 
     // 3.1 — Body Armor Ablation
     if (bodyArmor.damaged) {
       // 3.1.1 — Finds the affected armor.
-      const armors = this.items.filter(i => i.type === 'armor' && i.data.data.location[attackData.location]);
+      const armorItems = this.items.filter(i => i.type === 'armor' && i.data.data.location[attackData.location]);
 
       // 3.1.2 — Takes the best.
-      const armorItem = armors.sort((a, b) => b.data.data.rating.value - a.data.data.rating.value)[0];
+      const armorItem = armorItems.sort((a, b) => b.data.data.rating.value - a.data.data.rating.value)[0];
 
       // 3.1.3 — Decreases the armor rating.
       if (armorItem) {
@@ -536,12 +537,12 @@ export default class ActorT2K extends Actor {
         armorItem.update({ 'data.rating.value': rating });
       }
     }
+    armors.push(bodyArmor);
 
     // 4 — Damage & Health Change
     const oldVal = data.health.value;
     const newVal = Math.max(0, oldVal - amount);
     const diff = newVal - oldVal;
-    const incapacited = newVal <= 0;
 
     if (diff !== 0) await this.update({ 'data.health.value': newVal });
 
@@ -550,11 +551,10 @@ export default class ActorT2K extends Actor {
     // Prepares the chat message.
     const template = 'systems/t2k4e/templates/chat/character-damage-chat.hbs';
     const templateData = {
-      incapacited,
-      initialAmount,
-      amount,
-      barriers,
-      armor: bodyArmor,
+      name: this.name,
+      initialAmount, amount,
+      incapacited: newVal <= 0,
+      armors,
       data: attackData,
       config: T2K4E,
     };

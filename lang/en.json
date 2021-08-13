@@ -371,10 +371,17 @@
         "AmmoSpent": "Ammo Spent",
         "NoItemNotif": "The item does not exist anymore.",
         "NoReliabilityNotif": "The current reliability value of this item does not allow to use it."
+      },
+      "Damage": {
+        "DamagedArmor": "Damaged",
+        "DamageDealt": "<b>{name}</b> is dealt <b>{amount}</b> damage.",
+        "NoDamageDealt": "No damage was dealt to <b>{name}</b>."
       }
     },
     "Combat": {
       "Attack": "{weapon} — Attack",
+      "Barrier": "Barrier",
+      "BodyArmor": "Body Armor",
       "NoQuantityLeft": "No unit left for weapon {weapon}.",
       "NoAmmoLeft": "No ammo left in the magazine of the weapon {weapon}.",
       "NoMag": "Please insert a magazine for the weapon {weapon}."

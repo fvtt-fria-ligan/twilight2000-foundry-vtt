@@ -1,0 +1,25 @@
+<div class="t2k4e chat-card damage character">
+  <div class="card-content">
+    {{#if (gt amount 0)}}
+    <p>{{{localize "T2K4E.Chat.Damage.DamageDealt" name=name amount=amount}}}</p>
+    {{else}}
+    <p>{{{localize "T2K4E.Chat.Damage.NoDamageDealt" name=name}}}</p>
+    {{/if}}
+    {{#if armors.length}}
+    <hr/>
+    <p><small>
+      The attack had an initial amount of <b>{{initialAmount}}</b> damage, with an armor modifier of {{#if (gte @root.data.armorModifier 0)}}+{{/if}}{{@root.data.armorModifier}}.
+      {{#each armors}}
+      <br/>
+      <span><strong>{{label}}:</strong></span>&nbsp;
+      {{#if damage}}
+      <span>deflected {{damage}} damage</span>
+      {{else}}
+      <span><i>–</i></span>
+      {{/if}}
+      {{#if damaged}}<span>&nbsp;—&nbsp;<b>{{localize "T2K4E.Chat.Damage.DamagedArmor"}}</b></span>{{/if}}
+      {{/each}}
+    </small></p>
+    {{/if}}
+  </div>
+</div>
