@@ -197,4 +197,54 @@ export default class T2KDialog extends Dialog {
       actor: form.actor.value,
     };
   }
+
+  /* -------------------------------------------- */
+  /*  Damage Choice Dialog                        */
+  /* -------------------------------------------- */
+
+  /**
+   * Renders a dialog for choosing a quantity of damage.
+   * @param {object} damageData
+   * @param {object} options
+   * @returns {Promise}
+   * @static
+   * @async
+   */
+  static async chooseDamage(damageData, options) {
+    const template = 'systems/t2k4e/templates/dialog/damage-choice-dialog.hbs';
+    const content = await renderTemplate(template, {
+      data: damageData,
+      config: CONFIG.T2K4E,
+    });
+
+    return new Promise(resolve => {
+      // Sets the data of the dialog.
+      const data = {
+        title: game.i18n.localize('T2K4E.Dialog.Damage.ChooseDamage'),
+        content,
+        buttons: {
+          ok: {
+            label: game.i18n.localize('T2K4E.Dialog.Actions.Ok'),
+            callback: html => resolve(T2KDialog._processDamageChoice(html[0].querySelector('form'))),
+          },
+          cancel: {
+            label: game.i18n.localize('T2K4E.Dialog.Actions.Cancel'),
+            callback: () => resolve({ cancelled: true }),
+          },
+        },
+        default: 'ok',
+        close: () => resolve({ cancelled: true }),
+      };
+      // Renders the dialog.
+      new this(data, options).render(true);
+    });
+  }
+
+  static _processDamageChoice(form) {
+    return {
+      damage: parseInt(form.damage.value) || 0,
+      hitCount: parseInt(form.hits?.value) || 0,
+      barrier: parseInt(form.barrier?.value) || 0,
+    };
+  }
 }
