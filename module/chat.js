@@ -121,8 +121,6 @@ async function _applyDamage(messageElem) {
   // Gets the selected tokens.
   const defenders = canvas.tokens.controlled;
   for (const defender of defenders) {
-    // TODO clean log
-    console.warn('Defender:', defender, 'Attack data:', attackData);
     const s = roll.baseSuccessQty;
     let damage = s > 0 ? attackData.damage + 1 * (s - 1) : 0;
     const isGM = game.user.isGM;
