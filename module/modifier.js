@@ -94,7 +94,7 @@ export default class Modifier {
    */
   get signedValue() {
     if (this.value !== 0 && !this.value) return null;
-    return ((this.value >= 0 ? '+' : '') + this.value).replace('-', '−');
+    return (this.value >= 0 ? '+' : '−') + Math.abs(this.value);
   }
 
   /**
