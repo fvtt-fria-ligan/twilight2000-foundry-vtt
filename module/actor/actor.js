@@ -485,6 +485,7 @@ export default class ActorT2K extends Actor {
         this.applyDamageToCharacter(amount, attackData, sendMessage);
         break;
       case 'vehicle':
+        ui.notifications.warn('Automatic Apply Damage to Vehicles is not yet implemented.');
         break;
     }
   }
@@ -555,12 +556,13 @@ export default class ActorT2K extends Actor {
       initialAmount, amount,
       incapacited: newVal <= 0,
       armors,
+      signedArmorModifier: (attackData.armorModifier >= 0 ? '+' : '−') + Math.abs(attackData.armorModifier),
       data: attackData,
       config: T2K4E,
     };
     const chatData = {
       user: game.user.id,
-      speaker: ChatMessage.getSpeaker({ actor: this }),
+      speaker: ChatMessage.getSpeaker({ token: this.token }),
       content: await renderTemplate(template, templateData),
       sound: CONFIG.sounds.notification,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,

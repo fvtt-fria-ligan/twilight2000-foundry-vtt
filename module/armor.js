@@ -7,6 +7,7 @@ export default class Armor {
     this.value = rating;
     this.name = name ?? 'Armor';
     this.modifier = modifier;
+    this.penetrated = false;
     this.damage = 0;
   }
 
@@ -15,7 +16,7 @@ export default class Armor {
   /* ------------------------------------------- */
 
   get label() {
-    return `${this.name} (${this.value}/${this.rating})`;
+    return `${this.name} [${this.rating}]`;
   }
 
   get level() {
@@ -47,10 +48,13 @@ export default class Armor {
     const initialAmount = amount;
     if (modifier) this.modify(modifier);
     if (!this.isPenetratedByDamage(baseDamage)) amount = 0;
-    else amount -= this.level;
-    if (amount > 0) await this.ablation();
+    else amount = Math.max(0, amount - this.level);
     this.damage += initialAmount - amount;
-    this.modifier = this._modifier;
+    if (amount > 0) {
+      this.penetrated = true;
+      await this.ablation();
+    }
+    this.modify(this._modifier);
     return amount;
   }
 

@@ -373,9 +373,14 @@
         "NoReliabilityNotif": "The current reliability value of this item does not allow to use it."
       },
       "Damage": {
+        "Incapacited": "INCAPACITED",
         "DamagedArmor": "Damaged",
         "DamageDealt": "<b>{name}</b> is dealt <b>{amount}</b> damage.",
-        "NoDamageDealt": "No damage was dealt to <b>{name}</b>."
+        "NoDamageDealt": "No damage was dealt to <b>{name}</b>.",
+        "InitialAmount": "The attack had an initial amount of <b>{damage}</b> damage, with an armor modifier of {mod}.",
+        "DeflectedDamage": "deflected {damage} damage",
+        "DeflectedAllDamage": "deflected all damage",
+        "NoEffect": "no effect"
       }
     },
     "Combat": {
