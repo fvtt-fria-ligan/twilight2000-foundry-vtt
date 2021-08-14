@@ -2,10 +2,12 @@
   "env": {
     "es2020": true,
     "browser": true,
-    "jquery": true
+    "jquery": true,
+    "node": true
   },
   "extends": [
     "eslint:recommended",
+    "jquery",
     // https://github.com/typhonjs-fvtt/eslint-config-foundry.js
     "@typhonjs-fvtt/eslint-config-foundry.js"
     // "@typhonjs-fvtt/eslint-config-foundry.js/diff-0.7.9-0.8.0"
