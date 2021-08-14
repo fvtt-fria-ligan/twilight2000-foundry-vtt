@@ -117,17 +117,18 @@ export class T2KRoller {
     }
 
     // 6 — Adds actor/token/item IDs.
-    // This is not natively supported by the YZUR library,
-    // but it works because roll.data is conserved by YZUR.
+    // These are added to `roll.options` which is conserved.
     if (actor) {
-      roll.data.actorId = actor.id;
+      roll.options.actorId = actor.id;
       const token = actor.token;
       if (token) {
-        roll.data.tokenId = `${token.parent.id}.${token.id}`;
+        roll.options.sceneId = token.parent.id;
+        roll.options.tokenId = token.id;
+        roll.options.tokenKey = `${token.parent.id}.${token.id}`;
       }
     }
     if (item) {
-      roll.data.itemId = item.id;
+      roll.options.itemId = item.id;
     }
 
     // 7 — Evaluates the roll.
@@ -212,10 +213,10 @@ export async function rollPush(roll, { message } = {}) {
   const flags = message.getFlag('t2k4e', 'data') ?? {};
   const oldAmmoSpent = flags.ammoSpent || 0;
   let newAmmoSpent = -Math.max(1, roll.ammoSpent);
-  const actorId = roll.data.actorId;
-  const tokenKey = roll.data.tokenId;
+  const actorId = roll.options.actorId;
+  const tokenKey = roll.options.tokenKey;
   const actor = getRollingActor({ actorId, tokenKey });
-  const itemId = roll.data.itemId;
+  const itemId = roll.options.itemId;
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
   const ammoId = flags.ammo ?? (item ? item.data.data.mag?.target : '');
   const ammo = actor ? actor.items.get(ammoId) : game.items.get(ammoId);

@@ -100,10 +100,10 @@ async function _applyDamage(messageElem) {
   const roll = message.roll;
 
   // Gets the weapon.
-  const actorId = roll.data.actorId;
-  const tokenKey = roll.data.tokenId;
+  const actorId = roll.options.actorId;
+  const tokenKey = roll.options.tokenKey;
   const actor = getRollingActor({ actorId, tokenKey });
-  const itemId = roll.data.itemId;
+  const itemId = roll.options.itemId;
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
 
   // Prepares the attack's data.
