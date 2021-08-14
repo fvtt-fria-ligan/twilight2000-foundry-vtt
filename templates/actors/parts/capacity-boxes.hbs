@@ -2,10 +2,10 @@
 {{#times max}}
   {{#if (gte ../value @index)}}
   {{!-- Full square --}}
-  <i class="fas fa-square"></i>
+  {{{@root.config.Icons.boxes.full}}}
   {{else}}
   {{!-- Empty square --}}
-  <i class="far fa-square"></i>
+  {{{@root.config.Icons.boxes.empty}}}
   {{/if}}
 {{/times}}
 </a>

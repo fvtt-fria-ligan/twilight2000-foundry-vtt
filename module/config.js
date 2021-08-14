@@ -217,6 +217,10 @@ T2K4E.rollModes = {
 /* ------------------------------------------- */
 
 T2K4E.Icons = {
+  boxes: {
+    empty: '<i class="far fa-square"></i>',
+    full: '<i class="fas fa-square"></i>',
+  },
   buttons: {
     edit: '<i class="fas fa-edit"></i>',
     delete: '<i class="fas fa-trash"></i>',
