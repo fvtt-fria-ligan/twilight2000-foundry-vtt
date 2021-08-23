@@ -190,7 +190,14 @@ export default class ActorT2K extends Actor {
         if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
           const ammoId = i.data.data.mag.target;
           const ammo = this.items.get(ammoId);
-          if (ammo && ammo.type === 'ammunition') sum -= ammo.data.data.encumbrance;
+          if (ammo && ammo.type === 'ammunition') {
+            if (ammo.data.data.props.magazine) {
+              sum -= ammo.data.data.encumbrance;
+            }
+            else {
+              sum -= ammo.data.data.weight * i.data.data.mag.max;
+            }
+          }
         }
         return sum + i.data.data.encumbrance;
       }, 0)
@@ -210,7 +217,14 @@ export default class ActorT2K extends Actor {
         if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
           const ammoId = i.data.data.mag.target;
           const ammo = this.items.get(ammoId);
-          if (ammo) sum -= ammo.data.data.encumbrance;
+          if (ammo && ammo.type === 'ammunition') {
+            if (ammo.data.data.props.magazine) {
+              sum -= ammo.data.data.encumbrance;
+            }
+            else {
+              sum -= ammo.data.data.weight * i.data.data.mag.max;
+            }
+          }
         }
         return sum + i.data.data.encumbrance;
       }, 0)
