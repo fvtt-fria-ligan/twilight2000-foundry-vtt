@@ -290,7 +290,7 @@ export default class ItemT2K extends Item {
     }
 
     // Handles unit consumption.
-    if (isDisposable) {
+    if (track && isDisposable) {
       if (qty <= 0) {
         ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoQuantityLeft', { weapon: this.name }));
         return;
@@ -562,7 +562,7 @@ export default class ItemT2K extends Item {
     const askForOptions = event.shiftKey;
     switch (action) {
       case 'attack': await item.rollAttack({ askForOptions }); break;
-      // ! case 'reload': await item.rollReload({ askForOptions }); break;
+      // TODO case 'reload': await item.rollReload({ askForOptions }); break;
     }
 
     // Re-enables the button.

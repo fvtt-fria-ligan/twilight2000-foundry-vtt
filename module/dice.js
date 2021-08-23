@@ -241,13 +241,19 @@ export async function rollPush(roll, { message } = {}) {
 
   // Updates the ammunition.
   if (ammo) {
-    flagData.ammoSpent = oldAmmoSpent;
+    const track = (actor.type === 'character' && game.settings.get('t2k4e', 'trackPcAmmo'))
+      || (actor.type === 'npc' && game.settings.get('t2k4e', 'trackNpcAmmo'))
+      || (actor.type === 'vehicle' && game.settings.get('t2k4e', 'trackVehicleAmmo'));
 
-    if (oldAmmoSpent !== newAmmoSpent) {
-      newAmmoSpent = await ammo.updateAmmo(newAmmoSpent - oldAmmoSpent);
-      flagData.ammoSpent = oldAmmoSpent + newAmmoSpent;
+    if (track) {
+      flagData.ammoSpent = oldAmmoSpent;
+
+      if (oldAmmoSpent !== newAmmoSpent) {
+        newAmmoSpent = await ammo.updateAmmo(newAmmoSpent - oldAmmoSpent);
+        flagData.ammoSpent = oldAmmoSpent + newAmmoSpent;
+      }
+      flagData.ammo = ammo.id;
     }
-    flagData.ammo = ammo.id;
   }
 
   // Updates message's flags.
