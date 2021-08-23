@@ -7,7 +7,6 @@
   },
   "extends": [
     "eslint:recommended",
-    "jquery",
     // https://github.com/typhonjs-fvtt/eslint-config-foundry.js
     "@typhonjs-fvtt/eslint-config-foundry.js"
     // "@typhonjs-fvtt/eslint-config-foundry.js/diff-0.7.9-0.8.0"
