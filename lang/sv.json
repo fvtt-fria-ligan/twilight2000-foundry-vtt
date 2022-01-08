@@ -142,31 +142,31 @@
       "BiographyTab": "Biografi",
       "NoteTab": "Anteckningar",
       "Nationality": "Nationalitet",
-      "Branch": "Avdelning",
+      "Branch": "Bransch",
       "MilitaryRank": "Militär grad",
-      "HitCapacity": "Skadekapacitet",
-      "StressCapacity": "Stresskapacitet",
+      "HitCapacity": "Skada",
+      "StressCapacity": "Stress",
       "CapacityModifier": "Modifierare:",
       "Experience": "Erfarenhet",
-      "ExperienceCurrent": "Aktuell",
-      "ExperienceTotal": "Total",
+      "ExperienceCurrent": "Aktuell EP",
+      "ExperienceTotal": "Total EP",
       "Appearance": "Utseende",
       "MoralCode": "Personlig moral",
       "Buddy": "Kamrat",
       "BigDream": "Min stora dröm",
       "GroupMeeting": "Hur jag mötte gruppen:",
       "AttributesAndSkills": "Grundegenskaper & Färdigheter",
-      "Rating": "Gradering",
-      "BaseDie": "Grundtärning",
+      "Rating": "Värde",
+      "BaseDie": "Tärning",
       "Specialties": "Specialiteter",
       "AddSpecialty": "Lägg till en ny specialitet",
       "NoSpecialty": "Denna karaktär har ingen specialitet. Klicka på \"+\" för att lägga till en specialitet.",
       "Combat": "Strid",
       "Actions": "Handlingar",
-      "Current": "Nuvarande",
+      "Current": "Nu",
       "Max": "Max",
       "CuF": "Stridsvana",
-      "UnitMorale": "Gruppmoral",
+      "UnitMorale": "Stridsmoral",
       "NoArmor": "Den här karaktären har inget utrustat kropssskydd.",
       "Conditions": "Tillstånd",
       "CriticalInjuries":"Kritisk skada",
@@ -210,7 +210,7 @@
       "CombatTab": "Stridande",
       "CargoTab": "Last",
       "VehicleType": "Fordonstyp",
-      "Reliability": "Tillförlitlighet",
+      "Reliability": "Pålitlighet",
       "Movement": "Förflyttning",
       "CombatSpeed": "Stridshastighet",
       "TravelSpeed": "Reshastighet",
@@ -325,8 +325,8 @@
       "Ammo": "Ammunition",
       "AmmoType": "Ammunitionsidentifierare",
       "OverrideOption": "Åsidosätt vapnets funktioner",
-      "Reliability": "Tillf",
-      "RoF": "Eldh",
+      "Reliability": "Pål.",
+      "RoF": "Eldh.",
       "Damage": "Skada",
       "Crit": "Krit.",
       "Blast": "Radie",
@@ -397,7 +397,7 @@
       },
       "CuF": {
         "CoolnessUnderFire": "Stridsvana",
-        "UnitMorale": "Lägg till Gruppmoralen?"
+        "UnitMorale": "Lägg till Stridsmoralen?"
       },
       "Actor": {
         "ChooseActor": "Välj en aktör"
@@ -430,8 +430,8 @@
       "label": "Hur många sekunder skall verktygstipset dröja kvar innan de automatiskt stängs ned. Max är 15 minuter. Sätt detta värde till -1 för att aldrig stängas."
     },
     "defaultCharTokenSize": {
-      "name": "Standard tokenstorlek för SLP:er och rollpersoner",
-      "label": "Sett en standardstorlek [0.3, 2.0] för nyskapade SLP:er och rollpersonaktörer."
+      "name": "Standard prototypstorlek för SLP:er och rollpersoner",
+      "label": "Sett en standard prototypstorlek [0.3, 2.0] för nyskapade SLP:er och rollpersonaktörer."
     }
   },
   "YZUR": {
@@ -451,7 +451,7 @@
     "CHAT.ROLL.Suppression": "Nedhållande:",
     "CHAT.ROLL.AmmoSpent": "Spenderad ammunition:",
     "CHAT.ROLL.DamageOrStress": "Skada/Stress:",
-    "CHAT.ROLL.JamCount": "Tillförlitlighet:",
+    "CHAT.ROLL.JamCount": "Pålitlighet:",
     "CHAT.ROLL.Jammed": "VAPENSTOPP!!",
     "DIETYPES": {
       "D6TwilightDie": "Bas T6",
