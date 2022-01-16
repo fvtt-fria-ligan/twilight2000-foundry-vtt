@@ -73,7 +73,7 @@ export function getChatCardActor(card) {
  * Adds a context menu (right-clic) to Chat messages.
  * @param {Object} html DOM
  * @param {Object} options Options
- * @link https://www.youtube.com/watch?v=uBC5DSci0NI&list=PLFV9z59nkHDccUbRXVt623UdloPTclIrz&index=7
+ * @link https://www.youtube.com/watch?v=uBC5DSci0NI
  */
 export function addChatMessageContextOptions(html, options) {
   // TODO: See Part 6, 6:55
