@@ -189,7 +189,11 @@
           "value": 0,
           "max": 0
         },
-        "side": {
+        "left": {
+          "value": 0,
+          "max": 0
+        },
+        "right": {
           "value": 0,
           "max": 0
         },

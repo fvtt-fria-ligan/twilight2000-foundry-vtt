@@ -13,13 +13,29 @@
       </div>
       <progress class="armor-gauge" value="{{data.armor.front.value}}" max="{{data.armor.front.max}}"></progress>
       {{!-- Side --}}
-      <label class="armor-location">{{localize "T2K4E.VehicleSheet.SideArmor"}}</label>
+      {{!-- <label class="armor-location">{{localize "T2K4E.VehicleSheet.SideArmor"}}</label>
       <div class="armor-values flexrow">
         <input type="number" class="boxed-value" name="data.armor.side.value" value="{{data.armor.side.value}}" data-dtype="Number"/>
         <span class="sep">/</span>
         <input type="number" class="boxed-value" name="data.armor.side.max" value="{{data.armor.side.max}}" data-dtype="Number"/>
       </div>
-      <progress class="armor-gauge" value="{{data.armor.side.value}}" max="{{data.armor.side.max}}"></progress>
+      <progress class="armor-gauge" value="{{data.armor.side.value}}" max="{{data.armor.side.max}}"></progress> --}}
+      {{!-- Left --}}
+      <label class="armor-location">{{localize "T2K4E.VehicleSheet.SideLeftArmor"}}</label>
+      <div class="armor-values flexrow">
+        <input type="number" class="boxed-value" name="data.armor.left.value" value="{{data.armor.left.value}}" data-dtype="Number"/>
+        <span class="sep">/</span>
+        <input type="number" class="boxed-value" name="data.armor.left.max" value="{{data.armor.left.max}}" data-dtype="Number"/>
+      </div>
+      <progress class="armor-gauge" value="{{data.armor.left.value}}" max="{{data.armor.left.max}}"></progress>
+      {{!-- Right --}}
+      <label class="armor-location">{{localize "T2K4E.VehicleSheet.SideRightArmor"}}</label>
+      <div class="armor-values flexrow">
+        <input type="number" class="boxed-value" name="data.armor.right.value" value="{{data.armor.right.value}}" data-dtype="Number"/>
+        <span class="sep">/</span>
+        <input type="number" class="boxed-value" name="data.armor.right.max" value="{{data.armor.right.max}}" data-dtype="Number"/>
+      </div>
+      <progress class="armor-gauge" value="{{data.armor.right.value}}" max="{{data.armor.right.max}}"></progress>
       {{!-- Rear --}}
       <label class="armor-location">{{localize "T2K4E.VehicleSheet.RearArmor"}}</label>
       <div class="armor-values flexrow">

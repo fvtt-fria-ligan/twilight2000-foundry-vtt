@@ -1,4 +1,4 @@
-const NEEDS_MIGRATION_VERSION = '1.4.0';
+const NEEDS_MIGRATION_VERSION = '1.5.0';
 const COMPATIBLE_MIGRATION_VERSION = '0.7.3';
 
 /**
@@ -183,6 +183,7 @@ export function migrateActorData(actorData) {
       _migrateVehicleReliability(actorData, updateData);
       _migrateVehicleCrew(actorData, updateData);
       _migrateVehicleComponents(actorData, updateData);
+      _migrateVehicleArmor(actorData, updateData);
     }
   }
 
@@ -499,6 +500,29 @@ function _migrateVehicleComponents(actorData, updateData) {
     updateData['data.components.-=weapon'] = null;
     // Deletes old properties.
     updateData['data.-=tempComponents'] = null;
+  }
+  return updateData;
+}
+
+/**
+ * Migrates the Vehicle's armor data.
+ * @param {object} actorData
+ * @param {object} updateData
+ * @private
+ */
+function _migrateVehicleArmor(actorData, updateData) {
+  const armor = actorData.data.armor;
+  if (armor.side?.value != undefined) {
+    updateData['data.armor.left'] = {
+      value: armor.side.value,
+      max: armor.side.max,
+    };
+    updateData['data.armor.right'] = {
+      value: armor.side.value,
+      max: armor.side.max,
+    };
+    // Deletes old properties.
+    updateData['data.armor.-=side'] = null;
   }
   return updateData;
 }
