@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [Unreleased]
+
+### Added
+- Apply Damage: right-clic menu on attack roll message shows menu option of *"Apply Damage"* for selected or targeted characters. Does not work for Vehicles, yet.
+- 3 new vehicle movement types: hovercraft, flying and naval.
+- 1 new vehicle fuel type: nuclear.
+
+### Changed
+- Vehicle side armor has been splitted into left & right armor.
+- (For translators only) The language JSON file has been flattened for easier readability.
+
+### Fixed
+- #39 - a minor bug where ammo was still consumed for NPCs although the option was unchecked.
+- #40 - a major bug blocking attacks with grenades that has no damage (e.g. Smoke grenades).
+- #41 - a minor bug where encumbrance calculation with weapon settings was wrong.
+
 ## [1.5.0] - 2021-08-12
 > The game system is now **officially** released.
 
