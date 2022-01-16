@@ -286,11 +286,12 @@ export function getDieSize(score) {
  * Gets the Attribute and Skill values (+ the skill's name).
  * @param {string} skillName The code of the skill
  * @param {Object} data Actor's data data
+ * @param {string} [attributeName] The code of the attribute if different from the linked skill
  * @returns {{ title: string, attribute: number, skill: number }}
  */
-export function getAttributeAndSkill(skillName, data) {
+export function getAttributeAndSkill(skillName, data, attributeName = null) {
   const skill = data.skills[skillName].value;
-  const attributeName = T2K4E.skillsMap[skillName];
+  attributeName = attributeName ?? T2K4E.skillsMap[skillName];
   const attribute = data.attributes[attributeName].value;
   const title = game.i18n.localize(T2K4E.skills[skillName]);
   return { title, attribute, skill, attributeName, skillName };

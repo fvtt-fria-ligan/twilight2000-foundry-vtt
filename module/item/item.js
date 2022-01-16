@@ -243,7 +243,27 @@ export default class ItemT2K extends Item {
    * @async
    */
   async rollAttack(options = {}, actor = null) {
-    if (!this.hasAttack) throw new Error('You may not place an Attack Roll with this Item.');
+    if (!this.hasAttack && !this.actor) {
+      throw new Error('You may not place an Attack Roll with this Item.');
+    }
+    // if (!this.hasAttack) {
+    //   // If no attack, instead perform a skill roll.
+    //   if (this.actor) {
+    //     const statData = getAttributeAndSkill(
+    //       this.data.data.skill,
+    //       this.actor.data.data,
+    //       this.data.data.attribute,
+    //     );
+    //     return T2KRoller.taskCheck({
+    //       ...statData,
+    //       ...options,
+    //       actor: this.actor,
+    //     });
+    //   }
+    //   else {
+    //     throw new Error('You may not place an Attack Roll with this Item.');
+    //   }
+    // }
     if (!this.actor) throw new Error('This weapon has no bearer.');
     if (this.hasReliability && this.data.data.reliability.value <= 0) {
       return ui.notifications.warn(
@@ -289,17 +309,10 @@ export default class ItemT2K extends Item {
       }
     }
 
-    // Handles unit consumption.
-    if (track && isDisposable) {
-      if (qty <= 0) {
-        ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoQuantityLeft', { weapon: this.name }));
-        return;
-      }
-      else {
-        qty--;
-        // No need to await for this update.
-        this.update({ 'data.qty': qty });
-      }
+    // Checks unit quantity.
+    if (track && isDisposable && qty <= 0) {
+      ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoQuantityLeft', { weapon: this.name }));
+      return;
     }
 
     // Composes the options for the task check.
@@ -320,6 +333,12 @@ export default class ItemT2K extends Item {
     const roll = message.roll;
 
     const flagData = {};
+
+    // Consumes unit(s).
+    if (track && isDisposable && qty > 0) {
+      qty--;
+      await this.update({ 'data.qty': qty });
+    }
 
     // Consumes ammo.
     if (ammo) {
