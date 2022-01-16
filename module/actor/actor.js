@@ -183,11 +183,17 @@ export default class ActorT2K extends Actor {
    * @private
    */
   _prepareEncumbrance(data, items) {
+    // Computes encumbrance modifiers from specialties.
+    let mod = 0;
+
     // Computes the Encumbrance.
     const val1 = (items
-      .filter(i => !i.data.data.backpack && i.type !== 'specialty')
+      .filter(i => !i.data.data.backpack)
       .reduce((sum, i) => {
-        if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
+        if (i.type === 'specialty') {
+          mod += i.encumbranceModifiers;
+        }
+        else if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
           const ammoId = i.data.data.mag.target;
           const ammo = this.items.get(ammoId);
           if (ammo && ammo.type === 'ammunition') {
@@ -203,11 +209,13 @@ export default class ActorT2K extends Actor {
       }, 0)
     ) ?? 0;
 
+    const max = data.attributes.str.value + mod;
+
     data.encumbrance = {
       value: val1,
-      max: data.attributes.str.value,
-      pct: Math.clamped((val1 / data.attributes.str.value) * 100, 0, 100),
-      encumbered: val1 > data.attributes.str.value,
+      max,
+      pct: Math.clamped((val1 / max) * 100, 0, 100),
+      encumbered: val1 > max,
     };
 
     // Computes the Backpack.
@@ -232,9 +240,9 @@ export default class ActorT2K extends Actor {
 
     data.encumbrance.backpack = {
       value: val2,
-      max: data.attributes.str.value,
-      pct: Math.clamped((val2 / data.attributes.str.value) * 100, 0, 100),
-      encumbered: val2 > data.attributes.str.value,
+      max,
+      pct: Math.clamped((val2 / max) * 100, 0, 100),
+      encumbered: val2 > max,
     };
     return data;
   }

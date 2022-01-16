@@ -54,7 +54,6 @@ export default class ItemT2K extends Item {
   get hasModifier() {
     if (!this.data.data.rollModifiers) return false;
     return !foundry.utils.isObjectEmpty(this.data.data.rollModifiers);
-    // return Object.keys(this.data.data.rollModifiers).length > 0;
   }
 
   // get inVehicle() {
@@ -88,6 +87,11 @@ export default class ItemT2K extends Item {
   get modifiersDescription() {
     if (!this.hasModifier) return undefined;
     return this._getModifiersDescription(this.data.data.rollModifiers);
+  }
+
+  get encumbranceModifiers() {
+    if (!this.hasModifier) return 0;
+    return this._getModifiersEncumbrance(this.data.data.rollModifiers);
   }
 
   /* ------------------------------------------- */
@@ -155,8 +159,26 @@ export default class ItemT2K extends Item {
   /* ------------------------------------------- */
 
   /**
+   * Returns a number summing all encumbrance modifiers from specialties.
+   * @param {Object} modifiersData item.data.data.rollModifiers
+   * @returns {number}
+   */
+  _getModifiersEncumbrance(modifiersData) {
+    let out = 0;
+
+    for (const m of Object.values(modifiersData)) {
+      if (m && m.name === 'constant.encumbrance') {
+        out += +m.value;
+      }
+    }
+    return out;
+  }
+
+  /* ------------------------------------------- */
+
+  /**
    * Returns a string resuming the modifiers.
-   * @param {Object} modifiersData Item's data
+   * @param {Object} modifiersData item.data.data.rollModifiers
    * @returns {string}
    * @private
    */
