@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - #39 - a minor bug where ammo was still consumed for NPCs although the option was unchecked.
 - #40 - a major bug blocking attacks with grenades that has no damage (e.g. Smoke grenades).
 - #41 - a minor bug where encumbrance calculation with weapon settings was wrong.
+- #45 - a major bug with wrong modifiers rules for stepping dice up and down.
 - #46 - a bug introduced with the previous update that stopped the *Year Zero Actions* module to function.
 - #54 - a minor bug preventing from rolling skills in a certain situation.
 - #66 - a major bug preventing an easy update to Foundry V9.
