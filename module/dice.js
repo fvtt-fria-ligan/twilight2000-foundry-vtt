@@ -1,5 +1,6 @@
 import T2KDialog from './dialog.js';
-import { YearZeroRoll } from '../lib/yzur.js';
+import YZUR from '../lib/yzur.js';
+const YearZeroRoll = YZUR.YearZeroRoll;
 import { T2K4E } from './config.js';
 
 /* -------------------------------------------- */
@@ -113,7 +114,7 @@ export class T2KRoller {
 
     // 5 — Modifies the roll.
     if (modifier) {
-      roll = roll.modify(modifier);
+      roll = await roll.modify(modifier);
     }
 
     // 6 — Adds actor/token/item IDs.
