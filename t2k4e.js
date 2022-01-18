@@ -37,7 +37,7 @@ import ItemSheetT2K from './module/item/itemSheet.js';
 
 // Imports Helpers.
 import { checkMigration } from './module/migration.js';
-import YZUR from './lib/yzur.js';
+import * as YZUR from './lib/yzur.js';
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */

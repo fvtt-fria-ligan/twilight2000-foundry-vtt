@@ -1,6 +1,5 @@
 import T2KDialog from './dialog.js';
-import YZUR from '../lib/yzur.js';
-const YearZeroRoll = YZUR.YearZeroRoll;
+import { YearZeroRoll } from '../lib/yzur.js';
 import { T2K4E } from './config.js';
 
 /* -------------------------------------------- */
