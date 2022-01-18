@@ -39,7 +39,7 @@ export default class Modifier {
 
     const keys = key.split('.');
     if (keys.length !== 2) {
-      throw new SyntaxError(`Modifier | key#length not equal to 2 - "${key}"`);
+      throw new SyntaxError(`Modifier "${this.name}" | key#length not equal to 2: "${key}" | You must choose a name.`);
     }
 
     /**
@@ -48,7 +48,7 @@ export default class Modifier {
      */
     this.category = keys[0];
     if (!this.constructor.ALLOWED_CATEGORIES.includes(this.category)) {
-      throw new TypeError(`Modifier | Illegal target category - "${this.category}"`);
+      throw new TypeError(`Modifier "${this.name}" | Illegal target category: "${this.category}"`);
     }
 
     /**
@@ -103,16 +103,6 @@ export default class Modifier {
    * @readonly
    */
   get label() {
-    // let lcl = 'T2K4E.';
-    // switch(this.category) {
-    //   case 'attribute': lcl += 'AttributeNames.'; break;
-    //   case 'skill': lcl += 'SkillNames.'; break;
-    //   case 'action': lcl += 'ActionNames.'; break;
-    //   case 'constant': lcl += 'ConstantNames.'; break;
-    //   case 'travel': lcl += 'TravelTaskNames.'; break;
-    // }
-    // lcl += this.target;
-    // return game.i18n.localize(lcl) + (this.val ? ` ${this.val}` : '');
     return this.name + (this.value ? ` ${this.signedValue}` : '');
   }
 

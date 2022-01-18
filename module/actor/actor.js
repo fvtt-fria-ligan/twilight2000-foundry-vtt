@@ -340,7 +340,14 @@ export default class ActorT2K extends Actor {
         if (i.isPhysical && !i.isEquipped) continue;
         // Iterates over each roll modifier.
         for (const m of Object.values(i.data.data.rollModifiers)) {
-          const mod = new Modifier(m.name, m.value, i);
+          let mod = {};
+          try {
+            mod = new Modifier(m.name, m.value, i);
+          }
+          catch (error) {
+            ui.notifications.error(error.message, { permanent: true });
+            console.error(error);
+          }
           modifiers.push(mod);
         }
       }
