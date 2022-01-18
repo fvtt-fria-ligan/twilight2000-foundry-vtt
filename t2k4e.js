@@ -112,6 +112,9 @@ Hooks.once('init', function() {
   registerSystemSettings();
   registerHandlebars();
   preloadHandlebarsTemplates();
+
+  // Defines custom T2K status effects.
+  registerStatusEffects();
 });
 
 Hooks.once('ready', function() {
@@ -120,9 +123,6 @@ Hooks.once('ready', function() {
 
   // Determines whether a system migration is required and feasible.
   checkMigration();
-
-  // Defines status effects.
-  registerStatusEffects();
 
   // Debugging
   if (game.userId === 'OPqJPiI75DlhwfVv') {
