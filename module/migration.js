@@ -326,6 +326,9 @@ function _migrateWeaponProps(itemData, updateData) {
       updateData[`data.props.${np}`] = false;
     }
   }
+  // Remove old properties
+  updateData['data.props.-=sight'] = null;
+
   // New FEATURES for vehicle
   if (itemData.data.featuresForVehicle == undefined) {
     // Creates a new default structure for vehicle features.
@@ -452,7 +455,7 @@ function _migrateVehicleCrew(actorData, updateData) {
  * @private
  */
 function _migrateVehicleComponents(actorData, updateData) {
-  if (actorData.data.components.fuel?.value !== undefined) {
+  if (actorData.data.components?.fuel?.value !== undefined) {
     // Creates a new default components structure.
     const newComp = {
       'fuel': {
@@ -511,7 +514,7 @@ function _migrateVehicleComponents(actorData, updateData) {
  * @private
  */
 function _migrateVehicleArmor(actorData, updateData) {
-  const armor = actorData.data.armor;
+  const armor = actorData.data.armor || {};
   if (armor.side?.value != undefined) {
     updateData['data.armor.left'] = {
       value: armor.side.value,
