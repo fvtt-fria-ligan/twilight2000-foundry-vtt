@@ -72,11 +72,15 @@ T2K4E.vehicle = {
   movementTypes: {
     'W': 'T2K4E.VehicleSheet.Wheels',
     'T': 'T2K4E.VehicleSheet.Tracks',
+    'H': 'T2K4E.VehicleSheet.Hovercraft',
+    'A': 'T2K4E.VehicleSheet.Flying',
+    'N': 'T2K4E.VehicleSheet.Naval',
   },
   fuelTypes: {
     'G': 'T2K4E.VehicleSheet.Gasoline',
     'D': 'T2K4E.VehicleSheet.Diesel',
     'A': 'T2K4E.VehicleSheet.Alcohol',
+    'N': 'T2K4E.VehicleSheet.Nuclear',
   },
   components: [
     'FUEL',
@@ -158,6 +162,13 @@ T2K4E.unit = {
   },
 };
 
+T2K4E.hitLocs = [
+  'legs',
+  'torso', 'torso', 'torso',
+  'arms',
+  'head',
+];
+
 T2K4E.hitLocations = {
   none: '',
   head: 'T2K4E.ArmorLocationNames.head',
@@ -189,27 +200,31 @@ T2K4E.rollModes = {
   selfroll: 'CHAT.RollSelf',
 };
 
-T2K4E.unarmedData = {
-  attribute: 'str',
-  skill: 'closeCombat',
-  damage: 1,
-  crit: 4,
-  blast: '–',
-  armorModifier: 3,
-  range: 0,
-  weight: 0,
-  price: 0,
-  modifiers: { attributes: {}, skills: {} },
-  rof: 0,
-  mag: {},
-  props: {},
-};
+// T2K4E.unarmedData = {
+//   attribute: 'str',
+//   skill: 'closeCombat',
+//   damage: 1,
+//   crit: 4,
+//   blast: '–',
+//   armorModifier: 3,
+//   range: 0,
+//   weight: 0,
+//   price: 0,
+//   modifiers: { attributes: {}, skills: {} },
+//   rof: 0,
+//   mag: {},
+//   props: {},
+// };
 
 /* ------------------------------------------- */
 /*  Icons                                      */
 /* ------------------------------------------- */
 
 T2K4E.Icons = {
+  boxes: {
+    empty: '<i class="far fa-square"></i>',
+    full: '<i class="fas fa-square"></i>',
+  },
   buttons: {
     edit: '<i class="fas fa-edit"></i>',
     delete: '<i class="fas fa-trash"></i>',
@@ -234,67 +249,4 @@ T2K4E.Icons = {
     torso: '<i class="fas fa-tshirt"></i>',
     legs: '<i class="fas fa-socks"></i>',
   },
-  // diceIcons: {
-  //   base: {
-  //     d12: [
-  //       null,
-  //       't2k-a1.png',
-  //       't2k-a0.png',
-  //       't2k-a0.png',
-  //       't2k-a0.png',
-  //       't2k-a0.png',
-  //       't2k-a6.png',
-  //       't2k-a6.png',
-  //       't2k-a6.png',
-  //       't2k-a6.png',
-  //       't2k-a10.png',
-  //       't2k-a10.png',
-  //       't2k-a10.png',
-  //     ],
-  //     d10: [
-  //       null,
-  //       't2k-b1.png',
-  //       't2k-b0.png',
-  //       't2k-b0.png',
-  //       't2k-b0.png',
-  //       't2k-b0.png',
-  //       't2k-b6.png',
-  //       't2k-b6.png',
-  //       't2k-b6.png',
-  //       't2k-b6.png',
-  //       't2k-b10.png',
-  //     ],
-  //     d8: [
-  //       null,
-  //       't2k-c1.png',
-  //       't2k-c0.png',
-  //       't2k-c0.png',
-  //       't2k-c0.png',
-  //       't2k-c0.png',
-  //       't2k-c6.png',
-  //       't2k-c6.png',
-  //       't2k-c6.png',
-  //     ],
-  //     d6: [
-  //       null,
-  //       't2k-d1.png',
-  //       't2k-d0.png',
-  //       't2k-d0.png',
-  //       't2k-d0.png',
-  //       't2k-d0.png',
-  //       't2k-d6.png',
-  //     ],
-  //   },
-  //   ammo: {
-  //     d6: [
-  //       null,
-  //       't2k-g1.png',
-  //       't2k-g0.png',
-  //       't2k-g0.png',
-  //       't2k-g0.png',
-  //       't2k-g0.png',
-  //       't2k-g6.png',
-  //     ],
-  //   },
-  // },
 };

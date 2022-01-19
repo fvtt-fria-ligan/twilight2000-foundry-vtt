@@ -1,6 +1,8 @@
 import { getDieSize, T2KRoller } from '../dice.js';
 import { T2K4E } from '../config.js';
 import Modifier from '../modifier.js';
+import { YearZeroRoll } from '../../lib/yzur.js';
+import Armor from '../armor.js';
 
 /**
  * Twilight 2000 Actor.
@@ -18,6 +20,12 @@ export default class ActorT2K extends Actor {
 
   get hasReliability() {
     return !!this.data.data.reliability?.max;
+  }
+
+  get cover() {
+    if (this.effects.some(e => e.getFlag('core', 'statusId') === 'fullCover')) return 'fullCover';
+    if (this.effects.some(e => e.getFlag('core', 'statusId') === 'partialCover')) return 'partialCover';
+    return null;
   }
 
   /* ------------------------------------------- */
@@ -48,7 +56,7 @@ export default class ActorT2K extends Actor {
   /** @override */
   get itemTypes() {
     if (this.type === 'vehicle') {
-      const types = Object.fromEntries(game.system.entityTypes.Item.map(t => [t, []]));
+      const types = Object.fromEntries(game.system.documentTypes.Item.map(t => [t, []]));
       for (const i of this.items.values()) {
         // Excludes mounted weapons from the vehicle's cargo.
         if (i.data.data.isMounted) continue;
@@ -175,24 +183,39 @@ export default class ActorT2K extends Actor {
    * @private
    */
   _prepareEncumbrance(data, items) {
+    // Computes encumbrance modifiers from specialties.
+    let mod = 0;
+
     // Computes the Encumbrance.
     const val1 = (items
-      .filter(i => !i.data.data.backpack && i.type !== 'specialty')
+      .filter(i => !i.data.data.backpack)
       .reduce((sum, i) => {
-        if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
+        if (i.type === 'specialty') {
+          mod += i.encumbranceModifiers;
+        }
+        else if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
           const ammoId = i.data.data.mag.target;
           const ammo = this.items.get(ammoId);
-          if (ammo && ammo.type === 'ammunition') sum -= ammo.data.data.encumbrance;
+          if (ammo && ammo.type === 'ammunition') {
+            if (ammo.data.data.props.magazine) {
+              sum -= ammo.data.data.encumbrance;
+            }
+            else {
+              sum -= ammo.data.data.weight * i.data.data.mag.max;
+            }
+          }
         }
         return sum + i.data.data.encumbrance;
       }, 0)
     ) ?? 0;
 
+    const max = data.attributes.str.value + mod;
+
     data.encumbrance = {
       value: val1,
-      max: data.attributes.str.value,
-      pct: Math.clamped((val1 / data.attributes.str.value) * 100, 0, 100),
-      encumbered: val1 > data.attributes.str.value,
+      max,
+      pct: Math.clamped((val1 / max) * 100, 0, 100),
+      encumbered: val1 > max,
     };
 
     // Computes the Backpack.
@@ -202,7 +225,14 @@ export default class ActorT2K extends Actor {
         if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
           const ammoId = i.data.data.mag.target;
           const ammo = this.items.get(ammoId);
-          if (ammo) sum -= ammo.data.data.encumbrance;
+          if (ammo && ammo.type === 'ammunition') {
+            if (ammo.data.data.props.magazine) {
+              sum -= ammo.data.data.encumbrance;
+            }
+            else {
+              sum -= ammo.data.data.weight * i.data.data.mag.max;
+            }
+          }
         }
         return sum + i.data.data.encumbrance;
       }, 0)
@@ -210,9 +240,9 @@ export default class ActorT2K extends Actor {
 
     data.encumbrance.backpack = {
       value: val2,
-      max: data.attributes.str.value,
-      pct: Math.clamped((val2 / data.attributes.str.value) * 100, 0, 100),
-      encumbered: val2 > data.attributes.str.value,
+      max,
+      pct: Math.clamped((val2 / max) * 100, 0, 100),
+      encumbered: val2 > max,
     };
     return data;
   }
@@ -310,44 +340,20 @@ export default class ActorT2K extends Actor {
         if (i.isPhysical && !i.isEquipped) continue;
         // Iterates over each roll modifier.
         for (const m of Object.values(i.data.data.rollModifiers)) {
-          const mod = new Modifier(m.name, m.value, i);
+          let mod = {};
+          try {
+            mod = new Modifier(m.name, m.value, i);
+          }
+          catch (error) {
+            ui.notifications.error(error.message, { permanent: true });
+            console.error(error);
+          }
           modifiers.push(mod);
         }
       }
     }
     return modifiers;
   }
-
-  // /**
-  //  * Gets an object containing all the roll modifiers summed together.
-  //  * Form: { string: number }
-  //  * @returns {object}
-  //  */
-  // getRollModifiers() {
-  //   const rollModifiers = {};
-  //   // Iterates over each item owned by the actor.
-  //   for (const i of this.items.contents) {
-  //     // If there are modifiers...
-  //     if (i.hasModifier) {
-  //       // Iterates over each roll modifier.
-  //       for (const m of Object.values(i.data.data.rollModifiers)) {
-  //         if (m && m.name) {
-  //           const v = parseInt(m.value);
-  //           // If there is a value, adds the modifier.
-  //           if (v) {
-  //             if (!rollModifiers[m.name]) {
-  //               rollModifiers[m.name] = v;
-  //             }
-  //             else {
-  //               rollModifiers[m.name] += v;
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   return rollModifiers;
-  // }
 
   /* ------------------------------------------- */
   /*  Event Handlers                             */
@@ -486,14 +492,117 @@ export default class ActorT2K extends Actor {
 
     const rollConfig = foundry.utils.mergeObject({
       title: game.i18n.localize('T2K4E.ActorSheet.RadiationRoll'),
-      actor: this,
       attribute: data.attributes.str.value,
       skill: data.skills.stamina.value,
       modifier: T2K4E.radiationVirulence - sievert,
     }, options);
+    rollConfig.actor = this;
 
     return T2KRoller.taskCheck(rollConfig);
   }
+
+  /* ------------------------------------------- */
+  /*  Combat & Damage                            */
+  /* ------------------------------------------- */
+
+  async applyDamage(amount = 0, attackData, sendMessage = true) {
+    amount = +amount ?? 0;
+
+    switch (this.type) {
+      case 'character':
+      case 'npc':
+        this.applyDamageToCharacter(amount, attackData, sendMessage);
+        break;
+      case 'vehicle':
+        ui.notifications.warn('Automatic Apply Damage to Vehicles is not yet implemented.');
+        break;
+    }
+  }
+
+  /* ------------------------------------------- */
+
+  async applyDamageToCharacter(amount, attackData, sendMessage = true) {
+    const initialAmount = amount;
+    const data = this.data.data;
+    const armorModifier = attackData.armorModifier || 0;
+    const baseDamage = attackData.damage;
+
+    // 1 — Location
+    if (!attackData.location) {
+      const locRoll = new YearZeroRoll('1dl');
+      await locRoll.roll({ async: true });
+      const loc = locRoll.bestHitLocation;
+      attackData.location = T2K4E.hitLocs[loc - 1];
+    }
+
+    // 2 — Barrier(s)
+    const armors = [];
+    for (let i = 0; i < attackData.barriers.length; i++) {
+      const barrierRating = +attackData.barriers[i];
+      if (!barrierRating) continue;
+      const barrierName = `${game.i18n.localize('T2K4E.Combat.Barrier')} #${i + 1}`;
+      const barrier = new Armor(barrierRating, barrierName);
+      amount = await barrier.penetration(amount, baseDamage, armorModifier);
+      // TODO barrier ablation
+      armors.push(barrier);
+    }
+
+    // 3 — Body Armor
+    const armorRating = this.data.data.armorRating[attackData.location] || 0;
+    const bodyArmor = new Armor(armorRating, game.i18n.localize('T2K4E.Combat.BodyArmor'));
+    amount = await bodyArmor.penetration(amount, baseDamage, armorModifier);
+
+    // 3.1 — Body Armor Ablation
+    if (bodyArmor.damaged) {
+      // 3.1.1 — Finds the affected armor.
+      const armorItems = this.items.filter(i => i.type === 'armor' && i.data.data.location[attackData.location]);
+
+      // 3.1.2 — Takes the best.
+      const armorItem = armorItems.sort((a, b) => b.data.data.rating.value - a.data.data.rating.value)[0];
+
+      // 3.1.3 — Decreases the armor rating.
+      if (armorItem) {
+        let rating = armorItem.data.data.rating.value;
+        rating = Math.max(0, rating - 1);
+        armorItem.update({ 'data.rating.value': rating });
+      }
+    }
+    armors.push(bodyArmor);
+
+    // 4 — Damage & Health Change
+    const oldVal = data.health.value;
+    const newVal = Math.max(0, oldVal - amount);
+    const diff = newVal - oldVal;
+
+    if (diff !== 0) await this.update({ 'data.health.value': newVal });
+
+    if (!sendMessage) return diff;
+
+    // Prepares the chat message.
+    const template = 'systems/t2k4e/templates/chat/character-damage-chat.hbs';
+    const templateData = {
+      name: this.name,
+      initialAmount, amount,
+      incapacited: newVal <= 0,
+      armors,
+      signedArmorModifier: (attackData.armorModifier >= 0 ? '+' : '−') + Math.abs(attackData.armorModifier),
+      data: attackData,
+      config: T2K4E,
+    };
+    const chatData = {
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ token: this.token }),
+      content: await renderTemplate(template, templateData),
+      sound: CONFIG.sounds.notification,
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+    };
+    ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+    await ChatMessage.create(chatData);
+
+    return diff;
+  }
+
+  /* ------------------------------------------- */
 
   /* ------------------------------------------- */
   /*  Chat Card Actions                          */

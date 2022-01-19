@@ -37,7 +37,7 @@ import ItemSheetT2K from './module/item/itemSheet.js';
 
 // Imports Helpers.
 import { checkMigration } from './module/migration.js';
-import { YearZeroRollManager } from './lib/yzur.js';
+import * as YZUR from './lib/yzur.js';
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -47,13 +47,14 @@ Hooks.once('init', function() {
   console.log(`t2k4e | Initializing the Twilight 2000 4E Game System\n${T2K4E.ASCII}`);
 
   // Registers dice.
-  YearZeroRollManager.register('t2k', {
+  YZUR.YearZeroRollManager.register('t2k', {
     'ROLL.chatTemplate': 'systems/t2k4e/templates/dice/roll.hbs',
     'ROLL.tooltipTemplate': 'systems/t2k4e/templates/dice/tooltip.hbs',
     'ROLL.infosTemplate': 'systems/t2k4e/templates/dice/infos.hbs',
     'CHAT.showInfos': true,
     'DICE.ICONS.t2k.ammo.6': '<img src="systems/t2k4e/assets/icons/bullet2.png"/>',
   });
+  game.yzur = YZUR;
 
   // Creates a namespace within the game global.
   // Places our classes in their own namespace for later reference.
@@ -111,6 +112,9 @@ Hooks.once('init', function() {
   registerSystemSettings();
   registerHandlebars();
   preloadHandlebarsTemplates();
+
+  // Defines custom T2K status effects.
+  registerStatusEffects();
 });
 
 Hooks.once('ready', function() {
@@ -119,9 +123,6 @@ Hooks.once('ready', function() {
 
   // Determines whether a system migration is required and feasible.
   checkMigration();
-
-  // Defines status effects.
-  registerStatusEffects();
 
   // Debugging
   if (game.userId === 'OPqJPiI75DlhwfVv') {

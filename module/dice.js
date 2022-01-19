@@ -113,21 +113,22 @@ export class T2KRoller {
 
     // 5 — Modifies the roll.
     if (modifier) {
-      roll = roll.modify(modifier);
+      roll = await roll.modify(modifier);
     }
 
     // 6 — Adds actor/token/item IDs.
-    // This is not natively supported by the YZUR library,
-    // but it works because roll.data is conserved by YZUR.
+    // These are added to `roll.options` which is conserved.
     if (actor) {
-      roll.data.actorId = actor.id;
+      roll.options.actorId = actor.id;
       const token = actor.token;
       if (token) {
-        roll.data.tokenId = `${token.parent.id}.${token.id}`;
+        roll.options.sceneId = token.parent.id;
+        roll.options.tokenId = token.id;
+        roll.options.tokenKey = `${token.parent.id}.${token.id}`;
       }
     }
     if (item) {
-      roll.data.itemId = item.id;
+      roll.options.itemId = item.id;
     }
 
     // 7 — Evaluates the roll.
@@ -212,10 +213,10 @@ export async function rollPush(roll, { message } = {}) {
   const flags = message.getFlag('t2k4e', 'data') ?? {};
   const oldAmmoSpent = flags.ammoSpent || 0;
   let newAmmoSpent = -Math.max(1, roll.ammoSpent);
-  const actorId = roll.data.actorId;
-  const tokenKey = roll.data.tokenId;
+  const actorId = roll.options.actorId;
+  const tokenKey = roll.options.tokenKey;
   const actor = getRollingActor({ actorId, tokenKey });
-  const itemId = roll.data.itemId;
+  const itemId = roll.options.itemId;
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
   const ammoId = flags.ammo ?? (item ? item.data.data.mag?.target : '');
   const ammo = actor ? actor.items.get(ammoId) : game.items.get(ammoId);
@@ -240,13 +241,19 @@ export async function rollPush(roll, { message } = {}) {
 
   // Updates the ammunition.
   if (ammo) {
-    flagData.ammoSpent = oldAmmoSpent;
+    const track = (actor.type === 'character' && game.settings.get('t2k4e', 'trackPcAmmo'))
+      || (actor.type === 'npc' && game.settings.get('t2k4e', 'trackNpcAmmo'))
+      || (actor.type === 'vehicle' && game.settings.get('t2k4e', 'trackVehicleAmmo'));
 
-    if (oldAmmoSpent !== newAmmoSpent) {
-      newAmmoSpent = await ammo.updateAmmo(newAmmoSpent - oldAmmoSpent);
-      flagData.ammoSpent = oldAmmoSpent + newAmmoSpent;
+    if (track) {
+      flagData.ammoSpent = oldAmmoSpent;
+
+      if (oldAmmoSpent !== newAmmoSpent) {
+        newAmmoSpent = await ammo.updateAmmo(newAmmoSpent - oldAmmoSpent);
+        flagData.ammoSpent = oldAmmoSpent + newAmmoSpent;
+      }
+      flagData.ammo = ammo.id;
     }
-    flagData.ammo = ammo.id;
   }
 
   // Updates message's flags.
@@ -279,11 +286,12 @@ export function getDieSize(score) {
  * Gets the Attribute and Skill values (+ the skill's name).
  * @param {string} skillName The code of the skill
  * @param {Object} data Actor's data data
+ * @param {string} [attributeName] The code of the attribute if different from the linked skill
  * @returns {{ title: string, attribute: number, skill: number }}
  */
-export function getAttributeAndSkill(skillName, data) {
+export function getAttributeAndSkill(skillName, data, attributeName = null) {
   const skill = data.skills[skillName].value;
-  const attributeName = T2K4E.skillsMap[skillName];
+  attributeName = attributeName ?? T2K4E.skillsMap[skillName];
   const attribute = data.attributes[attributeName].value;
   const title = game.i18n.localize(T2K4E.skills[skillName]);
   return { title, attribute, skill, attributeName, skillName };

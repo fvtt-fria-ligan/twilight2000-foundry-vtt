@@ -1,0 +1,64 @@
+<form class="t2k4e dialog damage-choice-dialog">
+
+  {{!-- INPUT VARIABLES (IN DATA):
+        damage: number
+        hitCount: number
+        barrier: number
+        location: string
+        target: string
+        isGM: boolean
+
+        OUTPUT VARIABLES:
+        damage: number
+        hitCount: number
+        barriers: string<number>[]
+  --}}
+
+  {{#with data}}
+
+  {{!-- ================================================== --}}
+
+  <p>
+    {{{localize "T2K4E.Dialog.Damage.Description" target=target}}}
+    {{#if location}}
+    <br/>{{localize "YZUR.CHAT.ROLL.HitLocation"}}&nbsp;<b>{{localize (concat "T2K4E.ArmorLocationNames." location)}}</b>
+    {{/if}}
+  </p>
+
+
+  {{!-- BASE DAMAGE --}}
+  <div class="form-group">
+    <label>{{localize "T2K4E.Dialog.Damage.DamageQuantity"}}</label>
+    <input type="number" name="damage" value="{{damage}}"{{#unless isGM}} disabled{{/unless}}/>
+  </div>
+
+  {{!-- ================================================== --}}
+
+  {{!-- EXTRA HITS --}}
+  {{#if hitCount}}
+  <div class="form-group">
+    <label>{{localize "T2K4E.Dialog.Damage.ExtraHits"}}&nbsp;
+      {{#times hitCount}}
+      <img src="systems/t2k4e/assets/icons/bullet2.svg" height="24px"/>
+      {{/times}}
+    </label>
+    <div class="flexrow">{{rangePicker name="hits" value=0 min=0 max=hitCount step=1}}</div>
+  </div>
+  {{/if}}
+
+  {{!-- ================================================== --}}
+
+  {{!-- BARRIER --}}
+  {{#if barrier}}
+  <div class="form-group">
+    <label style="line-height: 1;">
+      {{localize "T2K4E.Dialog.Damage.BarrierArmors"}}
+      <br/><small>{{localize "T2K4E.Dialog.Damage.BarrierArmorsHint"}}</small>
+    </label>
+    <input type="text" name="barriers" value="{{barrier}}"/>
+  </div>
+  {{/if}}
+
+  {{/with}}
+
+</form>

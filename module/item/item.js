@@ -54,7 +54,6 @@ export default class ItemT2K extends Item {
   get hasModifier() {
     if (!this.data.data.rollModifiers) return false;
     return !foundry.utils.isObjectEmpty(this.data.data.rollModifiers);
-    // return Object.keys(this.data.data.rollModifiers).length > 0;
   }
 
   // get inVehicle() {
@@ -88,6 +87,11 @@ export default class ItemT2K extends Item {
   get modifiersDescription() {
     if (!this.hasModifier) return undefined;
     return this._getModifiersDescription(this.data.data.rollModifiers);
+  }
+
+  get encumbranceModifiers() {
+    if (!this.hasModifier) return 0;
+    return this._getModifiersEncumbrance(this.data.data.rollModifiers);
   }
 
   /* ------------------------------------------- */
@@ -155,8 +159,26 @@ export default class ItemT2K extends Item {
   /* ------------------------------------------- */
 
   /**
+   * Returns a number summing all encumbrance modifiers from specialties.
+   * @param {Object} modifiersData item.data.data.rollModifiers
+   * @returns {number}
+   */
+  _getModifiersEncumbrance(modifiersData) {
+    let out = 0;
+
+    for (const m of Object.values(modifiersData)) {
+      if (m && m.name === 'constant.encumbrance') {
+        out += +m.value;
+      }
+    }
+    return out;
+  }
+
+  /* ------------------------------------------- */
+
+  /**
    * Returns a string resuming the modifiers.
-   * @param {Object} modifiersData Item's data
+   * @param {Object} modifiersData item.data.data.rollModifiers
    * @returns {string}
    * @private
    */
@@ -243,7 +265,27 @@ export default class ItemT2K extends Item {
    * @async
    */
   async rollAttack(options = {}, actor = null) {
-    if (!this.hasAttack) throw new Error('You may not place an Attack Roll with this Item.');
+    if (!this.hasAttack && !this.actor) {
+      throw new Error('You may not place an Attack Roll with this Item.');
+    }
+    // if (!this.hasAttack) {
+    //   // If no attack, instead perform a skill roll.
+    //   if (this.actor) {
+    //     const statData = getAttributeAndSkill(
+    //       this.data.data.skill,
+    //       this.actor.data.data,
+    //       this.data.data.attribute,
+    //     );
+    //     return T2KRoller.taskCheck({
+    //       ...statData,
+    //       ...options,
+    //       actor: this.actor,
+    //     });
+    //   }
+    //   else {
+    //     throw new Error('You may not place an Attack Roll with this Item.');
+    //   }
+    // }
     if (!this.actor) throw new Error('This weapon has no bearer.');
     if (this.hasReliability && this.data.data.reliability.value <= 0) {
       return ui.notifications.warn(
@@ -289,17 +331,10 @@ export default class ItemT2K extends Item {
       }
     }
 
-    // Handles unit consumption.
-    if (isDisposable) {
-      if (qty <= 0) {
-        ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoQuantityLeft', { weapon: this.name }));
-        return;
-      }
-      else {
-        qty--;
-        // No need to await for this update.
-        this.update({ 'data.qty': qty });
-      }
+    // Checks unit quantity.
+    if (track && isDisposable && qty <= 0) {
+      ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoQuantityLeft', { weapon: this.name }));
+      return;
     }
 
     // Composes the options for the task check.
@@ -321,6 +356,12 @@ export default class ItemT2K extends Item {
 
     const flagData = {};
 
+    // Consumes unit(s).
+    if (track && isDisposable && qty > 0) {
+      qty--;
+      await this.update({ 'data.qty': qty });
+    }
+
     // Consumes ammo.
     if (ammo) {
       const ammoDiff = await this.consumeAmmo(Math.max(1, roll.ammoSpent), ammo);
@@ -341,20 +382,6 @@ export default class ItemT2K extends Item {
     }
 
     return message;
-
-    // ! Gets the defenders, if any.
-    //const defenders = [];
-    // if (game.user.targets.size) {
-    //   for (const token of game.user.targets.values()) {
-    //     defenders.push(token.actor);
-    //   }
-    // }
-
-    // return this.actor.attack(this, defenders, {
-    //   // title,
-    //   //rollMode: game.settings.get('core', 'rollMode'),
-    //   askForOptions: options?.event?.shiftKey,
-    // });
   }
 
   /* ------------------------------------------- */
@@ -372,7 +399,7 @@ export default class ItemT2K extends Item {
     const val = this.data.data.reliability.value;
     const max = this.data.data.reliability.max;
     const rel = Math.clamped(val + jam, 0, max);
-    if (update && rel !== val) await this.update({ 'data.reliability.value': rel })
+    if (update && rel !== val) await this.update({ 'data.reliability.value': rel });
     return rel - val;
   }
 
@@ -450,7 +477,7 @@ export default class ItemT2K extends Item {
       actorId: this.actor.id,
       tokenId: token ? `${token.parent.id}.${token.id}` : null,
       owner: game.user.id,
-      config: CONFIG.T2K4E,
+      config: T2K4E,
     };
 
     // Creates the ChatMessage data object.
@@ -576,7 +603,7 @@ export default class ItemT2K extends Item {
     const askForOptions = event.shiftKey;
     switch (action) {
       case 'attack': await item.rollAttack({ askForOptions }); break;
-      // ! case 'reload': await item.rollReload({ askForOptions }); break;
+      // TODO case 'reload': await item.rollReload({ askForOptions }); break;
     }
 
     // Re-enables the button.

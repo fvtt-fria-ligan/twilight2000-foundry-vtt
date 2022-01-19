@@ -2,7 +2,8 @@
   "env": {
     "es2020": true,
     "browser": true,
-    "jquery": true
+    "jquery": true,
+    "node": true
   },
   "extends": [
     "eslint:recommended",
