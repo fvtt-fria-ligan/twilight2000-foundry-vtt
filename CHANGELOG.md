@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [2.0.1] - 2022-01-20
+### Fixed
+- A typo in the version number (`v2.0.0` instead of `2.0.0`) that was preventing Foundry from unpacking the zip.
+
 ## [2.0.0] - 2022-01-19
 ### Added
 - Foundry V9 compatibility.
