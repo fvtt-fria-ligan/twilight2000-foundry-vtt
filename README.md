@@ -63,7 +63,7 @@ We highly recommend the following modules to play the game:
 - English
 
 You may help localize the game system in your language by translating the [language file](./lang/en.json).<br/>
-Head over the [GitLocalize page](https://gitlocalize.com/repo/6382) to start translating.
+Head over the [GitLocalize page](https://gitlocalize.com/repo/7035) to start translating.
 
 # 🖼️ Previews
 
