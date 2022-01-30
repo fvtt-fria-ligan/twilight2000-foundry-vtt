@@ -104,7 +104,7 @@ See the [changelog](https://github.com/Stefouch/t2k4e/blob/master/CHANGELOG.md#c
 # 📝 Licenses
 
 - **Content & Logo:** [Twilight 2000 (4th Edition)](https://freeleaguepublishing.com/en/store/?collection_id=270655783061) is ™ & © 2021 GDW and Fria Ligan AB. All rights reserved. The parts of this project protected under this copyright may not be distributed commercially or freely. This includes art, logo, and copyright text.
-- **Source Code:** All source code *(javascript, hbs, less, as well as system templates and the like)* are Copyright © 2021 [Stefouch](https://github.com/Stefouch), and licenced under the [GNU General Public License v3.0](https://github.com/Stefouch/t2k4e/blob/master/LICENSE).
+- **Source Code:** All source code *(javascript, hbs, less, as well as system templates and the like)* are Copyright © 2021-2022 [Stefouch](https://github.com/Stefouch), and licenced under the [GNU General Public License v3.0](https://github.com/Stefouch/t2k4e/blob/master/LICENSE).
 - **Foundry VTT:** The project is created following the Foundry VTT [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 - **Icons:** Icons in the `module/t2k4e-coreset/assets/icons/` folder are courtesy of [Game-icons.net](https://game-icons.net/) and licenced under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
 - **Fonts:** The fonts used in this project carry their own licences:
