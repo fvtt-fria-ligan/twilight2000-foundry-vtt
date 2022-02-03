@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [2.0.3] - UNRELEASED
+### Fixed
+- #45 - Dice modifiers were still buggy and have been fixed again.
+
 ## [2.0.2] - 2022-01-30
 ### Fixed
 - #78 - a major bug introduced by the Foundry update 9.245 that broke the sheet tabs.
