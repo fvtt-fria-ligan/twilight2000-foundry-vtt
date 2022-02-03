@@ -77,7 +77,8 @@ Contributions, issues and feature requests are welcome!<br/>Feel free to check t
 
 ### Top Contributors
 
-@aMediocreDad - Lots of code samples come from this artist.
+[@aMediocreDad](https://github.com/aMediocreDad) - Lots of code samples come from this artist.<br/>
+[@Kayne](https://github.com/Kayne) - Fixed dice modifiers.
 
 # 👤 Author
 
