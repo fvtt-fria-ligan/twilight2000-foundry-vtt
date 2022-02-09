@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ## [2.1.0] - 2022-02-09
 ### Added
-- Swedish translation from [@tinwe](https://github.com/tinwe).
+- :sweden: Swedish translation from [@tinwe](https://github.com/tinwe).
 
 ### Fixed
 - #45 - Dice modifiers were still buggy and have been fixed again.
