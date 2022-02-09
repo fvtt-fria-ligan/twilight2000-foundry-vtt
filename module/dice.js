@@ -168,6 +168,8 @@ export class T2KRoller {
     // Uses options from the CuF dialog.
     unitMorale = opts.unitMorale;
     rollMode = opts.rollMode;
+    modifier = opts.modifier;
+    maxPush = opts.maxPush;
 
     // Gets attributes' values.
     const cuf = actor.data.data.cuf.value;
