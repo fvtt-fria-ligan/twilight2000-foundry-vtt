@@ -4,9 +4,14 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
-## [2.0.3] - UNRELEASED
+## [2.1.0] - 2022-02-09
+### Added
+- Swedish translation from [@tinwe](https://github.com/tinwe).
+
 ### Fixed
 - #45 - Dice modifiers were still buggy and have been fixed again.
+- #80 - Modifiers to CUF rolls now works!
+- A bug that broke the `maxPush` parameter in the roll dialog.
 
 ## [2.0.2] - 2022-01-30
 ### Fixed
