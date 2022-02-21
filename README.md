@@ -61,6 +61,7 @@ We highly recommend the following modules to play the game:
 # 💬 Supported Languages
 
 - English
+- Swedish
 
 You may help localize the game system in your language by translating the [language file](./lang/en.json).<br/>
 Head over the [GitLocalize page](https://gitlocalize.com/repo/7035) to start translating.
