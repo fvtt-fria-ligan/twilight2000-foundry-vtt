@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [2.1.1] - 2022-04-30
+### Fixed
+- #87 - Low screen resolution can now properly scroll the main tab in the character sheet.
+- #82 - Attempt to fix a bug in migration that caused all vehicles to lose their amor value.
+- Swedish translation for ammo belt (was too long). Thanks to [@tinwe](https://github.com/tinwe).
+
 ## [2.1.0] - 2022-02-09
 ### Added
 - :sweden: Swedish translation from [@tinwe](https://github.com/tinwe).

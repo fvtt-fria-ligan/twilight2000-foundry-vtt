@@ -61,7 +61,7 @@ We highly recommend the following modules to play the game:
 # 💬 Supported Languages
 
 - English
-- Swedish
+- Swedish 
 
 You may help localize the game system in your language by translating the [language file](./lang/en.json).<br/>
 Head over the [GitLocalize page](https://gitlocalize.com/repo/7035) to start translating.
@@ -79,7 +79,8 @@ Contributions, issues and feature requests are welcome!<br/>Feel free to check t
 ### Top Contributors
 
 [@aMediocreDad](https://github.com/aMediocreDad) - Lots of code samples come from this artist.<br/>
-[@Kayne](https://github.com/Kayne) - Fixed dice modifiers.
+[@Kayne](https://github.com/Kayne) - Fixed dice modifiers.<br/>
+[@tinwe](https://github.com/tinwe) - Swedish translation & bugfixes.
 
 # 👤 Author
 

@@ -1,6 +1,6 @@
 {
   "name": "t2k4e",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A Foundry VTT system for Twilight 2000 4E (Free League Publishing)",
   "main": "t2k4e.js",
   "scripts": {

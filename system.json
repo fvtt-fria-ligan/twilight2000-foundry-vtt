@@ -2,9 +2,9 @@
   "name": "t2k4e",
   "title": "Twilight 2000 (4th Edition)",
   "description": "Twilight: 2000 is a roleplaying game about survival in mankind’s most desperate hour. Yet, in this bleak world, there is still hope. In the midst of utter destruction, you can start to build something new. Rally people to your ranks. Stake a claim and protect it. And maybe, if you live long enough, start turning the tide.",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "minimumCoreVersion": "9.242",
-  "compatibleCoreVersion": "9.249",
+  "compatibleCoreVersion": "9.269",
   "author": "Stefouch",
   "authors": [
     "Stefouch"
