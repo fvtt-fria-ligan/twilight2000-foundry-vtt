@@ -517,12 +517,12 @@ function _migrateVehicleArmor(actorData, updateData) {
   const armor = actorData.data.armor || {};
   if (armor.side?.value != undefined) {
     updateData['data.armor.left'] = {
-      value: armor.side.value,
-      max: armor.side.max,
+      value: +armor.side.value,
+      max: +armor.side.max,
     };
     updateData['data.armor.right'] = {
-      value: armor.side.value,
-      max: armor.side.max,
+      value: +armor.side.value,
+      max: +armor.side.max,
     };
     // Deletes old properties.
     updateData['data.armor.-=side'] = null;
