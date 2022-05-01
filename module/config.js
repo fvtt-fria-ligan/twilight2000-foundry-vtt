@@ -57,6 +57,22 @@ T2K4E.dieSizes = [-1, 12, 10, 8, 6, 0];
 T2K4E.dieScores = ['–', 'A', 'B', 'C', 'D', 'F'];
 T2K4E.dieSizesMap = new Map(T2K4E.dieScores.map((x, i) => [x, T2K4E.dieSizes[i]]));
 
+T2K4E.actionSkillsMap = {
+  'travel-forced-march': 'stamina',
+  'travel-march-in-darkness': 'survival',
+  'travel-drive': 'driving',
+  'travel-keep-watch': '',
+  'travel-find-scrap':'',
+  'travel-find-food':'',
+  'travel-find-prey':'',
+  'travel-recon-prey':'',
+  'travel-kill-prey':'',
+  'travel-catch-fish':'',
+  'travel-make-camp':'',
+  'travel-hide-camp':'',
+  'travel-cook-food':'',
+};
+
 T2K4E.physicalItems = ['weapon', 'armor', 'grenade', 'ammunition', 'gear'];
 
 T2K4E.vehicle = {
