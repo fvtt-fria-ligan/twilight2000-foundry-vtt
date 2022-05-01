@@ -33,6 +33,7 @@ import ItemT2K from './module/item/item.js';
 import ActorSheetT2KCharacter from './module/actor/characterSheet.js';
 import ActorSheetT2KVehicle from './module/actor/vehicleSheet.js';
 import ActorSheetT2KUnit from './module/actor/unitSheet.js';
+import ActorSheetT2KParty from './module/actor/party/partySheet.js';
 import ItemSheetT2K from './module/item/itemSheet.js';
 
 // Imports Helpers.
@@ -63,6 +64,7 @@ Hooks.once('init', function() {
       ActorSheetT2KCharacter,
       ActorSheetT2KVehicle,
       ActorSheetT2KUnit,
+      ActorSheetT2KParty,
       ItemSheetT2K,
     },
     config: T2K4E,
@@ -104,6 +106,11 @@ Hooks.once('init', function() {
     types: ['unit'],
     makeDefault: true,
     label: 'T2K4E.SheetClassUnit',
+  });
+  Actors.registerSheet('t2k4e', ActorSheetT2KParty, {
+    types: ['party'],
+    makeDefault: true,
+    label: 'T2K4E.SheetClassParty',
   });
 
   Items.unregisterSheet('core', ItemSheet);

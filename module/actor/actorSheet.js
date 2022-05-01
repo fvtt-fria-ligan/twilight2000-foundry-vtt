@@ -23,6 +23,9 @@ export default class ActorSheetT2K extends ActorSheet {
     if (this.actor.type === 'npc') {
       return 'systems/t2k4e/templates/actors/character-sheet.hbs';
     }
+    else if (this.actor.type === 'party') {
+      return 'systems/t2k4e/module/actor/party/templates/party-sheet.hbs';
+    }
     return `systems/t2k4e/templates/actors/${this.actor.type}-sheet.hbs`;
   }
 
@@ -59,6 +62,9 @@ export default class ActorSheetT2K extends ActorSheet {
     let allowed = true;
 
     if (this.actor.type === 'unit') {
+      allowed = false;
+    }
+    else if (this.actor.type === 'party') {
       allowed = false;
     }
     else if (!alwaysAllowedItems.includes(type)) {
