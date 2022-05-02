@@ -1,5 +1,6 @@
 import { T2K4E } from '../config.js';
 import T2KDialog from '../dialog.js';
+import { getAttributeAndSkill, T2KRoller } from '../dice.js';
 
 /**
  * Twilight 2000 Actor Sheet.
@@ -84,6 +85,31 @@ export default class ActorSheetT2K extends ActorSheet {
     }
     return super._onDropItemCreate(itemData);
   }
+
+  /* -------------------------------------------- */
+  /*  Actor Rolls                                 */
+  /* -------------------------------------------- */
+
+  rollAction(actionName, itemId) {
+    const skillName = T2K4E.actionSkillsMap[actionName];
+    const statData = getAttributeAndSkill(skillName, this.actor.data.data);
+    const isRangedSkill = (skillName === 'rangedCombat' || skillName === 'heavyWeapons');
+    return T2KRoller.taskCheck({
+      ...statData,
+      actor: this.actor,
+      rof: isRangedSkill ? 6 : 0,
+    });
+		/*const properties = itemId ? this.getGear(itemId) : this.getSkill(actionName);
+		const data = {
+			title: actionName,
+			...properties,
+		};
+		const options = {
+			...this.getRollOptions(actionName, data.skill?.name, data.attribute?.name, data.gear?.itemId),
+		};
+		if (actionName === 'unarmed') options.damage = 1;
+		return FBLRollHandler.createRoll(data, { ...options, gears: this.getGears() });//*/
+	}
 
   /* ------------------------------------------- */
   /*  Sheet Listeners                            */
