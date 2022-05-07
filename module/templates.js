@@ -62,12 +62,22 @@ export function registerHandlebars() {
     return str;
   });
 
+  Handlebars.registerHelper('capitalize', function(val) {
+    return typeof val === 'string' && val.length > 0 ? val[0].toUpperCase() + val.slice(1) : val;
+  });
+
   Handlebars.registerHelper('toLowerCase', function(str) {
     return str.toLowerCase();
   });
 
   Handlebars.registerHelper('toUpperCase', function(str) {
     return str.toUpperCase();
+  });
+
+  Handlebars.registerHelper('flps_enrich', function(content) {
+    // Enriches content.
+    content = TextEditor.enrichHTML(content, { documents: true });
+    return new Handlebars.SafeString(content);
   });
 
   Handlebars.registerHelper('times', function(n, content) {
