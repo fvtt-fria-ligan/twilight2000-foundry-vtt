@@ -362,8 +362,9 @@
   "T2K4E.Macro.MultipleItems": "Your controlled Actor {actor} has more than one Item with name {item}. The first matched item will be chosen.",
   "T2K4E.Macro.NoItem": "Your controlled Actor {actor} does not have an item named {item}.",
 
-  "FLPS.TAB.MAIN": "MAIN",
-  "FLPS.TAB.TRAVEL": "TRAVEL",
+  "FLPS.TAB.MAIN": "Party Team",
+  "FLPS.TAB.TRAVEL": "Travel Actions",
+  "FLPS.TAB.NOTE": "Notes",
   "FLPS.PARTY.NAME": "Party Name",
   "FLPS.PARTY.MEMBERS": "Party Members",
   "FLPS.PARTY.HINT_ADD": "Drag & drop characters here to add them to the party.",
