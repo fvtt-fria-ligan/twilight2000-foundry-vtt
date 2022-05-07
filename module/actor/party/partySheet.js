@@ -6,10 +6,10 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     let dragDrop = [...super.defaultOptions.dragDrop];
     dragDrop.push({ dragSelector: '.party-member', dropSelector: '.party-member-list' });
     return mergeObject(super.defaultOptions, {
-      classes: ['t2k4e', 'sheet', 'actor', 'party'],
+      classes: ['t2k4e', 'sheet', 'actor', 'character', 'party'],
       template: 'systems/t2k4e/module/actor/party/templates/party-sheet.hbs',
       width: window.innerWidth * 0.05 + 650,
-      resizable: false,
+      resizable: true,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main' }],
       dragDrop: dragDrop,
     });
@@ -20,7 +20,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
   }
 
   getData() {
-    const data = super.getData().actor.data;
+    const data = super.getData();
     data.partyMembers = {};
     data.travel = {};
     data.travelActions = this.getTravelActions();
@@ -49,7 +49,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find('.item-delete').click(this.handleRemoveMember.bind(this));
+    html.find('.member-delete').click(this.handleRemoveMember.bind(this));
     html.find('.reset').click(() => {
       this.assignPartyMembersToAction(this.actor.data.data.members, 'other');
       this.render(true);
