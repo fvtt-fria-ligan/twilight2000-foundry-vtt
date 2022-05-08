@@ -379,6 +379,7 @@ export default class ActorT2K extends Actor {
     };
     switch (this.type) {
       case 'character':
+      case 'party':
         updateData['token.actorLink'] = true;
         updateData['token.disposition'] = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
         break;
