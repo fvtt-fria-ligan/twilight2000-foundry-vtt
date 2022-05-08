@@ -1,6 +1,5 @@
 import ActorSheetT2K from './actorSheet.js';
 import { T2KRoller, getAttributeAndSkill } from '../dice.js';
-import { T2K4E } from '../config.js';
 
 /**
  * Twilight 2000 Actor Sheet for Character.
