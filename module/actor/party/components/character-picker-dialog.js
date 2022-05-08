@@ -48,7 +48,7 @@ export class CharacterPickerDialog extends Dialog {
     for (let i = 0; i < characters.length; i++) {
       actor = characters[i] instanceof Actor ? characters[i].data : game.actors.get(characters[i]).data;
       html += await renderTemplate(
-        'systems/t2k4e/module/actor/party/components/member-component.hbs',
+        'systems/t2k4e/module/actor/party/templates/components/member-component.hbs',
         {
           partyMember: actor,
           noCharSheetLink: true,
