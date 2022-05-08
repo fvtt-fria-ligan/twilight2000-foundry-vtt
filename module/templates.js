@@ -28,6 +28,12 @@ export async function preloadHandlebarsTemplates() {
     'systems/t2k4e/templates/actors/parts/vehicle-components.hbs',
     'systems/t2k4e/templates/actors/parts/slots/vehicle-weapon-slot.hbs',
 
+    // Party Sheet Partials
+    'systems/t2k4e/module/actor/party/templates/sheet-tabs/main-tab.hbs',
+    'systems/t2k4e/module/actor/party/templates/sheet-tabs/travel-tab.hbs',
+    'systems/t2k4e/module/actor/party/templates/components/action-component.hbs',
+    'systems/t2k4e/module/actor/party/templates/components/member-component.hbs',
+
     // Item Sheet Partials
     'systems/t2k4e/templates/items/parts/item-header.hbs',
     'systems/t2k4e/templates/items/parts/item-modifiers.hbs',
@@ -56,12 +62,22 @@ export function registerHandlebars() {
     return str;
   });
 
+  Handlebars.registerHelper('capitalize', function(val) {
+    return typeof val === 'string' && val.length > 0 ? val[0].toUpperCase() + val.slice(1) : val;
+  });
+
   Handlebars.registerHelper('toLowerCase', function(str) {
     return str.toLowerCase();
   });
 
   Handlebars.registerHelper('toUpperCase', function(str) {
     return str.toUpperCase();
+  });
+
+  Handlebars.registerHelper('flps_enrich', function(content) {
+    // Enriches content.
+    content = TextEditor.enrichHTML(content, { documents: true });
+    return new Handlebars.SafeString(content);
   });
 
   Handlebars.registerHelper('times', function(n, content) {

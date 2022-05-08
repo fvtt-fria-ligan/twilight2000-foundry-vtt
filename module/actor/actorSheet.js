@@ -1,5 +1,6 @@
 import { T2K4E } from '../config.js';
 import T2KDialog from '../dialog.js';
+import { getAttributeAndSkill, T2KRoller } from '../dice.js';
 
 /**
  * Twilight 2000 Actor Sheet.
@@ -22,6 +23,9 @@ export default class ActorSheetT2K extends ActorSheet {
   get template() {
     if (this.actor.type === 'npc') {
       return 'systems/t2k4e/templates/actors/character-sheet.hbs';
+    }
+    else if (this.actor.type === 'party') {
+      return 'systems/t2k4e/module/actor/party/templates/party-sheet.hbs';
     }
     return `systems/t2k4e/templates/actors/${this.actor.type}-sheet.hbs`;
   }
@@ -61,6 +65,9 @@ export default class ActorSheetT2K extends ActorSheet {
     if (this.actor.type === 'unit') {
       allowed = false;
     }
+    else if (this.actor.type === 'party') {
+      allowed = false;
+    }
     else if (!alwaysAllowedItems.includes(type)) {
       if (!allowedItems[this.actor.type].includes(type)) {
         allowed = false;
@@ -77,6 +84,22 @@ export default class ActorSheetT2K extends ActorSheet {
       return false;
     }
     return super._onDropItemCreate(itemData);
+  }
+
+  /* -------------------------------------------- */
+  /*  Actor Rolls                                 */
+  /* -------------------------------------------- */
+
+  rollAction(actionName, itemId) {
+    const skillName = T2K4E.actionSkillsMap[actionName];
+    const statData = getAttributeAndSkill(skillName, this.actor.data.data);
+    statData.title += ` (${this.actor.name})`;
+    const isRangedSkill = (skillName === 'rangedCombat' || skillName === 'heavyWeapons');
+    return T2KRoller.taskCheck({
+      ...statData,
+      actor: this.actor,
+      rof: isRangedSkill ? 6 : 0,
+    });
   }
 
   /* ------------------------------------------- */
@@ -135,7 +158,7 @@ export default class ActorSheetT2K extends ActorSheet {
       if (opts.cancelled) return;
 
       const actorId = opts.actor;
-      const actor = game.actors.get(actorId); //this.actor.getCrew().get(actorId);
+      const actor = game.actors.get(actorId); // this.actor.getCrew().get(actorId);
       // if (!actor) {
       //   ui.notifications.warn('Actor does not exist.');
       //   return;

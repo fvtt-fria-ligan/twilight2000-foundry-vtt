@@ -4,7 +4,8 @@
       "character",
       "npc",
       "vehicle",
-      "unit"
+      "unit",
+      "party"
     ],
     "templates": {
       "actorBio": {
@@ -286,7 +287,22 @@
       "hq": false
     },
     "party": {
-      "templates": ["actorDescription"]
+      "templates": ["actorDescription"],
+      "members": [],
+      "travel": {
+        "camp": [],
+        "cook": [],
+        "drive": [],
+        "fish": [],
+        "forage": [],
+        "hunt": [],
+        "march": [],
+        "rest": [],
+        "scrounge": [],
+        "sleep": [],
+        "watch": [],
+        "other": []
+      }
     }
   },
   "Item": {

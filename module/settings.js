@@ -67,4 +67,13 @@ export function registerSystemSettings() {
     type: Number,
     default: 1,
   });
+
+  game.settings.register('t2k4e', 'travelRollAllowPush', {
+    config: false,
+    scope: 'world',
+    name: 'FLPS.SETTINGS.ALLOW_PUSH',
+    hint: 'FLPS.SETTINGS.ALLOW_PUSH_HINT',
+    type: Boolean,
+    default: false,
+  });
 }

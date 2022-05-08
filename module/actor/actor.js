@@ -47,6 +47,7 @@ export default class ActorT2K extends Actor {
       case 'npc': this._prepareNpcData(actorData); break;
       case 'vehicle': this._prepareVehicleData(actorData); break;
       case 'unit': this._prepareUnitData(actorData); break;
+      case 'party': this._preparePartyData(actorData); break;
       default: throw new TypeError(`t2k4e | Unknown Actor Type: "${actorData.type}"`);
     }
 
@@ -327,6 +328,14 @@ export default class ActorT2K extends Actor {
   _prepareUnitData(data) {}
 
   /* ------------------------------------------- */
+  /*  Data Preparation                           */
+  /*   → Party                                   */
+  /* ------------------------------------------- */
+
+  // TODO placeholder
+  _preparePartyData(data) {}
+
+  /* ------------------------------------------- */
   /*  Roll Modifiers                             */
   /* ------------------------------------------- */
 
@@ -370,6 +379,7 @@ export default class ActorT2K extends Actor {
     };
     switch (this.type) {
       case 'character':
+      case 'party':
         updateData['token.actorLink'] = true;
         updateData['token.disposition'] = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
         break;
@@ -514,7 +524,7 @@ export default class ActorT2K extends Actor {
         this.applyDamageToCharacter(amount, attackData, sendMessage);
         break;
       case 'vehicle':
-        ui.notifications.warn('Automatic Apply Damage to Vehicles is not yet implemented.');
+        this.applyDamageToVehicle();
         break;
     }
   }
@@ -603,6 +613,10 @@ export default class ActorT2K extends Actor {
   }
 
   /* ------------------------------------------- */
+
+  async applyDamageToVehicle() {
+    ui.notifications.warn('Automatic Apply Damage to Vehicles is not yet implemented.');
+  }
 
   /* ------------------------------------------- */
   /*  Chat Card Actions                          */
