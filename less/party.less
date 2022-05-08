@@ -2,14 +2,10 @@
   min-height: 540px;
   height: 100%;
   max-height: calc(100vh - 10%);
-  // .border {
-  //   border: 6px solid transparent;
-    //border-image: url(./assets/journal-art/small-border.webp) 100/10px repeat;
-  // }
-
-  // .window-content {
-  //   .item-sheet-background();
-  // }
+  .border {
+    border: @borderSheetBold;
+    border-radius: @gap;
+  }
 }
 
 .t2k4e.party .party {
@@ -18,13 +14,27 @@
   width: 100%;
 }
 
+.party .avatar img {
+  border: 2px solid @colorBrown;
+  border-radius: 4px;
+  margin: @gap 0 4px @gap;
+  // width: 100px;
+  // height: 100px;
+  background-color: #fff;
+
+  &:focus,
+  &:hover {
+    box-shadow: @hoverShadow;
+  }
+}
+
 .party .tab-hint {
   font-style: italic;
   text-align: center;
 }
 
 .party-member:hover {
-  background-color: lightgray;
+  background-color: @colorBeige;
 }
 
 .party-member .party-member-avatar {
@@ -71,14 +81,20 @@
 
 .party-member-list {
   height: 100%;
-  min-height: 360px;
+  // min-height: 360px;
+
+  .members-list {
+    min-height: 100px;
+    height: 100%;
+    overflow-y: auto;
+  }
 }
 
 table.travel-actions {
   border: 0px solid;
-  border-spacing: 6px;
+  // border-spacing: 6px;
   border-collapse: separate;
-  background: rgb(255, 255, 255);
+  background-color: transparent;
   margin-top: 0px;
 }
 
@@ -89,10 +105,9 @@ table.travel-actions td {
 
 .travel-action {
   min-width: 196px;
-  min-height: 90px;
+  min-height: 116px;
   height: 100%;
-  margin-bottom: 10px;
-
+  // margin-bottom: 10px;
   flex-grow: 1;
 }
 
@@ -104,7 +119,7 @@ table.travel-actions td {
   text-align: center;
   font-weight: bold;
   max-height: 20px;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid @colorBrown;
 
   display: flex;
   flex-direction: row;
@@ -132,7 +147,15 @@ table.travel-actions td {
 .travel-action button.travel-roll {
   font-size: var(--font-size--very-small);
   display: block;
+  line-height: normal;
+  height: 24px;
   width: 99%;
+  border: none;
+  border-bottom: 1px dashed @colorBrown;
+  background-color: transparent;
 
-  border-bottom: 1px gray dashed;
+  &:focus,
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }
