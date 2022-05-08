@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ## [2.2.0] - 2022-05-08
 ### Added
-- Travel & Party sheet! #37
+- Travel & Party sheet! #37 (borrowed from Forbidden Lands code)
 - Roll dialog: Ammo dice are now suggested in the roll dialog when testing the Ranged Combat and the Heavy Weapons skills from the stats tab in the character sheet.
 
 ### Fixed
