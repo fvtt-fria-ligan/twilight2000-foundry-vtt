@@ -9,6 +9,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
       classes: ['t2k4e', 'sheet', 'actor', 'character', 'party'],
       template: 'systems/t2k4e/module/actor/party/templates/party-sheet.hbs',
       width: window.innerWidth * 0.05 + 650,
+      height: 830,
       resizable: true,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'main' }],
       dragDrop: dragDrop,
@@ -29,14 +30,16 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
       ownedActorId = data.data.members[i];
       data.partyMembers[ownedActorId] = game.actors.get(ownedActorId).data;
     }
-    for (let travelActionKey in data.travel) {
-      travelAction = data.travel[travelActionKey];
+    for (let travelActionKey in data.data.travel) {
+      travelAction = data.data.travel[travelActionKey];
       data.travel[travelActionKey] = {};
 
       if (typeof travelAction === 'object') {
         for (let i = 0; i < travelAction.length; i++) {
           assignedActorId = travelAction[i];
-          data.travel[travelActionKey][assignedActorId] = game.actors.get(assignedActorId).data;
+          if (assignedActorId != null) {
+            data.travel[travelActionKey][assignedActorId] = game.actors.get(assignedActorId).data;
+          }
         }
       }
       else if (travelAction !== '') {
@@ -50,7 +53,8 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     super.activateListeners(html);
 
     html.find('.member-delete').click(this.handleRemoveMember.bind(this));
-    html.find('.reset').click(() => {
+    html.find('.reset').click((event) => {
+      event.preventDefault();
       this.assignPartyMembersToAction(this.actor.data.data.members, 'other');
       this.render(true);
     });
@@ -73,6 +77,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
   }
 
   async handleRemoveMember(event) {
+    event.preventDefault();
     const div = $(event.currentTarget).parents('.party-member');
     const entityId = div.data('entity-id');
 
@@ -216,7 +221,6 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     let partyMembers = this.actor.data.data.members;
     let initialCount = partyMembers.length;
     partyMembers.push(actor.data._id);
-    // eslint-disable-next-line no-undef
     partyMembers = [...new Set(partyMembers)]; // remove duplicate values
     if (initialCount === partyMembers.length) return; // nothing changed
 
