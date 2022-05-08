@@ -1,6 +1,6 @@
-<div class="flexcol full">
+<div>
   <div class="flexrow flex-middle">
-    <div class="img avatar">
+    <div class="avatar">
       <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
     </div>
     <div class="flexrow flex-bottom flex-around flex-grow">
@@ -13,9 +13,9 @@
     </div>
   </div>
   <div class="party-member-list">
-    <h2>{{localize "FLPS.PARTY.MEMBERS" }}</h2>
+    <h2>{{localize "FLPS.PARTY.MEMBERS"}}</h2>
     <div class="tab-hint">{{localize "FLPS.PARTY.HINT_ADD"}}</div>
-    <div>
+    <div class="members-list">
       <ol>
         {{#each partyMembers as | partyMember |}}
         <!-- prettier-ignore -->
