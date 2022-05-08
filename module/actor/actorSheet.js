@@ -93,23 +93,14 @@ export default class ActorSheetT2K extends ActorSheet {
   rollAction(actionName, itemId) {
     const skillName = T2K4E.actionSkillsMap[actionName];
     const statData = getAttributeAndSkill(skillName, this.actor.data.data);
+    statData.title += ` (${this.actor.name})`;
     const isRangedSkill = (skillName === 'rangedCombat' || skillName === 'heavyWeapons');
     return T2KRoller.taskCheck({
       ...statData,
       actor: this.actor,
       rof: isRangedSkill ? 6 : 0,
     });
-		/*const properties = itemId ? this.getGear(itemId) : this.getSkill(actionName);
-		const data = {
-			title: actionName,
-			...properties,
-		};
-		const options = {
-			...this.getRollOptions(actionName, data.skill?.name, data.attribute?.name, data.gear?.itemId),
-		};
-		if (actionName === 'unarmed') options.damage = 1;
-		return FBLRollHandler.createRoll(data, { ...options, gears: this.getGears() });//*/
-	}
+  }
 
   /* ------------------------------------------- */
   /*  Sheet Listeners                            */
@@ -167,7 +158,7 @@ export default class ActorSheetT2K extends ActorSheet {
       if (opts.cancelled) return;
 
       const actorId = opts.actor;
-      const actor = game.actors.get(actorId); //this.actor.getCrew().get(actorId);
+      const actor = game.actors.get(actorId); // this.actor.getCrew().get(actorId);
       // if (!actor) {
       //   ui.notifications.warn('Actor does not exist.');
       //   return;
