@@ -1,0 +1,21 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <div class="party">
+    <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
+      <a class="item" data-tab="main">{{localize "FLPS.TAB.MAIN"}}</a>
+      <a class="item" data-tab="travel">{{localize "FLPS.TAB.TRAVEL"}}</a>
+      <a class="item" data-tab="note">{{localize "FLPS.TAB.NOTE"}}</a>
+    </nav>
+
+    <div class="sheet-body">
+      <div class="tab" data-group="primary" data-tab="main">
+{{> systems/t2k4e/module/actor/party/templates/sheet-tabs/main-tab.hbs}}
+      </div>
+      <div class="tab" data-group="primary" data-tab="travel">
+{{> systems/t2k4e/module/actor/party/templates/sheet-tabs/travel-tab.hbs}}
+      </div>
+      <div class="tab note" data-group="primary" data-tab="note">
+{{> "systems/t2k4e/templates/actors/parts/actor-description.hbs"}}
+      </div>
+    </div>
+  </div>
+</form>

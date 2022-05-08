@@ -1,6 +1,5 @@
 import ActorSheetT2K from './actorSheet.js';
 import { T2KRoller, getAttributeAndSkill } from '../dice.js';
-import { T2K4E } from '../config.js';
 
 /**
  * Twilight 2000 Actor Sheet for Character.
@@ -97,10 +96,12 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     event.preventDefault();
     const skillName = event.currentTarget.dataset.skill;
     const statData = getAttributeAndSkill(skillName, this.actor.data.data);
+    const isRangedSkill = (skillName === 'rangedCombat' || skillName === 'heavyWeapons');
     return T2KRoller.taskCheck({
       ...statData,
       actor: this.actor,
       askForOptions: event.shiftKey,
+      rof: isRangedSkill ? 6 : 0,
     });
   }
 

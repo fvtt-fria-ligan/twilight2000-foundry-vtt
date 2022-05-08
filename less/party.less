@@ -1,0 +1,161 @@
+.t2k4e.party {
+  min-height: 540px;
+  height: 100%;
+  max-height: calc(100vh - 10%);
+  .border {
+    border: @borderSheetBold;
+    border-radius: @gap;
+  }
+}
+
+.t2k4e.party .party {
+  height: 100%;
+  min-height: 540px;
+  width: 100%;
+}
+
+.party .avatar img {
+  border: 2px solid @colorBrown;
+  border-radius: 4px;
+  margin: @gap 0 4px @gap;
+  // width: 100px;
+  // height: 100px;
+  background-color: #fff;
+
+  &:focus,
+  &:hover {
+    box-shadow: @hoverShadow;
+  }
+}
+
+.party .tab-hint {
+  font-style: italic;
+  text-align: center;
+}
+
+.party-member:hover {
+  background-color: @colorBeige;
+}
+
+.party-member .party-member-avatar {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border: 0px;
+  cursor: pointer;
+}
+
+.party-member .party-member-name {
+  line-height: 48px;
+}
+
+.party-member .button {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 48px;
+  line-height: 48px;
+}
+
+.party-member .entity-link {
+  padding: 0 6px;
+  line-height: 44px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+
+  border: 0px;
+  background-color: inherit;
+}
+
+.party-member .plain-name {
+  margin-right: 6px;
+  line-height: 44px;
+
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+
+  border: 0px;
+  background-color: inherit;
+}
+
+.party-member-list {
+  height: 100%;
+  // min-height: 360px;
+
+  .members-list {
+    min-height: 100px;
+    height: 100%;
+    overflow-y: auto;
+  }
+}
+
+table.travel-actions {
+  border: 0px solid;
+  // border-spacing: 6px;
+  border-collapse: separate;
+  background-color: transparent;
+  margin-top: 0px;
+}
+
+table.travel-actions td {
+  vertical-align: top;
+  min-height: 1px;
+}
+
+.travel-action {
+  min-width: 196px;
+  min-height: 116px;
+  height: 100%;
+  // margin-bottom: 10px;
+  flex-grow: 1;
+}
+
+.travel-action ol {
+  padding-left: 4px;
+}
+
+.travel-action .travel-action-header {
+  text-align: center;
+  font-weight: bold;
+  max-height: 20px;
+  border-bottom: 1px solid @colorBrown;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.travel-action-header .entity-link {
+  background-color: white;
+  border: 0px solid;
+}
+
+.travel-action .travel-action-help {
+  border: 1px solid;
+  border-radius: 6px;
+  background-color: cadetblue;
+  display: flex;
+  width: 20px;
+  margin-left: 4px;
+  justify-content: center;
+}
+.travel-action .travel-action-help:hover {
+  background-color: cyan;
+}
+
+.travel-action button.travel-roll {
+  font-size: var(--font-size--very-small);
+  display: block;
+  line-height: normal;
+  height: 24px;
+  width: 99%;
+  border: none;
+  border-bottom: 1px dashed @colorBrown;
+  background-color: transparent;
+
+  &:focus,
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
