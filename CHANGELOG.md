@@ -4,13 +4,15 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
-## [2.2.0] - 2022-xx-xx
+## [2.2.0] - 2022-05-08
 ### Added
 - Travel & Party sheet! #37
-- Ammo dice are now suggested in the roll dialog when testing the Ranged Combat and the Heavy Weapons skills from the stats tab in the character sheet.
+- Roll dialog: Ammo dice are now suggested in the roll dialog when testing the Ranged Combat and the Heavy Weapons skills from the stats tab in the character sheet.
 
 ### Fixed
 - Lighter color themes for Dice So Nice (were too dark due to a change introduced in v4.5.0 of DsN).
+- Small improvements to the CSS styles.
+- Small changes to the Swedish translation.
 
 ## [2.1.1] - 2022-04-30
 ### Fixed
