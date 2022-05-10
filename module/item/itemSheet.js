@@ -36,6 +36,7 @@ export default class ItemSheetT2K extends ItemSheet {
       item: baseData.item,
       data: baseData.item.data.data,
       config: CONFIG.T2K4E,
+      hideWeaponProps: !game.user.isGM && game.settings.get('t2k4e', 'hideWeaponProps'),
       // QoL getters
       inActor: this.item.actor ? true : false,
       inVehicle: this.item.actor?.type === 'vehicle',
