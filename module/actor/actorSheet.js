@@ -43,6 +43,7 @@ export default class ActorSheetT2K extends ActorSheet {
       actor: baseData.actor,
       data: baseData.actor.data.data,
       config: T2K4E,
+      hideCapacitiesButtons: !game.user.isGM && game.settings.get('t2k4e', 'hideCapacitiesButtons'),
     };
     return sheetData;
   }
