@@ -14,6 +14,24 @@ export function registerSystemSettings() {
     default: '',
   });
 
+  game.settings.register('t2k4e', 'hideCapacitiesButtons', {
+    config: true,
+    scope: 'world',
+    name: 'SETTINGS.hideCapacitiesButtons.name',
+    hint: 'SETTINGS.hideCapacitiesButtons.label',
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register('t2k4e', 'hideWeaponProps', {
+    config: true,
+    scope: 'world',
+    name: 'SETTINGS.hideWeaponProps.name',
+    hint: 'SETTINGS.hideWeaponProps.label',
+    type: Boolean,
+    default: false,
+  });
+
   game.settings.register('t2k4e', 'trackPcAmmo', {
     config: true,
     scope: 'world',
