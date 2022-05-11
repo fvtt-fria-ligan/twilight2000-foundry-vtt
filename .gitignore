@@ -3,6 +3,9 @@
 /.vscode
 *.code-workspace
 
+# JTM
+/jtmConfig.json
+
 # Logs
 logs/
 *.log
