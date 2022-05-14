@@ -23,8 +23,13 @@
       "path": "lang/en.json"
     },
     {
+      "lang": "fr",
+      "name": "French (Français)",
+      "path": "lang/fr.json"
+    },
+    {
       "lang": "sv",
-      "name": "Swedish",
+      "name": "Swedish (Svenska)",
       "path": "lang/sv.json"
     }
   ],
