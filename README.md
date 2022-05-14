@@ -61,6 +61,7 @@ We highly recommend the following modules to play the game:
 # 💬 Supported Languages
 
 - English
+- French
 - Swedish 
 
 You may help localize the game system in your language by translating the [language file](./lang/en.json).<br/>

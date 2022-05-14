@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [2.3.0] - 2022-05-14
+### Added
+- French translation.
+- Two new system settings for hiding from players the capacities buttons in the character sheet and the weapon properties checkboxes in the item sheet (See #97).
+- Latest YZUR roll library V4.
+
+### Fixed
+- #92 - Private rolls are now private.
+- Missing Swedish translation for Party sheet.
+
 ## [2.2.0] - 2022-05-08
 ### Added
 - Travel & Party sheet! #37 (borrowed from Forbidden Lands code)
