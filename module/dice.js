@@ -64,7 +64,7 @@ export class T2KRoller {
     const showTaskCheckOptions = game.settings.get('t2k4e', 'showTaskCheckOptions');
     if (!skipDialog && askForOptions !== showTaskCheckOptions) {
       // 2.1 — Prepares a formula.
-      const formula = YearZeroRoll.createFromDiceQuantities(
+      const formula = YearZeroRoll.forge(
         getDiceQuantities(attribute, skill),
       ).formula;
 
@@ -108,7 +108,7 @@ export class T2KRoller {
 
     // 4 — Creates the roll.
     const dice = getDiceQuantities(attribute, skill, rof, locate);
-    let roll = YearZeroRoll.createFromDiceQuantities(dice, { maxPush });
+    let roll = YearZeroRoll.forge(dice, { maxPush });
     roll.name = title;
 
     // 5 — Modifies the roll.
