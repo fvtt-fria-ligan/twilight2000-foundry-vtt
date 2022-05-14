@@ -115,6 +115,7 @@
         {{/if}}
 
         {{!-- Properties --}}
+        {{#unless hideWeaponProps}}
         <div class="form-group-stacked item-properties">
           {{#each data.props as | prop name |}}
           <label class="checkbox">
@@ -123,6 +124,7 @@
           </label>
           {{/each}}
         </div>
+        {{/unless}}
 
       </div>
 

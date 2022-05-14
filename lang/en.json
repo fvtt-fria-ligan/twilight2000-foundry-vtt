@@ -416,6 +416,10 @@
   "SETTINGS.closeRollTooltipDelay.label": "How many seconds to wait before automatically closing dice results tooltips. Maximum is 15 minutes. Set this value to -1 for never.",
   "SETTINGS.defaultCharTokenSize.name": "Default Token Size for Characters & NPCs",
   "SETTINGS.defaultCharTokenSize.label": "Set a default size between [0.3, 2.0] for newly created character & npc Actors.",
+  "SETTINGS.hideCapacitiesButtons.name": "Hide Capacities Modifiers",
+  "SETTINGS.hideCapacitiesButtons.label": "Whether to hide from the players the plus-minus buttons used to modify the Hit & Stress maximum capacities in the character sheet.",
+  "SETTINGS.hideWeaponProps.name": "Hide Weapon Properties",
+  "SETTINGS.hideWeaponProps.label": "Whether to hide from the players the properties checkboxes in the weapon sheet.",
 
   "YZUR.CHAT.ROLL.Push": "Push",
   "YZUR.CHAT.ROLL.HitLocation": "Hit Location:",
