@@ -2,6 +2,7 @@
   "T2K4E.SheetClassCharacter": "Karaktärsblad",
   "T2K4E.SheetClassVehicle": "Fordonsblad",
   "T2K4E.SheetClassUnit": "Enhetsblad",
+  "T2K4E.SheetClassParty": "Gruppblad",
   "T2K4E.Attribute": "Grundegenskap",
   "T2K4E.Attributes": "Grundegenskaper",
   "T2K4E.AttributeNames.str": "Styrka",
@@ -360,7 +361,6 @@
   "T2K4E.Dialog.Damage.BarrierArmorsHint": "Multipla barriärer kommasepareras.",
   "T2K4E.Macro.MultipleItems": "Din aktiva aktör {actor} har mer än ett föremål med namnet {item}. Det första matchade objektet kommer att väljas.",
   "T2K4E.Macro.NoItem": "Din aktiva aktör {actor} har inte ett objekt som heter {item}.",
-
   "FLPS.TAB.MAIN": "Grupp",
   "FLPS.TAB.TRAVEL": "Resehandlingar",
   "FLPS.TAB.NOTE": "Anteckningar",
@@ -399,10 +399,8 @@
   "FLPS.TRAVEL_ROLL.MAKE_CAMP": "Slå läger",
   "FLPS.TRAVEL_ROLL.HIDE_CAMP": "Dölj läger",
   "FLPS.TRAVEL_ROLL.COOK_FOOD": "Laga mat",
-
   "FLPS.SETTINGS.ALLOW_PUSH": "Tillåt oändligt antal pressade slag",
   "FLPS.SETTINGS.ALLOW_PUSH_HINT": "Om din SL tillåter ett oändligt antal pressade slag. Eller om du är en SL som vill kunna pressa denna händelses slag; kryssa i detta val för att visa en pressa-knapp på nästan alla slag.",
-
   "SETTINGS.trackPcAmmo.name": "Räkna av spelarnas ammunition",
   "SETTINGS.trackPcAmmo.label": "Huruvida spelarnas ammunition automatiska skall räknas av vid nyttjande.",
   "SETTINGS.trackNpcAmmo.name": "Räkna av SLP:ers ammunition",
@@ -415,7 +413,6 @@
   "SETTINGS.closeRollTooltipDelay.label": "Hur många sekunder skall verktygstipset dröja kvar innan de automatiskt stängs ned? Max är 15 minuter. Sätt detta värde till -1 för att aldrig stängas.",
   "SETTINGS.defaultCharTokenSize.name": "Standard prototypstorlek för SLP:er och rollpersoner",
   "SETTINGS.defaultCharTokenSize.label": "Sätt en standard prototypstorlek [0.3, 2.0] för nyskapade SLP:er och rollpersonsaktörer.",
-
   "YZUR.CHAT.ROLL.Push": "Pressa",
   "YZUR.CHAT.ROLL.HitLocation": "Träffområde:",
   "YZUR.CHAT.ROLL.HitLocations": "Träffområden:",
@@ -438,12 +435,12 @@
   "YZUR.DIETYPES.D12TwilightDie": "Bas T12",
   "YZUR.DIETYPES.AmmoDie": "Ammunition",
   "YZUR.DIETYPES.LocationDie": "Träfftärning",
-
   "GAME.Paused": "Kriget pausat",
   "ACTOR.TypeCharacter": "Rollperson",
   "ACTOR.TypeNpc": "Spelledarperson",
   "ACTOR.TypeVehicle": "Fordon",
   "ACTOR.TypeUnit": "Militär enhet",
+  "ACTOR.TypeParty": "Resegrupp",
   "ITEM.TypeWeapon": "Vapen",
   "ITEM.TypeArmor": "Kroppsskydd",
   "ITEM.TypeAmmunition": "Ammunition",
