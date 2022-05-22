@@ -49,12 +49,13 @@ Hooks.once('init', function() {
 
   // Registers dice.
   YZUR.YearZeroRollManager.register('t2k', {
-    'ROLL.chatTemplate': 'systems/t2k4e/templates/dice/roll.hbs',
-    'ROLL.tooltipTemplate': 'systems/t2k4e/templates/dice/tooltip.hbs',
-    'ROLL.infosTemplate': 'systems/t2k4e/templates/dice/infos.hbs',
-    'CHAT.showInfos': true,
-    'DICE.ICONS.t2k.ammo.6': '<img src="systems/t2k4e/assets/icons/bullet2.png"/>',
+    'Roll.chatTemplate': 'systems/t2k4e/templates/dice/roll.hbs',
+    'Roll.tooltipTemplate': 'systems/t2k4e/templates/dice/tooltip.hbs',
+    'Roll.infosTemplate': 'systems/t2k4e/templates/dice/infos.hbs',
+    'Chat.showInfos': true,
+    'Icons.t2k.ammo.6': '<img src="systems/t2k4e/assets/icons/bullet2.png"/>',
   });
+  console.warn(CONFIG.Dice.terms);
   game.yzur = YZUR;
 
   // Creates a namespace within the game global.

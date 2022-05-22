@@ -309,22 +309,28 @@ export function getAttributeAndSkill(skillName, data, attributeName = null) {
  * @param {number}  [modifier=0]   The task modifier
  * @param {boolean} [locate=false] Whether to roll a Location die
  * @see {YearZeroRoll}
- * @returns {import('../lib/yzur.js').DiceQuantities}
+ * @returns {Array.<import('../lib/yzur.js').TermBlok>}
  */
 export function getDiceQuantities(attribute, skill = 0, rof = 0, locate = false) {
-  const DIE_SIZES = [0, 0, 0, 0, 0, 0, 'd', 'd', 'c', 'c', 'b', 'b', 'a'];
-  const attributeScore = DIE_SIZES[attribute];
-  const skillScore = DIE_SIZES[skill];
-  const dice = {};
-  if (attributeScore === skillScore && attribute >= 6) {
-    dice[`${attributeScore}`] = 2;
-  }
-  else {
-    if (attribute >= 6) dice[`${attributeScore}`] = 1;
-    if (skill >= 6) dice[`${skillScore}`] = 1;
-  }
-  if (rof) dice.ammo = rof;
-  if (locate) dice.loc = 1;
+  const dice = [];
+  if (attribute > 0) dice.push({ term: attribute, number: 1 });
+  if (skill > 0) dice.push({ term: skill, number: 1 });
+  if (rof > 0) dice.push({ term: 'm', number: rof });
+  if (locate) dice.push({ term: 'l', number: 1 });
+  // TODO clean code
+  // const DIE_SIZES = [0, 0, 0, 0, 0, 0, 'd', 'd', 'c', 'c', 'b', 'b', 'a'];
+  // const attributeScore = DIE_SIZES[attribute];
+  // const skillScore = DIE_SIZES[skill];
+  // const dice = {};
+  // if (attributeScore === skillScore && attribute >= 6) {
+  //   dice[`${attributeScore}`] = 2;
+  // }
+  // else {
+  //   if (attribute >= 6) dice[`${attributeScore}`] = 1;
+  //   if (skill >= 6) dice[`${skillScore}`] = 1;
+  // }
+  // if (rof) dice.ammo = rof;
+  // if (locate) dice.loc = 1;
   return dice;
 }
 /* ------------------------------------------- */
