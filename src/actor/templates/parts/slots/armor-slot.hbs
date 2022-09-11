@@ -1,0 +1,23 @@
+<div class="item item-armor flexrow" data-item-id="{{id}}">
+
+  <div class="item-name flexrow">
+    <img class="item-roll" src="{{img}}" title="{{name}}" width="24" height="24"/>
+    <a class="item-roll">{{detailedName}}</a>
+  </div>
+  {{#with data}}
+  <div class="item-detail item-cover">
+    {{#each data.location as | bool name |}}
+    {{#if bool}}
+    {{{lookup @root.config.Icons.armorLocationIcons name}}}
+    {{/if}}
+    {{/each}}
+  </div>
+  <div class="item-detail item-rating">{{data.rating.value}}/{{data.rating.max}}</div>
+  <div class="item-detail item-weight" title="{{localize "T2K4E.ItemSheet.Quantity"}}: {{data.qty}}">{{data.encumbrance}}</div>
+
+  <div class="item-controls">
+    {{> "systems/t2k4e/templates/actor/parts/slots/slot-buttons.hbs"}}
+  </div>
+  {{/with}}
+
+</div>

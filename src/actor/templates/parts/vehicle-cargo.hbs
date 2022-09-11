@@ -1,0 +1,174 @@
+<div class="caargoo">
+  <div class="cargo-capacity flexrow flex-right">
+    <label>{{localize "T2K4E.VehicleSheet.CargoCapacity"}}</label>
+    <input type="number" class="boxed-value" name="data.cargo" value="{{data.cargo}}" data-dtype="Number"/>
+  </div>
+  {{!-- <div class="cargo-capacity flexrow flex-right">
+    <label>{{localize "T2K4E.VehicleSheet.CrewCargo"}}</label>
+    <div class="boxed-value">&minus;{{multiply data.crew.driver 25}}</div>
+  </div> --}}
+</div>
+
+<div class="inventory">
+
+  {{!-- Weapons & Grenades --}}
+  <div class="inventory-weapons">
+    <div class="items-header flexrow">
+      <div class="item-name">
+        <h2>{{localize "T2K4E.ActorSheet.Weapons"}}</h2>
+      </div>
+      <div class="item-detail item-rof">
+        <h5>{{localize "T2K4E.ItemSheet.RoF"}}</h5>
+      </div>
+      <div class="item-detail item-damage">
+        <h5>{{localize "T2K4E.ItemSheet.Damage"}}</h5>
+      </div>
+      <div class="item-detail item-crit">
+        <h5>{{localize "T2K4E.ItemSheet.Crit"}}</h5>
+      </div>
+      <div class="item-detail item-armor">
+        <h5>{{localize "T2K4E.ItemSheet.Armor"}}</h5>
+      </div>
+      <div class="item-detail item-range">
+        <h5>{{localize "T2K4E.ItemSheet.Range"}}</h5>
+      </div>
+      <div class="item-detail item-mag">
+        <h5>{{localize "T2K4E.ItemSheet.Mag"}}</h5>
+      </div>
+      <div class="item-detail item-reliability">
+        <h5>{{localize "T2K4E.ItemSheet.Reliability"}}</h5>
+      </div>
+      <div class="item-detail item-blast">
+        <h5>{{localize "T2K4E.ItemSheet.Blast"}}</h5>
+      </div>
+      <div class="item-detail item-weight">
+        <h5>{{localize "T2K4E.ItemSheet.Weight"}}</h5>
+      </div>
+      <div class="item-controls">
+        <a class="button item-create" data-type="weapon" title="{{localize "T2K4E.ActorSheet.AddWeapon"}}">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+    </div>
+    <div class="items-list">
+      {{#each actor.itemTypes.weapon}}
+      {{> "systems/t2k4e/templates/actor/parts/slots/weapon-slot.hbs" this}}
+      {{else}}
+      <div class="item">–</div>
+      {{/each}}
+      {{#each actor.itemTypes.grenade}}
+      {{> "systems/t2k4e/templates/actor/parts/slots/weapon-slot.hbs" this}}
+      {{/each}}
+    </div>
+  </div>
+
+  {{!-- Armor --}}
+  <div class="inventory-armor">
+    <div class="items-header flexrow">
+      <div class="item-name">
+        <h2>{{localize "T2K4E.ItemTypes.armor"}}</h2>
+      </div>
+      <div class="item-detail item-cover">
+        <h5>{{localize "T2K4E.ActorSheet.Cover"}}</h5>
+      </div>
+      <div class="item-detail item-rating">
+        <h5>{{localize "T2K4E.ActorSheet.Rating"}}</h5>
+      </div>
+      <div class="item-detail item-weight">
+        <h5>{{localize "T2K4E.ItemSheet.Weight"}}</h5>
+      </div>
+      <div class="item-controls">
+        <a class="button item-create" data-type="armor" title="{{localize "T2K4E.ActorSheet.AddArmor"}}">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+    </div>
+    <div class="items-list">
+      {{#each actor.itemTypes.armor}}
+      {{> "systems/t2k4e/templates/actor/parts/slots/armor-slot.hbs" this}}
+      {{else}}
+      <div class="item">–</div>
+      {{/each}}
+    </div>
+  </div>
+
+  {{!-- Gear --}}
+  <div class="inventory-gear">
+    <div class="items-header flexrow">
+      <div class="item-name">
+        <h2>{{localize "T2K4E.ItemTypes.gear"}}</h2>
+      </div>
+      {{!-- <div class="item-detail item-quantity">
+        <h5>{{localize "T2K4E.ItemSheet.Quantity"}}</h5>
+      </div> --}}
+      <div class="item-detail item-weight">
+        <h5>{{localize "T2K4E.ItemSheet.Weight"}}</h5>
+      </div>
+      <div class="item-controls">
+        <a class="button item-create" data-type="gear" title="{{localize "T2K4E.ActorSheet.AddGear"}}">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+    </div>
+    <div class="items-list">
+      {{#each actor.itemTypes.gear}}
+      {{> "systems/t2k4e/templates/actor/parts/slots/gear-slot.hbs" this}}
+      {{else}}
+      <div class="item">–</div>
+      {{/each}}
+    </div>
+  </div>
+
+  {{!-- Ammunitions --}}
+  <div class="inventory-ammo">
+    <div class="items-header flexrow">
+      <div class="item-name">
+        <h2>{{localize "T2K4E.ItemTypes.ammunition"}}</h2>
+      </div>
+      {{!-- <div class="item-detail item-quantity">
+        <h5>{{localize "T2K4E.ItemSheet.Quantity"}}</h5>
+      </div> --}}
+      <div class="item-detail item-weight">
+        <h5>{{localize "T2K4E.ItemSheet.Weight"}}</h5>
+      </div>
+      <div class="item-controls">
+        <a class="button item-create" data-type="ammunition" title="{{localize "T2K4E.ActorSheet.AddAmmo"}}">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+    </div>
+    <div class="items-list">
+      {{#each actor.itemTypes.ammunition}}
+      {{> "systems/t2k4e/templates/actor/parts/slots/ammo-slot.hbs" this}}
+      {{else}}
+      <div class="item">–</div>
+      {{/each}}
+    </div>
+  </div>
+
+</div>
+
+{{!-- ENCUMBRANCE --}}
+{{#with data.encumbrance}}
+{{!-- <div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.VehicleEncumbrance'}}">
+  <progress class="encumbrance-gauge" value="{{value}}" max="{{max}}">{{pct}}%</progress>
+</div> --}}
+<div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.VehicleSheet.VehicleEncumbrance'}}">
+  <span class="encumbrance-bar" style="width: {{pct}}%;"></span>
+  <span class="encumbrance-label">
+    {{#if (eq value max)}}
+    {{localize "T2K4E.ActorSheet.EncumbranceFull"}}&nbsp;—&nbsp;
+    {{/if}}
+    {{#if encumbered}}
+    {{localize "T2K4E.ActorSheet.EncumbranceTooHeavy"}}&nbsp;—&nbsp;
+    {{/if}}
+    {{value}}&nbsp;/&nbsp;{{max}}
+  </span>
+  {{!-- {{#times max}}
+  {{#if (lte @index (add @max -1))}}
+  <i class="encumbrance-breakpoint arrow-down" style="left: {{ratio @index @max}}%"></i>
+  <i class="encumbrance-breakpoint arrow-up" style="left: {{ratio @index @max}}%"></i>
+  {{/if}}
+  {{/times}} --}}
+</div>
+{{/with}}

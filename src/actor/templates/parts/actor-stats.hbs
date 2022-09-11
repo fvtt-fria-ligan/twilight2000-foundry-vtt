@@ -1,0 +1,86 @@
+{{!-- Attributes & Skills --}}
+<div>
+  <h2>{{localize "T2K4E.ActorSheet.AttributesAndSkills"}}</h2>
+
+  <div class="stats-list flexrow">
+    {{#each data.attributes as | attribute attr |}}
+    <div class="stat-block stat-block-{{attr}}">
+      <div class="stat-header flexrow">
+        <div class="col-6"></div>
+        <div class="col-3 header-rating">
+          <h5>{{localize "T2K4E.ActorSheet.Rating"}}</h5>
+        </div>
+        <div class="col-3 header-die header-die-{{@index}}">
+          <h5>{{localize "T2K4E.ActorSheet.BaseDie"}}</h5>
+        </div>
+      </div>
+      <div class="stat stat-attribute attribute-{{attr}} flexrow">
+        <div class="col-6 stat-name">
+          <h3><a class="button attribute-roll" data-attribute="{{attr}}">{{localize (concat "T2K4E.AttributeNames." attr)}}</a></h3>
+        </div>
+        <div class="col-3 stat-score">
+          {{> scoreSelector name=(concat "data.attributes." attr ".score") selected=attribute.score}}
+        </div>
+        <div class="col-3 stat-value">
+          {{#if (lte attribute.value 0)}}–
+          {{else}}
+          <div class="boxed-value attribute-roll rollable" data-attribute="{{attr}}">D{{attribute.value}}</div>
+          {{/if}}
+        </div>
+      </div>
+      {{!-- All skills for an attribute --}}
+      {{#each @root.data.skills as | skill sk |}}
+        {{#if (eq attr (lookup @root.config.skillsMap sk))}}
+        <div class="stat stat-skill skill-{{sk}} flexrow">
+          <div class="col-6 stat-name">
+            <h4><a class="button skill-roll" data-skill="{{sk}}">{{localize (concat "T2K4E.SkillNames." sk)}}</a></h4>
+          </div>
+          <div class="col-3 stat-score">
+            {{> scoreSelector name=(concat "data.skills." sk ".score") selected=skill.score}}
+          </div>
+          <div class="col-3 stat-value">
+            {{#if (lte skill.value 0)}}–
+            {{else}}
+            <div class="boxed-value skill-roll rollable" data-skill="{{sk}}">D{{skill.value}}</div>
+            {{/if}}
+          </div>
+        </div>
+        {{/if}}
+      {{/each}}
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+{{!-- Specialties --}}
+<div class="specialty-title flexrow">
+  <h3>{{localize "T2K4E.ActorSheet.Specialties"}}</h3>
+  <a class="button item-create" data-type="specialty" title="{{localize "T2K4E.ActorSheet.AddSpecialty"}}">
+    <i class="fas fa-plus"></i>
+  </a>
+</div>
+
+<div class="specialties-slots">
+  {{#each actor.itemTypes.specialty as | specialty |}}
+  <div class="item item-slot slot-specialty flexrow" data-item-id={{specialty.id}}>
+    {{#with specialty.data}}
+    <div>
+      {{#if data.description}}
+      <b><u>{{specialty.name}}</u>:</b>&nbsp;
+      <small>{{{data.description}}}</small>
+      {{else}}
+        {{#if specialty.hasModifier}}
+        <b><u>{{specialty.name}}</u>:</b>&nbsp;
+        <small>{{specialty.modifiersDescription}}</small>
+        {{else}}
+        {{specialty.name}}
+        {{/if}}
+      {{/if}}
+    </div>
+    {{> "systems/t2k4e/templates/actor/parts/slots/slot-buttons.hbs"}}
+    {{/with}}
+  </div>
+  {{else}}
+  <p class="no-specialty">{{localize "T2K4E.ActorSheet.NoSpecialty"}}</p>
+  {{/each}}
+</div>

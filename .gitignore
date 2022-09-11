@@ -1,19 +1,24 @@
+# OS
+.DS_Store
+
 # IDE
 /.vs
-/.vscode
+/.vscode/launch.json
 *.code-workspace
 
-# JTM
-/jtmConfig.json
+# Node Modules
+/node_modules
 
 # Logs
-logs/
-*.log
+/logs
 npm-debug.log
+*.log
 
-# Dependency directories
-node_modules/
-
-# Foundry VTT files
-/foundry.js
+# Local Configuration
+pathconfig
 /*.lock
+src/lang/foundry
+
+# Distribution Files
+/dist
+/foundry.js

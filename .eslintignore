@@ -1,3 +1,6 @@
-foundry.js
-gulpfile.js
+.github
+dist
 node_modules
+foundry.js
+static/system.json
+static/template.json

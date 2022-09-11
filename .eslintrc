@@ -1,54 +1,52 @@
 {
+  // "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/eslintrc.json",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
   "env": {
-    "es2020": true,
     "browser": true,
     "jquery": true,
-    "node": true
+    "node": true,
+    "es6": true
   },
   "extends": [
     "eslint:recommended",
-    // https://github.com/typhonjs-fvtt/eslint-config-foundry.js
-    "@typhonjs-fvtt/eslint-config-foundry.js"
-    // "@typhonjs-fvtt/eslint-config-foundry.js/diff-0.7.9-0.8.0"
-    // "prettier",
-    // "plugin:prettier/recommended"
+    "jquery",
+    "@typhonjs-fvtt/eslint-config-foundry.js/0.8.0",
+    "prettier"
   ],
   "plugins": [
-    // "prettier"
+    "prettier"
   ],
-  // "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2021,
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
-  },
   "rules": {
     // "prettier/prettier": ["error"],
+    "arrow-parens": ["error", "as-needed"],
     "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
     "comma-dangle": ["error", "always-multiline"],
     "comma-spacing": "error",
     "comma-style": "error",
-    "curly": ["error", "multi-line", "consistent"],
+    "curly": ["error", "multi-line"],
     "dot-location": ["error", "property"],
+    "eqeqeq": 0, // ["warn", "always", { "null": "ignore" }],
     "handle-callback-err": "off",
     "indent": ["error", 2, { "SwitchCase": 1 }],
-    "max-len": ["error", { "code": 120 }],
+    "linebreak-style": ["error", "unix"],
+    "max-len": ["error", { "code": 120, "ignoreUrls": true }],
     "max-nested-callbacks": ["error", { "max": 4 }],
     "max-statements-per-line": ["error", { "max": 2 }],
     "no-console": "off",
     "no-empty-function": "warn",
     "no-floating-decimal": "error",
     "no-inline-comments": "off",
-    "no-irregular-whitespace": "warn",
     "no-lonely-if": "error",
     "no-multi-spaces": "error",
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 0 }],
     "no-prototype-builtins": "off",
     "no-shadow": ["error", { "builtinGlobals": true, "hoist": "all", "allow": ["event"] }],
-    "no-sparse-arrays": "off",
     "no-trailing-spaces": ["error", { "ignoreComments": true }],
+    "no-unreachable": "warn",
+    "no-unused-labels": 0,
     "no-unused-vars": "warn",
     "no-var": "error",
     "object-curly-spacing": ["error", "always"],
@@ -57,11 +55,11 @@
     "semi": ["error", "always"],
     "space-before-blocks": "error",
     "space-before-function-paren": ["error", {
-      "anonymous": "never",
+      "anonymous": "always",
       "named": "never",
       "asyncArrow": "always"
     }],
-    "space-in-parens": "error",
+    "space-in-parens": ["error", "never"],
     "space-infix-ops": "error",
     "space-unary-ops": "error",
     "spaced-comment": "error",

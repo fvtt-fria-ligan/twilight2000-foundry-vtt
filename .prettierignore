@@ -1,0 +1,6 @@
+.github
+dist
+.eslintrc
+package-lock.json
+static/system.json
+static/template.json
