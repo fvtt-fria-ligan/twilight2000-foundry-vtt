@@ -3,7 +3,7 @@
   "version": "10.0.0",
   "description": "A Foundry VTT system for Twilight 2000 4E (Free League Publishing)",
   "type": "module",
-  "main": "t2k4e.js",
+  "main": "src/t2k4e.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development gulp build",
     "dev:watch": "cross-env NODE_ENV=development gulp watch",
@@ -15,7 +15,7 @@
     "release": "gulp release",
     "lint": "eslint --ext .js .",
     "lint:fix": "eslint --ext .js --fix .",
-    "format": "prettier-eslint \"**/*.{hbs,js,json,scss}\" --write",
+    "format": "prettier-eslint \"**/*.{hbs,js,scss}\" --write",
     "postinstall": "npx husky install && npx patch-package",
     "upd": "npm list -g --depth=0 & npm outdated & npx npm-check -u",
     "test": "echo \"Error: no test specified\" && exit 1"
