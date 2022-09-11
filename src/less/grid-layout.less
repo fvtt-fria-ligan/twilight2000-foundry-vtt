@@ -71,18 +71,19 @@
 	// align-items: stretch;
 	// justify-items: stretch;
 	grid-column: span 7 / span 7;
-	grid-template-columns: repeat(6, minmax(0, 1fr)) auto;
+	grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
 	grid-template-rows: auto 1fr 1fr;
 	grid-template-areas: 
-		"name name name name name name img"
-		"nation nation branch branch rank rank img"
-		"hit hit hit stress stress stress img";
+		"name name name name img"
+		"nation branch rank age img"
+		"hit hit stress stress img";
 	
 	.name { grid-area: name; }
 	.img { grid-area: img; }
 	.nation { grid-area: nation; }
 	.branch { grid-area: branch; }
 	.rank { grid-area: rank; }
+	.age { grid-area: age; }
 	.hit { grid-area: hit; }
 	.stress { grid-area: stress; }
 	.xp { grid-area: xp; }
