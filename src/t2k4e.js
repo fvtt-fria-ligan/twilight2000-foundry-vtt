@@ -208,7 +208,7 @@ Hooks.on('createToken', (token, _data, _userId) => {
     }
 
     // Updates the token.
-    if (!foundry.utils.isObjectEmpty(updateData)) {
+    if (!foundry.utils.isEmpty(updateData)) {
       token.update(updateData);
     }
   }

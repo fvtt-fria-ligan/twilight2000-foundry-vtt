@@ -259,7 +259,7 @@ export async function rollPush(roll, { message } = {}) {
   }
 
   // Updates message's flags.
-  if (!foundry.utils.isObjectEmpty(flagData)) {
+  if (!foundry.utils.isEmpty(flagData)) {
     await m.setFlag('t2k4e', 'data', flagData);
   }
 

@@ -58,7 +58,7 @@ export default class ItemT2K extends Item {
 
   get hasModifier() {
     if (!this.data.data.rollModifiers) return false;
-    return !foundry.utils.isObjectEmpty(this.data.data.rollModifiers);
+    return !foundry.utils.isEmpty(this.data.data.rollModifiers);
   }
 
   // get inVehicle() {
@@ -406,7 +406,7 @@ export default class ItemT2K extends Item {
     // }
 
     // Updates message's flags.
-    if (!foundry.utils.isObjectEmpty(flagData)) {
+    if (!foundry.utils.isEmpty(flagData)) {
       await message.setFlag('t2k4e', 'data', flagData);
     }
 

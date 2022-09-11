@@ -50,7 +50,7 @@ export async function migrateWorld() {
   for (const a of game.actors.contents) {
     try {
       const updateData = migrateActorData(a.data);
-      if (!foundry.utils.isObjectEmpty(updateData)) {
+      if (!foundry.utils.isEmpty(updateData)) {
         console.log(`t2k4e | Migrating Actor entity ${a.name}`);
         await a.update(updateData, { enforceTypes: false });
       }
@@ -65,7 +65,7 @@ export async function migrateWorld() {
   for (const i of game.items.contents) {
     try {
       const updateData = migrateItemData(i.toObject());
-      if (!foundry.utils.isObjectEmpty(updateData)) {
+      if (!foundry.utils.isEmpty(updateData)) {
         console.log(`t2k4e | Migrating Item entity ${i.name}`);
         await i.update(updateData, { enforceTypes: false });
       }
@@ -80,7 +80,7 @@ export async function migrateWorld() {
   for (const s of game.scenes.contents) {
     try {
       const updateData = migrateSceneData(s.data);
-      if (!foundry.utils.isObjectEmpty(updateData)) {
+      if (!foundry.utils.isEmpty(updateData)) {
         console.log(`t2k4e | Migrating Scene entity ${s.name}`);
         await s.update(updateData, { enforceTypes: false });
         // If we do not do this, then synthetic token actors remain in cache
@@ -146,7 +146,7 @@ export async function migrateCompendium(pack) {
       }
 
       // Saves the entry, if data was changed.
-      if (foundry.utils.isObjectEmpty(updateData)) continue;
+      if (foundry.utils.isEmpty(updateData)) continue;
       await doc.update(updateData);
       console.log(`Migrated ${entity} entity ${doc.name} in Compendium ${pack.collection}`);
     }
@@ -195,7 +195,7 @@ export function migrateActorData(actorData) {
       const itemUpdate = migrateItemData(itemData);
 
       // Updates
-      if (!foundry.utils.isObjectEmpty(itemUpdate)) {
+      if (!foundry.utils.isEmpty(itemUpdate)) {
         itemUpdate._id = itemData._id;
         arr.push(foundry.utils.expandObject(itemUpdate));
       }
