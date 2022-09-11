@@ -55,7 +55,7 @@ Hooks.once('init', function () {
     'Chat.showInfos': true,
     'Icons.t2k.ammo.6': '<img src="systems/t2k4e/assets/icons/bullet2.png"/>',
   });
-  console.warn(CONFIG.Dice.terms);
+  // console.warn(CONFIG.Dice.terms);
   game.yzur = YZUR;
 
   // Creates a namespace within the game global.

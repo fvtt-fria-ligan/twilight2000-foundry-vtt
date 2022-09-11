@@ -15,7 +15,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['t2k4e', 'sheet', 'actor', 'character'],
-      width: 550,
+      width: 570,
       height: 715,
     });
   }
@@ -96,12 +96,14 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     event.preventDefault();
     const skillName = event.currentTarget.dataset.skill;
     const statData = getAttributeAndSkill(skillName, this.actor.data.data);
-    const isRangedSkill = (skillName === 'rangedCombat' || skillName === 'heavyWeapons');
+    const isRangedSkill = ['rangedCombat', 'heavyWeapons'].includes(skillName);
+    const isCombatSkill = ['rangedCombat', 'heavyWeapons', 'closeCombat'].includes(skillName);
     return T2KRoller.taskCheck({
       ...statData,
       actor: this.actor,
       askForOptions: event.shiftKey,
       rof: isRangedSkill ? 6 : 0,
+      locate: isCombatSkill,
     });
   }
 
