@@ -12,6 +12,7 @@ export function addChatListeners(html) {
   ActorT2K.chatListeners(html);
   ItemT2K.chatListeners(html);
   html.on('click', '.dice-button.push', _onRollPush);
+  html.on('click', '.dice-button.accept', _onRollAccept);
 }
 
 /* ------------------------------------------- */
@@ -36,6 +37,32 @@ function _onRollPush(event) {
   const message = game.messages.get(messageId);
   const roll = message.roll;
   return rollPush(roll, { message });
+}
+
+/* ------------------------------------------- */
+/*  Roll Accept                                */
+/* ------------------------------------------- */
+
+/**
+ * Accepts a roll in the chat.
+ * @param {Event} event
+ * @returns {Promise<import('../lib/yzur.js').YearZeroRoll|ChatMessage>}
+ */
+function _onRollAccept(event) {
+  event.preventDefault();
+
+  // Disables the button to avoid any tricky double push.
+  const button = event.currentTarget;
+  button.disabled = true;
+
+  // Gets infos and requires a push.
+  const chatCard = event.currentTarget.closest('.chat-message');
+  const messageId = chatCard.dataset.messageId;
+  const message = game.messages.get(messageId);
+  /** @type {import('yzur').YearZeroRoll} */
+  const roll = message.roll;
+  roll.maxPush = 0;
+  return message.update({ roll: JSON.stringify(roll) });
 }
 
 /* ------------------------------------------- */
