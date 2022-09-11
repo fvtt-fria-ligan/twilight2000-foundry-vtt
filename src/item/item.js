@@ -2,6 +2,7 @@ import { YearZeroRoll } from 'yzur';
 import { getChatCardActor } from '../components/chat/chat.js';
 import { T2K4E } from '../system/config.js';
 import { T2KRoller } from '../components/roll/dice.js';
+import T2KDialog from '../components/dialog/dialog.js';
 
 /**
  * Twilight 2000 Item.
@@ -36,6 +37,10 @@ export default class ItemT2K extends Item {
 
   get isEquipped() {
     return this.data.data.equipped;
+  }
+
+  get isDisposable() {
+    return !!this.data.data.props?.disposable;
   }
 
   get isMounted() {
@@ -239,18 +244,42 @@ export default class ItemT2K extends Item {
 
   /**
    * Roll the item to Chat, creating a chat card which contains follow up attack or reload roll options.
-   * @param {boolean} [configureDialog] Display a configuration dialog for the item roll, if applicable?
-   * @param {string}  [rollMode]        The roll display mode with which to display (or not) the card
-   * @param {boolean} [sendMessage]     Whether to automatically create a chat message (if true) or simply return
-   *                                    the prepared chat message data (if false).
+   * @param {string}  [rollMode]    The roll display mode with which to display (or not) the card
+   * @param {Actor}   [actor]       The actor that rolled the item, if any
+   * @param {boolean} [sendMessage] Whether to automatically create a chat message (if true) or simply return
+   *   the prepared chat message data (if false).
    * @return {Promise<ChatMessage|object>}
-   * @async
    */
-  async roll({ configureDialog = true, rollMode, sendMessage = true } = {}) {
-    // const itemData = this.data.data;
-    // const actor = this.actor;
-    // const actorData = actor.data.data;
-
+  async roll({ rollMode, actor = null, askForOptions = true, sendMessage = true } = {}) {
+    if (['weapon', 'grenade'].includes(this.type)) {
+      return this.rollAttack({ rollMode, sendMessage, askForOptions }, actor ?? this.actor);
+    }
+    else if (this.type === 'armor') {
+      const mod = await T2KDialog.chooseValue({
+        value: 0,
+        title: game.i18n.format('T2K4E.Dialog.ChooseValue.Armor', {
+          name: this.name,
+        }),
+      });
+      return this.updateArmor(mod?.value ?? 0);
+    }
+    else if (this.type === 'ammunition') {
+      const mod = await T2KDialog.chooseValue({
+        value: 0,
+        title: game.i18n.format('T2K4E.Dialog.ChooseValue.Ammo', { name: this.name }),
+      });
+      return this.updateAmmo(mod?.value ?? 0);
+    }
+    else if (this.isDisposable) {
+      const mod = await T2KDialog.chooseValue({
+        value: 0,
+        title: game.i18n.format('T2K4E.Dialog.ChooseValue.Qty', { name: this.name }),
+      });
+      if (mod?.value) {
+        return this.update({ 'data.qty': this.qty + mod.value });
+      }
+      else return;
+    }
     // Creates or returns the chat message data.
     return this.displayCard({ rollMode, sendMessage });
   }
@@ -400,6 +429,25 @@ export default class ItemT2K extends Item {
     const max = this.data.data.reliability.max;
     const rel = Math.clamped(val + jam, 0, max);
     if (update && rel !== val) await this.update({ 'data.reliability.value': rel });
+    return rel - val;
+  }
+
+  /* ------------------------------------------- */
+
+  /**
+   * Updates the armor rating of an armor based on its interval [0, max].
+   * @param {number}   mod          How much to modify the armor rating
+   * @param {boolean} [update=true] Whether to update the item
+   * @returns {number} The real difference applied
+   * @async
+   */
+  async updateArmor(mod, update = true) {
+    if (mod === 0) return 0;
+    if (!this.type === 'armor') return 0;
+    const val = this.data.data.rating.value;
+    const max = this.data.data.rating.max;
+    const rel = Math.clamped(val + mod, 0, max);
+    if (update && rel !== val) await this.update({ 'data.rating.value': rel });
     return rel - val;
   }
 

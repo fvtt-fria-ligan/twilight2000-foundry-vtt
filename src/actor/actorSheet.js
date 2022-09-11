@@ -88,7 +88,7 @@ export default class ActorSheetT2K extends ActorSheet {
   /*  Actor Rolls                                 */
   /* -------------------------------------------- */
 
-  rollAction(actionName, itemId) {
+  rollAction(actionName, _itemId) {
     const skillName = T2K4E.actionSkillsMap[actionName];
     const statData = getAttributeAndSkill(skillName, this.actor.data.data);
     statData.title += ` (${this.actor.name})`;
@@ -120,6 +120,7 @@ export default class ActorSheetT2K extends ActorSheet {
     // Item Management
     html.find('.item-create').click(this._onItemCreate.bind(this));
     html.find('.item-edit').click(this._onItemEdit.bind(this));
+    html.find('.item-chat').click(this._onItemChat.bind(this));
     html.find('.item-delete').click(this._onItemDelete.bind(this));
     html.find('.item-equip').click(this._onItemEquip.bind(this));
     html.find('.item-backpack').click(this._onItemStore.bind(this));
@@ -128,7 +129,7 @@ export default class ActorSheetT2K extends ActorSheet {
     // Owner-only listeners.
     if (this.actor.isOwner) {
       html.find('.item-roll').click(this._onItemRoll.bind(this));
-      html.find('.item[data-item-id]').each((index, elem) => {
+      html.find('.item[data-item-id]').each((_index, elem) => {
         elem.setAttribute('draggable', true);
         elem.addEventListener('dragstart', ev => this._onDragStart(ev), false);
       });
@@ -165,7 +166,8 @@ export default class ActorSheetT2K extends ActorSheet {
     }
 
     // Global action for item click.
-    return item.roll();
+    // return item.roll();
+    return item.roll({ askForOptions: event.shiftKey }, this.actor);
   }
 
   /* ------------------------------------------- */
@@ -200,6 +202,14 @@ export default class ActorSheetT2K extends ActorSheet {
     const elem = event.currentTarget;
     const itemId = elem.closest('.item').dataset.itemId;
     return this.actor.deleteEmbeddedDocuments('Item', [itemId]);
+  }
+
+  _onItemChat(event) {
+    event.preventDefault();
+    const elem = event.currentTarget;
+    const itemId = elem.closest('.item').dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    return item.displayCard();
   }
 
   _onItemEquip(event) {

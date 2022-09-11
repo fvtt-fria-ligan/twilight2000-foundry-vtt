@@ -10,7 +10,7 @@ T2K4E.AttributeNames.int: Intellect
 T2K4E.AttributeNames.emp: Empathie
 T2K4E.Skill: Compétence
 T2K4E.Skills: Compétences
-T2K4E.SkillNames.none: '–'
+T2K4E.SkillNames.none: –
 T2K4E.SkillNames.heavyWeapons: Artillerie lourde
 T2K4E.SkillNames.closeCombat: Combat rapproché
 T2K4E.SkillNames.stamina: Endurance
@@ -92,7 +92,7 @@ T2K4E.ItemTypes.grenade: Explosif
 T2K4E.ItemTypes.injury: Blessure
 T2K4E.ItemTypes.specialty: Spécialité
 T2K4E.ItemTypes.weapon: Arme
-T2K4E.ItemPropNames.twoHanded: Deux mains
+T2K4E.ItemPropNames.twoHanded: "Deux\_mains"
 T2K4E.ItemPropNames.mounted: Monté
 T2K4E.ItemPropNames.disposable: Jetable
 T2K4E.ItemPropNames.ammoBelt: Cartouchière
@@ -101,7 +101,7 @@ T2K4E.ItemPropNames.armored: Protégé
 T2K4E.ItemPropNames.bipod: Bipied
 T2K4E.ItemPropNames.tripod: Trépied
 T2K4E.ItemPropNames.scope: Lunette
-T2K4E.ItemPropNames.nightVision: Vis. Noct.
+T2K4E.ItemPropNames.nightVision: "Vis.\_Noct."
 T2K4E.ItemPropNames.bayonet: Baïonnette
 T2K4E.ItemPropNames.suppressor: Silencieux
 T2K4E.ActorTypes.character: Personnage joueur (PJ)
@@ -118,7 +118,7 @@ T2K4E.ActorSheet.Branch: Branche
 T2K4E.ActorSheet.MilitaryRank: Rang
 T2K4E.ActorSheet.HitCapacity: Capacité de vie
 T2K4E.ActorSheet.StressCapacity: Capacité de stress
-T2K4E.ActorSheet.CapacityModifier: 'Modificateur :'
+T2K4E.ActorSheet.CapacityModifier: "Modificateur\_:"
 T2K4E.ActorSheet.Experience: Expérience
 T2K4E.ActorSheet.ExperienceCurrent: XP actuel
 T2K4E.ActorSheet.ExperienceTotal: XP total
@@ -126,15 +126,15 @@ T2K4E.ActorSheet.Appearance: Apparence
 T2K4E.ActorSheet.MoralCode: Code moral
 T2K4E.ActorSheet.Buddy: Pote
 T2K4E.ActorSheet.BigDream: Votre grand rêve
-T2K4E.ActorSheet.GroupMeeting: 'Comment vous avez rencontré le groupe :'
+T2K4E.ActorSheet.GroupMeeting: "Comment vous avez rencontré le groupe\_:"
 T2K4E.ActorSheet.AttributesAndSkills: Attributs & compétences
 T2K4E.ActorSheet.Rating: Score
 T2K4E.ActorSheet.BaseDie: Dé de base
 T2K4E.ActorSheet.Specialties: Spécialités
 T2K4E.ActorSheet.AddSpecialty: Ajouter une nouvelle spécialité
-T2K4E.ActorSheet.NoSpecialty:
-  Ce personnage n'a pas de spécialité. Cliquez sur l'icône
-  "+" pour ajouter une nouvelle spécialité.
+T2K4E.ActorSheet.NoSpecialty: >-
+  Ce personnage n'a pas de spécialité. Cliquez sur l'icône "+" pour ajouter une
+  nouvelle spécialité.
 T2K4E.ActorSheet.Combat: Combat
 T2K4E.ActorSheet.Actions: Actions
 T2K4E.ActorSheet.Current: Actuel
@@ -174,9 +174,7 @@ T2K4E.ActorSheet.NewItem.gear: Nouvel équipement
 T2K4E.ActorSheet.NewItem.ammunition: Nouvelle munition
 T2K4E.ActorSheet.NewItem.specialty: Nouvelle spécialité
 T2K4E.ActorSheet.NewItem.injury: Nouvelle blessure
-T2K4E.ActorSheet.NotifWrongItemType:
-  Les objets de type "{type}" ne peuvent pas être
-  ajouté à {actor}!
+T2K4E.ActorSheet.NotifWrongItemType: Les objets de type "{type}" ne peuvent pas être ajouté à {actor}!
 T2K4E.VehicleSheet.CrewTab: Équipage
 T2K4E.VehicleSheet.ComponentsTab: Composants
 T2K4E.VehicleSheet.CombatTab: Combat
@@ -198,8 +196,8 @@ T2K4E.VehicleSheet.Gasoline: Essence
 T2K4E.VehicleSheet.Diesel: Diesel
 T2K4E.VehicleSheet.Alcohol: Alcool
 T2K4E.VehicleSheet.Nuclear: Nucléaire
-T2K4E.VehicleSheet.CrewQty: 'Équipage :'
-T2K4E.VehicleSheet.PassengerQty: 'Passagers :'
+T2K4E.VehicleSheet.CrewQty: "Équipage\_:"
+T2K4E.VehicleSheet.PassengerQty: "Passagers\_:"
 T2K4E.VehicleSheet.EmptyCrew: Glissez-déposez un acteur pour l'ajouter à l'équipage.
 T2K4E.VehicleSheet.Armor: Armure
 T2K4E.VehicleSheet.FrontArmor: Avant
@@ -210,8 +208,8 @@ T2K4E.VehicleSheet.Damage: Dégats
 T2K4E.VehicleSheet.MountedWeapons1: Armes principales
 T2K4E.VehicleSheet.MountedWeapons2: Armes secondaires
 T2K4E.VehicleSheet.MountedWeaponType: Type
-T2K4E.VehicleSheet.CargoCapacity: 'Capacité de chargement :'
-T2K4E.VehicleSheet.CrewCargo: "Poids de l'équipage :"
+T2K4E.VehicleSheet.CargoCapacity: "Capacité de chargement\_:"
+T2K4E.VehicleSheet.CrewCargo: "Poids de l'équipage\_:"
 T2K4E.VehicleSheet.VehicleEncumbrance: Encombrement (véhicule)
 T2K4E.VehicleSheet.Mount: Monter l'arme
 T2K4E.VehicleSheet.Unmount: Démonter l'arme
@@ -275,13 +273,11 @@ T2K4E.ItemSheet.Name: Nom
 T2K4E.ItemSheet.FeaturesTab: Caractéristiques
 T2K4E.ItemSheet.ModifiersTab: Modificateurs
 T2K4E.ItemSheet.RollModifiers: Modificateurs de lancer
-T2K4E.ItemSheet.AddNewRollModifier:
-  Ajouter un nouveau modificateur de lancer à cet
-  objet
+T2K4E.ItemSheet.AddNewRollModifier: Ajouter un nouveau modificateur de lancer à cet objet
 T2K4E.ItemSheet.DeleteRollModifier: Supprimer ce modificateur de lancer
-T2K4E.ItemSheet.NoRollModifier:
-  Cet article n'a pas de modificateur. Pour en ajouter
-  un, cliquez sur l'icône "+".
+T2K4E.ItemSheet.NoRollModifier: >-
+  Cet article n'a pas de modificateur. Pour en ajouter un, cliquez sur l'icône
+  "+".
 T2K4E.ItemSheet.SelectRollModifier: Choisissez un nom
 T2K4E.ItemSheet.DescriptionTab: Notes
 T2K4E.ItemSheet.AttributeUsed: Attribut utilisé
@@ -323,23 +319,21 @@ T2K4E.Chat.Actions.Push: Pousser
 T2K4E.Chat.Actions.ApplyDamage: Appliquer les dégâts
 T2K4E.Chat.Roll.Success: Succès
 T2K4E.Chat.Roll.Successes: Succès
-T2K4E.Chat.Roll.Pushed: '— Poussé'
+T2K4E.Chat.Roll.Pushed: — Poussé
 T2K4E.Chat.Roll.Suppression: Suppression
 T2K4E.Chat.Roll.ExtraHit: Touché supplémentaire
 T2K4E.Chat.Roll.ExtraHits: Touchés supplémentaires
 T2K4E.Chat.Roll.Mishap: Malchance
 T2K4E.Chat.Roll.AmmoSpent: Munitions dépensées
 T2K4E.Chat.Roll.NoItemNotif: Cet objet n'existe plus.
-T2K4E.Chat.Roll.NoReliabilityNotif:
-  La valeur de fiabilité actuelle de cet objet ne
-  permet pas de l'utiliser.
+T2K4E.Chat.Roll.NoReliabilityNotif: La valeur de fiabilité actuelle de cet objet ne permet pas de l'utiliser.
 T2K4E.Chat.Damage.Incapacited: IMMOBILISÉ
 T2K4E.Chat.Damage.DamagedArmor: Endommagé
-T2K4E.Chat.Damage.DamageDealt: '<b>{name}</b> a reçu <b>{amount}</b> dégats.'
+T2K4E.Chat.Damage.DamageDealt: <b>{name}</b> a reçu <b>{amount}</b> dégats.
 T2K4E.Chat.Damage.NoDamageDealt: Aucun dégats n'a été infligé à <b>{name}</b>.
-T2K4E.Chat.Damage.InitialAmount:
-  L'attaque avait un montant initial de <b>{damage}</b>
-  dégâts, avec un modificateur d'armure de {mod}.
+T2K4E.Chat.Damage.InitialAmount: >-
+  L'attaque avait un montant initial de <b>{damage}</b> dégâts, avec un
+  modificateur d'armure de {mod}.
 T2K4E.Chat.Damage.DeflectedDamage: dévié {damage} dégâts
 T2K4E.Chat.Damage.DeflectedAllDamage: dévié tous les dégâts
 T2K4E.Chat.Damage.NoEffect: aucun effet
@@ -347,9 +341,7 @@ T2K4E.Combat.Attack: '{weapon} — Attaque'
 T2K4E.Combat.Barrier: Couverture
 T2K4E.Combat.BodyArmor: Protection du corps
 T2K4E.Combat.NoQuantityLeft: Il ne reste plus d'unité pour l'arme {arme}.
-T2K4E.Combat.NoAmmoLeft:
-  Il ne reste plus de munitions dans le chargeur de l'arme
-  {weapon}.
+T2K4E.Combat.NoAmmoLeft: Il ne reste plus de munitions dans le chargeur de l'arme {weapon}.
 T2K4E.Combat.NoMag: Veuillez insérer un chargeur pour l'arme {arme}.
 T2K4E.Dialog.Actions.Normal: Lancer
 T2K4E.Dialog.Actions.Reload: Recharger
@@ -371,12 +363,10 @@ T2K4E.Dialog.Damage.Description: Choisissez la quantité de dégâts à infliger
 T2K4E.Dialog.Damage.DamageQuantity: Quantité de base
 T2K4E.Dialog.Damage.ExtraHits: Touchés supplémentaires
 T2K4E.Dialog.Damage.BarrierArmors: Niveaux d'armure de l'obstacle
-T2K4E.Dialog.Damage.BarrierArmorsHint:
-  Les obstacles multiples sont séparés par des
-  virgules.
-T2K4E.Macro.MultipleItems:
-  L'acteur {actor} que vous contrôlez a plus d'un Item avec
-  le nom {item}. Le premier objet correspondant sera choisi.
+T2K4E.Dialog.Damage.BarrierArmorsHint: Les obstacles multiples sont séparés par des virgules.
+T2K4E.Macro.MultipleItems: >-
+  L'acteur {actor} que vous contrôlez a plus d'un Item avec le nom {item}. Le
+  premier objet correspondant sera choisi.
 T2K4E.Macro.NoItem: L'acteur {actor} que vous contrôlez n'a pas d'objet nommé {item}.
 FLPS.TAB.MAIN: Composition
 FLPS.TAB.TRAVEL: Actions
@@ -384,9 +374,7 @@ FLPS.TAB.NOTE: Notes
 FLPS.PARTY.NAME: Nom du groupe
 FLPS.PARTY.MEMBERS: Membres du groupe
 FLPS.PARTY.HINT_ADD: Glissez-déposez des personnages ici pour les ajouter au groupe.
-FLPS.PARTY.HINT_ASSIGN:
-  Glissez-déposez des personnages pour les affecter aux activités
-  souhaitées.
+FLPS.PARTY.HINT_ASSIGN: Glissez-déposez des personnages pour les affecter aux activités souhaitées.
 FLPS.TRAVEL.MARCH: Marche
 FLPS.TRAVEL.DRIVE: Conduite
 FLPS.TRAVEL.WATCH: Surveillance
@@ -403,9 +391,9 @@ FLPS.TRAVEL.RESET: RÉINITIALISER
 FLPS.UI.WHO_ROLLS: Qui lance les dés ?
 FLPS.UI.WHO_PUSHES: Qui pousse les dés ?
 FLPS.UI.ATTENTION: Attention
-FLPS.UI.ERROR.OPEN_SHEET:
-  Veuillez ouvrir votre feuille de personnage au moins une
-  fois avant de faire des lancers de voyage.
+FLPS.UI.ERROR.OPEN_SHEET: >-
+  Veuillez ouvrir votre feuille de personnage au moins une fois avant de faire
+  des lancers de voyage.
 FLPS.TRAVEL_ROLL.FORCED_MARCH: Marche forcée
 FLPS.TRAVEL_ROLL.MARCH_IN_DARKNESS: Marcher de nuit
 FLPS.TRAVEL_ROLL.DRIVE: Conduire
@@ -421,38 +409,26 @@ FLPS.TRAVEL_ROLL.MAKE_CAMP: Établir le camp
 FLPS.TRAVEL_ROLL.HIDE_CAMP: Camoufler le camp
 FLPS.TRAVEL_ROLL.COOK_FOOD: Cuire des aliments
 FLPS.SETTINGS.ALLOW_PUSH: Autoriser un nombre illimités de pousses sur les lancers
-FLPS.SETTINGS.ALLOW_PUSH_HINT:
-  Si votre MJ autorise un nombre illimité de lancers
-  poussés. Ou peut-être êtes-vous un MJ qui veut pouvoir pousser les jets de cette
-  rencontre ; cochez ce paramètre pour afficher un bouton pour pousser sur presque
-  tous les lancers.
+FLPS.SETTINGS.ALLOW_PUSH_HINT: "Si votre MJ autorise un nombre illimité de lancers poussés. Ou peut-être êtes-vous un MJ qui veut pouvoir pousser les jets de cette rencontre\_; cochez ce paramètre pour afficher un bouton pour pousser sur presque tous les lancers."
 SETTINGS.trackPcAmmo.name: Suivre les munitions des PJs
-SETTINGS.trackPcAmmo.label:
-  Si la consommation de munitions doit être suivie pour
-  les personnages joueurs.
+SETTINGS.trackPcAmmo.label: Si la consommation de munitions doit être suivie pour les personnages joueurs.
 SETTINGS.trackNpcAmmo.name: Suivre les munitions des PNJs
-SETTINGS.trackNpcAmmo.label:
-  Si la consommation de munitions doit être suivie pour
-  les personnages non-joueurs.
+SETTINGS.trackNpcAmmo.label: >-
+  Si la consommation de munitions doit être suivie pour les personnages
+  non-joueurs.
 SETTINGS.trackVehicleAmmo.name: Suivre les munitions des véhicules
-SETTINGS.trackVehicleAmmo.label:
-  Si la consommation de munitions doit être suivie
-  pour les véhicules armés.
-SETTINGS.showTaskCheckOptions.name:
-  Afficher les options pour un lancer de compétence
-  par défaut
+SETTINGS.trackVehicleAmmo.label: Si la consommation de munitions doit être suivie pour les véhicules armés.
+SETTINGS.showTaskCheckOptions.name: Afficher les options pour un lancer de compétence par défaut
 SETTINGS.showTaskCheckOptions.label: Maintenez la touche Maj enfoncée pour basculer.
 SETTINGS.closeRollTooltipDelay.name: Délai d'info-bulle de fermeture de lancer
-SETTINGS.closeRollTooltipDelay.label:
-  Combien de secondes à attendre avant de fermer
-  automatiquement les info-bulles des résultats des dés. La durée maximale est de
-  15 minutes. Définissez cette valeur sur -1 pour jamais.
-SETTINGS.defaultCharTokenSize.name:
-  Taille de jeton par défaut pour les PJs et les
-  PNJs
-SETTINGS.defaultCharTokenSize.label:
-  Définissez une taille par défaut entre [0,3 et
-  2,0] pour les acteurs Personnage et NPC nouvellement créés.
+SETTINGS.closeRollTooltipDelay.label: >-
+  Combien de secondes à attendre avant de fermer automatiquement les info-bulles
+  des résultats des dés. La durée maximale est de 15 minutes. Définissez cette
+  valeur sur -1 pour jamais.
+SETTINGS.defaultCharTokenSize.name: Taille de jeton par défaut pour les PJs et les PNJs
+SETTINGS.defaultCharTokenSize.label: >-
+  Définissez une taille par défaut entre [0,3 et 2,0] pour les acteurs
+  Personnage et NPC nouvellement créés.
 YZUR.CHAT.ROLL.Push: Pousser
 YZUR.CHAT.ROLL.HitLocation: 'Cible :'
 YZUR.CHAT.ROLL.HitLocations: 'Cibles :'
@@ -462,11 +438,11 @@ YZUR.CHAT.ROLL.Locations.3: Torse
 YZUR.CHAT.ROLL.Locations.4: Torse
 YZUR.CHAT.ROLL.Locations.5: Bras
 YZUR.CHAT.ROLL.Locations.6: Tête
-YZUR.CHAT.ROLL.ExtraHit: 'Toucher supplémentaire :'
-YZUR.CHAT.ROLL.ExtraHits: 'Touchers supplémentaires :'
+YZUR.CHAT.ROLL.ExtraHit: "Toucher supplémentaire\_:"
+YZUR.CHAT.ROLL.ExtraHits: "Touchers supplémentaires\_:"
 YZUR.CHAT.ROLL.Suppression: 'Suppression :'
-YZUR.CHAT.ROLL.AmmoSpent: 'Munitions dépensées :'
-YZUR.CHAT.ROLL.DamageOrStress: 'Dégâts/Stress :'
+YZUR.CHAT.ROLL.AmmoSpent: "Munitions dépensées\_:"
+YZUR.CHAT.ROLL.DamageOrStress: "Dégâts/Stress\_:"
 YZUR.CHAT.ROLL.JamCount: 'Fiabilité :'
 YZUR.CHAT.ROLL.Jammed: ARME ENRAYÉE !!
 YZUR.DIETERMS.D6TwilightDie: D6
@@ -497,3 +473,5 @@ EFFECT.StatusSmoke: Fumée
 EFFECT.StatusFire: Feu
 EFFECT.StatusSlowAction: Action lente dépensée
 EFFECT.StatusFastAction: Action rapide dépensée
+T2K4E.ActorSheet.ToChat: Envoyer l'objet dans le chat
+YZUR.CHAT.ROLL.Accept: Accepter

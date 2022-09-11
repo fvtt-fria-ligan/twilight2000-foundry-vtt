@@ -247,4 +247,52 @@ export default class T2KDialog extends Dialog {
       barriers: form.barriers?.value,
     };
   }
+
+  /* -------------------------------------------- */
+  /*  Value Choice Dialog                         */
+  /* -------------------------------------------- */
+
+  /**
+   * Renders a dialog for choosing a value for the item.
+   * @param {{ value: number, title: string }} valueData
+   * @param {object} options
+   * @returns {Promise}
+   * @static
+   * @async
+   */
+  static async chooseValue(valueData, options) {
+    const template = 'systems/t2k4e/templates/components/dialog/value-choice-dialog.hbs';
+    const content = await renderTemplate(template, {
+      data: valueData,
+      config: CONFIG.T2K4E,
+    });
+
+    return new Promise(resolve => {
+      // Sets the data of the dialog.
+      const data = {
+        title: valueData.title,
+        content,
+        buttons: {
+          ok: {
+            label: game.i18n.localize('T2K4E.Dialog.Actions.Ok'),
+            callback: html => resolve(T2KDialog._processValueChoice(html[0].querySelector('form'))),
+          },
+          cancel: {
+            label: game.i18n.localize('T2K4E.Dialog.Actions.Cancel'),
+            callback: () => resolve({ cancelled: true }),
+          },
+        },
+        default: 'ok',
+        close: () => resolve({ cancelled: true }),
+      };
+      // Renders the dialog.
+      new this(data, options).render(true);
+    });
+  }
+
+  static _processValueChoice(form) {
+    return {
+      value: parseInt(form.modifier.value) || 0,
+    };
+  }
 }

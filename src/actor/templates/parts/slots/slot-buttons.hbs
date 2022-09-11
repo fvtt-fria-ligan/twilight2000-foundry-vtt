@@ -39,6 +39,11 @@
       {{/if}}
     {{/if}}
   {{/unless}}
+  {{#unless (eq type 'specialty')}}
+  <a class="button item-chat" title="{{localize "T2K4E.ActorSheet.ToChat"}}">
+    {{{@root.config.Icons.buttons.chat}}}
+  </a>
+  {{/unless}}
   <a class="button item-edit" title="{{localize "T2K4E.ActorSheet.Edit"}}">
     {{{@root.config.Icons.buttons.edit}}}
   </a>

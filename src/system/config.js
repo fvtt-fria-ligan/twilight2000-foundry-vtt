@@ -258,6 +258,7 @@ T2K4E.Icons = {
     reload: '<i class="fas fa-sync-alt"></i>',
     lethal: '<i class="fas fa-skull"></i>',
     mental: '<i class="fas fa-brain"></i>',
+    chat: '<i class="far fa-comment-dots"></i>',
   },
   armorLocationIcons: {
     head: '<i class="fas fa-hard-hat"></i>',
