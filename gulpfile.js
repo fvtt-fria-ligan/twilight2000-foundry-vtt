@@ -110,7 +110,7 @@ async function pipeStatics() {
 function buildWatch() {
   buildSource({ watch: true });
   gulp.watch(`${sourceDirectory}/**/*.${templateExt}`, { ignoreInitial: false }, pipeTemplates);
-  gulp.watch(`${sourceDirectory}/src/less/**/*.less`, { ignoreInitial: false }, pipeStyles);
+  gulp.watch(`${sourceDirectory}/less/**/*.less`, { ignoreInitial: false }, pipeStyles);
   gulp.watch(`${sourceDirectory}/lang/**/*.yml`, { ignoreInitial: false }, pipeTranslations);
   gulp.watch(
     staticFiles.map(file => `static/${file}`),
