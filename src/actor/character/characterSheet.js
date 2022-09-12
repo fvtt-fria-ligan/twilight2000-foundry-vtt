@@ -62,7 +62,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
   // _onAttributeChange(event) {
   // 	event.preventDefault();
   // 	console.warn('d');
-  // 	const data = this.actor.data.data;
+  // 	const data = this.actor.system;
   // 	this.actor.update({
   // 		'data.health.value': data.health.max,
   // 		'data.sanity.value': data.sanity.max,
@@ -78,7 +78,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
   _onAttributeRoll(event) {
     event.preventDefault();
     const attributeName = event.currentTarget.dataset.attribute;
-    const attribute = this.actor.data.data.attributes[attributeName].value;
+    const attribute = this.actor.system.attributes[attributeName].value;
     const title = game.i18n.localize(CONFIG.T2K4E.attributes[attributeName]);
     return T2KRoller.taskCheck({
       title,
@@ -95,7 +95,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
   _onSkillRoll(event) {
     event.preventDefault();
     const skillName = event.currentTarget.dataset.skill;
-    const statData = getAttributeAndSkill(skillName, this.actor.data.data);
+    const statData = getAttributeAndSkill(skillName, this.actor.system);
     const isRangedSkill = ['rangedCombat', 'heavyWeapons'].includes(skillName);
     const isCombatSkill = ['rangedCombat', 'heavyWeapons', 'closeCombat'].includes(skillName);
     return T2KRoller.taskCheck({
@@ -146,7 +146,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     const min = +elem.dataset.min || 0;
     const max = +elem.dataset.max || 10;
     const field = elem.dataset.field;
-    const currentCount = getProperty(this.actor, `data.data.${field}.value`) || 0;
+    const currentCount = getProperty(this.actor, `system.${field}.value`) || 0;
     let newCount = currentCount;
 
     if (event.type === 'click') newCount--;
@@ -169,13 +169,13 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     const elem = event.currentTarget;
     const field = elem.dataset.field;
 
-    const maxi = getProperty(this.actor, `data.data.${field}.max`);
+    const maxi = getProperty(this.actor, `system.${field}.max`);
     if (mod < 0 && maxi < 2) return;
     if (mod > 0 && maxi > 11) return;
 
     const min = -12;
     const max = 12;
-    const currentMod = getProperty(this.actor, `data.data.${field}.modifier`) || 0;
+    const currentMod = getProperty(this.actor, `system.${field}.modifier`) || 0;
     const newMod = Math.clamped(currentMod + mod, min, max);
 
     return this.actor.update({ [`data.${field}.modifier`]: newMod });

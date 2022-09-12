@@ -17,7 +17,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
   }
 
   get actorProperties() {
-    return this.actor.data.data;
+    return this.actor.system;
   }
 
   getData() {
@@ -26,12 +26,12 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     data.travel = {};
     data.travelActions = this.getTravelActions();
     let ownedActorId, assignedActorId, travelAction;
-    for (let i = 0; i < (data.data.members || []).length; i++) {
-      ownedActorId = data.data.members[i];
+    for (let i = 0; i < (data.system.members || []).length; i++) {
+      ownedActorId = data.system.members[i];
       data.partyMembers[ownedActorId] = game.actors.get(ownedActorId).data;
     }
-    for (const travelActionKey in data.data.travel) {
-      travelAction = data.data.travel[travelActionKey];
+    for (const travelActionKey in data.system.travel) {
+      travelAction = data.system.travel[travelActionKey];
       data.travel[travelActionKey] = {};
 
       if (typeof travelAction === 'object') {
@@ -55,7 +55,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     html.find('.member-delete').click(this.handleRemoveMember.bind(this));
     html.find('.reset').click(event => {
       event.preventDefault();
-      this.assignPartyMembersToAction(this.actor.data.data.members, 'other');
+      this.assignPartyMembersToAction(this.actor.system.members, 'other');
       this.render(true);
     });
 
@@ -81,7 +81,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     const div = $(event.currentTarget).parents('.party-member');
     const entityId = div.data('entity-id');
 
-    const partyMembers = this.actor.data.data.members;
+    const partyMembers = this.actor.system.members;
     partyMembers.splice(partyMembers.indexOf(entityId), 1);
 
     const updateData = {
@@ -89,8 +89,8 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     };
 
     let travelAction, actionParticipants;
-    for (const travelActionKey in this.actor.data.data.travel) {
-      travelAction = this.actor.data.data.travel[travelActionKey];
+    for (const travelActionKey in this.actor.system.travel) {
+      travelAction = this.actor.system.travel[travelActionKey];
       if (travelAction.indexOf(entityId) < 0) continue;
 
       if (typeof travelAction === 'object') {
@@ -166,8 +166,8 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
 
       // remove party member from the current assignment
       let travelAction, actionParticipants;
-      for (const key in this.actor.data.data.travel) {
-        travelAction = this.actor.data.data.travel[key];
+      for (const key in this.actor.system.travel) {
+        travelAction = this.actor.system.travel[key];
         if (travelAction.indexOf(partyMemberId) < 0) continue;
 
         updDataKey = 'data.travel.' + key;
@@ -188,9 +188,9 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
 
       // add party member to a new assignment
       updDataKey = 'data.travel.' + travelActionKey;
-      if (typeof this.actor.data.data.travel[travelActionKey] === 'object') {
+      if (typeof this.actor.system.travel[travelActionKey] === 'object') {
         if (updateData[updDataKey] === undefined) {
-          actionParticipants = [...this.actor.data.data.travel[travelActionKey]];
+          actionParticipants = [...this.actor.system.travel[travelActionKey]];
           actionParticipants.push(partyMemberId);
           updateData[updDataKey] = actionParticipants;
         }
@@ -201,14 +201,14 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
       else {
         updateData[updDataKey] = partyMemberId;
         // if someone was already assigned here we must move that character to the "Other" assignment
-        if (this.actor.data.data.travel[travelActionKey] !== '') {
+        if (this.actor.system.travel[travelActionKey] !== '') {
           if (updateData['data.travel.other'] === undefined) {
-            actionParticipants = [...this.actor.data.data.travel.other];
-            actionParticipants.push(this.actor.data.data.travel[travelActionKey]);
+            actionParticipants = [...this.actor.system.travel.other];
+            actionParticipants.push(this.actor.system.travel[travelActionKey]);
             updateData['data.travel.other'] = actionParticipants;
           }
           else {
-            updateData['data.travel.other'].push(this.actor.data.data.travel[travelActionKey]);
+            updateData['data.travel.other'].push(this.actor.system.travel[travelActionKey]);
           }
         }
       }
@@ -218,13 +218,13 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
   }
 
   async handleAddToParty(actor) {
-    let partyMembers = this.actor.data.data.members;
+    let partyMembers = this.actor.system.members;
     const initialCount = partyMembers.length;
     partyMembers.push(actor.data._id);
     partyMembers = [...new Set(partyMembers)]; // remove duplicate values
     if (initialCount === partyMembers.length) return; // nothing changed
 
-    const travelOther = [...this.actor.data.data.travel.other];
+    const travelOther = [...this.actor.system.travel.other];
     travelOther.push(actor.data._id);
     await this.actor.update({ 'data.members': partyMembers, 'data.travel.other': travelOther });
   }

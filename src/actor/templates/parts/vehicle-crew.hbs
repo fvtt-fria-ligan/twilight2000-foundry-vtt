@@ -14,7 +14,7 @@
 {{!-- CREW OCCUPANTS --}}
 <div class="crew-occupants">
   {{#each crew}}
-  <div class="occupant{{#if (eq position "PASSENGER")}} passenger{{/if}}{{#if exposed}} exposed{{/if}}{{#if (lte actor.data.data.health.value 0)}} dead{{/if}}" data-crew-id="{{id}}" >
+  <div class="occupant{{#if (eq position "PASSENGER")}} passenger{{/if}}{{#if exposed}} exposed{{/if}}{{#if (lte actor.system.health.value 0)}} dead{{/if}}" data-crew-id="{{id}}" >
 
     {{!-- Position --}}
     <div class="occupant-position">
@@ -27,7 +27,7 @@
     <img class="occupant-image" src="{{actor.img}}"/>
 
     {{!-- Health Bar --}}
-    <progress class="occupant-health-gauge" value="{{actor.data.data.health.value}}" max="{{actor.data.data.health.max}}" title="{{localize "T2K4E.ActorSheet.HitCapacity"}}"></progress>
+    <progress class="occupant-health-gauge" value="{{actor.system.health.value}}" max="{{actor.system.health.max}}" title="{{localize "T2K4E.ActorSheet.HitCapacity"}}"></progress>
 
     {{!-- Name --}}
     <div class="occupant-name">{{actor.name}}</div>

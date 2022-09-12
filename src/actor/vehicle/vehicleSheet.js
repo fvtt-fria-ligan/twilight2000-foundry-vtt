@@ -71,8 +71,8 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
 
   _prepareMountedWeapons(sheetData) {
     const m = (i, slot) => i.type === 'weapon'
-      && i.data.data.isMounted
-      && i.data.data.mountSlot === slot;
+      && i.system.isMounted
+      && i.system.mountSlot === slot;
 
     sheetData.mountedWeapons = {
       primary: sheetData.actor.items.filter(i => m(i, 1)),
@@ -166,7 +166,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     const itemId = elem.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
 
-    if (item.data.data.isMounted) {
+    if (item.system.isMounted) {
       return item.update({ 'data.equipped': false });
     }
     else {
@@ -183,7 +183,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     const elem = event.currentTarget;
     const itemId = elem.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
-    let slot = item.data.data.mountSlot;
+    let slot = item.system.mountSlot;
 
     if (slot > 1) slot--;
     else slot++;

@@ -172,8 +172,8 @@ export class T2KRoller {
     maxPush = opts.maxPush;
 
     // Gets attributes' values.
-    const cuf = actor.data.data.cuf.value;
-    const um = actor.data.data.unitMorale.value;
+    const cuf = actor.system.cuf.value;
+    const um = actor.system.unitMorale.value;
 
     return this.taskCheck({
       title,
@@ -220,7 +220,7 @@ export async function rollPush(roll, { message } = {}) {
   const actor = getRollingActor({ actorId, tokenKey });
   const itemId = roll.options.itemId;
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
-  const ammoId = flags.ammo ?? (item ? item.data.data.mag?.target : '');
+  const ammoId = flags.ammo ?? (item ? item.system.mag?.target : '');
   const ammo = actor ? actor.items.get(ammoId) : game.items.get(ammoId);
 
   // No need to await the deletion.

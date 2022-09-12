@@ -19,7 +19,7 @@ export default class ActorT2K extends Actor {
   }
 
   get hasReliability() {
-    return !!this.data.data.reliability?.max;
+    return !!this.system.reliability?.max;
   }
 
   get cover() {
@@ -60,7 +60,7 @@ export default class ActorT2K extends Actor {
       const types = Object.fromEntries(game.system.documentTypes.Item.map(t => [t, []]));
       for (const i of this.items.values()) {
         // Excludes mounted weapons from the vehicle's cargo.
-        if (i.data.data.isMounted) continue;
+        if (i.system.isMounted) continue;
         types[i.data.type].push(i);
       }
       return types;

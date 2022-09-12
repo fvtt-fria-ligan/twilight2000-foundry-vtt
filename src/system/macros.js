@@ -12,7 +12,7 @@
 export async function createT2KMacro(data, slot) {
   if (data.type !== 'Item') return;
   if (!('data' in data)) return ui.notifications.warn('You can only create macro buttons for owned Items');
-  const item = data.data;
+  const item = data.system; // TODO verify
 
   // Creates the macro command.
   const command = `game.t2k4e.macros.rollItemMacro("${item.name}");`;

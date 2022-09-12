@@ -134,11 +134,11 @@ async function _applyDamage(messageElem) {
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
 
   // Prepares the attack's data.
-  let attackData = foundry.utils.duplicate(item.data.data);
+  let attackData = foundry.utils.duplicate(item.system);
   if (actor && item.hasAmmo) {
-    const ammo = actor.items.get(item.data.data.mag.target);
-    if (ammo && ammo.data.data.override) {
-      const ammoData = foundry.utils.duplicate(ammo.data.data);
+    const ammo = actor.items.get(item.system.mag.target);
+    if (ammo && ammo.system.override) {
+      const ammoData = foundry.utils.duplicate(ammo.system);
       attackData = foundry.utils.mergeObject(attackData, ammoData);
     }
   }

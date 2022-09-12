@@ -184,11 +184,11 @@ Hooks.on('createToken', (token, _data, _userId) => {
     const updateData = {};
 
     // Uses abbreviation (info) in place of name.
-    const nm = token.actor.data.data.info;
+    const nm = token.actor.system.info;
     if (nm) updateData.name = nm;
 
     // Uses default affiliation.
-    const afl = token.actor.data.data.unitAffiliation;
+    const afl = token.actor.system.unitAffiliation;
     if (afl) {
       let disposition;
       switch (afl) {
@@ -204,7 +204,7 @@ Hooks.on('createToken', (token, _data, _userId) => {
         default:
           disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
       }
-      if (disposition !== token.data.disposition) updateData.disposition = disposition;
+      if (disposition !== token.disposition) updateData.disposition = disposition;
     }
 
     // Updates the token.
