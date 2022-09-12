@@ -15,7 +15,7 @@
         <h1 class="name">
           <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'T2K4E.ItemSheet.Name'}}"/>
         <h2 class="type">
-          <input type="text" name="data.vehicleType" value="{{data.vehicleType}}" placeholder="{{localize 'T2K4E.VehicleSheet.VehicleType'}}"/>
+          <input type="text" name="system.vehicleType" value="{{system.vehicleType}}" placeholder="{{localize 'T2K4E.VehicleSheet.VehicleType'}}"/>
         </h2>
       </div>
 
@@ -25,27 +25,27 @@
         {{!-- MOVEMENT --}}
         <div class="movement-type flexcol">
           <label>{{localize "T2K4E.VehicleSheet.Movement"}}</label>
-          <select name="data.movement.type">
+          <select name="system.movement.type">
             <option value=""></option>
-            {{selectOptions config.vehicle.movementTypes selected=data.movement.type localize=true}}
+            {{selectOptions config.vehicle.movementTypes selected=system.movement.type localize=true}}
           </select>
         </div>
 
         <div class="combat-speed flexcol">
           <label>{{localize "T2K4E.VehicleSheet.CombatSpeed"}}</label>
           <div class="flexrow">
-            <input type="number" name="data.movement.combat.onRoad" value={{data.movement.combat.onRoad}} data-dtype="Number"/>
+            <input type="number" name="system.movement.combat.onRoad" value={{system.movement.combat.onRoad}} data-dtype="Number"/>
             <span class="sep">/</span>
-            <input type="number" name="data.movement.combat.offRoad" value={{data.movement.combat.offRoad}} data-dtype="Number"/>
+            <input type="number" name="system.movement.combat.offRoad" value={{system.movement.combat.offRoad}} data-dtype="Number"/>
           </div>
         </div>
 
         <div class="travel-speed flexcol">
           <label>{{localize "T2K4E.VehicleSheet.TravelSpeed"}}</label>
           <div class="flexrow">
-            <input type="number" name="data.movement.travel.onRoad" value={{data.movement.travel.onRoad}} data-dtype="Number"/>
+            <input type="number" name="system.movement.travel.onRoad" value={{system.movement.travel.onRoad}} data-dtype="Number"/>
             <span class="sep">/</span>
-            <input type="number" name="data.movement.travel.offRoad" value={{data.movement.travel.offRoad}} data-dtype="Number"/>
+            <input type="number" name="system.movement.travel.offRoad" value={{system.movement.travel.offRoad}} data-dtype="Number"/>
           </div>
         </div>
 
@@ -53,42 +53,42 @@
         <div class="fuel-type flexcol">
           <label>{{localize "T2K4E.VehicleSheet.Fuel"}}</label>
           <div class="flexrow">
-            <select name="data.fuel.type">
+            <select name="system.fuel.type">
               <option value=""></option>
-              {{selectOptions config.vehicle.fuelTypes selected=data.fuel.type localize=true}}
+              {{selectOptions config.vehicle.fuelTypes selected=system.fuel.type localize=true}}
             </select>
-            <progress class="fuel-gauge" value="{{data.fuel.value}}" max="{{data.fuel.max}}"></progress>
+            <progress class="fuel-gauge" value="{{system.fuel.value}}" max="{{system.fuel.max}}"></progress>
           </div>
         </div>
 
         <div class="fuel-cap flexcol">
           <label>{{localize "T2K4E.VehicleSheet.FuelCapacity"}}</label>
           <div class="flexrow">
-            <input type="number" name="data.fuel.value" value="{{data.fuel.value}}" data-dtype="Number"/>
+            <input type="number" name="system.fuel.value" value="{{system.fuel.value}}" data-dtype="Number"/>
             <span class="sep">/</span>
-            <input type="number" name="data.fuel.max" value="{{data.fuel.max}}" data-dtype="Number"/>
+            <input type="number" name="system.fuel.max" value="{{system.fuel.max}}" data-dtype="Number"/>
           </div>
         </div>
 
         <div class="fuel-consumption flexcol">
           <label>{{localize "T2K4E.VehicleSheet.FuelConsumption"}}</label>
-          <input type="number" name="data.fuel.cons" value={{data.fuel.cons}} data-dtype="Number"/>
+          <input type="number" name="system.fuel.cons" value={{system.fuel.cons}} data-dtype="Number"/>
         </div>
 
         {{!-- RELIABILITY --}}
         <div class="reliability flexcol">
           <label>{{localize "T2K4E.VehicleSheet.Reliability"}}</label>
           <div class="flexrow">
-            <input type="number" name="data.reliability.value" value="{{data.reliability.value}}" data-dtype="Number"/>
+            <input type="number" name="system.reliability.value" value="{{system.reliability.value}}" data-dtype="Number"/>
             <span class="sep">/</span>
-            <input type="number" name="data.reliability.max" value="{{data.reliability.max}}" data-dtype="Number"/>
+            <input type="number" name="system.reliability.max" value="{{system.reliability.max}}" data-dtype="Number"/>
           </div>
         </div>
 
         {{!-- PRICE --}}
         <div class="price flexcol">
           <label>{{localize "T2K4E.VehicleSheet.Price"}}</label>
-          <input type="number" name="data.price" value={{data.price}} data-dtype="Number"/>
+          <input type="number" name="system.price" value={{system.price}} data-dtype="Number"/>
         </div>
 
       </div>

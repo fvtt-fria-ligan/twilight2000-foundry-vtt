@@ -20,33 +20,35 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     return this.actor.system;
   }
 
-  getData() {
-    const data = super.getData();
-    data.partyMembers = {};
-    data.travel = {};
-    data.travelActions = this.getTravelActions();
+  async getData() {
+    const partyData = await super.getData();
+    partyData.partyMembers = {};
+    partyData.travel = {};
+    partyData.travelActions = await this.getTravelActions();
     let ownedActorId, assignedActorId, travelAction;
-    for (let i = 0; i < (data.system.members || []).length; i++) {
-      ownedActorId = data.system.members[i];
-      data.partyMembers[ownedActorId] = game.actors.get(ownedActorId).data;
+    for (let i = 0; i < (partyData.system.members || []).length; i++) {
+      ownedActorId = partyData.system.members[i];
+      partyData.partyMembers[ownedActorId] = game.actors.get(ownedActorId);
+      partyData.partyMembers[ownedActorId].enrichedName =
+        await TextEditor.enrichHTML(`@Actor[${partyData.partyMembers[ownedActorId].name}]`, { async: true });
     }
-    for (const travelActionKey in data.system.travel) {
-      travelAction = data.system.travel[travelActionKey];
-      data.travel[travelActionKey] = {};
+    for (const travelActionKey in partyData.system.travel) {
+      travelAction = partyData.system.travel[travelActionKey];
+      partyData.travel[travelActionKey] = {};
 
       if (typeof travelAction === 'object') {
         for (let i = 0; i < travelAction.length; i++) {
           assignedActorId = travelAction[i];
           if (assignedActorId != null) {
-            data.travel[travelActionKey][assignedActorId] = game.actors.get(assignedActorId).data;
+            partyData.travel[travelActionKey][assignedActorId] = game.actors.get(assignedActorId);
           }
         }
       }
       else if (travelAction !== '') {
-        data.travel[travelActionKey][travelAction] = game.actors.get(travelAction).data;
+        partyData.travel[travelActionKey][travelAction] = game.actors.get(travelAction);
       }
     }
-    return data;
+    return partyData;
   }
 
   activateListeners(html) {
@@ -68,10 +70,14 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     }
   }
 
-  getTravelActions() {
+  async getTravelActions() {
     const travelActions = TravelActionsConfig;
     for (const action of Object.values(travelActions)) {
       action.displayJournalEntry = !!action.journalEntryName && !!game.journal.getName(action.journalEntryName);
+      if (action.displayJournalEntry) {
+        const str = `@JournalEntry[${action.journalEntryName.capitalize()}]{${game.i18n.localize(action.name)}}`;
+        action.enrichedEntryName = await TextEditor.enrichHTML(str, { async: true });
+      }
     }
     return travelActions;
   }
@@ -85,7 +91,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     partyMembers.splice(partyMembers.indexOf(entityId), 1);
 
     const updateData = {
-      'data.members': partyMembers,
+      'system.members': partyMembers,
     };
 
     let travelAction, actionParticipants;
@@ -96,10 +102,10 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
       if (typeof travelAction === 'object') {
         actionParticipants = [...travelAction];
         actionParticipants.splice(actionParticipants.indexOf(entityId), 1);
-        updateData['data.travel.' + travelActionKey] = actionParticipants;
+        updateData['system.travel.' + travelActionKey] = actionParticipants;
       }
       else {
-        updateData['data.travel.' + travelActionKey] = '';
+        updateData['system.travel.' + travelActionKey] = '';
       }
     }
 
@@ -133,8 +139,13 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
 
     if (draggedItem.type !== 'Actor') return;
 
-    const actor = game.actors.get(draggedItem.id);
-    if (actor.data.type !== 'character') return;
+    let id;
+    if ('uuid' in draggedItem) id = draggedItem.uuid.replace('Actor.', '');
+    else if ('id' in draggedItem) id = draggedItem.id;
+    else return;
+
+    const actor = game.actors.get(id);
+    if (actor.type !== 'character') return;
 
     if (draggedItem.action === 'assign') {
       this.handleTravelActionAssignment(event, actor);
@@ -162,7 +173,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
       updDataKey,
       partyMemberId;
     for (let i = 0; i < partyMembers.length; i++) {
-      partyMemberId = typeof partyMembers[i] === 'object' ? partyMembers[i].data._id : partyMembers[i];
+      partyMemberId = typeof partyMembers[i] === 'object' ? partyMembers[i].id : partyMembers[i];
 
       // remove party member from the current assignment
       let travelAction, actionParticipants;
@@ -170,7 +181,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
         travelAction = this.actor.system.travel[key];
         if (travelAction.indexOf(partyMemberId) < 0) continue;
 
-        updDataKey = 'data.travel.' + key;
+        updDataKey = 'system.travel.' + key;
         if (typeof travelAction === 'object') {
           if (updateData[updDataKey] === undefined) {
             actionParticipants = [...travelAction];
@@ -187,7 +198,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
       }
 
       // add party member to a new assignment
-      updDataKey = 'data.travel.' + travelActionKey;
+      updDataKey = 'system.travel.' + travelActionKey;
       if (typeof this.actor.system.travel[travelActionKey] === 'object') {
         if (updateData[updDataKey] === undefined) {
           actionParticipants = [...this.actor.system.travel[travelActionKey]];
@@ -202,13 +213,13 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
         updateData[updDataKey] = partyMemberId;
         // if someone was already assigned here we must move that character to the "Other" assignment
         if (this.actor.system.travel[travelActionKey] !== '') {
-          if (updateData['data.travel.other'] === undefined) {
+          if (updateData['system.travel.other'] === undefined) {
             actionParticipants = [...this.actor.system.travel.other];
             actionParticipants.push(this.actor.system.travel[travelActionKey]);
-            updateData['data.travel.other'] = actionParticipants;
+            updateData['system.travel.other'] = actionParticipants;
           }
           else {
-            updateData['data.travel.other'].push(this.actor.system.travel[travelActionKey]);
+            updateData['system.travel.other'].push(this.actor.system.travel[travelActionKey]);
           }
         }
       }
@@ -220,12 +231,12 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
   async handleAddToParty(actor) {
     let partyMembers = this.actor.system.members;
     const initialCount = partyMembers.length;
-    partyMembers.push(actor.data._id);
+    partyMembers.push(actor.id);
     partyMembers = [...new Set(partyMembers)]; // remove duplicate values
     if (initialCount === partyMembers.length) return; // nothing changed
 
     const travelOther = [...this.actor.system.travel.other];
-    travelOther.push(actor.data._id);
-    await this.actor.update({ 'data.members': partyMembers, 'data.travel.other': travelOther });
+    travelOther.push(actor.id);
+    await this.actor.update({ 'system.members': partyMembers, 'system.travel.other': travelOther });
   }
 }

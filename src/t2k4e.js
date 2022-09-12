@@ -172,7 +172,10 @@ Hooks.on('dropActorSheetData', (actor, sheet, data) => {
   // When dropping something on a vehicle sheet.
   if (actor.type === 'vehicle') {
     // When dropping an actor on a vehicle sheet.
-    if (data.type === 'Actor') sheet.dropCrew(data.id);
+    if (data.type === 'Actor') {
+      const id = data.uuid?.replace('Actor.', '');
+      sheet.dropCrew(id);
+    }
   }
 });
 

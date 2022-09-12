@@ -22,10 +22,10 @@
       {{!-- FUEL --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.components.fuel.active" {{checked data.components.fuel.active}}/>
+          <input type="checkbox" name="system.components.fuel.active" {{checked system.components.fuel.active}}/>
           {{localize "T2K4E.VehicleSheet.Components.fuel"}}
         </label>
-        <input type="number" class="boxed-value" name="data.components.fuel.damage" value={{data.components.fuel.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
+        <input type="number" class="boxed-value" name="system.components.fuel.damage" value={{system.components.fuel.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
       </div>
 
       <hr/>
@@ -35,10 +35,10 @@
       {{!-- ENGINE --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.components.engine.active" {{checked data.components.engine.active}}/>
+          <input type="checkbox" name="system.components.engine.active" {{checked system.components.engine.active}}/>
           {{localize "T2K4E.VehicleSheet.Components.engine"}}
         </label>
-        <input type="number" class="boxed-value" name="data.components.engine.damage" value={{data.components.engine.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
+        <input type="number" class="boxed-value" name="system.components.engine.damage" value={{system.components.engine.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
       </div>
 
       <hr/>
@@ -48,10 +48,10 @@
       {{!-- SUSPENSION --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.components.suspension.active" {{checked data.components.suspension.active}}/>
+          <input type="checkbox" name="system.components.suspension.active" {{checked system.components.suspension.active}}/>
           {{localize "T2K4E.VehicleSheet.Components.suspension"}}
         </label>
-        <input type="number" class="boxed-value" name="data.components.suspension.damage" value={{data.components.suspension.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
+        <input type="number" class="boxed-value" name="system.components.suspension.damage" value={{system.components.suspension.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
       </div>
 
       <hr/>
@@ -61,10 +61,10 @@
       {{!-- AMMUNITION --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.components.ammunition.active" {{checked data.components.ammunition.active}}/>
+          <input type="checkbox" name="system.components.ammunition.active" {{checked system.components.ammunition.active}}/>
           {{localize "T2K4E.VehicleSheet.Components.ammunition"}}
         </label>
-        <input type="number" class="boxed-value" name="data.components.ammunition.damage" value={{data.components.ammunition.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
+        <input type="number" class="boxed-value" name="system.components.ammunition.damage" value={{system.components.ammunition.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
       </div>
 
       <hr/>
@@ -74,13 +74,13 @@
       {{!-- RADIO --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.components.radio.active" {{checked data.components.radio.active}}/>
+          <input type="checkbox" name="system.components.radio.active" {{checked system.components.radio.active}}/>
           {{localize "T2K4E.VehicleSheet.Components.radio"}}
         </label>
         <div class="radio-reliability flexrow">
-          <input type="number" class="boxed-value" name="data.components.radio.reliability.value" value={{data.components.radio.reliability.value}} data-dtype="Number"/>
+          <input type="number" class="boxed-value" name="system.components.radio.reliability.value" value={{system.components.radio.reliability.value}} data-dtype="Number"/>
           <span class="sep">/</span>
-          <input type="number" class="boxed-value" name="data.components.radio.reliability.max" value={{data.components.radio.reliability.max}} data-dtype="Number"/>
+          <input type="number" class="boxed-value" name="system.components.radio.reliability.max" value={{system.components.radio.reliability.max}} data-dtype="Number"/>
         </div>
       </div>
     </div>
@@ -96,10 +96,10 @@
       {{!-- TRACK/WHEEL --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.components.trackWheel.active" {{checked data.components.trackWheel.active}}/>
+          <input type="checkbox" name="system.components.trackWheel.active" {{checked system.components.trackWheel.active}}/>
           {{localize "T2K4E.VehicleSheet.Components.trackWheel"}}
         </label>
-        <input type="number" class="boxed-value" name="data.components.trackWheel.damage" value={{data.components.trackWheel.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
+        <input type="number" class="boxed-value" name="system.components.trackWheel.damage" value={{system.components.trackWheel.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
       </div>
 
       <hr/>
@@ -109,14 +109,14 @@
       {{!-- FIRE CONTROL SYSTEM --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.components.fcs.active" {{checked data.components.fcs.active}}/>
+          <input type="checkbox" name="system.components.fcs.active" {{checked system.components.fcs.active}}/>
           {{localize "T2K4E.VehicleSheet.Components.fcs"}}
         </label>
-        <input type="number" class="boxed-value" name="data.components.fcs.damage" value={{data.components.fcs.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
+        <input type="number" class="boxed-value" name="system.components.fcs.damage" value={{system.components.fcs.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
       </div>
 
       <div class="fcs-type">
-        <input type="text" name="data.components.fcs.type" value="{{data.components.fcs.type}}" placeholder="{{localize "T2K4E.VehicleSheet.FcsType"}}" title="{{localize "T2K4E.VehicleSheet.FcsType"}}"/>
+        <input type="text" name="system.components.fcs.type" value="{{system.components.fcs.type}}" placeholder="{{localize "T2K4E.VehicleSheet.FcsType"}}" title="{{localize "T2K4E.VehicleSheet.FcsType"}}"/>
       </div>
 
       <hr/>
@@ -126,10 +126,10 @@
       {{!-- ANTENNA --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.components.antenna.active" {{checked data.components.antenna.active}}/>
+          <input type="checkbox" name="system.components.antenna.active" {{checked system.components.antenna.active}}/>
           {{localize "T2K4E.VehicleSheet.Components.antenna"}}
         </label>
-        <input type="number" class="boxed-value" name="data.components.antenna.damage" value={{data.components.antenna.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
+        <input type="number" class="boxed-value" name="system.components.antenna.damage" value={{system.components.antenna.damage}} title="{{localize "T2K4E.VehicleSheet.ComponentDamage"}}" data-dtype="Number"/>
       </div>
 
       <hr/>
@@ -139,7 +139,7 @@
       {{!-- SMOKE DISCHARGER --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.smokeDischarger" {{checked data.smokeDischarger}}/>
+          <input type="checkbox" name="system.smokeDischarger" {{checked system.smokeDischarger}}/>
           {{localize "T2K4E.VehicleSheet.HasSmokeDischarger"}}
         </label>
       </div>
@@ -147,7 +147,7 @@
       {{!-- TRAILER --}}
       <div class="form-group">
         <label class="checkbox">
-          <input type="checkbox" name="data.trailer" {{checked data.trailer}}/>
+          <input type="checkbox" name="system.trailer" {{checked system.trailer}}/>
           {{localize "T2K4E.VehicleSheet.HasTrailer"}}
         </label>
       </div>

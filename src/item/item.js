@@ -110,14 +110,13 @@ export default class ItemT2K extends Item {
   prepareData() {
     super.prepareData();
 
-    const itemData = this.data;
-    const actorData = this.actor ? this.actor.data : {};
-    const data = itemData.data;
+    const actorData = this.actor ?? {};
+    const system = this.system;
 
-    this._prepareEncumbrance(this.type, data);
+    this._prepareEncumbrance(this.type, system);
 
     switch (this.type) {
-      case 'weapon': this._prepareWeapon(data, actorData);
+      case 'weapon': this._prepareWeapon(system, actorData);
     }
   }
 
@@ -125,18 +124,18 @@ export default class ItemT2K extends Item {
 
   /**
    * Prepares weapon data.
-   * @param {Object} data       Item's data data
+   * @param {Object} system       Item's system
    * @param {Object} actorData  Actor's data (1x)
    * @private
    */
-  _prepareWeapon(data, actorData = {}) {
+  _prepareWeapon(system, actorData = {}) {
     // Adds "data.mount: [number]" property.
     if (actorData.type === 'vehicle') {
-      if (data.equipped && data.props?.mounted) {
-        data.isMounted = true;
+      if (system.equipped && system.props?.mounted) {
+        system.isMounted = true;
       }
       else {
-        data.isMounted = false;
+        system.isMounted = false;
       }
     }
   }
@@ -146,19 +145,19 @@ export default class ItemT2K extends Item {
   /**
    * Calculates a custom encumbrance for items.
    * @param {string} type  Item type
-   * @param {Object} data  Item's data
+   * @param {Object} system  Item's system
    * @private
    */
-  _prepareEncumbrance(type, data) {
+  _prepareEncumbrance(type, system) {
     let weight = 0;
-    if (type === 'ammunition' && !data.props.magazine) {
-      weight = data.qty * data.weight * data.ammo.value;
+    if (type === 'ammunition' && !system.props.magazine) {
+      weight = system.qty * system.weight * system.ammo.value;
     }
     else {
-      weight = data.qty * data.weight;
+      weight = system.qty * system.weight;
     }
-    if (!weight) data.encumbrance = 0;
-    else data.encumbrance = weight;
+    if (!weight) system.encumbrance = 0;
+    else system.encumbrance = weight;
   }
 
   /* ------------------------------------------- */
@@ -228,7 +227,7 @@ export default class ItemT2K extends Item {
             await roll.evaluate({ async: true });
             healTime = roll.terms.reduce((sum, t) => sum + t.values.reduce((tot, v) => tot + v, 0), 0);
             healTime = `${healTime} ${game.i18n.localize(`T2K4E.InjurySheet.day${healTime > 1 ? 's' : ''}`)}`;
-            this.update({ 'data.healTime': healTime });
+            this.update({ 'system.healTime': healTime });
           }
           catch (e) {
             console.warn('t2k4 | Item#_onCreate | Invalid formula for Injury heal time roll.');
@@ -276,7 +275,7 @@ export default class ItemT2K extends Item {
         title: game.i18n.format('T2K4E.Dialog.ChooseValue.Qty', { name: this.name }),
       });
       if (mod?.value) {
-        return this.update({ 'data.qty': this.qty + mod.value });
+        return this.update({ 'sytem.qty': this.qty + mod.value });
       }
       else return;
     }
@@ -345,7 +344,7 @@ export default class ItemT2K extends Item {
     let ammo = null;
     if (track && this.hasAmmo) {
       ammo = this.actor.items.get(this.system.mag.target);
-      if (ammo?.data) {
+      if (ammo?.system) {
         const ammoLeft = ammo.system.ammo.value ?? ammo.system.qty;
         if (ammoLeft <= 0) {
           ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoAmmoLeft', { weapon: this.name }));
@@ -381,14 +380,14 @@ export default class ItemT2K extends Item {
     if (!message) return;
     if (message instanceof YearZeroRoll) return message;
 
-    const roll = message.roll;
+    const roll = message.rolls[0];
 
     const flagData = {};
 
     // Consumes unit(s).
     if (track && isDisposable && qty > 0) {
       qty--;
-      await this.update({ 'data.qty': qty });
+      await this.update({ 'system.qty': qty });
     }
 
     // Consumes ammo.
@@ -428,7 +427,7 @@ export default class ItemT2K extends Item {
     const val = this.system.reliability.value;
     const max = this.system.reliability.max;
     const rel = Math.clamped(val + jam, 0, max);
-    if (update && rel !== val) await this.update({ 'data.reliability.value': rel });
+    if (update && rel !== val) await this.update({ 'system.reliability.value': rel });
     return rel - val;
   }
 
@@ -447,7 +446,7 @@ export default class ItemT2K extends Item {
     const val = this.system.rating.value;
     const max = this.system.rating.max;
     const rel = Math.clamped(val + mod, 0, max);
-    if (update && rel !== val) await this.update({ 'data.rating.value': rel });
+    if (update && rel !== val) await this.update({ 'system.rating.value': rel });
     return rel - val;
   }
 
@@ -499,8 +498,8 @@ export default class ItemT2K extends Item {
 
     if (update) {
       switch (this.type) {
-        case 'ammunition': await this.update({ 'data.ammo.value': newAmmoValue }); break;
-        case 'weapon': await this.update({ 'data.qty': newAmmoValue }); break;
+        case 'ammunition': await this.update({ 'system.ammo.value': newAmmoValue }); break;
+        case 'weapon': await this.update({ 'system.qty': newAmmoValue }); break;
       }
     }
     return newAmmoValue - ammoValue;
@@ -521,7 +520,10 @@ export default class ItemT2K extends Item {
     // Renders the chat card template.
     const token = this.actor.token;
     const cardData = {
-      ...this.data,
+      id: this.id,
+      name: this.name,
+      img: this.img,
+      system: this.system,
       actorId: this.actor.id,
       tokenId: token ? `${token.parent.id}.${token.id}` : null,
       owner: game.user.id,
@@ -543,58 +545,6 @@ export default class ItemT2K extends Item {
     // Creates the chat message or return its data.
     return sendMessage ? ChatMessage.create(chatData) : chatData;
   }
-
-  // TODO Reload weapon
-
-  // /**
-  //  * Reloads a weapon.
-  //  * TODO
-  //  * @async
-  //  */
-  // async reload() {
-  //   TaskCheck({
-  //     name: game.i18n.localize('T2K4E.Chat.Actions.Reload'),
-  //     attribute: this.actor?.system.attributes.agl.value,
-  //     skill: this.actor?.system.skills.rangedCombat.value,
-  //     actor: this.actor,
-  //     item: this,
-  //   });
-  //   console.warn('t2k4e | RELOAD => Function not implemented yet! — Planned for a future release.');
-  //   return;
-  //   if (this.type !== 'weapon') return;
-  //   if (!this.actor) return;
-
-  //   const actorData = this.actor ? this.actor.data : {};
-
-  //   const itemData = this.data;
-  //   const data = itemData.data;
-
-  //   // We don't need to reload the weapon if it's already full.
-  //   if (data.mag?.value === data.mag?.max) {
-  //   }
-
-  //   let ammoMissing = data.mag.max - data.mag.value;
-
-  //   while (ammoMissing > 0) {
-  //     // Filters all magazines in the actor's inventory.
-  //     const ammunitions = this.actor.items.filter(i => i.type === 'ammunition');
-
-  //     // If it's empty, we cannot reload the weapon.
-  //     if (ammunitions.length <= 0) {
-  //     }
-
-  //     // Filters the right ammo type.
-  //     const ammoType = this.ammo;
-  //     const munitions = ammunitions.filter(i => i.data.itemType === ammoType);
-
-  //     // If it's empty, we cannot -again- reload the weapon, obviously.
-  //     if (munitions.length <= 0) {
-  //     }
-
-  //     // Gets the first corresponding.
-  //     const ammo = munitions[0];
-  //   }
-  // }
 
   /* ------------------------------------------- */
   /*  Chat Card Actions                          */

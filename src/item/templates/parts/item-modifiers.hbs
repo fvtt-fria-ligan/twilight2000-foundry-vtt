@@ -7,10 +7,10 @@
     </a>
   </div>
 
-  {{#each data.rollModifiers as | modifier |}}
+  {{#each system.rollModifiers as | modifier |}}
   <div class="roll-modifier">
     <div class="roll-modifier-name">
-      <select name="data.rollModifiers.{{@key}}.name">
+      <select name="system.rollModifiers.{{@key}}.name">
         {{#select modifier.name}}
         <option value="" disabled selected>{{localize "T2K4E.ItemSheet.SelectRollModifier"}}</option>
         <optgroup label="{{localize "T2K4E.Attributes"}}">
@@ -84,7 +84,7 @@
       </select>
     </div>
     <div class="roll-modifier-value flexrow">
-      <input type="text" name="data.rollModifiers.{{@key}}.value" value="{{modifier.value}}"/>
+      <input type="text" name="system.rollModifiers.{{@key}}.value" value="{{modifier.value}}"/>
       <div class="item-controls">
         <a class="btn btn-small delete-modifier" data-modifier-id="{{@key}}">
           {{{@root.config.Icons.buttons.delete}}}
@@ -99,19 +99,19 @@
   {{!-- TODO clean this code --}}
   {{!-- <h4>{{localize "T2K4E.Attributes"}}</h4>
   <div class="modifiers-list flexrow">
-    {{#each data.modifiers.attributes as |value name|}}
+    {{#each system.modifiers.attributes as |value name|}}
     <div class="form-group col-6 {{#if value}}modified{{/if}}">
       <label>{{localize (concat "T2K4E.AttributeNames." name)}}</label>
-      <input type="text" name="data.modifiers.attributes.{{name}}" value="{{numberFormat value sign=value}}" data-dtype="Number"/>
+      <input type="text" name="system.modifiers.attributes.{{name}}" value="{{numberFormat value sign=value}}" data-dtype="Number"/>
     </div>
     {{/each}}
   </div>
   <h4>{{localize "T2K4E.Skills"}}</h4>
   <div class="modifiers-list flexrow">
-    {{#each data.modifiers.skills as |value name|}}
+    {{#each system.modifiers.skills as |value name|}}
     <div class="form-group col-6 {{#if value}}modified{{/if}}">
       <label>{{localize (concat "T2K4E.SkillNames." name)}}</label>
-      <input type="text" name="data.modifiers.skills.{{name}}" value="{{numberFormat value sign=value}}" data-dtype="Number"/>
+      <input type="text" name="system.modifiers.skills.{{name}}" value="{{numberFormat value sign=value}}" data-dtype="Number"/>
     </div>
     {{/each}}
   </div> --}}

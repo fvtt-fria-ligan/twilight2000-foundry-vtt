@@ -24,12 +24,12 @@
           <h4><a class="button cuf-roll">{{localize "T2K4E.ActorSheet.CuF"}}</a></h4>
         </div>
         <div class="col-3 stat-score">
-          {{> scoreSelector name="data.cuf.score" selected=data.cuf.score}}
+          {{> scoreSelector name="system.cuf.score" selected=system.cuf.score}}
         </div>
         <div class="col-3 stat-value">
-          {{#if (lte data.cuf.value 0)}}–
+          {{#if (lte system.cuf.value 0)}}–
           {{else}}
-          <div class="boxed-value cuf-roll rollable">D{{data.cuf.value}}</div>
+          <div class="boxed-value cuf-roll rollable">D{{system.cuf.value}}</div>
           {{/if}}
         </div>
       </div>
@@ -40,12 +40,12 @@
           <h4><a class="button unit-morale-roll">{{localize "T2K4E.ActorSheet.UnitMorale"}}</a></h4>
         </div>
         <div class="col-3 stat-score">
-          {{> scoreSelector name="data.unitMorale.score" selected=data.unitMorale.score}}
+          {{> scoreSelector name="system.unitMorale.score" selected=system.unitMorale.score}}
         </div>
         <div class="col-3 stat-value">
-          {{#if (lte data.unitMorale.value 0)}}–
+          {{#if (lte system.unitMorale.value 0)}}–
           {{else}}
-          <div class="boxed-value unit-morale-roll rollable">D{{data.unitMorale.value}}</div>
+          <div class="boxed-value unit-morale-roll rollable">D{{system.unitMorale.value}}</div>
           {{/if}}
         </div>
       </div>
@@ -70,15 +70,15 @@
     </div>
 
     {{!-- Slow & Fast --}}
-    {{#each data.actions as | action name |}}
+    {{#each system.actions as | action name |}}
     <div class="flexrow">
       <div class="action-name">{{localize (concat "T2K4E.ActionTypes." name)}}</div>
       <div class="col-4 action-slider">
-        <input type="range" name="data.actions.{{name}}.value" min="0" max="{{action.max}}" value="{{action.value}}"/>
+        <input type="range" name="system.actions.{{name}}.value" min="0" max="{{action.max}}" value="{{action.value}}"/>
       </div>
       <div class="col-2 action-value">{{action.value}}</div>
       <div class="col-2 action-max">
-        <input type="number" name="data.actions.{{name}}.max" value="{{action.max}}"/>
+        <input type="number" name="system.actions.{{name}}.max" value="{{action.max}}"/>
       </div>
     </div>
     {{/each}}
@@ -88,14 +88,14 @@
   <div class="armor col-6">
     <h2>{{localize "T2K4E.ItemTypes.armor"}}</h2>
     <div class="flexcol">
-      {{#each data.armorRating as | value location |}}
+      {{#each system.armorRating as | value location |}}
       <div class="flexrow">
         <div class="col-3">
           <h4>{{localize (concat "T2K4E.ArmorLocationNames." location)}}</h4>
         </div>
         <div class="armor-names-list">
           {{!-- {{#each ../armors as | armor |}}
-          {{#if (lookup armor.data.location location)}}
+          {{#if (lookup armor.system.location location)}}
           {{armor.name}},
           {{/if}}
           {{/each}} --}}
@@ -113,11 +113,11 @@
   <div class="conditions col-6">
     <h2>{{localize "T2K4E.ActorSheet.Conditions"}}</h2>
     <div class="flexrow">
-      {{#each data.conditions as | value condition |}}
+      {{#each system.conditions as | value condition |}}
       <div class="col-6">
         <label class="checkbox">
           {{!-- <h4>{{localize (concat "T2K4E.ActorSheet.ConditionNames." condition)}}</h4> --}}
-          <input type="checkbox" name="data.conditions.{{condition}}" {{checked value}}/>
+          <input type="checkbox" name="system.conditions.{{condition}}" {{checked value}}/>
           {{localize (concat "T2K4E.ConditionNames." condition)}}
         </label>
       </div>
@@ -138,12 +138,12 @@
       </a>
     </span>
   </h3>
-  {{!-- <textarea name="data.crits" rows="2">{{data.crits}}</textarea> --}}
+  {{!-- <textarea name="system.crits" rows="2">{{system.crits}}</textarea> --}}
   <div class="injuries-list">
     {{#each actor.itemTypes.injury}}
     <div class="item injury" data-item-id="{{id}}">
       <a class="item-edit">
-        {{#with data.data}}
+        {{#with system}}
         {{#if (eq category 'mental')}}
         <span class="injury-location">
           {{{@root.config.Icons.buttons.mental}}}&nbsp;
@@ -178,7 +178,7 @@
   </div>
 
   <h3>{{localize "T2K4E.ActorSheet.Diseases"}}</h3>
-  <textarea name="data.diseases" rows="2">{{data.diseases}}</textarea>
+  <textarea name="system.diseases" rows="2">{{system.diseases}}</textarea>
 
 </div>
 {{/if}}
@@ -190,11 +190,11 @@
   <div class="flexrow">
     <div>
       <h3>{{localize "T2K4E.ActorSheet.TemporaryRadiation"}}</h3>
-      {{> "systems/t2k4e/templates/actor/parts/radiation-boxes.hbs" field="temporary" value=data.rads.temporary}}
+      {{> "systems/t2k4e/templates/actor/parts/radiation-boxes.hbs" field="temporary" value=system.rads.temporary}}
     </div>
     <div>
       <h3>{{localize "T2K4E.ActorSheet.PermanentRadiation"}}</h3>
-      {{> "systems/t2k4e/templates/actor/parts/radiation-boxes.hbs" field="permanent" value=data.rads.permanent}}
+      {{> "systems/t2k4e/templates/actor/parts/radiation-boxes.hbs" field="permanent" value=system.rads.permanent}}
     </div>
   </div>
 </div>

@@ -38,7 +38,7 @@ export default class ActorT2K extends Actor {
    */
   prepareData() {
     super.prepareData();
-    const actorData = this.data;
+    const actorData = this;
 
     // Makes separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
@@ -50,8 +50,6 @@ export default class ActorT2K extends Actor {
       case 'party': this._preparePartyData(actorData); break;
       default: throw new TypeError(`t2k4e | Unknown Actor Type: "${actorData.type}"`);
     }
-
-    // console.log('t2k4e | Updated Actor: ', this.name, this.id);
   }
 
   /** @override */
@@ -61,7 +59,7 @@ export default class ActorT2K extends Actor {
       for (const i of this.items.values()) {
         // Excludes mounted weapons from the vehicle's cargo.
         if (i.system.isMounted) continue;
-        types[i.data.type].push(i);
+        types[i.type].push(i);
       }
       return types;
     }
@@ -79,17 +77,17 @@ export default class ActorT2K extends Actor {
    * @private
    */
   _prepareCharacterData(actorData) {
-    const data = actorData.data;
+    const system = actorData.system;
 
     // Gets the attributes and skills values from their scores.
-    this._prepareScores(data.attributes);
-    this._prepareScores(data.skills);
-    if (data.cuf) this._prepareScores(data.cuf);
-    if (data.unitMorale) this._prepareScores(data.unitMorale);
+    this._prepareScores(system.attributes);
+    this._prepareScores(system.skills);
+    if (system.cuf) this._prepareScores(system.cuf);
+    if (system.unitMorale) this._prepareScores(system.unitMorale);
 
-    this._prepareCapacities(data);
-    this._prepareEncumbrance(data, actorData.items);
-    this._prepareArmorRating(data, actorData.items.filter(i => i.type === 'armor'));
+    this._prepareCapacities(system);
+    this._prepareEncumbrance(system, actorData.items);
+    this._prepareArmorRating(system, actorData.items.filter(i => i.type === 'armor'));
   }
 
   /* ------------------------------------------- */
@@ -107,7 +105,7 @@ export default class ActorT2K extends Actor {
 
   /**
    * Adds a `value` property for the die's size equal to its score.
-   * @param {Object} obj data.attributes OR data.skills OR any object with a "score" property
+   * @param {Object} obj system.attributes OR system.skills OR any object with a "score" property
    * @private
    */
   _prepareScores(obj) {
@@ -119,9 +117,6 @@ export default class ActorT2K extends Actor {
         o.value = getDieSize(o.score);
       }
     }
-    // if ('maxScore' in obj) {
-    //   obj.max = getDieSize(obj.maxScore);
-    // }
   }
 
   /* ------------------------------------------- */
@@ -129,35 +124,35 @@ export default class ActorT2K extends Actor {
   /**
    * Adds Hit & Stress Capacities properties to the Actor.
    * Adds also a Health property (with value and max) for token bars.
-   * @param {Object} data The Actor's data.data
+   * @param {Object} system The Actor's system
    * @private
    */
-  _prepareCapacities(data) {
+  _prepareCapacities(system) {
     // Capacities are done like this because we want a Health bar for tokens.
     // Only `.value` & `.modifier` should be modified in the Actor's sheet.
-    data.health.max = this._getHitCapacity(data) + data.health.modifier;
-    data.health.trauma = Math.max(0, data.health.max - data.health.value);
-    data.hitCapacity = data.health.max;
-    data.damage = data.health.trauma;
+    system.health.max = this._getHitCapacity(system) + system.health.modifier;
+    system.health.trauma = Math.max(0, system.health.max - system.health.value);
+    system.hitCapacity = system.health.max;
+    system.damage = system.health.trauma;
 
-    data.sanity.max = this._getStressCapacity(data) + data.sanity.modifier;
-    data.sanity.trauma = Math.max(0, data.sanity.max - data.sanity.value);
-    data.stressCapacity = data.sanity.max;
-    data.stress = data.sanity.trauma;
-    return data;
+    system.sanity.max = this._getStressCapacity(system) + system.sanity.modifier;
+    system.sanity.trauma = Math.max(0, system.sanity.max - system.sanity.value);
+    system.stressCapacity = system.sanity.max;
+    system.stress = system.sanity.trauma;
+    return system;
   }
 
   /* ------------------------------------------- */
 
   /**
    * Calculates the Hit Capacity.
-   * @param {Object} data The Actor's data.data
+   * @param {Object} system The Actor's system
    * @returns {number}
    * @private
    */
-  _getHitCapacity(data) {
-    const str = data.attributes.str.value;
-    const agl = data.attributes.agl.value;
+  _getHitCapacity(system) {
+    const str = system.attributes.str.value;
+    const agl = system.attributes.agl.value;
     return Math.ceil((str + agl) / 4);
   }
 
@@ -165,13 +160,13 @@ export default class ActorT2K extends Actor {
 
   /**
    * Calculates the Stress Capacity.
-   * @param {Object} data The Actors's data.data
+   * @param {Object} system The Actors's system
    * @returns {number}
    * @private
    */
-  _getStressCapacity(data) {
-    const int = data.attributes.int.value;
-    const emp = data.attributes.emp.value;
+  _getStressCapacity(system) {
+    const int = system.attributes.int.value;
+    const emp = system.attributes.emp.value;
     return Math.ceil((int + emp) / 4);
   }
 
@@ -179,40 +174,40 @@ export default class ActorT2K extends Actor {
 
   /**
    * Adds Emcumbrance properties to the Actor.
-   * @param {Object} data   The Actor's data.data
+   * @param {Object} system The Actor's system
    * @param {Item[]} items  Array of items
    * @private
    */
-  _prepareEncumbrance(data, items) {
+  _prepareEncumbrance(system, items) {
     // Computes encumbrance modifiers from specialties.
     let mod = 0;
 
     // Computes the Encumbrance.
     const val1 = (items
-      .filter(i => !i.data.data.backpack)
+      .filter(i => !i.system.backpack)
       .reduce((sum, i) => {
         if (i.type === 'specialty') {
           mod += i.encumbranceModifiers;
         }
-        else if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
-          const ammoId = i.data.data.mag.target;
+        else if (i.type === 'weapon' && i.hasAmmo && !i.system.props?.ammoBelt) {
+          const ammoId = i.system.mag.target;
           const ammo = this.items.get(ammoId);
           if (ammo && ammo.type === 'ammunition') {
-            if (ammo.data.data.props.magazine) {
-              sum -= ammo.data.data.encumbrance;
+            if (ammo.system.props.magazine) {
+              sum -= ammo.system.encumbrance;
             }
             else {
-              sum -= ammo.data.data.weight * i.data.data.mag.max;
+              sum -= ammo.system.weight * i.system.mag.max;
             }
           }
         }
-        return sum + i.data.data.encumbrance;
+        return sum + i.system.encumbrance;
       }, 0)
     ) ?? 0;
 
-    const max = data.attributes.str.value + mod;
+    const max = system.attributes.str.value + mod;
 
-    data.encumbrance = {
+    system.encumbrance = {
       value: val1,
       max,
       pct: Math.clamped((val1 / max) * 100, 0, 100),
@@ -221,54 +216,54 @@ export default class ActorT2K extends Actor {
 
     // Computes the Backpack.
     const val2 = (items
-      .filter(i => i.data.data.backpack && i.type !== 'specialty')
+      .filter(i => i.system.backpack && i.type !== 'specialty')
       .reduce((sum, i) => {
-        if (i.type === 'weapon' && i.hasAmmo && !i.data.data.props?.ammoBelt) {
-          const ammoId = i.data.data.mag.target;
+        if (i.type === 'weapon' && i.hasAmmo && !i.system.props?.ammoBelt) {
+          const ammoId = i.system.mag.target;
           const ammo = this.items.get(ammoId);
           if (ammo && ammo.type === 'ammunition') {
-            if (ammo.data.data.props.magazine) {
-              sum -= ammo.data.data.encumbrance;
+            if (ammo.system.props.magazine) {
+              sum -= ammo.system.encumbrance;
             }
             else {
-              sum -= ammo.data.data.weight * i.data.data.mag.max;
+              sum -= ammo.system.weight * i.system.mag.max;
             }
           }
         }
-        return sum + i.data.data.encumbrance;
+        return sum + i.system.encumbrance;
       }, 0)
     ) ?? 0;
 
-    data.encumbrance.backpack = {
+    system.encumbrance.backpack = {
       value: val2,
       max,
       pct: Math.clamped((val2 / max) * 100, 0, 100),
       encumbered: val2 > max,
     };
-    return data;
+    return system;
   }
 
   /* ------------------------------------------- */
 
   /**
    * Adds Armor Ratings properties to the Actor.
-   * @param {Object} data    The Actor's data.data
+   * @param {Object} system  The Actor's system
    * @param {Item[]} armors  An array containing the Actor's armors
    * @private
    */
-  _prepareArmorRating(data, armors) {
+  _prepareArmorRating(system, armors) {
     const ratings = armors.reduce((o, i) => {
-      if (!i.data.data.equipped) return o;
-      for (const [loc, isProtected] of Object.entries(i.data.data.location)) {
+      if (!i.system.equipped) return o;
+      for (const [loc, isProtected] of Object.entries(i.system.location)) {
         if (!(loc in o)) o[loc] = 0;
         if (isProtected) {
-          o[loc] = Math.max(o[loc], i.data.data.rating.value);
+          o[loc] = Math.max(o[loc], i.system.rating.value);
         }
       }
       return o;
     }, {});
-    data.armorRating = ratings;
-    return data;
+    system.armorRating = ratings;
+    return system;
   }
 
   /* ------------------------------------------- */
@@ -282,41 +277,41 @@ export default class ActorT2K extends Actor {
    * @private
    */
   _prepareVehicleData(actorData) {
-    const data = actorData.data;
-    this._computeVehicleEncumbrance(data, actorData.items);
+    const system = actorData.system;
+    this._computeVehicleEncumbrance(system, actorData.items);
   }
 
   /* ------------------------------------------- */
 
   /**
    * Adds Emcumbrance properties a vehicle.
-   * @param {Object} data   The Actor's data.data
+   * @param {Object} system The Actor's system
    * @param {Item[]} items  Array of items
    * @private
    */
-  _computeVehicleEncumbrance(data, items) {
+  _computeVehicleEncumbrance(system, items) {
     let val = (items
-      .filter(i => !i.data.data.isMounted && i.type !== 'specialty')
-      .reduce((sum, i) => sum + i.data.data.encumbrance, 0)
+      .filter(i => !i.system.isMounted && i.type !== 'specialty')
+      .reduce((sum, i) => sum + i.system.encumbrance, 0)
     ) ?? 0;
 
-    const maxCrewQty = data.crew.qty + data.crew.passengerQty;
-    const crewCount = data.crew.occupants.length;
+    const maxCrewQty = system.crew.qty + system.crew.passengerQty;
+    const crewCount = system.crew.occupants.length;
     const emptySeatCount = Math.max(0, maxCrewQty - crewCount);
     const emptySeatWeight = emptySeatCount * T2K4E.vehicle.emptySeatEncumbrance;
     const extraPassengerCount = -Math.min(0, maxCrewQty - crewCount);
     const extraPassengerWeight = extraPassengerCount * T2K4E.vehicle.extraPassengerEncumbrance;
 
-    const max = data.cargo + emptySeatWeight + (data.trailer ? data.cargo : 0);
+    const max = system.cargo + emptySeatWeight + (system.trailer ? system.cargo : 0);
     val += extraPassengerWeight;
 
-    data.encumbrance = {
+    system.encumbrance = {
       value: val,
       max,
       pct: Math.clamped((val / max) * 100, 0, 100),
       encumbered: val > max,
     };
-    return data;
+    return system;
   }
 
   /* ------------------------------------------- */
@@ -325,7 +320,7 @@ export default class ActorT2K extends Actor {
   /* ------------------------------------------- */
 
   // TODO placeholder
-  _prepareUnitData(data) {}
+  _prepareUnitData(actorData) {}
 
   /* ------------------------------------------- */
   /*  Data Preparation                           */
@@ -333,7 +328,7 @@ export default class ActorT2K extends Actor {
   /* ------------------------------------------- */
 
   // TODO placeholder
-  _preparePartyData(data) {}
+  _preparePartyData(actorData) {}
 
   /* ------------------------------------------- */
   /*  Roll Modifiers                             */
@@ -348,7 +343,7 @@ export default class ActorT2K extends Actor {
         // Physical items must be equipped to give their modifier.
         if (i.isPhysical && !i.isEquipped) continue;
         // Iterates over each roll modifier.
-        for (const m of Object.values(i.data.data.rollModifiers)) {
+        for (const m of Object.values(i.system.rollModifiers)) {
           let mod = {};
           try {
             mod = new Modifier(m.name, m.value, i);
@@ -374,38 +369,38 @@ export default class ActorT2K extends Actor {
 
     // Adds default parameters to tokens.
     const updateData = {
-      'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      displayName: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
     };
     switch (this.type) {
       case 'character':
       case 'party':
-        updateData['token.actorLink'] = true;
-        updateData['token.disposition'] = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+        updateData.actorLink = true;
+        updateData.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
         break;
       case 'npc':
-        updateData['token.bar2'] = { attribute: '' };
+        updateData.bar2 = { attribute: '' };
         break;
       case 'vehicle':
-        updateData['token.bar1'] = { attribute: 'reliability' };
+        updateData.bar1 = { attribute: 'reliability' };
         break;
       case 'unit':
-        updateData['token.displayName'] = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
+        updateData.displayName = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
         break;
     }
     // Adds default character token size.
     if (['character', 'npc'].includes(this.type)) {
       const size = game.settings.get('t2k4e', 'defaultCharTokenSize');
       if (size >= 0.3 && size <= 2) {
-        updateData['token.height'] = size;
-        updateData['token.width'] = size;
+        updateData.height = size;
+        updateData.width = size;
       }
       else {
         console.warn('t2k4e | defaultCharTokenSize settings not between acceptable range.', size);
       }
     }
     // Performs the update.
-    this.data.update(updateData);
+    this.prototypeToken.updateSource(updateData);
   }
 
   /* ------------------------------------------- */
@@ -424,20 +419,17 @@ export default class ActorT2K extends Actor {
     if (!T2K4E.vehicle.crewPositionFlags.includes(position)) {
       throw new TypeError(`t2k4e | addVehicleOccupant | Wrong position flag: ${position}`);
     }
-    const data = this.data.data;
-    // if (!(data.crew.occupants instanceof Array)) {
-    //   data.crew.occupants = [];
-    // }
+    const system = this.system;
     const occupant = {
       id: crewId,
       position,
       exposed: isExposed,
     };
     // Removes duplicates.
-    if (data.crew.occupants.some(o => o.id === crewId)) this.removeVehicleOccupant(crewId);
+    if (system.crew.occupants.some(o => o.id === crewId)) this.removeVehicleOccupant(crewId);
     // Adds the new occupant.
-    data.crew.occupants.push(occupant);
-    this.update({ 'data.crew.occupants': data.crew.occupants });
+    system.crew.occupants.push(occupant);
+    this.update({ 'system.crew.occupants': system.crew.occupants });
     return occupant;
   }
 
@@ -450,7 +442,7 @@ export default class ActorT2K extends Actor {
    */
   removeVehicleOccupant(crewId) {
     if (this.type !== 'vehicle') return;
-    const crew = this.data.data.crew;
+    const crew = this.system.crew;
     crew.occupants = crew.occupants.filter(o => o.id !== crewId);
     return crew.occupants;
   }
@@ -464,7 +456,7 @@ export default class ActorT2K extends Actor {
    */
   getVehicleOccupant(crewId) {
     if (this.type !== 'vehicle') return;
-    return this.data.data.crew.occupants.find(o => o.id === crewId);
+    return this.system.crew.occupants.find(o => o.id === crewId);
   }
 
   /* ------------------------------------------- */
@@ -476,7 +468,7 @@ export default class ActorT2K extends Actor {
   getCrew() {
     if (this.type !== 'vehicle') return undefined;
     const c = new foundry.utils.Collection();
-    for (const o of this.data.data.crew.occupants) {
+    for (const o of this.system.crew.occupants) {
       c.set(o.id, game.actors.get(o.id));
     }
     return c;
@@ -494,16 +486,16 @@ export default class ActorT2K extends Actor {
   async rollRadiationAttack(options) {
     if (this.type !== 'character') return;
 
-    const data = this.data.data;
-    const rads = data.rads || {};
+    const system = this.system;
+    const rads = system.rads || {};
     const sievert = rads.temporary + rads.permanent;
 
     if (sievert <= 0) return;
 
     const rollConfig = foundry.utils.mergeObject({
       title: game.i18n.localize('T2K4E.ActorSheet.RadiationRoll'),
-      attribute: data.attributes.str.value,
-      skill: data.skills.stamina.value,
+      attribute: system.attributes.str.value,
+      skill: system.skills.stamina.value,
       modifier: T2K4E.radiationVirulence - sievert,
     }, options);
     rollConfig.actor = this;
@@ -533,7 +525,7 @@ export default class ActorT2K extends Actor {
 
   async applyDamageToCharacter(amount, attackData, sendMessage = true) {
     const initialAmount = amount;
-    const data = this.data.data;
+    const system = this.system;
     const armorModifier = attackData.armorModifier || 0;
     const baseDamage = attackData.damage;
 
@@ -558,33 +550,33 @@ export default class ActorT2K extends Actor {
     }
 
     // 3 — Body Armor
-    const armorRating = this.data.data.armorRating[attackData.location] || 0;
+    const armorRating = this.system.armorRating[attackData.location] || 0;
     const bodyArmor = new Armor(armorRating, game.i18n.localize('T2K4E.Combat.BodyArmor'));
     amount = await bodyArmor.penetration(amount, baseDamage, armorModifier);
 
     // 3.1 — Body Armor Ablation
     if (bodyArmor.damaged) {
       // 3.1.1 — Finds the affected armor.
-      const armorItems = this.items.filter(i => i.type === 'armor' && i.data.data.location[attackData.location]);
+      const armorItems = this.items.filter(i => i.type === 'armor' && i.system.location[attackData.location]);
 
       // 3.1.2 — Takes the best.
-      const armorItem = armorItems.sort((a, b) => b.data.data.rating.value - a.data.data.rating.value)[0];
+      const armorItem = armorItems.sort((a, b) => b.system.rating.value - a.system.rating.value)[0];
 
       // 3.1.3 — Decreases the armor rating.
       if (armorItem) {
-        let rating = armorItem.data.data.rating.value;
+        let rating = armorItem.system.rating.value;
         rating = Math.max(0, rating - 1);
-        armorItem.update({ 'data.rating.value': rating });
+        armorItem.update({ 'system.rating.value': rating });
       }
     }
     armors.push(bodyArmor);
 
     // 4 — Damage & Health Change
-    const oldVal = data.health.value;
+    const oldVal = system.health.value;
     const newVal = Math.max(0, oldVal - amount);
     const diff = newVal - oldVal;
 
-    if (diff !== 0) await this.update({ 'data.health.value': newVal });
+    if (diff !== 0) await this.update({ 'system.health.value': newVal });
 
     if (!sendMessage) return diff;
 

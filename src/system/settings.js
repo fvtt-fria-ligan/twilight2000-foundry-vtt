@@ -13,6 +13,14 @@ export function registerSystemSettings() {
     type: String,
     default: '',
   });
+  game.settings.register('t2k4e', 'messages', {
+    name: 'Displayed Messages',
+    hint: 'Used to track which messages have been displayed',
+    scope: 'world',
+    config: false,
+    type: Array,
+    default: [],
+  });
 
   game.settings.register('t2k4e', 'hideCapacitiesButtons', {
     config: true,

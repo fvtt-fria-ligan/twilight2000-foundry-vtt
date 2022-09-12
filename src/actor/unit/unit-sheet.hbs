@@ -1,4 +1,4 @@
-<form class="{{cssClass}} flexcol{{#if data.unitAffiliation}} unit-affiliation-{{data.unitAffiliation}}{{/if}}" autocomplete="off">
+<form class="{{cssClass}} flexcol{{#if system.unitAffiliation}} unit-affiliation-{{system.unitAffiliation}}{{/if}}" autocomplete="off">
 
   {{!-- ================================================== --}}
   {{!--  Actor Sheet Header                                --}}
@@ -9,7 +9,7 @@
 
     <div class="header-details flexcol">
         <div class="item-subtitle flexrow">
-          {{#if data.hq}}
+          {{#if system.hq}}
           <h4 class="item-type">{{localize "T2K4E.UnitSheet.HQ"}}</h4>
           {{else}}
           <h4 class="item-type">{{localize "ACTOR.TypeUnit"}}</h4>
@@ -17,7 +17,7 @@
         </div>
         <h4>
           <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'T2K4E.UnitSheet.Name'}}"/>
-          <input type="text" name="data.info" value="{{data.info}}" placeholder="{{localize 'T2K4E.UnitSheet.Info'}}"/>
+          <input type="text" name="system.info" value="{{system.info}}" placeholder="{{localize 'T2K4E.UnitSheet.Info'}}"/>
         </h4>
     </div>
   </header>
@@ -44,44 +44,44 @@
         {{!-- Faction --}}
         <div class="flexcol">
           <label>{{localize "T2K4E.UnitSheet.Faction"}}</label>
-          <input type="text" name="data.faction" value="{{data.faction}}"/>
+          <input type="text" name="system.faction" value="{{system.faction}}"/>
         </div>
         {{!-- Affiliation --}}
         <div class="flexcol">
           <label>{{localize "T2K4E.UnitSheet.UnitAffiliation"}}</label>
-          <select name="data.unitAffiliation">
+          <select name="system.unitAffiliation">
             <option value=""></option>
-            {{selectOptions config.unit.unitAffiliations selected=data.unitAffiliation localize=true}}
+            {{selectOptions config.unit.unitAffiliations selected=system.unitAffiliation localize=true}}
           </select>
         </div>
         {{!-- Type --}}
         <div class="flexcol">
           <label>{{localize "T2K4E.UnitSheet.UnitType"}}</label>
-          <input type="text" name="data.unitType" value="{{data.unitType}}"/>
+          <input type="text" name="system.unitType" value="{{system.unitType}}"/>
         </div>
         {{!-- Size --}}
         <div class="flexcol">
           <label>{{localize "T2K4E.UnitSheet.UnitSize"}}</label>
-          <select name="data.unitSize">
+          <select name="system.unitSize">
             <option value=""></option>
-            {{selectOptions config.unit.unitSizes selected=data.unitSize localize=true}}
+            {{selectOptions config.unit.unitSizes selected=system.unitSize localize=true}}
           </select>
         </div>
         {{!-- Counts --}}
         <div class="flexcol">
           <label>{{localize "T2K4E.UnitSheet.Personnel"}}</label>
           <div class="flexrow flex-center">
-            <input type="number" name="data.personnel.value" value="{{data.personnel.value}}" data-dtype="Number"/>
+            <input type="number" name="system.personnel.value" value="{{system.personnel.value}}" data-dtype="Number"/>
             <span class="sep">/</span>
-            <input type="number" name="data.personnel.max" value="{{data.personnel.max}}" data-dtype="Number"/>
+            <input type="number" name="system.personnel.max" value="{{system.personnel.max}}" data-dtype="Number"/>
           </div>
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.UnitSheet.Vehicles"}}</label>
           <div class="flexrow flex-center">
-            <input type="number" name="data.vehicles.value" value="{{data.vehicles.value}}" data-dtype="Number"/>
+            <input type="number" name="system.vehicles.value" value="{{system.vehicles.value}}" data-dtype="Number"/>
             <span class="sep">/</span>
-            <input type="number" name="data.vehicles.max" value="{{data.vehicles.max}}" data-dtype="Number"/>
+            <input type="number" name="system.vehicles.max" value="{{system.vehicles.max}}" data-dtype="Number"/>
           </div>
         </div>
 
@@ -89,9 +89,9 @@
 
       {{!-- Modifiers --}}
       <div class="form-group-stacked item-properties">
-        {{#each data.unitModifiers as | mod name |}}
+        {{#each system.unitModifiers as | mod name |}}
         <label class="checkbox">
-          <input type="checkbox" name="data.unitModifiers.{{name}}" {{checked mod}}/>
+          <input type="checkbox" name="system.unitModifiers.{{name}}" {{checked mod}}/>
           {{localize (concat "T2K4E.UnitModifierNames." name)}}
         </label>
         {{/each}}
@@ -100,7 +100,7 @@
       {{!-- HQ --}}
       <div class="form-group-stacked">
         <label class="checkbox">
-          <input type="checkbox" name="data.hq" {{checked data.hq}}/>
+          <input type="checkbox" name="system.hq" {{checked system.hq}}/>
           {{localize "T2K4E.UnitSheet.HQ"}}
         </label>
       </div>

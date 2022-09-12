@@ -79,11 +79,11 @@ export function registerHandlebars() {
     return str.toUpperCase();
   });
 
-  Handlebars.registerHelper('flps_enrich', function (content) {
-    // Enriches content.
-    content = TextEditor.enrichHTML(content, { documents: true });
-    return new Handlebars.SafeString(content);
-  });
+  // Handlebars.registerHelper('flps_enrich', function (content) {
+  //   // Enriches content.
+  //   content = TextEditor.enrichHTML(content, { documents: true, async: true });
+  //   return new Handlebars.SafeString(content);
+  // });
 
   Handlebars.registerHelper('times', function (n, content) {
     let str = '';

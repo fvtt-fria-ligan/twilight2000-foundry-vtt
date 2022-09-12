@@ -35,7 +35,7 @@ function _onRollPush(event) {
   const chatCard = event.currentTarget.closest('.chat-message');
   const messageId = chatCard.dataset.messageId;
   const message = game.messages.get(messageId);
-  const roll = message.roll;
+  const roll = message.rolls[0];
   return rollPush(roll, { message });
 }
 
@@ -60,9 +60,9 @@ function _onRollAccept(event) {
   const messageId = chatCard.dataset.messageId;
   const message = game.messages.get(messageId);
   /** @type {import('yzur').YearZeroRoll} */
-  const roll = message.roll;
+  const roll = message.rolls[0];
   roll.maxPush = 0;
-  return message.update({ roll: JSON.stringify(roll) });
+  return message.update({ rolls: [JSON.stringify(roll)] });
 }
 
 /* ------------------------------------------- */
@@ -124,7 +124,7 @@ async function _applyDamage(messageElem) {
   const messageId = messageElem.dataset.messageId;
   const message = game.messages.get(messageId);
   /** @type {import('../lib/yzur.js').YearZeroRoll} */
-  const roll = message.roll;
+  const roll = message.rolls[0];
 
   // Gets the weapon.
   const actorId = roll.options.actorId;

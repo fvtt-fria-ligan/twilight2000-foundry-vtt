@@ -1,5 +1,4 @@
 import ActorSheetT2K from '../actorSheet.js';
-import { T2K4E } from '../../system/config.js';
 
 /**
  * Twilight 2000 Actor Sheet for Units.
