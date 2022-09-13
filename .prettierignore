@@ -2,5 +2,6 @@
 dist
 .eslintrc
 package-lock.json
+foundry.js
 static/system.json
 static/template.json

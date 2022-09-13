@@ -1,11 +1,11 @@
 <div class="caargoo">
   <div class="cargo-capacity flexrow flex-right">
     <label>{{localize "T2K4E.VehicleSheet.CargoCapacity"}}</label>
-    <input type="number" class="boxed-value" name="data.cargo" value="{{data.cargo}}" data-dtype="Number"/>
+    <input type="number" class="boxed-value" name="system.cargo" value="{{system.cargo}}" data-dtype="Number"/>
   </div>
   {{!-- <div class="cargo-capacity flexrow flex-right">
     <label>{{localize "T2K4E.VehicleSheet.CrewCargo"}}</label>
-    <div class="boxed-value">&minus;{{multiply data.crew.driver 25}}</div>
+    <div class="boxed-value">&minus;{{multiply system.crew.driver 25}}</div>
   </div> --}}
 </div>
 
@@ -149,7 +149,7 @@
 </div>
 
 {{!-- ENCUMBRANCE --}}
-{{#with data.encumbrance}}
+{{#with system.encumbrance}}
 {{!-- <div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.VehicleEncumbrance'}}">
   <progress class="encumbrance-gauge" value="{{value}}" max="{{max}}">{{pct}}%</progress>
 </div> --}}

@@ -1,12 +1,12 @@
 import ActorSheetT2K from '../actorSheet.js';
 import { T2KRoller, getAttributeAndSkill } from '../../components/roll/dice.js';
+import { enrichTextFields } from '@utils/utils.js';
 
 /**
  * Twilight 2000 Actor Sheet for Character.
  * @extends {ActorSheetT2K} Extends the T2K ActorSheet
  */
 export default class ActorSheetT2KCharacter extends ActorSheetT2K {
-
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */
@@ -24,11 +24,15 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
   /*  Sheet Data Preparation                     */
   /* ------------------------------------------- */
 
-  // /** @override */
-  // getData() {
-  //   const data = super.getData();
-  //   return data;
-  // }
+  /** @override */
+  async getData() {
+    const sheetData = await super.getData();
+
+    if (this.actor.type === 'character') {
+      await enrichTextFields(sheetData, ['system.bio.appearance']);
+    }
+    return sheetData;
+  }
 
   /* ------------------------------------------- */
   /*  Sheet Listeners                            */
@@ -58,27 +62,12 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     }
   }
 
-  // TODO Update actor HP when attribute are changed.
-  // _onAttributeChange(event) {
-  // 	event.preventDefault();
-  // 	console.warn('d');
-  // 	const data = this.actor.data.data;
-  // 	this.actor.update({
-  // 		'data.health.value': data.health.max,
-  // 		'data.sanity.value': data.sanity.max,
-  // 		'data.health.modifier': 0,
-  // 		'data.sanity.modifier': 0,
-  // 		'data.health.trauma': 0,
-  // 		'data.sanity.trauma': 0,
-  // 	});
-  // }
-
   /* ------------------------------------------- */
 
   _onAttributeRoll(event) {
     event.preventDefault();
     const attributeName = event.currentTarget.dataset.attribute;
-    const attribute = this.actor.data.data.attributes[attributeName].value;
+    const attribute = this.actor.system.attributes[attributeName].value;
     const title = game.i18n.localize(CONFIG.T2K4E.attributes[attributeName]);
     return T2KRoller.taskCheck({
       title,
@@ -95,7 +84,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
   _onSkillRoll(event) {
     event.preventDefault();
     const skillName = event.currentTarget.dataset.skill;
-    const statData = getAttributeAndSkill(skillName, this.actor.data.data);
+    const statData = getAttributeAndSkill(skillName, this.actor.system);
     const isRangedSkill = ['rangedCombat', 'heavyWeapons'].includes(skillName);
     const isCombatSkill = ['rangedCombat', 'heavyWeapons', 'closeCombat'].includes(skillName);
     return T2KRoller.taskCheck({
@@ -146,14 +135,14 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     const min = +elem.dataset.min || 0;
     const max = +elem.dataset.max || 10;
     const field = elem.dataset.field;
-    const currentCount = getProperty(this.actor, `data.data.${field}.value`) || 0;
+    const currentCount = getProperty(this.actor, `system.${field}.value`) || 0;
     let newCount = currentCount;
 
     if (event.type === 'click') newCount--;
     else newCount++; // contextmenu
     newCount = Math.clamped(newCount, min, max);
 
-    return this.actor.update({ [`data.${field}.value`]: newCount });
+    return this.actor.update({ [`system.${field}.value`]: newCount });
   }
 
   _onCapacityIncrease(event) {
@@ -169,15 +158,15 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     const elem = event.currentTarget;
     const field = elem.dataset.field;
 
-    const maxi = getProperty(this.actor, `data.data.${field}.max`);
+    const maxi = getProperty(this.actor, `system.${field}.max`);
     if (mod < 0 && maxi < 2) return;
     if (mod > 0 && maxi > 11) return;
 
     const min = -12;
     const max = 12;
-    const currentMod = getProperty(this.actor, `data.data.${field}.modifier`) || 0;
+    const currentMod = getProperty(this.actor, `system.${field}.modifier`) || 0;
     const newMod = Math.clamped(currentMod + mod, min, max);
 
-    return this.actor.update({ [`data.${field}.modifier`]: newMod });
+    return this.actor.update({ [`system.${field}.modifier`]: newMod });
   }
 }

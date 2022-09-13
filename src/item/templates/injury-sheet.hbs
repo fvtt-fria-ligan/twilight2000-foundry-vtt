@@ -18,39 +18,39 @@
       <div class="grid grid-3col item-features">
         <div class="flexcol">
           <label>{{localize "T2K4E.InjurySheet.Category"}}</label>
-          <select name="data.category">
-            {{selectOptions config.injuryCategories selected=data.category localize=true}}
+          <select name="system.category">
+            {{selectOptions config.injuryCategories selected=system.category localize=true}}
           </select>
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.InjurySheet.Location"}}</label>
-          <select name="data.location">
-            {{selectOptions config.hitLocations selected=data.location localize=true}}
+          <select name="system.location">
+            {{selectOptions config.hitLocations selected=system.location localize=true}}
           </select>
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.InjurySheet.HealTime"}}</label>
-          <input type="text" name="data.healTime" value="{{data.healTime}}"/>
+          <input type="text" name="system.healTime" value="{{system.healTime}}"/>
         </div>
       </div>
 
       {{!-- Other Parameters --}}
       <div class="features-other flexcol">
         <div class="flexrow">
-          {{!-- <textarea name="data.description" rows="2" placeholder="{{localize "T2K4E.InjurySheet.Effect"}}">{{data.description}}</textarea> --}}
-          <input type="text" name="data.description" value="{{data.description}}" placeholder="{{localize "T2K4E.InjurySheet.Effect"}}"/>
+          {{!-- <textarea name="system.description" rows="2" placeholder="{{localize "T2K4E.InjurySheet.Effect"}}">{{system.description}}</textarea> --}}
+          <input type="text" name="system.description" value="{{system.description}}" placeholder="{{localize "T2K4E.InjurySheet.Effect"}}"/>
         </div>
       {{!-- </div> --}}
       {{!-- <div class="features-other flexcol"> --}}
         <div class="form-group-stacked item-properties">
           <label class="checkbox">
-            <input type="checkbox" name="data.lethal" {{checked data.lethal}}/>
+            <input type="checkbox" name="system.lethal" {{checked system.lethal}}/>
             {{localize "T2K4E.InjurySheet.Lethal"}}
           </label>
         </div>
-        {{#if data.lethal}}
+        {{#if system.lethal}}
         <div class="flexrow">
-          <input type="text" name="data.timeLimit" value="{{data.timeLimit}}" placeholder="{{localize "T2K4E.InjurySheet.TimeLimit"}}"/>
+          <input type="text" name="system.timeLimit" value="{{system.timeLimit}}" placeholder="{{localize "T2K4E.InjurySheet.TimeLimit"}}"/>
         </div>
         {{/if}}
       </div>

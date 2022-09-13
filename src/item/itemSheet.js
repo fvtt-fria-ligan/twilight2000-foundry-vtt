@@ -1,9 +1,10 @@
+import { enrichTextFields } from '@utils/utils';
+
 /**
  * Twilight 2000 Item Sheet.
  * @extends {ItemSheet} Extends the basic ItemSheet
  */
 export default class ItemSheetT2K extends ItemSheet {
-
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */
@@ -28,19 +29,21 @@ export default class ItemSheetT2K extends ItemSheet {
   /* ------------------------------------------- */
 
   /** @override */
-  getData() {
-    const baseData = super.getData();
+  async getData() {
+    // const baseData = super.getData();
     const sheetData = {
       owner: this.item.isOwner,
       editable: this.isEditable,
-      item: baseData.item,
-      data: baseData.item.data.data,
+      item: foundry.utils.deepClone(this.item),
+      system: foundry.utils.deepClone(this.item.system),
       config: CONFIG.T2K4E,
       hideWeaponProps: !game.user.isGM && game.settings.get('t2k4e', 'hideWeaponProps'),
       // QoL getters
-      inActor: this.item.actor ? true : false,
+      inActor: !!this.item.actor,
       inVehicle: this.item.actor?.type === 'vehicle',
     };
+
+    await enrichTextFields(sheetData, ['system.description']);
 
     if (['weapon', 'ammunition'].includes(this.item.type)) {
       // Potential Ammo Targets
@@ -77,10 +80,10 @@ export default class ItemSheetT2K extends ItemSheet {
     if (!items.length) return ammoTypes;
     return items.reduce((ammo, i) => {
       if (i.type === 'ammunition') {
-        ammo.add(i.data.data.itemType);
+        ammo.add(i.system.itemType);
       }
       else if (i.type === 'weapon') {
-        const t = i.data.data.ammo;
+        const t = i.system.ammo;
         if (t) ammo.add(t);
       }
       return ammo;
@@ -96,19 +99,22 @@ export default class ItemSheetT2K extends ItemSheet {
    */
   _getItemAmmunitionTargets() {
     // TODO clean this code
-    const itemData = this.item.data.data;
+    const itemData = this.item.system;
     // const ammoType = itemData.ammo;
     // if (!ammoType) return {};
 
     const actor = this.item.actor;
     if (!actor) return {};
 
-    return actor.itemTypes.ammunition.reduce((ammo, i) => {
-      // if (i.data.data.itemType === ammoType) {
-      ammo[i.id] = i.detailedName;
-      // }
-      return ammo;
-    }, { [this.item.id]: `${this.item.name} (${itemData.qty})` });
+    return actor.itemTypes.ammunition.reduce(
+      (ammo, i) => {
+        // if (i.system.itemType === ammoType) {
+        ammo[i.id] = i.detailedName;
+        // }
+        return ammo;
+      },
+      { [this.item.id]: `${this.item.name} (${itemData.qty})` },
+    );
   }
 
   /* ------------------------------------------- */
@@ -150,7 +156,7 @@ export default class ItemSheetT2K extends ItemSheet {
     const value = input.value;
     if (value[0] === '+' || value[0] === '-') {
       const delta = parseFloat(value);
-      input.value = foundry.utils.getProperty(this.item.data, input.name) + delta;
+      input.value = foundry.utils.getProperty(this.item, input.name) + delta;
     }
     else if (value[0] === '=') {
       input.value = value.slice(1);
@@ -161,16 +167,16 @@ export default class ItemSheetT2K extends ItemSheet {
 
   _onAddModifier(event) {
     event.preventDefault();
-    const rollModifiers = foundry.utils.duplicate(this.item.data.data.rollModifiers ?? {});
+    const rollModifiers = foundry.utils.duplicate(this.item.system.rollModifiers ?? {});
     const modifierId = Math.max(-1, ...Object.getOwnPropertyNames(rollModifiers)) + 1;
-    return this.item.update({ [`data.rollModifiers.${modifierId}`]: { name: '', value: '+1' } });
+    return this.item.update({ [`system.rollModifiers.${modifierId}`]: { name: '', value: '+1' } });
   }
 
   _onDeleteModifier(event) {
     event.preventDefault();
     const modifierId = event.currentTarget.dataset.modifierId;
-    if (this.item.data.data.rollModifiers[modifierId]) {
-      this.item.update({ [`data.rollModifiers.-=${modifierId}`]: null });
+    if (this.item.system.rollModifiers[modifierId]) {
+      this.item.update({ [`system.rollModifiers.-=${modifierId}`]: null });
     }
   }
 
@@ -184,17 +190,17 @@ export default class ItemSheetT2K extends ItemSheet {
     const button = event.currentTarget;
     button.disabled = true;
 
-    let ammo = this.item.data.data.ammo;
+    let ammo = this.item.system.ammo;
     if (ammo.match(/\d{2}$/)) ammo += 'mm';
 
-    const size = this.item.data.data.mag.max;
+    const size = this.item.system.mag.max;
     // eslint-disable-next-line no-nested-ternary
     const mag = size > 40 ? (size > 55 ? (size > 150 ? 'Box' : 'Belt') : 'Drum') : 'Mag';
 
     const itemData = {
       name: `${ammo}, ${size}-round ${mag}`,
       type: 'ammunition',
-      'data.ammo': { value: size, max: size },
+      'system.ammo': { value: size, max: size },
     };
 
     const [ammunition] = await this.item.actor.createEmbeddedDocuments('Item', [itemData]);
@@ -203,7 +209,7 @@ export default class ItemSheetT2K extends ItemSheet {
       weapon: this.item.name,
     });
     ui.notifications.info(msg);
-    await this.item.update({ 'data.mag.target': ammunition.id });
+    await this.item.update({ 'system.mag.target': ammunition.id });
 
     button.disabled = false;
     return ammunition;

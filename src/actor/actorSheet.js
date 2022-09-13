@@ -1,13 +1,13 @@
 import { T2K4E } from '../system/config.js';
 import T2KDialog from '../components/dialog/dialog.js';
 import { getAttributeAndSkill, T2KRoller } from '../components/roll/dice.js';
+import { enrichTextFields } from '@utils/utils.js';
 
 /**
  * Twilight 2000 Actor Sheet.
  * @extends {ActorSheet} Extends the basic ActorSheet
  */
 export default class ActorSheetT2K extends ActorSheet {
-
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */
@@ -32,16 +32,17 @@ export default class ActorSheetT2K extends ActorSheet {
   /* ------------------------------------------- */
 
   /** @override */
-  getData() {
-    const baseData = super.getData();
+  async getData() {
+    // const baseData = super.getData();
     const sheetData = {
       owner: this.actor.isOwner,
       editable: this.isEditable,
-      actor: baseData.actor,
-      data: baseData.actor.data.data,
+      actor: foundry.utils.deepClone(this.actor),
+      system: foundry.utils.deepClone(this.actor.system),
       config: T2K4E,
       hideCapacitiesButtons: !game.user.isGM && game.settings.get('t2k4e', 'hideCapacitiesButtons'),
     };
+    await enrichTextFields(sheetData, ['system.description']);
     return sheetData;
   }
 
@@ -90,9 +91,9 @@ export default class ActorSheetT2K extends ActorSheet {
 
   rollAction(actionName, _itemId) {
     const skillName = T2K4E.actionSkillsMap[actionName];
-    const statData = getAttributeAndSkill(skillName, this.actor.data.data);
+    const statData = getAttributeAndSkill(skillName, this.actor.system);
     statData.title += ` (${this.actor.name})`;
-    const isRangedSkill = (skillName === 'rangedCombat' || skillName === 'heavyWeapons');
+    const isRangedSkill = skillName === 'rangedCombat' || skillName === 'heavyWeapons';
     return T2KRoller.taskCheck({
       ...statData,
       actor: this.actor,
@@ -145,7 +146,7 @@ export default class ActorSheetT2K extends ActorSheet {
 
     // Specific item click on Vehicles.
     if (this.actor.type === 'vehicle' && item.type === 'weapon') {
-      const actors = this.actor.data.data.crew.occupants.reduce((data, o) => {
+      const actors = this.actor.system.crew.occupants.reduce((data, o) => {
         const a = game.actors.get(o.id);
         if (!a) return data;
         const nm = `${a.name} (${game.i18n.localize(T2K4E.vehicle.crewPositionFlagsLocalized[o.position])})`;
@@ -180,13 +181,16 @@ export default class ActorSheetT2K extends ActorSheet {
       name: game.i18n.localize(`T2K4E.ActorSheet.NewItem.${type}`),
       type,
     };
-    return this.actor.createEmbeddedDocuments('Item', [itemData])
-      // Displays the sheet of the newly created item.
-      .then(itmData => {
-        const itemId = itmData[0].id;
-        const item = this.actor.items.get(itemId);
-        item.sheet.render(true);
-      });
+    return (
+      this.actor
+        .createEmbeddedDocuments('Item', [itemData])
+        // Displays the sheet of the newly created item.
+        .then(itmData => {
+          const itemId = itmData[0].id;
+          const item = this.actor.items.get(itemId);
+          item.sheet.render(true);
+        })
+    );
   }
 
   _onItemEdit(event) {
@@ -216,9 +220,9 @@ export default class ActorSheetT2K extends ActorSheet {
     event.preventDefault();
     const itemId = event.currentTarget.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
-    const equipped = item.data.data.equipped;
-    const updateData = { 'data.equipped': !equipped };
-    if (!equipped && item.data.data.backpack) updateData['data.backpack'] = false;
+    const equipped = item.system.equipped;
+    const updateData = { 'system.equipped': !equipped };
+    if (!equipped && item.system.backpack) updateData['system.backpack'] = false;
     return item.update(updateData);
   }
 
@@ -226,9 +230,9 @@ export default class ActorSheetT2K extends ActorSheet {
     event.preventDefault();
     const itemId = event.currentTarget.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
-    const stored = item.data.data.backpack;
-    const updateData = { 'data.backpack': !stored };
-    if (!stored && item.data.data.equipped) updateData['data.equipped'] = false;
+    const stored = item.system.backpack;
+    const updateData = { 'system.backpack': !stored };
+    if (!stored && item.system.equipped) updateData['system.equipped'] = false;
     return item.update(updateData);
   }
 
@@ -240,7 +244,7 @@ export default class ActorSheetT2K extends ActorSheet {
     const itemId = elem.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
     const value = +elem.value;
-    return item.update({ 'data.mag.value': value });
+    return item.update({ 'system.mag.value': value });
   }
 
   /* ------------------------------------------- */
@@ -252,13 +256,13 @@ export default class ActorSheetT2K extends ActorSheet {
     const min = +elem.dataset.min || 0;
     const max = +elem.dataset.max || 10;
     const field = elem.dataset.field;
-    const currentCount = foundry.utils.getProperty(this.actor, `data.data.${field}`) || 0;
+    const currentCount = foundry.utils.getProperty(this.actor, `system.${field}`) || 0;
     let newCount = currentCount;
 
     if (event.type === 'click') newCount++;
     else newCount--; // contextmenu
     newCount = Math.clamped(newCount, min, max);
 
-    return this.actor.update({ [`data.${field}`]: newCount });
+    return this.actor.update({ [`system.${field}`]: newCount });
   }
 }

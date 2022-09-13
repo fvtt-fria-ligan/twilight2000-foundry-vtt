@@ -15,28 +15,28 @@
       {{!-- Nationality, Branch & Rank --}}
       <div class="nation">
         <h3>{{localize "T2K4E.ActorSheet.Nationality"}}</h3>
-        <input type="text" name="data.bio.nationality" value="{{data.bio.nationality}}"/>
+        <input type="text" name="system.bio.nationality" value="{{system.bio.nationality}}"/>
       </div>
       <div class="branch">
         <h3>{{localize "T2K4E.ActorSheet.Branch"}}</h3>
-        <input type="text" name="data.bio.branch" value="{{data.bio.branch}}"/>
+        <input type="text" name="system.bio.branch" value="{{system.bio.branch}}"/>
       </div>
       <div class="rank">
         <h3>{{localize "T2K4E.ActorSheet.MilitaryRank"}}</h3>
-        <input type="text" name="data.bio.militaryRank" value="{{data.bio.militaryRank}}"/>
+        <input type="text" name="system.bio.militaryRank" value="{{system.bio.militaryRank}}"/>
       </div>
       <div class="age">
         <h3>{{localize "T2K4E.ActorSheet.Age"}}</h3>
-        <input type="text" name="data.bio.age" value="{{data.bio.age}}"/>
+        <input type="text" name="system.bio.age" value="{{system.bio.age}}"/>
       </div>
 
       {{!-- Hit Capacity --}}
       <div class="capacity hit flexrow flex-middle">
         <div>
           <h3>{{localize "T2K4E.ActorSheet.HitCapacity"}}</h3>
-          {{> "systems/t2k4e/templates/actor/parts/capacity-boxes.hbs" field="health" value=data.health.trauma min=0 max=data.hitCapacity}}
+          {{> "systems/t2k4e/templates/actor/parts/capacity-boxes.hbs" field="health" value=system.health.trauma min=0 max=system.hitCapacity}}
         </div>
-        <div class="capacity-value boxed-value" title="{{localize 'T2K4E.ActorSheet.CapacityModifier'}} {{#if (gte data.health.modifier 1)}}+{{/if}}{{data.health.modifier}}">{{data.health.value}}/{{data.hitCapacity}}</div>
+        <div class="capacity-value boxed-value" title="{{localize 'T2K4E.ActorSheet.CapacityModifier'}} {{#if (gte system.health.modifier 1)}}+{{/if}}{{system.health.modifier}}">{{system.health.value}}/{{system.hitCapacity}}</div>
         {{#unless hideCapacitiesButtons}}
         <div class="capacity-buttons flexcol">
           <a class="button capacity-increase" data-field="health">
@@ -54,9 +54,9 @@
       <div class="capacity stress flexrow flex-middle">
         <div>
           <h3>{{localize "T2K4E.ActorSheet.StressCapacity"}}</h3>
-          {{> "systems/t2k4e/templates/actor/parts/capacity-boxes.hbs" field="sanity" value=data.sanity.trauma min=0 max=data.stressCapacity}}
+          {{> "systems/t2k4e/templates/actor/parts/capacity-boxes.hbs" field="sanity" value=system.sanity.trauma min=0 max=system.stressCapacity}}
         </div>
-        <div class="capacity-value boxed-value" title="{{localize 'T2K4E.ActorSheet.CapacityModifier'}} {{#if (gte data.sanity.modifier 1)}}+{{/if}}{{data.sanity.modifier}}">{{data.sanity.value}}/{{data.stressCapacity}}</div>
+        <div class="capacity-value boxed-value" title="{{localize 'T2K4E.ActorSheet.CapacityModifier'}} {{#if (gte system.sanity.modifier 1)}}+{{/if}}{{system.sanity.modifier}}">{{system.sanity.value}}/{{system.stressCapacity}}</div>
         {{#unless hideCapacitiesButtons}}
         <div class="capacity-buttons flexcol">
           <a class="button capacity-increase" data-field="sanity">
@@ -77,11 +77,11 @@
         {{#if (eq actor.type 'character')}}
         <div class="experience flexrow flex-middle">
           <h5>{{localize "T2K4E.ActorSheet.ExperienceCurrent"}}</h5>
-          <input type="number" class="smallbox" name="data.xp.value" value="{{data.xp.value}}"/>
+          <input type="number" class="smallbox" name="system.xp.value" value="{{system.xp.value}}"/>
         </div>
         <div class="experience flexrow flex-middle">
           <h5>{{localize "T2K4E.ActorSheet.ExperienceTotal"}}</h5>
-          <input type="number" class="smallbox" name="data.xp.total" value="{{data.xp.total}}"/>
+          <input type="number" class="smallbox" name="system.xp.total" value="{{system.xp.total}}"/>
         </div>
         {{/if}}
       </div>
@@ -128,19 +128,19 @@
     <div class="tab tab-biography" data-group="primary" data-tab="biography">
       <div class="flexcol">
         <h2>{{localize "T2K4E.ActorSheet.Appearance"}}</h2>
-        {{editor content=data.bio.appearance target="data.bio.appearance" button=true owner=owner editable=editable}}
+        {{editor system.bio.appearance target="system.bio.appearance" button=true editable=editable}}
 
         <h2>{{localize "T2K4E.ActorSheet.Buddy"}}</h2>
-        <input type="text" name="data.bio.buddy" value="{{data.bio.buddy}}"/>
+        <input type="text" name="system.bio.buddy" value="{{system.bio.buddy}}"/>
 
         <h2>{{localize "T2K4E.ActorSheet.MoralCode"}}</h2>
-        <input type="text" name="data.bio.moralCode" value="{{data.bio.moralCode}}"/>
+        <input type="text" name="system.bio.moralCode" value="{{system.bio.moralCode}}"/>
 
         <h2>{{localize "T2K4E.ActorSheet.BigDream"}}</h2>
-        <input type="text" name="data.bio.bigDream" value="{{data.bio.bigDream}}"/>
+        <input type="text" name="system.bio.bigDream" value="{{system.bio.bigDream}}"/>
 
         <h2>{{localize "T2K4E.ActorSheet.GroupMeeting"}}</h2>
-        <textarea name="data.bio.groupMeeting" rows="5">{{data.bio.groupMeeting}}</textarea>
+        <textarea name="system.bio.groupMeeting" rows="5">{{system.bio.groupMeeting}}</textarea>
       </div>
     </div>
     {{/if}}

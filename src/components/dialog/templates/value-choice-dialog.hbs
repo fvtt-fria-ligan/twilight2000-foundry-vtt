@@ -1,14 +1,24 @@
-<form class="t2k4e dialog value-choice-dialog">
+<form class='t2k4e dialog value-choice-dialog'>
 
-  {{!-- Modifier --}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.ChooseValue.Value"}}</label>
-    <div class="flexrow">
-      <div class="flexrow flex1 modifier-buttons">
-        <a class="button modifier-change" data-target="modifier" data-change="plus">{{{config.Icons.buttons.plus}}}</a>
-        <a class="button modifier-change" data-target="modifier" data-change="minus">{{{config.Icons.buttons.minus}}}</a>
+  {{! Modifier }}
+  <div class='form-group'>
+    <label>{{localize 'T2K4E.Dialog.ChooseValue.Value'}}</label>
+    <div class='flexrow'>
+      <div class='flexrow flex1 modifier-buttons'>
+        <a class='button modifier-change' data-target='modifier' data-change='plus'>{{{config.Icons.buttons.plus}}}</a>
+        <a
+          class='button modifier-change'
+          data-target='modifier'
+          data-change='minus'
+        >{{{config.Icons.buttons.minus}}}</a>
       </div>
-      <input type="text" class="flex2" name="modifier" value="{{numberFormat data.value sign=true}}" data-dtype="Number"/>
+      <input
+        type='text'
+        class='flex2'
+        name='modifier'
+        value='{{numberFormat data.value sign=true}}'
+        data-dtype='Number'
+      />
     </div>
   </div>
 

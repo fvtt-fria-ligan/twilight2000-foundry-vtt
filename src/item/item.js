@@ -9,13 +9,12 @@ import T2KDialog from '../components/dialog/dialog.js';
  * @extends {Item} Extends the basic Item
  */
 export default class ItemT2K extends Item {
-
   /* ------------------------------------------- */
   /*  Properties                                 */
   /* ------------------------------------------- */
 
   get qty() {
-    return this.data.data.qty;
+    return this.system.qty;
   }
 
   get isPhysical() {
@@ -23,7 +22,7 @@ export default class ItemT2K extends Item {
   }
 
   get hasDamage() {
-    return !!this.data.data.damage;
+    return !!this.system.damage;
   }
 
   get hasAttack() {
@@ -31,34 +30,34 @@ export default class ItemT2K extends Item {
   }
 
   get isStashed() {
-    if (this.isPhysical) return this.data.data.backpack;
+    if (this.isPhysical) return this.system.backpack;
     return null;
   }
 
   get isEquipped() {
-    return this.data.data.equipped;
+    return this.system.equipped;
   }
 
   get isDisposable() {
-    return !!this.data.data.props?.disposable;
+    return !!this.system.props?.disposable;
   }
 
   get isMounted() {
-    if (this.data.data.props?.mounted == undefined) return null;
-    return this.isEquipped && this.data.data.props?.mounted;
+    if (this.system.props?.mounted == undefined) return null;
+    return this.isEquipped && this.system.props?.mounted;
   }
 
   get hasAmmo() {
-    return this.data.data.ammo && !!this.data.data.mag?.max;
+    return this.system.ammo && !!this.system.mag?.max;
   }
 
   get hasReliability() {
-    return !!this.data.data.reliability?.max;
+    return !!this.system.reliability?.max;
   }
 
   get hasModifier() {
-    if (!this.data.data.rollModifiers) return false;
-    return !foundry.utils.isEmpty(this.data.data.rollModifiers);
+    if (!this.system.rollModifiers) return false;
+    return !foundry.utils.isEmpty(this.system.rollModifiers);
   }
 
   // get inVehicle() {
@@ -73,12 +72,12 @@ export default class ItemT2K extends Item {
   get detailedName() {
     let str = this.name;
     if (this.type === 'ammunition') {
-      const ammo = this.data.data.ammo;
+      const ammo = this.system.ammo;
       str += ` [${ammo.value}/${ammo.max}]`;
     }
     else if (this.type === 'weapon' && this.actor?.type === 'vehicle') {
       const ffv = [];
-      for (const [k, v] of Object.entries(this.data.data.featuresForVehicle)) {
+      for (const [k, v] of Object.entries(this.system.featuresForVehicle)) {
         if (v) ffv.push(k.toUpperCase());
       }
       if (ffv.length) str += ` (${ffv.join(', ')})`;
@@ -91,12 +90,12 @@ export default class ItemT2K extends Item {
 
   get modifiersDescription() {
     if (!this.hasModifier) return undefined;
-    return this._getModifiersDescription(this.data.data.rollModifiers);
+    return this._getModifiersDescription(this.system.rollModifiers);
   }
 
   get encumbranceModifiers() {
     if (!this.hasModifier) return 0;
-    return this._getModifiersEncumbrance(this.data.data.rollModifiers);
+    return this._getModifiersEncumbrance(this.system.rollModifiers);
   }
 
   /* ------------------------------------------- */
@@ -110,14 +109,14 @@ export default class ItemT2K extends Item {
   prepareData() {
     super.prepareData();
 
-    const itemData = this.data;
-    const actorData = this.actor ? this.actor.data : {};
-    const data = itemData.data;
+    const actorData = this.actor ?? {};
+    const system = this.system;
 
-    this._prepareEncumbrance(this.type, data);
+    this._prepareEncumbrance(this.type, system);
 
     switch (this.type) {
-      case 'weapon': this._prepareWeapon(data, actorData);
+      case 'weapon':
+        this._prepareWeapon(system, actorData);
     }
   }
 
@@ -125,18 +124,18 @@ export default class ItemT2K extends Item {
 
   /**
    * Prepares weapon data.
-   * @param {Object} data       Item's data data
+   * @param {Object} system       Item's system
    * @param {Object} actorData  Actor's data (1x)
    * @private
    */
-  _prepareWeapon(data, actorData = {}) {
+  _prepareWeapon(system, actorData = {}) {
     // Adds "data.mount: [number]" property.
     if (actorData.type === 'vehicle') {
-      if (data.equipped && data.props?.mounted) {
-        data.isMounted = true;
+      if (system.equipped && system.props?.mounted) {
+        system.isMounted = true;
       }
       else {
-        data.isMounted = false;
+        system.isMounted = false;
       }
     }
   }
@@ -146,26 +145,26 @@ export default class ItemT2K extends Item {
   /**
    * Calculates a custom encumbrance for items.
    * @param {string} type  Item type
-   * @param {Object} data  Item's data
+   * @param {Object} system  Item's system
    * @private
    */
-  _prepareEncumbrance(type, data) {
+  _prepareEncumbrance(type, system) {
     let weight = 0;
-    if (type === 'ammunition' && !data.props.magazine) {
-      weight = data.qty * data.weight * data.ammo.value;
+    if (type === 'ammunition' && !system.props.magazine) {
+      weight = system.qty * system.weight * system.ammo.value;
     }
     else {
-      weight = data.qty * data.weight;
+      weight = system.qty * system.weight;
     }
-    if (!weight) data.encumbrance = 0;
-    else data.encumbrance = weight;
+    if (!weight) system.encumbrance = 0;
+    else system.encumbrance = weight;
   }
 
   /* ------------------------------------------- */
 
   /**
    * Returns a number summing all encumbrance modifiers from specialties.
-   * @param {Object} modifiersData item.data.data.rollModifiers
+   * @param {Object} modifiersData item.system.rollModifiers
    * @returns {number}
    */
   _getModifiersEncumbrance(modifiersData) {
@@ -183,7 +182,7 @@ export default class ItemT2K extends Item {
 
   /**
    * Returns a string resuming the modifiers.
-   * @param {Object} modifiersData item.data.data.rollModifiers
+   * @param {Object} modifiersData item.system.rollModifiers
    * @returns {string}
    * @private
    */
@@ -195,11 +194,21 @@ export default class ItemT2K extends Item {
         const [t, n] = m.name.split('.');
         let type = '';
         switch (t) {
-          case 'attribute': type = 'Attribute'; break;
-          case 'constant': type = 'Constant'; break;
-          case 'skill': type = 'Skill'; break;
-          case 'action': type = 'Action'; break;
-          case 'travel': type = 'TravelTask'; break;
+          case 'attribute':
+            type = 'Attribute';
+            break;
+          case 'constant':
+            type = 'Constant';
+            break;
+          case 'skill':
+            type = 'Skill';
+            break;
+          case 'action':
+            type = 'Action';
+            break;
+          case 'travel':
+            type = 'TravelTask';
+            break;
         }
         const str = game.i18n.localize(`T2K4E.${type}Names.${n}`) + ` ${m.value}`;
         out.push(str);
@@ -221,14 +230,14 @@ export default class ItemT2K extends Item {
       // When creating an injury in a character.
       if (this.type === 'injury') {
         // If there is a heal time set.
-        let healTime = this.data.data.healTime;
+        let healTime = this.system.healTime;
         if (healTime) {
           try {
             const roll = Roll.create(healTime);
             await roll.evaluate({ async: true });
             healTime = roll.terms.reduce((sum, t) => sum + t.values.reduce((tot, v) => tot + v, 0), 0);
             healTime = `${healTime} ${game.i18n.localize(`T2K4E.InjurySheet.day${healTime > 1 ? 's' : ''}`)}`;
-            this.update({ 'data.healTime': healTime });
+            this.update({ 'system.healTime': healTime });
           }
           catch (e) {
             console.warn('t2k4 | Item#_onCreate | Invalid formula for Injury heal time roll.');
@@ -276,7 +285,7 @@ export default class ItemT2K extends Item {
         title: game.i18n.format('T2K4E.Dialog.ChooseValue.Qty', { name: this.name }),
       });
       if (mod?.value) {
-        return this.update({ 'data.qty': this.qty + mod.value });
+        return this.update({ 'sytem.qty': this.qty + mod.value });
       }
       else return;
     }
@@ -301,9 +310,9 @@ export default class ItemT2K extends Item {
     //   // If no attack, instead perform a skill roll.
     //   if (this.actor) {
     //     const statData = getAttributeAndSkill(
-    //       this.data.data.skill,
-    //       this.actor.data.data,
-    //       this.data.data.attribute,
+    //       this.system.skill,
+    //       this.actor.system,
+    //       this.system.attribute,
     //     );
     //     return T2KRoller.taskCheck({
     //       ...statData,
@@ -316,14 +325,12 @@ export default class ItemT2K extends Item {
     //   }
     // }
     if (!this.actor) throw new Error('This weapon has no bearer.');
-    if (this.hasReliability && this.data.data.reliability.value <= 0) {
-      return ui.notifications.warn(
-        game.i18n.localize('T2K4E.Chat.Roll.NoReliabilityNotif'),
-      );
+    if (this.hasReliability && this.system.reliability.value <= 0) {
+      return ui.notifications.warn(game.i18n.localize('T2K4E.Chat.Roll.NoReliabilityNotif'));
     }
 
     // Prepares data.
-    const itemData = this.data.data;
+    const itemData = this.system;
     let title = game.i18n.format('T2K4E.Combat.Attack', { weapon: this.name });
     let qty = itemData.qty;
     const attributeName = itemData.attribute;
@@ -332,21 +339,22 @@ export default class ItemT2K extends Item {
 
     // Prepares values.
     if (!actor) actor = this.actor;
-    const actorData = actor.data.data;
+    const actorData = actor.system;
     const attribute = actorData.attributes?.[attributeName]?.value ?? 0;
     const skill = actorData.skills?.[skillName]?.value ?? 0;
     let rof = itemData.rof;
 
     // Gets the magazine.
-    const track = (this.actor.type === 'character' && game.settings.get('t2k4e', 'trackPcAmmo'))
-      || (this.actor.type === 'npc' && game.settings.get('t2k4e', 'trackNpcAmmo'))
-      || (this.actor.type === 'vehicle' && game.settings.get('t2k4e', 'trackVehicleAmmo'));
+    const track =
+      (this.actor.type === 'character' && game.settings.get('t2k4e', 'trackPcAmmo')) ||
+      (this.actor.type === 'npc' && game.settings.get('t2k4e', 'trackNpcAmmo')) ||
+      (this.actor.type === 'vehicle' && game.settings.get('t2k4e', 'trackVehicleAmmo'));
 
     let ammo = null;
     if (track && this.hasAmmo) {
-      ammo = this.actor.items.get(this.data.data.mag.target);
-      if (ammo?.data) {
-        const ammoLeft = ammo.data.data.ammo.value ?? ammo.data.data.qty;
+      ammo = this.actor.items.get(this.system.mag.target);
+      if (ammo?.system) {
+        const ammoLeft = ammo.system.ammo.value ?? ammo.system.qty;
         if (ammoLeft <= 0) {
           ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoAmmoLeft', { weapon: this.name }));
           return;
@@ -367,11 +375,18 @@ export default class ItemT2K extends Item {
     }
 
     // Composes the options for the task check.
-    const rollConfig = foundry.utils.mergeObject({
-      title, attributeName, skillName,
-      attribute, skill, rof,
-      locate: true,
-    }, options);
+    const rollConfig = foundry.utils.mergeObject(
+      {
+        title,
+        attributeName,
+        skillName,
+        attribute,
+        skill,
+        rof,
+        locate: true,
+      },
+      options,
+    );
     // Better to not put them in a mergeObject:
     rollConfig.actor = actor;
     rollConfig.item = this;
@@ -381,14 +396,14 @@ export default class ItemT2K extends Item {
     if (!message) return;
     if (message instanceof YearZeroRoll) return message;
 
-    const roll = message.roll;
+    const roll = message.rolls[0];
 
     const flagData = {};
 
     // Consumes unit(s).
     if (track && isDisposable && qty > 0) {
       qty--;
-      await this.update({ 'data.qty': qty });
+      await this.update({ 'system.qty': qty });
     }
 
     // Consumes ammo.
@@ -425,10 +440,10 @@ export default class ItemT2K extends Item {
   async updateReliability(jam, update = true) {
     if (jam === 0) return 0;
     if (!this.hasReliability) return 0;
-    const val = this.data.data.reliability.value;
-    const max = this.data.data.reliability.max;
+    const val = this.system.reliability.value;
+    const max = this.system.reliability.max;
     const rel = Math.clamped(val + jam, 0, max);
-    if (update && rel !== val) await this.update({ 'data.reliability.value': rel });
+    if (update && rel !== val) await this.update({ 'system.reliability.value': rel });
     return rel - val;
   }
 
@@ -444,10 +459,10 @@ export default class ItemT2K extends Item {
   async updateArmor(mod, update = true) {
     if (mod === 0) return 0;
     if (!this.type === 'armor') return 0;
-    const val = this.data.data.rating.value;
-    const max = this.data.data.rating.max;
+    const val = this.system.rating.value;
+    const max = this.system.rating.max;
     const rel = Math.clamped(val + mod, 0, max);
-    if (update && rel !== val) await this.update({ 'data.rating.value': rel });
+    if (update && rel !== val) await this.update({ 'system.rating.value': rel });
     return rel - val;
   }
 
@@ -464,7 +479,7 @@ export default class ItemT2K extends Item {
    */
   async consumeAmmo(qty, ammo) {
     if (!this.hasAmmo) return 0;
-    ammo = ammo ?? this.actor.items.get(this.data.data.mag.target);
+    ammo = ammo ?? this.actor.items.get(this.system.mag.target);
     return ammo.updateAmmo(-qty);
   }
 
@@ -482,11 +497,11 @@ export default class ItemT2K extends Item {
 
     let ammoData = {};
     if (this.type === 'ammunition') {
-      ammoData = this.data.data.ammo;
+      ammoData = this.system.ammo;
     }
     else if (this.type === 'weapon') {
       ammoData = {
-        value: this.data.data.qty,
+        value: this.system.qty,
         max: 100000,
       };
     }
@@ -499,8 +514,12 @@ export default class ItemT2K extends Item {
 
     if (update) {
       switch (this.type) {
-        case 'ammunition': await this.update({ 'data.ammo.value': newAmmoValue }); break;
-        case 'weapon': await this.update({ 'data.qty': newAmmoValue }); break;
+        case 'ammunition':
+          await this.update({ 'system.ammo.value': newAmmoValue });
+          break;
+        case 'weapon':
+          await this.update({ 'system.qty': newAmmoValue });
+          break;
       }
     }
     return newAmmoValue - ammoValue;
@@ -521,7 +540,10 @@ export default class ItemT2K extends Item {
     // Renders the chat card template.
     const token = this.actor.token;
     const cardData = {
-      ...this.data,
+      id: this.id,
+      name: this.name,
+      img: this.img,
+      system: this.system,
       actorId: this.actor.id,
       tokenId: token ? `${token.parent.id}.${token.id}` : null,
       owner: game.user.id,
@@ -543,58 +565,6 @@ export default class ItemT2K extends Item {
     // Creates the chat message or return its data.
     return sendMessage ? ChatMessage.create(chatData) : chatData;
   }
-
-  // TODO Reload weapon
-
-  // /**
-  //  * Reloads a weapon.
-  //  * TODO
-  //  * @async
-  //  */
-  // async reload() {
-  //   TaskCheck({
-  //     name: game.i18n.localize('T2K4E.Chat.Actions.Reload'),
-  //     attribute: this.actor?.data.data.attributes.agl.value,
-  //     skill: this.actor?.data.data.skills.rangedCombat.value,
-  //     actor: this.actor,
-  //     item: this,
-  //   });
-  //   console.warn('t2k4e | RELOAD => Function not implemented yet! — Planned for a future release.');
-  //   return;
-  //   if (this.type !== 'weapon') return;
-  //   if (!this.actor) return;
-
-  //   const actorData = this.actor ? this.actor.data : {};
-
-  //   const itemData = this.data;
-  //   const data = itemData.data;
-
-  //   // We don't need to reload the weapon if it's already full.
-  //   if (data.mag?.value === data.mag?.max) {
-  //   }
-
-  //   let ammoMissing = data.mag.max - data.mag.value;
-
-  //   while (ammoMissing > 0) {
-  //     // Filters all magazines in the actor's inventory.
-  //     const ammunitions = this.actor.items.filter(i => i.type === 'ammunition');
-
-  //     // If it's empty, we cannot reload the weapon.
-  //     if (ammunitions.length <= 0) {
-  //     }
-
-  //     // Filters the right ammo type.
-  //     const ammoType = this.ammo;
-  //     const munitions = ammunitions.filter(i => i.data.itemType === ammoType);
-
-  //     // If it's empty, we cannot -again- reload the weapon, obviously.
-  //     if (munitions.length <= 0) {
-  //     }
-
-  //     // Gets the first corresponding.
-  //     const ammo = munitions[0];
-  //   }
-  // }
 
   /* ------------------------------------------- */
   /*  Chat Card Actions                          */
@@ -642,15 +612,15 @@ export default class ItemT2K extends Item {
     // Gets the item.
     const item = actor.items.get(itemId);
     if (!item) {
-      return ui.notifications.error(
-        game.i18n.localize('T2K4E.Chat.Roll.NoItemNotif'),
-      );
+      return ui.notifications.error(game.i18n.localize('T2K4E.Chat.Roll.NoItemNotif'));
     }
 
     // Handles different actions.
     const askForOptions = event.shiftKey;
     switch (action) {
-      case 'attack': await item.rollAttack({ askForOptions }); break;
+      case 'attack':
+        await item.rollAttack({ askForOptions });
+        break;
       // TODO case 'reload': await item.rollReload({ askForOptions }); break;
     }
 
@@ -666,11 +636,11 @@ export default class ItemT2K extends Item {
  * @constant
  */
 ItemT2K.CHAT_TEMPLATE = {
-  'weapon': 'systems/t2k4e/templates/components/chat/weapon-chat.hbs',
-  'grenade': 'systems/t2k4e/templates/components/chat/weapon-chat.hbs',
-  'armor': 'systems/t2k4e/templates/components/chat/armor-chat.hbs',
-  'gear': 'systems/t2k4e/templates/components/chat/gear-chat.hbs',
-  'ammunition': 'systems/t2k4e/templates/components/chat/gear-chat.hbs',
+  weapon: 'systems/t2k4e/templates/components/chat/weapon-chat.hbs',
+  grenade: 'systems/t2k4e/templates/components/chat/weapon-chat.hbs',
+  armor: 'systems/t2k4e/templates/components/chat/armor-chat.hbs',
+  gear: 'systems/t2k4e/templates/components/chat/gear-chat.hbs',
+  ammunition: 'systems/t2k4e/templates/components/chat/gear-chat.hbs',
   // TODO injury template
   // TODO better templates
 };

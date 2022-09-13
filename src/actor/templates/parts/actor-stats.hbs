@@ -3,7 +3,7 @@
   <h2>{{localize "T2K4E.ActorSheet.AttributesAndSkills"}}</h2>
 
   <div class="stats-list flexrow">
-    {{#each data.attributes as | attribute attr |}}
+    {{#each system.attributes as | attribute attr |}}
     <div class="stat-block stat-block-{{attr}}">
       <div class="stat-header flexrow">
         <div class="col-6"></div>
@@ -19,7 +19,7 @@
           <h3><a class="button attribute-roll" data-attribute="{{attr}}">{{localize (concat "T2K4E.AttributeNames." attr)}}</a></h3>
         </div>
         <div class="col-3 stat-score">
-          {{> scoreSelector name=(concat "data.attributes." attr ".score") selected=attribute.score}}
+          {{> scoreSelector name=(concat "system.attributes." attr ".score") selected=attribute.score}}
         </div>
         <div class="col-3 stat-value">
           {{#if (lte attribute.value 0)}}–
@@ -29,14 +29,14 @@
         </div>
       </div>
       {{!-- All skills for an attribute --}}
-      {{#each @root.data.skills as | skill sk |}}
+      {{#each @root.system.skills as | skill sk |}}
         {{#if (eq attr (lookup @root.config.skillsMap sk))}}
         <div class="stat stat-skill skill-{{sk}} flexrow">
           <div class="col-6 stat-name">
             <h4><a class="button skill-roll" data-skill="{{sk}}">{{localize (concat "T2K4E.SkillNames." sk)}}</a></h4>
           </div>
           <div class="col-3 stat-score">
-            {{> scoreSelector name=(concat "data.skills." sk ".score") selected=skill.score}}
+            {{> scoreSelector name=(concat "system.skills." sk ".score") selected=skill.score}}
           </div>
           <div class="col-3 stat-value">
             {{#if (lte skill.value 0)}}–
@@ -63,17 +63,17 @@
 <div class="specialties-slots">
   {{#each actor.itemTypes.specialty as | specialty |}}
   <div class="item item-slot slot-specialty flexrow" data-item-id={{specialty.id}}>
-    {{#with specialty.data}}
+    {{#with specialty}}
     <div>
-      {{#if data.description}}
-      <b><u>{{specialty.name}}</u>:</b>&nbsp;
-      <small>{{{data.description}}}</small>
+      {{#if system.description}}
+      <b><u>{{name}}</u>:</b>&nbsp;
+      <small>{{{system.description}}}</small>
       {{else}}
-        {{#if specialty.hasModifier}}
-        <b><u>{{specialty.name}}</u>:</b>&nbsp;
-        <small>{{specialty.modifiersDescription}}</small>
+        {{#if hasModifier}}
+        <b><u>{{name}}</u>:</b>&nbsp;
+        <small>{{modifiersDescription}}</small>
         {{else}}
-        {{specialty.name}}
+        {{name}}
         {{/if}}
       {{/if}}
     </div>

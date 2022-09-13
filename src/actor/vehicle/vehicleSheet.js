@@ -6,7 +6,6 @@ import { T2K4E } from '../../system/config.js';
  * @extends {ActorSheetT2K} Extends the T2K ActorSheet
  */
 export default class ActorSheetT2KVehicle extends ActorSheetT2K {
-
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */
@@ -26,8 +25,8 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
   /* ------------------------------------------- */
 
   /** @override */
-  getData() {
-    const sheetData = super.getData();
+  async getData() {
+    const sheetData = await super.getData();
 
     if (this.actor.type === 'vehicle') {
       this._prepareCrew(sheetData);
@@ -41,7 +40,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
   /* ------------------------------------------- */
 
   _prepareCrew(sheetData) {
-    sheetData.crew = sheetData.data.crew.occupants.reduce((arr, o) => {
+    sheetData.crew = sheetData.system.crew.occupants.reduce((arr, o) => {
       o.actor = game.actors.get(o.id);
       // Creates a fake actor if it doesn't exist anymore in the database.
       if (!o.actor) {
@@ -70,9 +69,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
   /* ------------------------------------------- */
 
   _prepareMountedWeapons(sheetData) {
-    const m = (i, slot) => i.type === 'weapon'
-      && i.data.data.isMounted
-      && i.data.data.mountSlot === slot;
+    const m = (i, slot) => i.type === 'weapon' && i.system.isMounted && i.system.mountSlot === slot;
 
     sheetData.mountedWeapons = {
       primary: sheetData.actor.items.filter(i => m(i, 1)),
@@ -137,7 +134,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     const elem = event.currentTarget;
     const crewId = elem.closest('.occupant').dataset.crewId;
     const occupants = this.actor.removeVehicleOccupant(crewId);
-    return this.actor.update({ 'data.crew.occupants': occupants });
+    return this.actor.update({ 'system.crew.occupants': occupants });
   }
 
   _onExposeCrew(event) {
@@ -166,14 +163,14 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     const itemId = elem.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
 
-    if (item.data.data.isMounted) {
-      return item.update({ 'data.equipped': false });
+    if (item.system.isMounted) {
+      return item.update({ 'system.equipped': false });
     }
     else {
       return item.update({
-        'data.equipped': true,
-        'data.props.mounted': true,
-        'data.mountSlot': 1,
+        'system.equipped': true,
+        'system.props.mounted': true,
+        'system.mountSlot': 1,
       });
     }
   }
@@ -183,11 +180,11 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     const elem = event.currentTarget;
     const itemId = elem.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemId);
-    let slot = item.data.data.mountSlot;
+    let slot = item.system.mountSlot;
 
     if (slot > 1) slot--;
     else slot++;
 
-    return item.update({ 'data.mountSlot': slot });
+    return item.update({ 'system.mountSlot': slot });
   }
 }

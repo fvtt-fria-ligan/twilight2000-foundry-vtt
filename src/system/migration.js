@@ -49,7 +49,7 @@ export async function migrateWorld() {
   // Migrates World Actors.
   for (const a of game.actors.contents) {
     try {
-      const updateData = migrateActorData(a.data);
+      const updateData = migrateActorData(a);
       if (!foundry.utils.isEmpty(updateData)) {
         console.log(`t2k4e | Migrating Actor entity ${a.name}`);
         await a.update(updateData, { enforceTypes: false });
@@ -79,7 +79,7 @@ export async function migrateWorld() {
   // Migrates Actor Override Tokens.
   for (const s of game.scenes.contents) {
     try {
-      const updateData = migrateSceneData(s.data);
+      const updateData = migrateSceneData(s);
       if (!foundry.utils.isEmpty(updateData)) {
         console.log(`t2k4e | Migrating Scene entity ${s.name}`);
         await s.update(updateData, { enforceTypes: false });
@@ -135,13 +135,13 @@ export async function migrateCompendium(pack) {
     try {
       switch (entity) {
         case 'Actor':
-          updateData = migrateActorData(doc.data);
+          updateData = migrateActorData(doc);
           break;
         case 'Item':
           updateData = migrateItemData(doc.toObject());
           break;
         case 'Scene':
-          updateData = migrateSceneData(doc.data);
+          updateData = migrateSceneData(doc);
           break;
       }
 
@@ -175,7 +175,7 @@ export async function migrateCompendium(pack) {
 export function migrateActorData(actorData) {
   const updateData = {};
 
-  if (actorData.data) {
+  if (actorData.system) {
     if (actorData.type === 'character') {
       _migrateCharacterInjuries(actorData, updateData);
     }
@@ -217,7 +217,7 @@ export function migrateActorData(actorData) {
  */
 export function migrateItemData(itemData) {
   const updateData = {};
-  if (itemData.data && itemData.type !== 'ammunition') {
+  if (itemData.system && itemData.type !== 'ammunition') {
     _migrateRollModifiers(itemData, updateData);
   }
   switch (itemData.type) {
@@ -284,10 +284,10 @@ const RELIABILITY_VALUES = { 'A': 5, 'B': 4, 'C': 3, 'D': 2, 'F': 1, '–': 0 };
  * @private
  */
 function _migrateRollModifiers(itemData, updateData) {
-  if (itemData.data.rollModifiers == undefined) {
+  if (itemData.system.rollModifiers == undefined) {
     const rollModifiers = {};
-    if (itemData.data.modifiers != undefined) {
-      const modifiers = itemData.data.modifiers;
+    if (itemData.system.modifiers != undefined) {
+      const modifiers = itemData.system.modifiers;
       let i = 0;
       // Iterates over each attribute modifier
       // & over each skill modifier.
@@ -304,10 +304,7 @@ function _migrateRollModifiers(itemData, updateData) {
         }
       }
     }
-    updateData['data.rollModifiers'] = rollModifiers;
-    // TODO enable delete old properties
-    // Deletes old properties.
-    // updateData['data.-=modifiers'] = null;
+    updateData['system.rollModifiers'] = rollModifiers;
   }
   return updateData;
 }
@@ -322,15 +319,15 @@ function _migrateWeaponProps(itemData, updateData) {
   // New PROPERTIES
   const newProps = ['armored', 'bipod', 'tripod', 'scope', 'nightVision', 'bayonet', 'suppressor'];
   for (const np of newProps) {
-    if (itemData.data.props[np] == undefined) {
-      updateData[`data.props.${np}`] = false;
+    if (itemData.system.props[np] == undefined) {
+      updateData[`system.props.${np}`] = false;
     }
   }
   // Remove old properties
-  updateData['data.props.-=sight'] = null;
+  updateData['system.props.-=sight'] = null;
 
   // New FEATURES for vehicle
-  if (itemData.data.featuresForVehicle == undefined) {
+  if (itemData.system.featuresForVehicle == undefined) {
     // Creates a new default structure for vehicle features.
     const featuresForVehicle = {
       'p': false,
@@ -343,7 +340,7 @@ function _migrateWeaponProps(itemData, updateData) {
       'ir': false,
       'tm': false,
     };
-    updateData['data.featuresForVehicle'] = featuresForVehicle;
+    updateData['system.featuresForVehicle'] = featuresForVehicle;
   }
   return updateData;
 }
@@ -355,12 +352,12 @@ function _migrateWeaponProps(itemData, updateData) {
  * @private
  */
 function _migrateWeaponReliability(itemData, updateData) {
-  const rel = itemData.data.reliability;
+  const rel = itemData.system.reliability;
   if (rel.score !== undefined) {
-    updateData['data.reliability.value'] = RELIABILITY_VALUES[rel.score];
-    updateData['data.reliability.max'] = RELIABILITY_VALUES[rel.max];
+    updateData['system.reliability.value'] = RELIABILITY_VALUES[rel.score];
+    updateData['system.reliability.max'] = RELIABILITY_VALUES[rel.max];
     // Deletes old properties.
-    updateData['data.reliability.-=score'] = null;
+    updateData['system.reliability.-=score'] = null;
   }
   return updateData;
 }
@@ -371,11 +368,11 @@ function _migrateWeaponReliability(itemData, updateData) {
  * @param {object} updateData
  */
 function _migrateWeaponAmmo(itemData, updateData) {
-  const mag = itemData.data.mag;
+  const mag = itemData.system.mag;
   if (mag.target == undefined) {
-    updateData['data.mag.target'] = '';
+    updateData['system.mag.target'] = '';
     // Deletes old properties.
-    updateData['data.mag.-=value'] = null;
+    updateData['system.mag.-=value'] = null;
   }
   return updateData;
 }
@@ -387,8 +384,8 @@ function _migrateWeaponAmmo(itemData, updateData) {
  * @private
  */
 function _migrateGearReliability(itemData, updateData) {
-  if (itemData.data.reliability == undefined) {
-    updateData['data.reliability'] = { value: null, max: null };
+  if (itemData.system.reliability == undefined) {
+    updateData['system.reliability'] = { value: null, max: null };
   }
   return updateData;
 }
@@ -400,10 +397,10 @@ function _migrateGearReliability(itemData, updateData) {
  * @private
  */
 function _migrateCharacterInjuries(actorData, updateData) {
-  const crits = actorData.data.crits;
+  const crits = actorData.system.crits;
   if (crits != undefined) {
     // Deletes old properties.
-    updateData['data.-=crits'] = null;
+    updateData['system.-=crits'] = null;
   }
   return updateData;
 }
@@ -415,47 +412,47 @@ function _migrateCharacterInjuries(actorData, updateData) {
  * @private
  */
 function _migrateVehicleReliability(actorData, updateData) {
-  const rel = actorData.data.reliability;
+  const rel = actorData.system.reliability;
   if (rel.score != undefined) {
-    updateData['data.reliability.value'] = RELIABILITY_VALUES[rel.score];
-    updateData['data.reliability.max'] = RELIABILITY_VALUES[rel.maxScore];
+    updateData['system.reliability.value'] = RELIABILITY_VALUES[rel.score];
+    updateData['system.reliability.max'] = RELIABILITY_VALUES[rel.maxScore];
     // Deletes old properties.
-    updateData['data.reliability.-=score'] = null;
-    updateData['data.reliability.-=maxScore'] = null;
+    updateData['system.reliability.-=score'] = null;
+    updateData['system.reliability.-=maxScore'] = null;
   }
   return updateData;
 }
 
 /**
- * Migrates the Vehicle's crew data.
+ * Migrates the Vehicle's crew system.
  * @param {object} actorData
  * @param {object} updateData
  * @private
  */
 function _migrateVehicleCrew(actorData, updateData) {
-  const oldCrew = actorData.data.crew;
+  const oldCrew = actorData.system.crew;
   if (oldCrew.driver != undefined) {
-    updateData['data.crew.qty'] = oldCrew.driver;
-    updateData['data.crew.passengerQty'] = oldCrew.passenger;
-    updateData['data.crew.occupants'] = [];
+    updateData['system.crew.qty'] = oldCrew.driver;
+    updateData['system.crew.passengerQty'] = oldCrew.passenger;
+    updateData['system.crew.occupants'] = [];
     // Deletes old properties.
-    updateData['data.crew.-=driver'] = null;
-    updateData['data.crew.-=passenger'] = null;
-    updateData['data.crew.-=exposedPassenger'] = null;
-    updateData['data.crew.-=gunner'] = null;
-    updateData['data.crew.-=commander'] = null;
+    updateData['system.crew.-=driver'] = null;
+    updateData['system.crew.-=passenger'] = null;
+    updateData['system.crew.-=exposedPassenger'] = null;
+    updateData['system.crew.-=gunner'] = null;
+    updateData['system.crew.-=commander'] = null;
   }
   return updateData;
 }
 
 /**
- * Migrates the Vehicle's components data.
+ * Migrates the Vehicle's components system.
  * @param {object} actorData
  * @param {object} updateData
  * @private
  */
 function _migrateVehicleComponents(actorData, updateData) {
-  if (actorData.data.components?.fuel?.value !== undefined) {
+  if (actorData.system.components?.fuel?.value !== undefined) {
     // Creates a new default components structure.
     const newComp = {
       'fuel': {
@@ -496,36 +493,36 @@ function _migrateVehicleComponents(actorData, updateData) {
       },
     };
     // Overwrites the old components properties.
-    updateData['data.components'] = newComp;
-    updateData['data.components.-=ammo'] = null;
-    updateData['data.components.-=cargo'] = null;
-    updateData['data.components.-=externalStores'] = null;
-    updateData['data.components.-=weapon'] = null;
+    updateData['system.components'] = newComp;
+    updateData['system.components.-=ammo'] = null;
+    updateData['system.components.-=cargo'] = null;
+    updateData['system.components.-=externalStores'] = null;
+    updateData['system.components.-=weapon'] = null;
     // Deletes old properties.
-    updateData['data.-=tempComponents'] = null;
+    updateData['system.-=tempComponents'] = null;
   }
   return updateData;
 }
 
 /**
- * Migrates the Vehicle's armor data.
+ * Migrates the Vehicle's armor system.
  * @param {object} actorData
  * @param {object} updateData
  * @private
  */
 function _migrateVehicleArmor(actorData, updateData) {
-  const armor = actorData.data.armor || {};
+  const armor = actorData.system.armor || {};
   if (armor.side?.value != undefined) {
-    updateData['data.armor.left'] = {
+    updateData['system.armor.left'] = {
       value: +armor.side.value,
       max: +armor.side.max,
     };
-    updateData['data.armor.right'] = {
+    updateData['system.armor.right'] = {
       value: +armor.side.value,
       max: +armor.side.max,
     };
     // Deletes old properties.
-    updateData['data.armor.-=side'] = null;
+    updateData['system.armor.-=side'] = null;
   }
   return updateData;
 }

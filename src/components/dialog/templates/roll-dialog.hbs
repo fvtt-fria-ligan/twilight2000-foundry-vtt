@@ -1,92 +1,100 @@
-<form class="t2k4e dialog roll-dialog">
+<form class='t2k4e dialog roll-dialog'>
 
-  {{!-- ================================================== --}}
+  {{! ================================================== }}
 
   {{#if (or data.attribute data.skill)}}
-  {{!-- Roll Formula --}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.Formula"}}</label>
-    <input type="text" name="formula" value="{{data.formula}}" disabled/>
-  </div>
+    {{! Roll Formula }}
+    <div class='form-group'>
+      <label>{{localize 'T2K4E.Dialog.Roll.Formula'}}</label>
+      <input type='text' name='formula' value='{{data.formula}}' disabled />
+    </div>
 
   {{else}}
-  {{!-- Attribute --}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.Attribute"}}</label>
-    <div class="flexrow">{{rangePicker name="attribute" value=(mathMax 6 data.attribute) min=0 max=12 step=2}}</div>
-  </div>
+    {{! Attribute }}
+    <div class='form-group'>
+      <label>{{localize 'T2K4E.Dialog.Roll.Attribute'}}</label>
+      <div class='flexrow'>{{rangePicker name='attribute' value=(mathMax 6 data.attribute) min=0 max=12 step=2}}</div>
+    </div>
 
-  {{!-- Skill --}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.Skill"}}</label>
-    <div class="flexrow">{{rangePicker name="skill" value=(mathMax 6 data.skill) min=0 max=12 step=2}}</div>
-  </div>
+    {{! Skill }}
+    <div class='form-group'>
+      <label>{{localize 'T2K4E.Dialog.Roll.Skill'}}</label>
+      <div class='flexrow'>{{rangePicker name='skill' value=(mathMax 6 data.skill) min=0 max=12 step=2}}</div>
+    </div>
   {{/if}}
 
-  {{!-- ================================================== --}}
+  {{! ================================================== }}
 
-
-  {{!-- Rate of Fire --}}
+  {{! Rate of Fire }}
   {{#if data.rof}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.RoF"}}</label>
-    <div class="flexrow">{{rangePicker name="rof" value=0 min=0 max=data.rof step=1}}</div>
-  </div>
+    <div class='form-group'>
+      <label>{{localize 'T2K4E.Dialog.Roll.RoF'}}</label>
+      <div class='flexrow'>{{rangePicker name='rof' value=0 min=0 max=data.rof step=1}}</div>
+    </div>
   {{/if}}
 
-  {{!-- ================================================== --}}
+  {{! ================================================== }}
 
-  <hr/>
+  <hr />
 
-  {{!-- Modifier --}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.Modifier"}}</label>
-    <div class="flexrow">
-      <div class="flexrow flex1 modifier-buttons">
-        <a class="button modifier-change" data-target="modifier" data-change="plus">{{{config.Icons.buttons.plus}}}</a>
-        <a class="button modifier-change" data-target="modifier" data-change="minus">{{{config.Icons.buttons.minus}}}</a>
+  {{! Modifier }}
+  <div class='form-group'>
+    <label>{{localize 'T2K4E.Dialog.Roll.Modifier'}}</label>
+    <div class='flexrow'>
+      <div class='flexrow flex1 modifier-buttons'>
+        <a class='button modifier-change' data-target='modifier' data-change='plus'>{{{config.Icons.buttons.plus}}}</a>
+        <a
+          class='button modifier-change'
+          data-target='modifier'
+          data-change='minus'
+        >{{{config.Icons.buttons.minus}}}</a>
       </div>
-      <input type="text" class="flex2" name="modifier" value="{{numberFormat data.modifier sign=true}}" data-dtype="Number"/>
-      {{!-- <button class="btn choose-modifier">{{localize "T2K4E.Dialog.Roll.ModifierChoice"}}</button> --}}
+      <input
+        type='text'
+        class='flex2'
+        name='modifier'
+        value='{{numberFormat data.modifier sign=true}}'
+        data-dtype='Number'
+      />
     </div>
   </div>
 
-  {{!-- Modifiers --}}
-  <div class="form-group-stacked">
+  {{! Modifiers }}
+  <div class='form-group-stacked'>
     {{#each data.modifiers}}
-    <label class="checkbox" title="{{description}}">
-      <input type="checkbox" class="item-modifier" data-value="{{value}}" {{checked active}}/>
-      {{label}}
-    </label>
+      <label class='checkbox' title='{{description}}'>
+        <input type='checkbox' class='item-modifier' data-value='{{value}}' {{checked active}} />
+        {{label}}
+      </label>
     {{/each}}
   </div>
 
-  {{!-- ================================================== --}}
+  {{! ================================================== }}
 
-  <hr/>
+  <hr />
 
-  {{!-- Max Pushes --}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.MaxPush"}}</label>
-    <input type="number" name="maxPush" value="{{data.maxPush}}" min="0" data-dtype="Number"/>
+  {{! Max Pushes }}
+  <div class='form-group'>
+    <label>{{localize 'T2K4E.Dialog.Roll.MaxPush'}}</label>
+    <input type='number' name='maxPush' value='{{data.maxPush}}' min='0' data-dtype='Number' />
   </div>
 
-  {{!-- ================================================== --}}
+  {{! ================================================== }}
 
-  {{!-- Location Die --}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.Locate"}}</label>
-    <input type="checkbox" name="locate" {{checked data.locate}}/>
+  {{! Location Die }}
+  <div class='form-group'>
+    <label>{{localize 'T2K4E.Dialog.Roll.Locate'}}</label>
+    <input type='checkbox' name='locate' {{checked data.locate}} />
   </div>
 
-  {{!-- ================================================== --}}
+  {{! ================================================== }}
 
-  <hr/>
+  <hr />
 
-  {{!-- Roll Mode --}}
-  <div class="form-group">
-    <label>{{localize "T2K4E.Dialog.Roll.RollMode"}}</label>
-    <select name="rollMode">
+  {{! Roll Mode }}
+  <div class='form-group'>
+    <label>{{localize 'T2K4E.Dialog.Roll.RollMode'}}</label>
+    <select name='rollMode'>
       {{selectOptions config.rollModes selected=data.rollMode localize=true}}
     </select>
   </div>

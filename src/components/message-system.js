@@ -1,9 +1,12 @@
 /* -------------------------------------------- */
 /*  Author: @aMediocreDad                       */
 /* -------------------------------------------- */
+import semverComp from '@utils/semver-compare';
+
+const SYSTEM_NAME = 't2k4e';
 
 export default async function displayMessages() {
-  const { messages } = await fetch('systems/t2k4e/assets/messages/messages.jsonc')
+  const messages = await fetch(`systems/${SYSTEM_NAME}/assets/messages/messages.jsonc`)
     .then(resp => resp.text())
     .then(jsonc => JSON.parse(stripJSON(jsonc)));
 
@@ -12,65 +15,59 @@ export default async function displayMessages() {
   });
 }
 
-function stripJSON(data) {
+const stripJSON = data => {
   return data.replace(/[^:]\/\/(.*)/g, '');
-}
+};
 
-function handleDisplay(msg) {
+const handleDisplay = msg => {
   const { content, title, type } = msg;
   if (!isCurrent(msg)) return;
   if (type === 'prompt') return displayPrompt(title, content);
   if (type === 'chat') return sendToChat(title, content);
-}
+};
 
-// This function has been refactored.
-function isCurrent(msg) {
+const isCurrent = msg => {
   const isDisplayable = !msg.display === 'once' || !hasDisplayed(msg.title);
-  const minCore = msg['min-core-version'] ?? '0.0.0';
-  const maxCore = msg['max-core-version'] ?? '999.0.0';
-  const minSys = msg['min-sys-version'] ?? '0.0.0';
-  const maxSys = msg['max-sys-version'] ?? '999.0.0';
-  const correctCoreVersion = game.data.version === minCore || game.data.version === maxCore ||
-  (
-    foundry.utils.isNewerVersion(game.data.version, minCore) &&
-    foundry.utils.isNewerVersion(maxCore, game.data.version)
-  );
-  const correctSysVersion = game.system.data.version === minSys || game.system.data.version === maxSys ||
-  (
-    foundry.utils.isNewerVersion(game.system.data.version, minSys) &&
-    foundry.utils.isNewerVersion(maxSys, game.system.data.version)
+  const correctCoreVersion =
+    foundry.utils.isNewerVersion(msg['max-core-version'] ?? '100.0.0', game.version) &&
+    foundry.utils.isNewerVersion(game.version, msg['min-core-version'] ?? '0.0.0');
+  const correctSysVersion = semverComp(
+    msg['min-sys-version'] ?? '0.0.0',
+    game.system.data.version,
+    msg['max-sys-version'] ?? '100.0.0',
+    { gEqMin: true },
   );
   return isDisplayable && correctCoreVersion && correctSysVersion;
-}
+};
 
-function hasDisplayed(identifier) {
-  const settings = game.settings.get('t2k4e', 'messages');
+const hasDisplayed = identifier => {
+  const settings = game.settings.get(SYSTEM_NAME, 'messages');
   if (settings?.includes(identifier)) return true;
   else return false;
-}
+};
 
-function displayPrompt(title, content) {
+const displayPrompt = (title, content) => {
   content = content.replace('{name}', game.user.name);
   return Dialog.prompt({
     title: title,
     content: content,
     label: 'Understood!',
-    options: { width: 600 },
+    options: { width: 600, classes: [SYSTEM_NAME, 'dialog'] },
     callback: () => setDisplayed(title),
   });
-}
+};
 
-function sendToChat(title, content) {
+const sendToChat = (title, content) => {
   content = content.replace('{name}', game.user.name);
   setDisplayed(title);
   return ChatMessage.create({
     title: title,
-    content: `<div class="t2k4e chat-item">${content}</div>`,
+    content: `<div class="blade-runner chat-item">${content}</div>`,
   });
-}
+};
 
-async function setDisplayed(identifier) {
-  const settings = game.settings.get('t2k4e', 'messages');
+const setDisplayed = async identifier => {
+  const settings = game.settings.get(SYSTEM_NAME, 'messages');
   settings.push(identifier);
-  await game.settings.set('t2k4e', 'messages', settings.flat());
-}
+  await game.settings.set(SYSTEM_NAME, 'messages', settings.flat());
+};

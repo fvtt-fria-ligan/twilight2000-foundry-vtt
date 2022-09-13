@@ -22,7 +22,7 @@ export default class Modifier {
 
     this._name = name ?? item.name;
     this._type = type ?? item.type;
-    this._description = description ?? item.data?.data?.description;
+    this._description = description ?? item.sytem?.description;
 
     /**
      * The key that will be parsed to identify the modifier.
@@ -61,7 +61,7 @@ export default class Modifier {
      * Whether the modifier is active.
      * @type {boolean}
      */
-    this.active = active ?? (this.value <= 0);
+    this.active = active ?? this.value <= 0;
   }
 
   /* ------------------------------------------- */
@@ -112,17 +112,11 @@ export default class Modifier {
    * @readonly
    */
   get description() {
-    const str = this._description ?? this.item.data?.data?.description ?? '';
+    const str = this._description ?? this.item.system?.description ?? '';
     return str.replace(/<[^>]*>?/gm, '');
   }
 }
 
 /* ------------------------------------------- */
 
-Modifier.ALLOWED_CATEGORIES = [
-  'attribute',
-  'skill',
-  'action',
-  'constant',
-  'travel',
-];
+Modifier.ALLOWED_CATEGORIES = ['attribute', 'skill', 'action', 'constant', 'travel'];

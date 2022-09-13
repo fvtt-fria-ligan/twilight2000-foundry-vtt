@@ -1,36 +1,38 @@
-<div class="t2k4e chat-card damage character">
-  <div class="card-content">
+<div class='t2k4e chat-card damage character'>
+  <div class='card-content'>
     {{#if (gt amount 0)}}
-    <p>
-      {{{localize "T2K4E.Chat.Damage.DamageDealt" name=name amount=amount}}}
-      {{#if incapacited}}
-      <br/><span style="color: #9b2423; font-weight: bold;">{{{@root.config.Icons.buttons.lethal}}}&nbsp;{{localize "T2K4E.Chat.Damage.Incapacited"}}</span>
-      {{/if}}
-    </p>
+      <p>
+        {{{localize 'T2K4E.Chat.Damage.DamageDealt' name=name amount=amount}}}
+        {{#if incapacited}}
+          <br /><span style='color: #9b2423; font-weight: bold;'>{{{@root.config.Icons.buttons.lethal}}}&nbsp;{{localize
+              'T2K4E.Chat.Damage.Incapacited'
+            }}</span>
+        {{/if}}
+      </p>
     {{else}}
-    <p>{{{localize "T2K4E.Chat.Damage.NoDamageDealt" name=name}}}</p>
+      <p>{{{localize 'T2K4E.Chat.Damage.NoDamageDealt' name=name}}}</p>
     {{/if}}
     {{#if armors.length}}
-    <hr/>
-    <p style="line-height: 1;"><small>
-      {{{localize "T2K4E.Chat.Damage.InitialAmount" damage=initialAmount mod=signedArmorModifier}}}
-      {{#each armors}}
-      <br/>
-      <span><strong>{{label}}:</strong></span>&nbsp;
-      {{#if damage}}
-        {{#if penetrated}}
-        <span>{{localize "T2K4E.Chat.Damage.DeflectedDamage" damage=damage}}</span>
-        {{else}}
-        <span>{{localize "T2K4E.Chat.Damage.DeflectedAllDamage"}}</span>
-        {{/if}}
-      {{else if penetrated}}
-      <span><i>{{localize "T2K4E.Chat.Damage.NoEffect"}}</i></span>
-      {{else}}
-      <span><i>–</i></span>
-      {{/if}}
-      {{#if damaged}}<span>&nbsp;—&nbsp;<i>{{localize "T2K4E.Chat.Damage.DamagedArmor"}}</i></span>{{/if}}
-      {{/each}}
-    </small></p>
+      <hr />
+      <p style='line-height: 1;'><small>
+          {{{localize 'T2K4E.Chat.Damage.InitialAmount' damage=initialAmount mod=signedArmorModifier}}}
+          {{#each armors}}
+            <br />
+            <span><strong>{{label}}:</strong></span>&nbsp;
+            {{#if damage}}
+              {{#if penetrated}}
+                <span>{{localize 'T2K4E.Chat.Damage.DeflectedDamage' damage=damage}}</span>
+              {{else}}
+                <span>{{localize 'T2K4E.Chat.Damage.DeflectedAllDamage'}}</span>
+              {{/if}}
+            {{else if penetrated}}
+              <span><i>{{localize 'T2K4E.Chat.Damage.NoEffect'}}</i></span>
+            {{else}}
+              <span><i>–</i></span>
+            {{/if}}
+            {{#if damaged}}<span>&nbsp;—&nbsp;<i>{{localize 'T2K4E.Chat.Damage.DamagedArmor'}}</i></span>{{/if}}
+          {{/each}}
+        </small></p>
     {{/if}}
   </div>
 </div>

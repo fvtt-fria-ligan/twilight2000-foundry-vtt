@@ -1,8 +1,8 @@
 export class CharacterPickerDialog extends Dialog {
   /**
-	 * Show dialog that allows to pick a character from a list
-	 *
-	 */
+   * Show dialog that allows to pick a character from a list
+   *
+   */
   static async show(title, characters = [], onSelect, onCancel) {
     onSelect = onSelect || function () {};
     onCancel = onCancel || function () {};
@@ -27,8 +27,8 @@ export class CharacterPickerDialog extends Dialog {
   }
 
   /**
-	 * @param  {string} html Dialog content
-	 */
+   * @param  {string} html Dialog content
+   */
   activateListeners(html) {
     super.activateListeners(html);
     html.find('.party-member').click(this.handleCharacterSelect.bind(this));
@@ -40,27 +40,24 @@ export class CharacterPickerDialog extends Dialog {
   }
 
   /**
-	 * @param  {Array} characters Array with character IDs
-	 */
+   * @param  {Array} characters Array with character IDs
+   */
   static async buildCharacterSelector(characters) {
     let html = '';
     let actor;
     for (let i = 0; i < characters.length; i++) {
-      actor = characters[i] instanceof Actor ? characters[i].data : game.actors.get(characters[i]).data;
-      html += await renderTemplate(
-        'systems/t2k4e/templates/actor/party/components/member-component.hbs',
-        {
-          partyMember: actor,
-          noCharSheetLink: true,
-        },
-      );
+      actor = characters[i] instanceof Actor ? characters[i] : game.actors.get(characters[i]);
+      html += await renderTemplate('systems/t2k4e/templates/actor/party/components/member-component.hbs', {
+        partyMember: actor,
+        noCharSheetLink: true,
+      });
     }
     return `<ol>${html}</ol>`;
   }
 
   /**
-	 * @param  {string} divContent
-	 */
+   * @param  {string} divContent
+   */
   static buildDivHtmlDialog(divContent) {
     return '<div class=\'flex row roll-dialog\'>' + divContent + '</div>';
   }

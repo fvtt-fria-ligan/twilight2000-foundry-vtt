@@ -35,7 +35,7 @@ function _onRollPush(event) {
   const chatCard = event.currentTarget.closest('.chat-message');
   const messageId = chatCard.dataset.messageId;
   const message = game.messages.get(messageId);
-  const roll = message.roll;
+  const roll = message.rolls[0];
   return rollPush(roll, { message });
 }
 
@@ -60,9 +60,9 @@ function _onRollAccept(event) {
   const messageId = chatCard.dataset.messageId;
   const message = game.messages.get(messageId);
   /** @type {import('yzur').YearZeroRoll} */
-  const roll = message.roll;
+  const roll = message.rolls[0];
   roll.maxPush = 0;
-  return message.update({ roll: JSON.stringify(roll) });
+  return message.update({ rolls: [JSON.stringify(roll)] });
 }
 
 /* ------------------------------------------- */
@@ -107,14 +107,12 @@ export function addChatMessageContextOptions(html, options) {
   // Allows only this menu option if we have selected some tokens
   // & the message contains some damage.
   const canDefend = li => canvas.tokens.controlled.length && li.find('.dice-roll').length;
-  options.push(
-    {
-      name: game.i18n.localize('T2K4E.Chat.Actions.ApplyDamage'),
-      icon: T2K4E.Icons.buttons.attack,
-      condition: canDefend,
-      callback: li => _applyDamage(li[0]),
-    },
-  );
+  options.push({
+    name: game.i18n.localize('T2K4E.Chat.Actions.ApplyDamage'),
+    icon: T2K4E.Icons.buttons.attack,
+    condition: canDefend,
+    callback: li => _applyDamage(li[0]),
+  });
   return options;
 }
 
@@ -124,7 +122,7 @@ async function _applyDamage(messageElem) {
   const messageId = messageElem.dataset.messageId;
   const message = game.messages.get(messageId);
   /** @type {import('../lib/yzur.js').YearZeroRoll} */
-  const roll = message.roll;
+  const roll = message.rolls[0];
 
   // Gets the weapon.
   const actorId = roll.options.actorId;
@@ -134,11 +132,11 @@ async function _applyDamage(messageElem) {
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
 
   // Prepares the attack's data.
-  let attackData = foundry.utils.duplicate(item.data.data);
+  let attackData = foundry.utils.duplicate(item.system);
   if (actor && item.hasAmmo) {
-    const ammo = actor.items.get(item.data.data.mag.target);
-    if (ammo && ammo.data.data.override) {
-      const ammoData = foundry.utils.duplicate(ammo.data.data);
+    const ammo = actor.items.get(item.system.mag.target);
+    if (ammo && ammo.system.override) {
+      const ammoData = foundry.utils.duplicate(ammo.system);
       attackData = foundry.utils.mergeObject(attackData, ammoData);
     }
   }

@@ -138,7 +138,7 @@
 </div>
 
 {{!-- ENCUMBRANCE --}}
-{{#with data.encumbrance}}
+{{#with system.encumbrance}}
 <div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.CombatGearEncumbrance'}}">
   <span class="encumbrance-bar" style="width: {{pct}}%;"></span>
   <span class="encumbrance-label">
@@ -160,7 +160,7 @@
 {{/with}}
 
 {{!-- BACKPACK --}}
-{{#with data.encumbrance.backpack}}
+{{#with system.encumbrance.backpack}}
 <div class="encumbrance{{#if encumbered}} encumbered{{/if}}" title="{{localize 'T2K4E.ActorSheet.BackpackEncumbrance'}}">
   <span class="encumbrance-bar" style="width: {{pct}}%;"></span>
   <span class="encumbrance-label">

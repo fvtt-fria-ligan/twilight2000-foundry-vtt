@@ -1,84 +1,86 @@
-<div class="dice-infos">
+<div class='dice-infos'>
 
-  {{!-- MYZ & FBL — Attributes and Gear damage --}}
+  {{! MYZ & FBL — Attributes and Gear damage }}
   {{#if (or (eq roll.game 'myz') (eq roll.game 'fbl'))}}
     {{#if roll.pushed}}
       {{#if roll.attributeTrauma}}
-      <div class="dice-info roll-trauma">
-        <span class="label">{{localize "YZUR.CHAT.ROLL.Trauma"}}</span>
-        <span class="result">{{roll.attributeTrauma}}</span>
-      </div>
+        <div class='dice-info roll-trauma'>
+          <span class='label'>{{localize 'YZUR.CHAT.ROLL.Trauma'}}</span>
+          <span class='result'>{{roll.attributeTrauma}}</span>
+        </div>
       {{/if}}
       {{#if roll.gearDamage}}
-      <div class="dice-info roll-gear-damage">
-        <span class="label">{{localize "YZUR.CHAT.ROLL.GearDamage"}}</span>
-        <span class="result">{{roll.gearDamage}}</span>
-      </div>
+        <div class='dice-info roll-gear-damage'>
+          <span class='label'>{{localize 'YZUR.CHAT.ROLL.GearDamage'}}</span>
+          <span class='result'>{{roll.gearDamage}}</span>
+        </div>
       {{/if}}
     {{/if}}
   {{/if}}
 
-  {{!-- TWILIGHT 2000 4E --}}
+  {{! TWILIGHT 2000 4E }}
   {{#if (eq roll.game 't2k')}}
 
-    {{!-- T2K: Hit Location --}}
+    {{! T2K: Hit Location }}
     {{#if roll.bestHitLocation}}
-    <div class="dice-info roll-hit-location">
-      {{#if (gt (lookup roll.hitLocations 'length') 1)}}
-      <span class="label">{{localize "YZUR.CHAT.ROLL.HitLocations"}}</span>
-      {{else}}
-      <span class="label">{{localize "YZUR.CHAT.ROLL.HitLocation"}}</span>
-      {{/if}}
-      {{#each roll.hitLocations as | loc |}}
-      <span class="result">{{localize (concat "YZUR.CHAT.ROLL.Locations." loc)}}</span>
-      {{/each}}
-    </div>
+      <div class='dice-info roll-hit-location'>
+        {{#if (gt (lookup roll.hitLocations 'length') 1)}}
+          <span class='label'>{{localize 'YZUR.CHAT.ROLL.HitLocations'}}</span>
+        {{else}}
+          <span class='label'>{{localize 'YZUR.CHAT.ROLL.HitLocation'}}</span>
+        {{/if}}
+        {{#each roll.hitLocations as |loc|}}
+          <span class='result'>{{localize (concat 'YZUR.CHAT.ROLL.Locations.' loc)}}</span>
+        {{/each}}
+      </div>
     {{/if}}
 
-    {{!-- T2K: Extra Hits --}}
+    {{! T2K: Extra Hits }}
     {{#if roll.hitCount}}
-    <div class="dice-info roll-hit-count">
-      {{#if (gt roll.baseSuccessQty 0)}}
-      <span class="label">{{#if (gt roll.hitCount 1)}}{{localize "YZUR.CHAT.ROLL.ExtraHits"}}{{else}}{{localize "YZUR.CHAT.ROLL.ExtraHit"}}{{/if}}</span>
-      {{else}}
-      <span class="label">{{localize "YZUR.CHAT.ROLL.Suppression"}}</span>
-      {{/if}}
-      <span class="result">{{roll.hitCount}}</span>
-    </div>
+      <div class='dice-info roll-hit-count'>
+        {{#if (gt roll.baseSuccessQty 0)}}
+          <span class='label'>{{#if (gt roll.hitCount 1)}}{{localize 'YZUR.CHAT.ROLL.ExtraHits'}}{{else}}{{localize
+                'YZUR.CHAT.ROLL.ExtraHit'
+              }}{{/if}}</span>
+        {{else}}
+          <span class='label'>{{localize 'YZUR.CHAT.ROLL.Suppression'}}</span>
+        {{/if}}
+        <span class='result'>{{roll.hitCount}}</span>
+      </div>
     {{/if}}
 
-    {{!-- T2K: Damage/Stress --}}
+    {{! T2K: Damage/Stress }}
     {{#if (and roll.pushed roll.attributeTrauma)}}
-    <div class="dice-info roll-trauma">
-      <span class="label">{{localize "YZUR.CHAT.ROLL.DamageOrStress"}}</span>
-      <span class="result">{{roll.attributeTrauma}}</span>
-    </div>
+      <div class='dice-info roll-trauma'>
+        <span class='label'>{{localize 'YZUR.CHAT.ROLL.DamageOrStress'}}</span>
+        <span class='result'>{{roll.attributeTrauma}}</span>
+      </div>
     {{/if}}
 
-    {{!-- T2K: Ammo Spent --}}
+    {{! T2K: Ammo Spent }}
     {{#if roll.ammoSpent}}
-    <div class="dice-info roll-ammo-spent">
-      <span class="label">{{localize "YZUR.CHAT.ROLL.AmmoSpent"}}</span>
-      <span class="result">{{roll.ammoSpent}}</span>
-    </div>
+      <div class='dice-info roll-ammo-spent'>
+        <span class='label'>{{localize 'YZUR.CHAT.ROLL.AmmoSpent'}}</span>
+        <span class='result'>{{roll.ammoSpent}}</span>
+      </div>
 
-    {{!-- T2K: Jamming --}}
-    {{#if (and roll.pushed roll.jamCount)}}
-    <div class="dice-info roll-jam-count">
-      <span class="label">{{localize "YZUR.CHAT.ROLL.JamCount"}}</span>
-      <span class="result">&minus;{{roll.jamCount}}</span>
-    </div>
-    {{/if}}
-    {{#if roll.jammed}}
-    <div class="dice-info roll-jammed">
-      <span class="label">{{localize "YZUR.CHAT.ROLL.Jammed"}}</span>
-    </div>
-    {{/if}}
+      {{! T2K: Jamming }}
+      {{#if (and roll.pushed roll.jamCount)}}
+        <div class='dice-info roll-jam-count'>
+          <span class='label'>{{localize 'YZUR.CHAT.ROLL.JamCount'}}</span>
+          <span class='result'>&minus;{{roll.jamCount}}</span>
+        </div>
+      {{/if}}
+      {{#if roll.jammed}}
+        <div class='dice-info roll-jammed'>
+          <span class='label'>{{localize 'YZUR.CHAT.ROLL.Jammed'}}</span>
+        </div>
+      {{/if}}
     {{/if}}
 
   {{/if}}
 
-  {{!-- Mishap --}}
+  {{! Mishap }}
   {{!-- {{#if roll.mishap}} --}}
   {{!-- <div class="dice-info">{{localize "YZUR.CHAT.ROLL.Mishap"}}</div> --}}
   {{!-- {{/if}} --}}

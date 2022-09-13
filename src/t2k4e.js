@@ -8,10 +8,10 @@
  * Patreon: https://www.patreon.com/Stefouch
  * ============================================================================
  * Source Code License: GPL-3.0-or-later
- * 
+ *
  * Foundry License: Foundry Virtual Tabletop End User License Agreement
  *   https://foundryvtt.com/article/license/
- * 
+ *
  * ============================================================================
  */
 
@@ -90,7 +90,7 @@ Hooks.once('init', function () {
     decimals: 2,
   };
 
-  // Registers sheet application classes. 
+  // Registers sheet application classes.
   // This will stop using the core sheets and instead use our customized versions.
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('t2k4e', ActorSheetT2KCharacter, {
@@ -172,7 +172,10 @@ Hooks.on('dropActorSheetData', (actor, sheet, data) => {
   // When dropping something on a vehicle sheet.
   if (actor.type === 'vehicle') {
     // When dropping an actor on a vehicle sheet.
-    if (data.type === 'Actor') sheet.dropCrew(data.id);
+    if (data.type === 'Actor') {
+      const id = data.uuid?.replace('Actor.', '');
+      sheet.dropCrew(id);
+    }
   }
 });
 
@@ -184,11 +187,11 @@ Hooks.on('createToken', (token, _data, _userId) => {
     const updateData = {};
 
     // Uses abbreviation (info) in place of name.
-    const nm = token.actor.data.data.info;
+    const nm = token.actor.system.info;
     if (nm) updateData.name = nm;
 
     // Uses default affiliation.
-    const afl = token.actor.data.data.unitAffiliation;
+    const afl = token.actor.system.unitAffiliation;
     if (afl) {
       let disposition;
       switch (afl) {
@@ -204,7 +207,7 @@ Hooks.on('createToken', (token, _data, _userId) => {
         default:
           disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
       }
-      if (disposition !== token.data.disposition) updateData.disposition = disposition;
+      if (disposition !== token.disposition) updateData.disposition = disposition;
     }
 
     // Updates the token.

@@ -1,15 +1,20 @@
-  
-{
-  "messages": [
-    // {
-    //   "min-core-version": "0.8.8",
-    //   "max-core-version": "0.8.9",
-    //   //"min-sys-version": "",
-    //   //"max-sys-version": "",
-    //   "type": "chat", // Type of message: [prompt, chat]
-    //   "display": "once", // Time until it goes away: [once, infinite, mm.dd.yyyy]
-    //   "title": "welcome-to-0.8.8",
-    //   "content": "<h3>Welcome to Twilight: 2000!</h3><p><b>Hello {name}!</b></p><p>I hope you enjoy your stay in the *WW III That Never War*.</p><p>With this version you are ready for the updated official content modules, if you own those. And the updates should be with you shortly.</p><p>If you have any questions, troubleshooting or bugs you want to report, please head on over to the Foundry discord and find the #free-league channel.</p><p><b>Remember to backup your data folder regularly</b> (check the support pages on the FoundryVTT website if you are uncertain).</p>"
-    // }
-  ]
-}
+[
+  // {
+  //   "min-core-version": "0.8.8",
+  //   "max-core-version": "0.8.9",
+  //   //"min-sys-version": "",
+  //   //"max-sys-version": "",
+  //   "type": "chat", // Type of message: [prompt, chat]
+  //   "display": "once", // Time until it goes away: [once, infinite, mm.dd.yyyy]
+  //   "title": "welcome-to-0.8.8",
+  //   "content": "<h3>Welcome to Twilight: 2000!</h3><p><b>Hello {name}!</b></p><p>I hope you enjoy your stay in the *WW III That Never War*.</p><p>With this version you are ready for the updated official content modules, if you own those. And the updates should be with you shortly.</p><p>If you have any questions, troubleshooting or bugs you want to report, please head on over to the Foundry discord and find the #free-league channel.</p><p><b>Remember to backup your data folder regularly</b> (check the support pages on the FoundryVTT website if you are uncertain).</p>"
+  // }
+  {
+    "min-core-version": "10.0.0",
+    "max-core-version": "11.0.0",
+    "type": "prompt", // Type of message: [prompt, chat]
+    "display": "once", // Time until it goes away: [once, infinite, mm.dd.yyyy]
+    "title": "V10 Update",
+    "content": "<h3>Twilight 2000 4E - V10</h3><p><b>Hello {name}!</b></p><p>I hope you enjoy your stay in the <i>WW III That Never War</i>.</p><p>With this version you are ready for Foundry V10 update and the updated official content modules, if you own those.</p><p>If you have any questions, troubleshooting or bugs you want to report, please head on over the Foundry discord and find the <code>#free-league</code> channel.</p><p><b>Remember to backup your data folder regularly!</b> (check the support pages on the FoundryVTT website of you are uncertain).</p><h4>What's New?</h4><ul><li>Update to latest Foundry version</li><li>New \"Accept\" button in roll messages</li><li>New \"Age\" field in the character sheet</li><li>New \"Send to Chat\" small button in the inventory sheet</li><li>Clicking an item in the inventory now rolls it directly, or edit its armor rating/quantity</li><li>Combat skill rolls have the Location Die checked by default</li></ul>"
+  }
+]

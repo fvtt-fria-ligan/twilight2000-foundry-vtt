@@ -1,11 +1,11 @@
 <div class="crew-qty">
   <div>
     <label>{{localize "T2K4E.VehicleSheet.CrewQty"}}</label>
-    <input type="number" class="boxed-value" name="data.crew.qty" value={{data.crew.qty}} data-dtype="Number"/>
+    <input type="number" class="boxed-value" name="system.crew.qty" value={{system.crew.qty}} data-dtype="Number"/>
   </div>
   <div>
     <label>{{localize "T2K4E.VehicleSheet.PassengerQty"}}</label>
-    <input type="number" class="boxed-value" name="data.crew.passengerQty" value={{data.crew.passengerQty}} data-dtype="Number"/>
+    <input type="number" class="boxed-value" name="system.crew.passengerQty" value={{system.crew.passengerQty}} data-dtype="Number"/>
   </div>
 </div>
 
@@ -14,7 +14,7 @@
 {{!-- CREW OCCUPANTS --}}
 <div class="crew-occupants">
   {{#each crew}}
-  <div class="occupant{{#if (eq position "PASSENGER")}} passenger{{/if}}{{#if exposed}} exposed{{/if}}{{#if (lte actor.data.data.health.value 0)}} dead{{/if}}" data-crew-id="{{id}}" >
+  <div class="occupant{{#if (eq position "PASSENGER")}} passenger{{/if}}{{#if exposed}} exposed{{/if}}{{#if (lte actor.system.health.value 0)}} dead{{/if}}" data-crew-id="{{id}}" >
 
     {{!-- Position --}}
     <div class="occupant-position">
@@ -27,7 +27,7 @@
     <img class="occupant-image" src="{{actor.img}}"/>
 
     {{!-- Health Bar --}}
-    <progress class="occupant-health-gauge" value="{{actor.data.data.health.value}}" max="{{actor.data.data.health.max}}" title="{{localize "T2K4E.ActorSheet.HitCapacity"}}"></progress>
+    <progress class="occupant-health-gauge" value="{{actor.system.health.value}}" max="{{actor.system.health.max}}" title="{{localize "T2K4E.ActorSheet.HitCapacity"}}"></progress>
 
     {{!-- Name --}}
     <div class="occupant-name">{{actor.name}}</div>
