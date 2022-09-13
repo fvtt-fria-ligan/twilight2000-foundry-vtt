@@ -1,20 +1,26 @@
-<header class="sheet-header flexrow">
+<header class='sheet-header flexrow'>
 
-    <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+  <img class='profile' src='{{item.img}}' data-edit='img' title='{{item.name}}' height='64' width='64' />
 
-    <div class="header-details flexcol">
-        <div class="item-subtitle flexrow">
-            <h4 class="item-type">{{localize (concat "T2K4E.ItemTypes." item.type)}}</h4>
-            {{#if item.isPhysical}}
-            <div class="item-qty flexrow flex-right">
-                <input type="text" name="system.qty" value="{{system.qty}}" data-dtype="Number" title="{{localize "T2K4E.ItemSheet.Quantity"}}"/>
-                <div class="flex0">&times;</div>
-            </div>
-            {{/if}}
+  <div class='header-details flexcol'>
+    <div class='item-subtitle flexrow'>
+      <h4 class='item-type'>{{localize (concat 'T2K4E.ItemTypes.' item.type)}}</h4>
+      {{#if item.isPhysical}}
+        <div class='item-qty flexrow flex-right'>
+          <input
+            type='text'
+            name='system.qty'
+            value='{{system.qty}}'
+            data-dtype='Number'
+            title='{{localize "T2K4E.ItemSheet.Quantity"}}'
+          />
+          <div class='flex0'>&times;</div>
         </div>
-        <h1>
-            <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'T2K4E.ItemSheet.Name'}}"/>
-        </h1>
+      {{/if}}
     </div>
+    <h1>
+      <input name='name' type='text' value='{{item.name}}' placeholder='{{localize "T2K4E.ItemSheet.Name"}}' />
+    </h1>
+  </div>
 
 </header>
