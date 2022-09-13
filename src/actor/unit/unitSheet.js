@@ -5,7 +5,6 @@ import ActorSheetT2K from '../actorSheet.js';
  * @extends {ActorSheetT2K} Extends the T2K ActorSheet
  */
 export default class ActorSheetT2KUnit extends ActorSheetT2K {
-
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */

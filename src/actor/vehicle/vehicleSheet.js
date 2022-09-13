@@ -6,7 +6,6 @@ import { T2K4E } from '../../system/config.js';
  * @extends {ActorSheetT2K} Extends the T2K ActorSheet
  */
 export default class ActorSheetT2KVehicle extends ActorSheetT2K {
-
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */
@@ -70,9 +69,7 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
   /* ------------------------------------------- */
 
   _prepareMountedWeapons(sheetData) {
-    const m = (i, slot) => i.type === 'weapon'
-      && i.system.isMounted
-      && i.system.mountSlot === slot;
+    const m = (i, slot) => i.type === 'weapon' && i.system.isMounted && i.system.mountSlot === slot;
 
     sheetData.mountedWeapons = {
       primary: sheetData.actor.items.filter(i => m(i, 1)),

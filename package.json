@@ -30,7 +30,7 @@
   ],
   "main": "src/t2k4e.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development gulp build",
+    "dev": "cross-env NODE_ENV=dnpmevelopment gulp build",
     "dev:watch": "cross-env NODE_ENV=development gulp watch",
     "build": "cross-env NODE_ENV=production gulp build",
     "link": "node ./tools/link-project.js",

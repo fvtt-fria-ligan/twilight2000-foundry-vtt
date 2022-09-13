@@ -9,7 +9,6 @@ import T2KDialog from '../components/dialog/dialog.js';
  * @extends {Item} Extends the basic Item
  */
 export default class ItemT2K extends Item {
-
   /* ------------------------------------------- */
   /*  Properties                                 */
   /* ------------------------------------------- */
@@ -116,7 +115,8 @@ export default class ItemT2K extends Item {
     this._prepareEncumbrance(this.type, system);
 
     switch (this.type) {
-      case 'weapon': this._prepareWeapon(system, actorData);
+      case 'weapon':
+        this._prepareWeapon(system, actorData);
     }
   }
 
@@ -194,11 +194,21 @@ export default class ItemT2K extends Item {
         const [t, n] = m.name.split('.');
         let type = '';
         switch (t) {
-          case 'attribute': type = 'Attribute'; break;
-          case 'constant': type = 'Constant'; break;
-          case 'skill': type = 'Skill'; break;
-          case 'action': type = 'Action'; break;
-          case 'travel': type = 'TravelTask'; break;
+          case 'attribute':
+            type = 'Attribute';
+            break;
+          case 'constant':
+            type = 'Constant';
+            break;
+          case 'skill':
+            type = 'Skill';
+            break;
+          case 'action':
+            type = 'Action';
+            break;
+          case 'travel':
+            type = 'TravelTask';
+            break;
         }
         const str = game.i18n.localize(`T2K4E.${type}Names.${n}`) + ` ${m.value}`;
         out.push(str);
@@ -316,9 +326,7 @@ export default class ItemT2K extends Item {
     // }
     if (!this.actor) throw new Error('This weapon has no bearer.');
     if (this.hasReliability && this.system.reliability.value <= 0) {
-      return ui.notifications.warn(
-        game.i18n.localize('T2K4E.Chat.Roll.NoReliabilityNotif'),
-      );
+      return ui.notifications.warn(game.i18n.localize('T2K4E.Chat.Roll.NoReliabilityNotif'));
     }
 
     // Prepares data.
@@ -337,9 +345,10 @@ export default class ItemT2K extends Item {
     let rof = itemData.rof;
 
     // Gets the magazine.
-    const track = (this.actor.type === 'character' && game.settings.get('t2k4e', 'trackPcAmmo'))
-      || (this.actor.type === 'npc' && game.settings.get('t2k4e', 'trackNpcAmmo'))
-      || (this.actor.type === 'vehicle' && game.settings.get('t2k4e', 'trackVehicleAmmo'));
+    const track =
+      (this.actor.type === 'character' && game.settings.get('t2k4e', 'trackPcAmmo')) ||
+      (this.actor.type === 'npc' && game.settings.get('t2k4e', 'trackNpcAmmo')) ||
+      (this.actor.type === 'vehicle' && game.settings.get('t2k4e', 'trackVehicleAmmo'));
 
     let ammo = null;
     if (track && this.hasAmmo) {
@@ -366,11 +375,18 @@ export default class ItemT2K extends Item {
     }
 
     // Composes the options for the task check.
-    const rollConfig = foundry.utils.mergeObject({
-      title, attributeName, skillName,
-      attribute, skill, rof,
-      locate: true,
-    }, options);
+    const rollConfig = foundry.utils.mergeObject(
+      {
+        title,
+        attributeName,
+        skillName,
+        attribute,
+        skill,
+        rof,
+        locate: true,
+      },
+      options,
+    );
     // Better to not put them in a mergeObject:
     rollConfig.actor = actor;
     rollConfig.item = this;
@@ -498,8 +514,12 @@ export default class ItemT2K extends Item {
 
     if (update) {
       switch (this.type) {
-        case 'ammunition': await this.update({ 'system.ammo.value': newAmmoValue }); break;
-        case 'weapon': await this.update({ 'system.qty': newAmmoValue }); break;
+        case 'ammunition':
+          await this.update({ 'system.ammo.value': newAmmoValue });
+          break;
+        case 'weapon':
+          await this.update({ 'system.qty': newAmmoValue });
+          break;
       }
     }
     return newAmmoValue - ammoValue;
@@ -592,15 +612,15 @@ export default class ItemT2K extends Item {
     // Gets the item.
     const item = actor.items.get(itemId);
     if (!item) {
-      return ui.notifications.error(
-        game.i18n.localize('T2K4E.Chat.Roll.NoItemNotif'),
-      );
+      return ui.notifications.error(game.i18n.localize('T2K4E.Chat.Roll.NoItemNotif'));
     }
 
     // Handles different actions.
     const askForOptions = event.shiftKey;
     switch (action) {
-      case 'attack': await item.rollAttack({ askForOptions }); break;
+      case 'attack':
+        await item.rollAttack({ askForOptions });
+        break;
       // TODO case 'reload': await item.rollReload({ askForOptions }); break;
     }
 
@@ -616,11 +636,11 @@ export default class ItemT2K extends Item {
  * @constant
  */
 ItemT2K.CHAT_TEMPLATE = {
-  'weapon': 'systems/t2k4e/templates/components/chat/weapon-chat.hbs',
-  'grenade': 'systems/t2k4e/templates/components/chat/weapon-chat.hbs',
-  'armor': 'systems/t2k4e/templates/components/chat/armor-chat.hbs',
-  'gear': 'systems/t2k4e/templates/components/chat/gear-chat.hbs',
-  'ammunition': 'systems/t2k4e/templates/components/chat/gear-chat.hbs',
+  weapon: 'systems/t2k4e/templates/components/chat/weapon-chat.hbs',
+  grenade: 'systems/t2k4e/templates/components/chat/weapon-chat.hbs',
+  armor: 'systems/t2k4e/templates/components/chat/armor-chat.hbs',
+  gear: 'systems/t2k4e/templates/components/chat/gear-chat.hbs',
+  ammunition: 'systems/t2k4e/templates/components/chat/gear-chat.hbs',
   // TODO injury template
   // TODO better templates
 };

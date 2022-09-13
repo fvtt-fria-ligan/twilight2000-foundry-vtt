@@ -29,8 +29,10 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     for (let i = 0; i < (partyData.system.members || []).length; i++) {
       ownedActorId = partyData.system.members[i];
       partyData.partyMembers[ownedActorId] = game.actors.get(ownedActorId);
-      partyData.partyMembers[ownedActorId].enrichedName =
-        await TextEditor.enrichHTML(`@Actor[${partyData.partyMembers[ownedActorId].name}]`, { async: true });
+      partyData.partyMembers[ownedActorId].enrichedName = await TextEditor.enrichHTML(
+        `@Actor[${partyData.partyMembers[ownedActorId].name}]`,
+        { async: true },
+      );
     }
     for (const travelActionKey in partyData.system.travel) {
       travelAction = partyData.system.travel[travelActionKey];

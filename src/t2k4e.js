@@ -8,10 +8,10 @@
  * Patreon: https://www.patreon.com/Stefouch
  * ============================================================================
  * Source Code License: GPL-3.0-or-later
- * 
+ *
  * Foundry License: Foundry Virtual Tabletop End User License Agreement
  *   https://foundryvtt.com/article/license/
- * 
+ *
  * ============================================================================
  */
 
@@ -90,7 +90,7 @@ Hooks.once('init', function () {
     decimals: 2,
   };
 
-  // Registers sheet application classes. 
+  // Registers sheet application classes.
   // This will stop using the core sheets and instead use our customized versions.
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('t2k4e', ActorSheetT2KCharacter, {

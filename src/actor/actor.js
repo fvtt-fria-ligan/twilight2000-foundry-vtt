@@ -9,7 +9,6 @@ import Armor from '../components/armor.js';
  * @extends {Actor} Extends the basic Actor.
  */
 export default class ActorT2K extends Actor {
-
   /* ------------------------------------------- */
   /*  Properties                                 */
   /* ------------------------------------------- */
@@ -43,12 +42,23 @@ export default class ActorT2K extends Actor {
     // Makes separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
     switch (actorData.type) {
-      case 'character': this._prepareCharacterData(actorData); break;
-      case 'npc': this._prepareNpcData(actorData); break;
-      case 'vehicle': this._prepareVehicleData(actorData); break;
-      case 'unit': this._prepareUnitData(actorData); break;
-      case 'party': this._preparePartyData(actorData); break;
-      default: throw new TypeError(`t2k4e | Unknown Actor Type: "${actorData.type}"`);
+      case 'character':
+        this._prepareCharacterData(actorData);
+        break;
+      case 'npc':
+        this._prepareNpcData(actorData);
+        break;
+      case 'vehicle':
+        this._prepareVehicleData(actorData);
+        break;
+      case 'unit':
+        this._prepareUnitData(actorData);
+        break;
+      case 'party':
+        this._preparePartyData(actorData);
+        break;
+      default:
+        throw new TypeError(`t2k4e | Unknown Actor Type: "${actorData.type}"`);
     }
   }
 
@@ -87,7 +97,10 @@ export default class ActorT2K extends Actor {
 
     this._prepareCapacities(system);
     this._prepareEncumbrance(system, actorData.items);
-    this._prepareArmorRating(system, actorData.items.filter(i => i.type === 'armor'));
+    this._prepareArmorRating(
+      system,
+      actorData.items.filter(i => i.type === 'armor'),
+    );
   }
 
   /* ------------------------------------------- */
@@ -183,27 +196,27 @@ export default class ActorT2K extends Actor {
     let mod = 0;
 
     // Computes the Encumbrance.
-    const val1 = (items
-      .filter(i => !i.system.backpack)
-      .reduce((sum, i) => {
-        if (i.type === 'specialty') {
-          mod += i.encumbranceModifiers;
-        }
-        else if (i.type === 'weapon' && i.hasAmmo && !i.system.props?.ammoBelt) {
-          const ammoId = i.system.mag.target;
-          const ammo = this.items.get(ammoId);
-          if (ammo && ammo.type === 'ammunition') {
-            if (ammo.system.props.magazine) {
-              sum -= ammo.system.encumbrance;
-            }
-            else {
-              sum -= ammo.system.weight * i.system.mag.max;
+    const val1 =
+      items
+        .filter(i => !i.system.backpack)
+        .reduce((sum, i) => {
+          if (i.type === 'specialty') {
+            mod += i.encumbranceModifiers;
+          }
+          else if (i.type === 'weapon' && i.hasAmmo && !i.system.props?.ammoBelt) {
+            const ammoId = i.system.mag.target;
+            const ammo = this.items.get(ammoId);
+            if (ammo && ammo.type === 'ammunition') {
+              if (ammo.system.props.magazine) {
+                sum -= ammo.system.encumbrance;
+              }
+              else {
+                sum -= ammo.system.weight * i.system.mag.max;
+              }
             }
           }
-        }
-        return sum + i.system.encumbrance;
-      }, 0)
-    ) ?? 0;
+          return sum + i.system.encumbrance;
+        }, 0) ?? 0;
 
     const max = system.attributes.str.value + mod;
 
@@ -215,24 +228,24 @@ export default class ActorT2K extends Actor {
     };
 
     // Computes the Backpack.
-    const val2 = (items
-      .filter(i => i.system.backpack && i.type !== 'specialty')
-      .reduce((sum, i) => {
-        if (i.type === 'weapon' && i.hasAmmo && !i.system.props?.ammoBelt) {
-          const ammoId = i.system.mag.target;
-          const ammo = this.items.get(ammoId);
-          if (ammo && ammo.type === 'ammunition') {
-            if (ammo.system.props.magazine) {
-              sum -= ammo.system.encumbrance;
-            }
-            else {
-              sum -= ammo.system.weight * i.system.mag.max;
+    const val2 =
+      items
+        .filter(i => i.system.backpack && i.type !== 'specialty')
+        .reduce((sum, i) => {
+          if (i.type === 'weapon' && i.hasAmmo && !i.system.props?.ammoBelt) {
+            const ammoId = i.system.mag.target;
+            const ammo = this.items.get(ammoId);
+            if (ammo && ammo.type === 'ammunition') {
+              if (ammo.system.props.magazine) {
+                sum -= ammo.system.encumbrance;
+              }
+              else {
+                sum -= ammo.system.weight * i.system.mag.max;
+              }
             }
           }
-        }
-        return sum + i.system.encumbrance;
-      }, 0)
-    ) ?? 0;
+          return sum + i.system.encumbrance;
+        }, 0) ?? 0;
 
     system.encumbrance.backpack = {
       value: val2,
@@ -290,10 +303,10 @@ export default class ActorT2K extends Actor {
    * @private
    */
   _computeVehicleEncumbrance(system, items) {
-    let val = (items
-      .filter(i => !i.system.isMounted && i.type !== 'specialty')
-      .reduce((sum, i) => sum + i.system.encumbrance, 0)
-    ) ?? 0;
+    let val =
+      items
+        .filter(i => !i.system.isMounted && i.type !== 'specialty')
+        .reduce((sum, i) => sum + i.system.encumbrance, 0) ?? 0;
 
     const maxCrewQty = system.crew.qty + system.crew.passengerQty;
     const crewCount = system.crew.occupants.length;
@@ -492,12 +505,15 @@ export default class ActorT2K extends Actor {
 
     if (sievert <= 0) return;
 
-    const rollConfig = foundry.utils.mergeObject({
-      title: game.i18n.localize('T2K4E.ActorSheet.RadiationRoll'),
-      attribute: system.attributes.str.value,
-      skill: system.skills.stamina.value,
-      modifier: T2K4E.radiationVirulence - sievert,
-    }, options);
+    const rollConfig = foundry.utils.mergeObject(
+      {
+        title: game.i18n.localize('T2K4E.ActorSheet.RadiationRoll'),
+        attribute: system.attributes.str.value,
+        skill: system.skills.stamina.value,
+        modifier: T2K4E.radiationVirulence - sievert,
+      },
+      options,
+    );
     rollConfig.actor = this;
 
     return T2KRoller.taskCheck(rollConfig);
@@ -584,7 +600,8 @@ export default class ActorT2K extends Actor {
     const template = 'systems/t2k4e/templates/components/chat/character-damage-chat.hbs';
     const templateData = {
       name: this.name,
-      initialAmount, amount,
+      initialAmount,
+      amount,
       incapacited: newVal <= 0,
       armors,
       signedArmorModifier: (attackData.armorModifier >= 0 ? '+' : '−') + Math.abs(attackData.armorModifier),

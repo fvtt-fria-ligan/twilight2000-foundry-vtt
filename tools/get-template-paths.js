@@ -13,9 +13,7 @@ const getPaths = path => {
 };
 
 export default (() =>
-  getPaths('./src/templates')
-    .map(templatePath => {
-      templatePath = templatePath.split(sep).slice(1).join(posix.sep);
-      return `systems/t2k4e/${templatePath}`;
-    })
-)();
+  getPaths('./src/templates').map(templatePath => {
+    templatePath = templatePath.split(sep).slice(1).join(posix.sep);
+    return `systems/t2k4e/${templatePath}`;
+  }))();

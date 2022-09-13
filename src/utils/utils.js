@@ -23,14 +23,14 @@ export function clamp(input, min, max) {
   return Math.min(Math.max(input, min || 0), undefined === max ? 1 : max);
 }
 
-
 export async function enrichTextFields(sheetData, fieldNames) {
   for (const fieldName of fieldNames) {
     if (foundry.utils.hasProperty(sheetData, fieldName)) {
       foundry.utils.setProperty(
         sheetData,
         fieldName,
-        await TextEditor.enrichHTML(foundry.utils.getProperty(sheetData, fieldName), { async: true }));
+        await TextEditor.enrichHTML(foundry.utils.getProperty(sheetData, fieldName), { async: true }),
+      );
     }
   }
 }

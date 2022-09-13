@@ -5,7 +5,6 @@ import { enrichTextFields } from '@utils/utils';
  * @extends {ItemSheet} Extends the basic ItemSheet
  */
 export default class ItemSheetT2K extends ItemSheet {
-
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */
@@ -107,12 +106,15 @@ export default class ItemSheetT2K extends ItemSheet {
     const actor = this.item.actor;
     if (!actor) return {};
 
-    return actor.itemTypes.ammunition.reduce((ammo, i) => {
-      // if (i.system.itemType === ammoType) {
-      ammo[i.id] = i.detailedName;
-      // }
-      return ammo;
-    }, { [this.item.id]: `${this.item.name} (${itemData.qty})` });
+    return actor.itemTypes.ammunition.reduce(
+      (ammo, i) => {
+        // if (i.system.itemType === ammoType) {
+        ammo[i.id] = i.detailedName;
+        // }
+        return ammo;
+      },
+      { [this.item.id]: `${this.item.name} (${itemData.qty})` },
+    );
   }
 
   /* ------------------------------------------- */

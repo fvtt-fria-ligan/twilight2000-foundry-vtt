@@ -30,8 +30,12 @@ export default class T2KDialog extends Dialog {
       const target = html.find(`input[name="${elem.dataset.target}"]`)[0];
       let value = parseInt(target.value);
       switch (elem.dataset.change) {
-        case 'plus': value++; break;
-        case 'minus': value--; break;
+        case 'plus':
+          value++;
+          break;
+        case 'minus':
+          value--;
+          break;
       }
       target.value = value >= 0 ? `+${value}` : value;
     });

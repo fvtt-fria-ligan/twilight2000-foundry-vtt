@@ -1,11 +1,11 @@
 export class InfoDialog {
   /**
-	 * Display informational message.
-	 *
-	 * @param  {string}   title
-	 * @param  {string}   message
-	 * @param  {Function} onClose
-	 */
+   * Display informational message.
+   *
+   * @param  {string}   title
+   * @param  {string}   message
+   * @param  {Function} onClose
+   */
   static show(title, message, onClose) {
     const d = new Dialog({
       title: title,
@@ -24,8 +24,8 @@ export class InfoDialog {
   }
 
   /**
-	 * @param  {string} divContent
-	 */
+   * @param  {string} divContent
+   */
   static buildDivHtmlDialog(divContent) {
     return '<div class=\'flex row roll-dialog\'>' + divContent + '</div>';
   }

@@ -61,7 +61,7 @@ export default class Modifier {
      * Whether the modifier is active.
      * @type {boolean}
      */
-    this.active = active ?? (this.value <= 0);
+    this.active = active ?? this.value <= 0;
   }
 
   /* ------------------------------------------- */
@@ -119,10 +119,4 @@ export default class Modifier {
 
 /* ------------------------------------------- */
 
-Modifier.ALLOWED_CATEGORIES = [
-  'attribute',
-  'skill',
-  'action',
-  'constant',
-  'travel',
-];
+Modifier.ALLOWED_CATEGORIES = ['attribute', 'skill', 'action', 'constant', 'travel'];

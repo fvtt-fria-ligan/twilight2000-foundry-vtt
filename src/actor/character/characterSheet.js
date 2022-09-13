@@ -7,7 +7,6 @@ import { enrichTextFields } from '@utils/utils.js';
  * @extends {ActorSheetT2K} Extends the T2K ActorSheet
  */
 export default class ActorSheetT2KCharacter extends ActorSheetT2K {
-
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */

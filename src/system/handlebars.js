@@ -56,7 +56,6 @@ export async function preloadHandlebarsTemplates() {
  * Defines Handlebars custom Helpers and Partials.
  */
 export function registerHandlebars() {
-
   Handlebars.registerHelper('concat', function () {
     let str = '';
     for (const arg in arguments) {
@@ -125,7 +124,8 @@ export function registerHandlebars() {
    * * `name` - The name of the affected variable.
    * * `selected` - The current selected value.
    */
-  Handlebars.registerPartial('scoreSelector',
+  Handlebars.registerPartial(
+    'scoreSelector',
     `<select name="{{name}}" class="score-selector">
       {{#select selected}}
       {{#each @root.config.dieScores}}

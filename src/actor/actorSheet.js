@@ -8,7 +8,6 @@ import { enrichTextFields } from '@utils/utils.js';
  * @extends {ActorSheet} Extends the basic ActorSheet
  */
 export default class ActorSheetT2K extends ActorSheet {
-
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */
@@ -94,7 +93,7 @@ export default class ActorSheetT2K extends ActorSheet {
     const skillName = T2K4E.actionSkillsMap[actionName];
     const statData = getAttributeAndSkill(skillName, this.actor.system);
     statData.title += ` (${this.actor.name})`;
-    const isRangedSkill = (skillName === 'rangedCombat' || skillName === 'heavyWeapons');
+    const isRangedSkill = skillName === 'rangedCombat' || skillName === 'heavyWeapons';
     return T2KRoller.taskCheck({
       ...statData,
       actor: this.actor,
@@ -182,13 +181,16 @@ export default class ActorSheetT2K extends ActorSheet {
       name: game.i18n.localize(`T2K4E.ActorSheet.NewItem.${type}`),
       type,
     };
-    return this.actor.createEmbeddedDocuments('Item', [itemData])
-      // Displays the sheet of the newly created item.
-      .then(itmData => {
-        const itemId = itmData[0].id;
-        const item = this.actor.items.get(itemId);
-        item.sheet.render(true);
-      });
+    return (
+      this.actor
+        .createEmbeddedDocuments('Item', [itemData])
+        // Displays the sheet of the newly created item.
+        .then(itmData => {
+          const itemId = itmData[0].id;
+          const item = this.actor.items.get(itemId);
+          item.sheet.render(true);
+        })
+    );
   }
 
   _onItemEdit(event) {

@@ -16,7 +16,7 @@ export async function createT2KMacro(data, slot) {
 
   // Creates the macro command.
   const command = `game.t2k4e.macros.rollItemMacro("${item.name}");`;
-  let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
+  let macro = game.macros.entities.find(m => m.name === item.name && m.command === command);
   if (!macro) {
     macro = await Macro.create({
       name: item.name,
@@ -53,12 +53,9 @@ export function rollItemMacro(itemName) {
     );
   }
   else if (items.length === 0) {
-    return ui.notifications.warn(
-      game.i18n.format('T2K4E.Macro.NoItem', { item: itemName }),
-    );
+    return ui.notifications.warn(game.i18n.format('T2K4E.Macro.NoItem', { item: itemName }));
   }
   const item = items[0];
-
 
   // Triggers the item roll.
   return item.roll();
