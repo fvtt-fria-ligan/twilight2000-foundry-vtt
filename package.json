@@ -7,12 +7,12 @@
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Stefouch/t2k4e.git"
+    "url": "git+https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt.git"
   },
   "bugs": {
-    "url": "https://github.com/Stefouch/t2k4e/issues"
+    "url": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/issues"
   },
-  "homepage": "https://github.com/Stefouch/t2k4e#readme",
+  "homepage": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt#readme",
   "keywords": [
     "Foundry",
     "VTT",

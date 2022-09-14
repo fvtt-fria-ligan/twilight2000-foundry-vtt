@@ -2,7 +2,7 @@
  * TWILIGHT 2000 4E
  * Official website: https://frialigan.se/en/games/twilight-2000/
  * ============================================================================
- * Contributing: https://github.com/Stefouch/t2k4e
+ * Contributing: https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt
  * ============================================================================
  * Creator: Stefouch
  * Patreon: https://www.patreon.com/Stefouch

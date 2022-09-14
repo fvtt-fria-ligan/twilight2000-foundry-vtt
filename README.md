@@ -7,13 +7,13 @@
   <a href="https://foundryvtt.com/packages/t2k4e/" target="_blank">
     <img alt="Forge Installs" src="https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ft2k4e&colorB=4aa94a"/>
   </a>
-  <a href="https://github.com/Stefouch/t2k4e/releases">
+  <a href="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases">
     <img alt="Downloads" src="https://img.shields.io/github/downloads/Stefouch/t2k4e/latest/master.zip"/>
   </a>
-  <a href="https://github.com/Stefouch/t2k4e/graphs/commit-activity" target="_blank">
+  <a href="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"/>
   </a>
-  <a href="https://github.com/Stefouch/t2k4e/blob/master/LICENSE" target="_blank">
+  <a href="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/Stefouch/t2k4e"/>
   </a>
   <a href="https://www.patreon.com/Stefouch">
@@ -46,7 +46,7 @@ https://raw.githubusercontent.com/stefouch/t2k4e/master/system.json
 
 3. Create a Game World using the Twilight 2000 (4th Edition) system.
 
-4. Read the [Wiki](https://github.com/Stefouch/t2k4e/wiki)!
+4. Read the [Wiki](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/wiki)!
 
 # 🧩 Supported Modules
 
@@ -75,7 +75,7 @@ Head over the [GitLocalize page](https://gitlocalize.com/repo/7035) to start tra
 
 # 🛠️ Contributing
 
-Contributions, issues and feature requests are welcome!<br/>Feel free to check the [issues page](https://github.com/Stefouch/t2k4e/issues).
+Contributions, issues and feature requests are welcome!<br/>Feel free to check the [issues page](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/issues).
 
 ### Top Contributors
 
@@ -103,12 +103,12 @@ Contributions, issues and feature requests are welcome!<br/>Feel free to check t
 
 # 📜 List of Changes
 
-See the [changelog](https://github.com/Stefouch/t2k4e/blob/master/CHANGELOG.md#changelog) for a complete list of changes applied to the system since 2021.
+See the [changelog](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/blob/master/CHANGELOG.md#changelog) for a complete list of changes applied to the system since 2021.
 
 # 📝 Licenses
 
 - **Content & Logo:** [Twilight 2000 (4th Edition)](https://freeleaguepublishing.com/en/store/?collection_id=270655783061) is ™ & © 2021 GDW and Fria Ligan AB. All rights reserved. The parts of this project protected under this copyright may not be distributed commercially or freely. This includes art, logo, and copyright text.
-- **Source Code:** All source code *(javascript, hbs, less, as well as system templates and the like)* are Copyright © 2021-2022 [Stefouch](https://github.com/Stefouch), and licenced under the [GNU General Public License v3.0](https://github.com/Stefouch/t2k4e/blob/master/LICENSE).
+- **Source Code:** All source code *(javascript, hbs, less, as well as system templates and the like)* are Copyright © 2021-2022 [Stefouch](https://github.com/Stefouch), and licenced under the [GNU General Public License v3.0](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/blob/master/LICENSE).
 - **Foundry VTT:** The project is created following the Foundry VTT [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 - **Icons:** Icons in the `module/t2k4e-coreset/assets/icons/` folder are courtesy of [Game-icons.net](https://game-icons.net/) and licenced under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
 - **Fonts:** The fonts used in this project carry their own licences:

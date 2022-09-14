@@ -167,7 +167,7 @@ All notable changes to this project will be documented in this file.
 > :warning: **Major Update with Breaking Changes**
 > This is a major update from the alpha version. Migration should work fine, but issues may occur.
 > Before applying the system update, [backup your world](https://www.youtube.com/watch?v=OmbxMmqNNXU)!
-> If the update inadvertedly broke your world, restore your backup and roll back to the [previous version](https://github.com/Stefouch/t2k4e/releases/tag/0.7.3) of the T2K system. Then contact me to solve the issue ([find me on Discord](https://discordapp.com/invite/DDBZUDf) or [open an issue](https://github.com/Stefouch/t2k4e/issues)).
+> If the update inadvertedly broke your world, restore your backup and roll back to the [previous version](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/tag/0.7.3) of the T2K system. Then contact me to solve the issue ([find me on Discord](https://discordapp.com/invite/DDBZUDf) or [open an issue](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/issues)).
 
 ### Breaking Change
 - Foundry 0.8.x!
@@ -196,7 +196,7 @@ All notable changes to this project will be documented in this file.
 - Rolls in the chat are more wordy.
 - New property for weapon Items: `Armored` (used by weapons mounted on vehicles).
 - Migration script.
-- [Discussions](https://github.com/Stefouch/t2k4e/discussions).
+- [Discussions](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/discussions).
 - Templates for issues reporting and pull requests.
 
 ### Fixed
