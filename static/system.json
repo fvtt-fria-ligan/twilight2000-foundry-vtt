@@ -3,30 +3,27 @@
   "title": "🪖 Twilight 2000 (4th Edition)",
   "description": "Twilight: 2000 is a roleplaying game about survival in mankind’s most desperate hour. Yet, in this bleak world, there is still hope. In the midst of utter destruction, you can start to build something new. Rally people to your ranks. Stake a claim and protect it. And maybe, if you live long enough, start turning the tide.",
   "version": "10.0.0",
-  "minimumCoreVersion": "10",
-  "compatibleCoreVersion": "10",
   "compatibility": {
     "minimum": 10,
-    "verified": 10,
+    "verified": "10.285",
     "maximum": 10
   },
   "author": "Stefouch",
-  "authors": [{
-    "name": "Stefouch",
-    "url": "https://stefouch.be",
-    "discord": "Stefouch#5202",
-    "twitter": "@stefouch"
-  }, {
-    "name": "Free League Developer Community",
-    "url": "https://github.com/orgs/fvtt-fria-ligan"
-  }],
+  "authors": [
+    {
+      "name": "Stefouch",
+      "url": "https://stefouch.be",
+      "discord": "Stefouch#5202",
+      "twitter": "@stefouch"
+    },
+    {
+      "name": "Free League Developer Community",
+      "url": "https://github.com/orgs/fvtt-fria-ligan"
+    }
+  ],
   "scripts": [],
-  "esmodules": [
-    "t2k4e.js"
-  ],
-  "styles": [
-    "t2k4e.css"
-  ],
+  "esmodules": ["t2k4e.js"],
+  "styles": ["t2k4e.css"],
   "languages": [
     {
       "lang": "en",
@@ -49,8 +46,8 @@
   "flags": {},
   "socket": false,
   "protected": false,
-  "background": "assets/gear-intro_c.jpg",
-  "gridDistance": 10,
+  "background": "systems/t2k4e/assets/gear-intro_c.jpg",
+  "gridDistance": 2,
   "gridUnits": "m",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "sanity",
