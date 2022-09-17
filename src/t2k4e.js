@@ -90,6 +90,33 @@ Hooks.once('init', function () {
     decimals: 2,
   };
 
+  // Registers fonts.
+  CONFIG.fontDefinitions['Nunito Sans'] = {
+    editor: true,
+    fonts: [
+      { urls: ['systems/t2k4e/fonts/NunitoSans-ExtraBold.woff'], weight: 800 },
+    ],
+  };
+  CONFIG.fontDefinitions['Blue Highway'] = {
+    editor: true,
+    fonts: [
+      { urls: ['systems/t2k4e/fonts/BlueHighway-Bold.woff'], weight: 700 },
+    ],
+  };
+  CONFIG.fontDefinitions.Mukta = {
+    editor: true,
+    fonts: [
+      { urls: ['systems/t2k4e/fonts/Mukta-Medium.woff'], weight: 500 },
+      { urls: ['systems/t2k4e/fonts/Mukta-Bold.woff'], weight: 700 },
+    ],
+  };
+  CONFIG.fontDefinitions.DaisyWheel = {
+    editor: true,
+    fonts: [
+      { urls: ['systems/t2k4e/fonts/daisywheel.otf'], weight: 400 },
+    ],
+  };
+
   // Registers sheet application classes.
   // This will stop using the core sheets and instead use our customized versions.
   Actors.unregisterSheet('core', ActorSheet);
