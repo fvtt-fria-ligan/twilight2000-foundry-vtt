@@ -16,6 +16,9 @@
     "url": "https://stefouch.be",
     "discord": "Stefouch#5202",
     "twitter": "@stefouch"
+  }, {
+    "name": "Free League Developer Community",
+    "url": "https://github.com/orgs/fvtt-fria-ligan"
   }],
   "scripts": [],
   "esmodules": [
