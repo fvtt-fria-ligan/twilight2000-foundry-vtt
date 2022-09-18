@@ -1,76 +1,111 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 <br/>The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [10.0.0] - 2022-09-18
+
+> Jump from `2.3.0` to `10.0.0`: Now the major version number will follow the Foundry version to help identify compatibility with Foundry versions.
+
+## What's Changed
+
+- 🚀 Release V10 by @Stefouch in https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/pull/106
+- ✨ Update to YZUR V5 by @Stefouch in https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/pull/99
+
+<ul><li>Update to latest Foundry version</li><li>New "Accept" button in roll messages</li><li>New "Age" field in the character sheet</li><li>New "Send to Chat" small button in the inventory sheet</li><li>Clicking an item in the inventory now rolls it directly, or edit its armor rating/quantity</li><li>Combat skill rolls have the Location Die checked by default</li></ul>
+
+**Full Changelog**: https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/compare/2.3.0...v10.0.0
+
 ## [2.3.0] - 2022-05-14
+
 ### Added
+
 - French translation.
 - Two new system settings for hiding from players the capacities buttons in the character sheet and the weapon properties checkboxes in the item sheet (See #97).
 - Latest YZUR roll library V4.
 
 ### Fixed
+
 - #92 - Private rolls are now private.
 - Missing Swedish translation for Party sheet.
 
 ## [2.2.0] - 2022-05-08
+
 ### Added
+
 - Travel & Party sheet! #37 (borrowed from Forbidden Lands code)
 - Roll dialog: Ammo dice are now suggested in the roll dialog when testing the Ranged Combat and the Heavy Weapons skills from the stats tab in the character sheet.
 
 ### Fixed
+
 - Lighter color themes for Dice So Nice (were too dark due to a change introduced in v4.5.0 of DsN).
 - Small improvements to the CSS styles.
 - Small changes to the Swedish translation.
 
 ## [2.1.1] - 2022-04-30
+
 ### Fixed
+
 - #87 - Low screen resolution can now properly scroll the main tab in the character sheet.
 - #82 - Attempt to fix a bug in migration that caused all vehicles to lose their amor value.
 - Swedish translation for ammo belt (was too long). Thanks to [@tinwe](https://github.com/tinwe).
 
 ## [2.1.0] - 2022-02-09
+
 ### Added
+
 - :sweden: Swedish translation from [@tinwe](https://github.com/tinwe).
 
 ### Fixed
+
 - #45 - Dice modifiers were still buggy and have been fixed again.
 - #80 - Modifiers to CUF rolls now works!
 - A bug that broke the `maxPush` parameter in the roll dialog.
 
 ## [2.0.2] - 2022-01-30
+
 ### Fixed
+
 - #78 - a major bug introduced by the Foundry update 9.245 that broke the sheet tabs.
 
 ## [2.0.1] - 2022-01-20
+
 ### Fixed
+
 - A typo in the version number (`v2.0.0` instead of `2.0.0`) that was preventing Foundry from unpacking the zip.
 
 ## [2.0.0] - 2022-01-19
+
 ### Added
+
 - Foundry V9 compatibility.
-- Apply Damage: right-clic menu on attack roll message shows menu option of *"Apply Damage"* for selected or targeted characters. Does not work for Vehicles, yet.
+- Apply Damage: right-clic menu on attack roll message shows menu option of _"Apply Damage"_ for selected or targeted characters. Does not work for Vehicles, yet.
 - 3 new vehicle movement types: hovercraft, flying and naval.
 - 1 new vehicle fuel type: nuclear.
 
 ### Changed
+
 - Vehicle side armor has been splitted into left & right armor.
 - (For translators only) The language JSON file has been flattened for easier readability.
 
 ### Fixed
+
 - #39 - a minor bug where ammo was still consumed for NPCs although the option was unchecked.
 - #40 - a major bug blocking attacks with grenades that has no damage (e.g. Smoke grenades).
 - #41 - a minor bug where encumbrance calculation with weapon settings was wrong.
 - #45 - a major bug with wrong modifiers rules for stepping dice up and down.
-- #46 - a bug introduced with the previous update that stopped the *Year Zero Actions* module to function.
+- #46 - a bug introduced with the previous update that stopped the _Year Zero Actions_ module to function.
 - #54 - a minor bug preventing from rolling skills in a certain situation.
 - #66 - a major bug preventing an easy update to Foundry V9.
 
 ## [1.5.0] - 2021-08-12
+
 > The game system is now **officially** released.
 
 ### Added
+
 - Support for Items' modifiers.
 - Support for draggable items in the hotbar.
 - Automatic weapon's reliability change according to the result of the pushed roll.
@@ -78,6 +113,7 @@ All notable changes to this project will be documented in this file.
 - ItemSheet's height auto resize.
 
 ### Fixed
+
 - #13 - A minor bug where too many ammo was counted in the player's encumbrance.
 - #32 - A major bug where it was impossible to use items in an unlinked token.
 - CSS styles for sheet's tabs.
@@ -86,10 +122,13 @@ All notable changes to this project will be documented in this file.
 - YZUR Library updated to v2.1.1
 
 ### Removed
+
 - The "unarmed" line in a character/NPC's inventory is removed. Instead, create an "Unarmed" weapon.
 
 ## [1.4.0] - 2021-08-03
+
 ### Added
+
 - New Actor: **Military Unit**.
 - New "Create Ammo" button for equipped weapons.
 - New boolean properties (checkboxes) for weapons:
@@ -106,60 +145,79 @@ All notable changes to this project will be documented in this file.
 - CSS styles for Journal Entries and Actor/Item's descriptions.
 
 ### Changed
-- The "grenade" item type becomes "explosive". *(This is mostly a cosmetic change. Use the input field "Type" to specify what type of explosive it is. Eg: Grenade, Mine, Explosive, etc.)*
+
+- The "grenade" item type becomes "explosive". _(This is mostly a cosmetic change. Use the input field "Type" to specify what type of explosive it is. Eg: Grenade, Mine, Explosive, etc.)_
 - YZUR Library updated to v2.1.0
 
 ### Fixed
+
 - A bug where the mag capacity of a vehicle's mounted weapon was not displayed.
 
 ## [1.3.1] - 2021-07-20
+
 ### Fixed
+
 - Hotfix for missing v1.3 migration.
 
 ## [1.3.0] - 2021-07-20
+
 ### Changed
+
 - Modifiers management on items has changed, for the better.
 
 ### Added
+
 - Reliability values (current & max) for Gear items.
 - New settings option for default size for non-vehicle tokens.
 
 ### Removed
+
 - Default vision for tokens.
 
 ### Fixed
+
 - A bug introduced by the previous update that caused the Emcumbrance's max value to display `NaN` on sheets.
 - A bug where shooting a weapon was not possible if it had no skill set in its options.
 
 ## [1.2.0] - 2021-07-19
+
 ### Fixed
+
 - A critical bug breaking random tables when rolling T2K dice on them.
 - A bug with the github templates mentioning a "bot" instead of the game system.
 - A bug where the dice roller dialog macro would not show properly the attribute and skill scores.
 - A typo in a character's gear tab ("cover**s**" instead of "cover").
 
 ## [1.1.0] - 2021-07-17
+
 ### Changed
-- Ammunition choice has been simplified: It is no more required to have the same *"Ammo Identifier"*. Now the Magazine drop-down in the Weapon sheet shows all available magazines in the player's inventory, compatible or not with the weapon. This change also allows weapons to use different kind of ammunition.
+
+- Ammunition choice has been simplified: It is no more required to have the same _"Ammo Identifier"_. Now the Magazine drop-down in the Weapon sheet shows all available magazines in the player's inventory, compatible or not with the weapon. This change also allows weapons to use different kind of ammunition.
 
 ### Added
+
 - Default parameters to tokens.
 - The `Heal Time` property in an Injury item can be a roll formula. It will be rolled upon creating such injury in a Character actor.
 - Wiki infos for the Weapon sheet.
 
 ### Fixed
+
 - A bug where a pushed roll would not render if it contained unexpected dice, like d4, d20 and d100.
 - A bug where rolled d4, d20 and d100 would not show their icon in the chat.
 - A bug where the Foundry would say there was a newer version of the system but you already had the latest version.
 - Weapon "unarmed" wrong crit value (was 3 instead of 4).
 
 ## [1.0.2] - 2021-07-13
+
 ### Fixed
+
 - A bug where it was impossible to use a vehicle's weapon after adding a crew member and then deleting it from the database without removing it from the vehicle.
 - Clamped font size values until a better scaling CSS is produced.
 
 ## [1.0.1-hotfix] - 2021-07-12
+
 ### Fixed
+
 - A bug where it was impossible to add non-physical items to a character, and vice-versa for vehicles.
 
 ## [1.0.0-final+FoundryV8] - 2021-07-12
@@ -170,11 +228,13 @@ All notable changes to this project will be documented in this file.
 > If the update inadvertedly broke your world, restore your backup and roll back to the [previous version](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/tag/0.7.3) of the T2K system. Then contact me to solve the issue ([find me on Discord](https://discordapp.com/invite/DDBZUDf) or [open an issue](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/issues)).
 
 ### Breaking Change
+
 - Foundry 0.8.x!
 - New Ammunition Management: All ammo values in all weapons will be erased with this update (only the current value, not the max). Now, to choose an ammo for a weapon, you must select a magazine from your inventory with a corresponding ammo type.
 - New Critical Injuries Management: The content of the textarea used to write your critical injuries will be erased and replaced by a more user-friendly way for tracking them.
 
 ### Changed
+
 - Compatibility with the latest Foundry version (v0.8.8).
 - Use of Twilight 2000 4E final core rules:
   - Dice mechanics are updated.
@@ -184,6 +244,7 @@ All notable changes to this project will be documented in this file.
 - Ammunition management has been revamped (see breaking change above).
 
 ### Added
+
 - Dice So Nice configuration for the rolls.
 - Crew management for vehicles.
 - Components management for vehicles.
@@ -200,36 +261,47 @@ All notable changes to this project will be documented in this file.
 - Templates for issues reporting and pull requests.
 
 ### Fixed
+
 - A bug with broken encumbrance & backpack progress bars (at the bottom of the Gear tab in a character sheet).
 - A bug where it was impossible to shoot a weapon from a vehicle.
 
 ## [0.7.3-alpha] - 2021-01-19
+
 ### Added
+
 - Vehicle Sheet !
 
 ## [0.7.2-alpha] - 2021-01-18
+
 ### Added
+
 - A tooltip above Hit & Stress capacities to show the applied modifier.
 
 ### Changed
+
 - Decreased the font size of the specialties description in the character sheet.
 
 ### Fixed
-- Critical: textarea fields in character's sheet combat tab were creating infinite spaces after a line break. *(This is a bug caused by Handlebars with textarea inside partials. [Read more here](https://codepen.io/Munvier/post/stranges-white-spaces-with-backbone-handlebars).)*
+
+- Critical: textarea fields in character's sheet combat tab were creating infinite spaces after a line break. _(This is a bug caused by Handlebars with textarea inside partials. [Read more here](https://codepen.io/Munvier/post/stranges-white-spaces-with-backbone-handlebars).)_
 - Bug: item type not showing in the item sheet.
 - Bug: click listener not working properly with the CuF and Unit Morale rolls in the character sheet.
 - Bug: style causing the character's specialties description not taking the whole width of the sheet.
-- Bug: ugly style for *equipped* and *backpack* checkboxes in an embed item properties.
+- Bug: ugly style for _equipped_ and _backpack_ checkboxes in an embed item properties.
 
 ## [0.7.1-alpha] - 2021-01-17
+
 ### Added
+
 - Item equipping and backpack support.
 - T2K Banner in `/assets` folder.
 
 ### Fixed
+
 - Clickable dice values in the Stats tab.
 - Verbose log.
 - CSS styles.
 
 ## [0.7.0-alpha] - 2021-01-17
+
 - First release
