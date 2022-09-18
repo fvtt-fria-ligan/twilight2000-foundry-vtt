@@ -18,7 +18,8 @@ const production = process.env.NODE_ENV === 'production';
 const sourceDirectory = './src';
 const distDirectory = './dist';
 const templateExt = 'hbs';
-const staticFiles = ['LICENSE', 'system.json', 'template.json', 'assets', 'fonts'];
+const staticFiles = ['system.json', 'template.json', 'assets', 'fonts'];
+const rootFiles = ['LICENSE', 'README.md'];
 const getDownloadURL = version =>
   `https://github.com/fvtt-fria-ligan/t2k4e/releases/download/v${version}/fvtt_t2k4e_v${version}.zip`;
 const packageJson = JSON.parse(fs.readFileSync('package.json'));
@@ -99,6 +100,9 @@ async function pipeTranslations() {
 async function pipeStatics() {
   for (const file of staticFiles) {
     if (fs.existsSync(`static/${file}`)) await fs.copy(`static/${file}`, `${distDirectory}/${file}`);
+  }
+  for (const file of rootFiles) {
+    if (fs.existsSync(`./${file}`)) await fs.copy(`./${file}`, `${distDirectory}/${file}`);
   }
 }
 
