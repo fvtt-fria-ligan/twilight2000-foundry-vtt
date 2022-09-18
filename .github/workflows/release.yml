@@ -6,11 +6,6 @@ on:
       - master
     tags:
       - '*'
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: Choose the version tag "vX.X.X"
-        required: true
 
 env:
   # 'system' or 'module'
@@ -50,8 +45,6 @@ jobs:
       - name: 🏷️ Get Version Tag
         id: version
         uses: ncipollo/semantic-version-action@v1.0.1
-        with:
-          tag: ${{ inputs.tag }}
 
       # Generates the changelog.
       - name: 📜 Generate Changelog
