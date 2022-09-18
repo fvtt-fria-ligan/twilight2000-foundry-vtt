@@ -1,0 +1,14 @@
+<form class='t2k4e dialog actor-choice-dialog'>
+
+  {{! ================================================== }}
+
+  <div class='flexrow'>
+    <select name='actor'>
+      <option value='' selected></option>
+      {{#each actors as |name id|}}
+        <option value='{{id}}'>{{name}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+</form>

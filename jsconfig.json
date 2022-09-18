@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "ES6",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    // "checkJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./src"],
+      // "@lib/*": ["./static/lib/*"],
+      "@actor/*": ["./src/actor/*"],
+      "@item/*": ["./src/item/*"],
+      // "@module/*": ["src/module/*"],
+      "@utils/*": ["./src/utils/*"]
+      // "@components/*": ["./src/components/*"],
+    }
+  },
+  "include": ["src/**/*.js"],
+  "exclude": ["node_modules/*", "dist/*"]
+}

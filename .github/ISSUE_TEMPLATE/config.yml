@@ -1,14 +1,11 @@
-blank_issues_enabled: true
+blank_issues_enabled: false
 contact_links:
-  - name: Question
-    url: https://github.com/Stefouch/t2k4e/discussions/categories/q-a
-    about: Please ask and answer questions here.
-  # - name: Commands Usage
-  #   url: https://github.com/Stefouch/t2k4e/wiki
-  #   about: Read the Wiki.
+  - name: Discord Chat
+    url: https://discord.gg/foundryvtt
+    about: 'Look for the #free-league channel to find a community dedicated to the Free League games.'
   - name: Buy the Roleplaying Game
     url: https://freeleaguepublishing.com/en/games/twilight-2000/
-    about: The new edition of the apocalyptic RPG Twilight: 2000 is the fourth in the series, the first being released by Game Designers’ Workshop in 1984. Just like the original version, the new edition is set in a year 2000 devastated by war – now in an alternate timeline where the Moscow Coup of 1991 succeeded and the Soviet Union never collapsed.
+    about: 'The new edition of the apocalyptic RPG Twilight: 2000 is the fourth in the series, the first being released by Game Designers’ Workshop in 1984. Just like the original version, the new edition is set in a year 2000 devastated by war – now in an alternate timeline where the Moscow Coup of 1991 succeeded and the Soviet Union never collapsed.'
   - name: Support Us
     url: https://www.patreon.com/Stefouch
     about: Please, if you love the system consider supporting us on Patreon!

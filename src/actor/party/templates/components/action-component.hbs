@@ -1,0 +1,21 @@
+<div class="travel-action travel-action-{{action.key}}" data-travel-action="{{action.key}}">
+  <div class="travel-action-header">
+    <h3>
+    {{#if action.displayJournalEntry}} {{{action.enrichedEntryName}}} {{else}} {{ localize action.name }} {{/if}}
+    </h3>
+  </div>
+  <div class="travel-rolls">
+    {{#each action.buttons as | button |}}
+    <button class="travel-roll {{button.class}}">{{localize button.name}}</button>
+    {{/each}}
+  </div>
+  <div>
+    <ol>
+      {{#each assignedCharacters as | partyMember |}}
+      <!-- prettier-ignore -->
+      {{! prettier-ignore }}
+{{> systems/t2k4e/templates/actor/party/components/member-component.hbs partyMember=partyMember}}
+      {{/each}}
+    </ol>
+  </div>
+</div>

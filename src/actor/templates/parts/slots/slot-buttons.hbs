@@ -1,0 +1,55 @@
+<div class="item-buttons">
+  {{#unless @root.inVehicle}}
+    {{#unless (eq type 'specialty')}}
+    <a class="button item-equip{{#if system.equipped}} equipped{{/if}}" title="{{localize "T2K4E.ActorSheet.Equip"}}">
+      {{#if system.equipped}}
+      {{{@root.config.Icons.buttons.equip}}}
+      {{else}}
+      {{{@root.config.Icons.buttons.unequip}}}
+      {{/if}}
+    </a>
+    <a class="button item-backpack{{#if system.backpack}} packed{{/if}}" title="{{localize 'T2K4E.ActorSheet.Store'}}">
+      {{#if system.backpack}}
+      {{{@root.config.Icons.buttons.stash}}}
+      {{else}}
+      {{{@root.config.Icons.buttons.stash}}}
+      {{/if}}
+    </a>
+    {{/unless}}
+  {{else}}
+    {{#if (eq type 'weapon')}}
+      {{#if system.isMounted}}
+      <a class="button item-mount" title="{{localize 'T2K4E.VehicleSheet.Unmount'}}">
+        {{{@root.config.Icons.buttons.unmount}}}
+      </a>
+      {{else}}
+      <a class="button item-mount" title="{{localize 'T2K4E.VehicleSheet.Mount'}}">
+        {{{@root.config.Icons.buttons.mount}}}
+      </a>
+      {{/if}}
+    </a>
+      {{#if system.isMounted}}
+      <a class="button item-mount-move" title="{{localize 'T2K4E.VehicleSheet.MoveMount'}}">
+        {{#if (lte system.mountSlot 1)}}
+        {{{@root.config.Icons.buttons.primaryWeapon}}}
+        {{else}}
+        {{{@root.config.Icons.buttons.secondaryWeapon}}}
+        {{/if}}
+      </a>
+      {{/if}}
+    {{/if}}
+  {{/unless}}
+  {{#unless (eq type 'specialty')}}
+  <a class="button item-chat" title="{{localize "T2K4E.ActorSheet.ToChat"}}">
+    {{{@root.config.Icons.buttons.chat}}}
+  </a>
+  {{/unless}}
+  <a class="button item-edit" title="{{localize "T2K4E.ActorSheet.Edit"}}">
+    {{{@root.config.Icons.buttons.edit}}}
+  </a>
+  {{#unless system.isMounted}}
+  <a class="button item-delete" title="{{localize "T2K4E.ActorSheet.Delete"}}">
+    {{{@root.config.Icons.buttons.delete}}}
+  </a>
+  {{/unless}}
+</div>

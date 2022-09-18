@@ -1,0 +1,118 @@
+<div class='roll-modifiers flexcol'>
+
+  <div class='roll-modifiers-title flexrow'>
+    <h4>{{localize 'T2K4E.ItemSheet.RollModifiers'}}</h4>
+    <a class='button add-modifier flex0' title='{{localize "T2K4E.ItemSheet.AddRollModifier"}}'>
+      {{{@root.config.Icons.buttons.plus}}}
+    </a>
+  </div>
+
+  {{#each system.rollModifiers as |modifier|}}
+    <div class='roll-modifier'>
+      <div class='roll-modifier-name'>
+        <select name='system.rollModifiers.{{@key}}.name'>
+          {{#select modifier.name}}
+            <option value='' disabled selected>{{localize 'T2K4E.ItemSheet.SelectRollModifier'}}</option>
+            <optgroup label='{{localize "T2K4E.Attributes"}}'>
+              <option value='attribute.str'>{{localize 'T2K4E.AttributeNames.str'}}</option>
+              <option value='attribute.agl'>{{localize 'T2K4E.AttributeNames.agl'}}</option>
+              <option value='attribute.int'>{{localize 'T2K4E.AttributeNames.int'}}</option>
+              <option value='attribute.emp'>{{localize 'T2K4E.AttributeNames.emp'}}</option>
+            </optgroup>
+            <optgroup label='{{localize "T2K4E.Skills"}}'>
+              <option value='skill.heavyWeapons'>{{localize 'T2K4E.SkillNames.heavyWeapons'}}</option>
+              <option value='skill.closeCombat'>{{localize 'T2K4E.SkillNames.closeCombat'}}</option>
+              <option value='skill.stamina'>{{localize 'T2K4E.SkillNames.stamina'}}</option>
+              <option value='skill.driving'>{{localize 'T2K4E.SkillNames.driving'}}</option>
+              <option value='skill.mobility'>{{localize 'T2K4E.SkillNames.mobility'}}</option>
+              <option value='skill.rangedCombat'>{{localize 'T2K4E.SkillNames.rangedCombat'}}</option>
+              <option value='skill.recon'>{{localize 'T2K4E.SkillNames.recon'}}</option>
+              <option value='skill.survival'>{{localize 'T2K4E.SkillNames.survival'}}</option>
+              <option value='skill.tech'>{{localize 'T2K4E.SkillNames.tech'}}</option>
+              <option value='skill.command'>{{localize 'T2K4E.SkillNames.command'}}</option>
+              <option value='skill.persuasion'>{{localize 'T2K4E.SkillNames.persuasion'}}</option>
+              <option value='skill.medicalAid'>{{localize 'T2K4E.SkillNames.medicalAid'}}</option>
+            </optgroup>
+            <optgroup label='{{localize "T2K4E.Constants"}}'>
+              <option value='constant.cuf'>{{localize 'T2K4E.ConstantNames.cuf'}}</option>
+              <option value='constant.awareness'>{{localize 'T2K4E.ConstantNames.awareness'}}</option>
+              <option value='constant.encumbrance'>{{localize 'T2K4E.ConstantNames.encumbrance'}}</option>
+            </optgroup>
+            <optgroup label='{{localize "T2K4E.Actions"}}'>
+              <option value='action.aim'>{{localize 'T2K4E.ActionNames.aim'}}</option>
+              <option value='action.aimMortar'>{{localize 'T2K4E.ActionNames.aimMortar'}}</option>
+              <option value='action.aimSniper'>{{localize 'T2K4E.ActionNames.aimSniper'}}</option>
+              <option value='action.overwatch'>{{localize 'T2K4E.ActionNames.overwatch'}}</option>
+              <option value='action.breakFree'>{{localize 'T2K4E.ActionNames.breakFree'}}</option>
+              <option value='action.clearJam'>{{localize 'T2K4E.ActionNames.clearJam'}}</option>
+              <option value='action.crawl'>{{localize 'T2K4E.ActionNames.crawl'}}</option>
+              <option value='action.directFire'>{{localize 'T2K4E.ActionNames.directFire'}}</option>
+              <option value='action.disarm'>{{localize 'T2K4E.ActionNames.disarm'}}</option>
+              <option value='action.drive'>{{localize 'T2K4E.ActionNames.drive'}}</option>
+              <option value='action.firstAid'>{{localize 'T2K4E.ActionNames.firstAid'}}</option>
+              <option value='action.grapple'>{{localize 'T2K4E.ActionNames.grapple'}}</option>
+              <option value='action.meleeAttack'>{{localize 'T2K4E.ActionNames.meleeAttack'}}</option>
+              <option value='action.prepareBow'>{{localize 'T2K4E.ActionNames.prepareBow'}}</option>
+              <option value='action.rally'>{{localize 'T2K4E.ActionNames.rally'}}</option>
+              <option value='action.reload'>{{localize 'T2K4E.ActionNames.reload'}}</option>
+              <option value='action.retreat'>{{localize 'T2K4E.ActionNames.retreat'}}</option>
+              <option value='action.run'>{{localize 'T2K4E.ActionNames.run'}}</option>
+              <option value='action.seekCover'>{{localize 'T2K4E.ActionNames.seekCover'}}</option>
+              <option value='action.shootBow'>{{localize 'T2K4E.ActionNames.shootBow'}}</option>
+              <option value='action.shootFirearm'>{{localize 'T2K4E.ActionNames.shootFirearm'}}</option>
+              <option value='action.shootHeavyWeapon'>{{localize 'T2K4E.ActionNames.shootHeavyWeapon'}}</option>
+              <option value='action.shove'>{{localize 'T2K4E.ActionNames.shove'}}</option>
+              <option value='action.throwWeapon'>{{localize 'T2K4E.ActionNames.throwWeapon'}}</option>
+              <option value='action.unarmedAttack'>{{localize 'T2K4E.ActionNames.unarmedAttack'}}</option>
+            </optgroup>
+            <optgroup label='{{localize "T2K4E.TravelTasks"}}'>
+              <option value='travel.cooking'>{{localize 'T2K4E.TravelTaskNames.cooking'}}</option>
+              <option value='travel.driving'>{{localize 'T2K4E.TravelTaskNames.driving'}}</option>
+              <option value='travel.exploring'>{{localize 'T2K4E.TravelTaskNames.exploring'}}</option>
+              <option value='travel.fishing'>{{localize 'T2K4E.TravelTaskNames.fishing'}}</option>
+              <option value='travel.foraging'>{{localize 'T2K4E.TravelTaskNames.foraging'}}</option>
+              <option value='travel.gathering'>{{localize 'T2K4E.TravelTaskNames.gathering'}}</option>
+              <option value='travel.hunting'>{{localize 'T2K4E.TravelTaskNames.hunting'}}</option>
+              <option value='travel.keepingWatch'>{{localize 'T2K4E.TravelTaskNames.keepingWatch'}}</option>
+              <option value='travel.makingCamp'>{{localize 'T2K4E.TravelTaskNames.makingCamp'}}</option>
+              <option value='travel.marching'>{{localize 'T2K4E.TravelTaskNames.marching'}}</option>
+              <option value='travel.resting'>{{localize 'T2K4E.TravelTaskNames.resting'}}</option>
+              <option value='travel.scrounging'>{{localize 'T2K4E.TravelTaskNames.scrounging'}}</option>
+              <option value='travel.sleeping'>{{localize 'T2K4E.TravelTaskNames.sleeping'}}</option>
+            </optgroup>
+          {{/select}}
+        </select>
+      </div>
+      <div class='roll-modifier-value flexrow'>
+        <input type='text' name='system.rollModifiers.{{@key}}.value' value='{{modifier.value}}' />
+        <div class='item-controls'>
+          <a class='btn btn-small delete-modifier' data-modifier-id='{{@key}}'>
+            {{{@root.config.Icons.buttons.delete}}}
+          </a>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <div class='no-modifier'>{{localize 'T2K4E.ItemSheet.NoRollModifier'}}</div>
+  {{/each}}
+
+  {{! TODO clean this code }}
+  {{!-- <h4>{{localize "T2K4E.Attributes"}}</h4>
+  <div class="modifiers-list flexrow">
+    {{#each system.modifiers.attributes as |value name|}}
+    <div class="form-group col-6 {{#if value}}modified{{/if}}">
+      <label>{{localize (concat "T2K4E.AttributeNames." name)}}</label>
+      <input type="text" name="system.modifiers.attributes.{{name}}" value="{{numberFormat value sign=value}}" data-dtype="Number"/>
+    </div>
+    {{/each}}
+  </div>
+  <h4>{{localize "T2K4E.Skills"}}</h4>
+  <div class="modifiers-list flexrow">
+    {{#each system.modifiers.skills as |value name|}}
+    <div class="form-group col-6 {{#if value}}modified{{/if}}">
+      <label>{{localize (concat "T2K4E.SkillNames." name)}}</label>
+      <input type="text" name="system.modifiers.skills.{{name}}" value="{{numberFormat value sign=value}}" data-dtype="Number"/>
+    </div>
+    {{/each}}
+  </div> --}}
+</div>

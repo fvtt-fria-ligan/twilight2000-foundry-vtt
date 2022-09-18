@@ -1,0 +1,59 @@
+<div class="crew-qty">
+  <div>
+    <label>{{localize "T2K4E.VehicleSheet.CrewQty"}}</label>
+    <input type="number" class="boxed-value" name="system.crew.qty" value={{system.crew.qty}} data-dtype="Number"/>
+  </div>
+  <div>
+    <label>{{localize "T2K4E.VehicleSheet.PassengerQty"}}</label>
+    <input type="number" class="boxed-value" name="system.crew.passengerQty" value={{system.crew.passengerQty}} data-dtype="Number"/>
+  </div>
+</div>
+
+{{!-- ================================================== --}}
+
+{{!-- CREW OCCUPANTS --}}
+<div class="crew-occupants">
+  {{#each crew}}
+  <div class="occupant{{#if (eq position "PASSENGER")}} passenger{{/if}}{{#if exposed}} exposed{{/if}}{{#if (lte actor.system.health.value 0)}} dead{{/if}}" data-crew-id="{{id}}" >
+
+    {{!-- Position --}}
+    <div class="occupant-position">
+      <select class="crew-position">
+        {{selectOptions @root.config.vehicle.crewPositionFlagsLocalized selected=position localize=true}}
+      </select>
+    </div>
+
+    {{!-- Image --}}
+    <img class="occupant-image" src="{{actor.img}}"/>
+
+    {{!-- Health Bar --}}
+    <progress class="occupant-health-gauge" value="{{actor.system.health.value}}" max="{{actor.system.health.max}}" title="{{localize "T2K4E.ActorSheet.HitCapacity"}}"></progress>
+
+    {{!-- Name --}}
+    <div class="occupant-name">{{actor.name}}</div>
+
+    {{!-- Exposed checkbox --}}
+    <div class="occupant-exposed">
+      <label class="checkbox">
+        <input type="checkbox" class="crew-expose" {{checked exposed}}/>
+        {{localize "T2K4E.VehicleSheet.ExposedPassenger"}}
+      </label>
+    </div>
+
+    {{!-- Buttons --}}
+    <div class="occupant-buttons">
+      {{#unless actor.isCrewDeleted}}
+      <a class="button crew-edit" title="{{localize "T2K4E.ActorSheet.Edit"}}">
+        {{{@root.config.Icons.buttons.edit}}}
+      </a>
+      {{/unless}}
+      <a class="button crew-remove" title="{{localize "T2K4E.ActorSheet.Delete"}}">
+        {{{@root.config.Icons.buttons.remove}}}
+      </a>
+    </div>
+
+  </div>
+  {{else}}
+  <div class="crew-empty">{{localize "T2K4E.VehicleSheet.EmptyCrew"}}</div>
+  {{/each}}
+</div>

@@ -1,0 +1,28 @@
+<div class='t2k4e chat-card armor' data-item-id='{{id}}' data-owner-id='{{owner}}'>
+  <div class='card-content'>
+
+    <div class='card-name'>
+      <h2>{{name}}</h2>
+    </div>
+
+    <div class='card-image'>
+      <img src='{{img}}' alt='{{name}}' />
+    </div>
+
+    <div class='card-description'>
+      {{{system.description}}}
+      <h4>{{localize 'T2K4E.ItemSheet.FeaturesTab'}}</h4>
+      <div class='grid grid-3col'>
+        <div><b>{{localize 'T2K4E.ItemSheet.Armor'}}:</b> <code>{{system.rating.max}}</code></div>
+      </div>
+    </div>
+
+    {{!-- <div class="card-buttons">
+            <button class="weapon-attack"><i class="fas fa-crosshairs"></i> {{localize "T2K4E.Chat.Actions.Attack"}}</button>
+            {{#if system.mag.max}}
+            <button class="weapon-reload"><i class="fas fa-sync-alt"></i> {{localize "T2K4E.Chat.Actions.Reload"}}</button>
+            {{/if}}
+        </div> --}}
+
+  </div>
+</div>

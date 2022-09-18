@@ -1,0 +1,22 @@
+[
+  {
+    // "min-core-version": "9.0.0", //optional, inclusive
+    // "max-core-version": "10.0.0", //optional, exclusive
+    "min-sys-version": "1.0.0", //optional, inclusive
+    // "max-sys-version": "2.0.0", //optional, exclusive
+    "type": "chat", // Type of message: [prompt, chat]
+    "display": "once", // Time until it goes away: [once, infinite, mm.dd.yyyy]
+    "title": "Welcome to Twilight: 2000 (4th Edition)",
+    "content": "<img src=\"systems/t2k4e/assets/t2k-banner.jpg\"><p class=\"nue\">Hi, {name}!</p><p class=\"nue\"><strong>Twilight: 2000</strong> is a roleplaying game about survival in mankind’s most desperate hour. Yet, in this bleak world, there is still hope. In the midst of utter destruction, you can start to build something new. Rally people to your ranks. Stake a claim and protect it. And maybe, if you live long enough, start turning the tide.</p><p class=\"nue\"><a href=\"https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/wiki\" title=\"github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/wiki\">Read the Wiki!</a></p>"
+  },
+  {
+    // "min-core-version": "9.0.0", //optional, inclusive
+    // "max-core-version": "10.0.0", //optional, exclusive
+    "min-sys-version": "2.0.0", //optional, inclusive
+    // "max-sys-version": "2.0.0", //optional, exclusive
+    "type": "prompt", // Type of message: [prompt, chat]
+    "display": "once", // Time until it goes away: [once, infinite, mm.dd.yyyy]
+    "title": "10.0.0 Release Notes",
+    "content": "<h3>Twilight 2000 4E - V10</h3><p><b>Hello {name}!</b></p><p>I hope you enjoy your stay in the <i>WW III That Never War</i>.</p><p>With this version you are ready for the Foundry V10 update and the updated official content modules, if you own those.</p><p>If you have any questions, troubleshooting or bugs you want to report, please head on over the Foundry discord and find the <code>#free-league</code> channel or write a ticket at the <a href=\"https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/issues\" title=\"github.com/fvtt-fria-ligan/t2k4e/issues\">github repo</a>.</p><p class=\"notification info\"><b>Remember to backup your data folder regularly!</b> (check the support pages on the FoundryVTT website if you are uncertain).</p><h4>What's New?</h4><ul><li>Update to latest Foundry version</li><li>New \"Accept\" button in roll messages</li><li>New \"Age\" field in the character sheet</li><li>New \"Send to Chat\" small button in the inventory sheet</li><li>Clicking an item in the inventory now rolls it directly, or edit its armor rating/quantity</li><li>Combat skill rolls have the Location Die checked by default</li></ul>"
+  }
+]

@@ -1,0 +1,27 @@
+<div class="item item-weapon flexrow" data-item-id="{{id}}">
+
+  <div class="item-name flexrow">
+    <img class="item-roll" src="{{img}}" title="{{name}}" width="24" height="24"/>
+    <a class="item-roll">{{detailedName}}</a>
+  </div>
+  <div class="item-detail item-rof">{{system.rof}}</div>
+  <div class="item-detail item-damage">{{system.damage}}</div>
+  <div class="item-detail item-crit">{{system.crit}}</div>
+  <div class="item-detail item-armor">{{#if (gte system.armorModifier 1)}}+{{/if}}{{system.armorModifier}}</div>
+  <div class="item-detail item-range">{{system.range}}</div>
+  {{#if system.mag.max}}
+  <div class="item-detail item-mag">{{system.mag.max}}</div>
+    {{!-- <input type="number" class="weapon-edit-ammo" value="{{system.mag.value}}" title="{{system.mag.value}}/{{system.mag.max}}"/> --}}
+  {{!-- </div> --}}
+  {{else}}
+  <div class="item-detail item-mag" title="{{system.mag.value}}/{{system.mag.max}}">{{system.mag.value}}</div>
+  {{/if}}
+  <div class="item-detail item-reliability" title="{{system.reliability.value}}/{{system.reliability.max}}">{{system.reliability.value}}</div>
+  <div class="item-detail item-blast">{{system.blast}}</div>
+  <div class="item-detail item-weight" title="{{localize "T2K4E.ItemSheet.Quantity"}}: {{system.qty}}">{{system.encumbrance}}</div>
+
+  <div class="item-controls">
+    {{> "systems/t2k4e/templates/actor/parts/slots/slot-buttons.hbs"}}
+  </div>
+
+</div>

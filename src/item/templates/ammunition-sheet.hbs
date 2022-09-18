@@ -1,0 +1,138 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  {{!-- Item Sheet Header --}}
+  {{> "systems/t2k4e/templates/item/parts/item-header.hbs"}}
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs slanted-tabs flexrow flex-center" data-group="primary">
+    <a class="item" data-tab="features">{{localize "T2K4E.ItemSheet.FeaturesTab"}}</a>
+    <a class="item" data-tab="description">{{localize "T2K4E.ItemSheet.DescriptionTab"}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    {{!-- Features Tab --}}
+    <div class="tab tab-features" data-group="primary" data-tab="features">
+      <div class="grid grid-3col item-features">
+        {{!-- <div class="flexcol">
+          <label>{{localize "T2K4E.ItemSheet.Damage"}}</label>
+          <input type="text" name="system.damage" value="{{system.damage}}" data-dtype="Number"/>
+        </div>
+        <div class="flexcol">
+          <label>{{localize "T2K4E.ItemSheet.Crit"}}</label>
+          <input type="text" name="system.crit" value="{{system.crit}}" data-dtype="Number"/>
+        </div>
+        <div class="flexcol">
+          <label>{{localize "T2K4E.ItemSheet.Blast"}}</label>
+          {{> scoreSelector name="system.blast" selected=system.blast}}
+        </div>
+        <div class="flexcol">
+          <label>{{localize "T2K4E.ItemSheet.Range"}}</label>
+          <input type="text" name="system.range" value="{{system.range}}" data-dtype="Number"/>
+        </div> --}}
+        <div class="flexcol">
+          <label>{{localize "T2K4E.ItemSheet.Ammo"}}</label>
+          <div class="flexrow flex-center">
+            <input type="text" name="system.ammo.value" value="{{system.ammo.value}}" data-dtype="Number"/>
+            <span class="sep">/</span>
+            <input type="text" name="system.ammo.max" value="{{system.ammo.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+        <div class="flexcol">
+          <label>{{localize "T2K4E.ItemSheet.Weight"}}</label>
+          <input type="text" name="system.weight" value="{{numberFormat system.weight decimals=2}}" data-dtype="Number"/>
+        </div>
+        <div class="flexcol">
+          <label>{{localize "T2K4E.ItemSheet.Price"}}</label>
+          <input type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
+        </div>
+      </div>
+
+      {{!-- Other Parameters --}}
+      <div class="features-other flexcol">
+
+        {{!-- Ammo Type --}}
+        <div class="form-group">
+          <label>{{localize "T2K4E.ItemSheet.AmmoType"}}</label>
+          {{!-- <input type="text" name="system.itemType" value="{{system.itemType}}"/> --}}
+          <input list="ammo-types" name="system.itemType" value="{{system.itemType}}"/>
+          <datalist id="ammo-types">
+            {{#each availableAmmoTypes}}
+            <option value="{{.}}"></option>
+            {{/each}}
+          </datalist>
+        </div>
+
+        {{!-- Override Options --}}
+        <div class="form-group-stacked">
+          <label class="checkbox">
+            <input type="checkbox" name="system.override" {{checked system.override}}/>
+            {{localize "T2K4E.ItemSheet.OverrideOption"}}
+          </label>
+        </div>
+        {{#if system.override}}
+        <div class="grid grid-5col item-features">
+          <div class="flexcol">
+            <label>{{localize "T2K4E.ItemSheet.Damage"}}</label>
+            <input type="text" name="system.damage" value="{{system.damage}}" data-dtype="Number"/>
+          </div>
+          <div class="flexcol">
+            <label>{{localize "T2K4E.ItemSheet.Crit"}}</label>
+            <input type="text" name="system.crit" value="{{system.crit}}" data-dtype="Number"/>
+          </div>
+          <div class="flexcol">
+            <label>{{localize "T2K4E.ItemSheet.Blast"}}</label>
+            {{> scoreSelector name="system.blast" selected=system.blast}}
+          </div>
+          <div class="flexcol">
+            <label>{{localize "T2K4E.ItemSheet.Range"}}</label>
+            <input type="text" name="system.range" value="{{system.range}}" data-dtype="Number"/>
+          </div>
+          <div class="flexcol">
+            <label>{{localize "T2K4E.ItemSheet.Armor"}}</label>
+            <input type="text" name="system.armorModifier" value="{{numberFormat system.armorModifier sign=true}}" data-dtype="Number"/>
+          </div>
+        </div>
+        {{/if}}
+
+        {{!-- Properties --}}
+        <div class="form-group-stacked item-properties">
+          {{#each system.props as | prop name |}}
+          <label class="checkbox">
+            <input type="checkbox" name="system.props.{{name}}" {{checked prop}}/>
+            {{localize (concat "T2K4E.ItemPropNames." name)}}
+          </label>
+          {{/each}}
+        </div>
+
+      </div>
+
+      {{!-- Inventory Options --}}
+      {{#if inActor}}
+      <div class="features-other flexcol">
+        <div class="form-group">
+          <label class="checkbox">
+            <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
+            {{localize "T2K4E.ItemSheet.Equipped"}}
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="checkbox">
+            <input type="checkbox" name="system.backpack" {{checked system.backpack}}/>
+            {{localize "T2K4E.ItemSheet.StoredInBackpack"}}
+          </label>
+        </div>
+      </div>
+      {{/if}}
+
+    </div>
+
+    {{!-- Description Tab --}}
+    <div class="tab tab-description" data-group="primary" data-tab="description">
+      {{> "systems/t2k4e/templates/item/parts/item-description.hbs"}}
+    </div>
+
+  </section>
+
+</form>
