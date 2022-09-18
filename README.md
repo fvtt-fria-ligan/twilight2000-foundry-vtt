@@ -1,8 +1,8 @@
 <h1 align="center"><b>Twilight: 2000</b><br/>4<sup>th</sup> Edition<br/><small>🎲 <i>Foundry VTT</i> 🎲</small></h1>
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/dynamic/json?color=blue&label=version&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2FStefouch%2Ft2k4e%2Fmaster%2Fsystem.json"/>
+  <img alt="Version" src="https://img.shields.io/badge/dynamic/json?color=blue&label=version&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Ffvtt-fria-ligan%2Ftwilight2000-foundry-vtt%2Fmaster%2Fstatic%2Fsystem.json"/>
   <a href="https://foundryvtt.com" target="_blank">
-    <img alt="Foundry Version" src="https://img.shields.io/badge/dynamic/json?color=blue&label=Foundry&query=compatibleCoreVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2FStefouch%2Ft2k4e%2Fmaster%2Fsystem.json"/>
+    <img alt="Foundry Version" src="https://img.shields.io/badge/dynamic/json?color=blue&label=Foundry&query=compatibility.minimum&url=https%3A%2F%2Fraw.githubusercontent.com%2Ffvtt-fria-ligan%2Ftwilight2000-foundry-vtt%2Fmaster%2Fstatic%2Fsystem.json"/>
   </a>
   <a href="https://foundryvtt.com/packages/t2k4e/" target="_blank">
     <img alt="Forge Installs" src="https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ft2k4e&colorB=4aa94a"/>
@@ -31,7 +31,7 @@ The **OFFICIAL** game system for [Twilight 2000 (4th Edition)](https://freeleagu
 
 <p align="center">
   <a href="https://frialigan.se/en/games/twilight-2000/" target="_blank">
-    <img src="./assets/t2k-banner.jpg" alt="Twilight 2000 4E"/>
+    <img src="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/raw/master/static/assets/t2k-banner.jpg" alt="Twilight 2000 4E"/>
   </a>
 </p>
 
@@ -70,9 +70,9 @@ Head over the [GitLocalize page](https://gitlocalize.com/repo/7035) to start tra
 
 # 🖼️ Previews
 
-<img src="./screenshots/210117-characterSheet-stats.png" height=300 alt="T2K Foundry"/> <img src="./screenshots/210117-characterSheet-combat.png" height=300 alt="T2K Foundry"/> <img src="./screenshots/210117-characterSheet-equipment.png" height=300 alt="T2K Foundry"/>
-<img src="./screenshots/210117-itemSheets-weapon-armor.png" height=300 alt="T2K Foundry"/>
-<img src="./screenshots/210117-chatlog.png" height=400 alt="T2K Foundry"/>
+<img src="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/raw/master/static/screenshots/210117-characterSheet-stats.png" height=300 alt="T2K Foundry"/> <img src="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/raw/master/static/screenshots/210117-characterSheet-combat.png" height=300 alt="T2K Foundry"/> <img src="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/raw/master/static/screenshots/210117-characterSheet-equipment.png" height=300 alt="T2K Foundry"/>
+<img src="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/raw/master/static/screenshots/210117-itemSheets-weapon-armor.png" height=300 alt="T2K Foundry"/>
+<img src="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/raw/master/static/screenshots/210117-chatlog.png" height=400 alt="T2K Foundry"/>
 
 # 🛠️ Contributing
 
@@ -88,7 +88,7 @@ Contributions, issues and feature requests are welcome!<br/>Feel free to check t
 
 <p align="center">
   <a href="https://stefouch.be" target="_blank">
-    <img src="./assets/stefouch-banner.png" alt="Stefouch Gaming Lab" style="width: auto; height: auto; max-height: 100px;"/>
+    <img src="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/raw/master/static/assets/stefouch-banner.png" alt="Stefouch Gaming Lab" style="width: auto; height: auto; max-height: 100px;"/>
   </a>
   <br/>
   <i>Built by a fan, for the fans.</i>
