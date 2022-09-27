@@ -42,7 +42,7 @@ The **OFFICIAL** game system for [Twilight 2000 (4th Edition)](https://freeleagu
 2. Click the Install System button, and paste in this manifest link:
 
 ```
-https://raw.githubusercontent.com/fvtt-fria-ligan/twilight2000-foundry-vtt/master/system.json
+https://raw.githubusercontent.com/fvtt-fria-ligan/twilight2000-foundry-vtt/master/static/system.json
 ```
 
 3. Create a Game World using the Twilight 2000 (4th Edition) system.
