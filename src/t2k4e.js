@@ -21,7 +21,7 @@ import { registerDsN, T2KRoller } from './components/roll/dice.js';
 import { registerSystemSettings } from './system/settings.js';
 import { registerStatusEffects } from './system/statusEffects.js';
 import { preloadHandlebarsTemplates, registerHandlebars } from './system/handlebars.js';
-import { createT2KMacro, rollItemMacro } from './system/macros.js';
+import { createT2KMacro, rollItem, setupMacroFolder } from './system/macros.js';
 import displayMessages from './components/message-system.js';
 import * as Chat from './components/chat/chat.js';
 
@@ -74,7 +74,7 @@ Hooks.once('init', function () {
       ItemT2K,
     },
     macros: {
-      rollItemMacro,
+      rollItem,
     },
     roller: T2KRoller,
   };
@@ -154,6 +154,7 @@ Hooks.once('init', function () {
 
 Hooks.once('ready', function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to.
+  setupMacroFolder();
   Hooks.on('hotbarDrop', (_bar, data, slot) => createT2KMacro(data, slot));
 
   // Determines whether a system migration is required and feasible.

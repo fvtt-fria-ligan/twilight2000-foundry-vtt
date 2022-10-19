@@ -14,6 +14,8 @@ T2K4E.ASCII = `_________________________________________
    ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚═╝╚══════╝
 _________________________________________`;
 
+T2K4E.systemMacroFolder = 'Twilight 2000 Roll Macros';
+
 T2K4E.attributes = {
   str: 'T2K4E.AttributeNames.str',
   agl: 'T2K4E.AttributeNames.agl',

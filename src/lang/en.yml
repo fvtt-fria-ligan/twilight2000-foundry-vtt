@@ -360,10 +360,14 @@ T2K4E.Dialog.Damage.DamageQuantity: Base Amount
 T2K4E.Dialog.Damage.ExtraHits: Extra Hits
 T2K4E.Dialog.Damage.BarrierArmors: Barrier's Armor Levels
 T2K4E.Dialog.Damage.BarrierArmorsHint: Multiple barriers are comma-separated.
-T2K4E.Macro.MultipleItems: >-
-  Your controlled Actor {actor} has more than one Item with name {item}. The
-  first matched item will be chosen.
-T2K4E.Macro.NoItem: Your controlled Actor {actor} does not have an item named {item}.
+T2K4E.MACRO.GetActorTitle: Choose an Actor
+T2K4E.MACRO.GetActorHint: You have selected multiple tokens. Please choose one of them.
+T2K4E.MACRO.MultipleItems: >-
+  Your controlled Actor {actor} has more than one Item with name {item}. The first matched item will be chosen.
+T2K4E.MACRO.NoActor: Your controlled Actor {actor} was not found.
+T2K4E.MACRO.NoItem: Your controlled Actor {actor} does not have an item named {item}.
+T2K4E.MACRO.RollAction: Action {action}
+T2K4E.MACRO.RollStat: Roll {stat}
 FLPS.TAB.MAIN: Party Team
 FLPS.TAB.TRAVEL: Travel Actions
 FLPS.TAB.NOTE: Notes
