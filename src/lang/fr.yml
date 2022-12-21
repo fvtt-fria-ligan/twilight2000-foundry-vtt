@@ -101,7 +101,7 @@ T2K4E.ItemPropNames.armored: Protégé
 T2K4E.ItemPropNames.bipod: Bipied
 T2K4E.ItemPropNames.tripod: Trépied
 T2K4E.ItemPropNames.scope: Lunette
-T2K4E.ItemPropNames.nightVision: "Vis. Noct."
+T2K4E.ItemPropNames.nightVision: "Vision nocturne"
 T2K4E.ItemPropNames.bayonet: Baïonnette
 T2K4E.ItemPropNames.suppressor: Silencieux
 T2K4E.ActorTypes.character: Personnage joueur (PJ)
@@ -444,7 +444,7 @@ YZUR.CHAT.ROLL.Suppression: 'Suppression :'
 YZUR.CHAT.ROLL.AmmoSpent: "Munitions dépensées :"
 YZUR.CHAT.ROLL.DamageOrStress: "Dégâts/Stress :"
 YZUR.CHAT.ROLL.JamCount: 'Fiabilité :'
-YZUR.CHAT.ROLL.Jammed: ARME ENRAYÉE !!
+YZUR.CHAT.ROLL.Jammed: ARME ENRAYÉE!!
 YZUR.DIETERMS.D6TwilightDie: D6
 YZUR.DIETERMS.D8TwilightDie: D8
 YZUR.DIETERMS.D10TwilightDie: D10
