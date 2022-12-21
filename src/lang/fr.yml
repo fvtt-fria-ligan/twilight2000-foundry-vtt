@@ -479,7 +479,7 @@ SETTINGS.hideCapacitiesButtons.name: Cacher les modificateurs de capacités
 SETTINGS.hideCapacitiesButtons.label: Cacher aux joueurs les boutons de modification des capacités de toucher et de Stress dans la feuille de personnage.
 T2K4E.ActorSheet.Age: Age
 SETTINGS.hideWeaponProps.name: Cacher les propriétés des armes
-SETTINGS.hideWeaponProps.label: Cacher aux joueurs les case à cocher des propriétés dans la fiche d'arme
+SETTINGS.hideWeaponProps.label: Cacher aux joueurs les case à cocher des propriétés dans la fiche d'arme.
 T2K4E.Dialog.ChooseValue.Ammo: Modifier la quantité de munitions pour {name}
 T2K4E.Dialog.ChooseValue.Qty: Modifier la quantité pour {name}
 T2K4E.Dialog.ChooseValue.Value: Modificateur
