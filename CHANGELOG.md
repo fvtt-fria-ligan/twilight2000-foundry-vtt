@@ -5,11 +5,17 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [10.1.0] - 2022-12-28
+
+### What's Changed
+
+<ul><li>Added items sorting in inventory (with drag'n drop).</li><li>Added the T2K dice template to other 3D dice (with Dice So Nice).</li><li>Fixed Item drag'n drop macros.</li></ul>
+
 ## [10.0.0] - 2022-09-18
 
 > Jump from `2.3.0` to `10.0.0`: Now the major version number will follow the Foundry version to help identify compatibility with Foundry versions.
 
-## What's Changed
+### What's Changed
 
 - 🚀 Release V10 by @Stefouch in https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/pull/106
 - ✨ Update to YZUR V5 by @Stefouch in https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/pull/99

@@ -19,12 +19,6 @@
   <a href="https://www.patreon.com/Stefouch">
     <img src="https://img.shields.io/badge/donate-patreon-F96854.svg" alt="Patreon">
   </a>
-  <a href="https://twitter.com/freeleaguepub" target="_blank">
-    <img alt="Twitter: FreeLeaguePub" src="https://img.shields.io/twitter/follow/freeleaguepub.svg?style=social"/>
-  </a>
-  <a href="https://twitter.com/stefouch" target="_blank">
-    <img alt="Twitter: stefouch" src="https://img.shields.io/twitter/follow/stefouch.svg?style=social"/>
-  </a>
 </p>
 
 The **OFFICIAL** game system for [Twilight 2000 (4th Edition)](https://freeleaguepublishing.com/en/games/twilight-2000/) on Foundry VTT.

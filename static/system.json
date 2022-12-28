@@ -2,10 +2,10 @@
   "id": "t2k4e",
   "title": "Twilight: 2000 🪖 (4th Edition)",
   "description": "Twilight: 2000 is a roleplaying game about survival in mankind’s most desperate hour. Yet, in this bleak world, there is still hope. In the midst of utter destruction, you can start to build something new. Rally people to your ranks. Stake a claim and protect it. And maybe, if you live long enough, start turning the tide.",
-  "version": "10.0.0",
+  "version": "10.1.0",
   "compatibility": {
     "minimum": 10,
-    "verified": "10.288",
+    "verified": "10.291",
     "maximum": 10
   },
   "author": "Stefouch",

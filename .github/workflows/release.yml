@@ -1,11 +1,9 @@
 name: Release CI
 
 on:
-  push:
-    branches:
-      - master
-    tags:
-      - '*'
+  release:
+    types:
+      - published
 
 env:
   # 'system' or 'module'
@@ -14,7 +12,7 @@ env:
 jobs:
   release:
     name: Create & Publish Release
-    if: startsWith(github.ref, 'refs/tags/')
+    # if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
 
     steps:
@@ -38,47 +36,65 @@ jobs:
         id: name
         uses: notiz-dev/github-action-json-property@release
         with:
-          path: ./dist/${{ env.TYPE }}.json
+          path: dist/${{ env.TYPE }}.json
           prop_path: id
 
       # Gets the version tag.
-      - name: 🏷️ Get Version Tag
+      - name: 📄 Get Version
         id: version
-        uses: ncipollo/semantic-version-action@v1.0.1
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: dist/${{ env.TYPE }}.json
+          prop_path: version
+      # - name: 🏷️ Get Version Tag
+      #   id: version
+      #   uses: ncipollo/semantic-version-action@v1.0.1
+      #   with:
+      #     tag: ${{ github.event.release.tag_name }}
+
+      # Substitute the Manifest and Download URLs in the module.json
+      - name: 📝 Substitute Manifest and Download Links For Versioned Ones
+        id: manifest_link_version
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: dist/${{ env.TYPE }}.json
+        env:
+          # version: ${{ steps.version.outputs.prop }}
+          manifest: https://github.com/${{ github.repository }}/releases/latest/download/${{ env.TYPE }}.json
+          download: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/${{ env.TYPE }}.zip
 
       # Generates the changelog.
-      - name: 📜 Generate Changelog
-        id: changelog
-        uses: mikepenz/release-changelog-builder-action@v3.3.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: 📜 Generate Changelog
+      #   id: changelog
+      #   uses: mikepenz/release-changelog-builder-action@v3.3.1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Creates the ZIP artifact.
       - name: 📦 Create ZIP Archive
         run: |
           cd dist/
-          zip -r ../${{ steps.name.outputs.prop }}_${{ steps.version.outputs.tag }}.zip *
+          zip -r ../${{ env.TYPE }}.zip *
 
       # Creates the release with its artifacts and description.
-      - name: 🚀 Create Release
+      - name: 🚀 Update Release with Artifacts
         uses: ncipollo/release-action@v1.10.0
         with:
-          allowUpdates: false
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.version.outputs.tag }}
-          artifacts: './dist/${{ env.TYPE }}.json, ${{ steps.name.outputs.prop }}_${{ steps.version.outputs.tag }}.zip'
-          body: ${{ steps.changelog.outputs.changelog }}
+          allowUpdates: true
+          name: ${{ github.event.release.name }}
+          draft: false
           prerelease: false
-          draft: true # TODO change to false when below is enabled
-
+          tag: ${{ steps.version.outputs.tag }}
+          body: ${{ github.event.release.body }}
+          artifacts: './${{ env.TYPE }}.zip, ./dist/${{ env.TYPE }}.json'
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Publishes the release to the FoundryVTT's package repository.
-      # TODO enable for future release
-      # - name: 🚩 Publish System to FoundryVTT Website
+      # - name: 🚩 Publish Module to FoundryVTT Website
       #   uses: Varriount/fvtt-autopublish@v1.0.9
       #   with:
       #     username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
       #     password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
       #     module-id: ${{ secrets.FOUNDRY_ADMIN_MODULE_ID }}
-      #     manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ steps.version.outputs.tag }}/${{ env.TYPE }}.json
-      #     manifest-file: ./dist/${{ env.TYPE }}.json
+      #     manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/${{ env.TYPE }}.json
+      #     manifest-file: dist/${{ env.TYPE }}.json
