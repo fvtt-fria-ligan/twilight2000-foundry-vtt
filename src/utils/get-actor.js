@@ -1,6 +1,6 @@
 export async function getActiveActor() {
   let actor;
-  if (canvas.tokens.controlled.length > 1) {
+  if (game.user.isGM && canvas.ready && canvas.tokens.controlled.length > 1) {
     return chooseActor(canvas.tokens.controlled.map(t => t.actor), {
       title: game.i18n.localize('T2K4E.MACRO.GetActorTitle'),
       notes: game.i18n.localize('T2K4E.MACRO.GetActorHint'),
@@ -11,7 +11,7 @@ export async function getActiveActor() {
   if (!actor) actor = game.actors.get(speaker.actor);
   if (!actor) {
     ui.notifications.warn(game.i18n.format('T2K4E.MACRO.NoActor', {
-      actor: JSON.stringify(speaker),
+      actor: speaker.alias,
     }));
     return;
   }
@@ -29,12 +29,12 @@ export async function getActiveActor() {
  */
 export async function chooseActor(actors = [], options = {}) {
   let content = '<form><div class="form-group">'
-    + '<select name="actor" style="width: 100%;">';
+    + '<select id="actor" style="width: 100%;">';
 
   actors.forEach((a, i) => {
     content += `<option value="${a.id}"${i === 0 ? ' selected' : ''}>`
       + `<img src="${a.img}" width="24" height="24"/>`
-      + `${a.name} (HP: ${a.health.value}/${a.health.max}) (ID: ${a.id})`
+      + `${a.name} (HP: ${a.system.health.value}/${a.system.health.max}) (ID: ${a.id})`
       + '</option>';
   });
 
@@ -50,7 +50,7 @@ export async function chooseActor(actors = [], options = {}) {
     rejectClose: false,
     options: {
       width: 400,
-      classes: ['blade-runner', 'dialog'],
+      classes: ['t2k4e', 'dialog'],
       minimizable: false,
     },
   });
