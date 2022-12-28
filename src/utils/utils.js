@@ -9,6 +9,16 @@ export function rand(min, max) {
 }
 
 /**
+ * Creates a range of labels between two numbers.
+ * @param {number}  size       Maximum
+ * @param {number} [startAt=1] Minimum
+ * @returns {string[]}
+ */
+export function range(size, startAt = 1) {
+  return [...Array(size).keys()].map(i => `${i + startAt}`);
+}
+
+/**
  * Clamps a value to ensure it sits within a designated range.
  *
  * Called with no arguments, this function returns a value to fall

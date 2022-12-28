@@ -1,6 +1,7 @@
 import T2KDialog from '../dialog/dialog.js';
 import { YearZeroRoll } from 'yzur';
 import { T2K4E } from '../../system/config.js';
+import { range } from '@utils/utils.js';
 
 /* -------------------------------------------- */
 /*  Custom Dice Roller Interface                */
@@ -548,4 +549,32 @@ export function registerDsN(dice3d) {
     system: 't2k4e',
     colorset: 't2k-loc',
   }, 'd6');
+
+  dice3d.addDicePreset({
+    type: 'd2',
+    labels: range(2),
+    system: 't2k4e',
+    colorset: 't2k-ammo',
+  }, 'd2');
+
+  dice3d.addDicePreset({
+    type: 'd4',
+    labels: range(4),
+    system: 't2k4e',
+    colorset: 't2k-base',
+  }, 'd4');
+
+  dice3d.addDicePreset({
+    type: 'd100',
+    labels: ['10', '20', '30', '40', '50', '60', '70', '80', '90', '00'],
+    system: 't2k4e',
+    colorset: 't2k-base',
+  }, 'd100');
+
+  dice3d.addDicePreset({
+    type: 'd20',
+    labels: range(20),
+    system: 't2k4e',
+    colorset: 't2k-base',
+  }, 'd20');
 }

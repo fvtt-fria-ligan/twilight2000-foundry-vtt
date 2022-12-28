@@ -64,16 +64,21 @@ export default class ActorT2K extends Actor {
 
   /** @override */
   get itemTypes() {
+    let types;
     if (this.type === 'vehicle') {
-      const types = Object.fromEntries(game.system.documentTypes.Item.map(t => [t, []]));
+      types = Object.fromEntries(game.system.documentTypes.Item.map(t => [t, []]));
       for (const i of this.items.values()) {
         // Excludes mounted weapons from the vehicle's cargo.
         if (i.system.isMounted) continue;
         types[i.type].push(i);
       }
-      return types;
     }
-    return super.itemTypes;
+    else {
+      types = super.itemTypes;
+    }
+    // Sorts items by sort order.
+    for (const type in types) types[type].sort((a, b) => (a.sort || 0) - (b.sort || 0));
+    return types;
   }
 
   /* ------------------------------------------- */

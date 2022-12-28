@@ -259,7 +259,7 @@ export default class ItemT2K extends Item {
    *   the prepared chat message data (if false).
    * @return {Promise<ChatMessage|object>}
    */
-  async roll({ rollMode, actor = null, askForOptions = true, sendMessage = true } = {}) {
+  async roll({ rollMode, actor = null, askForOptions = false, sendMessage = true } = {}) {
     if (['weapon', 'grenade'].includes(this.type)) {
       return this.rollAttack({ rollMode, sendMessage, askForOptions }, actor ?? this.actor);
     }

@@ -72,8 +72,8 @@ export default class ActorSheetT2KVehicle extends ActorSheetT2K {
     const m = (i, slot) => i.type === 'weapon' && i.system.isMounted && i.system.mountSlot === slot;
 
     sheetData.mountedWeapons = {
-      primary: sheetData.actor.items.filter(i => m(i, 1)),
-      secondary: sheetData.actor.items.filter(i => m(i, 2)),
+      primary: sheetData.actor.items.filter(i => m(i, 1)).sort((a, b) => (a.sort || 0) - (b.sort || 0)),
+      secondary: sheetData.actor.items.filter(i => m(i, 2)).sort((a, b) => (a.sort || 0) - (b.sort || 0)),
     };
     return sheetData;
   }
