@@ -484,3 +484,10 @@ T2K4E.Dialog.ChooseValue.Ammo: Modifier la quantité de munitions pour {name}
 T2K4E.Dialog.ChooseValue.Qty: Modifier la quantité pour {name}
 T2K4E.Dialog.ChooseValue.Value: Modificateur
 T2K4E.Dialog.ChooseValue.Armor: Modifier l'armure de {name}
+T2K4E.MACRO.GetActorTitle: Choisir un acteur
+T2K4E.MACRO.GetActorHint: Vous avez sélectionné plusieurs jetons. Veuillez en choisir un.
+T2K4E.MACRO.NoItem: L'acteur {actor} que vous contrôlez n'a pas d'objet nommé {item}.
+T2K4E.MACRO.MultipleItems: L'acteur {actor} que vous contrôlez a plus d'un Item avec le nom {item}. Le premier objet correspondant sera choisi.
+T2K4E.MACRO.NoActor: Votre acteur contrôlé {actor} n'a pas été trouvé.
+T2K4E.MACRO.RollAction: Action {action}
+T2K4E.MACRO.RollStat: Lancer {stat}
