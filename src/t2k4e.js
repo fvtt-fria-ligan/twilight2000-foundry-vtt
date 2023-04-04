@@ -116,6 +116,12 @@ Hooks.once('init', function () {
       { urls: ['systems/t2k4e/fonts/daisywheel.otf'], weight: 400 },
     ],
   };
+  CONFIG.fontDefinitions['T2K4E Symbols'] = {
+    editor: true,
+    fonts: [
+      { urls: ['systems/t2k4e/fonts/T2K4-Symbols.ttf'] },
+    ],
+  };
 
   // Registers sheet application classes.
   // This will stop using the core sheets and instead use our customized versions.

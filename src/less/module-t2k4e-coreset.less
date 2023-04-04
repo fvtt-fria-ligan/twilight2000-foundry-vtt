@@ -1,0 +1,387 @@
+/* -------------------------------------------- */
+// MIXINS
+
+.font-title() {
+  font-family: 'GT Eesti Text Medium', 'Nunito Sans';
+}
+.font-body() {
+  font-family: 'TheSansB', 'Mukta';
+}
+// .font-daisywheel() {
+//   font-family: 'DaisyWheel', 'Courier New', Courier, monospace;
+// }
+
+/* -------------------------------------------- */
+// COLORS
+
+@colorCoresetBrown: rgb(96, 79, 67);
+@colorCoresetLightGreen: rgb(121, 132, 131);
+@colorCoresetGreen: rgb(61, 75, 73);
+@colorCoresetTeal: rgb(90, 109, 107);
+@colorCoresetTableHeader: rgb(191, 182, 176);
+@colorCoresetTableLine: rgb(217, 212, 208);
+
+@borderKhaki: 1px solid #87835e;
+
+/* -------------------------------------------- */
+/*  Journal Sheet Styles                        */
+/* -------------------------------------------- */
+
+.journal-sheet .journal-header {
+  height: 70px;
+}
+
+.app.journal-sheet .window-content .journal-page-content {
+  padding: 0 1em;
+}
+
+/* -------------------------------------------- */
+/*  Sheet T2K-Core Styles                       */
+/* -------------------------------------------- */
+
+li.directory-item.entity {
+  border-radius: 6px;
+  margin: 0 1px;
+
+  &:not(.scene) {
+    color: #222;
+    background: #eee;
+  }
+}
+
+/* -------------------------------------------- */
+
+.app.sheet .journal-page-content,
+.app.sheet .editor .editor-content {
+  .t2k-core {
+
+    p+p.t2k-special {
+      text-indent: 0px;
+      margin-top: 1em;
+    }
+
+    // h2 {
+    //   border-top: 3px solid @colorCoresetTeal;
+    //   padding-top: 1.5em;
+    // }
+
+    h2.t2k-title-encounter {
+      color: @colorCoresetLightGreen;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 4px dotted @colorCoresetLightGreen;
+    }
+
+    h4.t2k-title-example {
+      .font-body();
+      font-weight: bold;
+      color: #fff;
+      padding: 2px 0 2px 10px;
+      margin-bottom: 4px;
+      background: url(assets/textures/background_example.webp) no-repeat left center;
+      background-size: cover;
+    }
+
+    h4.t2k-title-example+div.t2k-italic,
+    h4.t2k-title-example+p.t2k-italic {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    img {
+      border: none;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0.5em auto 0.5em 30px;
+      text-indent: 0px;
+
+      &>li::before {
+        content: '7';
+        font-family: 'Roundels';
+        font-size: .55rem;
+        color: @colorCoresetGreen;
+        margin-left: -27px;
+        margin-right: 12px;
+      }
+    }
+
+    /* -------------------------------------------- */
+
+    &.t2k-centered {
+      margin: 1em auto;
+      padding: 0 50px;
+      // font-size: var(--font-size--);
+    }
+
+    &.t2k-chapter-quote {
+      .font-daisywheel();
+      font-size: 1.2rem;
+      border-left: 2px solid #ccc;
+      padding-left: 12px;
+    }
+
+    &.t2k-story {
+      .font-daisywheel();
+      font-size: 1.1rem;
+      color: @colorCoresetBrown;
+    }
+
+    /* -------------------------------------------- */
+
+    .t2k-italic {
+      .font-body();
+      font-style: italic;
+    }
+
+    .t2k-inline-heading {
+      font-size: .9rem;
+      font-weight: bold;
+      color: @colorCoresetGreen;
+    }
+
+    .t2k-smallcaps {
+      .font-body();
+      font-variant: small-caps;
+      font-style: normal;
+      font-size: .95rem;
+    }
+
+    .t2k-uppercase {
+      font-weight: 900;
+      font-style: normal;
+      font-size: .8rem;
+      color: @colorCoresetBrown;
+      text-transform: uppercase;
+    }
+
+    .t2k-float-right {
+      float: right;
+    }
+
+    /* -------------------------------------------- */
+
+    .t2k-boxed-number {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 2rem;
+      font-weight: bold;
+      color: @colorCoresetGreen;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      float: left;
+      width: 40px;
+      height: 40px;
+      margin: .5rem 10px 0 0;
+      border: 2px solid @colorCoresetGreen;
+
+      p {
+        margin: 0;
+        text-align: center;
+      }
+    }
+
+    /* -------------------------------------------- */
+
+    .t2k-page-divider {
+      border-top: 3px solid @colorCoresetTeal;
+      margin-top: 1em;
+      // content: url(../assets/journal-art/endstop.webp);
+      // display: block;
+      // margin: auto;
+      // margin-top: 25px;
+      // width: 170px;
+      // height: 22px;
+    }
+
+    .t2k-title-img {
+      margin: 2em 0 0 0;
+    }
+
+    .t2k-img-description,
+    .t2k-table-description {
+      font-size: .9rem;
+      color: @colorCoresetBrown;
+      margin-top: 0;
+      margin-bottom: 2em;
+    }
+
+    /* -------------------------------------------- */
+
+    .t2k-2columns {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      &>.t2k-columns-item {
+        flex: 0 0 auto;
+        width: 50%;
+
+        &:nth-child(odd) {
+          padding-right: 5px;
+        }
+
+        &:nth-child(even) {
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+  /*  T2K Table: Extra Styles                     */
+  /* -------------------------------------------- */
+
+  table.t2k-table {
+    .t2k-inline-heading {
+      color: @colorCoresetBrown;
+    }
+  }
+
+  /* -------------------------------------------- */
+  /*  T2K TimeLine                                */
+  /* -------------------------------------------- */
+
+  .t2k-timeline {
+    p {
+      margin-top: 0;
+    }
+    .t2k-title-time {
+      .font-title();
+      color: @colorCoresetGreen;
+      margin: 1.5em 0 0 0;
+    }
+    .t2k-special+.t2k-special {
+      margin-top: 0;
+    }
+  }
+
+  /* -------------------------------------------- */
+  /*  T2K Box                                     */
+  /* -------------------------------------------- */
+
+  .t2k-box {
+    margin: 1em 0;
+    padding: 12px 25px;
+    max-width: 100%;
+    color: @colorCoresetBrown;
+    border-top: @borderKhaki;
+    border-bottom: @borderKhaki;
+
+    h4 {
+      font-family: 'Blue Highway';
+      font-weight: bold;
+    }
+
+    &.t2k-px0 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* -------------------------------------------- */
+    /*  T2K Box: INFO                               */
+    /* -------------------------------------------- */
+
+    &.t2k-box-info {
+      .font-daisywheel();
+      line-height: 1;
+      margin: 2%;
+      padding: 2%;
+      width: 300px;
+      float: right;
+      background: url('assets/textures/paper_texture_pm.webp');
+      background-size: cover;
+      background-color: #f4e5c5;
+      border: 10px solid transparent;
+      border-image: url(assets/textures/paper_texture_outline.webp) 400/10 round;
+      border-image-outset: 10px;
+      filter: drop-shadow(2px 4px 6px #1116);
+
+      h4 {
+        .font-daisywheel();
+        font-size: 1.1rem;
+        font-weight: normal;
+        margin: 0;
+        padding-bottom: 5px;
+        border-bottom: @borderKhaki;
+      }
+
+      ul {
+        list-style: '✓ ';
+        margin: 0.5em 0;
+        // margin: 0.5em auto 0.5em 30px;
+        // text-indent: 0px;
+        &>li::before {
+          content: '';
+          margin: 0;
+        }
+      }
+    }
+
+    /* -------------------------------------------- */
+    /*  T2K Box: WARNING (NPCS)                     */
+    /* -------------------------------------------- */
+
+    &.t2k-box-warning {
+      font-weight: bold;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 2em 1em;
+      border-top: none;
+      border-bottom: none;
+      border-left: 4px double @colorCoresetBrown;
+
+      h4 {
+        .font-body();
+        font-weight: bold;
+      }
+
+      ul {
+        margin-left: 10px;
+      }
+
+      ul>li::before {
+        color: @colorCoresetBrown;
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  .t2k-box:not(.t2k-box-info)+h2 {
+    margin-top: 1.5em;
+  }
+}
+
+/* -------------------------------------------- */
+/*  Chat Log                                    */
+/* -------------------------------------------- */
+
+.chat-message .message-content {
+  ul {
+    line-height: 1.15;
+    &.nue {
+      font-size: var(--font-size-12);
+    }
+  }
+}
+
+/* -------------------------------------------- */
+/*  Logo & Pause Spinner Styles                 */
+/* -------------------------------------------- */
+
+#logo {
+  content: url("/systems/t2k4e/assets/t2k-logo.webp");
+  // width: 170px;
+}
+
+#pause>img {
+  content: url(./assets/t2k-war-office-stamp.webp);
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: calc(50% - 100px);
+  opacity: .7;
+  --fa-animation-duration: 42s;
+}
