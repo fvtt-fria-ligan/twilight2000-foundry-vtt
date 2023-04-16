@@ -20,6 +20,7 @@ import { T2K4E } from './system/config.js';
 import { registerDsN, T2KRoller } from './components/roll/dice.js';
 import { registerSystemSettings } from './system/settings.js';
 import { registerStatusEffects } from './system/statusEffects.js';
+import { enrichTextEditors } from './system/enricher.js';
 import { preloadHandlebarsTemplates, registerHandlebars } from './system/handlebars.js';
 import { createT2KMacro, rollItem, setupMacroFolder } from './system/macros.js';
 import displayMessages from './components/message-system.js';
@@ -151,6 +152,7 @@ Hooks.once('init', function () {
   Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
 
   registerSystemSettings();
+  enrichTextEditors();
   registerHandlebars();
   preloadHandlebarsTemplates();
 
@@ -169,7 +171,8 @@ Hooks.once('ready', function () {
   // Displays starting messages.
   displayMessages();
 
-  console.warn('t2k4e | READY!');
+  console.log('t2k4e | Ready!');
+  Hooks.callAll('t2k4eReady', game.t2k4e, CONFIG.T2K4E);
 });
 
 /* -------------------------------------------- */
