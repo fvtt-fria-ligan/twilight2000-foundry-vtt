@@ -397,7 +397,7 @@ export default class ActorT2K extends Actor {
         updateData.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
         break;
       case 'npc':
-        updateData.bar2 = { attribute: '' };
+        updateData.bar2 = { attribute: null };
         break;
       case 'vehicle':
         updateData.bar1 = { attribute: 'reliability' };
