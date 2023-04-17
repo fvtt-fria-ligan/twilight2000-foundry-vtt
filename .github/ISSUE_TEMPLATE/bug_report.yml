@@ -17,7 +17,7 @@ body:
     id: reproduction
     attributes:
       label: Reproduction
-      description: Please provide a step by step guide to reproducing the issue.
+      description: Please provide a step by step guide to reproduce the issue.
       placeholder: Reproduction steps
     validations:
       required: true
@@ -51,7 +51,7 @@ body:
         - Low (formatting issues, things that don't impact operation)
         - Medium (minor functional impact)
         - High (a broken feature, major functional impact)
-        - Critical (bot crash, extremely major functional impact)
+        - Critical (extremely major functional impact)
   - type: checkboxes
     id: checkboxes
     attributes:
