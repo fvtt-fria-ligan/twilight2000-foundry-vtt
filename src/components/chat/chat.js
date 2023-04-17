@@ -106,7 +106,7 @@ export function addChatMessageContextOptions(html, options) {
   // TODO: See Part 6, 6:55
   // Allows only this menu option if we have selected some tokens
   // & the message contains some damage.
-  const canDefend = li => canvas.tokens.controlled.length && li.find('.dice-roll').length;
+  const canDefend = li => game.user.targets.size && li.find('.dice-roll').length;
   options.push({
     name: game.i18n.localize('T2K4E.Chat.Actions.ApplyDamage'),
     icon: T2K4E.Icons.buttons.attack,
@@ -144,7 +144,7 @@ async function _applyDamage(messageElem) {
   if (loc > 0) attackData.location = T2K4E.hitLocs[loc - 1];
 
   // Gets the selected tokens.
-  const defenders = canvas.tokens.controlled;
+  const defenders = game.user.targets;
   for (const defender of defenders) {
     const s = roll.baseSuccessQty;
     let damage = s > 0 ? attackData.damage + 1 * (s - 1) : 0;
