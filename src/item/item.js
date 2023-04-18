@@ -306,24 +306,6 @@ export default class ItemT2K extends Item {
     if (!this.hasAttack && !this.actor) {
       throw new Error('You may not place an Attack Roll with this Item.');
     }
-    // if (!this.hasAttack) {
-    //   // If no attack, instead perform a skill roll.
-    //   if (this.actor) {
-    //     const statData = getAttributeAndSkill(
-    //       this.system.skill,
-    //       this.actor.system,
-    //       this.system.attribute,
-    //     );
-    //     return T2KRoller.taskCheck({
-    //       ...statData,
-    //       ...options,
-    //       actor: this.actor,
-    //     });
-    //   }
-    //   else {
-    //     throw new Error('You may not place an Attack Roll with this Item.');
-    //   }
-    // }
     if (!this.actor) throw new Error('This weapon has no bearer.');
     if (this.hasReliability && this.system.reliability.value <= 0) {
       return ui.notifications.warn(game.i18n.localize('T2K4E.Chat.Roll.NoReliabilityNotif'));
@@ -360,7 +342,7 @@ export default class ItemT2K extends Item {
           return;
         }
         title += ` [${ammo.name}]`;
-        rof = Math.min(rof, ammoLeft);
+        rof = Math.min(rof, ammoLeft - 1);
       }
       else {
         ui.notifications.warn(game.i18n.format('T2K4E.Combat.NoMag', { weapon: this.name }));
@@ -408,7 +390,7 @@ export default class ItemT2K extends Item {
 
     // Consumes ammo.
     if (ammo) {
-      const ammoDiff = await this.consumeAmmo(Math.max(1, roll.ammoSpent), ammo);
+      const ammoDiff = await this.consumeAmmo(Math.max(1, roll.ammoSpent + 1), ammo);
       flagData.ammoSpent = ammoDiff;
       flagData.ammo = ammo.id;
     }
