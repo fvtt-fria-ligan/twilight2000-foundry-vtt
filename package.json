@@ -57,7 +57,6 @@
     "cross-env": "7.0.3",
     "devmoji": "2.3.0",
     "esbuild": "^0.15.18",
-    "esbuild-sass-plugin": "^2.4.3",
     "eslint": "^8.38.0",
     "eslint-config-jquery": "^3.0.0",
     "eslint-config-prettier": "^8.8.0",
