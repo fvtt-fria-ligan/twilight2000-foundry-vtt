@@ -61,7 +61,7 @@ jobs:
         env:
           # version: ${{ steps.version.outputs.prop }}
           manifest: https://github.com/${{ github.repository }}/releases/latest/download/${{ env.TYPE }}.json
-          download: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/${{ env.TYPE }}.zip
+          download: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/${{ steps.name.outputs.prop }}-fvtt_v${{ steps.version.outputs.prop }}.zip
 
       # Generates the changelog.
       # - name: 📜 Generate Changelog
@@ -74,7 +74,7 @@ jobs:
       - name: 📦 Create ZIP Archive
         run: |
           cd dist/
-          zip -r ../${{ env.TYPE }}.zip *
+          zip -r ../${{ steps.name.outputs.prop }}-fvtt_v${{ steps.version.outputs.prop }}.zip *
 
       # Creates the release with its artifacts and description.
       - name: 🚀 Update Release with Artifacts
@@ -86,7 +86,7 @@ jobs:
           prerelease: false
           tag: ${{ steps.version.outputs.tag }}
           body: ${{ github.event.release.body }}
-          artifacts: './${{ env.TYPE }}.zip, ./dist/${{ env.TYPE }}.json'
+          artifacts: './${{ steps.name.outputs.prop }}-fvtt_v${{ steps.version.outputs.prop }}.zip, ./dist/${{ env.TYPE }}.json'
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Publishes the release to the FoundryVTT's package repository.
