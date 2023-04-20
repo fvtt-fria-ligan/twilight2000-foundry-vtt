@@ -215,7 +215,7 @@ export async function rollPush(roll, { message } = {}) {
   // Gets all the message's flags.
   const flags = message.getFlag('t2k4e', 'data') ?? {};
   const oldAmmoSpent = flags.ammoSpent || 0;
-  let newAmmoSpent = -Math.max(1, roll.ammoSpent);
+  let newAmmoSpent = -Math.max(1, roll.ammoSpent) - 1;
   const actorId = roll.options.actorId;
   const tokenKey = roll.options.tokenKey;
   const actor = getRollingActor({ actorId, tokenKey });
@@ -318,20 +318,6 @@ export function getDiceQuantities(attribute, skill = 0, rof = 0, locate = false)
   if (skill > 0) dice.push({ term: skill, number: 1 });
   if (rof > 0) dice.push({ term: 'm', number: rof });
   if (locate) dice.push({ term: 'l', number: 1 });
-  // TODO clean code
-  // const DIE_SIZES = [0, 0, 0, 0, 0, 0, 'd', 'd', 'c', 'c', 'b', 'b', 'a'];
-  // const attributeScore = DIE_SIZES[attribute];
-  // const skillScore = DIE_SIZES[skill];
-  // const dice = {};
-  // if (attributeScore === skillScore && attribute >= 6) {
-  //   dice[`${attributeScore}`] = 2;
-  // }
-  // else {
-  //   if (attribute >= 6) dice[`${attributeScore}`] = 1;
-  //   if (skill >= 6) dice[`${skillScore}`] = 1;
-  // }
-  // if (rof) dice.ammo = rof;
-  // if (locate) dice.loc = 1;
   return dice;
 }
 /* ------------------------------------------- */

@@ -21,7 +21,7 @@ const templateExt = 'hbs';
 const staticFiles = ['system.json', 'template.json', 'assets', 'fonts'];
 const rootFiles = ['LICENSE', 'README.md'];
 const getDownloadURL = version =>
-  `https://github.com/fvtt-fria-ligan/t2k4e/releases/download/v${version}/fvtt_t2k4e_v${version}.zip`;
+  `https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/download/${version}/t2k4e-fvtt_v${version}.zip`;
 const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 const stdio = 'inherit';
@@ -144,12 +144,12 @@ async function cleanDist() {
  * @returns {object}
  */
 function getManifest() {
-  const manifestPath = 'static/module.json';
+  const manifestPath = 'static/system.json';
 
   if (fs.existsSync(manifestPath)) {
     return {
       file: JSON.parse(fs.readFileSync(manifestPath)),
-      name: 'module.json',
+      name: 'system.json',
     };
   }
 }
@@ -179,7 +179,7 @@ function getTargetVersion(currentVersion, release) {
  * @async
  */
 async function changelog() {
-  await execa('npx', ['standard-version', '--skip.bump', '--skip.tag', '--skip.commit'], { stdio });
+  // await execa('npx', ['standard-version', '--skip.bump', '--skip.tag', '--skip.commit'], { stdio });
 }
 
 /**
@@ -191,7 +191,7 @@ async function commitTagPush() {
   const commitMsg = `chore(release): Release ${version}`;
   await execa('git', ['add', '-A'], { stdio });
   await execa('git', ['commit', '--message', commitMsg], { stdio });
-  await execa('git', ['tag', `v${version}`], { stdio });
+  await execa('git', ['tag', `${version}`], { stdio });
   await execa('git', ['push', 'upstream'], { stdio });
   await execa('git', ['push', 'upstream', '--tag'], { stdio });
 }

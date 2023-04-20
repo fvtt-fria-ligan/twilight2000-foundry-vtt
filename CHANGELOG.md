@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [10.2.0] - 2023-04-20
+
+### What's Changed
+
+<ul><li>Added rules changes from the Augustus 4th, 2022 revision.</li><li>Apply damage (in a roll message's context menu) now uses targeted tokens instead of selected ones.</li><li>Added text enrichers for T2K symbols in journal entries.</li><li>Added a new property <code>system.drawSize</code> for Actors and for increased compatibility with the <a href="https://foundryvtt.com/packages/yze-combat">Year Zero Engine: Combat</a> module.</li><li>Prepared the game system for the release of <i>Urban Operations</i>.</li></ul>
+
+### Bug Fixes
+
+<ul><li>NPC stress bar is now correctly hidden by default for tokens.</li><li>Fixed a bug where the equip and backpack icons in the inventory for ammunitions were not working.</li><li>Fixed a bug where a single die was not modified properly.</li></ul>
+
 ## [10.1.0] - 2022-12-28
 
 ### What's Changed

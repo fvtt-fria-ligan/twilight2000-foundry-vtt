@@ -99,6 +99,7 @@ export default class ActorT2K extends Actor {
     this._prepareScores(system.skills);
     if (system.cuf) this._prepareScores(system.cuf);
     if (system.unitMorale) this._prepareScores(system.unitMorale);
+    this._prepareAwareness(system);
 
     this._prepareCapacities(system);
     this._prepareEncumbrance(system, actorData.items);
@@ -285,6 +286,22 @@ export default class ActorT2K extends Actor {
   }
 
   /* ------------------------------------------- */
+
+  /**
+   * Creates a Awareness (Initiative Draw Size) for the Actor.
+   * @param {Object} system The Actor's system
+   * @private
+   */
+  _prepareAwareness(system) {
+    const val = this.getRollModifiers().reduce((mods, mod) => {
+      if (mod.target === 'awareness') return mods + mod.value;
+      return mods;
+    }, 1);
+    system.drawSize = Math.max(0, val);
+    return system;
+  }
+
+  /* ------------------------------------------- */
   /*  Data Preparation                           */
   /*   → Vehicle                                 */
   /* ------------------------------------------- */
@@ -397,7 +414,7 @@ export default class ActorT2K extends Actor {
         updateData.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
         break;
       case 'npc':
-        updateData.bar2 = { attribute: '' };
+        updateData.bar2 = { attribute: null };
         break;
       case 'vehicle':
         updateData.bar1 = { attribute: 'reliability' };
