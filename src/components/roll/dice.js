@@ -215,7 +215,7 @@ export async function rollPush(roll, { message } = {}) {
   // Gets all the message's flags.
   const flags = message.getFlag('t2k4e', 'data') ?? {};
   const oldAmmoSpent = flags.ammoSpent || 0;
-  let newAmmoSpent = -Math.max(1, roll.ammoSpent) - 1;
+  let newAmmoSpent = -Math.max(1, roll.ammoSpent + 1);
   const actorId = roll.options.actorId;
   const tokenKey = roll.options.tokenKey;
   const actor = getRollingActor({ actorId, tokenKey });
