@@ -12,7 +12,7 @@ export function checkMigration() {
   const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
 
   if (!currentVersion && totalDocuments === 0) {
-    return game.settings.set('t2k4e', 'systemMigrationVersion', game.system.data.version);
+    return game.settings.set('t2k4e', 'systemMigrationVersion', game.system.version);
   }
 
   const needsMigration = !currentVersion || foundry.utils.isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
@@ -41,7 +41,7 @@ export async function migrateWorld() {
   // }).render(true);
 
   ui.notifications.info(
-    `Applying T2K System Migration for version ${game.system.data.version}.`
+    `Applying T2K System Migration for version ${game.system.version}.`
     + ' Please be patient and do not close your game or shut down your server.',
     { permanent: true },
   );
@@ -104,8 +104,8 @@ export async function migrateWorld() {
 
 
   // Sets the migration as complete.
-  game.settings.set('t2k4e', 'systemMigrationVersion', game.system.data.version);
-  ui.notifications.info(`T2K System Migration to version ${game.system.data.version} completed!`, { permanent: true });
+  game.settings.set('t2k4e', 'systemMigrationVersion', game.system.version);
+  ui.notifications.info(`T2K System Migration to version ${game.system.version} completed!`, { permanent: true });
   // migrateDialog.close();
 }
 
