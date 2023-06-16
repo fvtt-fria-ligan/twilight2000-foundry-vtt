@@ -464,18 +464,18 @@ YZUR.DIETERMS.D12TwilightDie: Bas T12
 YZUR.DIETERMS.AmmoDie: Ammunition
 YZUR.DIETERMS.LocationDie: Träfftärning
 GAME.Paused: Kriget pausat
-ACTOR.TypeCharacter: Rollperson
-ACTOR.TypeNpc: Spelledarperson
-ACTOR.TypeVehicle: Fordon
-ACTOR.TypeUnit: Militär enhet
-ACTOR.TypeParty: Resegrupp
-ITEM.TypeWeapon: Vapen
-ITEM.TypeArmor: Kroppsskydd
-ITEM.TypeAmmunition: Ammunition
-ITEM.TypeGrenade: Sprängämne
-ITEM.TypeGear: Utrustning
-ITEM.TypeInjury: Kritisk skada
-ITEM.TypeSpecialty: Specialitet
+TYPES.Actor.character: Rollperson
+TYPES.Actor.npc: Spelledarperson
+TYPES.Actor.vehicle: Fordon
+TYPES.Actor.unit: Militär enhet
+TYPES.Actor.party: Resegrupp
+TYPES.Item.weapon: Vapen
+TYPES.Item.armor: Kroppsskydd
+TYPES.Item.ammunition: Ammunition
+TYPES.Item.grenade: Sprängämne
+TYPES.Item.gear: Utrustning
+TYPES.Item.injury: Kritisk skada
+TYPES.Item.specialty: Specialitet
 EFFECT.StatusFullCover: Heltäckande skydd
 EFFECT.StatusPartialCover: Partiellt skydd
 EFFECT.StatusOverwatch: Övervakning

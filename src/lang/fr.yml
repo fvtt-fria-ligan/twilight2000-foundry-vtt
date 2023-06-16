@@ -92,7 +92,7 @@ T2K4E.ItemTypes.grenade: Explosif
 T2K4E.ItemTypes.injury: Blessure
 T2K4E.ItemTypes.specialty: Spécialité
 T2K4E.ItemTypes.weapon: Arme
-T2K4E.ItemPropNames.twoHanded: "Deux mains"
+T2K4E.ItemPropNames.twoHanded: 'Deux mains'
 T2K4E.ItemPropNames.mounted: Monté
 T2K4E.ItemPropNames.disposable: Jetable
 T2K4E.ItemPropNames.ammoBelt: Cartouchière
@@ -101,7 +101,7 @@ T2K4E.ItemPropNames.armored: Protégé
 T2K4E.ItemPropNames.bipod: Bipied
 T2K4E.ItemPropNames.tripod: Trépied
 T2K4E.ItemPropNames.scope: Lunette
-T2K4E.ItemPropNames.nightVision: "Vision nocturne"
+T2K4E.ItemPropNames.nightVision: 'Vision nocturne'
 T2K4E.ItemPropNames.bayonet: Baïonnette
 T2K4E.ItemPropNames.suppressor: Silencieux
 T2K4E.ActorTypes.character: Personnage joueur (PJ)
@@ -118,7 +118,7 @@ T2K4E.ActorSheet.Branch: Branche
 T2K4E.ActorSheet.MilitaryRank: Rang
 T2K4E.ActorSheet.HitCapacity: Capacité de vie
 T2K4E.ActorSheet.StressCapacity: Capacité de stress
-T2K4E.ActorSheet.CapacityModifier: "Modificateur :"
+T2K4E.ActorSheet.CapacityModifier: 'Modificateur :'
 T2K4E.ActorSheet.Experience: Expérience
 T2K4E.ActorSheet.ExperienceCurrent: XP actuel
 T2K4E.ActorSheet.ExperienceTotal: XP total
@@ -126,7 +126,7 @@ T2K4E.ActorSheet.Appearance: Apparence
 T2K4E.ActorSheet.MoralCode: Code moral
 T2K4E.ActorSheet.Buddy: Pote
 T2K4E.ActorSheet.BigDream: Votre grand rêve
-T2K4E.ActorSheet.GroupMeeting: "Comment vous avez rencontré le groupe :"
+T2K4E.ActorSheet.GroupMeeting: 'Comment vous avez rencontré le groupe :'
 T2K4E.ActorSheet.AttributesAndSkills: Attributs & compétences
 T2K4E.ActorSheet.Rating: Score
 T2K4E.ActorSheet.BaseDie: Dé de base
@@ -196,8 +196,8 @@ T2K4E.VehicleSheet.Gasoline: Essence
 T2K4E.VehicleSheet.Diesel: Diesel
 T2K4E.VehicleSheet.Alcohol: Alcool
 T2K4E.VehicleSheet.Nuclear: Nucléaire
-T2K4E.VehicleSheet.CrewQty: "Équipage :"
-T2K4E.VehicleSheet.PassengerQty: "Passagers :"
+T2K4E.VehicleSheet.CrewQty: 'Équipage :'
+T2K4E.VehicleSheet.PassengerQty: 'Passagers :'
 T2K4E.VehicleSheet.EmptyCrew: Glissez-déposez un acteur pour l'ajouter à l'équipage.
 T2K4E.VehicleSheet.Armor: Armure
 T2K4E.VehicleSheet.FrontArmor: Avant
@@ -208,7 +208,7 @@ T2K4E.VehicleSheet.Damage: Dégats
 T2K4E.VehicleSheet.MountedWeapons1: Armes principales
 T2K4E.VehicleSheet.MountedWeapons2: Armes secondaires
 T2K4E.VehicleSheet.MountedWeaponType: Type
-T2K4E.VehicleSheet.CargoCapacity: "Capacité de chargement :"
+T2K4E.VehicleSheet.CargoCapacity: 'Capacité de chargement :'
 T2K4E.VehicleSheet.CrewCargo: "Poids de l'équipage :"
 T2K4E.VehicleSheet.VehicleEncumbrance: Encombrement (véhicule)
 T2K4E.VehicleSheet.Mount: Monter l'arme
@@ -409,7 +409,7 @@ FLPS.TRAVEL_ROLL.MAKE_CAMP: Établir le camp
 FLPS.TRAVEL_ROLL.HIDE_CAMP: Camoufler le camp
 FLPS.TRAVEL_ROLL.COOK_FOOD: Cuire des aliments
 FLPS.SETTINGS.ALLOW_PUSH: Autoriser un nombre illimités de pousses sur les lancers
-FLPS.SETTINGS.ALLOW_PUSH_HINT: "Si votre MJ autorise un nombre illimité de lancers poussés. Ou peut-être êtes-vous un MJ qui veut pouvoir pousser les jets de cette rencontre ; cochez ce paramètre pour afficher un bouton pour pousser sur presque tous les lancers."
+FLPS.SETTINGS.ALLOW_PUSH_HINT: 'Si votre MJ autorise un nombre illimité de lancers poussés. Ou peut-être êtes-vous un MJ qui veut pouvoir pousser les jets de cette rencontre ; cochez ce paramètre pour afficher un bouton pour pousser sur presque tous les lancers.'
 SETTINGS.trackPcAmmo.name: Suivre les munitions des PJs
 SETTINGS.trackPcAmmo.label: Si la consommation de munitions doit être suivie pour les personnages joueurs.
 SETTINGS.trackNpcAmmo.name: Suivre les munitions des PNJs
@@ -438,11 +438,11 @@ YZUR.CHAT.ROLL.Locations.3: Torse
 YZUR.CHAT.ROLL.Locations.4: Torse
 YZUR.CHAT.ROLL.Locations.5: Bras
 YZUR.CHAT.ROLL.Locations.6: Tête
-YZUR.CHAT.ROLL.ExtraHit: "Toucher supplémentaire :"
-YZUR.CHAT.ROLL.ExtraHits: "Touchers supplémentaires :"
+YZUR.CHAT.ROLL.ExtraHit: 'Toucher supplémentaire :'
+YZUR.CHAT.ROLL.ExtraHits: 'Touchers supplémentaires :'
 YZUR.CHAT.ROLL.Suppression: 'Suppression :'
-YZUR.CHAT.ROLL.AmmoSpent: "Munitions dépensées :"
-YZUR.CHAT.ROLL.DamageOrStress: "Dégâts/Stress :"
+YZUR.CHAT.ROLL.AmmoSpent: 'Munitions dépensées :'
+YZUR.CHAT.ROLL.DamageOrStress: 'Dégâts/Stress :'
 YZUR.CHAT.ROLL.JamCount: 'Fiabilité :'
 YZUR.CHAT.ROLL.Jammed: ARME ENRAYÉE!!
 YZUR.DIETERMS.D6TwilightDie: D6
@@ -452,18 +452,18 @@ YZUR.DIETERMS.D12TwilightDie: D12
 YZUR.DIETERMS.AmmoDie: Muns
 YZUR.DIETERMS.LocationDie: Cible
 GAME.Paused: Guerre en pause
-ACTOR.TypeCharacter: Personnage joueur (PJ)
-ACTOR.TypeNpc: Personnage non-joueur (PNJ)
-ACTOR.TypeVehicle: Véhicule
-ACTOR.TypeUnit: Unité militaire
-ACTOR.TypeParty: Groupe de voyage
-ITEM.TypeWeapon: Arme
-ITEM.TypeArmor: Armure personnelle
-ITEM.TypeAmmunition: Munition
-ITEM.TypeGrenade: Explosif
-ITEM.TypeGear: Objet
-ITEM.TypeInjury: Blessure critique
-ITEM.TypeSpecialty: Spécialité
+TYPES.Actor.character: Personnage joueur (PJ)
+TYPES.Actor.npc: Personnage non-joueur (PNJ)
+TYPES.Actor.vehicle: Véhicule
+TYPES.Actor.unit: Unité militaire
+TYPES.Actor.party: Groupe de voyage
+TYPES.Item.weapon: Arme
+TYPES.Item.armor: Armure personnelle
+TYPES.Item.ammunition: Munition
+TYPES.Item.grenade: Explosif
+TYPES.Item.gear: Objet
+TYPES.Item.injury: Blessure critique
+TYPES.Item.specialty: Spécialité
 EFFECT.StatusFullCover: Couverture totale
 EFFECT.StatusPartialCover: Couverture partielle
 EFFECT.StatusOverwatch: Surveillance

@@ -458,18 +458,18 @@ YZUR.DIETERMS.D12TwilightDie: Base D12
 YZUR.DIETERMS.AmmoDie: Ammo
 YZUR.DIETERMS.LocationDie: Hit Die
 GAME.Paused: War Paused
-ACTOR.TypeCharacter: Player Character
-ACTOR.TypeNpc: Non-Player Character
-ACTOR.TypeVehicle: Vehicle
-ACTOR.TypeUnit: Military Unit
-ACTOR.TypeParty: Travel Party
-ITEM.TypeWeapon: Weapon
-ITEM.TypeArmor: Body Armor
-ITEM.TypeAmmunition: Ammo
-ITEM.TypeGrenade: Explosive
-ITEM.TypeGear: Gear
-ITEM.TypeInjury: Critical Injury
-ITEM.TypeSpecialty: Specialty
+TYPES.Actor.character: Player Character
+TYPES.Actor.npc: Non-Player Character
+TYPES.Actor.vehicle: Vehicle
+TYPES.Actor.unit: Military Unit
+TYPES.Actor.party: Travel Party
+TYPES.Item.weapon: Weapon
+TYPES.Item.armor: Body Armor
+TYPES.Item.ammunition: Ammo
+TYPES.Item.grenade: Explosive
+TYPES.Item.gear: Gear
+TYPES.Item.injury: Critical Injury
+TYPES.Item.specialty: Specialty
 EFFECT.StatusFullCover: Full Cover
 EFFECT.StatusPartialCover: Partial Cover
 EFFECT.StatusOverwatch: Overwatch
