@@ -38,5 +38,15 @@
     "display": "once", // Time until it goes away: [once, infinite, mm.dd.yyyy]
     "title": "10.2.0 Release Notes",
     "content": "<h4>What's New?</h4><ul><li>Added rules changes from the Augustus 4th, 2022 revision.</li><li>Apply damage (in a roll message's context menu) now uses targeted tokens instead of selected ones.</li><li>Added text enrichers for T2K symbols in journal entries.</li><li>Added a new property <code>system.drawSize</code> for Actors and for increased compatibility with the <a href=\"https://foundryvtt.com/packages/yze-combat\">Year Zero Engine: Combat</a> module.</li><li>Prepared the game system for the release of <i>Urban Operations</i>.</li></ul><h4>Bug Fixes</h4><ul><li>NPC stress bar is now correctly hidden by default for tokens.</li><li>Fixed a bug where the equip and backpack icons in the inventory for ammunitions were not working.</li><li>Fixed a bug where a single die was not modified properly.</li></ul>"
+  },
+  {
+    // "min-core-version": "9.0.0", //optional, inclusive
+    // "max-core-version": "10.0.0", //optional, exclusive
+    "min-sys-version": "10.2.1", //optional, inclusive
+    "max-sys-version": "10.2.2", //optional, exclusive
+    "type": "prompt", // Type of message: [prompt, chat]
+    "display": "once", // Time until it goes away: [once, infinite, mm.dd.yyyy]
+    "title": "10.2.1 Release Notes",
+    "content": "<h4>Bug Fixes</h4><ul><li>Fixed a bug introduced with the previous update that caused weapons pushed rolls with no ammo dice to consume 1 additional ammo.</li></ul>"
   }
 ]
