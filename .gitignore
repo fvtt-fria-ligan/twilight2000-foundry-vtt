@@ -13,6 +13,7 @@
 /logs
 npm-debug.log
 *.log
+/packs/**/*
 
 # Local Configuration
 pathconfig
