@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [11.0.0] - 2023-06-xx
+
+<h4>What's New?</h4><ul><li>Added compatibility with Foundry V11.</li></ul>
+
 ## [10.2.1] - 2023-06-16
 
 <h4>Bug Fixes</h4><ul><li>Fixed a bug introduced with the previous update that caused weapons pushed rolls with no ammo dice to consume 1 additional ammo.</li></ul>
