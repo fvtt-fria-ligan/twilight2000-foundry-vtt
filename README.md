@@ -49,18 +49,17 @@ We highly recommend the following modules to play the game:
 
 - [Dice So Nice!](https://foundryvtt.com/packages/dice-so-nice) – Will give you beautiful 3D dice for each roll.
 
-- [Reverse Initiative Order](https://foundryvtt.com/packages/reverse-initiative-order) – Lets you reverse the initiative order in the combat tracker and add non-actor combat tokens (good for multiple initiatives).
-
-- [Year Zero Actions](https://foundryvtt.com/packages/alien-actions) – For a better overview of what actions have been taken in combat.
+- [Year Zero Engine: Combat](https://foundryvtt.com/packages/package/yze-combat) – Needed for card-based initiative combat.
 
 # 💬 Supported Languages
 
 - English
 - French
 - Swedish
+- Spanish
 
-You may help localize the game system in your language by translating the [language file](./lang/en.json).<br/>
-Head over the [GitLocalize page](https://gitlocalize.com/repo/7035) to start translating.
+You may help localize the game system in your language by translating the [language file](./src/lang/en.yml).<br/>
+or head over the [Weblate page](https://weblate.foundryvtt-hub.com/projects/t2k4e/main/) to start translating.
 
 # 🖼️ Previews
 
@@ -76,7 +75,8 @@ Contributions, issues and feature requests are welcome!<br/>Feel free to check t
 
 [@aMediocreDad](https://github.com/aMediocreDad) - Lots of code samples come from this artist.<br/>
 [@Kayne](https://github.com/Kayne) - Fixed dice modifiers.<br/>
-[@tinwe](https://github.com/tinwe) - Swedish translation & bugfixes.
+[@tinwe](https://github.com/tinwe) - Swedish translation & bugfixes.<br/>
+[@Bakali77](https://github.com/Bakali77) - Spanish translation.
 
 # 👤 Author
 
