@@ -1,0 +1,518 @@
+T2K4E.SheetClassCharacter: Ficha de Personaje
+T2K4E.SheetClassVehicle: Ficha de Vehículo
+T2K4E.SheetClassUnit: Ficha de Unidad
+T2K4E.SheetClassParty: Ficha de Grupo
+T2K4E.Attribute: Atributo
+T2K4E.Attributes: Atributos
+T2K4E.AttributeNames.str: Fuerza (STR)
+T2K4E.AttributeNames.agl: Agilidad (AGL)
+T2K4E.AttributeNames.int: Inteligencia (INT)
+T2K4E.AttributeNames.emp: Empatía (EMP)
+T2K4E.Skill: Habilidad
+T2K4E.Skills: Habilidades
+T2K4E.SkillNames.none: '–'
+T2K4E.SkillNames.heavyWeapons: Armas pesadas
+T2K4E.SkillNames.closeCombat: Combate c. a c.
+T2K4E.SkillNames.stamina: Aguante
+T2K4E.SkillNames.driving: Conducir
+T2K4E.SkillNames.mobility: Movilidad
+T2K4E.SkillNames.rangedCombat: Combate a distancia
+T2K4E.SkillNames.recon: Reconocimiento
+T2K4E.SkillNames.survival: Supervivencia
+T2K4E.SkillNames.tech: Tecnología
+T2K4E.SkillNames.command: Mando
+T2K4E.SkillNames.persuasion: Persuasión
+T2K4E.SkillNames.medicalAid: Asistencia médica
+T2K4E.Action: Acción
+T2K4E.Actions: Acciones
+T2K4E.ActionNames.unarmedAttack: Ataque desarmado
+T2K4E.ActionNames.meleeAttack: Ataque de melé
+T2K4E.ActionNames.grapple: Agarrar
+T2K4E.ActionNames.breakFree: Liberar
+T2K4E.ActionNames.shootFirearm: Disparar arma de fuego
+T2K4E.ActionNames.clearJam: Liberar encasquillamiento
+T2K4E.ActionNames.aimSniper: Apuntar con rifle de francotirador
+T2K4E.ActionNames.shootBow: Disparar flecha
+T2K4E.ActionNames.throwWeapon: Lanzar arma
+T2K4E.ActionNames.aimMortar: Apuntar obús o mortero
+T2K4E.ActionNames.shootHeavyWeapon: Disparar arma pesada
+T2K4E.ActionNames.firstAid: Primeros auxílios
+T2K4E.ActionNames.rally: Reunión
+T2K4E.ActionNames.directFire: Dirigir fuego indirecto
+T2K4E.ActionNames.seekCover: Buscar cobertura
+T2K4E.ActionNames.run: Correr
+T2K4E.ActionNames.crawl: Arrastrarse
+T2K4E.ActionNames.shove: Empujón
+T2K4E.ActionNames.disarm: Desarmar
+T2K4E.ActionNames.retreat: Retirarse
+T2K4E.ActionNames.aim: Apuntar
+T2K4E.ActionNames.prepareBow: Preparar arco
+T2K4E.ActionNames.overwatch: Asumir la posición de vigilancia
+T2K4E.ActionNames.reload: Recargar
+T2K4E.ActionNames.drive: Conducir
+T2K4E.Constants: Constantes
+T2K4E.ConstantNames.encumbrance: Carga
+T2K4E.ConstantNames.awareness: Sentido del combate
+T2K4E.ConstantNames.cuf: CUF
+T2K4E.TravelTasks: Tareas de viaje
+T2K4E.TravelTaskNames.marching: Marchar
+T2K4E.TravelTaskNames.driving: Conducir
+T2K4E.TravelTaskNames.gathering: Hacer acopio
+T2K4E.TravelTaskNames.keepingWatch: Vigilancia
+T2K4E.TravelTaskNames.scrounging: Rebuscar
+T2K4E.TravelTaskNames.foraging: Forrajear
+T2K4E.TravelTaskNames.hunting: Cazar
+T2K4E.TravelTaskNames.fishing: Pescar
+T2K4E.TravelTaskNames.makingCamp: Hacer campamento
+T2K4E.TravelTaskNames.cooking: Cocinar
+T2K4E.TravelTaskNames.resting: Descansar
+T2K4E.TravelTaskNames.sleeping: Dormir
+T2K4E.TravelTaskNames.exploring: Explorar
+T2K4E.ArmorLocationNames.head: Cabeza
+T2K4E.ArmorLocationNames.arms: Brazos
+T2K4E.ArmorLocationNames.torso: Torso
+T2K4E.ArmorLocationNames.legs: Piernas
+T2K4E.ConditionNames.starving: Hambriento
+T2K4E.ConditionNames.dehydrated: Deshidratado
+T2K4E.ConditionNames.sleepless: Privado de sueño
+T2K4E.ConditionNames.hypothermic: Hipotérmia
+T2K4E.InjuryCategoryNames.physical: Físico
+T2K4E.InjuryCategoryNames.mental: Mental
+T2K4E.ActionTypes.fast: Rápida
+T2K4E.ActionTypes.slow: Lenta
+T2K4E.Ranges.close: En cuerpo a cuerpo
+T2K4E.Ranges.short: Corto
+T2K4E.Ranges.medium: Medio
+T2K4E.Ranges.long: Largo
+T2K4E.Ranges.extreme: Extremo
+T2K4E.ItemTypes.ammunition: Munición
+T2K4E.ItemTypes.armor: Blindaje
+T2K4E.ItemTypes.gear: Equipo
+T2K4E.ItemTypes.grenade: Explosivo
+T2K4E.ItemTypes.injury: Herida
+T2K4E.ItemTypes.specialty: Especialidad
+T2K4E.ItemTypes.weapon: Arma
+T2K4E.ItemPropNames.twoHanded: Dos manos
+T2K4E.ItemPropNames.mounted: Montada
+T2K4E.ItemPropNames.disposable: Desechable
+T2K4E.ItemPropNames.ammoBelt: Cinta munic.
+T2K4E.ItemPropNames.magazine: Es cargador
+T2K4E.ItemPropNames.armored: Blindado
+T2K4E.ItemPropNames.bipod: Bípode
+T2K4E.ItemPropNames.tripod: Trípode
+T2K4E.ItemPropNames.scope: Scope
+T2K4E.ItemPropNames.nightVision: Visión noctur.
+T2K4E.ItemPropNames.bayonet: Bayoneta
+T2K4E.ItemPropNames.suppressor: Supresor
+T2K4E.ActorTypes.character: Personaje Jugador (PJ)
+T2K4E.ActorTypes.npc: Personaje No Jugador (PNJ)
+T2K4E.ActorTypes.vehicle: Vehículo
+T2K4E.ActorSheet.Name: Nombre
+T2K4E.ActorSheet.MainTab: Estadísticas
+T2K4E.ActorSheet.CombatTab: Combate
+T2K4E.ActorSheet.EquipmentTab: Equipo
+T2K4E.ActorSheet.BiographyTab: Bio
+T2K4E.ActorSheet.NoteTab: Notas
+T2K4E.ActorSheet.Nationality: Nacionalidad
+T2K4E.ActorSheet.Branch: Rama
+T2K4E.ActorSheet.MilitaryRank: Rango
+T2K4E.ActorSheet.HitCapacity: Capacidad de Golpe
+T2K4E.ActorSheet.StressCapacity: Capacidad de Estrés
+T2K4E.ActorSheet.CapacityModifier: 'Modificador:'
+T2K4E.ActorSheet.Experience: Experiencia
+T2K4E.ActorSheet.ExperienceCurrent: PE actuales
+T2K4E.ActorSheet.ExperienceTotal: PE totales
+T2K4E.ActorSheet.Appearance: Apariencia
+T2K4E.ActorSheet.MoralCode: Código moral
+T2K4E.ActorSheet.Buddy: Amigo
+T2K4E.ActorSheet.BigDream: Gran sueño
+T2K4E.ActorSheet.GroupMeeting: 'Cómo conociste al grupo:'
+T2K4E.ActorSheet.AttributesAndSkills: Atributos y habilidades
+T2K4E.ActorSheet.Rating: Calificación
+T2K4E.ActorSheet.BaseDie: Dado base
+T2K4E.ActorSheet.Specialties: Especialidades
+T2K4E.ActorSheet.AddSpecialty: Añade una nueva especialidad
+T2K4E.ActorSheet.NoSpecialty:
+  Este personaje no tiene especialidad. Haz click en el
+  icono "+" para añadir una nueva especialidad.
+T2K4E.ActorSheet.Combat: Combate
+T2K4E.ActorSheet.Actions: Acciones
+T2K4E.ActorSheet.Current: Actual
+T2K4E.ActorSheet.Max: Max
+T2K4E.ActorSheet.CuF: Frialdad bajo el fuego (CUF)
+T2K4E.ActorSheet.UnitMorale: Moral de la Unidad
+T2K4E.ActorSheet.NoArmor: Este personaje no tiene blindaje equipado.
+T2K4E.ActorSheet.Conditions: Condiciones
+T2K4E.ActorSheet.CriticalInjuries: Heridas críticas
+T2K4E.ActorSheet.AddInjury: Añade una nueva herida
+T2K4E.ActorSheet.InjuryTimeLeft: '{time} restante'
+T2K4E.ActorSheet.Diseases: Enfermedades
+T2K4E.ActorSheet.Radiation: Radiación
+T2K4E.ActorSheet.RadiationRoll: Ataque radiactivo
+T2K4E.ActorSheet.TemporaryRadiation: Temporal
+T2K4E.ActorSheet.PermanentRadiation: Permanente
+T2K4E.ActorSheet.EncumbranceFull: COMPLETO
+T2K4E.ActorSheet.EncumbranceTooHeavy: MUY PESADO
+T2K4E.ActorSheet.Weapons: Armas
+T2K4E.ActorSheet.AddWeapon: Añade un nuevo arma
+T2K4E.ActorSheet.Unarmed: Desarmado
+T2K4E.ActorSheet.Cover: Coberturas
+T2K4E.ActorSheet.Add: Añade
+T2K4E.ActorSheet.AddArmor: Añade un nuevo blindaje
+T2K4E.ActorSheet.AddGear: Añade nuevo equipo
+T2K4E.ActorSheet.AddAmmo: Añade nueva munición
+T2K4E.ActorSheet.Encumbrance: Carga
+T2K4E.ActorSheet.CombatGearEncumbrance: Equipo de Combate (Carga)
+T2K4E.ActorSheet.BackpackEncumbrance: Mochila (Carga)
+T2K4E.ActorSheet.Equip: Equipado
+T2K4E.ActorSheet.Store: Almacenado en la mochila
+T2K4E.ActorSheet.Edit: Editar
+T2K4E.ActorSheet.Delete: Borrar
+T2K4E.ActorSheet.NewItem.weapon: Nuevo arma
+T2K4E.ActorSheet.NewItem.armor: Nuevo blindaje
+T2K4E.ActorSheet.NewItem.gear: Nuevo equipo
+T2K4E.ActorSheet.NewItem.ammunition: Nueva munición
+T2K4E.ActorSheet.NewItem.specialty: Nueva especialidad
+T2K4E.ActorSheet.NewItem.injury: Nueva herida
+T2K4E.ActorSheet.NotifWrongItemType: '"{type}" objetos no pueden ser añadidos a {actor}!'
+T2K4E.VehicleSheet.CrewTab: Tripulación
+T2K4E.VehicleSheet.ComponentsTab: Componentes
+T2K4E.VehicleSheet.CombatTab: Combate
+T2K4E.VehicleSheet.CargoTab: Carga
+T2K4E.VehicleSheet.VehicleType: Tipo de vehículo
+T2K4E.VehicleSheet.Reliability: Confiabilidad
+T2K4E.VehicleSheet.Movement: Movimiento
+T2K4E.VehicleSheet.CombatSpeed: Velocidad de Combate
+T2K4E.VehicleSheet.TravelSpeed: Velocidad de Viaje
+T2K4E.VehicleSheet.Wheels: Ruedas
+T2K4E.VehicleSheet.Tracks: Cadenas
+T2K4E.VehicleSheet.Hovercraft: Hovercraft
+T2K4E.VehicleSheet.Flying: Volador
+T2K4E.VehicleSheet.Naval: Naval
+T2K4E.VehicleSheet.Fuel: Combustible
+T2K4E.VehicleSheet.FuelCapacity: Capacidad de Combustible
+T2K4E.VehicleSheet.FuelConsumption: Consumo de combustible
+T2K4E.VehicleSheet.Gasoline: Gasolina
+T2K4E.VehicleSheet.Diesel: Diesel
+T2K4E.VehicleSheet.Alcohol: Alcohol
+T2K4E.VehicleSheet.Nuclear: Nuclear
+T2K4E.VehicleSheet.CrewQty: 'Tripulacion:'
+T2K4E.VehicleSheet.PassengerQty: 'Pasajeros:'
+T2K4E.VehicleSheet.EmptyCrew: Arrastra y suelta un actor para añadirlo a la tripulación.
+T2K4E.VehicleSheet.Armor: Blindaje
+T2K4E.VehicleSheet.FrontArmor: Frontal
+T2K4E.VehicleSheet.SideLeftArmor: Izquierdo
+T2K4E.VehicleSheet.SideRightArmor: Derecho
+T2K4E.VehicleSheet.RearArmor: Trasero
+T2K4E.VehicleSheet.Damage: Daño
+T2K4E.VehicleSheet.MountedWeapons1: Armas primarias
+T2K4E.VehicleSheet.MountedWeapons2: Armas secundarias
+T2K4E.VehicleSheet.MountedWeaponType: Tipo
+T2K4E.VehicleSheet.CargoCapacity: 'Capacidad de Carga:'
+T2K4E.VehicleSheet.CrewCargo: 'Peso de la Tripulacion:'
+T2K4E.VehicleSheet.VehicleEncumbrance: Carga (Vehículo)
+T2K4E.VehicleSheet.Mount: Arma montada
+T2K4E.VehicleSheet.Unmount: Arma desmontada
+T2K4E.VehicleSheet.MoveMount: Cambiar arma montada
+T2K4E.VehicleSheet.Price: Precio
+T2K4E.VehicleSheet.CrewPositions.Driver: CONDUCTOR
+T2K4E.VehicleSheet.CrewPositions.Gunner: ARTILLERO
+T2K4E.VehicleSheet.CrewPositions.Commander: COMANDANTE
+T2K4E.VehicleSheet.CrewPositions.Passenger: PASAJERO
+T2K4E.VehicleSheet.ExposedPassenger: Expuesto
+T2K4E.VehicleSheet.InnerComponents: Componentes internos
+T2K4E.VehicleSheet.OuterComponents: Componentes externos
+T2K4E.VehicleSheet.ComponentDamage: Cantidad de daño inflijido a este componente
+T2K4E.VehicleSheet.FcsType: Tipo
+T2K4E.VehicleSheet.Components.fuel: Combustible
+T2K4E.VehicleSheet.Components.engine: Motor
+T2K4E.VehicleSheet.Components.suspension: Suspensión
+T2K4E.VehicleSheet.Components.ammunition: Munición
+T2K4E.VehicleSheet.Components.radio: Radio
+T2K4E.VehicleSheet.Components.trackWheel: Cadenas / Ruedas
+T2K4E.VehicleSheet.Components.fcs: Sistema de control de fuego
+T2K4E.VehicleSheet.Components.antenna: Antena
+T2K4E.VehicleSheet.HasTrailer: Tiene un trailer
+T2K4E.VehicleSheet.HasSmokeDischarger: Descargadores de humo
+T2K4E.UnitSheet.Name: Nombre completo
+T2K4E.UnitSheet.Info: Información adicional
+T2K4E.UnitSheet.Faction: Facción
+T2K4E.UnitSheet.UnitAffiliation: Afiliación
+T2K4E.UnitSheet.UnitSize: Tamaño de la Unidad
+T2K4E.UnitSheet.UnitType: Tipo de Unidad
+T2K4E.UnitSheet.UnitModifiers: Modificadores de Unidad
+T2K4E.UnitSheet.Personnel: Personal
+T2K4E.UnitSheet.Vehicles: Vehiculos de Combate
+T2K4E.UnitSheet.HQ: Cuartel General (HQ)
+T2K4E.UnitAffiliationNames.friendly: Amiga
+T2K4E.UnitAffiliationNames.hostile: Hostil
+T2K4E.UnitAffiliationNames.neutral: Neutral
+T2K4E.UnitAffiliationNames.unknown: Desconocida
+T2K4E.UnitModifierNames.airborne: Aerotransporte
+T2K4E.UnitModifierNames.parachute: Paracaidista
+T2K4E.UnitModifierNames.airmobile: Aeromóvil
+T2K4E.UnitModifierNames.airmobileOrganicLift: Aerm. O. L.
+T2K4E.UnitModifierNames.amphibious: Anfibia
+T2K4E.UnitModifierNames.motorized: Motorizada
+T2K4E.UnitModifierNames.moutain: Montaña
+T2K4E.UnitModifierNames.cannon: Cañón
+T2K4E.UnitModifierNames.wheeled: Sobre ruedas
+T2K4E.UnitSizeNames.army: Ejército XXXX
+T2K4E.UnitSizeNames.corps: Cuerpo XXX
+T2K4E.UnitSizeNames.division: División XX
+T2K4E.UnitSizeNames.Brigade: Brigada X
+T2K4E.UnitSizeNames.regiment: Regimiento | | |
+T2K4E.UnitSizeNames.battalion: Batallón | |
+T2K4E.UnitSizeNames.company: Compañia |
+T2K4E.UnitSizeNames.staffel: Staffel ••••
+T2K4E.UnitSizeNames.platoon: Sección •••
+T2K4E.UnitSizeNames.section: Pelotón ••
+T2K4E.UnitSizeNames.squad: Escuadra •
+T2K4E.UnitSizeNames.fireteam: Equipo de fuego
+T2K4E.ItemSheet.Name: Nombre
+T2K4E.ItemSheet.FeaturesTab: Características
+T2K4E.ItemSheet.ModifiersTab: Modificadores
+T2K4E.ItemSheet.RollModifiers: Modificadores a la tirada
+T2K4E.ItemSheet.AddNewRollModifier:
+  Añade un nuevo modificador a la tirada para este
+  objeto
+T2K4E.ItemSheet.DeleteRollModifier: Elimina este modificador a la tirada
+T2K4E.ItemSheet.NoRollModifier:
+  Este objeto no tiene modificador. Para añadir un,
+  haz click en el icono "+".
+T2K4E.ItemSheet.SelectRollModifier: Elige un nombre
+T2K4E.ItemSheet.DescriptionTab: Notas
+T2K4E.ItemSheet.AttributeUsed: Atributo usado
+T2K4E.ItemSheet.SkillUsed: Habilidad usada
+T2K4E.ItemSheet.WeaponMagazine: Cargador
+T2K4E.ItemSheet.Quantity: Cantidad
+T2K4E.ItemSheet.ItemType: Tipo
+T2K4E.ItemSheet.Ammo: Munición
+T2K4E.ItemSheet.AmmoType: Identificador de munición
+T2K4E.ItemSheet.OverrideOption: Anular las características del arma
+T2K4E.ItemSheet.Reliability: Rel
+T2K4E.ItemSheet.RoF: RoF
+T2K4E.ItemSheet.Damage: Daño
+T2K4E.ItemSheet.Crit: Crit
+T2K4E.ItemSheet.Blast: Potencia
+T2K4E.ItemSheet.Range: Alcance
+T2K4E.ItemSheet.Mag: Mag
+T2K4E.ItemSheet.Armor: Blindaje
+T2K4E.ItemSheet.Weight: Peso
+T2K4E.ItemSheet.Price: Precio
+T2K4E.ItemSheet.ArmorLocation: Localización protegida
+T2K4E.ItemSheet.Equipped: Equipado
+T2K4E.ItemSheet.StoredInBackpack: Almacenado en la mochila
+T2K4E.ItemSheet.CreateAmmo: Generar munición
+T2K4E.ItemSheet.CreateAmmoNotif: Generadas 1x <b>{ammo}</b> para el arma <b>{weapon}</b>
+T2K4E.ItemSheet.FeaturesForVehicle: Características del vehículo
+T2K4E.InjurySheet.Category: Categoría
+T2K4E.InjurySheet.Location: Localización
+T2K4E.InjurySheet.TimeLimit: Tiempo límite
+T2K4E.InjurySheet.HealTime: Tiempo de Curación
+T2K4E.InjurySheet.Effect: Efecto
+T2K4E.InjurySheet.Lethal: Letal
+T2K4E.InjurySheet.day: día
+T2K4E.InjurySheet.days: días
+T2K4E.Chat.Actions.Attack: Ataque
+T2K4E.Chat.Actions.Reload: Recargar
+T2K4E.Chat.Actions.Roll: Tirar
+T2K4E.Chat.Actions.Push: Forzar
+T2K4E.Chat.Actions.ApplyDamage: Aplicar daño
+T2K4E.Chat.Roll.Success: Éxito
+T2K4E.Chat.Roll.Successes: Éxitos
+T2K4E.Chat.Roll.Pushed: '— Forzada'
+T2K4E.Chat.Roll.Suppression: Supresión
+T2K4E.Chat.Roll.ExtraHit: Impacto extra
+T2K4E.Chat.Roll.ExtraHits: Impactos extras
+T2K4E.Chat.Roll.Mishap: Percance
+T2K4E.Chat.Roll.AmmoSpent: Munición gastada
+T2K4E.Chat.Roll.NoItemNotif: El objeto ya no existe.
+T2K4E.Chat.Roll.NoReliabilityNotif:
+  El valor de confiabilidad actual de este objeto
+  no permite usarlo.
+T2K4E.Chat.Damage.Incapacited: INCAPACITADO
+T2K4E.Chat.Damage.DamagedArmor: Dañado
+T2K4E.Chat.Damage.DamageDealt: '<b>{name}</b> recibe <b>{amount}</b> daño.'
+T2K4E.Chat.Damage.NoDamageDealt: No se infligió daño a <b>{name}</b>.
+T2K4E.Chat.Damage.InitialAmount:
+  El ataque hizo una cantidad inicial de <b>{damage}</b>
+  de daño, con un modificador de blindaje de {mod}.
+T2K4E.Chat.Damage.DeflectedDamage: '{damage} de daño absorbido'
+T2K4E.Chat.Damage.DeflectedAllDamage: absorbido todo el daño
+T2K4E.Chat.Damage.NoEffect: sin efecto
+T2K4E.Combat.Attack: '{weapon} — Ataque'
+T2K4E.Combat.Barrier: Barrera
+T2K4E.Combat.BodyArmor: Blindaje corporal
+T2K4E.Combat.NoQuantityLeft: No queda ninguna unidad para el arma {weapon}.
+T2K4E.Combat.NoAmmoLeft: No queda munición en el cargador del arma {weapon}.
+T2K4E.Combat.NoMag: Por favor, inserta un cargador para el arma {weapon}.
+T2K4E.Dialog.Actions.Normal: Tira
+T2K4E.Dialog.Actions.Reload: Recargar
+T2K4E.Dialog.Actions.Ok: OK
+T2K4E.Dialog.Actions.Cancel: Cancelar
+T2K4E.Dialog.Roll.Attribute: Atributo
+T2K4E.Dialog.Roll.Skill: Habilidad
+T2K4E.Dialog.Roll.Formula: Formula
+T2K4E.Dialog.Roll.RoF: Cadencia de fuego
+T2K4E.Dialog.Roll.Modifier: Modificador
+T2K4E.Dialog.Roll.Locate: '¿Añadir un dado de Impacto?'
+T2K4E.Dialog.Roll.MaxPush: Forzados máximos
+T2K4E.Dialog.Roll.RollMode: Modo de tirada
+T2K4E.Dialog.CuF.CoolnessUnderFire: Frialdad bajo el fuego (CUF)
+T2K4E.Dialog.CuF.UnitMorale: '¿Añadir la Moral de la Unidad?'
+T2K4E.Dialog.Actor.ChooseActor: Elige un actor
+T2K4E.Dialog.Damage.ChooseDamage: Cantidad de daño
+T2K4E.Dialog.Damage.Description: Elige cuánto daño infligir a <b>{target}</b>.
+T2K4E.Dialog.Damage.DamageQuantity: Cantidad base
+T2K4E.Dialog.Damage.ExtraHits: Impactos extras
+T2K4E.Dialog.Damage.BarrierArmors: Niveles de blindaje de la barrera
+T2K4E.Dialog.Damage.BarrierArmorsHint: Varias barreras están separadas por comas.
+T2K4E.MACRO.GetActorTitle: Elige un actor
+T2K4E.MACRO.GetActorHint: Ha seleccionado varios tokens. Por favor elige uno de ellos.
+T2K4E.MACRO.MultipleItems:
+  El actor que controlas {actor} tiene más de un objeto con
+  nombre {item}. Se elegirá el primer objeto coincidente.
+T2K4E.MACRO.NoActor: El actor que controlas {actor} no ha sido encontrado.
+T2K4E.MACRO.NoItem: El actor que controlas {actor} no tiene un objeto llamado {item}.
+T2K4E.MACRO.RollAction: Acción {action}
+T2K4E.MACRO.RollStat: Tirada {stat}
+FLPS.TAB.MAIN: Grupo/Equipo
+FLPS.TAB.TRAVEL: Acciones de Viaje
+FLPS.TAB.NOTE: Notas
+FLPS.PARTY.NAME: Nombre del Grupo
+FLPS.PARTY.MEMBERS: Miembros del Grupo
+FLPS.PARTY.HINT_ADD: Arrastra y suelta personajes aquí para añadirlos al Grupo.
+FLPS.PARTY.HINT_ASSIGN:
+  Arrastra y suelta personajes para asignarlos a las actividades
+  de viaje deseadas.
+FLPS.TRAVEL.MARCH: Marchar
+FLPS.TRAVEL.DRIVE: Conducir
+FLPS.TRAVEL.WATCH: Vigilar
+FLPS.TRAVEL.REST: Descansar
+FLPS.TRAVEL.SLEEP: Dormir
+FLPS.TRAVEL.SCROUNGE: Rebuscar
+FLPS.TRAVEL.FORAGE: Forrajear
+FLPS.TRAVEL.HUNT: Cazar
+FLPS.TRAVEL.FISH: Pescar
+FLPS.TRAVEL.CAMP: Hacer campamento
+FLPS.TRAVEL.COOK: Cocinar
+FLPS.TRAVEL.OTHER: Otra
+FLPS.TRAVEL.RESET: RESETEAR
+FLPS.UI.WHO_ROLLS: '¿Quién tira?'
+FLPS.UI.WHO_PUSHES: '¿Quién fuerza la tirada?'
+FLPS.UI.ATTENTION: Atención
+FLPS.UI.ERROR.OPEN_SHEET:
+  Abre tu hoja de personaje al menos una vez antes de hacer
+  las tiradas de viaje.
+FLPS.TRAVEL_ROLL.FORCED_MARCH: Marchas forzadas
+FLPS.TRAVEL_ROLL.MARCH_IN_DARKNESS: Marchar en la oscuridad
+FLPS.TRAVEL_ROLL.DRIVE: Conducir
+FLPS.TRAVEL_ROLL.KEEP_WATCH: Vigilar
+FLPS.TRAVEL_ROLL.RECOVER: Recuperar
+FLPS.TRAVEL_ROLL.FIND_SCRAP: Rebuscar
+FLPS.TRAVEL_ROLL.FIND_FOOD: Forrajear
+FLPS.TRAVEL_ROLL.FIND_PREY: Encontrar una presa
+FLPS.TRAVEL_ROLL.RECON_PREY: Aproximarse a la presa
+FLPS.TRAVEL_ROLL.KILL_PREY: Matar a la presa
+FLPS.TRAVEL_ROLL.CATCH_FISH: Pescar
+FLPS.TRAVEL_ROLL.MAKE_CAMP: Hacer campamento
+FLPS.TRAVEL_ROLL.HIDE_CAMP: Ocultar campamento
+FLPS.TRAVEL_ROLL.COOK_FOOD: Cocinar comida
+FLPS.SETTINGS.ALLOW_PUSH: Permitir tiradas forzadas ilimitadas
+FLPS.SETTINGS.ALLOW_PUSH_HINT:
+  Si tu Árbitro permite un número ilimitado de tiradas
+  forzadas. O tal vez eres un Árbitro que quiere poder forzar las tiradas de este
+  encuentro; marca esta configuración para mostrar un botón pulsador en casi cualquier
+  tirada.
+SETTINGS.trackPcAmmo.name:
+  Seguimiento de las municiones de los personajes de los
+  jugadores
+SETTINGS.trackPcAmmo.label:
+  Si se debe realizar un seguimiento del consumo de munición
+  para los PJ.
+SETTINGS.trackNpcAmmo.name: Seguimiento de las municiones de los PNJ
+SETTINGS.trackNpcAmmo.label:
+  Si se debe realizar un seguimiento del consumo de munición
+  para los PNJ.
+SETTINGS.trackVehicleAmmo.name: Seguimiento de la munición de los vehículos
+SETTINGS.trackVehicleAmmo.label:
+  Si se debe realizar un seguimiento del consumo de
+  munición para vehículos armados.
+SETTINGS.showTaskCheckOptions.name:
+  Solicitar opciones de comprobación de tareas de
+  forma predeterminada
+SETTINGS.showTaskCheckOptions.label: Manten presionada la tecla Mayús para alternar.
+SETTINGS.closeRollTooltipDelay.name:
+  Retardo para cerrar la herramienta de los resultados
+  de los dados
+SETTINGS.closeRollTooltipDelay.label:
+  Cuántos segundos esperar antes de cerrar automáticamente
+  la información sobre herramientas de los resultados de los dados. El máximo es de
+  15 minutos. Establezca este valor en -1 para nunca.
+SETTINGS.defaultCharTokenSize.name:
+  Tamaño de token predeterminado para personajes
+  y PNJ
+SETTINGS.defaultCharTokenSize.label:
+  Establezca un tamaño predeterminado entre [0.3,
+  2.0] para personajes y actores PNJ recién creados.
+SETTINGS.hideCapacitiesButtons.name: Ocultar modificadores de capacidades
+SETTINGS.hideCapacitiesButtons.label:
+  Ocultar a los jugadores los botones más-menos
+  utilizados para modificar las capacidades máximas de Golpe & Estrés en la hoja de
+  personaje.
+SETTINGS.hideWeaponProps.name: Ocultar propiedades de las armas
+SETTINGS.hideWeaponProps.label:
+  Ya sea para ocultar a los jugadores las casillas de
+  verificación de propiedades en la hoja de armas.
+YZUR.CHAT.ROLL.Push: Forzar
+YZUR.CHAT.ROLL.HitLocation: 'Localización de Impacto:'
+YZUR.CHAT.ROLL.HitLocations: 'Localizaciones de Impacto:'
+YZUR.CHAT.ROLL.Locations.1: Piernas
+YZUR.CHAT.ROLL.Locations.2: Torso
+YZUR.CHAT.ROLL.Locations.3: Torso
+YZUR.CHAT.ROLL.Locations.4: Torso
+YZUR.CHAT.ROLL.Locations.5: Brazos
+YZUR.CHAT.ROLL.Locations.6: Cabeza
+YZUR.CHAT.ROLL.ExtraHit: 'Impacto extra:'
+YZUR.CHAT.ROLL.ExtraHits: 'Impactos extras:'
+YZUR.CHAT.ROLL.Suppression: 'Supresion:'
+YZUR.CHAT.ROLL.AmmoSpent: 'Munición gastada:'
+YZUR.CHAT.ROLL.DamageOrStress: 'Daño/Estrés:'
+YZUR.CHAT.ROLL.JamCount: 'Confiabilidad:'
+YZUR.CHAT.ROLL.Jammed: '¡¡ARMA ENCASQUILLADA!!'
+YZUR.DIETERMS.D6TwilightDie: D6 de Base
+YZUR.DIETERMS.D8TwilightDie: D8 de Base
+YZUR.DIETERMS.D10TwilightDie: D10 de Base
+YZUR.DIETERMS.D12TwilightDie: D12 de Base
+YZUR.DIETERMS.AmmoDie: Munición
+YZUR.DIETERMS.LocationDie: Dado de Golpe
+GAME.Paused: Guerra pausada
+TYPES.Actor.character: Personaje Jugador
+TYPES.Actor.npc: Personaje No Jugador
+TYPES.Actor.vehicle: Vehículo
+TYPES.Actor.unit: Unidad Militar
+TYPES.Actor.party: Grupo de Viaje
+TYPES.Item.weapon: Arma
+TYPES.Item.armor: Blindaje corporal
+TYPES.Item.ammunition: Munición
+TYPES.Item.grenade: Explosivo
+TYPES.Item.gear: Equipo
+TYPES.Item.injury: Herida crítica
+TYPES.Item.specialty: Especialidad
+EFFECT.StatusFullCover: Cobertura completa
+EFFECT.StatusPartialCover: Cobertura parcial
+EFFECT.StatusOverwatch: Vigilancia
+EFFECT.StatusSuppressed: Suprimido
+EFFECT.StatusStop: Stop
+EFFECT.StatusSmoke: Humo
+EFFECT.StatusFire: Fuego
+EFFECT.StatusSlowAction: Acción lenta gastada
+EFFECT.StatusFastAction: Acción rápida gastada
+T2K4E.ActorSheet.ToChat: Enviar objeto al chat
+YZUR.CHAT.ROLL.Accept: Aceptar
+T2K4E.Dialog.ChooseValue.Value: Modificador
+T2K4E.Dialog.ChooseValue.Armor: Modificar Blindaje para {name}
+T2K4E.Dialog.ChooseValue.Ammo: Modificar cantidad de munición para {name}
+T2K4E.Dialog.ChooseValue.Qty: Modificar cantidad para {name}
+T2K4E.ActorSheet.Age: Edad
