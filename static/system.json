@@ -1,68 +1,73 @@
 {
-  "id": "t2k4e",
-  "title": "Twilight: 2000 🪖 (4th Edition)",
-  "description": "Twilight: 2000 is a roleplaying game about survival in mankind’s most desperate hour. Yet, in this bleak world, there is still hope. In the midst of utter destruction, you can start to build something new. Rally people to your ranks. Stake a claim and protect it. And maybe, if you live long enough, start turning the tide.",
-  "version": "11.0.1",
-  "compatibility": {
-    "minimum": 10,
-    "verified": "11.304",
-    "maximum": 11
-  },
-  "author": "Stefouch",
-  "authors": [
-    {
-      "name": "Stefouch",
-      "url": "https://stefouch.be",
-      "discord": "Stefouch#5202",
-      "twitter": "@stefouch"
+    "id": "t2k4e",
+    "title": "Twilight: 2000 🪖 (4th Edition)",
+    "description": "Twilight: 2000 is a roleplaying game about survival in mankind’s most desperate hour. Yet, in this bleak world, there is still hope. In the midst of utter destruction, you can start to build something new. Rally people to your ranks. Stake a claim and protect it. And maybe, if you live long enough, start turning the tide.",
+    "version": "11.0.1",
+    "compatibility": {
+        "minimum": 10,
+        "verified": "11.304",
+        "maximum": 11
     },
-    {
-      "name": "Free League Developer Community",
-      "url": "https://github.com/orgs/fvtt-fria-ligan"
-    }
-  ],
-  "scripts": [],
-  "esmodules": [
-    "t2k4e.js"
-  ],
-  "styles": [
-    "t2k4e.css"
-  ],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    },
-    {
-      "lang": "fr",
-      "name": "French (Français)",
-      "path": "lang/fr.json"
-    },
-    {
-      "lang": "sv",
-      "name": "Swedish (Svenska)",
-      "path": "lang/sv.json"
-    },
-    {
-      "lang": "es",
-      "name": "Spanish (Española)",
-      "path": "lang/es.json"
-    }
-  ],
-  "packs": [],
-  "system": [],
-  "flags": {},
-  "socket": false,
-  "protected": false,
-  "background": "systems/t2k4e/assets/gear-intro_c.jpg",
-  "gridDistance": 2,
-  "gridUnits": "m",
-  "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "sanity",
-  "initiative": "1d10",
-  "url": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt",
-  "manifest": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/latest/download/system.json",
-  "download": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/download/10.2.1/t2k4e-fvtt_v10.2.1.zip",
-  "license": "GPL-3.0-or-later"
+    "author": "Stefouch",
+    "authors": [
+        {
+            "name": "Stefouch",
+            "url": "https://stefouch.be",
+            "discord": "Stefouch#5202",
+            "twitter": "@stefouch"
+        },
+        {
+            "name": "Free League Developer Community",
+            "url": "https://github.com/orgs/fvtt-fria-ligan"
+        }
+    ],
+    "scripts": [],
+    "esmodules": [
+        "t2k4e.js"
+    ],
+    "styles": [
+        "t2k4e.css"
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        },
+        {
+            "lang": "fr",
+            "name": "French (Français)",
+            "path": "lang/fr.json"
+        },
+        {
+            "lang": "sv",
+            "name": "Swedish (Svenska)",
+            "path": "lang/sv.json"
+        },
+        {
+            "lang": "es",
+            "name": "Spanish (Española)",
+            "path": "lang/es.json"
+        },
+        {
+            "lang": "de",
+            "name": "Deutsch",
+            "path": "lang/de.yml"
+        }
+    ],
+    "packs": [],
+    "system": [],
+    "flags": {},
+    "socket": false,
+    "protected": false,
+    "background": "systems/t2k4e/assets/gear-intro_c.jpg",
+    "gridDistance": 2,
+    "gridUnits": "m",
+    "primaryTokenAttribute": "health",
+    "secondaryTokenAttribute": "sanity",
+    "initiative": "1d10",
+    "url": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt",
+    "manifest": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/latest/download/system.json",
+    "download": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/download/10.2.1/t2k4e-fvtt_v10.2.1.zip",
+    "license": "GPL-3.0-or-later"
 }
