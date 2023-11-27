@@ -1,4 +1,3 @@
----
 T2K4E.SheetClassCharacter: Karaktärsblad
 T2K4E.SheetClassVehicle: Fordonsblad
 T2K4E.SheetClassUnit: Enhetsblad
@@ -117,7 +116,7 @@ T2K4E.ActorSheet.NoteTab: Övrigt
 T2K4E.ActorSheet.Nationality: Nationalitet
 T2K4E.ActorSheet.Branch: Bransch
 T2K4E.ActorSheet.MilitaryRank: Militär grad
-T2K4E.ActorSheet.HitCapacity: Skada
+T2K4E.ActorSheet.HitCapacity: Skadekapacitet
 T2K4E.ActorSheet.StressCapacity: Stress
 T2K4E.ActorSheet.CapacityModifier: 'Modifierare:'
 T2K4E.ActorSheet.Experience: Erfarenhet
@@ -133,15 +132,13 @@ T2K4E.ActorSheet.Rating: Värde
 T2K4E.ActorSheet.BaseDie: Tärning
 T2K4E.ActorSheet.Specialties: Specialiteter
 T2K4E.ActorSheet.AddSpecialty: Lägg till en ny specialitet
-T2K4E.ActorSheet.NoSpecialty:
-  Denna karaktär har ingen specialitet. Klicka på "+"
-  för att lägga till en specialitet.
+T2K4E.ActorSheet.NoSpecialty: Denna karaktär har ingen specialitet. Klicka på "+" för att lägga till en specialitet.
 T2K4E.ActorSheet.Combat: Strid
 T2K4E.ActorSheet.Actions: Handlingar
 T2K4E.ActorSheet.Current: Nu
 T2K4E.ActorSheet.Max: Max
 T2K4E.ActorSheet.CuF: Stridsvana
-T2K4E.ActorSheet.UnitMorale: Stridsmoral
+T2K4E.ActorSheet.UnitMorale: Enhetens moral
 T2K4E.ActorSheet.NoArmor: Den här karaktären har inget utrustat kropssskydd.
 T2K4E.ActorSheet.Conditions: Tillstånd
 T2K4E.ActorSheet.CriticalInjuries: Kritisk skada
@@ -244,22 +241,22 @@ T2K4E.UnitSheet.UnitType: Enhetstyp
 T2K4E.UnitSheet.UnitModifiers: Enhetsmodifierare
 T2K4E.UnitSheet.Personnel: Personal
 T2K4E.UnitSheet.Vehicles: Stridsfordon
-T2K4E.UnitSheet.HQ: Högvarter (HQ)
+T2K4E.UnitSheet.HQ: Högkvarter (HK)
 T2K4E.UnitAffiliationNames.friendly: Vänlig
 T2K4E.UnitAffiliationNames.hostile: Fientlig
 T2K4E.UnitAffiliationNames.neutral: Neutral
 T2K4E.UnitAffiliationNames.unknown: Okänd
 T2K4E.UnitModifierNames.airborne: Luftburen
 T2K4E.UnitModifierNames.parachute: Fallskärm
-T2K4E.UnitModifierNames.airmobile: Luftmobil
-T2K4E.UnitModifierNames.airmobileOrganicLift: Airm. O. L.
+T2K4E.UnitModifierNames.airmobile: Flygmobil
+T2K4E.UnitModifierNames.airmobileOrganicLift: Flygm. O. L.
 T2K4E.UnitModifierNames.amphibious: Ampfibisk
 T2K4E.UnitModifierNames.motorized: Motoriserad
 T2K4E.UnitModifierNames.moutain: Berg
 T2K4E.UnitModifierNames.cannon: Kanon
-T2K4E.UnitModifierNames.wheeled: På hjul
+T2K4E.UnitModifierNames.wheeled: Hjulförsedd
 T2K4E.UnitSizeNames.army: Armé XXXX
-T2K4E.UnitSizeNames.corps: Corps XXX
+T2K4E.UnitSizeNames.corps: Kår XXX
 T2K4E.UnitSizeNames.division: Division XX
 T2K4E.UnitSizeNames.Brigade: Brigad X
 T2K4E.UnitSizeNames.regiment: Regimente | | |
@@ -269,18 +266,14 @@ T2K4E.UnitSizeNames.staffel: Staffel ••••
 T2K4E.UnitSizeNames.platoon: Pluton •••
 T2K4E.UnitSizeNames.section: Sektion ••
 T2K4E.UnitSizeNames.squad: Tropp •
-T2K4E.UnitSizeNames.fireteam: Grupp
+T2K4E.UnitSizeNames.fireteam: Eldgrupp
 T2K4E.ItemSheet.Name: Namn
 T2K4E.ItemSheet.FeaturesTab: Funktioner
 T2K4E.ItemSheet.ModifiersTab: Modifierare
 T2K4E.ItemSheet.RollModifiers: Slå modifierare
-T2K4E.ItemSheet.AddNewRollModifier:
-  Lägg till en ny tärningsmodifierare till detta
-  föremål
+T2K4E.ItemSheet.AddNewRollModifier: Lägg till en ny tärningsmodifierare till detta föremål
 T2K4E.ItemSheet.DeleteRollModifier: Ta bort denna tärningsmodifierare
-T2K4E.ItemSheet.NoRollModifier:
-  Detta föremål har ingen tärningsmodifierare. För att
-  lägga till en, klicka på "+" ikonen.
+T2K4E.ItemSheet.NoRollModifier: Detta föremål har ingen tärningsmodifierare. För att lägga till en, klicka på "+" ikonen.
 T2K4E.ItemSheet.SelectRollModifier: Ange namn
 T2K4E.ItemSheet.DescriptionTab: Anteckningar
 T2K4E.ItemSheet.AttributeUsed: Grundegenskap använd
@@ -288,14 +281,14 @@ T2K4E.ItemSheet.SkillUsed: Färdighet använd
 T2K4E.ItemSheet.WeaponMagazine: Magasin
 T2K4E.ItemSheet.Quantity: Antal
 T2K4E.ItemSheet.ItemType: Typ
-T2K4E.ItemSheet.Ammo: Ammunition
+T2K4E.ItemSheet.Ammo: Ammo
 T2K4E.ItemSheet.AmmoType: Ammunitionsidentifierare
 T2K4E.ItemSheet.OverrideOption: Åsidosätt vapnets funktioner
 T2K4E.ItemSheet.Reliability: Pål.
 T2K4E.ItemSheet.RoF: Eldh.
 T2K4E.ItemSheet.Damage: Skada
 T2K4E.ItemSheet.Crit: Krit.
-T2K4E.ItemSheet.Blast: Spräng.
+T2K4E.ItemSheet.Blast: Spräng
 T2K4E.ItemSheet.Range: Räckv.
 T2K4E.ItemSheet.Mag: Mag.
 T2K4E.ItemSheet.Armor: Skydd
@@ -310,7 +303,7 @@ T2K4E.ItemSheet.FeaturesForVehicle: Fordonsegenskaper
 T2K4E.InjurySheet.Category: Kategori
 T2K4E.InjurySheet.Location: Plats
 T2K4E.InjurySheet.TimeLimit: Tidsbegränsning
-T2K4E.InjurySheet.HealTime: Heal Time
+T2K4E.InjurySheet.HealTime: Läketid
 T2K4E.InjurySheet.Effect: Effekt
 T2K4E.InjurySheet.Lethal: Dödlig
 T2K4E.InjurySheet.day: dag
@@ -329,16 +322,12 @@ T2K4E.Chat.Roll.ExtraHits: Extra träffar
 T2K4E.Chat.Roll.Mishap: Missöde
 T2K4E.Chat.Roll.AmmoSpent: Använd ammunition
 T2K4E.Chat.Roll.NoItemNotif: Detta föremål existerar inte längre.
-T2K4E.Chat.Roll.NoReliabilityNotif:
-  Föremålets nuvarande tillförlitlighet gör föremålet
-  obrukbart.
+T2K4E.Chat.Roll.NoReliabilityNotif: Föremålets nuvarande tillförlitlighet gör föremålet obrukbart.
 T2K4E.Chat.Damage.Incapacited: OSKADLIGGJORD
 T2K4E.Chat.Damage.DamagedArmor: Skadad
 T2K4E.Chat.Damage.DamageDealt: '<b>{name}</b> har tillfogat <b>{amount}</b> skada.'
 T2K4E.Chat.Damage.NoDamageDealt: Ingen skada tillfogades <b>{name}</b>.
-T2K4E.Chat.Damage.InitialAmount:
-  Attacken gjorde initialt <b>{damage}</b> skada, med
-  en skyddsmodifikation av {mod}.
+T2K4E.Chat.Damage.InitialAmount: Attacken gjorde initialt <b>{damage}</b> skada, med en skyddsmodifikation av {mod}.
 T2K4E.Chat.Damage.DeflectedDamage: undvek {damage} skada
 T2K4E.Chat.Damage.DeflectedAllDamage: undvek all skada
 T2K4E.Chat.Damage.NoEffect: ingen effekt
@@ -360,18 +349,16 @@ T2K4E.Dialog.Roll.Modifier: Modifierare
 T2K4E.Dialog.Roll.Locate: Lägg till en träfftärning?
 T2K4E.Dialog.Roll.MaxPush: Antal pressanden
 T2K4E.Dialog.Roll.RollMode: Visning
-T2K4E.Dialog.CuF.CoolnessUnderFire: Stridsvana
-T2K4E.Dialog.CuF.UnitMorale: Lägg till Stridsmoralen?
-T2K4E.Dialog.Actor.ChooseActor: Välj en aktör
-T2K4E.Dialog.Damage.ChooseDamage: Amount of Damage
-T2K4E.Dialog.Damage.Description: Choose how much damage to inflict to <b>{target}</b>.
+T2K4E.Dialog.CuF.CoolnessUnderFire: Stridsvana (CUF)
+T2K4E.Dialog.CuF.UnitMorale: Lägg till Enhetens moral?
+T2K4E.Dialog.Actor.ChooseActor: Välj en karaktär
+T2K4E.Dialog.Damage.ChooseDamage: Skadans omfattning
+T2K4E.Dialog.Damage.Description: Ange hur mycket skada du vill tillfoga <b>{target}</b>.
 T2K4E.Dialog.Damage.DamageQuantity: Grundantal
 T2K4E.Dialog.Damage.ExtraHits: Extraträffar
 T2K4E.Dialog.Damage.BarrierArmors: Barriärens skyddsnivå
 T2K4E.Dialog.Damage.BarrierArmorsHint: Multipla barriärer kommasepareras.
-T2K4E.Macro.MultipleItems:
-  Din aktiva aktör {actor} har mer än ett föremål med namnet
-  {item}. Det första matchade objektet kommer att väljas.
+T2K4E.Macro.MultipleItems: Din aktiva aktör {actor} har mer än ett föremål med namnet {item}. Det första matchade objektet kommer att väljas.
 T2K4E.Macro.NoItem: Din aktiva aktör {actor} har inte ett objekt som heter {item}.
 FLPS.TAB.MAIN: Grupp
 FLPS.TAB.TRAVEL: Resehandlingar
@@ -396,9 +383,7 @@ FLPS.TRAVEL.RESET: NOLLSTÄLL
 FLPS.UI.WHO_ROLLS: Vem slår?
 FLPS.UI.WHO_PUSHES: Vem pressar?
 FLPS.UI.ATTENTION: OBS
-FLPS.UI.ERROR.OPEN_SHEET:
-  Var god öppna karaktärsbladet minst en gång innan ni slår
-  för resor.
+FLPS.UI.ERROR.OPEN_SHEET: Var god öppna karaktärsbladet minst en gång innan ni slår för resor.
 FLPS.TRAVEL_ROLL.FORCED_MARCH: Ilmarsch
 FLPS.TRAVEL_ROLL.MARCH_IN_DARKNESS: Marsch i mörker
 FLPS.TRAVEL_ROLL.DRIVE: Kör
@@ -414,33 +399,19 @@ FLPS.TRAVEL_ROLL.MAKE_CAMP: Slå läger
 FLPS.TRAVEL_ROLL.HIDE_CAMP: Dölj läger
 FLPS.TRAVEL_ROLL.COOK_FOOD: Laga mat
 FLPS.SETTINGS.ALLOW_PUSH: Tillåt oändligt antal pressade slag
-FLPS.SETTINGS.ALLOW_PUSH_HINT:
-  Om din SL tillåter ett oändligt antal pressade slag.
-  Eller om du är en SL som vill kunna pressa denna händelses slag; kryssa i detta
-  val för att visa en pressa-knapp på nästan alla slag.
+FLPS.SETTINGS.ALLOW_PUSH_HINT: Om din SL tillåter ett oändligt antal pressade slag. Eller om du är en SL som vill kunna pressa denna händelses slag; kryssa i detta val för att visa en pressa-knapp på nästan alla slag.
 SETTINGS.trackPcAmmo.name: Räkna av spelarnas ammunition
-SETTINGS.trackPcAmmo.label:
-  Huruvida spelarnas ammunition automatiska skall räknas
-  av vid nyttjande.
+SETTINGS.trackPcAmmo.label: Huruvida spelarnas ammunitionsförbrukning ska räknas av.
 SETTINGS.trackNpcAmmo.name: Räkna av SLP:ers ammunition
-SETTINGS.trackNpcAmmo.label:
-  Huruvida spelarnas ammunition automatiska skall räknas
-  av vid nyttjande.
+SETTINGS.trackNpcAmmo.label: Huruvida SLP:ers ammunitionsförbrukning ska räknas av.
 SETTINGS.trackVehicleAmmo.name: Räkna av fordonsammunition
-SETTINGS.trackVehicleAmmo.label:
-  Huruvida spelarnas ammunition automatiska skall räknas
-  av vid nyttjande.
+SETTINGS.trackVehicleAmmo.label: Huruvida spelarnas ammunitionsförbrukning för fordon ska räknas av.
 SETTINGS.showTaskCheckOptions.name: Fråga om uppdragsval som standard
 SETTINGS.showTaskCheckOptions.label: Håll ned shift för att växla.
 SETTINGS.closeRollTooltipDelay.name: Fördröjning av verktygstips för tärningsslag
-SETTINGS.closeRollTooltipDelay.label:
-  Hur många sekunder skall verktygstipset dröja
-  kvar innan de automatiskt stängs ned? Max är 15 minuter. Sätt detta värde till -1
-  för att aldrig stängas.
+SETTINGS.closeRollTooltipDelay.label: Hur många sekunder skall verktygstipset dröja kvar innan de automatiskt stängs ned? Max är 15 minuter. Sätt detta värde till -1 för att aldrig stängas.
 SETTINGS.defaultCharTokenSize.name: Standard prototypstorlek för SLP:er och rollpersoner
-SETTINGS.defaultCharTokenSize.label:
-  Sätt en standard prototypstorlek [0.3, 2.0] för
-  nyskapade SLP:er och rollpersonsaktörer.
+SETTINGS.defaultCharTokenSize.label: Sätt en standard prototypstorlek [0.3, 2.0] för nyskapade SLP:er och rollpersonsaktörer.
 YZUR.CHAT.ROLL.Push: Pressa
 YZUR.CHAT.ROLL.HitLocation: 'Träffområde:'
 YZUR.CHAT.ROLL.HitLocations: 'Träffområden:'
@@ -461,7 +432,7 @@ YZUR.DIETERMS.D6TwilightDie: Bas T6
 YZUR.DIETERMS.D8TwilightDie: Bas T8
 YZUR.DIETERMS.D10TwilightDie: Bas T10
 YZUR.DIETERMS.D12TwilightDie: Bas T12
-YZUR.DIETERMS.AmmoDie: Ammunition
+YZUR.DIETERMS.AmmoDie: Ammo
 YZUR.DIETERMS.LocationDie: Träfftärning
 GAME.Paused: Kriget pausat
 TYPES.Actor.character: Rollperson
@@ -471,7 +442,7 @@ TYPES.Actor.unit: Militär enhet
 TYPES.Actor.party: Resegrupp
 TYPES.Item.weapon: Vapen
 TYPES.Item.armor: Kroppsskydd
-TYPES.Item.ammunition: Ammunition
+TYPES.Item.ammunition: Ammo
 TYPES.Item.grenade: Sprängämne
 TYPES.Item.gear: Utrustning
 TYPES.Item.injury: Kritisk skada
@@ -485,3 +456,21 @@ EFFECT.StatusSmoke: Rök
 EFFECT.StatusFire: Eld
 EFFECT.StatusSlowAction: Långsam handling spenderad
 EFFECT.StatusFastAction: Snabb handling spenderad
+T2K4E.Dialog.ChooseValue.Value: Modifierare
+T2K4E.Dialog.ChooseValue.Ammo: Ange Ammunitionsmängd för {name}
+T2K4E.Dialog.ChooseValue.Armor: Ange Kroppskydd för {name}
+T2K4E.Dialog.ChooseValue.Qty: Ange Antal för {name}
+T2K4E.ActorSheet.Age: Ålder
+T2K4E.MACRO.GetActorTitle: Välj en karaktär
+T2K4E.MACRO.MultipleItems: Din kontrollerade karaktär {actor} har mer än ett föremål med namnet {item}. Det första föremålet kommer att väljas.
+SETTINGS.hideCapacitiesButtons.label: Om plus-minus-knapparna som används för att ändra maxkapaciteten för Skada & Stress på karaktärsbladet ska döljas för spelarna.
+T2K4E.MACRO.GetActorHint: Du har valt flera markörer. Välj bara en av dem.
+T2K4E.MACRO.NoActor: Den karaktär du kontrollerar, {actor} hittades inte.
+T2K4E.MACRO.NoItem: Din karaktär {actor} äger inget föremål vid namn {item}.
+T2K4E.MACRO.RollAction: Handling {action}
+T2K4E.MACRO.RollStat: Slå {stat}
+T2K4E.ActorSheet.ToChat: Skicka föremålet till chatten
+YZUR.CHAT.ROLL.Accept: Acceptera
+SETTINGS.hideCapacitiesButtons.name: Dölj kapacitetsmodifierare
+SETTINGS.hideWeaponProps.name: Dölj vapenegenskaper
+SETTINGS.hideWeaponProps.label: Om du vill dölja egenskapernas kryssrutor för spelarna i vapenformuläret.
