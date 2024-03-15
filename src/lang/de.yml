@@ -47,7 +47,7 @@ T2K4E.ActionNames.drive: Fahrzeug steuern
 T2K4E.Constants: Feste Werte
 T2K4E.ConstantNames.encumbrance: Belastung
 T2K4E.ConstantNames.awareness: Aufmerksamkeit
-T2K4E.ConstantNames.cuf: CUF
+T2K4E.ConstantNames.cuf: RIG
 T2K4E.TravelTasks: Reiseaufgaben
 T2K4E.TravelTaskNames.marching: Marschieren
 T2K4E.TravelTaskNames.driving: Fahren
@@ -120,7 +120,7 @@ T2K4E.ActorSheet.AddSpecialty: Spezialisierung hinzufügen
 T2K4E.ActorSheet.Actions: Aktionen
 T2K4E.ActorSheet.Current: Aktuell
 T2K4E.ActorSheet.Max: Maximal
-T2K4E.ActorSheet.CuF: Coolness Under Fire
+T2K4E.ActorSheet.CuF: Resilienz im Gefecht
 T2K4E.ActorSheet.UnitMorale: Einheitsmoral
 T2K4E.ActorSheet.NoArmor: Dieser Charakter hat keine Panzerung ausgerüstet.
 T2K4E.ActorSheet.Conditions: Zustände
@@ -448,7 +448,7 @@ T2K4E.UnitAffiliationNames.friendly: Verbündet
 T2K4E.UnitModifierNames.moutain: Gebirgs
 T2K4E.UnitModifierNames.wheeled: Rad
 T2K4E.UnitSizeNames.staffel: Staffel ••••
-T2K4E.Dialog.CuF.CoolnessUnderFire: Coolness Under Fire (CUF)
+T2K4E.Dialog.CuF.CoolnessUnderFire: Resilienz im Gefecht (RIG)
 T2K4E.Dialog.Damage.Description: Wähle Schadenshöhe für <b>{target}</b>.
 T2K4E.Dialog.Damage.BarrierArmorsHint: Mehrere Deckungen werden durch Komma getrennt.
 T2K4E.MACRO.MultipleItems: Dein kontrollierter Akteur {actor} hat mehr als einen Gegenstand mit dem Namen {item}. Der erste übereinstimmende Gegenstand wird ausgewählt.
