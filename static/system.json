@@ -53,6 +53,11 @@
             "lang": "de",
             "name": "Deutsch",
             "path": "lang/de.yml"
+        },
+        {
+            "lang": "uk",
+            "name": "українська",
+            "path": "lang/uk.yml"
         }
     ],
     "packs": [],
