@@ -60,3 +60,24 @@ T2K4E.ActorSheet.PermanentRadiation: Постійне
 T2K4E.ActorSheet.Edit: Редагувати
 T2K4E.ActorSheet.Equip: Спорядити
 T2K4E.ActorSheet.Store: Зберігати в рюкзаку
+T2K4E.SkillNames.stamina: Витривалість
+T2K4E.Skill: Навичка
+T2K4E.Skills: Навички
+T2K4E.SkillNames.heavyWeapons: Важка зброя
+T2K4E.SkillNames.closeCombat: Ближній бій
+T2K4E.SkillNames.mobility: Мобільність
+T2K4E.ActionNames.crawl: Повзти
+T2K4E.ActionNames.seekCover: Знайти укриття
+T2K4E.ActionNames.shove: Штовхати
+T2K4E.ActionNames.disarm: Роззброїти
+T2K4E.ActionNames.retreat: Відступити
+T2K4E.ActionNames.prepareBow: Приготувати лук
+T2K4E.ActionNames.firstAid: Перша допомога
+T2K4E.ActionNames.aim: Прицілитись
+T2K4E.TravelTaskNames.hunting: Полювання
+T2K4E.ArmorLocationNames.head: Голова
+T2K4E.ArmorLocationNames.arms: Руки
+T2K4E.ArmorLocationNames.torso: Торс
+T2K4E.ArmorLocationNames.legs: Ноги
+T2K4E.ActorSheet.CapacityModifier: 'Модифікатор:'
+T2K4E.ActorSheet.Add: Додати
