@@ -68,8 +68,8 @@ export default class ActorT2K extends Actor {
     // must verson check this as game.system≥documentTypes.Item changes from an array in v11 to Object in v12
     const foundryVersion = game.version;
     let types;
-    if(foundryVersion > 11.999) {
-      if (this.type === 'vehicle') {
+    if (this.type === 'vehicle') {
+      if(foundryVersion > 11.999) {
         types = Object.fromEntries(Object.keys(game.system.documentTypes.Item).map(t => [t, []]));
         for (const i of this.items.values()) {
         // Excludes mounted weapons from the vehicle's cargo.
@@ -78,12 +78,6 @@ export default class ActorT2K extends Actor {
         }
       }
       else {
-        types = super.itemTypes;
-      }
-    }
-    else {
-      console.log('foundry is v 11.99 or less');
-      if (this.type === 'vehicle') {
         types = Object.fromEntries(game.system.documentTypes.Item.map(t => [t, []]));
         for (const i of this.items.values()) {
         // Excludes mounted weapons from the vehicle's cargo.
@@ -91,9 +85,9 @@ export default class ActorT2K extends Actor {
           types[i.type].push(i);
         }
       }
-      else {
-        types = super.itemTypes;
-      }
+    }
+    else {
+      types = super.itemTypes;
     }
     // Sorts items by sort order.
     for (const type in types) types[type].sort((a, b) => (a.sort || 0) - (b.sort || 0));
