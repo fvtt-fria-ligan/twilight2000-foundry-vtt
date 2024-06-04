@@ -69,13 +69,11 @@ export default class ActorT2K extends Actor {
     const foundryVersion = game.version;
     let types;
     if(foundryVersion > 11.999) {
-      console.log('v12', foundryVersion);
       if (this.type === 'vehicle') {
         types = Object.fromEntries(Object.keys(game.system.documentTypes.Item).map(t => [t, []]));
         for (const i of this.items.values()) {
         // Excludes mounted weapons from the vehicle's cargo.
           if (i.system.isMounted) continue;
-          console.log('T2K4e  | types and such', game.system.documentTypes.Item, types, i);
           types[i.type].push(i);
         }
       }
@@ -90,7 +88,6 @@ export default class ActorT2K extends Actor {
         for (const i of this.items.values()) {
         // Excludes mounted weapons from the vehicle's cargo.
           if (i.system.isMounted) continue;
-          console.log('T2K4e  | types and such', game.system.documentTypes.Item, types, i);
           types[i.type].push(i);
         }
       }
