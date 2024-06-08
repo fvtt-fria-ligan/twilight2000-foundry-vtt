@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [12.0.1] - 2024-06-08
+
+<h4>What's New?</h4><ul><li>Updated system to be combatible with Foundry V12</li></ul>
+
 ## [11.0.1] - 2023-08-12
 
 <h4>What's New?</h4><ul><li>Added spanish translation. Thanks to <i>Bakali77</i>!</li></ul>
