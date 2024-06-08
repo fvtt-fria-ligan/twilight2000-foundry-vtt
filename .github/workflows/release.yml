@@ -95,6 +95,6 @@ jobs:
         with:
           username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
           password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
-          module-id: ${{ secrets.FOUNDRY_ADMIN_MODULE_ID }}
+          module-id: ${{ secrets.FOUNDRY_ADMIN_MODULE_NAME }}
           manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/${{ env.TYPE }}.json
           manifest-file: dist/${{ env.TYPE }}.json
