@@ -1,0 +1,83 @@
+T2K4E.Attribute: Атрибут
+T2K4E.Attributes: Атрибути
+T2K4E.AttributeNames.str: Сила
+T2K4E.AttributeNames.agl: Спритність
+T2K4E.AttributeNames.int: Інтелект
+T2K4E.AttributeNames.emp: Емпатія
+T2K4E.SheetClassCharacter: Лист персонажа
+T2K4E.SheetClassVehicle: Лист транспортного засобу
+T2K4E.SkillNames.recon: Розвідка
+T2K4E.SkillNames.survival: Виживання
+T2K4E.SkillNames.tech: Механіка
+T2K4E.SkillNames.command: Командування
+T2K4E.SkillNames.persuasion: Переконання
+T2K4E.SkillNames.medicalAid: Медична допомога
+T2K4E.Action: Дія
+T2K4E.Actions: Дії
+T2K4E.ActionNames.meleeAttack: Атака ближнього бою
+T2K4E.ActionNames.grapple: Захоплення
+T2K4E.ActionNames.breakFree: Вивільнення
+T2K4E.ActionNames.throwWeapon: Кинути зброю
+T2K4E.ItemTypes.weapon: Зброя
+T2K4E.ItemPropNames.twoHanded: Дворучний
+T2K4E.ItemPropNames.mounted: Встановлений
+T2K4E.ItemPropNames.disposable: Одноразовий
+T2K4E.ActorSheet.MainTab: Характеристики
+T2K4E.ActorSheet.CombatTab: Бій
+T2K4E.ActorSheet.EquipmentTab: Спорядження
+T2K4E.ActorSheet.BiographyTab: Біо
+T2K4E.ActorSheet.NoteTab: Нотатки
+T2K4E.ActorSheet.Branch: Відділення
+T2K4E.ActorSheet.MilitaryRank: Звання
+T2K4E.ActorSheet.ExperienceCurrent: ОД поточні
+T2K4E.ActorSheet.BigDream: Мрія
+T2K4E.ActorSheet.Current: Поточне
+T2K4E.ActorSheet.Max: Макс.
+T2K4E.ActorSheet.InjuryTimeLeft: '{time} залишилось'
+T2K4E.ActorSheet.Diseases: Хвороби
+T2K4E.ActorSheet.TemporaryRadiation: Тимчасове
+T2K4E.ActorSheet.Weapons: Зброя
+T2K4E.ActorSheet.AddWeapon: Додати зброю
+T2K4E.ActorSheet.Unarmed: Беззбройний
+T2K4E.ActorSheet.Delete: Видалити
+T2K4E.ActorSheet.NewItem.weapon: Нова зброя
+T2K4E.ActorSheet.NewItem.armor: Нова броня
+T2K4E.SkillNames.driving: Водіння
+T2K4E.ActorSheet.Nationality: Національність
+T2K4E.SkillNames.rangedCombat: Дальній бій
+T2K4E.ActorSheet.Name: Ім'я
+T2K4E.ActionNames.unarmedAttack: Беззбройна атака
+T2K4E.ActorSheet.Experience: Досвід
+T2K4E.ItemPropNames.ammoBelt: Пояс для боєприпасів
+T2K4E.ActorSheet.ExperienceTotal: ОД загальні
+T2K4E.ActionNames.run: Бігти
+T2K4E.ActorSheet.Appearance: Зовнішній вигляд
+T2K4E.ActorSheet.Actions: Дії
+T2K4E.ActorSheet.CriticalInjuries: Критичні травми
+T2K4E.ActorSheet.AddInjury: Додати нову травму
+T2K4E.ActorSheet.Radiation: Опромінення
+T2K4E.ActorSheet.PermanentRadiation: Постійне
+T2K4E.ActorSheet.Edit: Редагувати
+T2K4E.ActorSheet.Equip: Спорядити
+T2K4E.ActorSheet.Store: Зберігати в рюкзаку
+T2K4E.SkillNames.stamina: Витривалість
+T2K4E.Skill: Навичка
+T2K4E.Skills: Навички
+T2K4E.SkillNames.heavyWeapons: Важка зброя
+T2K4E.SkillNames.closeCombat: Ближній бій
+T2K4E.SkillNames.mobility: Мобільність
+T2K4E.ActionNames.crawl: Повзти
+T2K4E.ActionNames.seekCover: Знайти укриття
+T2K4E.ActionNames.shove: Штовхати
+T2K4E.ActionNames.disarm: Роззброїти
+T2K4E.ActionNames.retreat: Відступити
+T2K4E.ActionNames.prepareBow: Приготувати лук
+T2K4E.ActionNames.firstAid: Перша допомога
+T2K4E.ActionNames.aim: Прицілитись
+T2K4E.TravelTaskNames.hunting: Полювання
+T2K4E.ArmorLocationNames.head: Голова
+T2K4E.ArmorLocationNames.arms: Руки
+T2K4E.ArmorLocationNames.torso: Торс
+T2K4E.ArmorLocationNames.legs: Ноги
+T2K4E.ActorSheet.CapacityModifier: 'Модифікатор:'
+T2K4E.ActorSheet.Add: Додати

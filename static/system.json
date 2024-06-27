@@ -10,16 +10,15 @@
   },
   "author": "Stefouch",
   "authors": [
-    {
-      "name": "Stefouch",
-      "url": "https://stefouch.be",
-      "discord": "Stefouch#5202",
-      "twitter": "@stefouch"
-    },
-    {
-      "name": "Free League Developer Community",
-      "url": "https://github.com/orgs/fvtt-fria-ligan"
-    }
+  {
+    "name": "Stefouch",
+    "url": "https://stefouch.be",
+    "discord": "@Stefouch"
+  },
+  {
+    "name": "Free League Developer Community",
+    "url": "https://github.com/orgs/fvtt-fria-ligan"
+  }
   ],
   "scripts": [],
   "esmodules": [
@@ -29,26 +28,36 @@
     "t2k4e.css"
   ],
   "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    },
-    {
-      "lang": "fr",
-      "name": "French (Français)",
-      "path": "lang/fr.json"
-    },
-    {
-      "lang": "sv",
-      "name": "Swedish (Svenska)",
-      "path": "lang/sv.json"
-    },
-    {
-      "lang": "es",
-      "name": "Spanish (Española)",
-      "path": "lang/es.json"
-    }
+      {
+          "lang": "en",
+          "name": "English",
+          "path": "lang/en.json"
+      },
+      {
+          "lang": "fr",
+          "name": "French (Français)",
+          "path": "lang/fr.json"
+      },
+      {
+          "lang": "sv",
+          "name": "Swedish (Svenska)",
+          "path": "lang/sv.json"
+      },
+      {
+          "lang": "es",
+          "name": "Spanish (Española)",
+          "path": "lang/es.json"
+      },
+      {
+          "lang": "de",
+          "name": "German (Deutsch)",
+          "path": "lang/de.json"
+      },
+      {
+          "lang": "uk",
+          "name": "Ukrainian (українська)",
+          "path": "lang/uk.json"
+      }
   ],
   "packs": [],
   "system": [],
