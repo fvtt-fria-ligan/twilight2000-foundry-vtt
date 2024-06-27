@@ -64,13 +64,26 @@ export default class ActorT2K extends Actor {
 
   /** @override */
   get itemTypes() {
+
+    // must verson check this as game.system≥documentTypes.Item changes from an array in v11 to Object in v12
+    const foundryVersion = game.version;
     let types;
     if (this.type === 'vehicle') {
-      types = Object.fromEntries(game.system.documentTypes.Item.map(t => [t, []]));
-      for (const i of this.items.values()) {
+      if(foundryVersion > 11.999) {
+        types = Object.fromEntries(Object.keys(game.system.documentTypes.Item).map(t => [t, []]));
+        for (const i of this.items.values()) {
         // Excludes mounted weapons from the vehicle's cargo.
-        if (i.system.isMounted) continue;
-        types[i.type].push(i);
+          if (i.system.isMounted) continue;
+          types[i.type].push(i);
+        }
+      }
+      else {
+        types = Object.fromEntries(game.system.documentTypes.Item.map(t => [t, []]));
+        for (const i of this.items.values()) {
+        // Excludes mounted weapons from the vehicle's cargo.
+          if (i.system.isMounted) continue;
+          types[i.type].push(i);
+        }
       }
     }
     else {

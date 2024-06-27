@@ -1,6 +1,6 @@
 {
   "name": "t2k4e",
-  "version": "11.0.1",
+  "version": "12.0.1",
   "description": "A Foundry VTT system for Twilight 2000 4E (Free League Publishing)",
   "type": "module",
   "author": "Stefouch",
@@ -47,7 +47,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "yzur": "github:Stefouch/foundry-year-zero-roller#v5.1.1"
+    "yzur": "github:Stefouch/foundry-year-zero-roller#v5.2.0"
   },
   "devDependencies": {
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
