@@ -13,8 +13,7 @@
   {
     "name": "Stefouch",
     "url": "https://stefouch.be",
-    "discord": "Stefouch#5202",
-    "twitter": "@stefouch"
+    "discord": "@Stefouch"
   },
   {
     "name": "Free League Developer Community",
@@ -26,7 +25,7 @@
     "t2k4e.js"
   ],
   "styles": [
-  "t2k4e.css"
+    "t2k4e.css"
   ],
   "languages": [
       {
