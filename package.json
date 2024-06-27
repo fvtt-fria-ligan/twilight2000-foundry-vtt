@@ -47,7 +47,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "yzur": "github:Stefouch/foundry-year-zero-roller#v5.2.0"
+    "yzur": "github:Stefouch/foundry-year-zero-roller#v5.2.1"
   },
   "devDependencies": {
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
