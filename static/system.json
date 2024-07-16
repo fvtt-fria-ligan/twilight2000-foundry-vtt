@@ -57,6 +57,11 @@
           "lang": "uk",
           "name": "Ukrainian (українська)",
           "path": "lang/uk.json"
+      },
+      {
+          "lang": "ru",
+          "name": "Russian (Русский)",
+          "path": "lang/ru.json"
       }
   ],
   "packs": [],
