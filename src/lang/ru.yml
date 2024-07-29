@@ -331,7 +331,7 @@ T2K4E.Chat.Damage.InitialAmount: Атака имела первоначальн�
 T2K4E.Chat.Damage.DeflectedDamage: отражено {damage} урона,
 T2K4E.Chat.Damage.DeflectedAllDamage: отражен весь урон,
 T2K4E.Chat.Damage.NoEffect: нет эффекта,
-T2K4E.Combat.Attack: {weapon} — атака,
+T2K4E.Combat.Attack: \{weapon\} — атака,
 T2K4E.Combat.Barrier: Барьер,
 T2K4E.Combat.BodyArmor: Нательная броня/укрытие,
 T2K4E.Combat.NoQuantityLeft: Не осталось оружия {weapon}.,
