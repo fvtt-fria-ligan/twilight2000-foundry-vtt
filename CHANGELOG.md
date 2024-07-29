@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [12.0.3] - 2024-06-27
+
+<h4>What's New?</h4>
+<ul>
+<li>Updated  CSS to make journals match the style for Heavy Waters and Black Madonna.</li>
+<li>Addd Roundel font to fix bullets for list items on Mac</li>
+</ul>
+
+<h4>Bug Fixes</h4><ul><li>Updated YZUR to latest version to fix bug where modified rolls failed. Issue #156 </li></ul>
+
 ## [12.0.2] - 2024-06-27
 
 <h4>What's New?</h4><ul><li>Updated YZUR to latest version to fix bug where head locations added a success.</li></ul>
