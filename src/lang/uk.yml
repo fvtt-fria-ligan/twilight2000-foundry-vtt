@@ -81,3 +81,40 @@ T2K4E.ArmorLocationNames.torso: Торс
 T2K4E.ArmorLocationNames.legs: Ноги
 T2K4E.ActorSheet.CapacityModifier: 'Модифікатор:'
 T2K4E.ActorSheet.Add: Додати
+T2K4E.SheetClassUnit: Аркуш юніта
+T2K4E.SheetClassParty: Аркуш отряду
+T2K4E.SkillNames.none: '-'
+T2K4E.ActionNames.shootFirearm: Вогонь з вогнепальної зброї
+T2K4E.ActionNames.clearJam: Прочистити осічку
+T2K4E.ActionNames.aimSniper: Снайперське прицілювання
+T2K4E.ActionNames.shootBow: Стріляти з лука
+T2K4E.ActionNames.aimMortar: Наведення міномета чи гаубиці
+T2K4E.ActionNames.shootHeavyWeapon: Стрільба з тяжкого озброєння
+T2K4E.ActionNames.rally: Вихід
+T2K4E.ActionNames.directFire: Вогонь непрямою наводкою
+T2K4E.ActionNames.overwatch: Зайняти позицію спостерігача
+T2K4E.ActionNames.reload: Перезаряджання
+T2K4E.ActionNames.drive: Водити
+T2K4E.Constants: Константи
+T2K4E.ConstantNames.encumbrance: Вага
+T2K4E.ConstantNames.awareness: Бойова поінформованість
+T2K4E.ConstantNames.cuf: СПВ
+T2K4E.TravelTasks: Завдання дослідження
+T2K4E.TravelTaskNames.marching: Маршування
+T2K4E.TravelTaskNames.driving: Водіння
+T2K4E.TravelTaskNames.gathering: Збирання
+T2K4E.TravelTaskNames.keepingWatch: Спостереження
+T2K4E.TravelTaskNames.scrounging: Пошук ресурсів
+T2K4E.TravelTaskNames.foraging: Пошук їжі
+T2K4E.TravelTaskNames.fishing: Рибалка
+T2K4E.TravelTaskNames.makingCamp: Розбивка табору
+T2K4E.TravelTaskNames.cooking: Готування їжі
+T2K4E.TravelTaskNames.resting: Відпочинок
+T2K4E.TravelTaskNames.sleeping: Сон
+T2K4E.TravelTaskNames.exploring: Дослідження
+T2K4E.ConditionNames.starving: Голод
+T2K4E.ConditionNames.dehydrated: Дегідрація
+T2K4E.ConditionNames.sleepless: Позбавлений сну
+T2K4E.ConditionNames.hypothermic: Гіпотермія
+T2K4E.InjuryCategoryNames.physical: Фізичний
+T2K4E.InjuryCategoryNames.mental: Ментальний
