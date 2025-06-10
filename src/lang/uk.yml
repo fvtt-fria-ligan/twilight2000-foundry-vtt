@@ -17,7 +17,7 @@ T2K4E.Actions: Дії
 T2K4E.ActionNames.meleeAttack: Атака ближнього бою
 T2K4E.ActionNames.grapple: Захоплення
 T2K4E.ActionNames.breakFree: Вивільнення
-T2K4E.ActionNames.throwWeapon: Кинути зброю
+T2K4E.ActionNames.throwWeapon: Метнути Зброю
 T2K4E.ItemTypes.weapon: Зброя
 T2K4E.ItemPropNames.twoHanded: Дворучний
 T2K4E.ItemPropNames.mounted: Встановлений
@@ -48,14 +48,14 @@ T2K4E.SkillNames.rangedCombat: Дальній бій
 T2K4E.ActorSheet.Name: Ім'я
 T2K4E.ActionNames.unarmedAttack: Беззбройна атака
 T2K4E.ActorSheet.Experience: Досвід
-T2K4E.ItemPropNames.ammoBelt: Пояс для боєприпасів
+T2K4E.ItemPropNames.ammoBelt: Патронташ
 T2K4E.ActorSheet.ExperienceTotal: ОД загальні
 T2K4E.ActionNames.run: Бігти
 T2K4E.ActorSheet.Appearance: Зовнішній вигляд
 T2K4E.ActorSheet.Actions: Дії
 T2K4E.ActorSheet.CriticalInjuries: Критичні травми
 T2K4E.ActorSheet.AddInjury: Додати нову травму
-T2K4E.ActorSheet.Radiation: Опромінення
+T2K4E.ActorSheet.Radiation: Радіація
 T2K4E.ActorSheet.PermanentRadiation: Постійне
 T2K4E.ActorSheet.Edit: Редагувати
 T2K4E.ActorSheet.Equip: Спорядити
@@ -118,3 +118,55 @@ T2K4E.ConditionNames.sleepless: Позбавлений сну
 T2K4E.ConditionNames.hypothermic: Гіпотермія
 T2K4E.InjuryCategoryNames.physical: Фізичний
 T2K4E.InjuryCategoryNames.mental: Ментальний
+T2K4E.ActionTypes.fast: Швидкий
+T2K4E.ActionTypes.slow: Повільний
+T2K4E.Ranges.close: У ближньому бою
+T2K4E.Ranges.short: Короткий
+T2K4E.Ranges.medium: Середній
+T2K4E.Ranges.long: далекий
+T2K4E.Ranges.extreme: Надзвичайно Високий
+T2K4E.ItemTypes.ammunition: Амуніція
+T2K4E.ItemTypes.armor: Броня
+T2K4E.ItemTypes.gear: Спорядження
+T2K4E.ItemTypes.grenade: Вибухівка
+T2K4E.ItemTypes.injury: Травма
+T2K4E.ItemTypes.specialty: Спеціальне
+T2K4E.ItemPropNames.magazine: Це Магазин
+T2K4E.ItemPropNames.armored: Броньоване
+T2K4E.ItemPropNames.scope: Приціл
+T2K4E.ItemPropNames.bipod: Сошки
+T2K4E.ItemPropNames.tripod: Тринога
+T2K4E.ItemPropNames.nightVision: Нічне Бачення
+T2K4E.ItemPropNames.bayonet: Штик
+T2K4E.ItemPropNames.suppressor: Респіратор
+T2K4E.ActorTypes.npc: неігровий персонаж (НІП)
+T2K4E.ActorTypes.character: Персонаж Гравця (ПГ)
+T2K4E.ActorTypes.vehicle: Транспорт
+T2K4E.ActorSheet.HitCapacity: Очки Здоров'я
+T2K4E.ActorSheet.StressCapacity: Очки Стрессу
+T2K4E.ActorSheet.MoralCode: Моральний кодекс
+T2K4E.ActorSheet.Buddy: Друг
+T2K4E.ActorSheet.GroupMeeting: 'Як ви зустріли группу:'
+T2K4E.ActorSheet.AttributesAndSkills: Атрибути і Навички
+T2K4E.ActorSheet.Rating: Рейтинг
+T2K4E.ActorSheet.BaseDie: Базовий дайс
+T2K4E.ActorSheet.AddSpecialty: Додати нову спеціалізацію
+T2K4E.ActorSheet.Specialties: Спеціалізація
+T2K4E.ActorSheet.NoSpecialty: Цей персонаж немає спеціалізацію. Натисніть іконку "+" що би додати нову спеціалізацію.
+T2K4E.ActorSheet.Combat: Бій
+T2K4E.ActorSheet.CuF: Холоднокровність під вогнем
+T2K4E.ActorSheet.UnitMorale: Мораль бійця
+T2K4E.ActorSheet.NoArmor: Цей персонаж не носить броні.
+T2K4E.ActorSheet.Conditions: Стани
+T2K4E.ActorSheet.RadiationRoll: Радіаційна атака
+T2K4E.ActorSheet.EncumbranceTooHeavy: ЗАНАДТО ВАЖКИЙ
+T2K4E.ActorSheet.EncumbranceFull: ІНВЕНТАР Повний
+T2K4E.ActorSheet.Cover: Укриття
+T2K4E.ActorSheet.AddArmor: Додати нову броню
+T2K4E.ActorSheet.AddGear: Додати нове спорядження
+T2K4E.ActorSheet.AddAmmo: Додати нові боєприпаси
+T2K4E.ActorSheet.Encumbrance: Вага
+T2K4E.ActorSheet.CombatGearEncumbrance: Бойове спорядження (Вага)
+T2K4E.ActorSheet.BackpackEncumbrance: Рюкзак (Вага)
+T2K4E.ActorSheet.NewItem.gear: Нове спорядження
+T2K4E.ActorSheet.NewItem.ammunition: Нові Боєприпаси
