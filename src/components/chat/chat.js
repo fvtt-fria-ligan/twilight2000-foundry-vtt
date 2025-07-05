@@ -18,7 +18,7 @@ export default class ChatMessageTW2K4E extends foundry.documents.ChatMessage {
     }
     const buttonsApply = html.querySelectorAll('.dice-button.accept');
     for (let i = 0; i < buttonsApply.length; i++) {
-      buttonsApply[i].addEventListener('click'. _onRollAccept);
+      buttonsApply[i].addEventListener('click', _onRollAccept);
     }
     // html.on('click', '.dice-button.push', _onRollPush);
     // html.on('click', '.dice-button.accept', _onRollAccept);
