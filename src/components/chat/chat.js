@@ -11,6 +11,15 @@ export default class ChatMessageTW2K4E extends foundry.documents.ChatMessage {
   static addChatListeners(html) {
     ActorT2K.chatListeners(html);
     ItemT2K.chatListeners(html);
+
+    const buttonsPush = html.querySelectorAll('.dice-button.push');
+    for (let i = 0; i < buttonsPush.length; i++) {
+      buttonsPush[i].addEventListener('click', _onRollPush);
+    }
+    const buttonsApply = html.querySelectorAll('.dice-button.accept');
+    for (let i = 0; i < buttonsApply.length; i++) {
+      buttonsApply[i].addEventListener('click'. _onRollAccept);
+    }
     // html.on('click', '.dice-button.push', _onRollPush);
     // html.on('click', '.dice-button.accept', _onRollAccept);
   }
