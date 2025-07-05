@@ -24,7 +24,8 @@ import { enrichTextEditors } from './system/enricher.js';
 import { preloadHandlebarsTemplates, registerHandlebars } from './system/handlebars.js';
 import { createT2KMacro, rollItem, setupMacroFolder } from './system/macros.js';
 import displayMessages from './components/message-system.js';
-import * as Chat from './components/chat/chat.js';
+// import * as Chat from './components/chat/chat.js';
+import ChatMessageTW2K4E from './components/chat/chat.js';
 
 // Imports Documents.
 import ActorT2K from './actor/actor.js';
@@ -126,30 +127,30 @@ Hooks.once('init', function () {
 
   // Registers sheet application classes.
   // This will stop using the core sheets and instead use our customized versions.
-  Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('t2k4e', ActorSheetT2KCharacter, {
+  foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.registerSheet('t2k4e', ActorSheetT2KCharacter, {
     types: ['character', 'npc'],
     makeDefault: true,
     label: 'T2K4E.SheetClassCharacter',
   });
-  Actors.registerSheet('t2k4e', ActorSheetT2KVehicle, {
+  foundry.documents.collections.Actors.registerSheet('t2k4e', ActorSheetT2KVehicle, {
     types: ['vehicle'],
     makeDefault: true,
     label: 'T2K4E.SheetClassVehicle',
   });
-  Actors.registerSheet('t2k4e', ActorSheetT2KUnit, {
+  foundry.documents.collections.Actors.registerSheet('t2k4e', ActorSheetT2KUnit, {
     types: ['unit'],
     makeDefault: true,
     label: 'T2K4E.SheetClassUnit',
   });
-  Actors.registerSheet('t2k4e', ActorSheetT2KParty, {
+  foundry.documents.collections.Actors.registerSheet('t2k4e', ActorSheetT2KParty, {
     types: ['party'],
     makeDefault: true,
     label: 'T2K4E.SheetClassParty',
   });
 
-  Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
+  foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
+  foundry.documents.collections.Items.registerSheet('t2k4e', ItemSheetT2K, { makeDefault: true });
 
   registerSystemSettings();
   enrichTextEditors();
@@ -183,25 +184,23 @@ Hooks.once('diceSoNiceReady', dice3d => registerDsN(dice3d));
 
 /* -------------------------------------------- */
 
-Hooks.on('renderChatLog', (_app, html, _data) => Chat.addChatListeners(html));
-
-/* -------------------------------------------- */
-
-Hooks.on('getChatLogEntryContext', Chat.addChatMessageContextOptions);
-
-/* -------------------------------------------- */
-
-Hooks.on('renderChatMessage', (app, html, _data) => {
+Hooks.on('renderChatMessageHTML', (app, html, data) => {
+  ChatMessageTW2K4E.addChatListeners(html);
   // Hides chat action buttons.
-  Chat.hideChatActionButtons(html);
+  ChatMessageTW2K4E.hideChatActionButtons(html);
 
   // Automatically closes dice results tooltips.
-  let delay = game.settings.get('t2k4e', 'closeRollTooltipDelay');
-  if (delay >= 0) {
-    delay = Math.min(delay, 15 * 60);
-    Chat.closeRollTooltip(app, html, delay * 1000);
-  }
+  // let delay = game.settings.get('t2k4e', 'closeRollTooltipDelay');
+  // if (delay >= 0) {
+  //   delay = Math.min(delay, 15 * 60);
+  //   ChatMessageTW2K4E.closeRollTooltip(html, delay * 1000);
+  // }
 });
+
+/* -------------------------------------------- */
+
+Hooks.on('getChatLogEntryContext', ChatMessageTW2K4E.addChatMessageContextOptions);
+
 
 /* -------------------------------------------- */
 

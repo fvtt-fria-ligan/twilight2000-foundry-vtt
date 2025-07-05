@@ -2,9 +2,9 @@ import { enrichTextFields } from '@utils/utils';
 
 /**
  * Twilight 2000 Item Sheet.
- * @extends {ItemSheet} Extends the basic ItemSheet
+ * @extends {foundry.appv1.sheets.ItemSheet} Extends the basic ItemSheet
  */
-export default class ItemSheetT2K extends ItemSheet {
+export default class ItemSheetT2K extends foundry.appv1.sheets.ItemSheet {
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */

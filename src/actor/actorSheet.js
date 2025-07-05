@@ -5,9 +5,9 @@ import { enrichTextFields } from '@utils/utils.js';
 
 /**
  * Twilight 2000 Actor Sheet.
- * @extends {ActorSheet} Extends the basic ActorSheet
+ * @extends {foundry.appv1.sheets.ActorSheet} Extends the basic ActorSheet
  */
-export default class ActorSheetT2K extends ActorSheet {
+export default class ActorSheetT2K extends foundry.appv1.sheets.ActorSheet {
   /* ------------------------------------------- */
   /*  Sheet Properties                           */
   /* ------------------------------------------- */

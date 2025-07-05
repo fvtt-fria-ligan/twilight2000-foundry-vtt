@@ -9,7 +9,7 @@ export async function preloadHandlebarsTemplates() {
   // const paths = PATHS;
   // console.log('T2K4E | Loading Handlebars templates:', paths);
   // return loadTemplates(paths);
-  return loadTemplates([
+  return foundry.applications.handlebars.loadTemplates([
     // Shared Partials
     // 'templates/dice/roll.html',
 
