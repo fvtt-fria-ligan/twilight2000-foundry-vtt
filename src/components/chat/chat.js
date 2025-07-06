@@ -8,6 +8,11 @@ export default class ChatMessageTW2K4E extends foundry.documents.ChatMessage {
   prepareData() {
     super.perpareData();
   }
+
+  /** 
+ * Adds Event Listeners to the Chat log.
+ * @param {HTMLElement} html The DOM
+ */
   static addChatListeners(html) {
     ActorT2K.chatListeners(html);
     ItemT2K.chatListeners(html);
@@ -20,25 +25,26 @@ export default class ChatMessageTW2K4E extends foundry.documents.ChatMessage {
     for (let i = 0; i < buttonsApply.length; i++) {
       buttonsApply[i].addEventListener('click', _onRollAccept);
     }
-    // html.on('click', '.dice-button.push', _onRollPush);
-    // html.on('click', '.dice-button.accept', _onRollAccept);
   }
 
+  /* ------------------------------------------- */
+  /*  Hiding Buttons                             */
+  /* ------------------------------------------- */
+
+  /**
+ * Hides buttons of Chat messages for non-owners.
+ * @param {HTMLElement} html DOM
+ */
   static hideChatActionButtons(html) {
-    console.log('passed HTML: ', html);
     // const button = html.querySelectorAll('.card-buttons button');
     const chatCard = html.querySelectorAll('.t2k4e.chat-card');
-    console.log('Gathered HTML: ', chatCard);
 
     // Exits early if no chatCard were found.
     if (chatCard.length <= 0) return;
-    console.log('data-actor-id: ', chatCard[0].dataset.actorId);
     // Hides buttons.
     chatCard.forEach(card =>{
       const actor = game.actors.get(card.dataset.actorId);
-      console.log('card: ', card);
       const buttons = card.querySelectorAll('button');
-      console.log(actor);
       for (const btn of buttons) {
         if (actor && !actor.isOwner) btn.style.display = 'none';
       }
@@ -46,17 +52,6 @@ export default class ChatMessageTW2K4E extends foundry.documents.ChatMessage {
   }
 
 }
-
-/**
- * Adds Event Listeners to the Chat log.
- * @param {HTMLElement} html The DOM
- */
-// export function addChatListeners(html) {
-//   ActorT2K.chatListeners(html);
-//   ItemT2K.chatListeners(html);
-//   html.on('click', '.dice-button.push', _onRollPush);
-//   html.on('click', '.dice-button.accept', _onRollAccept);
-// }
 
 /* ------------------------------------------- */
 /*  Roll Push                                  */
@@ -245,12 +240,3 @@ export function closeRollTooltip(message, html, delay = 60000) {
     div.click();
   }, delay);
 }
-
-/* ------------------------------------------- */
-/*  Hiding Buttons                             */
-/* ------------------------------------------- */
-
-/**
- * Hides buttons of Chat messages for non-owners.
- * @param {HTMLElement} html DOM
- */

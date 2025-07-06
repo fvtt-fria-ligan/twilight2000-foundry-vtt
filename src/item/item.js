@@ -553,7 +553,6 @@ export default class ItemT2K extends Item {
   /* ------------------------------------------- */
 
   static chatListeners(html) {
-    console.log(html);
     const button = html.querySelectorAll('.card-buttons button');
     for (let i = 0; i < button.length; i++) {
       button[i].addEventListener('click', this._onChatCardAction.bind(this));

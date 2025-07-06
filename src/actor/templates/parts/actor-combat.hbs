@@ -24,7 +24,7 @@
           <h4><a class="button cuf-roll">{{localize "T2K4E.ActorSheet.CuF"}}</a></h4>
         </div>
         <div class="col-3 stat-score">
-          {{> scoreSelector name="system.cuf.score" selected=system.cuf.score}}
+          {{selectBuilder "system.cuf.score" @root.config.dieScores system.cuf.score}}
         </div>
         <div class="col-3 stat-value">
           {{#if (lte system.cuf.value 0)}}–
@@ -40,7 +40,7 @@
           <h4><a class="button unit-morale-roll">{{localize "T2K4E.ActorSheet.UnitMorale"}}</a></h4>
         </div>
         <div class="col-3 stat-score">
-          {{> scoreSelector name="system.unitMorale.score" selected=system.unitMorale.score}}
+          {{selectBuilder "system.unitMorale.score" @root.config.dieScores system.unitMorale.score}}
         </div>
         <div class="col-3 stat-value">
           {{#if (lte system.unitMorale.value 0)}}–
