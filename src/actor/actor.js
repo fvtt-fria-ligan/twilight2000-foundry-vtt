@@ -1,3 +1,5 @@
+/* eslint-disable no-empty-function */
+/* eslint-disable no-unused-vars */
 import { getDieSize, T2KRoller } from '../components/roll/dice.js';
 import { T2K4E } from '../system/config.js';
 import Modifier from '../components/modifier.js';

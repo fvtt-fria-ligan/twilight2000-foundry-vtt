@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* ============================================================================
  * TWILIGHT 2000 4E
  * Official website: https://frialigan.se/en/games/twilight-2000/

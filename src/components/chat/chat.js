@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import ActorT2K from '../../actor/actor.js';
 import ItemT2K from '../../item/item.js';
 import T2KDialog from '../dialog/dialog.js';
