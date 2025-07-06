@@ -128,7 +128,7 @@
     <div class="tab tab-biography" data-group="primary" data-tab="biography">
       <div class="flexcol">
         <h2>{{localize "T2K4E.ActorSheet.Appearance"}}</h2>
-        {{editor system.bio.appearance target="system.bio.appearance" button=true editable=editable}}
+        {{editor system.bio.appearance target="system.bio.appearance" button=true editable=editable engine="prosemirror" collaborate=false }}
 
         <h2>{{localize "T2K4E.ActorSheet.Buddy"}}</h2>
         <input type="text" name="system.bio.buddy" value="{{system.bio.buddy}}"/>
