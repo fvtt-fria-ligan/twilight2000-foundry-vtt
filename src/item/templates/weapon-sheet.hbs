@@ -52,7 +52,7 @@
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Blast"}}</label>
-          {{> scoreSelector name="system.blast" selected=system.blast}}
+          {{selectBuilder "system.blast" @root.config.dieScores system.blast}}
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Range"}}</label>
@@ -104,12 +104,10 @@
         <div class="form-group">
           <label>{{localize "T2K4E.ItemSheet.WeaponMagazine"}}</label>
           <select name="system.mag.target">
-            {{#select system.mag.target}}
             <option value=""></option>
             {{#each ammunitionTargets as | name key |}}
             <option value="{{key}}">{{name}}</option>
             {{/each}}
-            {{/select}}
           </select>
         </div>
         {{/if}}
