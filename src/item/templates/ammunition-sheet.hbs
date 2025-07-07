@@ -83,7 +83,7 @@
           </div>
           <div class="flexcol">
             <label>{{localize "T2K4E.ItemSheet.Blast"}}</label>
-            {{> scoreSelector name="system.blast" selected=system.blast}}
+            {{selectBuilder "system.blast" @root.config.dieScores system.blast}}
           </div>
           <div class="flexcol">
             <label>{{localize "T2K4E.ItemSheet.Range"}}</label>
