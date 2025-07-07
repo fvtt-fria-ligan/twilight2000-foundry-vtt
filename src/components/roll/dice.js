@@ -102,10 +102,10 @@ export class T2KRoller {
       rollMode = opts.rollMode;
     }
     // 3 — Clamps values.
-    attribute = Math.clamped(attribute, 0, 12);
-    skill = Math.clamped(skill, 0, 12);
-    modifier = Math.clamped(modifier, -100, 100);
-    maxPush = Math.clamped(maxPush, 0, 100);
+    attribute = Math.clamp(attribute, 0, 12);
+    skill = Math.clamp(skill, 0, 12);
+    modifier = Math.clamp(modifier, -100, 100);
+    maxPush = Math.clamp(maxPush, 0, 100);
 
     // 4 — Creates the roll.
     const dice = getDiceQuantities(attribute, skill, rof, locate);

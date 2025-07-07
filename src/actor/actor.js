@@ -358,7 +358,7 @@ export default class ActorT2K extends Actor {
     system.encumbrance = {
       value: val,
       max,
-      pct: Math.clamped((val / max) * 100, 0, 100),
+      pct: Math.clamp((val / max) * 100, 0, 100),
       encumbered: val > max,
     };
     return system;

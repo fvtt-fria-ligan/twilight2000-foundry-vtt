@@ -140,7 +140,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
 
     if (event.type === 'click') newCount--;
     else newCount++; // contextmenu
-    newCount = Math.clamped(newCount, min, max);
+    newCount = Math.clamp(newCount, min, max);
 
     return this.actor.update({ [`system.${field}.value`]: newCount });
   }
@@ -165,7 +165,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     const min = -12;
     const max = 12;
     const currentMod = getProperty(this.actor, `system.${field}.modifier`) || 0;
-    const newMod = Math.clamped(currentMod + mod, min, max);
+    const newMod = Math.clamp(currentMod + mod, min, max);
 
     return this.actor.update({ [`system.${field}.modifier`]: newMod });
   }
