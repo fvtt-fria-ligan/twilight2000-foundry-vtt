@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import ActorSheetT2K from '../actorSheet.js';
 import { TravelActionsConfig } from './components/travel-actions.js';
 
@@ -29,7 +30,8 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
     for (let i = 0; i < (partyData.system.members || []).length; i++) {
       ownedActorId = partyData.system.members[i];
       partyData.partyMembers[ownedActorId] = game.actors.get(ownedActorId);
-      partyData.partyMembers[ownedActorId].enrichedName = await TextEditor.enrichHTML(
+      // eslint-disable-next-line max-len
+      partyData.partyMembers[ownedActorId].enrichedName = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
         `@Actor[${partyData.partyMembers[ownedActorId].name}]`,
         { async: true },
       );
@@ -78,7 +80,7 @@ export default class ActorSheetT2KParty extends ActorSheetT2K {
       action.displayJournalEntry = !!action.journalEntryName && !!game.journal.getName(action.journalEntryName);
       if (action.displayJournalEntry) {
         const str = `@JournalEntry[${action.journalEntryName.capitalize()}]{${game.i18n.localize(action.name)}}`;
-        action.enrichedEntryName = await TextEditor.enrichHTML(str, { async: true });
+        action.enrichedEntryName = await foundry.applications.ux.TextEditor.implementation.enrichHTML(str, { async: true });
       }
     }
     return travelActions;
