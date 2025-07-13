@@ -538,7 +538,7 @@ export default class ItemT2K extends Item {
       speaker: ChatMessage.getSpeaker({ actor: this.actor, token }),
       content: await foundry.applications.handlebars.renderTemplate(ItemT2K.CHAT_TEMPLATE[this.type], cardData),
       // flavor: this.name,
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      type: CONST.CHAT_MESSAGE_STYLES.OTHER,
     };
 
     // Apply the roll mode to adjust message visibility.
