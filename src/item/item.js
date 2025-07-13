@@ -536,7 +536,7 @@ export default class ItemT2K extends Item {
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ actor: this.actor, token }),
-      content: await renderTemplate(ItemT2K.CHAT_TEMPLATE[this.type], cardData),
+      content: await foundry.applications.handlebars.renderTemplate(ItemT2K.CHAT_TEMPLATE[this.type], cardData),
       // flavor: this.name,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
     };

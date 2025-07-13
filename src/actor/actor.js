@@ -648,7 +648,7 @@ export default class ActorT2K extends Actor {
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ token: this.token }),
-      content: await renderTemplate(template, templateData),
+      content: await foundry.applications.handlebars.renderTemplate(template, templateData),
       sound: CONFIG.sounds.notification,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
     };

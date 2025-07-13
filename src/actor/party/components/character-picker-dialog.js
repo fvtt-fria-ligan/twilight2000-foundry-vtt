@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export class CharacterPickerDialog extends Dialog {
   /**
    * Show dialog that allows to pick a character from a list
@@ -47,7 +48,7 @@ export class CharacterPickerDialog extends Dialog {
     let actor;
     for (let i = 0; i < characters.length; i++) {
       actor = characters[i] instanceof Actor ? characters[i] : game.actors.get(characters[i]);
-      html += await renderTemplate('systems/t2k4e/templates/actor/party/components/member-component.hbs', {
+      html += await foundry.applications.handlebars.renderTemplate('systems/t2k4e/templates/actor/party/components/member-component.hbs', {
         partyMember: actor,
         noCharSheetLink: true,
       });

@@ -13,13 +13,13 @@
     {{! Attribute }}
     <div class='form-group'>
       <label>{{localize 'T2K4E.Dialog.Roll.Attribute'}}</label>
-      <div class='flexrow'>{{rangePicker name='attribute' value=(mathMax 6 data.attribute) min=0 max=12 step=2}}</div>
+      <div class='flexrow'><range-picker name='attribute' value={{mathMax 6 data.attribute}} min=0 max=12 step=2 /></div>
     </div>
 
     {{! Skill }}
     <div class='form-group'>
       <label>{{localize 'T2K4E.Dialog.Roll.Skill'}}</label>
-      <div class='flexrow'>{{rangePicker name='skill' value=(mathMax 6 data.skill) min=0 max=12 step=2}}</div>
+      <div class='flexrow'><range-picker name='skill' value={{mathMax 6 data.skill}} min=0 max=12 step=2 /></div>
     </div>
   {{/if}}
 
@@ -29,7 +29,7 @@
   {{#if data.rof}}
     <div class='form-group'>
       <label>{{localize 'T2K4E.Dialog.Roll.RoF'}}</label>
-      <div class='flexrow'>{{rangePicker name='rof' value=0 min=0 max=data.rof step=1}}</div>
+      <div class='flexrow'><range-picker name='rof' value=0 min=0 max=data.rof step=1 /></div>
     </div>
   {{/if}}
 

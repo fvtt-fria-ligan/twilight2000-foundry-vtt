@@ -80,15 +80,43 @@
 	}
 
 	.item-controls {
+		display: flex;
+		flex-direction: row;
 		flex: 0 0 80px;
 		padding-bottom: 2px;
 		text-align: right;
 		font-size: .7rem;
+		justify-content: flex-end;
 
-		a.button + a.button {
+		a.button {
+				border: none;
+				padding-bottom: 2px;
+		        text-align: right;
+		        font-size: .7rem;
+				background: transparent;
+				padding-inline: 2px;
+			}
+
+
+		.item-buttons {
+			display: flex;
+
+			a.button {
+				border: none;
+				padding-bottom: 2px;
+		        text-align: right;
+		        font-size: .7rem;
+				background: transparent;
+				padding-inline: 2px;
+			}
+
+			a.button + a.button {
 			margin-left: 2px;
 		}
 
+		}
+
+		
 		.item-equip:not(.equipped),
 		.item-backpack:not(.packed) {
 			color: @colorTan;

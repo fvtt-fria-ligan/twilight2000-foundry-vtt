@@ -421,7 +421,9 @@ a.inline-roll {
   border: none;
 }
 .t2k4e a:hover {
+  color: #1b1316;
   text-shadow: 0 0 10px #604f43;
+  
 }
 .t2k4e input[type="text"],
 .t2k4e input[type="number"],

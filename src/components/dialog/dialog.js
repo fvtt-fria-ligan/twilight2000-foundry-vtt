@@ -63,7 +63,7 @@ export default class T2KDialog extends Dialog {
    */
   static async askRollOptions(rollData, options) {
     const template = 'systems/t2k4e/templates/components/dialog/roll-dialog.hbs';
-    const content = await renderTemplate(template, {
+    const content = await foundry.applications.handlebars.renderTemplate(template, {
       data: rollData,
       config: CONFIG.T2K4E,
     });
@@ -117,7 +117,7 @@ export default class T2KDialog extends Dialog {
    */
   static async askCuFOptions(rollData, options) {
     const template = 'systems/t2k4e/templates/components/dialog/cuf-dialog.hbs';
-    const content = await renderTemplate(template, {
+    const content = await foundry.applications.handlebars.renderTemplate(template, {
       data: rollData,
       config: CONFIG.T2K4E,
     });
@@ -168,7 +168,7 @@ export default class T2KDialog extends Dialog {
    */
   static async chooseActor(actors, options) {
     const template = 'systems/t2k4e/templates/components/dialog/actor-choice-dialog.hbs';
-    const content = await renderTemplate(template, {
+    const content = await foundry.applications.handlebars.renderTemplate(template, {
       actors,
       config: CONFIG.T2K4E,
     });
@@ -216,7 +216,7 @@ export default class T2KDialog extends Dialog {
    */
   static async chooseDamage(damageData, options) {
     const template = 'systems/t2k4e/templates/components/dialog/damage-choice-dialog.hbs';
-    const content = await renderTemplate(template, {
+    const content = await foundry.applications.handlebars.renderTemplate(template, {
       data: damageData,
       config: CONFIG.T2K4E,
     });
@@ -266,7 +266,7 @@ export default class T2KDialog extends Dialog {
    */
   static async chooseValue(valueData, options) {
     const template = 'systems/t2k4e/templates/components/dialog/value-choice-dialog.hbs';
-    const content = await renderTemplate(template, {
+    const content = await foundry.applications.handlebars.renderTemplate(template, {
       data: valueData,
       config: CONFIG.T2K4E,
     });
