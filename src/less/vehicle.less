@@ -260,11 +260,14 @@
           }
 
           .occupant-buttons {
+            display: flex;
+            flex-direction: row;
             margin: (@gap * 2) 0 0 0;
             justify-self: end;
             a + a {
               margin-left: @gap * 3;
             }
+
           }
         }
       }
