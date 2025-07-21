@@ -26,9 +26,9 @@
         {{!-- <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Reliability"}}</label>
           <div class="flexrow">
-            {{> scoreSelector name="system.reliability.score" selected=system.reliability.score}}
+            {{selectBuilder "system.reliability.score" @root.config.dieScores system.reliability.score}}
             <span class="sep">/</span>
-            {{> scoreSelector name="system.reliability.max" selected=system.reliability.max}}
+            {{selectBuilder "system.reliability.max" @root.config.dieScores system.reliability.max}}
           </div>
         </div> --}}
         {{!-- <div class="flexcol">
@@ -45,7 +45,7 @@
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Blast"}}</label>
-          {{> scoreSelector name="system.blast" selected=system.blast}}
+           {{selectBuilder "system.blast" @root.config.dieScores system.blast}}
         </div>
         <div class="flexcol">
           <label>{{localize "T2K4E.ItemSheet.Range"}}</label>

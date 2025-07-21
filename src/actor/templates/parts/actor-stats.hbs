@@ -19,7 +19,7 @@
           <h3><a class="button attribute-roll" data-attribute="{{attr}}">{{localize (concat "T2K4E.AttributeNames." attr)}}</a></h3>
         </div>
         <div class="col-3 stat-score">
-          {{> scoreSelector name=(concat "system.attributes." attr ".score") selected=attribute.score}}
+          {{selectBuilder (concat "system.attributes." attr ".score") @root.config.dieScores attribute.score }}
         </div>
         <div class="col-3 stat-value">
           {{#if (lte attribute.value 0)}}–
@@ -36,7 +36,7 @@
             <h4><a class="button skill-roll" data-skill="{{sk}}">{{localize (concat "T2K4E.SkillNames." sk)}}</a></h4>
           </div>
           <div class="col-3 stat-score">
-            {{> scoreSelector name=(concat "system.skills." sk ".score") selected=skill.score}}
+            {{selectBuilder (concat "system.skills." sk ".score") @root.config.dieScores skill.score}}
           </div>
           <div class="col-3 stat-value">
             {{#if (lte skill.value 0)}}–

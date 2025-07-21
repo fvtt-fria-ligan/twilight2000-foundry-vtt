@@ -1,18 +1,57 @@
+/* eslint-disable no-unused-vars */
 import ActorT2K from '../../actor/actor.js';
 import ItemT2K from '../../item/item.js';
 import T2KDialog from '../dialog/dialog.js';
 import { getRollingActor, rollPush } from '../roll/dice.js';
 import { T2K4E } from '../../system/config.js';
 
-/**
+export default class ChatMessageTW2K4E extends foundry.documents.ChatMessage {
+  prepareData() {
+    super.perpareData();
+  }
+
+  /** 
  * Adds Event Listeners to the Chat log.
  * @param {HTMLElement} html The DOM
  */
-export function addChatListeners(html) {
-  ActorT2K.chatListeners(html);
-  ItemT2K.chatListeners(html);
-  html.on('click', '.dice-button.push', _onRollPush);
-  html.on('click', '.dice-button.accept', _onRollAccept);
+  static addChatListeners(html) {
+    ActorT2K.chatListeners(html);
+    ItemT2K.chatListeners(html);
+
+    const buttonsPush = html.querySelectorAll('.dice-button.push');
+    for (let i = 0; i < buttonsPush.length; i++) {
+      buttonsPush[i].addEventListener('click', _onRollPush);
+    }
+    const buttonsApply = html.querySelectorAll('.dice-button.accept');
+    for (let i = 0; i < buttonsApply.length; i++) {
+      buttonsApply[i].addEventListener('click', _onRollAccept);
+    }
+  }
+
+  /* ------------------------------------------- */
+  /*  Hiding Buttons                             */
+  /* ------------------------------------------- */
+
+  /**
+ * Hides buttons of Chat messages for non-owners.
+ * @param {HTMLElement} html DOM
+ */
+  static hideChatActionButtons(html) {
+    // const button = html.querySelectorAll('.card-buttons button');
+    const chatCard = html.querySelectorAll('.t2k4e.chat-card');
+
+    // Exits early if no chatCard were found.
+    if (chatCard.length <= 0) return;
+    // Hides buttons.
+    chatCard.forEach(card =>{
+      const actor = game.actors.get(card.dataset.actorId);
+      const buttons = card.querySelectorAll('button');
+      for (const btn of buttons) {
+        if (actor && !actor.isOwner) btn.style.display = 'none';
+      }
+    });
+  }
+
 }
 
 /* ------------------------------------------- */
@@ -201,26 +240,4 @@ export function closeRollTooltip(message, html, delay = 60000) {
     // tooltip.style.display = 'none';
     div.click();
   }, delay);
-}
-
-/* ------------------------------------------- */
-/*  Hiding Buttons                             */
-/* ------------------------------------------- */
-
-/**
- * Hides buttons of Chat messages for non-owners.
- * @param {HTMLElement} html DOM
- */
-export function hideChatActionButtons(html) {
-  const chatCard = html.find('.t2k4e.chat-card');
-
-  // Exits early if no chatCard were found.
-  if (chatCard.length <= 0) return;
-
-  // Hides buttons.
-  const actor = game.actors.get(chatCard.attr('data-actor-id'));
-  const buttons = chatCard.find('button');
-  for (const btn of buttons) {
-    if (actor && !actor.isOwner) btn.style.display = 'none';
-  }
 }

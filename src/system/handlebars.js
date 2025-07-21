@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /**
  * Defines a set of template paths to pre-load.
  * Pre-loaded templates are compiled and cached for fast access when rendering.
@@ -9,7 +10,7 @@ export async function preloadHandlebarsTemplates() {
   // const paths = PATHS;
   // console.log('T2K4E | Loading Handlebars templates:', paths);
   // return loadTemplates(paths);
-  return loadTemplates([
+  return foundry.applications.handlebars.loadTemplates([
     // Shared Partials
     // 'templates/dice/roll.html',
 
@@ -116,6 +117,18 @@ export function registerHandlebars() {
 
   Handlebars.registerHelper('ratio', function (a, b) {
     return (a / b) * 100;
+  });
+
+  Handlebars.registerHelper('selectBuilder', function (selectionName, list, selection) {
+    const selectOptions = [];
+    list.forEach(option => {
+      const isSelected = option === selection;
+      const opt = `<option value="${option}"${isSelected ? ' selected' : ''}>${option}</option>`;
+      selectOptions.push(opt);
+    });
+    return new Handlebars.SafeString(`<select name="` + selectionName + `" class="score-selector" data-dtype="String"> 
+    ${selectOptions.join('\n')}
+    </select>`);
   });
 
   /**

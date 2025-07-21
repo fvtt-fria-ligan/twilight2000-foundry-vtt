@@ -23,6 +23,13 @@ T2K4E.attributes = {
   emp: 'T2K4E.AttributeNames.emp',
 };
 
+T2K4E.attributeOptions = {
+  'attribute.str': 'T2K4E.AttributeNames.str',
+  'attribute.agl': 'T2K4E.AttributeNames.agl',
+  'attribute.int': 'T2K4E.AttributeNames.int',
+  'attribute.emp': 'T2K4E.AttributeNames.emp',
+};
+
 T2K4E.skills = {
   none: 'T2K4E.SkillNames.none',
   heavyWeapons: 'T2K4E.SkillNames.heavyWeapons',
@@ -37,6 +44,71 @@ T2K4E.skills = {
   command: 'T2K4E.SkillNames.command',
   persuasion: 'T2K4E.SkillNames.persuasion',
   medicalAid: 'T2K4E.SkillNames.medicalAid',
+};
+
+T2K4E.skillOptions = {
+  'skill.heavyWeapons': 'T2K4E.SkillNames.heavyWeapons',
+  'skill.closeCombat': 'T2K4E.SkillNames.closeCombat',
+  'skill.stamina': 'T2K4E.SkillNames.stamina',
+  'skill.driving': 'T2K4E.SkillNames.driving',
+  'skill.mobility': 'T2K4E.SkillNames.mobility',
+  'skill.rangedCombat': 'T2K4E.SkillNames.rangedCombat',
+  'skill.recon': 'T2K4E.SkillNames.recon',
+  'skill.survival': 'T2K4E.SkillNames.survival',
+  'skill.tech': 'T2K4E.SkillNames.tech',
+  'skill.command': 'T2K4E.SkillNames.command',
+  'skill.persuasion': 'T2K4E.SkillNames.persuasion',
+  'skill.medicalAid': 'T2K4E.SkillNames.medicalAid',
+};
+
+T2K4E.constantsOptions = {
+  'constant.cuf' : 'T2K4E.ConstantNames.cuf',
+  'constant.awareness' : 'T2K4E.ConstantNames.awareness',
+  'constant.encumbrance' : 'T2K4E.ConstantNames.encumbrance',
+};
+
+T2K4E.actionOptions = {
+  'action.aim' : 'T2K4E.ActionNames.aim',
+  'action.aimMortar' : 'T2K4E.ActionNames.aimMortar',
+  'action.aimSniper' : 'T2K4E.ActionNames.aimSniper',
+  'action.overwatch' : 'T2K4E.ActionNames.overwatch',
+  'action.breakFree' : 'T2K4E.ActionNames.breakFree',
+  'action.clearJam' : 'T2K4E.ActionNames.clearJam',
+  'action.crawl' : 'T2K4E.ActionNames.crawl',
+  'action.directFire' : 'T2K4E.ActionNames.directFire',
+  'action.disarm' : 'T2K4E.ActionNames.disarm',
+  'action.drive' : 'T2K4E.ActionNames.drive',
+  'action.firstAid' : 'T2K4E.ActionNames.firstAid',
+  'action.grapple' : 'T2K4E.ActionNames.grapple',
+  'action.meleeAttack' : 'T2K4E.ActionNames.meleeAttack',
+  'action.prepareBow' : 'T2K4E.ActionNames.prepareBow',
+  'action.rally' : 'T2K4E.ActionNames.rally',
+  'action.reload' : 'T2K4E.ActionNames.reload',
+  'action.retreat' : 'T2K4E.ActionNames.retreat',
+  'action.run' : 'T2K4E.ActionNames.run',
+  'action.seekCover': 'T2K4E.ActionNames.seekCover',
+  'action.shootBow' : 'T2K4E.ActionNames.shootBow',
+  'action.shootFirearm' : 'T2K4E.ActionNames.shootFirearm',
+  'action.shootHeavyWeapon' : 'T2K4E.ActionNames.shootHeavyWeapon',
+  'action.shove' : 'T2K4E.ActionNames.shove',
+  'action.throwWeapon' : 'T2K4E.ActionNames.throwWeapon',
+  'action.unarmedAttack' : 'T2K4E.ActionNames.unarmedAttack',
+};
+
+T2K4E.travelTaskOptions = {
+  'travel.cooking' :'T2K4E.TravelTaskNames.cooking',
+  'travel.driving' : 'T2K4E.TravelTaskNames.driving',
+  'travel.exploring' : 'T2K4E.TravelTaskNames.exploring',
+  'travel.fishing' : 'T2K4E.TravelTaskNames.fishing',
+  'travel.foraging' : 'T2K4E.TravelTaskNames.foraging',
+  'travel.gathering' : 'T2K4E.TravelTaskNames.gathering',
+  'travel.hunting' : 'T2K4E.TravelTaskNames.hunting',
+  'travel.keepingWatch' : 'T2K4E.TravelTaskNames.keepingWatch',
+  'travel.makingCamp' : 'T2K4E.TravelTaskNames.makingCamp',
+  'travel.marching' : 'T2K4E.TravelTaskNames.marching',
+  'travel.resting' : 'T2K4E.TravelTaskNames.resting',
+  'travel.scrounging' : 'T2K4E.TravelTaskNames.scrounging',
+  'travel.sleeping' : 'T2K4E.TravelTaskNames.sleeping',
 };
 
 T2K4E.skillsMap = {

@@ -424,7 +424,7 @@ export default class ItemT2K extends Item {
     if (!this.hasReliability) return 0;
     const val = this.system.reliability.value;
     const max = this.system.reliability.max;
-    const rel = Math.clamped(val + jam, 0, max);
+    const rel = Math.clamp(val + jam, 0, max);
     if (update && rel !== val) await this.update({ 'system.reliability.value': rel });
     return rel - val;
   }
@@ -443,7 +443,7 @@ export default class ItemT2K extends Item {
     if (!this.type === 'armor') return 0;
     const val = this.system.rating.value;
     const max = this.system.rating.max;
-    const rel = Math.clamped(val + mod, 0, max);
+    const rel = Math.clamp(val + mod, 0, max);
     if (update && rel !== val) await this.update({ 'system.rating.value': rel });
     return rel - val;
   }
@@ -492,7 +492,7 @@ export default class ItemT2K extends Item {
     }
     const ammoValue = ammoData.value || 0;
     const ammoMax = ammoData.max;
-    const newAmmoValue = Math.clamped(ammoValue + modifier, 0, ammoMax);
+    const newAmmoValue = Math.clamp(ammoValue + modifier, 0, ammoMax);
 
     if (update) {
       switch (this.type) {
@@ -536,9 +536,9 @@ export default class ItemT2K extends Item {
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ actor: this.actor, token }),
-      content: await renderTemplate(ItemT2K.CHAT_TEMPLATE[this.type], cardData),
+      content: await foundry.applications.handlebars.renderTemplate(ItemT2K.CHAT_TEMPLATE[this.type], cardData),
       // flavor: this.name,
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      type: CONST.CHAT_MESSAGE_STYLES.OTHER,
     };
 
     // Apply the roll mode to adjust message visibility.
@@ -553,7 +553,13 @@ export default class ItemT2K extends Item {
   /* ------------------------------------------- */
 
   static chatListeners(html) {
-    html.on('click', '.card-buttons button', this._onChatCardAction.bind(this));
+    const button = html.querySelectorAll('.card-buttons button');
+    for (let i = 0; i < button.length; i++) {
+      button[i].addEventListener('click', this._onChatCardAction.bind(this));
+    }
+
+
+    // html.on('click', '.card-buttons button', this._onChatCardAction.bind(this));
   }
 
   /* ------------------------------------------- */

@@ -1,3 +1,5 @@
+/* eslint-disable no-empty-function */
+/* eslint-disable no-unused-vars */
 import { getDieSize, T2KRoller } from '../components/roll/dice.js';
 import { T2K4E } from '../system/config.js';
 import Modifier from '../components/modifier.js';
@@ -242,7 +244,7 @@ export default class ActorT2K extends Actor {
     system.encumbrance = {
       value: val1,
       max,
-      pct: Math.clamped((val1 / max) * 100, 0, 100),
+      pct: Math.clamp((val1 / max) * 100, 0, 100),
       encumbered: val1 > max,
     };
 
@@ -269,7 +271,7 @@ export default class ActorT2K extends Actor {
     system.encumbrance.backpack = {
       value: val2,
       max,
-      pct: Math.clamped((val2 / max) * 100, 0, 100),
+      pct: Math.clamp((val2 / max) * 100, 0, 100),
       encumbered: val2 > max,
     };
     return system;
@@ -356,7 +358,7 @@ export default class ActorT2K extends Actor {
     system.encumbrance = {
       value: val,
       max,
-      pct: Math.clamped((val / max) * 100, 0, 100),
+      pct: Math.clamp((val / max) * 100, 0, 100),
       encumbered: val > max,
     };
     return system;
@@ -646,7 +648,7 @@ export default class ActorT2K extends Actor {
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ token: this.token }),
-      content: await renderTemplate(template, templateData),
+      content: await foundry.applications.handlebars.renderTemplate(template, templateData),
       sound: CONFIG.sounds.notification,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
     };

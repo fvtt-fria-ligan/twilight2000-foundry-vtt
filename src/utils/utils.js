@@ -39,7 +39,8 @@ export async function enrichTextFields(sheetData, fieldNames) {
       foundry.utils.setProperty(
         sheetData,
         fieldName,
-        await TextEditor.enrichHTML(foundry.utils.getProperty(sheetData, fieldName), { async: true }),
+        // eslint-disable-next-line max-len
+        await foundry.applications.ux.TextEditor.implementation.enrichHTML(foundry.utils.getProperty(sheetData, fieldName), { async: true }),
       );
     }
   }
