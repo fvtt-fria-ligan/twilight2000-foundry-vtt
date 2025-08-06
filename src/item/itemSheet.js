@@ -53,6 +53,7 @@ export default class ItemSheetT2K extends foundry.appv1.sheets.ItemSheet {
       sheetData.ammunitionTargets = this._getItemAmmunitionTargets();
     }
 
+    console.log(sheetData);
     return sheetData;
   }
 
