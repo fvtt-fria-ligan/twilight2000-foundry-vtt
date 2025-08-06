@@ -8,7 +8,6 @@
     "verified": "13.345",
     "maximum": 13
   },
-  "author": "Stefouch",
   "authors": [
   {
     "name": "Stefouch",
@@ -65,13 +64,14 @@
       }
   ],
   "packs": [],
-  "system": [],
   "flags": {},
   "socket": false,
   "protected": false,
   "background": "systems/t2k4e/assets/gear-intro_c.jpg",
-  "gridDistance": 2,
-  "gridUnits": "m",
+  "grid": {
+    "distance": 2,
+    "units": "m"
+  },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "sanity",
   "initiative": "1d10",
