@@ -133,7 +133,7 @@ export class T2KRoller {
     }
 
     // 7 — Evaluates the roll.
-    await roll.roll({ async: true });
+    await roll.roll();
     console.log('t2k4e | ROLL', roll.name, roll);
 
     // 8 — Sends the message and returns.
