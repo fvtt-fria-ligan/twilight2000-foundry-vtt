@@ -141,16 +141,20 @@ export function getChatCardActor(card) {
  * @param {Object} options Options
  * @link https://www.youtube.com/watch?v=uBC5DSci0NI
  */
-export function addChatMessageContextOptions(html, options) {
+export function addChatMessageContextOptions(options = []) {
   // TODO: See Part 6, 6:55
   // Allows only this menu option if we have selected some tokens
   // & the message contains some damage.
-  const canDefend = li => game.user.targets.size && li.find('.dice-roll').length;
+  const canDefend = li => {
+    const message = game.messages.get(li.dataset.messageId);
+    const targets = game.user.targets;
+    return targets.size > 0 && message.rolls.length > 0;
+  };
   options.push({
     name: game.i18n.localize('T2K4E.Chat.Actions.ApplyDamage'),
     icon: T2K4E.Icons.buttons.attack,
     condition: canDefend,
-    callback: li => _applyDamage(li[0]),
+    callback: li => _applyDamage(li),
   });
   return options;
 }
@@ -169,7 +173,6 @@ async function _applyDamage(messageElem) {
   const actor = getRollingActor({ actorId, tokenKey });
   const itemId = roll.options.itemId;
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
-
   // Prepares the attack's data.
   let attackData = foundry.utils.duplicate(item.system);
   if (actor && item.hasAmmo) {
