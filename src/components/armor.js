@@ -60,7 +60,7 @@ export default class Armor {
 
   async ablation() {
     const roll = new YearZeroRoll('1d6np');
-    await roll.roll({ async: true });
+    await roll.roll();
     if (roll.total === 1) {
       this.value = Math.max(0, this.value - 1);
       return true;
