@@ -2,7 +2,7 @@
   "id": "t2k4e",
   "title": "Twilight: 2000 🪖 (4th Edition)",
   "description": "Twilight: 2000 is a roleplaying game about survival in mankind’s most desperate hour. Yet, in this bleak world, there is still hope. In the midst of utter destruction, you can start to build something new. Rally people to your ranks. Stake a claim and protect it. And maybe, if you live long enough, start turning the tide.",
-  "version": "13.0.1",
+  "version": "13.0.2",
   "compatibility": {
     "minimum": 13,
     "verified": "13.345",
@@ -77,6 +77,6 @@
   "initiative": "1d10",
   "url": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt",
   "manifest": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/latest/download/system.json",
-  "download": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/download/13.0.1/t2k4e-fvtt_v13.0.1.zip",
+  "download": "https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/releases/download/13.0.1/t2k4e-fvtt_v13.0.2.zip",
   "license": "GPL-3.0-or-later"
 }
