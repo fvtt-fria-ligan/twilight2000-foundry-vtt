@@ -29,7 +29,7 @@
   {{#if data.rof}}
     <div class='form-group'>
       <label>{{localize 'T2K4E.Dialog.Roll.RoF'}}</label>
-      <div class='flexrow'><range-picker name='rof' value=0 min=0 max=data.rof step=1 /></div>
+      <div class='flexrow'><range-picker name='rof' value=0 min=0 max='{{data.rof}}' step=1 /></div>
     </div>
   {{/if}}
 
