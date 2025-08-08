@@ -862,6 +862,9 @@ a.inline-roll {
   font-family: 'TheSansB', 'Mukta';
   font-weight: 500;
 }
+.chat-message.whisper {
+  background-image: url(assets/textures/paper_texture.webp);
+}
 .chat-message .message-content p {
   line-height: 1.15;
 }
