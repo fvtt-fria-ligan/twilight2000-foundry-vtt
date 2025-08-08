@@ -16,9 +16,6 @@
   <a href="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/fvtt-fria-ligan/twilight2000-foundry-vtt"/>
   </a>
-  <a href="https://www.patreon.com/Stefouch">
-    <img src="https://img.shields.io/badge/donate-patreon-F96854.svg" alt="Patreon">
-  </a>
 </p>
 
 The **OFFICIAL** game system for [Twilight 2000 (4th Edition)](https://freeleaguepublishing.com/en/games/twilight-2000/) on Foundry VTT.
@@ -71,30 +68,18 @@ or head over the [Weblate page](https://weblate.foundryvtt-hub.com/projects/t2k4
 
 Contributions, issues and feature requests are welcome!<br/>Feel free to check the [issues page](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/issues).
 
-### Top Contributors
+# 🙏 Contributors
+
+✏️ System originally created by [@Stefouch](https://github.com/Stefouch)
+
+🔧 Currently maintained by [@DrOgres](https://github.com/DrOgres)
+
+### Other top contributors
 
 [@aMediocreDad](https://github.com/aMediocreDad) - Lots of code samples come from this artist.<br/>
 [@Kayne](https://github.com/Kayne) - Fixed dice modifiers.<br/>
 [@tinwe](https://github.com/tinwe) - Swedish translation & bugfixes.<br/>
 [@Bakali77](https://github.com/Bakali77) - Spanish translation.
-
-# 👤 Author
-
-<p align="center">
-  <a href="https://stefouch.be" target="_blank">
-    <img src="https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/raw/master/static/assets/stefouch-banner.png" alt="Stefouch Gaming Lab" style="width: auto; height: auto; max-height: 100px;"/>
-  </a>
-  <br/>
-  <i>Built by a fan, for the fans.</i>
-</p>
-
-### Stefouch
-
-- **Twitter:** [@stefouch](https://twitter.com/stefouch)
-- **Github:** [@Stefouch](https://github.com/Stefouch)
-- **Discord:** Stefouch#5202
-  - [Year Zero Worlds](https://discord.gg/RnaydHR)
-  - [The Foundry](https://discord.gg/8yAKUHZZKE)
 
 # 📜 List of Changes
 
@@ -103,7 +88,7 @@ See the [changelog](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/
 # 📝 Licenses
 
 - **Content & Logo:** [Twilight 2000 (4th Edition)](https://freeleaguepublishing.com/en/store/?collection_id=270655783061) is ™ & © 2021 GDW and Fria Ligan AB. All rights reserved. The parts of this project protected under this copyright may not be distributed commercially or freely. This includes art, logo, and copyright text.
-- **Source Code:** All source code _(javascript, hbs, less, as well as system templates and the like)_ are Copyright © 2021-2022 [Stefouch](https://github.com/Stefouch), and licenced under the [GNU General Public License v3.0](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/blob/master/LICENSE).
+- **Source Code:** All source code _(javascript, hbs, less, as well as system templates and the like)_ are Copyright © 2021-2025 [Free League Developer Community](https://github.com/fvtt-fria-ligan), and licenced under the [GNU General Public License v3.0](https://github.com/fvtt-fria-ligan/twilight2000-foundry-vtt/blob/master/LICENSE).
 - **Foundry VTT:** The project is created following the Foundry VTT [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 - **Icons:** Icons in the `module/t2k4e-coreset/assets/icons/` folder are courtesy of [Game-icons.net](https://game-icons.net/) and licenced under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
 - **Fonts:** The fonts used in this project carry their own licences:
