@@ -26,7 +26,7 @@ import { preloadHandlebarsTemplates, registerHandlebars } from './system/handleb
 import { createT2KMacro, rollItem, setupMacroFolder } from './system/macros.js';
 import displayMessages from './components/message-system.js';
 // import * as Chat from './components/chat/chat.js';
-import ChatMessageTW2K4E from './components/chat/chat.js';
+import ChatMessageTW2K4E, { addChatMessageContextOptions } from './components/chat/chat.js';
 
 // Imports Documents.
 import ActorT2K from './actor/actor.js';
@@ -189,9 +189,11 @@ Hooks.on('renderChatMessageHTML', (app, html, data) => {
   ChatMessageTW2K4E.addChatListeners(html);
   // Hides chat action buttons.
   ChatMessageTW2K4E.hideChatActionButtons(html);
+  // addChatMessageContextOptions(html);
 
   // Automatically closes dice results tooltips.
   // let delay = game.settings.get('t2k4e', 'closeRollTooltipDelay');
+  // console.log('delay: ', delay);
   // if (delay >= 0) {
   //   delay = Math.min(delay, 15 * 60);
   //   ChatMessageTW2K4E.closeRollTooltip(html, delay * 1000);
@@ -200,7 +202,7 @@ Hooks.on('renderChatMessageHTML', (app, html, data) => {
 
 /* -------------------------------------------- */
 
-Hooks.on('getChatLogEntryContext', ChatMessageTW2K4E.addChatMessageContextOptions);
+Hooks.on('getChatMessageContextOptions', (app, html, data) => { addChatMessageContextOptions(html); });
 
 
 /* -------------------------------------------- */

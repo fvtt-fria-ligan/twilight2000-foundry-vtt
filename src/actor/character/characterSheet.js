@@ -135,7 +135,7 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     const min = +elem.dataset.min || 0;
     const max = +elem.dataset.max || 10;
     const field = elem.dataset.field;
-    const currentCount = getProperty(this.actor, `system.${field}.value`) || 0;
+    const currentCount = foundry.utils.getProperty(this.actor, `system.${field}.value`) || 0;
     let newCount = currentCount;
 
     if (event.type === 'click') newCount--;
@@ -158,13 +158,13 @@ export default class ActorSheetT2KCharacter extends ActorSheetT2K {
     const elem = event.currentTarget;
     const field = elem.dataset.field;
 
-    const maxi = getProperty(this.actor, `system.${field}.max`);
+    const maxi = foundry.utils.getProperty(this.actor, `system.${field}.max`);
     if (mod < 0 && maxi < 2) return;
     if (mod > 0 && maxi > 11) return;
 
     const min = -12;
     const max = 12;
-    const currentMod = getProperty(this.actor, `system.${field}.modifier`) || 0;
+    const currentMod = foundry.utils.getProperty(this.actor, `system.${field}.modifier`) || 0;
     const newMod = Math.clamp(currentMod + mod, min, max);
 
     return this.actor.update({ [`system.${field}.modifier`]: newMod });

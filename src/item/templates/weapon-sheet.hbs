@@ -12,7 +12,6 @@
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
-
     {{!-- Features Tab --}}
     <div class="tab tab-features" data-group="primary" data-tab="features">
       <div class="grid grid-4col item-features">
@@ -105,9 +104,7 @@
           <label>{{localize "T2K4E.ItemSheet.WeaponMagazine"}}</label>
           <select name="system.mag.target">
             <option value=""></option>
-            {{#each ammunitionTargets as | name key |}}
-            <option value="{{key}}">{{name}}</option>
-            {{/each}}
+            {{selectOptions ammunitionTargets selected=system.mag.target localize=false}}
           </select>
         </div>
         {{/if}}

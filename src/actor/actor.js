@@ -585,7 +585,7 @@ export default class ActorT2K extends Actor {
     // 1 — Location
     if (!attackData.location) {
       const locRoll = new YearZeroRoll('1dl');
-      await locRoll.roll({ async: true });
+      await locRoll.roll();
       const loc = locRoll.bestHitLocation;
       attackData.location = T2K4E.hitLocs[loc - 1];
     }
@@ -650,7 +650,7 @@ export default class ActorT2K extends Actor {
       speaker: ChatMessage.getSpeaker({ token: this.token }),
       content: await foundry.applications.handlebars.renderTemplate(template, templateData),
       sound: CONFIG.sounds.notification,
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      type: CONST.CHAT_MESSAGE_STYLES.OTHER,
     };
     ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
     await ChatMessage.create(chatData);
