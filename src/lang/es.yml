@@ -100,7 +100,7 @@ T2K4E.ItemPropNames.magazine: Es cargador
 T2K4E.ItemPropNames.armored: Blindado
 T2K4E.ItemPropNames.bipod: Bípode
 T2K4E.ItemPropNames.tripod: Trípode
-T2K4E.ItemPropNames.scope: Scope
+T2K4E.ItemPropNames.scope: Mira telescópica
 T2K4E.ItemPropNames.nightVision: Visión noctur.
 T2K4E.ItemPropNames.bayonet: Bayoneta
 T2K4E.ItemPropNames.suppressor: Supresor
@@ -132,9 +132,7 @@ T2K4E.ActorSheet.Rating: Calificación
 T2K4E.ActorSheet.BaseDie: Dado base
 T2K4E.ActorSheet.Specialties: Especialidades
 T2K4E.ActorSheet.AddSpecialty: Añade una nueva especialidad
-T2K4E.ActorSheet.NoSpecialty:
-  Este personaje no tiene especialidad. Haz click en el
-  icono "+" para añadir una nueva especialidad.
+T2K4E.ActorSheet.NoSpecialty: Este personaje no tiene especialidad. Haz click en el icono "+" para añadir una nueva especialidad.
 T2K4E.ActorSheet.Combat: Combate
 T2K4E.ActorSheet.Actions: Acciones
 T2K4E.ActorSheet.Current: Actual
@@ -273,13 +271,9 @@ T2K4E.ItemSheet.Name: Nombre
 T2K4E.ItemSheet.FeaturesTab: Características
 T2K4E.ItemSheet.ModifiersTab: Modificadores
 T2K4E.ItemSheet.RollModifiers: Modificadores a la tirada
-T2K4E.ItemSheet.AddNewRollModifier:
-  Añade un nuevo modificador a la tirada para este
-  objeto
+T2K4E.ItemSheet.AddNewRollModifier: Añade un nuevo modificador a la tirada para este objeto
 T2K4E.ItemSheet.DeleteRollModifier: Elimina este modificador a la tirada
-T2K4E.ItemSheet.NoRollModifier:
-  Este objeto no tiene modificador. Para añadir un,
-  haz click en el icono "+".
+T2K4E.ItemSheet.NoRollModifier: Este objeto no tiene modificador. Para añadir un, haz click en el icono "+".
 T2K4E.ItemSheet.SelectRollModifier: Elige un nombre
 T2K4E.ItemSheet.DescriptionTab: Notas
 T2K4E.ItemSheet.AttributeUsed: Atributo usado
@@ -328,16 +322,12 @@ T2K4E.Chat.Roll.ExtraHits: Impactos extras
 T2K4E.Chat.Roll.Mishap: Percance
 T2K4E.Chat.Roll.AmmoSpent: Munición gastada
 T2K4E.Chat.Roll.NoItemNotif: El objeto ya no existe.
-T2K4E.Chat.Roll.NoReliabilityNotif:
-  El valor de confiabilidad actual de este objeto
-  no permite usarlo.
+T2K4E.Chat.Roll.NoReliabilityNotif: El valor de confiabilidad actual de este objeto no permite usarlo.
 T2K4E.Chat.Damage.Incapacited: INCAPACITADO
 T2K4E.Chat.Damage.DamagedArmor: Dañado
 T2K4E.Chat.Damage.DamageDealt: '<b>{name}</b> recibe <b>{amount}</b> daño.'
 T2K4E.Chat.Damage.NoDamageDealt: No se infligió daño a <b>{name}</b>.
-T2K4E.Chat.Damage.InitialAmount:
-  El ataque hizo una cantidad inicial de <b>{damage}</b>
-  de daño, con un modificador de blindaje de {mod}.
+T2K4E.Chat.Damage.InitialAmount: El ataque hizo una cantidad inicial de <b>{damage}</b> de daño, con un modificador de blindaje de {mod}.
 T2K4E.Chat.Damage.DeflectedDamage: '{damage} de daño absorbido'
 T2K4E.Chat.Damage.DeflectedAllDamage: absorbido todo el daño
 T2K4E.Chat.Damage.NoEffect: sin efecto
@@ -370,9 +360,7 @@ T2K4E.Dialog.Damage.BarrierArmors: Niveles de blindaje de la barrera
 T2K4E.Dialog.Damage.BarrierArmorsHint: Varias barreras están separadas por comas.
 T2K4E.MACRO.GetActorTitle: Elige un actor
 T2K4E.MACRO.GetActorHint: Ha seleccionado varios tokens. Por favor elige uno de ellos.
-T2K4E.MACRO.MultipleItems:
-  El actor que controlas {actor} tiene más de un objeto con
-  nombre {item}. Se elegirá el primer objeto coincidente.
+T2K4E.MACRO.MultipleItems: El actor que controlas {actor} tiene más de un objeto con nombre {item}. Se elegirá el primer objeto coincidente.
 T2K4E.MACRO.NoActor: El actor que controlas {actor} no ha sido encontrado.
 T2K4E.MACRO.NoItem: El actor que controlas {actor} no tiene un objeto llamado {item}.
 T2K4E.MACRO.RollAction: Acción {action}
@@ -383,9 +371,7 @@ FLPS.TAB.NOTE: Notas
 FLPS.PARTY.NAME: Nombre del Grupo
 FLPS.PARTY.MEMBERS: Miembros del Grupo
 FLPS.PARTY.HINT_ADD: Arrastra y suelta personajes aquí para añadirlos al Grupo.
-FLPS.PARTY.HINT_ASSIGN:
-  Arrastra y suelta personajes para asignarlos a las actividades
-  de viaje deseadas.
+FLPS.PARTY.HINT_ASSIGN: Arrastra y suelta personajes para asignarlos a las actividades de viaje deseadas.
 FLPS.TRAVEL.MARCH: Marchar
 FLPS.TRAVEL.DRIVE: Conducir
 FLPS.TRAVEL.WATCH: Vigilar
@@ -402,9 +388,7 @@ FLPS.TRAVEL.RESET: RESETEAR
 FLPS.UI.WHO_ROLLS: '¿Quién tira?'
 FLPS.UI.WHO_PUSHES: '¿Quién fuerza la tirada?'
 FLPS.UI.ATTENTION: Atención
-FLPS.UI.ERROR.OPEN_SHEET:
-  Abre tu hoja de personaje al menos una vez antes de hacer
-  las tiradas de viaje.
+FLPS.UI.ERROR.OPEN_SHEET: Abre tu hoja de personaje al menos una vez antes de hacer las tiradas de viaje.
 FLPS.TRAVEL_ROLL.FORCED_MARCH: Marchas forzadas
 FLPS.TRAVEL_ROLL.MARCH_IN_DARKNESS: Marchar en la oscuridad
 FLPS.TRAVEL_ROLL.DRIVE: Conducir
@@ -420,51 +404,23 @@ FLPS.TRAVEL_ROLL.MAKE_CAMP: Hacer campamento
 FLPS.TRAVEL_ROLL.HIDE_CAMP: Ocultar campamento
 FLPS.TRAVEL_ROLL.COOK_FOOD: Cocinar comida
 FLPS.SETTINGS.ALLOW_PUSH: Permitir tiradas forzadas ilimitadas
-FLPS.SETTINGS.ALLOW_PUSH_HINT:
-  Si tu Árbitro permite un número ilimitado de tiradas
-  forzadas. O tal vez eres un Árbitro que quiere poder forzar las tiradas de este
-  encuentro; marca esta configuración para mostrar un botón pulsador en casi cualquier
-  tirada.
-SETTINGS.trackPcAmmo.name:
-  Seguimiento de las municiones de los personajes de los
-  jugadores
-SETTINGS.trackPcAmmo.label:
-  Si se debe realizar un seguimiento del consumo de munición
-  para los PJ.
+FLPS.SETTINGS.ALLOW_PUSH_HINT: Si tu Árbitro permite un número ilimitado de tiradas forzadas. O tal vez eres un Árbitro que quiere poder forzar las tiradas de este encuentro; marca esta configuración para mostrar un botón pulsador en casi cualquier tirada.
+SETTINGS.trackPcAmmo.name: Seguimiento de las municiones de los personajes de los jugadores
+SETTINGS.trackPcAmmo.label: Si se debe realizar un seguimiento del consumo de munición para los PJ.
 SETTINGS.trackNpcAmmo.name: Seguimiento de las municiones de los PNJ
-SETTINGS.trackNpcAmmo.label:
-  Si se debe realizar un seguimiento del consumo de munición
-  para los PNJ.
+SETTINGS.trackNpcAmmo.label: Si se debe realizar un seguimiento del consumo de munición para los PNJ.
 SETTINGS.trackVehicleAmmo.name: Seguimiento de la munición de los vehículos
-SETTINGS.trackVehicleAmmo.label:
-  Si se debe realizar un seguimiento del consumo de
-  munición para vehículos armados.
-SETTINGS.showTaskCheckOptions.name:
-  Solicitar opciones de comprobación de tareas de
-  forma predeterminada
+SETTINGS.trackVehicleAmmo.label: Si se debe realizar un seguimiento del consumo de munición para vehículos armados.
+SETTINGS.showTaskCheckOptions.name: Solicitar opciones de comprobación de tareas de forma predeterminada
 SETTINGS.showTaskCheckOptions.label: Manten presionada la tecla Mayús para alternar.
-SETTINGS.closeRollTooltipDelay.name:
-  Retardo para cerrar la herramienta de los resultados
-  de los dados
-SETTINGS.closeRollTooltipDelay.label:
-  Cuántos segundos esperar antes de cerrar automáticamente
-  la información sobre herramientas de los resultados de los dados. El máximo es de
-  15 minutos. Establezca este valor en -1 para nunca.
-SETTINGS.defaultCharTokenSize.name:
-  Tamaño de token predeterminado para personajes
-  y PNJ
-SETTINGS.defaultCharTokenSize.label:
-  Establezca un tamaño predeterminado entre [0.3,
-  2.0] para personajes y actores PNJ recién creados.
+SETTINGS.closeRollTooltipDelay.name: Retardo para cerrar la herramienta de los resultados de los dados
+SETTINGS.closeRollTooltipDelay.label: Cuántos segundos esperar antes de cerrar automáticamente la información sobre herramientas de los resultados de los dados. El máximo es de 15 minutos. Establezca este valor en -1 para nunca.
+SETTINGS.defaultCharTokenSize.name: Tamaño de token predeterminado para personajes y PNJ
+SETTINGS.defaultCharTokenSize.label: Establezca un tamaño predeterminado entre [0.3, 2.0] para personajes y actores PNJ recién creados.
 SETTINGS.hideCapacitiesButtons.name: Ocultar modificadores de capacidades
-SETTINGS.hideCapacitiesButtons.label:
-  Ocultar a los jugadores los botones más-menos
-  utilizados para modificar las capacidades máximas de Golpe & Estrés en la hoja de
-  personaje.
+SETTINGS.hideCapacitiesButtons.label: Ocultar a los jugadores los botones más-menos utilizados para modificar las capacidades máximas de Golpe & Estrés en la hoja de personaje.
 SETTINGS.hideWeaponProps.name: Ocultar propiedades de las armas
-SETTINGS.hideWeaponProps.label:
-  Ya sea para ocultar a los jugadores las casillas de
-  verificación de propiedades en la hoja de armas.
+SETTINGS.hideWeaponProps.label: Ya sea para ocultar a los jugadores las casillas de verificación de propiedades en la hoja de armas.
 YZUR.CHAT.ROLL.Push: Forzar
 YZUR.CHAT.ROLL.HitLocation: 'Localización de Impacto:'
 YZUR.CHAT.ROLL.HitLocations: 'Localizaciones de Impacto:'
