@@ -1,7 +1,13 @@
+@import "./variables.less";
+
 .chat-message {
   @dieSize: 32px;
   .actor-sheet-background();
   .font-text-normal();
+
+  &.whisper {
+    background-image: url('assets/textures/background_texture.webp');
+  }  
 
   .message-content {
     p {

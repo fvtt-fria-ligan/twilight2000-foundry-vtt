@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [13.0.3] - 2025-12-10
+
+<h4>What's New?</h4><ul>
+<li>Fixed Apply Damage additional bullet success slider</li>
+</ul>
+
 ## [12.0.4] - 2023-08-12
 
 <h4>What's New?</h4><ul><li>Fixed Russian translation. YAML did not escape curly braces properly</li></ul>
