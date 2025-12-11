@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 
 <h4>What's New?</h4><ul>
 <li>Fixed Apply Damage additional bullet success slider</li>
+<li>Fixed Appereance not being editable</li>
+<li>Fixed a bug where a Whisper Chat messages CSS rule is overwritten and hidden</li>
 </ul>
 
 ## [12.0.4] - 2023-08-12
