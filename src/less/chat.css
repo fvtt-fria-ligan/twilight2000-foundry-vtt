@@ -1,0 +1,218 @@
+/* ------------------------------------------- */
+/*  Fonts                                      */
+/* ------------------------------------------- */
+:root {
+  --font-size--extra-small: 0.5rem;
+  --font-size--very-small: 0.7rem;
+  --font-size--small: 0.8rem;
+  --font-size--default: 1rem;
+  --font-size--large: 1.4rem;
+  --font-size--extra-large: 2rem;
+}
+/* Font for list bullets */
+@font-face {
+  font-family: 'Roundels';
+  src: url(fonts/roundels.ttf);
+}
+/* Font for Headers */
+@font-face {
+  font-family: 'GT Eesti Text Medium';
+  font-style: normal;
+  font-weight: 800;
+  src: local('GT Eesti Text Medium');
+}
+/* Replacement Font for Headers */
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Nunito Sans Extra Bold'), local('NunitoSans Extra Bold'), local('NunitoSans ExtraBold'), local('NunitoSans-ExtraBold'), url('fonts/NunitoSans-ExtraBold.woff') format('woff2');
+}
+/* Font for Table Titles (not table header) */
+@font-face {
+  font-family: 'Blue Highway';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Blue Highway Bold'), local('BlueHighway Bold'), local('BlueHighway-Bold'), url('fonts/BlueHighway-Bold.woff') format('woff2');
+}
+/* Font for Generic Text */
+@font-face {
+  font-family: 'TheSansB';
+  font-style: normal;
+  font-weight: 500;
+  src: local('TheSansB W5 Plain'), local('TheSansB W5 Medium'), local('TheSansB W5 Plain Medium');
+}
+@font-face {
+  font-family: 'TheSansB';
+  font-style: italic;
+  src: local('TheSansB W5 Plain Medium Italic');
+}
+/* Replacement Font for Generic Text */
+@font-face {
+  font-family: 'Mukta';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Mukta Medium'), local('Mukta-Medium'), url('fonts/Mukta-Medium.woff') format('woff');
+}
+/* Font for Table Headers */
+@font-face {
+  font-family: 'TheSansB';
+  font-style: normal;
+  font-weight: 700;
+  src: local('TheSansB W7 Bold');
+}
+/* Replacement Font for Table Headers */
+@font-face {
+  font-family: 'Mukta';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Mukta Bold'), local('Mukta-Bold'), url('fonts/Mukta-Bold.woff') format('woff');
+}
+/* Font for the Character Sheet */
+@font-face {
+  font-family: 'DaisyWheel';
+  font-style: normal;
+  font-weight: 400;
+  src: local('DaisyWheel Regular'), local('Daisy Wheel'), local('DaisyWheel'), url('fonts/daisywheel.otf') format('opentype');
+}
+@font-face {
+  font-family: 'T2K4E';
+  src: url('fonts/T2K4-Symbols.ttf');
+}
+.t2k-symbol {
+  display: inline;
+  font-family: 'T2K4E';
+  font-size: 1.3em;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  top: 4px;
+  left: 0px;
+}
+/* ------------------------------------------- */
+/*  Styles                                     */
+/* ------------------------------------------- */
+.chat-message {
+  background-image: url(assets/textures/paper_texture_sheet_c.jpg);
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'TheSansB', 'Mukta';
+  font-weight: 500;
+}
+.chat-message.whisper {
+  background-image: url('assets/textures/background_texture.webp');
+}
+.chat-message .message-content p {
+  line-height: 1.15;
+}
+.chat-message .message-content .ammodie {
+  background-position: center;
+}
+.chat-message .message-content .ammodie img {
+  width: 16px;
+  height: 16px;
+  border: none;
+}
+.chat-message .t2k4e.chat-card .card-content img {
+  border: none;
+}
+.chat-message .t2k4e.chat-card .card-content > div {
+  margin-bottom: 10px;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-flavor {
+  font-family: 'DaisyWheel';
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: #18520b;
+  margin-bottom: 2px;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 3px;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .tooltip-part {
+  width: auto;
+  min-width: 30%;
+  margin: 0 2px 2px 0;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .tooltip-part .part-header {
+  justify-content: flex-end;
+  background-color: #e5e5d6;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .tooltip-part .part-header .part-formula {
+  margin-left: 4px;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .tooltip-part .part-header .part-total {
+  border-top: none;
+  border-right: none;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .tooltip-part .dice-rolls {
+  margin: 5px 2px;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .die {
+  width: 32px;
+  line-height: 32px;
+  margin-right: 2px;
+  background-image: url(../../../icons/svg/d6-grey.svg);
+  background-repeat: no-repeat;
+  background-size: 32px 32px;
+  font-size: 21.33333333px;
+  font-weight: bold;
+  text-align: center;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .die.d100 {
+  background-image: url(../../../icons/svg/d10-grey.svg);
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .die.d20 {
+  background-image: url(../../../icons/svg/d20-grey.svg);
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .die.d12 {
+  background-image: url(../../../icons/svg/d12-grey.svg);
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .die.d10 {
+  background-image: url(../../../icons/svg/d10-grey.svg);
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .die.d8 {
+  background-image: url(../../../icons/svg/d8-grey.svg);
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .die.d6 {
+  background-image: url(../../../icons/svg/d6-grey.svg);
+}
+.chat-message .t2k4e.chat-card .card-content .dice-tooltip .die.d4 {
+  background-image: url(../../../icons/svg/d4-grey.svg);
+}
+.chat-message .t2k4e.chat-card .card-content .dice-infos .dice-info {
+  display: flex;
+  flex-direction: row;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-infos .dice-info .label {
+  flex: 0 0 150px;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-infos .dice-info .result {
+  flex: 0 0 auto;
+  font-weight: bold;
+}
+.chat-message .t2k4e.chat-card .card-content .dice-infos .dice-info.roll-jammed .label {
+  font-weight: bold;
+  color: #9b2423;
+}
+.chat-message .t2k4e.chat-card .card-content .card-buttons,
+.chat-message .t2k4e.chat-card .card-content .dice-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 3px;
+}
+.chat-message .t2k4e.chat-card .card-content .card-buttons button,
+.chat-message .t2k4e.chat-card .card-content .dice-buttons button {
+  line-height: 1rem;
+  flex-grow: 2;
+}
