@@ -4,71 +4,58 @@
  */
 export function registerStatusEffects() {
   const path = 'systems/t2k4e/assets/icons/';
-  CONFIG.statusEffects = [
-    {
-      id: 'fullCover',
-      label: 'EFFECT.StatusFullCover',
-      icon: `${path}token_full_cover.webp`,
+  CONFIG.statusEffects = {
+    fullCover: {
+      name: 'EFFECT.Status.FullCover',
+      img: `${path}token_full_cover.webp`,
     },
-    {
-      id: 'partialCover',
-      label: 'EFFECT.StatusPartialCover',
-      icon: `${path}token_partial_cover.webp`,
+    partialCover: {
+      name: 'EFFECT.StatusPartialCover',
+      img: `${path}token_partial_cover.webp`,
     },
-    {
-      id: 'overwatch',
-      label: 'EFFECT.StatusOverwatch',
-      icon: `${path}token_overwatch.webp`,
+    overwatch: {
+      name: 'EFFECT.StatusOverwatch',
+      img: `${path}token_overwatch.webp`,
     },
-    {
-      id: 'suppressed',
-      label: 'EFFECT.StatusSuppressed',
-      icon: `${path}token_suppressed.webp`,
+    suppressed: {
+      name: 'EFFECT.StatusSuppressed',
+      img: `${path}token_suppressed.webp`,
     },
-    {
-      id: 'stop',
-      label: 'EFFECT.StatusStop',
-      icon: `${path}token_stop.webp`,
+    stop: {
+      name: 'EFFECT.StatusStop',
+      img: `${path}token_stop.webp`,
     },
-    {
-      id: 'smoke',
-      label: 'EFFECT.StatusSmoke',
-      icon: `${path}token_smoke.webp`,
+    smoke: {
+      name: 'EFFECT.StatusSmoke',
+      img: `${path}token_smoke.webp`,
     },
-    {
-      id: 'fire',
-      label: 'EFFECT.StatusFire',
-      icon: `${path}token_fire.webp`,
+    fire: {
+      name: 'EFFECT.StatusFire',
+      img: `${path}token_fire.webp`,
     },
-    {
-      icon: 'icons/svg/skull.svg',
-      id: 'dead',
-      label: 'EFFECT.StatusDead',
+    dead: {
+      name: 'EFFECT.StatusDead',
+      img: 'icons/svg/skull.svg',
     },
-    {
-      icon: 'icons/svg/sleep.svg',
-      id: 'sleep',
-      label: 'EFFECT.StatusAsleep',
+    sleep: {
+      name: 'EFFECT.StatusAsleep',
+      img: 'icons/svg/sleep.svg',
     },
-    {
-      icon: 'icons/svg/daze.svg',
-      id: 'stun',
-      label: 'EFFECT.StatusStunned',
+    stun: {
+      name: 'EFFECT.StatusStunned',
+      img: 'icons/svg/daze.svg',
     },
-    {
-      icon: 'icons/svg/falling.svg',
-      id: 'prone',
-      label: 'EFFECT.StatusProne',
+    prone: {
+      name: 'EFFECT.StatusProne',
+      img: 'icons/svg/falling.svg',
     },
-    {
-      icon: 'icons/svg/net.svg',
-      id: 'restrain',
-      label: 'EFFECT.StatusRestrained',
+    restrain: {
+      name: 'EFFECT.StatusRestrained',
+      img: 'icons/svg/net.svg',
     },
-    {
-      icon: 'icons/svg/blind.svg',
-      id: 'blind',
-      label: 'EFFECT.StatusBlind',
+    blind: {
+      name: 'EFFECT.StatusBlind',
+      img: 'icons/svg/blind.svg',
     },
-  ];
+  };
 }
