@@ -4,58 +4,71 @@
  */
 export function registerStatusEffects() {
   const path = 'systems/t2k4e/assets/icons/';
-  CONFIG.statusEffects = {
-    fullCover: {
+  CONFIG.statusEffects = [
+    {
+      id: 'fullCover',
       name: 'EFFECT.Status.FullCover',
       img: `${path}token_full_cover.webp`,
     },
-    partialCover: {
+    {
+      id: 'partialCover',
       name: 'EFFECT.StatusPartialCover',
       img: `${path}token_partial_cover.webp`,
     },
-    overwatch: {
+    {
+      id: 'overwatch',
       name: 'EFFECT.StatusOverwatch',
       img: `${path}token_overwatch.webp`,
     },
-    suppressed: {
+    {
+      id: 'suppressed',
       name: 'EFFECT.StatusSuppressed',
       img: `${path}token_suppressed.webp`,
     },
-    stop: {
+    {
+      id: 'stop',
       name: 'EFFECT.StatusStop',
       img: `${path}token_stop.webp`,
     },
-    smoke: {
+    {
+      id: 'smoke',
       name: 'EFFECT.StatusSmoke',
       img: `${path}token_smoke.webp`,
     },
-    fire: {
+    {
+      id: 'fire',
       name: 'EFFECT.StatusFire',
       img: `${path}token_fire.webp`,
     },
-    dead: {
+    {
+      id: 'dead',
       name: 'EFFECT.StatusDead',
       img: 'icons/svg/skull.svg',
     },
-    sleep: {
+    {
+      id: 'sleep',
       name: 'EFFECT.StatusAsleep',
       img: 'icons/svg/sleep.svg',
     },
-    stun: {
+    {
+      id: 'stun',
       name: 'EFFECT.StatusStunned',
       img: 'icons/svg/daze.svg',
     },
-    prone: {
+    {
+      id: 'prone',
       name: 'EFFECT.StatusProne',
       img: 'icons/svg/falling.svg',
     },
-    restrain: {
+    {
+      id: 'restrain',
       name: 'EFFECT.StatusRestrained',
       img: 'icons/svg/net.svg',
     },
-    blind: {
+    {
+      id: 'blind',
       name: 'EFFECT.StatusBlind',
       img: 'icons/svg/blind.svg',
     },
-  };
+  ];
 }
