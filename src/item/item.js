@@ -390,7 +390,7 @@ export default class ItemT2K extends Item {
 
     // Consumes ammo.
     if (ammo) {
-      const ammoDiff = await this.consumeAmmo(Math.max(1, roll.ammoSpent + 1), ammo);
+      const ammoDiff = await this.consumeAmmo(Math.max(1, roll.ammoSpent), ammo); // ? why roll.ammoSpent + 1 here
       flagData.ammoSpent = ammoDiff;
       flagData.ammo = ammo.id;
     }

@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [13.0.4] - 2026-03-10
+
+<h4>What's New?</h4><ul>
+<h4>Bug Fixes</h4><ul><li>Fixed ammo spending when rof>0. Issue #183 </li><li>Fixed the hidden combatant issue in the initiative tracker. Issue #184 </li></ul>
+</ul>
+
 ## [13.0.3] - 2025-12-10
 
 <h4>What's New?</h4><ul>
