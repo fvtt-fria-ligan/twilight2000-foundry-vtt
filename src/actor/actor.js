@@ -650,7 +650,7 @@ export default class ActorT2K extends Actor {
       speaker: ChatMessage.getSpeaker({ token: this.token }),
       content: await foundry.applications.handlebars.renderTemplate(template, templateData),
       sound: CONFIG.sounds.notification,
-      type: CONST.CHAT_MESSAGE_STYLES.OTHER,
+      style: CONST.CHAT_MESSAGE_STYLES.OTHER,
     };
     ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
     await ChatMessage.create(chatData);

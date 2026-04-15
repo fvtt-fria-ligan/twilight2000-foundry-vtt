@@ -138,7 +138,7 @@ export class T2KRoller {
 
     // 8 — Sends the message and returns.
     if (sendMessage) {
-      return roll.toMessage(null, { rollMode });
+      return roll.toMessage({}, { rollMode });
     }
     return roll;
   }
