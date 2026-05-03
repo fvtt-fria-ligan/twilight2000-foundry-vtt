@@ -3,7 +3,7 @@
 import { getDieSize, T2KRoller } from '../components/roll/dice.js';
 import { T2K4E } from '../system/config.js';
 import Modifier from '../components/modifier.js';
-import { YearZeroRoll } from 'yzur';
+import { YearZeroRoll } from '../lib/yzur.js';
 import Armor from '../components/armor.js';
 
 /**

@@ -1,4 +1,4 @@
-import { YearZeroRoll } from 'yzur';
+import { YearZeroRoll } from '../lib/yzur.js';
 
 export default class Armor {
   // eslint-disable-next-line no-shadow
