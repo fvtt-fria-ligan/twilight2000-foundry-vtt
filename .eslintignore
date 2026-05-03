@@ -4,3 +4,4 @@ node_modules
 foundry.js
 static/system.json
 static/template.json
+src/lib/yzur.js

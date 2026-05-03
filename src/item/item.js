@@ -1,4 +1,4 @@
-import { YearZeroRoll } from 'yzur';
+import { YearZeroRoll } from '../lib/yzur.js';
 import { getChatCardActor } from '../components/chat/chat.js';
 import { T2K4E } from '../system/config.js';
 import { T2KRoller } from '../components/roll/dice.js';

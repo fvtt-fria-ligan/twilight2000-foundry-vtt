@@ -1,5 +1,5 @@
 import T2KDialog from '../dialog/dialog.js';
-import { YearZeroRoll } from 'yzur';
+import { YearZeroRoll } from '../../lib/yzur.js';
 import { T2K4E } from '../../system/config.js';
 import { range } from '@utils/utils.js';
 
