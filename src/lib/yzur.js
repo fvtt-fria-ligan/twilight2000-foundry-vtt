@@ -642,7 +642,7 @@ class D12BladeRunnerDie extends BladeRunnerDie {
 D12BladeRunnerDie.DENOMINATION = '12';
 D12BladeRunnerDie.LOCKED_VALUES = [1, 10, 11, 12];
 
-var YearZeroDice = /*#__PURE__*/Object.freeze({
+const YearZeroDice = /* #__PURE__*/Object.freeze({
   __proto__: null,
   AmmoDie: AmmoDie,
   ArtifactDie: ArtifactDie,
@@ -665,7 +665,7 @@ var YearZeroDice = /*#__PURE__*/Object.freeze({
   SkillDie: SkillDie,
   StressDie: StressDie,
   TwilightDie: TwilightDie,
-  YearZeroDie: YearZeroDie
+  YearZeroDie: YearZeroDie,
 });
 
 /* -------------------------------------------- */
@@ -1316,11 +1316,11 @@ class YearZeroRoll extends Roll {
    * See https://github.com/fvtt-fria-ligan/blade-runner-foundry-vtt/issues/65 for more information.
    * @override
    */
-  static replaceFormulaData(formula, data, {missing, warn=false}={}) {
-    const replaced = super.replaceFormulaData(formula, data, {missing, warn});
+  static replaceFormulaData(formula, data, { missing, warn = false } = {}) {
+    const replaced = super.replaceFormulaData(formula, data, { missing, warn });
 
     const regex = new RegExp('\\((\\d*)\\)', 'gm');
-    const subst = `$1`;
+    const subst = '$1';
     const result = replaced.replace(regex, subst);
 
     return result;
@@ -2119,7 +2119,7 @@ class YearZeroRollManager {
       console.log(`YZUR | Die Registration: "${deno}" with ${cls.name}.`);
     }
     CONFIG.Dice.terms[deno] = cls;
-    CONFIG.Dice.fulfillment.dice[deno] = {label: `d${deno}`, icon: "<i class=\"fa-solid fa-dice\"></i>"};
+    CONFIG.Dice.fulfillment.dice[deno] = { label: `d${deno}`, icon: '<i class="fa-solid fa-dice"></i>' };
   }
 
   /* -------------------------------------------- */
@@ -2184,8 +2184,7 @@ class YearZeroRollManager {
           cls = CONFIG.Dice.terms[stringifiedFaces];
           data.class = cls.name;
         }
-        else
-          cls = Object.values(CONFIG.Dice.terms).find(c => c.name === data.class) || foundry.dice.terms.Die;
+        else {cls = Object.values(CONFIG.Dice.terms).find(c => c.name === data.class) || foundry.dice.terms.Die;}
       }
 
       return cls._fromData(data);
