@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 <br/>and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <br/>See also: [The Angular Convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## [14.0.2] - 2026-05-02
+<h4>Bug Fixes</h4>
+<ul><li>CSS on item-control class. Issue #193 </li>
+<li>Fixed Object merging problem when rolling Attack #192</li>
+</ul>
+
 ## [14.0.1] - 2026-05-02
 <h4>What's New?</h4>
 <ul><li>Removed hard YZUR module dependency</li></ul>
