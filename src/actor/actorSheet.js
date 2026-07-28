@@ -163,7 +163,7 @@ export default class ActorSheetT2K extends foundry.appv1.sheets.ActorSheet {
       //   ui.notifications.warn('Actor does not exist.');
       //   return;
       // }
-      return item.rollAttack(null, actor);
+      return item.rollAttack({}, actor);
     }
 
     // Global action for item click.

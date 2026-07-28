@@ -357,6 +357,7 @@ export default class ItemT2K extends Item {
     }
 
     // Composes the options for the task check.
+    const safeOptions = foundry.utils.getType(options) === 'Object' ? options : {};
     const rollConfig = foundry.utils.mergeObject(
       {
         title,
@@ -367,7 +368,7 @@ export default class ItemT2K extends Item {
         rof,
         locate: true,
       },
-      options,
+      safeOptions,
     );
     // Better to not put them in a mergeObject:
     rollConfig.actor = actor;
